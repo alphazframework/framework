@@ -1,0 +1,19 @@
+{
+    "name": "softhub99/zest_framework",
+    "description": "The Zest Framework.",
+    "keywords": ["framework", "zest"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Malik Umer Farooq",
+            "email":"lablnet01@gmail.com",
+            "homepage": "https://softhub99.com"
+        }
+    ],  
+    "autoload": {
+        "psr-4": {
+             "Softhub99\\Zest_Framework\\": ""
+        },
+        "files":["/functions/helpers.php"]
+    }
+}
