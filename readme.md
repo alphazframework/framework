@@ -1,1 +1,1 @@
-# Legato PHP Framework [beta]
+# Zest PHP Framework [beta]
