@@ -38,7 +38,7 @@ class MYSQL
 	private function Connect($status){
 	    if($status === true){
 	    	$setting = $this->settings;	        
-	        return $db = new PDO('mysql:host='.$setting['host'], $setting['user'], $setting['pass']);
+	        return $db = new \PDO('mysql:host='.$setting['host'], $setting['user'], $setting['pass']);
 	    }
 	    if($status === false){
 	        return $db = null;
