@@ -1,15 +1,6 @@
 <?php
-	/**
-	 * This package can manipulate files and directories in several ways.
-	 *
-	 * @author   Malik Umer Farooq <lablnet01@gmail.com>
-	 * @author-profile https://www.facebook.com/malikumerfarooq01/
-	 * @license MIT 
-	 * @link      https://github.com/Lablnet/PHP-files-manipulation-class
-	 */
 namespace Softhub99\Zest_Framework\Files;	 
-
-class Files {		
+class Files {	
 	
 	//Declare Vars	
 	
@@ -37,19 +28,12 @@ class Files {
 		* @return string
 	*************************************************************/
 	public function __construct(){
-		
 		if(is_dir(\Config\Config::Data_Dir)){
-
 			$data = \Config\Config::Data_Dir;
-
 		}else{
-
 			self::MkDirs(\Config\Config::Data_Dir);
-
-		}
-	
-		$this->fullDirPath = $data;					
-		
+		}	
+		$this->fullDirPath = $data;			
 	} // end method __construct
 	
 	
@@ -61,25 +45,16 @@ class Files {
 		* @return boolean
 	*************************************************************/
 	public function MkDirs( $name ){
-		
 		//if file doesnt exist
 		if( !file_exists( $this->fullDirPath.$name ) ){
-			
 			//create it //also verify that it was created
-			if( mkdir( $this->fullDirPath.$name.'/',0755,true ) ){
-				
-				return true;
-				
-			} else {
-				
-				return false;
-				
-			}
-			
-		}else{
-			
-			return false;
-			
+			if( mkdir( $this->fullDirPath.$name.'/',0755,true ) ){				
+				return true;				
+			} else {				
+				return false;	
+			}			
+		}else{			
+			return false;			
 		}
 	} //end method
 	
@@ -92,9 +67,7 @@ class Files {
 		* @return string
 	*************************************************************/
 	public static function GenerateSalts( $length ){
-		
-		return \Zest_Framework\Site\Site::Salts($length);
-		
+		return \Zest_Framework\Site\Site::Salts($length);		
 	} //end method
 	
 	
@@ -107,32 +80,18 @@ class Files {
 		* @return boolean
 	*************************************************************/
 	public function Permission( $params ){
-		
-		if( $params ){
-			
+		if( $params ){			
 			if( !empty( $params['source'] ) and !empty( $params['Permission'] ) ){
-				
 				//verify chmod
-				if( chmod( $this->fullDirPath.$params['source'], $params['Permission'] ) ){
-				
-					return true;
-					
-				} else{
-					
-					return false;
-					
-				}
-				
-			}else{
-				
-				return false;
-				
-			}
-			
-		}else{
-			
-			return false;
-			
+				if( chmod( $this->fullDirPath.$params['source'], $params['Permission'] ) ){			
+					return true;				
+				} else{					
+					return false;				
+				}				
+			}else{				
+				return false;				
+			}}else{			
+			return false;			
 		}
 	} //end method
 	
@@ -148,66 +107,38 @@ class Files {
 		* #issue folder not copying in windows
 		* @return boolean
 	*************************************************************/
-	public function CopyFilesAndFolder( $params ){
-		
+	public function CopyFilesAndFolder( $params ){		
 		if( is_array( $params ) ){
-			
 			if( $params['status'] === 'files' ){
-				
 				if( !is_dir( $this->fullDirPath.$params['target'].'/' ) ){
-					
 					$this->MkDirs( $params['target'].'/' );
-					
-				}
-				
+				}				
 				foreach ( $params['files'] as $file => $value ) {
-					
 					if( file_exists( $this->fullDirPath.$params['path'].'/'.$value ) ){
-						
-						copy( $this->fullDirPath.$params['path'].'/'.$value, $this->fullDirPath.$params['target'].'/'.$value );
-						
-					}
-					
-				}
-				
+						copy( $this->fullDirPath.$params['path'].'/'.$value, $this->fullDirPath.$params['target'].'/'.$value );					
+					}					
+				}				
 			}
-			
 			if( $params['status'] === 'dir' ){
-				
 				if( !is_dir( $this->fullDirPath.$params['target'].'/' ) ){
-					
 					$this->MkDirs( $params['target'].'/' );
-					
-				}
-				
+				}				
 				foreach ( $params['dirs'] as $file => $from ) {
-					
 					if( is_dir( $this->fullDirPath.$value.'/' ) ){
-						
 						if( $this->ServerOS === 'WINNT' or $this->ServerOS ==='WIN32' or $this->ServerOS ==='Windows' ){
-								
 							shell_exec( "xcopy ". $this->fullDirPath.$from .' '. $this->fullDirPath.$params['to'].'/' );
-						
 						}elseif( $this->ServerOS === 'Linux' or $this->ServerOS ==='FreeBSD' or $this->ServerOS ==='OpenBSD' ){
-								
 							shell_exec( "cp -r ". $this->fullDirPath.$from .' '. $this->fullDirPath.$params['to'].'/' );
-						
-						}elseif( $this->ServerOS === 'Unix' ){
-								
+						}elseif( $this->ServerOS === 'Unix' ){	
 							shell_exec( "cp -r ". $this->fullDirPath.$from .' '. $this->fullDirPath.$params['to'].'/' );
-						
 						}else{
-							
 							return $this->cecodes['No_Support_OS']."<b>COPY</b>";
-						
 						}
 					}
 				}				
 			}
-		}else{
-			
-			return false;
-		
+		}else{			
+			return false;		
 		}
 	} //end method
 	
@@ -224,51 +155,29 @@ class Files {
 		* @return boolean
 	*************************************************************/
 	public function DelFilesAndFolders( $params ){
-		
 		if( is_array( $params ) ){
-			
 			if( $params['status'] === 'files' ){
-				
 				foreach( $params['files'] as $file=>$value ){
-					
 					if( file_exists( $this->fullDirPath.$params['path'].$value ) ){
-						
-						unlink( $this->fullDirPath.$params['path'].$value );
-						
+						unlink( $this->fullDirPath.$params['path'].$value );	
 					}else{
-						
 						return false;
-						
 					}
 				}
-				return true;
-				
+				return true;				
 			}
-			
-			if( $params['status'] === 'dir' ){
-				
-				foreach( $params['dir'] as $file=>$value ){
-					
-					if( is_dir( $this->fullDirPath.$params['path'].$value ) ){
-						
-						rmdir( $this->fullDirPath.$params['path'].$value );
-						
+			if( $params['status'] === 'dir' ){	
+				foreach( $params['dir'] as $file=>$value ){	
+					if( is_dir( $this->fullDirPath.$params['path'].$value ) ){			
+						rmdir( $this->fullDirPath.$params['path'].$value );		
 					}else{
-						
 						return false;
-						
-					}
-					
-				}
-				
-			}	
-			
-		}else{
-			
-			return false;
-			
-		}
-		
+					}					
+				}				
+			}				
+		}else{			
+			return false;			
+		}		
 	} //end method
 	
 	
@@ -283,71 +192,40 @@ class Files {
 		* @return boolean
 	*************************************************************/
 	public function MovesFilesAndFolders( $params ){
-		
 			if( is_array( $params ) ){
-				
-				if( isset( $params['status'] ) and !empty( $params['status'] ) ){
-					
-					if( $params['status'] === 'files'  ){
-						
-						if(  !is_dir(  $params['to']  )  ){
-							
-							if(  !file_exists(  $params['to']  )  ){
-								
-								$this->MkDirs( $params['to'] );
-								
+				if( isset( $params['status'] ) and !empty( $params['status'] ) ){	
+					if( $params['status'] === 'files'  ){	
+						if(  !is_dir(  $params['to']  )  ){		
+							if(  !file_exists(  $params['to']  )  ){			
+								$this->MkDirs( $params['to'] );			
 							}
 						}
-						foreach( $params['files'] as $file ){
-							
-							rename( $params['from'].'/'.$file,$params['to'].'/'.$file );
-							
+						foreach( $params['files'] as $file ){	
+							rename( $params['from'].'/'.$file,$params['to'].'/'.$file );	
 						}
 					return true;	
-					
 				}elseif( $params['status'] === 'dir' ){
-					
 					if( !is_dir( $params['to'] ) ){
-							
 						if( !file_exists( $params['to'] ) ){
-								
-							$this->MkDirs( $params['to'] );
-								
-						}
-						
+						$this->MkDirs( $params['to'] );
+						}						
 					} //end if
-					
 					foreach( $params['from'] as $key => $from ){
-							
-						if( $this->ServerOS === 'WINNT' or $this->ServerOS ==='WIN32' or $this->ServerOS ==='Windows' ){
-								
+						if( $this->ServerOS === 'WINNT'or $this->ServerOS ==='Windows' ){
 							shell_exec( "move ". $this->fullDirPath.$from .' '. $this->fullDirPath.$params['to'].'/' );
-								
 						}elseif( $this->ServerOS === 'Linux' or $this->ServerOS ==='FreeBSD' or $this->ServerOS ==='OpenBSD' ){
-								
 							shell_exec( "mv ". $this->fullDirPath.$from .' '. $this->fullDirPath.$params['to'].'/' );
-								
 						}elseif( $this->ServerOS === 'Unix' ){
-								
 							shell_exec( "mv ". $this->fullDirPath.$from .' '. $this->fullDirPath.$params['to'].'/' );
-								
 						}else{
-								
 							return $this->cecodes['No_Support_OS']."<b>MOVE</b>";
-								
-						}
-							
-					} // end foreach
-						
+						}						
+					} // end foreach			
 				}
 			}
-			
-		}else{
-			
-			return false;
-			
-		}	
-		
+		}else{			
+			return false;			
+		}			
 	} //end method
 	
 
@@ -365,58 +243,32 @@ class Files {
 		* @return integer on fail fileName on success
 	*************************************************************/
 	public function FileUpload( $params ){
-		
 		if( is_array( $params ) ){
-			
 			$exactName = basename( $params['file']['name'] ); 
-			
 			$fileTmp = $params['file']['tmp_name'];
-			
 			$fileSize = $params['file']['size'];
-			
 			$error = $params['file']['error'];
-			
 		    $type = $params['file']['type'];
-			
 			$ext =  pathinfo( $params['file']['name'], PATHINFO_EXTENSION );
-			
-			$newName = $this->GenerateSalts( 30 );
-			
+			$newName = $this->GenerateSalts( 30 );			
 			$fileNewName = $newName.'.'.$ext;
-			
 			switch( $params['filetype'] ){
-				
 				case 'image':
-				
 					$allowerd_ext = ['jpg','png','jpeg','gif','ico','svg'];
-					
 					break;
-					
 				case 'zip':
-				
 					$allowerd_ext = ['zip','tar','7zip','rar'];
-					
 					break;
-					
 				case 'docs':
-				
 					$allowerd_ext = ['pdf','docs','docx'];
-					
 					break;
-					
-				case 'media':
-				
-					$allowerd_ext = ['mp4','mp3','wav','3gp'];
-					
-					break;
-					
-				default:
-				
+				case 'media':				
+					$allowerd_ext = ['mp4','mp3','wav','3gp'];		
+					break;				
+				default:			
 					// occur wrong skill of developers
 					return $this->cecodes['No_Support']." <b>{$ext}</b>";
-					
 			} //end switch
-			
 					$AccpetedTypes = [
 									'application/msword',
 									'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -434,57 +286,31 @@ class Files {
 									'image/svg+xml',
 					];
 						if( in_array( $type, $AccpetedTypes ) === false ){
-							
-							return $this->cecodes['No_Support']." <b>{$type}</b>";
-							
+							return $this->cecodes['No_Support']." <b>{$type}</b>";			
 						}				
 			if( in_array( $ext,$allowerd_ext ) === true ){
-				
 				if( $error === 0 ){
-					
 					if( $fileSize <= $this->fupmaxs ){
-						
-						if( !is_dir( $this->fullDirPath.$params['target'] ) or !file_exists( $this->fullDirPath.$params['target'] ) ){
-							
+						if( !is_dir( $this->fullDirPath.$params['target'] ) or !file_exists( $this->fullDirPath.$params['target'] ) ){		
 							$this->MkDirs( $params['target'].'/' );
-							
-						}
-						
-						$fileRoot = $this->fullDirPath.$params['target'].'/'.$fileNewName;
-						
-						if( move_uploaded_file( $fileTmp,$fileRoot ) ){
-							
+						}						
+						$fileRoot = $this->fullDirPath.$params['target'].'/'.$fileNewName;	
+						if( move_uploaded_file( $fileTmp,$fileRoot ) ){				
 							return $fileNewName;
-							
-						}else{
-							
-							return $this->cecodes['No_Upload']. "{$fileRoot}";    
-							
-						}
-						
-					}else{ 
-						
-						return $this->cecodes['Size_Limit'];
-						
+						}else{					
+							return $this->cecodes['No_Upload']. "{$fileRoot}";  
+						}						
+					}else{ 						
+						return $this->cecodes['Size_Limit'];	
 					}
-				}else{
-					
-					return $error;
-					
-			}
-			
-			}else{
-				
-				return $this->cecodes['No_Support']." <b>{$ext}</b>";
-				
-			}
-			
-		}else{
-			
-			return false;
-			
-		}
-		
+				}else{					
+					return $error;				
+			}}else{				
+				return $this->cecodes['No_Support']." <b>{$ext}</b>";		
+			}			
+		}else{			
+			return false;			
+		}		
 	} //end method
 	
 	//Method MultipleFileUpload
@@ -499,68 +325,38 @@ class Files {
 		*
 		* @return Array
 	*************************************************************/
-	public function MultipleFileUpload( $params ){
-
-		//Storing status
+	public function MultipleFileUpload( $params ){//Storing status
 		$status = [];
-
 		if( is_array( $params ) ){
-			
 			//counting number of files
 			$counter =  $params['count'];
-
 			//using loop for upload all files
 			for ( $i=0;$i<$counter;$i++ ) {
-
 				$exactName = basename( $params['file']['name'][$i] ); 
-				
 				$fileTmp = $params['file']['tmp_name'][$i];
-				
 				$fileSize = $params['file']['size'][$i];
-				
 				$error = $params['file']['error'][$i];
-				
 			    $type = $params['file']['type'][$i];
-				
 				$ext =  pathinfo( $params['file']['name'][$i], PATHINFO_EXTENSION );
 				
-				$newName = $this->GenerateSalts( 30 );
-				
+				$newName = $this->GenerateSalts( 30 );		
 				$fileNewName = $newName.'.'.$ext;
-				
 				switch( $params['filetype'] ){
-					
-					case 'image':
-					
-						$allowerd_ext = ['jpg','png','jpeg','gif','ico','svg'];
-						
-						break;
-						
-					case 'zip':
-					
+					case 'image':				$allowerd_ext = ['jpg','png','jpeg','gif','ico','svg'];		
+						break;				
+					case 'zip':				
 						$allowerd_ext = ['zip','tar','7zip','rar'];
-						
 						break;
-						
-					case 'docs':
-					
-						$allowerd_ext = ['pdf','docs','docx'];
-						
-						break;
-						
-					case 'media':
-					
+						case 'docs':			
+						$allowerd_ext = ['pdf','docs','docx'];	
+						break;					
+					case 'media':				
 						$allowerd_ext = ['mp4','mp3','wav','3gp'];
-						
 						break;
-						
-					default:
-					
+						default:
 						// occur wrong skill of developers
 						$error['error'][$i] =  $this->cecodes['No_Support']." <b>{$ext}</b>";
-						
 				} //end switch
-				
 						$AccpetedTypes = [
 										'application/msword',
 										'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -578,72 +374,42 @@ class Files {
 									'image/svg+xml',
 						];
 							if( in_array( $type, $AccpetedTypes ) === false ){
-								
 								$status['error'] =  $this->cecodes['No_Support']." <b>{$type}</b>";
-								
 							}				
 				if( in_array( $ext,$allowerd_ext ) === true ){
-					
 					if( $error === 0 ){
-						
 						if( $fileSize <= $this->fupmaxs ){
-							
-							if( !is_dir( $this->fullDirPath.$params['target'] ) or !file_exists( $this->fullDirPath.$params['target'] ) ){
-								
-								$this->MkDirs( $params['target'].'/' );
-								
+							if( !is_dir( $this->fullDirPath.$params['target'] ) or !file_exists( $this->fullDirPath.$params['target'] ) ){			
+								$this->MkDirs( $params['target'].'/' );			
 							}
-							
 							$fileRoot = $this->fullDirPath.$params['target'].'/'.$fileNewName;
-							
-							if( move_uploaded_file( $fileTmp,$fileRoot ) ){
-															
+							if( move_uploaded_file( $fileTmp,$fileRoot ) ){			
 								$status['success'][$i] = $fileNewName;
 
-							}else{
+							}else{			
+								$status['error'][$i] =  $this->cecodes['No_Upload']. "{$fileRoot}";   
 								
-								$status['error'][$i] =  $this->cecodes['No_Upload']. "{$fileRoot}";    
-								
-							}
-							
+							}					
 						}else{ 
-							
 							$status['error'][$i] =  $this->cecodes['Size_Limit'];
-							
 						}
-					}else{
-						
-						$status['error'][$i] = $error;
-						
+					}else{						
+						$status['error'][$i] = $error;				
 				}
 				
-				}else{
-					
-					$status['error'][$i] = $this->cecodes['No_Support']." <b>{$ext}</b>";
-					
-				}
-			}
-
+				}else{					
+					$status['error'][$i] = $this->cecodes['No_Support']." <b>{$ext}</b>";					
+				}}
 			if(isset($status['error'])){
-
 				return $status['error'];
-
 			}elseif(isset($status['success'])){
-
 				return $status['success'];
-
 			}else{
-
 				return falae;
-
 			}	
-
-		}else{
-			
-			return false;
-			
-		}
-		
+		}else{			
+			return false;			
+		}		
 	} //end method
 	
 	//Method FilesHandeling	
@@ -664,87 +430,47 @@ class Files {
 		* @return integar on fail fileName on success
 	*************************************************************/
 	public function FilesHandeling( $params ){
-		
-		if( is_array( $params ) ){
-			
-			switch ( $params['mods'] ){
-				
-				case 'readonly':
-				
-					$mod = 'r';
-					
+		if( is_array( $params ) ){	
+			switch ( $params['mods'] ){	
+				case 'readonly':	
+					$mod = 'r';	
 					break;
-				
-				case 'read+write':
-				
-					$mod = 'r+';
-					
-					break;
-					
+				case 'read+write':	
+					$mod = 'r+';		
+					break;		
 				case 'writeonly':
-				
 					$mod = 'w';
-					
 					break;
-				
 				case 'writeonlyoverride':
-				
 					$mod = 'w+';
-					
 					break;
-					
-				case 'writeonlynotoverride':
-				
-					$mod = 'a';
-					
+				case 'writeonlynotoverride':	
+					$mod = 'a';					
 					break;
-					
-				case 'write+readnotoverride':
-
-					$mod = 'a+';
-				
+					 case 'write+readnotoverride':
+					$mod = 'a+';				
 					break;
-					
 				default:
-				
-					return false;
-					
+					return false;	
 			} //end switch
-				
 			$fopen = fopen( $this->fullDirPath.$params['target'].'/'.$params['name'].'.'.$params['extension'], $mod );
-			
-			fwrite( $fopen, $params['text'] );
-			
+			fwrite( $fopen, $params['text'] );	
 			switch ( $mod ){
-				
 				case 'r':
 				case 'r+': 
 				case 'a+':
-				
-					return fread( $fopen, filesize( $this->fullDirPath.$params['target'].'/'.$params['name'].'.'.$params['extension'] ) );
-					
-					break;
-					
+					return fread( $fopen, filesize( $this->fullDirPath.$params['target'].'/'.$params['name'].'.'.$params['extension'] ) );	
+					break;					
 				case 'w':
 				case 'w+':
 				case 'a':
-
-					return true;
-					
-					break;
-					
-				default:
-				
-				return false;
-				
-			} //end switch
-			
-		}else{
-			
-			return false;
-			
-		}
-		
-	} //end method
-	
+					return true;				
+					break;					
+				default:				
+				return false;				
+			} //end switch			
+		}else{			
+			return false;			
+		}		
+	} //end method	
 } //end class

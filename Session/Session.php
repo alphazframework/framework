@@ -1,14 +1,6 @@
 <?php
-	/**
-	 * This package Can handel session.
-	 *
-	 * @author   Malik Umer Farooq <lablnet01@gmail.com>
-	 * @author-profile https://www.facebook.com/malikumerfarooq01/
-	 * @license MIT 
-	 * @link      https://github.com/Lablnet/PHP-Sessuib-Handler-Class
-	 */
-namespace Softhub99\Zest_Framework\Session;
 
+namespace Softhub99\Zest_Framework\Session;
 class Session
 {
 
@@ -17,9 +9,7 @@ class Session
      * @return void
     */
 	public function __construct(){
-
 		self::Start();
-
 	}
 
 	 /**
@@ -27,19 +17,12 @@ class Session
      * @return void
     */
 	public function Start():void{
-
 		if(session_status() === PHP_SESSION_NONE){
-
 			session_start();
-
 			return;
-
 		}else{
-
 			return;
-
 		}
-
 	}
      /** 
      *Change session path
@@ -47,11 +30,8 @@ class Session
      * @return void
     */		
 	public function SessionPath () :void{
-
 		$path = \Config\Config::Session_Path;
 		ini_set('session.save_path', $path);
-
-
 	}
      /** 
      *Check if session is already set with specific name
@@ -59,17 +39,11 @@ class Session
      * @return boolean
     */
 	public function CheckStatus(?string $name):bool{
-
 		if(isset($_SESSION[$name])){
-
 			return true;
-
 		}else{
-
 			return false;
-
 		}
-
 	}
 
      /**
@@ -78,15 +52,10 @@ class Session
      * @return string
     */
 	public function GetValue(?string $name):string{
-
 		if($this->CheckStatus($name) === true){
-
 			return $_SESSION[$name];
-
 		}else{
-
 			return false;
-
 		}
 	}
 
@@ -98,19 +67,12 @@ class Session
      * @return string
     */
 	public function SetValue(?array $params){
-
 		if(is_array($params)){
-
 			if($this->CheckStatus($params['name']) !== true){
-
 				$_SESSION[$params['name']] = $params['value'];
-
 				return $_SESSION[$params['name']];
-
 			}else{
-
 				return false;
-
 			}
 		}
 	}
@@ -121,17 +83,11 @@ class Session
      * @return boolean
     */ 
 	public function UnsetValue(?string $name):bool{
-
 		if($this->CheckStatus($name) === true){
-
 			session_unset($name);
-
 			return true;
-
 		}else{
-
 			return false;
-
 		}
 	}
 }

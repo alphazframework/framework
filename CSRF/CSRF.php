@@ -1,24 +1,10 @@
 <?php 
-	/**
-	 * This package can generate token for csrf security
-	 *
-	 * @author   Malik Umer Farooq <lablnet01@gmail.com>
-	 * @author-profile https://www.facebook.com/malikumerfarooq01/
-	 * @license MIT 
-	 *
-	 * @link https://github.com/Lablnet/PHP-CSRF-Security-class
-	 *
-	 */
 namespace Softhub99\Zest_Framework\CSRF;
-
 class CSRF{
-
 	//default time
 	private $time;
-
 	//System time
 	private $sysTime;
-
 		/**
 		 * __construct
 		 *
@@ -26,13 +12,10 @@ class CSRF{
 		 * @return Void;
 		 */
 	public function __construct(){
-
 			//delete expires tokens
 			self::DeleteExpires();
-
 			//update system time
 			self::UpdateSysTime();
-
 			//session handler
 			self::GenerateSession();
 
@@ -47,9 +30,7 @@ class CSRF{
 		 */	
 	public function Delete($token){
 		if(isset($_SESSION['security']['csrf'][$token])){
-
 			unset($_SESSION['security']['csrf'][$token]);
-
 		}
 	}
 		/**
@@ -59,21 +40,13 @@ class CSRF{
 		 * @return void;
 		 */	
 	public function DeleteExpires(){
-
 		if(isset($_SESSION['security']['csrf'])){
-
 			foreach ($_SESSION['security']['csrf'] as $token => $value) {
-
 				if(time() >= $value ){
-
 					unset($_SESSION['security']['csrf'][$token]);
-
 				}
-
 			}
-
 		}
-
 	}
 		/**
 		 * Delete unnecessary tokens
@@ -82,22 +55,13 @@ class CSRF{
 		 * @return void;
 		 */	
 	public function DeleteUnnecessaryTokens(){
-
 		$total = self::CountsTokens();
-
 		$delete  = $total - 1;
-
 		$tokens_deleted = $_SESSION['security']['csrf'];
-
 		$tokens = array_slice($tokens_deleted, 0, $delete);
-
 		foreach ($tokens as $token => $time) {
-			
 			self::Delete($token);
-
 		}
-
-
 	}
 		/**
 		 * Debug
@@ -106,7 +70,6 @@ class CSRF{
 		 * @return json object;
 		 */	
   	public function Debug() {
-
     	echo json_encode($_SESSION['security']['csrf'], JSON_PRETTY_PRINT);
 
   	}	
@@ -118,11 +81,7 @@ class CSRF{
 		 * @return bolean;
 		 */
 	public function UpdateTime($time){
-
-  		  if (is_int($time) && is_numeric($time)) {
-
-     			 $this->time = $time;
-
+  		  if (is_int($time) && is_numeric($time)) { $this->time = $time;
      			 return $this->time;
 	    }else{
 	    	return false;
@@ -134,9 +93,7 @@ class CSRF{
 		 * @return void;
 		 */
 	 final private function UpdateSysTime(){
-			
 			$this->sysTime = time();
-	
    }   
 		/**
 		* generate salts for files
@@ -146,9 +103,7 @@ class CSRF{
 		 * @return string;
 		 */	
 	public function GenerateSalts( $length ){
-		
-		return \Zest_Framework\Site\Site::Salts($length);
-		
+		return \Zest_Framework\Site\Site::Salts($length);		
 	}   
 		/**
 		 * Generate tokens
@@ -159,16 +114,10 @@ class CSRF{
 		 * @return mix-data;
 		 */	
 	public function GenerateTokens($time,$multiplier) {
-
 			$key = self::GenerateSalts(100);
-
 			$utime = self::UpdateTime($time);
-
 			$value = $this->sysTime + ( $utime * $multiplier );
-
-
 			$_SESSION['security']['csrf'][$key] = $value;
-
 			return $key;
 	}
 		/**
@@ -177,13 +126,9 @@ class CSRF{
 		 * @return void;
 		 */		
 	public function GenerateSession(){
-
 		if (!isset($_SESSION['security']['csrf'])) {
-
   			$_SESSION['security']['csrf'] = [];
-
-    	}	
-
+    	}
 	}
 		/**
 		 * View token
@@ -193,15 +138,10 @@ class CSRF{
 		 * @return mix-data;
 		 */		
  	 public function View($token) {
-
     	if(isset($_SESSION['security']['csrf'][$token])){
-
     		return $_SESSION['security']['csrf'][$token];
-
    		 }else{
-
     		return false;
-
 		}
 	 }
 		/**
@@ -212,15 +152,10 @@ class CSRF{
 		 * @return boolean;
 		 */		
  	 public function Verify($token) {
-
     	if(isset($_SESSION['security']['csrf'][$token])){
-
     		return true;
-
    		 }else{
-
     		return false;
-
 		}
 	 }	 
 		/**
@@ -229,15 +164,10 @@ class CSRF{
 		 * @return mix-data;
 		 */
   	public function LastToken(){
-
   		if(isset($_SESSION['security']['csrf'])){
-
   			return end($_SESSION['security']['csrf']);
-
   		}else{
-
   			return false;
-
   		} 
   	}
 		/**
@@ -246,17 +176,10 @@ class CSRF{
 		 * @return int;
 		 */  	
   	public function CountsTokens(){
-
   		if(isset($_SESSION['security']['csrf'])){
-
   			return count($_SESSION['security']['csrf']);
-
   		}else{
-
   			return 0;
-
   		}
-
-
   	}
 }
