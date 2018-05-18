@@ -1,5 +1,6 @@
 <?php
-namespace Softhub99\Zest_Framework\Files;	 
+namespace Softhub99\Zest_Framework\Files;
+use \Config\Config;	 
 class Files {	
 	
 	//Declare Vars	
@@ -28,15 +29,34 @@ class Files {
 		* @return string
 	*************************************************************/
 	public function __construct(){
-		if(is_dir(\Config\Config::Data_Dir)){
-			$data = \Config\Config::Data_Dir;
+		if(is_dir(Config::Data_Dir)){
+			$data = Config::Data_Dir;
 		}else{
-			self::MkDirs(\Config\Config::Data_Dir);
+			self::MkDirs(Config::Data_Dir);
 		}	
 		$this->fullDirPath = $data;			
 	} // end method __construct
 	
-	
+	//Method MkDir	 
+	/*************************************************************
+		* Create directory outside of public
+		*
+		* @param $name (string) string $name name of directory
+		* @return boolean
+	*************************************************************/
+	public function MkDir( $name ){
+		//if file doesnt exist
+		if( !file_exists( $name ) ){
+			//create it //also verify that it was created
+			if( mkdir( $name.'/',0755,true ) ){				
+				return true;				
+			} else {				
+				return false;	
+			}			
+		}else{			
+			return false;			
+		}
+	} //end method	
 	//Method MkDirs	 
 	/*************************************************************
 		* Create directory outside of public
