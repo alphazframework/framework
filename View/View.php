@@ -31,7 +31,7 @@ Class View{
 	*
 	 * @return booleans
 	 */			
-	public static function SetTemplate($file,$params = []){
+	public static function RanderTemplate($file,$params = []){
 		if(!empty($file)){
 			static::SetFile($file);
 		}else{
@@ -100,8 +100,9 @@ Class View{
 
 	}	
 
-	public function View($file){
+	public function View($file,?array $args = []){
 		if(!empty($file)){
+			extract($args, EXTR_SKIP);
 			$file = "../App/Views/".$file.'.php';
 			if(file_exists($file)){
 				require_once $file;
