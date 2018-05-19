@@ -38,7 +38,7 @@ class Cookies
 	 *
 	 * @return boolean
 	 */	 
-	public static function Set($params){
+	public static function set($params){
 		if(is_array($params)){
 			if (preg_match("/[=,; \t\r\n\013\014]/", $params['name'])) {
 			  	static::$name = rand(1, 25);
@@ -57,7 +57,7 @@ class Cookies
 	        static::$path = empty($path) ? '/' : $params['path'];
 	        static::$secure = (Boolean) $params['secure'];
 	        static::$httponly = (Boolean) $params['httponly'];
-	        return static::SetCookie();
+	        return static::setCookie();
 		}else{
 			return false;
 		}
@@ -68,9 +68,9 @@ class Cookies
 	 *
 	 * @return boolean
 	 */	 
-	public static function SetCookie(){
+	public static function setCookie(){
 			if(!empty(static::$name) && !empty(static::$value) && !empty(static::$expire) && !empty(static::$path) && !empty(static::$domain) && is_bool(static::$secure) && is_bool(static::$httponly)){
-					if(static::IsCookie(static::$name) === false){
+					if(static::isCookie(static::$name) === false){
 						setcookie(static::$name, static::$value, static::$expire, static::$path, static::$domain, static::$secure, static::$httponly);
 						return true;
 					}else{
@@ -87,7 +87,7 @@ class Cookies
 	 *
 	 * @return boolean
 	 */	 
-	public static function IsCookie($name){
+	public static function isCookie($name){
 		if(isset($name) && !empty($name)){
 			if(isset($_COOKIE[$name])){
 				return true;
@@ -105,9 +105,9 @@ class Cookies
 	 *
 	 * @return string | boolean
 	 */	 
-	public static function Get($name){
+	public static function get($name){
 		if(isset($name) && !empty($name)){
-			if(isset($_COOKIE[$name])){
+			if(static::isCookie($name)){
 				return $_COOKIE[$name];
 			}else{
 				return false;
@@ -122,11 +122,11 @@ class Cookies
 	 *
 	 * @return boolean
 	 */	 
-	public static function Delete($name){
+	public static function delete($name){
 		if(isset($name) && !empty($name)){
-			if(static::IsCookie($name)){
+			if(static::isCookie($name)){
 				static::$name = $name;
-				static::$value = self::Get($name);
+				static::$value = self::get($name);
 				setcookie(static::$name, static::$value, time() - 3600000, static::$path, $_SERVER['SERVER_NAME']);
 				return true;
 			}else{

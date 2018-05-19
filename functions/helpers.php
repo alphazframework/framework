@@ -37,13 +37,13 @@ function set_cookie($name,$value,$expire,$path,$domain,$secure,$httponly){
 	return Softhub99\Zest_Framework\Cookies\Cookies::set(['name'=>$name,'value'=>$value,'expire'=> time()+ $expire,'path'=> $path , 'domain'=>$domain,'secure'=>$secure,'httponly'=>$httponly]);
 }
 function get_cookie($name){
-	return Softhub99\Zest_Framework\Cookies\Cookies::Get($name);
+	return Softhub99\Zest_Framework\Cookies\Cookies::get($name);
 }
 function delete_cookie($name){
-	return Softhub99\Zest_Framework\Cookies\Cookies::Delete($name);
+	return Softhub99\Zest_Framework\Cookies\Cookies::delete($name);
 }
 function is_cookie($name){
-	return Softhub99\Zest_Framework\Cookies\Cookies::IsCookie($name);
+	return Softhub99\Zest_Framework\Cookies\Cookies::isCookie($name);
 }
 function add_system_message($msg,$type=null){
 	if(!isset($type) && empty($type)){
