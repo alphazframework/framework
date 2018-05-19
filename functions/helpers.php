@@ -1,37 +1,37 @@
 <?php 
 
 function printl(?string $key){
-		return Softhub99\Zest_Framework\Language\Language::Print($key);
+		return Softhub99\Zest_Framework\Language\Language::print($key);
 }
 function lang(){
 	return \Config\Config::Language;
 }
 function input($key){
-	return Softhub99\Zest_Framework\Input\InPut::Input($key);
+	return Softhub99\Zest_Framework\Input\InPut::input($key);
 }
 function escape($str,$type='secured'){
-	return Softhub99\Zest_Framework\Input\InPut::Cleane($str,$type);
+	return Softhub99\Zest_Framework\Input\InPut::cleane($str,$type);
 }
 function is_ajax(){
-	return Softhub99\Zest_Framework\Input\InPut::IsAjax();
+	return Softhub99\Zest_Framework\Input\InPut::isAjax();
 }
 function is_submit($name){
-	return Softhub99\Zest_Framework\Input\InPut::IsFromSubmit($name);
+	return Softhub99\Zest_Framework\Input\InPut::isFromSubmit($name);
 }
 function restore_new_line($str){
-	return Softhub99\Zest_Framework\Input\InPut::RestoreLineBreaks($str);
+	return Softhub99\Zest_Framework\Input\InPut::restoreLineBreaks($str);
 }
 function site_base_url(){
-	return Softhub99\Zest_Framework\Site\Site::SiteBaseUrl();
+	return Softhub99\Zest_Framework\Site\Site::siteBaseUrl();
 }
 function site_url(){
-	return Softhub99\Zest_Framework\Site\Site::SiteUrl();
+	return Softhub99\Zest_Framework\Site\Site::siteUrl();
 }
 function redirect($url){
-	return Softhub99\Zest_Framework\Site\Site::Redirect($url);
+	return Softhub99\Zest_Framework\Site\Site::redirect($url);
 }
 function salts($len){
-	return Softhub99\Zest_Framework\Site\Site::Salts($len);
+	return Softhub99\Zest_Framework\Site\Site::salts($len);
 }
 function set_cookie($name,$value,$expire,$path,$domain,$secure,$httponly){
 	return Softhub99\Zest_Framework\Cookies\Cookies::set(['name'=>$name,'value'=>$value,'expire'=> time()+ $expire,'path'=> $path , 'domain'=>$domain,'secure'=>$secure,'httponly'=>$httponly]);
@@ -52,5 +52,5 @@ function add_system_message($msg,$type=null){
 	return Softhub99\Zest_Framework\SystemMessage\SystemMessage::add(['msg'=>$msg,'type'=>$type]);
 }
 function view_system_message(){
-	return Softhub99\Zest_Framework\SystemMessage\SystemMessage::View();
+	return Softhub99\Zest_Framework\SystemMessage\SystemMessage::view();
 }

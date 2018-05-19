@@ -16,7 +16,7 @@ Class View{
 	*
 	 * @return void
 	 */		
-	private static function SetFile($file){
+	private static function setFile($file){
 		 $file = "../App/Views/".$file;
 		if(file_exists($file)){
 			static::$file = $file;
@@ -31,9 +31,9 @@ Class View{
 	*
 	 * @return booleans
 	 */			
-	public static function RanderTemplate($file,$params = []){
+	public static function randerTemplate($file,$params = []){
 		if(!empty($file)){
-			static::SetFile($file);
+			static::setFile($file);
 		}else{
 			return false;
 		}
@@ -41,7 +41,7 @@ Class View{
 				$value = array_values($params);
 				static::$keys = $keys;
 				static::$Values = $value;
-				return static::Rander();
+				return static::rander();
 	}
 		
 	/**
@@ -49,8 +49,8 @@ Class View{
 	*
 	 * @return raw-data
 	 */			
-	public static function FetchFile(){
-		if(static::IsFile()){
+	public static function fetchFile(){
+		if(static::isFile()){
 			 $file = static::$file;
 			return file_get_contents($file);	
 		}else{
@@ -64,7 +64,7 @@ Class View{
 	*
 	 * @return boolean
 	 */	
-	public static function IsFile(){
+	public static function isFile(){
 		$file = static::$file;
 		if(file_exists($file)){
 			return true;
@@ -79,8 +79,8 @@ Class View{
 	*
 	 * @return raw-data
 	 */		
-	public static function Rander(){
-		$file = static::FetchFile();
+	public static function rander(){
+		$file = static::fetchFile();
 		$CountKeys = count(static::$keys);
 		$CountValues = count(static::$Values);
 		if($CountKeys === $CountValues && static::IsFile()){
@@ -100,7 +100,7 @@ Class View{
 
 	}	
 
-	public function View($file,?array $args = []){
+	public function view($file,?array $args = []){
 		if(!empty($file)){
 			extract($args, EXTR_SKIP);
 			$file = "../App/Views/".$file.'.php';

@@ -9,14 +9,14 @@ class Session
      * @return void
     */
     public function __construct(){
-        static::Start();
+        static::start();
     }
 
      /**
      * Start the session if not already start
      * @return void
     */
-    public static function Start():void{
+    public static function start():void{
         (session_status() === PHP_SESSION_NONE) ? session_start() : null;
     }
      /** 
@@ -24,7 +24,7 @@ class Session
      *
      * @return void
     */      
-    public static function SessionPath () :void{
+    public static function sessionPath () :void{
         $path = \Config\Config::Session_Path;
         ini_set('session.save_path', $path);
     }
@@ -33,7 +33,7 @@ class Session
      * @param $name (string) name of session e.g users
      * @return boolean
     */
-    public static function CheckStatus(?string $name):bool{
+    public static function isSession(?string $name):bool{
         return (isset($_SESSION[$name])) ? true : false;
     }
 
@@ -42,9 +42,9 @@ class Session
      * @param $name (string) name of session e.g users
      * @return string
     */
-    public static function GetValue(string $name)
+    public static function getValue(string $name)
     {
-        return (static::CheckStatus($name)) ? $_SESSION[$name] : false;
+        return (static::isSession($name)) ? $_SESSION[$name] : false;
     }
 
      /**
@@ -54,8 +54,8 @@ class Session
      * 'value' => value store in session e.g user token 
      * @return string
     */
-    public static function SetValue(string $name,$value ){
-        return (static::CheckStatus($name) !== true) ? $_SESSION[$name] = $value : false;
+    public static function setValue(string $name,$value ){
+        return (static::isSession($name) !== true) ? $_SESSION[$name] = $value : false;
     }
 
     /**
@@ -63,7 +63,7 @@ class Session
      * @param $name (string) name of session e.g users
      * @return boolean
     */ 
-    public static function UnsetValue(string $name){
-        return (static::CheckStatus($name)) ? session_unset($name) : false;
+    public static function unsetValue(string $name){
+        return (static::isSession($name)) ? session_unset($name) : false;
     }
 }

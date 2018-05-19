@@ -32,26 +32,26 @@ class Files {
 		if(is_dir(Config::Data_Dir)){
 			$data = Config::Data_Dir;
 		}else{
-			self::MkDirs(Config::Data_Dir);
+			self::mkDirs(Config::Data_Dir);
 		}	
 		$this->fullDirPath = @$data;			
 	} // end method __construct
 
-	public function SystemDirs(){
+	public function systemDirs(){
 		if(!is_dir("../Storage")){
-			self::MkDir('../Storage');
+			self::mkDir('../Storage');
 		}
 		if(!is_dir("../Storage/Data")){
-			self::MkDir("../Storage/Data");
+			self::mkDir("../Storage/Data");
 		}
 		if(!is_dir("../Storage/Logs")){
-			self::MkDir("../Storage/Logs");
+			self::mkDir("../Storage/Logs");
 		}
 		if(!is_dir("../Storage/Session")){
-			self::MkDir("../Storage/Session");
+			self::mkDir("../Storage/Session");
 		}	
 		if(!is_dir("../Storage/Backup")){
-			self::MkDir("../Storage/Backup");	
+			self::mkDir("../Storage/Backup");	
 		}	
 	}
 	//Method MkDir	 
@@ -61,7 +61,7 @@ class Files {
 		* @param $name (string) string $name name of directory
 		* @return boolean
 	*************************************************************/
-	public function MkDir( $name ){
+	public function mkDir( $name ){
 		//if file doesnt exist
 		if( !file_exists( $name ) ){
 			//create it //also verify that it was created
@@ -81,7 +81,7 @@ class Files {
 		* @param $name (string) string $name name of directory
 		* @return boolean
 	*************************************************************/
-	public function MkDirs( $name ){
+	public function mkDirs( $name ){
 		//if file doesnt exist
 		if( !file_exists( $this->fullDirPath.$name ) ){
 			//create it //also verify that it was created
@@ -103,8 +103,8 @@ class Files {
 		* @param string $length length of salts
 		* @return string
 	*************************************************************/
-	public static function GenerateSalts( $length ){
-		return \Zest_Framework\Site\Site::Salts($length);		
+	public static function generateSalts( $length ){
+		return \Zest_Framework\Site\Site::salts($length);		
 	} //end method
 	
 	
@@ -116,7 +116,7 @@ class Files {
 		*		 'premission' => premission set to be.		
 		* @return boolean
 	*************************************************************/
-	public function Permission( $params ){
+	public function permission( $params ){
 		if( $params ){			
 			if( !empty( $params['source'] ) and !empty( $params['Permission'] ) ){
 				//verify chmod
@@ -144,11 +144,11 @@ class Files {
 		* #issue folder not copying in windows
 		* @return boolean
 	*************************************************************/
-	public function CopyFilesAndFolder( $params ){		
+	public function copyFilesAndFolder( $params ){		
 		if( is_array( $params ) ){
 			if( $params['status'] === 'files' ){
 				if( !is_dir( $this->fullDirPath.$params['target'].'/' ) ){
-					$this->MkDirs( $params['target'].'/' );
+					$this->mkDirs( $params['target'].'/' );
 				}				
 				foreach ( $params['files'] as $file => $value ) {
 					if( file_exists( $this->fullDirPath.$params['path'].'/'.$value ) ){
@@ -158,7 +158,7 @@ class Files {
 			}
 			if( $params['status'] === 'dir' ){
 				if( !is_dir( $this->fullDirPath.$params['target'].'/' ) ){
-					$this->MkDirs( $params['target'].'/' );
+					$this->mkDirs( $params['target'].'/' );
 				}				
 				foreach ( $params['dirs'] as $file => $from ) {
 					if( is_dir( $this->fullDirPath.$value.'/' ) ){
@@ -191,7 +191,7 @@ class Files {
 		*
 		* @return boolean
 	*************************************************************/
-	public function DelFilesAndFolders( $params ){
+	public function delFilesAndFolders( $params ){
 		if( is_array( $params ) ){
 			if( $params['status'] === 'files' ){
 				foreach( $params['files'] as $file=>$value ){
@@ -228,13 +228,13 @@ class Files {
 		* to & from=> array is required provide full path in these to and from if select file form e.g F:\AndroidStudioProjects\AwesomeDictionary\.gradle\3.3\ you need add this in path then to add whatever want you move
 		* @return boolean
 	*************************************************************/
-	public function MovesFilesAndFolders( $params ){
+	public function movesFilesAndFolders( $params ){
 			if( is_array( $params ) ){
 				if( isset( $params['status'] ) and !empty( $params['status'] ) ){	
 					if( $params['status'] === 'files'  ){	
 						if(  !is_dir(  $params['to']  )  ){		
 							if(  !file_exists(  $params['to']  )  ){			
-								$this->MkDirs( $params['to'] );			
+								$this->mkDirs( $params['to'] );			
 							}
 						}
 						foreach( $params['files'] as $file ){	
@@ -244,7 +244,7 @@ class Files {
 				}elseif( $params['status'] === 'dir' ){
 					if( !is_dir( $params['to'] ) ){
 						if( !file_exists( $params['to'] ) ){
-						$this->MkDirs( $params['to'] );
+						$this->mkDirs( $params['to'] );
 						}						
 					} //end if
 					foreach( $params['from'] as $key => $from ){
@@ -279,7 +279,7 @@ class Files {
 		*
 		* @return integer on fail fileName on success
 	*************************************************************/
-	public function FileUpload( $params ){
+	public function fileUpload( $params ){
 		if( is_array( $params ) ){
 			$exactName = basename( $params['file']['name'] ); 
 			$fileTmp = $params['file']['tmp_name'];
@@ -287,7 +287,7 @@ class Files {
 			$error = $params['file']['error'];
 		    $type = $params['file']['type'];
 			$ext =  pathinfo( $params['file']['name'], PATHINFO_EXTENSION );
-			$newName = $this->GenerateSalts( 30 );			
+			$newName = $this->generateSalts( 30 );			
 			$fileNewName = $newName.'.'.$ext;
 			switch( $params['filetype'] ){
 				case 'image':
@@ -329,7 +329,7 @@ class Files {
 				if( $error === 0 ){
 					if( $fileSize <= $this->fupmaxs ){
 						if( !is_dir( $this->fullDirPath.$params['target'] ) or !file_exists( $this->fullDirPath.$params['target'] ) ){		
-							$this->MkDirs( $params['target'].'/' );
+							$this->mkDirs( $params['target'].'/' );
 						}						
 						$fileRoot = $this->fullDirPath.$params['target'].'/'.$fileNewName;	
 						if( move_uploaded_file( $fileTmp,$fileRoot ) ){				
@@ -362,7 +362,7 @@ class Files {
 		*
 		* @return Array
 	*************************************************************/
-	public function MultipleFileUpload( $params ){//Storing status
+	public function multipleFileUpload( $params ){//Storing status
 		$status = [];
 		if( is_array( $params ) ){
 			//counting number of files
@@ -376,7 +376,7 @@ class Files {
 			    $type = $params['file']['type'][$i];
 				$ext =  pathinfo( $params['file']['name'][$i], PATHINFO_EXTENSION );
 				
-				$newName = $this->GenerateSalts( 30 );		
+				$newName = $this->generateSalts( 30 );		
 				$fileNewName = $newName.'.'.$ext;
 				switch( $params['filetype'] ){
 					case 'image':				$allowerd_ext = ['jpg','png','jpeg','gif','ico','svg'];		
@@ -417,7 +417,7 @@ class Files {
 					if( $error === 0 ){
 						if( $fileSize <= $this->fupmaxs ){
 							if( !is_dir( $this->fullDirPath.$params['target'] ) or !file_exists( $this->fullDirPath.$params['target'] ) ){			
-								$this->MkDirs( $params['target'].'/' );			
+								$this->mkDirs( $params['target'].'/' );			
 							}
 							$fileRoot = $this->fullDirPath.$params['target'].'/'.$fileNewName;
 							if( move_uploaded_file( $fileTmp,$fileRoot ) ){			
@@ -466,7 +466,7 @@ class Files {
 		* @params text $params['text'] text or data that write in file	 
 		* @return integar on fail fileName on success
 	*************************************************************/
-	public function FilesHandeling( $params ){
+	public function filesHandeling( $params ){
 		if( is_array( $params ) ){	
 			switch ( $params['mods'] ){	
 				case 'readonly':	

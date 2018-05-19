@@ -14,11 +14,11 @@ class CSRF{
 		 */
 	public function __construct(){
 			//delete expires tokens
-			static::DeleteExpires();
+			static::deleteExpires();
 			//update system time
-			static::UpdateSysTime();
+			static::updateSysTime();
 			//session handler
-			static::GenerateSession();
+			static::generateSession();
 
 
 	}
@@ -29,7 +29,7 @@ class CSRF{
 		 *
 		 * @return void;
 		 */	
-	public static function Delete($token){
+	public static function deleteToken($token){
 		if(isset($_SESSION['security']['csrf'][$token])){
 			unset($_SESSION['security']['csrf'][$token]);
 		}
@@ -40,11 +40,11 @@ class CSRF{
 		 *
 		 * @return void;
 		 */	
-	public static function DeleteExpires(){
-		if(isset(Session::GetValue('csrf'))){
-			foreach (Session::GetValue('csrf') as $token => $value) {
+	public static function deleteExpires(){
+		if(isset(Session::getValue('csrf'))){
+			foreach (Session::getValue('csrf') as $token => $value) {
 				if(time() >= $value ){
-					unset(Session::GetValue('csrf')[$token]);
+					unset(Session::getValue('csrf')[$token]);
 				}
 			}
 		}
@@ -55,13 +55,13 @@ class CSRF{
 		 *
 		 * @return void;
 		 */	
-	public static function DeleteUnnecessaryTokens(){
-		$total = static::CountsTokens();
+	public static function deleteUnnecessaryTokens(){
+		$total = static::countsTokens();
 		$delete  = $total - 1;
-		$tokens_deleted = Session::GetValue('csrf')
+		$tokens_deleted = Session::getValue('csrf')
 		$tokens = array_slice($tokens_deleted, 0, $delete);
 		foreach ($tokens as $token => $time) {
-			static::Delete($token);
+			static::deleteToken($token);
 		}
 	}
 		/**
@@ -70,8 +70,8 @@ class CSRF{
 		 *
 		 * @return json object;
 		 */	
-  	public static function Debug() {
-    	echo json_encode(Session::GetValue('csrf'), JSON_PRETTY_PRINT);
+  	public static function debug() {
+    	echo json_encode(Session::getValue('csrf'), JSON_PRETTY_PRINT);
 
   	}	
 		/**
@@ -81,7 +81,7 @@ class CSRF{
 		 *
 		 * @return bolean;
 		 */
-	public static function UpdateTime($time){
+	public static function updateTime($time){
   		  if (is_int($time) && is_numeric($time)) { static::$time = $time;
      			 return static::$time;
 	    }else{
@@ -93,7 +93,7 @@ class CSRF{
 		 *
 		 * @return void;
 		 */
-	 final private function UpdateSysTime(){
+	 final private function updateSysTime(){
 			static::$sysTime = time();
    }   
 		/**
@@ -103,8 +103,8 @@ class CSRF{
 		 *
 		 * @return string;
 		 */	
-	public function GenerateSalts( $length ){
-		return \Zest_Framework\Site\Site::Salts($length);		
+	public function generateSalts( $length ){
+		return \Zest_Framework\Site\Site::salts($length);		
 	}   
 		/**
 		 * Generate tokens
@@ -114,9 +114,9 @@ class CSRF{
 		 *$multiplier => 3*3600
 		 * @return mix-data;
 		 */	
-	public function GenerateTokens($time,$multiplier) {
-			$key = static::GenerateSalts(100);
-			$utime = static::UpdateTime($time);
+	public function generateTokens($time,$multiplier) {
+			$key = static::generateSalts(100);
+			$utime = static::updateTime($time);
 			$value = static::$sysTime + ( $utime * $multiplier );
 			$_SESSION['csrf'][$key] = $value;
 			return $key;
@@ -126,9 +126,9 @@ class CSRF{
 		 *
 		 * @return void;
 		 */		
-	public function GenerateSession(){
-		if (Session::CheckStatus('csrf')!== true) {
-			Session::SetValue('csrf',[])
+	public function generateSession(){
+		if (Session::isSession('csrf')!== true) {
+			Session::setValue('csrf',[])
     	}
 	}
 		/**
@@ -138,7 +138,7 @@ class CSRF{
 		 *
 		 * @return mix-data;
 		 */		
- 	 public function View($token) {
+ 	 public function view($token) {
     	if(isset($_SESSION['csrf'][$token])){
     		return $_SESSION['csrf'][$token];
    		 }else{
@@ -152,7 +152,7 @@ class CSRF{
 		 *
 		 * @return boolean;
 		 */		
- 	 public function Verify($token) {
+ 	 public function verify($token) {
     	if(isset($_SESSION['csrf'][$token])){
     		return true;
    		 }else{
@@ -164,9 +164,9 @@ class CSRF{
 		 *
 		 * @return mix-data;
 		 */
-  	public function LastToken(){
-  		if (Session::CheckStatus('csrf')!== true) {
-  			return end(Session::GetValue('csrf'));
+  	public function lastToken(){
+  		if (Session::isSession('csrf')!== true) {
+  			return end(Session::getValue('csrf'));
   		}else{
   			return false;
   		} 
@@ -176,9 +176,9 @@ class CSRF{
 		 *
 		 * @return int;
 		 */  	
-  	public function CountsTokens(){
-  		if (Session::CheckStatus('csrf')!== true) {
-  			return count(Session::GetValue('csrf'));
+  	public function countsTokens(){
+  		if (Session::isSession('csrf')!== true) {
+  			return count(Session::getValue('csrf'));
   		}else{
   			return 0;
   		}

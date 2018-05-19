@@ -12,8 +12,8 @@ class Site
          * @access public
          * @return string
          */ 
-    public static function SiteUrl(){
-            $base_url = Site::GetProtocol() . Site::GetServerName() . ':' . Site::GetPort() . Site::GetUri();
+    public static function siteUrl(){
+            $base_url = Site::getProtocol() . Site::getServerName() . ':' . Site::getPort() . Site::getUri();
             return $base_url;
 
     }
@@ -23,8 +23,8 @@ class Site
          * @access public
          * @return string
          */ 
-    public static function SiteBaseUrl(){
-            $base_url = Site::GetProtocol() . Site::GetServerName() . ':' . Site::GetPort() . Site::GetBase().'/';
+    public static function siteBaseUrl(){
+            $base_url = Site::getProtocol() . Site::gtServerName() . ':' . Site::getPort() . Site::getBase().'/';
             return $base_url;
 
     }    
@@ -34,8 +34,8 @@ class Site
          * @access public
          * @return string
          */     
-    public static function CurrentPage(){
-            $base_url = Site::GetUri();
+    public static function crrentPage(){
+            $base_url = Site::getUri();
             return $base_url;
 
     }   
@@ -45,7 +45,7 @@ class Site
      * @access public    
      * @return string
      */ 
-    public static function GetProtocol(){
+    public static function getProtocol(){
         if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off') {
             $protocol = 'http://';
         } else {
@@ -61,7 +61,7 @@ class Site
      * @access public    
      * @return string
      */
-     public static function GetServerName(){
+     public static function getServerName(){
         if(isset($_SERVER['SERVER_NAME'])){
             return $_SERVER['SERVER_NAME'];
         }else{
@@ -74,7 +74,7 @@ class Site
      * @access public
      * @return int
      */ 
-    public static function GetPort(){
+    public static function getPort(){
         return $_SERVER['SERVER_PORT'];
     }
     /**
@@ -83,7 +83,7 @@ class Site
      * @access public
      * @return string example.com/login
      */
-    public function GetBase(){
+    public function getBase(){
         return dirname($_SERVER['PHP_SELF']);
     }
     /**
@@ -92,7 +92,7 @@ class Site
      * @access public
      * @return string example.com/login
      */
-    public static function GetUri() {
+    public static function getUri() {
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
 
@@ -106,13 +106,13 @@ class Site
      * @access public
      * @return void
      */
-    public static function Redirect( $url = null ){
+    public static function redirect( $url = null ){
         if($url === null or empty($url)){
-            $base_url = self::SiteUrl();
+            $base_url = self::siteUrl();
         }elseif($url === 'self' or isset($_SERVER['HTTP_REFERER'])) {
             $base_url = Site::previous();
         }elseif($url !== 'self' && $url !== null){
-            $base_url = Site::SiteUrl().$url;
+            $base_url = Site::siteUrl().$url;
         }else{
             $base_url = $url;
         }
@@ -123,7 +123,7 @@ class Site
     * @access private
     * @return void
     */  
-    private static function Previous(){
+    private static function previous(){
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }   
     /**
@@ -134,7 +134,7 @@ class Site
      * @access public
      * @return string
      */
-    public static function SegmentUrl($url = null){
+    public static function segmentUrl($url = null){
         if(!is_null($url) && !empty($url)){
             $url = $url;
         }else{
@@ -148,11 +148,11 @@ class Site
      * @access public     
      * @return string
      */
-    public static function GetFirstSegment($segments) {
+    public static function getFirstSegment($segments) {
         if(is_array($segments)){
             $vars = $segments;
         }else{
-            $vars = Site::SegmentUrl($segments);
+            $vars = Site::segmentUrl($segments);
         }
         return current($vars);
     }
@@ -163,11 +163,11 @@ class Site
      * @return string
      * @access public    
      */
-    public static function GetLastSegment($segments){
+    public static function setLastSegment($segments){
         if(is_array($segments)){
            $vars = $segments;
         }else{
-            $vars = Site::SegmentUrl($segments);
+            $vars = Site::segmentUrl($segments);
         }
         return end($vars);
     }       
@@ -179,7 +179,7 @@ class Site
     * @access public    
     * @return string
     */
-    public static function Salts($length){
+    public static function salts($length){
         $chars =  array_merge(range(0,9), range('a', 'z'),range('A', 'Z'));
         $stringlength = count( $chars  ); //Used Count because its array now
         $randomString = '';

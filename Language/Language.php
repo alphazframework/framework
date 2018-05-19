@@ -10,17 +10,17 @@ Class Language
 		 *
 		 * @return string
 		 */	
-	public static function SetLanguage($value){
-		Cookies::Set(['name'=>'lang','expir'=>time()+100000,'value'=>$value,'domain'=>$_SERVER['SERVER_NAME'],'path'=>'/','secure'=>false,'httponly'=>false]);
+	public static function setLanguage($value){
+		Cookies::set(['name'=>'lang','expir'=>time()+100000,'value'=>$value,'domain'=>$_SERVER['SERVER_NAME'],'path'=>'/','secure'=>false,'httponly'=>false]);
 	}
 		/**
 		 * Get the current language
 		 * 
 		 * @return string
 		 */		
-	public static function GetLang(){
-		if(Cookies::IsCookie('lang')){
-			$language = Cookies::Get('lang');
+	public static function getLang(){
+		if(Cookies::isCookie('lang')){
+			$language = Cookies::get('lang');
 	  	}else{
 		$language = \Config\Config::Language;
 	  	}
@@ -31,8 +31,8 @@ Class Language
 		 * 
 		 * @return string
 		 */			
-	public static function LanguageString(){
-			$language = static::GetLang();
+	public static function languageString(){
+			$language = static::getLang();
 		  if(file_exists("../local/{$language}.php")){
 			 require_once "../local/{$language}.php";
 			if(is_array($GLOBALS['lang'])){
@@ -48,10 +48,10 @@ Class Language
 		 * @param $key language key
 		 * @return string
 		 */
-	public static function Print($key){
+	public static function print($key){
 		if(!empty($key)){
-			if(array_key_exists(strtolower($key),static::LanguageString())){
-				return static::LanguageString()[strtolower($key)];
+			if(array_key_exists(strtolower($key),static::languageString())){
+				return static::languageString()[strtolower($key)];
 			}else{
 				return strtolower($key);
 			}
@@ -67,13 +67,13 @@ Class Language
 		 * 'search' => 'value' ==> return boolean true on find false not find Note: it only keys string in language file
 		 * @return string
 		 */		
-	public static function Debug($params){
+	public static function debug($params){
 		if(is_array($params)){
 			if(isset($params['allkeys']) and strtolower($params['allkeys']) === 'on'){
-				return array_keys($this->LanguageString());
+				return array_keys($this->languageString());
 			}
 			if(isset($params['search'])){
-			   if( array_key_exists($params['search'], $this->LanguageString())){
+			   if( array_key_exists($params['search'], $this->languageString())){
 			        return true;        
 			    }else{
 			        return false;

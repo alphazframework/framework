@@ -11,7 +11,7 @@ class InPut
 	 *
 	 * @return string | boolean
 	 */	 
-	public static function WordWrapEnable($str,$width){
+	public static function wordWrapEnable($str,$width){
 			if(!empty($str) && !empty($width) &&  $width >= 1 ){
 				return wordwrap($params['str'], $params['width'], '<br />\n');
 			}else{
@@ -24,7 +24,7 @@ class InPut
 	 *
 	 * @return boolean
 	 */	 
-	public static function IsFromSubmit($name){
+	public static function isFromSubmit($name){
 			if(isset($_REQUEST[$name])){
 				return true;
 			}else{
@@ -40,7 +40,7 @@ class InPut
 	 *
 	 * @return string | boolean
 	 */	 
-	public static function Input ( $key ) {
+	public static function input ( $key ) {
 			InPut::$method =  $_SERVER['REQUEST_METHOD'];
 			if(isset(InPut::$method) && !empty(InPut::$method)){
 				if(isset($key) && !empty($key)){
@@ -76,7 +76,7 @@ class InPut
 	 *
 	 * @return string | boolean
 	 */	 
-	public static function Cleane($input,$type){
+	public static function cleane($input,$type){
 			if(!empty($input)){
 				if(!empty($type)){
 					if($type === 'secured'){
@@ -99,7 +99,7 @@ class InPut
 	 *
 	 * @return string | boolean
 	 */	 
-	public static function RestoreLineBreaks($str) {
+	public static function restoreLineBreaks($str) {
 			if(isset($str) and strlen($str) !== 0){			
 				$result =  str_replace(PHP_EOL, "\n\r<br />\n\r", $params['str']);
 				return $result;
@@ -112,7 +112,7 @@ class InPut
 	 *
 	 * @return string | boolean
 	 */	 
-	public static function IsAjax(){
+	public static function isAjax(){
 		if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest'){
 			return true;
 		}else{

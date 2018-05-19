@@ -53,7 +53,7 @@ class UserInfo{
      *
      * @return void
      */  
-   public function Free(){
+   public function free(){
       unset($this->UserAgent);
       unset($this->Browser);  
       unset($this->PlatForm);
@@ -67,7 +67,7 @@ class UserInfo{
      *
      * @return void
      */       
-   public function OperatingSystem(){
+   public function operatingSystem(){
       if (preg_match_all('/windows/i', $this->UserAgent)) {
         $this->PlatForm  = 'Windows';
       }elseif(preg_match_all('/lunix/i', $this->UserAgent)){
@@ -89,7 +89,7 @@ class UserInfo{
      *
      * @return void
      */     
-   public function Browser(){
+   public function browser(){
       if (preg_match_all('/MSIE/i', $this->UserAgent)) {
         $this->Browser  = 'Internet Explorer';
         $this->B_Agent = "MSIE";
@@ -121,7 +121,7 @@ class UserInfo{
      *
      * @return void
      */ 
-   public function OSVersion(){
+   public function oSVersion(){
       if(preg_match_all('/windows nt 10/i',$this->UserAgent)){
           $this->OsVersion = 'Windows 10';
       }elseif(preg_match_all('/windows nt 6.3/i',$this->UserAgent)){
@@ -154,7 +154,7 @@ class UserInfo{
      *
      * @return void
      */  
-   public function BrowserVersion(){
+   public function browserVersion(){
         self::Browser();
         if($this->B_Agent !== null){
             $known = array('Version', $this->B_Agent, 'other');
@@ -180,7 +180,7 @@ class UserInfo{
      *
      * @return void
      */  
-   public function Ip(){
+   public function ip(){
       if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
           $ip_add = $_SERVER['HTTP_CLIENT_IP'];
       } else if (!empty($_SERVER['        HTTP_X_FORWADED_FOR'])) {
@@ -195,12 +195,12 @@ class UserInfo{
      *
      * @return void
      */  
-    public function Info(){
-      self::OperatingSystem();
-      self::Browser();
-      self::Ip();
-      self::BrowserVersion();
-      self::OSVersion();
+    public function info(){
+      self::operatingSystem();
+      self::browser();
+      self::ip();
+      self::browserVersion();
+      self::sSVersion();
          return [
             'Browser' => $this->Browser,
             'OperatingSystem' => $this->PlatForm,
