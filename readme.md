@@ -1,1 +1,1 @@
-# Zest PHP Framework [beta]
+# Zest PHP Framework

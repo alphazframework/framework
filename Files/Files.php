@@ -34,9 +34,26 @@ class Files {
 		}else{
 			self::MkDirs(Config::Data_Dir);
 		}	
-		$this->fullDirPath = $data;			
+		$this->fullDirPath = @$data;			
 	} // end method __construct
-	
+
+	public function SystemDirs(){
+		if(!is_dir("../Storage")){
+			self::MkDir('../Storage');
+		}
+		if(!is_dir("../Storage/Data")){
+			self::MkDir("../Storage/Data");
+		}
+		if(!is_dir("../Storage/Logs")){
+			self::MkDir("../Storage/Logs");
+		}
+		if(!is_dir("../Storage/Session")){
+			self::MkDir("../Storage/Session");
+		}	
+		if(!is_dir("../Storage/Backup")){
+			self::MkDir("../Storage/Backup");	
+		}	
+	}
 	//Method MkDir	 
 	/*************************************************************
 		* Create directory outside of public

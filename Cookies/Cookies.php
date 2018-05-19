@@ -4,24 +4,24 @@ namespace Softhub99\Zest_Framework\Cookies;
 class Cookies
 
 {
-	private $name; // name of cookie
-	private $value; // value of cookie
-	private $expire; // expire of cookie
-	private $domain; // domain of cookie
-	private $path; // path of cookie
-	private $secure; // secure of cookie
-	private $httponly; // httponly of cookie
+	private static $name; // name of cookie
+	private static $value; // value of cookie
+	private static $expire; // expire of cookie
+	private static $domain; // domain of cookie
+	private static $path; // path of cookie
+	private static $secure; // secure of cookie
+	private static $httponly; // httponly of cookie
 	 /**
 	 * __Construct set the default values
 	 *
 	 * @return void
 	 */	 
 	public function __construct(){
-		$this->expire = 0;
-		$this->domain = 'localhost';
-		$this->path = '/';
-		$this->secure = true;
-		$this->httponly = false;
+		static::$expire = 0;
+		static::$domain = 'localhost';
+		static::$path = '/';
+		static::$secure = true;
+		static::$httponly = false;
 
 	}
 
@@ -41,22 +41,22 @@ class Cookies
 	public static function Set($params){
 		if(is_array($params)){
 			if (preg_match("/[=,; \t\r\n\013\014]/", $params['name'])) {
-			  	$this->name = rand(1, 25);
+			  	static::$name = rand(1, 25);
 			}else{
-			  	$this->name = $params['name'];
+			  	static::$name = $params['name'];
 			}
        	 	if ($params['expire'] instanceof \DateTime) {
            	 	$expire = $expire->format('U');
        	 	}elseif (!is_numeric($params['expire'])) {
              	$expire = strtotime($params['expire']);
         	}else{
-        		$this->expire = $params['expire'];
+        		static::$expire = $params['expire'];
         	}
-			$this->value = $params['value'];
-			$this->domain = $params['domain'];
-	        $this->path = empty($path) ? '/' : $params['path'];
-	        $this->secure = (Boolean) $params['secure'];
-	        $this->httponly = (Boolean) $params['httponly'];
+			static::$value = $params['value'];
+			static::$domain = $params['domain'];
+	        static::$path = empty($path) ? '/' : $params['path'];
+	        static::$secure = (Boolean) $params['secure'];
+	        static::$httponly = (Boolean) $params['httponly'];
 	        return static::SetCookie();
 		}else{
 			return false;
@@ -69,9 +69,9 @@ class Cookies
 	 * @return boolean
 	 */	 
 	public static function SetCookie(){
-			if(!empty($this->name) && !empty($this->value) && !empty($this->expire) && !empty($this->path) && !empty($this->domain) && is_bool($this->secure) && is_bool($this->httponly)){
-					if(static::IsCookie($this->name) === false){
-						setcookie($this->name, $this->value, $this->expire, $this->path, $this->domain, $this->secure, $this->httponly);
+			if(!empty(static::$name) && !empty(static::$value) && !empty(static::$expire) && !empty(static::$path) && !empty(static::$domain) && is_bool(static::$secure) && is_bool(static::$httponly)){
+					if(static::IsCookie(static::$name) === false){
+						setcookie(static::$name, static::$value, static::$expire, static::$path, static::$domain, static::$secure, static::$httponly);
 						return true;
 					}else{
 						return false;
@@ -125,9 +125,9 @@ class Cookies
 	public static function Delete($name){
 		if(isset($name) && !empty($name)){
 			if(static::IsCookie($name)){
-				$this->name = $name;
-				$this->value = self::Get($name);;
-				setcookie($this->name, $this->value, time() - 3600, $this->path, $_SERVER['SERVER_NAME']);
+				static::$name = $name;
+				static::$value = self::Get($name);
+				setcookie(static::$name, static::$value, time() - 3600000, static::$path, $_SERVER['SERVER_NAME']);
 				return true;
 			}else{
 				return false;
