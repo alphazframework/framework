@@ -1,17 +1,27 @@
 <?php
+
 namespace Softhub99\Zest_Framework\Router;
+
+/**
+ * Router
+ *
+ * PHP version 7.0
+ */
 class Router
 {
+
     /**
      * Associative array of routes (the routing table)
      * @var array
      */
     protected $routes = [];
+
     /**
      * Parameters from the matched route
      * @var array
      */
     protected $params = [];
+
     /**
      * Add a route to the routing table
      *
@@ -33,8 +43,10 @@ class Router
 
         // Add start and end delimiters, and case insensitive flag
         $route = '/^' . $route . '$/i';
+
         $this->routes[$route] = $params;
     }
+
     /**
      * Get all the routes from the routing table
      *
@@ -44,6 +56,7 @@ class Router
     {
         return $this->routes;
     }
+
     /**
      * Match the route to the routes in the routing table, setting the $params
      * property if a route is found.
@@ -67,8 +80,10 @@ class Router
                 return true;
             }
         }
+
         return false;
     }
+
     /**
      * Get the currently matched parameters
      *
@@ -77,6 +92,7 @@ class Router
     public function getParams():array{
         return $this->params;
     }
+
     /**
      * Dispatch the route, creating the controller object and running the
      * action method
@@ -102,15 +118,23 @@ class Router
                     $controller_object->$action();
 
                 } else {
-                    throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method",500);
+                    throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
                 }
 
             } else {
-                throw new \Exception("Controller class $controller not found",500);
+                throw new \Exception("Controller class $controller not found");
             }
-      } else {
+
+
+
+
+
+        } else {
             throw new \Exception('No route matched.', 404);
         }
+
+
+
     }
 
     /**
@@ -157,6 +181,7 @@ class Router
                 $url = self::RemoveQueryString($_SERVER['QUERY_STRING']);
             }
         }
+
         return $url;
     }
 
@@ -168,12 +193,8 @@ class Router
      */
     protected function getNamespace():string
     {
-        if (!array_key_exists('namespace', $this->params)) {
-            $namespace = 'App\Controllers\\';
-        }else{
-              $namespace .= $this->params['namespace'] . '\\';          
-        }
 
+        (!array_key_exists('namespace',$this->params)) ? $namespace = 'App\Controllers\\' : $namespace .= $this->params['namespace'] . '\\';
         return $namespace;
     }
     /**
@@ -184,6 +205,7 @@ class Router
     public function parseurl():string{
         if(isset($_GET['url'])){
             return $url = explode('/',filter_var(rtrim($_GET['url'] , '/') , FILTER_SANITIZE_URL) );
-        }         
+        } 
+        
     }    
 }
