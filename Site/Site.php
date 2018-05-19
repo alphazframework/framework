@@ -24,7 +24,7 @@ class Site
          * @return string
          */ 
     public static function siteBaseUrl(){
-            $base_url = Site::getProtocol() . Site::gtServerName() . ':' . Site::getPort() . Site::getBase().'/';
+            $base_url = Site::getProtocol() . Site::getServerName() . ':' . Site::getPort() . Site::getBase().'/';
             return $base_url;
 
     }    
