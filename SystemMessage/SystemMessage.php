@@ -1,6 +1,7 @@
 <?php
 namespace Softhub99\Zest_Framework\SystemMessage;
 use Softhub99\Zest_Framework\Session\Session;
+use Softhub99\Zest_Framework\Str\Str;
 class SystemMessage
 {
 	private static $type;
@@ -23,7 +24,7 @@ class SystemMessage
 		}
 	}
 	protected static function type($type){
-			$type = strtolower($type);
+			$type = Str::stringConversion($type,'lowercase');
 			switch ($type) {
 				case 'success':
 					$type = 'success';

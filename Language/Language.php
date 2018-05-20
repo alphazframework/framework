@@ -1,6 +1,7 @@
 <?php
 namespace Softhub99\Zest_Framework\Language;
 use Softhub99\Zest_Framework\Cookies\Cookies;
+use Softhub99\Zest_Framework\Str\Str;
 Class Language
 {
 
@@ -50,10 +51,11 @@ Class Language
 		 */
 	public static function print($key){
 		if(!empty($key)){
-			if(array_key_exists(strtolower($key),static::languageString())){
-				return static::languageString()[strtolower($key)];
+
+			if(array_key_exists(Str::stringConversion($key,'lowercase'),static::languageString())){
+				return static::languageString()[Str::stringConversion($key,'lowercase')];
 			}else{
-				return strtolower($key);
+				return Str::stringConversion($key,'lowercase');
 			}
 		}else{
 			return false;
@@ -69,7 +71,7 @@ Class Language
 		 */		
 	public static function debug($params){
 		if(is_array($params)){
-			if(isset($params['allkeys']) and strtolower($params['allkeys']) === 'on'){
+			if(isset($params['allkeys']) and Str::stringConversion($params['allkeys'],'lowercase') === 'on'){
 				return array_keys($this->languageString());
 			}
 			if(isset($params['search'])){
