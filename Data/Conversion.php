@@ -3,7 +3,6 @@ namespace Softhub99\Zest_Framework\Data;
 
 class Conversion
 {
-
 		/**
 		 * Convert arrays to Object
 		 *
@@ -11,12 +10,12 @@ class Conversion
 		 *
 		 * @return object
 		 */
-	public static function ArrayObject($array){
+	public static function arrayObject($array){
 		if(is_array($array)){
 			$object = new stdClass();
 			foreach ($array as $key => $value){
 				if(is_array($value)){
-					$object->$key = DataType::ArrayObject($value);
+					$object->$key = static::arrayObject($value);
 				}else{
 			    	$object->$key = $value;
 				}
@@ -33,9 +32,9 @@ class Conversion
 		 *
 		 * @return array
 		 */
-	public static function ObjectArray($object) {
+	public static function objectArray($object) {
 		if(is_object($object)){
-  			$reflectionClass = new ReflectionClass(get_class($object));
+  			$reflectionClass = new \ReflectionClass(get_class($object));
 		    $array = [];
 		    foreach ($reflectionClass->getProperties() as $property) {
 		        $property->setAccessible(true);
@@ -55,7 +54,7 @@ class Conversion
 		 *
 		 * @return array
 		 */
-	public static function XmlArray($xml){
+	public static function xmlArray($xml){
 		$dom = simplexml_load_file($xml);
 		$json_encode = json_encode($dom);
 		$json_decode = json_decode($json_encode,true);
