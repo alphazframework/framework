@@ -30,7 +30,7 @@ class Router
      *
      * @return void
      */
-    public function add(string $route, array$params = []):void
+    public function add(string $route, array$params = [])
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -52,7 +52,7 @@ class Router
      *
      * @return array
      */
-    public function getRoutes():array
+    public function getRoutes()
     {
         return $this->routes;
     }
@@ -65,7 +65,7 @@ class Router
      *
      * @return boolean  true if a match found, false otherwise
      */
-    public function match(string $url):bool
+    public function match(string $url)
     {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
@@ -89,7 +89,7 @@ class Router
      *
      * @return array
      */
-    public function getParams():array{
+    public function getParams(){
         return $this->params;
     }
 
@@ -101,7 +101,7 @@ class Router
      *
      * @return void
      */
-    public function dispatch(string $url):void
+    public function dispatch(string $url)
     {
         $url = $this->RemoveQueryString($url);
         if ($this->match($url)) {
@@ -143,7 +143,7 @@ class Router
      *
      * @return string
      */
-    protected function convertToStudlyCaps(string $string):string
+    protected function convertToStudlyCaps(string $string)
     {
         return ucwords(str_replace('-', ' ', $string));
     }
@@ -155,7 +155,7 @@ class Router
      *
      * @return string
      */
-    protected function convertToCamelCase(string $string):string
+    protected function convertToCamelCase(string $string)
     {
         return lcfirst($this->convertToStudlyCaps($string));
     }
@@ -191,7 +191,7 @@ class Router
      *
      * @return string The request URL
      */
-    protected function getNamespace():string
+    protected function getNamespace()
     {
 
         (!array_key_exists('namespace',$this->params)) ? $namespace = 'App\Controllers\\' : $namespace .= $this->params['namespace'] . '\\';
@@ -202,7 +202,7 @@ class Router
      *
      * @return string The request URL
      */
-    public function parseurl():string{
+    public function parseurl(){
         if(isset($_GET['url'])){
             return $url = explode('/',filter_var(rtrim($_GET['url'] , '/') , FILTER_SANITIZE_URL) );
         } 

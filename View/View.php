@@ -100,7 +100,7 @@ Class View{
 
 	}	
 
-	public function view($file,?array $args = []){
+	public function view($file,array $args = []){
 		if(!empty($file)){
 			extract($args, EXTR_SKIP);
 			$file = "../App/Views/".$file.'.php';
