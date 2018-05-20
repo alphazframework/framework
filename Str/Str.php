@@ -11,26 +11,26 @@ class Str
      * 'text' => User input or anyString
      * ISSUE: text uppercase and lowercase issues
      * @return string
-    */	
-	public function replaceWords($search,$replace,$text){			
-		return str_replace($search, $replace,$text);		
-	}
-	 /**
+    */  
+    public function replaceWords($search,$replace,$text){           
+        return str_replace($search, $replace,$text);        
+    }
+     /**
      * Convert uppercase to lower & lowercase to upper
      * @param   $params (array)
      * 'type' => possible uppercase and lowercase
      * 'text' => string to conversion
      * @return string
-    */	
-	public function stringConversion( $text , $type ){
-		if($type === 'lowercase'){
-			return strtolower($text);
-		}elseif($type === 'uppercase'){
-			return strtoupper($text);
-		}
-		if($type === 'camelcase'){
-			return ucwords($text);	
-		}
-	}
+    */  
+    public function stringConversion( $text , $type ){
+        if($type === 'lowercase'){
+            return strtolower($text);
+        }elseif($type === 'uppercase'){
+            return strtoupper($text);
+        }
+        if($type === 'camelcase'){
+            return ucwords($text);  
+        }
+    }
 }
 
