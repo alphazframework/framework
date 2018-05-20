@@ -166,7 +166,7 @@ class Router
      *
      * @return string The URL with the query string variables removed
      */
-    protected function RemoveQueryString(?string $url):string
+    protected function RemoveQueryString(?string $url)
     {
         if (isset($url) && !empty($url)) {
 

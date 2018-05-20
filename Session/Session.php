@@ -9,6 +9,7 @@ class Session
      * @return void
     */
     public function __construct(){
+        static::sessionPath();
         static::start();
     }
 
