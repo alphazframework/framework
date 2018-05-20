@@ -1,6 +1,6 @@
 <?php 
 
-function printl(?string $key){
+function printl(string $key){
 		return Softhub99\Zest_Framework\Language\Language::print($key);
 }
 function lang(){

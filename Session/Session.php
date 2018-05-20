@@ -34,7 +34,7 @@ class Session
      * @param $name (string) name of session e.g users
      * @return boolean
     */
-    public static function isSession(?string $name):bool{
+    public static function isSession(string $name):bool{
         return (isset($_SESSION[$name])) ? true : false;
     }
 
