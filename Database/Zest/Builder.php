@@ -6,7 +6,7 @@ use Softhub99\Zest_Framework\Database\Connection;
 
 class Builder
 {
-
+	protected $table;
 	/**
 	 * __Construct set the database connection
 	 *
