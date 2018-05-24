@@ -51,10 +51,16 @@ class Builder
 	{
 		return $this->queryBuilder->find(self::$table,$column);
 	}
-	public function create(array $id)
+	public function delete(int $id)
 	{
 		$this->queryBuilder->delete(self::$table, $id);
 
 		return $this;
 	}
+	public function count(array $params)
+	{
+		$this->queryBuilder->count(self::$table, $params);
+
+		return $this;
+	}	
 }

@@ -224,4 +224,52 @@ class Query
 			die("Error: ".$e->getMessage());
 		}
 	}
+		/**
+		 * Prepare a query to count data from database
+		 *
+		 * @param $params array();
+		 *           'table' Names of table
+		 *			 'db_name' => Database name	
+		 *           'columns' Names of columnswant to select
+		 *           'wheres' Specify a selection 		 *       
+		 * @return boolean
+		 */	
+	public function count($table,$params){
+		
+		if(is_array($params)){
+
+			$table = $table;
+
+			if(isset($params['columns'])){
+
+				$columns = implode(',',array_values($params['columns']));
+
+			}else{
+
+				$columns = '*';
+
+			}
+
+			if(!empty($params['wheres'])){
+
+		    	$where = "WHERE " . implode(' and ', array_values($params['wheres']));
+
+				$query = "SELECT {$columns} FROM {$table} {$where}";
+				
+				$prepare =  $this->connection->prepare($query);
+
+				$prepare->execute();
+
+				$count = $prepare->rowCount();
+
+				$prepare->closeCursor();
+
+				return $count;
+
+			}
+				return false;
+		}
+			return false;
+
+	}	
 }
