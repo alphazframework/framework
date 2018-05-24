@@ -1,7 +1,7 @@
 <?php
 namespace Softhub99\Zest_Framework\Database\Zest;
 
-use Softhub99\Zest_Framework\Database\Query\Builder as QueryBuilder;
+use Softhub99\Zest_Framework\Database\Query\Query as QueryBuilder;
 
 class Builder
 {
@@ -34,7 +34,12 @@ class Builder
 
 		return $this;
 	}
+	public function create(array $params)
+	{
+		$this->queryBuilder->create(self::$table, $params);
 
+		return $this;
+	}
 	public function orderBy(string $column, string $order)
 	{
 		$this->queryBuilder->select(self::$table)->orderBy($column, $order);
@@ -44,11 +49,12 @@ class Builder
 
 	public function find($id, $column = 'id')
 	{
-		return $this->queryBuilder->select(self::$table)->where($column, $id)->get();
+		return $this->queryBuilder->find(self::$table,$column);
 	}
-
-	public function get()
+	public function create(array $id)
 	{
-		return $this->queryBuilder->get();
+		$this->queryBuilder->delete(self::$table, $id);
+
+		return $this;
 	}
 }

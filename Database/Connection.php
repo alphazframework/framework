@@ -43,7 +43,7 @@ class Connection
 	{
 		try
 		{
-			if ($this->driver === 'mysql')
+			if ($this->driver === 'MySQL')
 				$connection = new \Softhub99\Zest_Framework\Database\MySQLConnection;
 			else
 				throw new \Exception("Driver {$this->driver} is not supportd!");
