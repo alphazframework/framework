@@ -4,14 +4,15 @@ use Softhub99\Zest_Framework\Communication\SSE\Event;
 use Softhub99\Zest_Framework\Site\Site;
 
 class SSE
-{	
+{   
     protected static $id;
     protected static $type;
     protected static $data;
     protected static $retry;
     protected static $delay;
-	public function __construct(){}
-    public function start(callable $data,$type=,$id=null,$retry=12,$delay=1){
+    public function __construct(){}
+
+    public function start(callable $data,$type=null,$id=null,$retry=12,$delay=1){
 
        if(is_null($id)){
           static::$id =  Site::Salts(5);
