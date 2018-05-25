@@ -17,7 +17,7 @@ class Session
      * Start the session if not already start
      * @return void
     */
-    public static function start():void{
+    public static function start(){
         (session_status() === PHP_SESSION_NONE) ? session_start() : null;
     }
      /** 
@@ -25,7 +25,7 @@ class Session
      *
      * @return void
     */      
-    public static function sessionPath () :void{
+    public static function sessionPath () {
         $path = \Config\Config::Session_Path;
         ini_set('session.save_path', $path);
     }

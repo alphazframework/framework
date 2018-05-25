@@ -30,7 +30,7 @@ class Router
      *
      * @return void
      */
-    public function add(string $route, array$params = [])
+    public function add($route, array$params = [])
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -65,7 +65,7 @@ class Router
      *
      * @return boolean  true if a match found, false otherwise
      */
-    public function match(string $url)
+    public function match($url)
     {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
@@ -101,7 +101,7 @@ class Router
      *
      * @return void
      */
-    public function dispatch(string $url)
+    public function dispatch($url)
     {
         $url = $this->RemoveQueryString($url);
         if ($this->match($url)) {
@@ -124,17 +124,9 @@ class Router
             } else {
                 throw new \Exception("Controller class $controller not found");
             }
-
-
-
-
-
         } else {
             throw new \Exception('No route matched.', 404);
         }
-
-
-
     }
 
     /**
@@ -143,7 +135,7 @@ class Router
      *
      * @return string
      */
-    protected function convertToStudlyCaps(string $string)
+    protected function convertToStudlyCaps($string)
     {
         return ucwords(str_replace('-', ' ', $string));
     }
@@ -155,7 +147,7 @@ class Router
      *
      * @return string
      */
-    protected function convertToCamelCase(string $string)
+    protected function convertToCamelCase( $string)
     {
         return lcfirst($this->convertToStudlyCaps($string));
     }
@@ -166,7 +158,7 @@ class Router
      *
      * @return string The URL with the query string variables removed
      */
-    protected function RemoveQueryString(string $url)
+    protected function RemoveQueryString( $url)
     {
         if (isset($url) && !empty($url)) {
 
