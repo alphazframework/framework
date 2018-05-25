@@ -1,6 +1,6 @@
 <?php 
 namespace Softhub99\Zest_Framework\CSRF;
-
+use Softhub99\Zest_Framework\Site\Site;
 class CSRF{
 	//default time
 	private static $time;
@@ -103,13 +103,7 @@ class CSRF{
 		 * @return string;
 		 */	
 	public static function generateSalts( $length ){
-		$chars = array_merge(range(0,9), range('a', 'z'),range('A', 'Z'));
-		$stringlength = count( $chars  ); 
-		$randomString = '';
-		for ( $i = 0; $i < $length; $i++ ) {
-			$randomString .= $chars[rand( 0, $stringlength - 1 )];
-		}
-		return $randomString;		
+		return Site::salts($length);		
 	}   
 		/**
 		 * Generate tokens
