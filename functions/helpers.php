@@ -1,5 +1,4 @@
 <?php 
-
 function printl(string $key){
 		return Softhub99\Zest_Framework\Language\Language::print($key);
 }
@@ -54,3 +53,7 @@ function add_system_message($msg,$type=null){
 function view_system_message(){
 	return Softhub99\Zest_Framework\SystemMessage\SystemMessage::view();
 }
+function csrf_token(){
+	return Softhub99\Zest_Framework\CSRF\CSRF::generateTokens(1, \Config\Config::CSRF_TIMESTAMP);
+}
+

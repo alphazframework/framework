@@ -1,9 +1,12 @@
 <?php
 namespace Softhub99\Zest_Framework\Input;
+use Softhub99\Zest_Framework\CSRF\CSRF;
+use Config\Config;
+use \Softhub99\Zest_Framework\View\View;
 class InPut
-
 {
 	private static $method;
+	private static $csrf_method;
 	public function __construct(){}
 	 /**
 	 * Wordwrap
@@ -35,37 +38,99 @@ class InPut
 	 * Accpet input
 	 * Support get.post,put
 	 *
-	 * @param  $params 
-	 * 'name' => name of filed (required in get,post request)
+	 * @param  $key 
+	 * 'key' => name of filed (required in get,post request)
 	 *
 	 * @return string | boolean
 	 */	 
 	public static function input ( $key ) {
-			InPut::$method =  $_SERVER['REQUEST_METHOD'];
-			if(isset(InPut::$method) && !empty(InPut::$method)){
+			static::$method =  $_SERVER['REQUEST_METHOD'];
+			if(isset(static::$method) && !empty(static::$method)){
 				if(isset($key) && !empty($key)){
-					if(InPut::$method === 'POST' && isset($_POST[$key])){
+					if(static::$method === 'POST' && isset($_POST[$key])){
 						$string = $_POST["$key"];
-					}elseif(InPut::$method === 'GET' && isset($_GET[$key])){
+					}elseif(static::$method === 'GET' && isset($_GET[$key])){
 						$string = $_GET[$key];
-					}elseif(InPut::$method === 'PUT'){
+					}elseif(static::$method === 'PUT'){
 						 parse_str(file_get_contents('php://input'), $_PUT);
 						$string = $_PUT[$key];
-					}elseif(InPut::$method === 'DELETE'){
+					}elseif(static::$method === 'DELETE'){
 						parse_str(file_get_contents('php://input'), $_DEL);
 						$string = $_DEL[$key];
-					}else{
+					}elseif(static::$method === 'REQUEST'){
 						if(isset($_REQUEST[$key])){
 							$string = $_REQUEST[$key];
 						}
+					}else{
+							if(isset($_SERVER[$key])){
+							$string = $_SERVER[$key];
+						}
 					}
 					if(isset($string) && !empty($string)){
+						if(Config::AUTO_CSRF_VARIFIED){
+							if(static::autoCsrf()){
+								return $string;
+							}else{
+								return  View::view("errors/csrf");
+							}
+						}else{
+							return $string;
+						}
 						return $string;
 					}else{
 						return false;
 					}
 				}
 			}
+		}	
+	 /**
+	 * Auto-validate csrf token
+	 *
+	 * @return  boolean
+	 */	 	
+	public static function autoCsrf(){
+		CSRF::action();
+		if(self::csrfInput('csrf_token')){
+			$token = self::csrfInput('csrf_token');
+			CSRF::action();
+			CSRF::deleteUnnecessaryTokens();
+			if(CSRF::verify($token)){
+				CSRF::delete($token);
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
+	 /**
+	 * Accpet csrf input
+	 * Support get.post,put,server
+	 *
+	 * @param  $key 
+	 * 'key' => name of filed (required in get,post request)
+	 *
+	 * @return string | boolean
+	 */	 	
+	public static function csrfInput($key){
+		static::$method =  $_SERVER['REQUEST_METHOD'];
+		if(isset(static::$method) && !empty(static::$method)){
+			if(isset($key) && !empty($key)){
+				if(static::$method === 'POST' && isset($_POST[$key])){
+						$token = $_POST["$key"];
+				}elseif(static::$method === 'GET' && isset($_GET[$key])){
+						$token = $_GET[$key];
+				}else{
+					$token = $_SERVER[$key];
+				}	
+				if(isset($token)){
+					return $token;
+				}
+			}else{
+				return false;
+			}			
+		}	
 	}
 	 /**
 	 * Clean input
@@ -101,7 +166,7 @@ class InPut
 	 */	 
 	public static function restoreLineBreaks($str) {
 			if(isset($str) and strlen($str) !== 0){			
-				$result =  str_replace(PHP_EOL, "\n\r<br />\n\r", $params['str']);
+				$result =  str_replace(PHP_EOL, "\n\r<br />\n\r", $str);
 				return $result;
 			}else{
 				return false;
