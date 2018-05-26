@@ -2,6 +2,9 @@
 function printl(string $key){
 		return Softhub99\Zest_Framework\Language\Language::print($key);
 }
+function printc(string $key){
+		return Softhub99\Zest_Framework\Component\Language\comLanguage::printC($key);
+}
 function lang(){
 	return \Config\Config::Language;
 }

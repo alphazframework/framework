@@ -1,6 +1,5 @@
 <?php
-
-namespace Softhub99\Zest_Framework\View;
+namespace Softhub99\Zest_Framework\Component\View;
 use Config\Config;
 Class View{
 
@@ -17,8 +16,8 @@ Class View{
 	*
 	 * @return void
 	 */		
-	private static function setFile($file){
-		 $file = Config::THEME_PATH."/".$file;
+	private static function setFile($name,$file){
+		 $file = "../App/Components/{$name}/Views/".$file.'.php';
 		if(file_exists($file)){
 			static::$file = $file;
 		}else{
@@ -101,10 +100,10 @@ Class View{
 
 	}	
 
-	public function view($file,array $args = []){
+	public function view($name,$file,array $args = []){
 		if(!empty($file)){
 			extract($args, EXTR_SKIP);
-			$file = Config::THEME_PATH."/".$file.'.php';
+			$file = "../App/Components/{$name}/Views/".$file.'.php';
 			if(file_exists($file)){
 				require_once $file;
 			}else{

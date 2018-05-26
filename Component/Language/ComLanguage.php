@@ -1,8 +1,8 @@
 <?php
-namespace Softhub99\Zest_Framework\Language;
+namespace Softhub99\Zest_Framework\Component\Language;
 use Softhub99\Zest_Framework\Cookies\Cookies;
 use Softhub99\Zest_Framework\Str\Str;
-Class Language
+Class ComLanguage
 {
 
 		/**
@@ -26,37 +26,35 @@ Class Language
 		$language = \Config\Config::Language;
 	  	}
 	  	return $language;
-	}		
+	}	
 		/**
 		 * include lang string file
 		 * 
 		 * @return string
 		 */			
-	public static function languageString(){
+	public static function comlanguageString(){
+			$data = [];
 			$language = static::getLang();
-		  if(file_exists("../App//local/{$language}.php")){
-			 require_once "../App//local/{$language}.php";
-			if(is_array($GLOBALS['lang'])){
-				return $GLOBALS['lang'];
-			}else{
-				return [];
-			}}else{
-				return false;
+			$path = "../App/Components/";
+			$disk_scan = array_diff(scandir($path),array('..','.'));
+			foreach($disk_scan as $scans){
+				require_once "../App/Components/".$scans."/local/{$language}.php";
+				if(is_array($GLOBALS['lang'])){
+					$data += $GLOBALS['lang'];
+				}else{
+					return [];
+				}
 			}
-		}	
+			return $data;
+		}			
 		/**
 		 * for getting language key and return its value
 		 * @param $key language key
 		 * @return string
 		 */
-	public static function print($key){
+	public static function printC($key){
 		if(!empty($key)){
-
-			if(array_key_exists(Str::stringConversion($key,'lowercase'),static::languageString())){
-				return static::languageString()[Str::stringConversion($key,'lowercase')];
-			}else{
-				return Str::stringConversion($key,'lowercase');
-			}
+				return static::comlanguageString()[Str::stringConversion($key,'lowercase')];
 		}else{
 			return false;
 		}
@@ -72,10 +70,10 @@ Class Language
 	public static function debug($params){
 		if(is_array($params)){
 			if(isset($params['allkeys']) and Str::stringConversion($params['allkeys'],'lowercase') === 'on'){
-				return array_keys($this->languageString());
+				return array_keys($this->comlanguageString());
 			}
 			if(isset($params['search'])){
-			   if( array_key_exists($params['search'], $this->languageString())){
+			   if( array_key_exists($params['search'], $this->comlanguageString())){
 			        return true;        
 			    }else{
 			        return false;

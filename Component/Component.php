@@ -1,13 +1,6 @@
-<?php
-
-namespace Softhub99\Zest_Framework\Router;
-
-/**
- * Router
- *
- * PHP version 7.0
- */
-class Router
+<?php 
+namespace Softhub99\Zest_Framework\Component;
+class Component
 {
 
     /**
@@ -81,7 +74,7 @@ class Router
             }
         }
 
-        \Softhub99\Zest_Framework\Component\routes::loadComs();
+        return false;
     }
 
     /**
@@ -125,7 +118,7 @@ class Router
                 throw new \Exception("Controller class $controller not found");
             }
         } else {
-            \Softhub99\Zest_Framework\Component\routes::loadComs();
+            throw new \Exception('No route matched.', 404);
         }
     }
 
@@ -200,4 +193,5 @@ class Router
         } 
         
     }    
+
 }
