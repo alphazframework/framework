@@ -108,11 +108,11 @@ class Site
      */
     public static function redirect( $url = null ){
         if($url === null or empty($url)){
-            $base_url = self::siteUrl();
+            $base_url = self::siteBaseUrl();
         }elseif($url === 'self' or isset($_SERVER['HTTP_REFERER'])) {
             $base_url = Site::previous();
         }elseif($url !== 'self' && $url !== null){
-            $base_url = Site::siteUrl().$url;
+            $base_url = $url;
         }else{
             $base_url = $url;
         }
