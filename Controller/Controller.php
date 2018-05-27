@@ -66,15 +66,23 @@ abstract class Controller
      * @return void
      */
     final public function __call($name, $args){
-        $method = $name . 'Action';
+        $method = "{$name}Action";
+        $method_before = "{$name}Before";
+        $method_after = "{$name}After";
         if(method_exists($this,$method)){
-            if($this->before() !== false){
-                call_user_func_array([$this,$method],$args);
-                $this->after();
+            if(method_exists($this, $method_before) && method_exists($this, $method_after)){
+                if($this->$method_before() !== false){
+                    call_user_func_array([$this,$method],$args);
+                    $this->$method_after();
+                }            
+            }else{
+                if($this->before() !== false){
+                    call_user_func_array([$this,$method],$args);
+                    $this->after();
+                }                
             }
         }else{
-            throw new \Exception("Method {$method} not found in controller class ".get_class($this) , 500);
-            
+            throw new \Exception("Method {$method} not found in controller class ".get_class($this) , 500); 
         }
     }
     /**
