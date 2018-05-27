@@ -65,7 +65,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function __call($name, $args){
+    final public function __call($name, $args){
         $method = $name . 'Action';
         if(method_exists($this,$method)){
             if($this->before() !== false){
@@ -89,4 +89,10 @@ abstract class Controller
      * @return void
      */
     protected function after(){}
+
+    /**
+    * Prevent unserializing.
+    **/
+    protected function __wakeup(){}  
+      
 }

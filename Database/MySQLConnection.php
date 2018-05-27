@@ -74,4 +74,11 @@ class MySQLConnection implements ConnectionInterface
 			die("PDOException: ".$e->getMessage());
 		}
 	}
+	/**
+	* Prevent unserializing.
+	**/
+	public function __wakeup()
+    {
+        $this->getConnection();
+    }
 }
