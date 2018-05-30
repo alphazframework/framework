@@ -25,7 +25,7 @@ class Cryptography{
 			$cipher = static::CIPHER_32;
 			$length = 32;
 		}else{
-			throw new Exception("Error Processing Request", 1);
+			throw new \Exception("Error Processing Request", 1);
 			
 		}
 		$iv =  $iv = substr(hash('sha256',static:: $secret_key), 0, 16);
