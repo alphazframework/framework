@@ -7,6 +7,7 @@ class Cryptography{
 	private static $secret_key;
 	const CIPHER_16 = 'AES-128-CBC';
     const CIPHER_32 = 'AES-256-CBC';
+    const DEFAULT = 32;
 
 	public function encrypt($str,$cl=32){
 		return static::encyptedDecypted('encrypt',$str,$cl);
@@ -25,8 +26,7 @@ class Cryptography{
 			$cipher = static::CIPHER_32;
 			$length = 32;
 		}else{
-			throw new \Exception("Error Processing Request", 1);
-			
+			$length = static::DEFAULT;			
 		}
 		$iv =  $iv = substr(hash('sha256',static:: $secret_key), 0, $length);
 		$key = hash('sha512', static::$secret_key);
