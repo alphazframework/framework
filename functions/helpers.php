@@ -62,3 +62,9 @@ function csrf_token(){
 function route(){
 	return Softhub99\Zest_Framework\Common\Root::rootPaths();
 }
+function encrypt($str,$cl = 32){
+	return Softhub99\Zest_Framework\Cryptography\Cryptography::encrypt($str,$cl);
+}
+function decrypt($str,$cl = 32){
+	return Softhub99\Zest_Framework\Cryptography\Cryptography::decrypt($str,$cl);
+}
