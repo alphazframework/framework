@@ -1,6 +1,7 @@
 <?php 
 
 class Msgs{
+    
     const $msgs = [
     'string' => 'The :attribute field must be of type string e.g. valid string',
     'required' => 'The :attribute field is required',

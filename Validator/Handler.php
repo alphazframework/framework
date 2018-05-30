@@ -23,7 +23,7 @@ class Handler
         if (isset($key)) {
             static::$errors[$key] = $error;
         } else {
-            static::$errors = $error
+            static::$errors = $error;
         }
 	}
     /**
