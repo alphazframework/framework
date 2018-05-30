@@ -295,7 +295,7 @@ class Image
 						imagefilter($image, IMG_FILTER_COLORIZE, 10,-50,-12);	
 						imagefilter($image, IMG_FILTER_BRIGHTNESS,-20);	
 			}				
-			f($params['effect'] === 'blood'){
+			if($params['effect'] === 'blood'){
 						imagefilter($image, IMG_FILTER_COLORIZE, 30, -255, -255);	
 						imagefilter($image, IMG_FILTER_BRIGHTNESS,20);
 			}		
