@@ -59,4 +59,6 @@ function view_system_message(){
 function csrf_token(){
 	return Softhub99\Zest_Framework\CSRF\CSRF::generateTokens(1, \Config\Config::CSRF_TIMESTAMP);
 }
-
+function roots(){
+	return Softhub99\Zest_Framework\Common\Root::rootPaths();
+}
