@@ -2,7 +2,7 @@
 
 class Msgs{
     
-    const $msgs = [
+    public $msgs = [
     'string' => 'The :attribute field must be of type string e.g. valid string',
     'required' => 'The :attribute field is required',
     'min' => 'The :attribute field must be a minimum of :policy characters',
