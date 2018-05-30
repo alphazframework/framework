@@ -68,7 +68,7 @@ class Validator
      */
     public function error()
     {
-        static::errors = Handler::all();
+        static::$errors = Handler::all();
     }
 
     /**

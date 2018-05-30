@@ -20,7 +20,11 @@ class Handler
      * $key => error key
      */	
 	public static function set($error,$key = null){
-		(isset($key)) static::$errors[$key] = $error ?  : static::$errors = $error ;
+        if (isset($key)) {
+            static::$errors[$key] = $error;
+        } else {
+            static::$errors = $error
+        }
 	}
     /**
      * Return true if there is validation error
