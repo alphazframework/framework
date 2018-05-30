@@ -7,7 +7,7 @@ class Middleware
 	final public function run($type,$middleware,$params='null',$namespace='App\Middleware\\')
 	{
 		if(!empty($type) && !empty($middleware)){
-			$file = "../App/Middleware/{$middleware}.php";
+			$file = route()->middleware."{$middleware}.php";
 			if(empty($namespace)){
 				$namespace = "App\Middleware\\";
 			}else{
