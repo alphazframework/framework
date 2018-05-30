@@ -24,8 +24,9 @@ class Cryptography{
 			$length = 16;
 		}elseif($cl === 32){
 			$cipher = static::CIPHER_32;
-			$length = 32;
+			$length = static::DEFAULT;
 		}else{
+			$cipher = static::CIPHER_32;
 			$length = static::DEFAULT;			
 		}
 		$iv =  $iv = substr(hash('sha256',static:: $secret_key), 0, $length);
