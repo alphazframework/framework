@@ -1,130 +1,129 @@
-<?php
+<?php 
 
-namespace Softhub99\Zest_Framework\Validator;
 
-class Validator
-{
-    protected static $messages;
+namespace src\Classes\Validator;
 
-    protected static $handler;
+use src\Exception\HydrogenExceptions;
+use src\Interfaces\Validator\ValidatorInterface as ValidatorInterface;
 
-    protected static $customMessages;
+class Validator implements ValidatorInterface {
 
-    protected static $errors;
+	/**
+	 * @var error [type of : array] : store the validation errors
+	 */
+	public $errors = [];
 
-    public function __construct(array $data, array $rules, $customValidationErrorMessages = [])
-    {
-        static::create($data, $rules, $customValidationErrorMessages);
-    }
-
-    /**
-     * Perform validation for data.
-     *
-     * @param $data
-     **/
-    public function parseData(array $data)
-    {
-        $field = $data['field'];
-        foreach ($data['policies'] as $rule => $policy) {
-            $passes = call_user_func_array([new Rule(), $rule], [$field, $data['value'], $policy]);
-            if (!$passes) {
-                Handler::set(
-                    str_replace(
-                        [':attribute', ':policy', '_'],
-                        [$field, $policy, ' '], static::$messages[$rule]), $field
-                );
-            }
-        }
-    }
+	/**
+	 * @var errorsStyle [type of : array] : store the errors text style
+	 */
+	protected $errorsStyle = [
+      "maxError"      =>  "Max length allowed",
+      "minError"      =>  "Min length allowed",
+      "emptyError"    =>  "This Field is required",
+      "notString"     =>  "This field must be a alphabetic character(s)",
+      "notNum"        =>  "This field must be a numeric character(s)",
+      "notEmail"      =>  "Type of this field must be email",
+      "notUrl"        =>  "Type of this field must be url",
+      "notWorking"     => "The url of this website not working"
+    ];
 
     /**
-     * Create the error msg.
-     *
-     * @param
-     * $data, fields and values pair under validation
-     * $policies, the rules that validation must satisfy
-     * $messages, custom validation messages
-     *
-     * @return void
-     **/
-    public function create(array $data, array $policies, array $messages = [])
-    {
-        static::$customMessages = $messages;
-        static::$messages = Handler::getValidationMessages(static::$customMessages);
-        foreach ($data as $field => $value) {
-            if (in_array($field, array_keys($policies))) {
-                static::parseData(
-                    ['field' => $field, 'value' => $value, 'policies' => $policies[$field]]
-                );
-            }
-        }
-    }
-
-    /**
-     * Check if validation failed.
-     *
-     * @return bool
+     * function <__construct>
+     * the function used to compile the validation rules into a booleans
      */
-    public function fail()
-    {
-        return Handler::has();
+	public function __construct($request, $rules) {
+		$this->compile($request, $rules);
+	}
+
+	/**
+	 * Descriptions: src/Interfaces/Validator/ValidatorInterface.php Line: 13
+	 */
+	public function compile($request, $rules) {
+
+		foreach ($rules as $inputName => $rules) {
+
+			$rules = explode(",", $rules);
+
+			foreach($rules as $rule) {
+				$rule = explode(":", $rule);
+				$ruleName = $rule[0];
+				$ruleValue = $rule[1];
+				switch ($ruleName) {
+
+					case 'required':
+						($ruleValue==="true") ? $this->makeItRequired($request, $inputName) : null;
+					break;
+
+					case 'min':
+						$this->min($request, $inputName, $ruleValue);
+					break;
+
+					case 'max':
+						$this->max($request, $inputName, $ruleValue);
+					break;
+
+					case 'cleanHtml':
+						($ruleValue === "true") ? $inputValue = $this->cleanHtml($request, $inputName) : $inputValue = $request->get($inputName);
+					break;
+
+					case 'type':
+						$this->typeof($ruleValue, $inputName, $inputValue);
+					break;
+
+				}
+			}
+
+		}
+
+	}
+
+	/**
+	 * Descriptions: src/Interfaces/Validator/ValidatorInterface.php Line: 22
+	 */
+	public function makeItRequired($request, $inputName) {
+		(empty($request->get($inputName))) ? $this->errors[$inputName] = $this->errorsStyle["emptyError"] : true;
+	}
+
+	/**
+	 * Descriptions: src/Interfaces/Validator/ValidatorInterface.php Line: 32
+	 */
+	public function max($request, $inputName, $value) {
+        return (strlen($request->get($inputName))>=$value) ? $this->errors[$inputName] = $this->errorsStyle["maxError"]." ".$value : true;
     }
 
     /**
-     * Set the error messages.
-     *
-     * @return $this
-     */
-    public function error()
-    {
-        static::$errors = Handler::all();
+	 * Descriptions: src/Interfaces/Validator/ValidatorInterface.php Line: 42
+	 */
+    public function min($request, $inputName, $value) {
+		return (strlen($request->get($inputName)) <= $value) ? $this->errors[$inputName] = $this->errorsStyle["minError"]." ".$value : true;
     }
 
     /**
-     * Check if a given key exists in array.
-     *
-     * @param $key
-     *
-     * @return bool
-     */
-    public function isKey($key)
-    {
-        return (array_key_exists($key, static::$errors)) ? true : false;
-    }
+	 * Descriptions: src/Interfaces/Validator/ValidatorInterface.php Line: 51
+	 */
+    public function cleanHtml($request, $inputName) {
+    	return strip_tags($request->get($inputName));
+    } 
 
     /**
-     * Get the first error in the validation error array for given key.
-     *
-     * @param  $key
-     *
-     * @return mixed
-     */
-    public function first($key = null)
-    {
-        return current(static::$errors[$key]);
+	 * Descriptions: src/Interfaces/Validator/ValidatorInterface.php Line: 61
+	 */
+    public function typeof($type, $inputName,$inputValue) {
+    	if ($type === "string") {
+    		return (ctype_alpha($inputValue)) ? true : $this->errors[$inputName] = $this->errorsStyle["notString"];
+    	}
+    	if ($type === "int") {
+    		return (ctype_digit($inputValue)) ? true : $this->errors[$inputName] = $this->errorsStyle["notNum"];
+    	}
+    	if ($type === "email") {
+    		return (filter_var($inputValue, FILTER_VALIDATE_EMAIL)) ? true : $this->errors[$inputName] = $this->errorsStyle["notEmail"];
+    	}
+    	if ($type === "url") {
+    		return (filter_var($inputValue, FILTER_VALIDATE_URL)) ? true : $this->errors[$inputName] = $this->errorsStyle["notUrl"];
+    	}
+    	if ($type === "Aurl") {
+				return (gethostbyname($inputValue) === $inputValue) ? true : $this->errors[$inputName] = $this->errorsStyle["notWorking"];	
+    	}
     }
 
-    /**
-     * Get the last error in the validation error array for given key.
-     *
-     * @param  $key
-     *
-     * @return mixed
-     */
-    public function last($key = null)
-    {
-        return end(static::$errors[$key]);
-    }
-
-    /**
-     * Get all error messages or all errors under a specified key.
-     *
-     * @param $key
-     *
-     * @return mixed
-     */
-    public function get($key = null)
-    {
-        return (isset($key)) ? static::$errors[$key] : static::$errors;
-    }
 }
