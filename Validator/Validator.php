@@ -27,7 +27,7 @@ class Validator implements ValidatorInterface
 
     /**
      * method <__construct>
-     * the function used to compile the validation rules into a booleans
+     * the method used to compile the validation rules into a booleans
      */
 	public function __construct($rules) {
 		$this->compile($rules);
@@ -100,8 +100,8 @@ class Validator implements ValidatorInterface
 	 * value [type of : int] : the rule value
 	 * 
 	 * @return string
-	 *//
-	public function max($request, $inputName, $value) {
+	 **/
+	public function max($inputName, $value) {
 		if (strlen(input($inputName)) >= $value) {
 			$this->errors[$inputName] = $this->errorsStyle["maxError"]." ".$value; 
 		} else {
