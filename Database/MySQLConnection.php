@@ -1,83 +1,88 @@
-<?php 
+<?php
 
 namespace Softhub99\Zest_Framework\Database;
 
 class MySQLConnection implements ConnectionInterface
 {
-	private $host, $user, $pass, $name;
+    private $host;
+    private $user;
+    private $pass;
+    private $name;
 
-	/**
-	 * Set database hostname for connection
-	 *
-	 * @param string $host
-	 * @return MySQLConnection
-	 */
-	public function setHost(string $host)
-	{
-		$this->host = $host;
+    /**
+     * Set database hostname for connection.
+     *
+     * @param string $host
+     *
+     * @return MySQLConnection
+     */
+    public function setHost(string $host)
+    {
+        $this->host = $host;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Set database username for connection
-	 *
-	 * @param string $user
-	 * @return MySQLConnection
-	 */
-	public function setUser(string $user)
-	{
-		$this->user = $user;
+    /**
+     * Set database username for connection.
+     *
+     * @param string $user
+     *
+     * @return MySQLConnection
+     */
+    public function setUser(string $user)
+    {
+        $this->user = $user;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Set database password for connection
-	 *
-	 * @param string $pass
-	 * @return MySQLConnection
-	 */
-	public function setPass(string $pass)
-	{
-		$this->pass = $pass;
+    /**
+     * Set database password for connection.
+     *
+     * @param string $pass
+     *
+     * @return MySQLConnection
+     */
+    public function setPass(string $pass)
+    {
+        $this->pass = $pass;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Set database name for connection
-	 *
-	 * @param string $user
-	 * @return MySQLConnection
-	 */
-	public function setName(string $name)
-	{
-		$this->name = $name;
+    /**
+     * Set database name for connection.
+     *
+     * @param string $user
+     *
+     * @return MySQLConnection
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Get MySQL Connection
-	 *
-	 * @return PDO
-	 */	
-	public function getConnection()
-	{
-		try
-		{
-			return new \PDO("mysql:host={$this->host};dbname={$this->name}", $this->user, $this->pass);
-		}
-		catch(\PDOException $e)
-		{
-			die("PDOException: ".$e->getMessage());
-		}
-	}
-	/**
-	* Prevent unserializing.
-	**/
-	public function __wakeup()
+    /**
+     * Get MySQL Connection.
+     *
+     * @return PDO
+     */
+    public function getConnection()
+    {
+        try {
+            return new \PDO("mysql:host={$this->host};dbname={$this->name}", $this->user, $this->pass);
+        } catch (\PDOException $e) {
+            die('PDOException: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Prevent unserializing.
+     **/
+    public function __wakeup()
     {
         $this->getConnection();
     }

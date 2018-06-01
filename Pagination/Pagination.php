@@ -1,8 +1,10 @@
 <?php
+
 namespace Softhub99\Zest_Framework\Pagination;
+
 class Pagination
 {
-	const NUM_PLACEHOLDER = '(:num)';
+    const NUM_PLACEHOLDER = '(:num)';
 
     protected $totalItems;
     protected $numPages;
@@ -25,10 +27,12 @@ class Pagination
 
     protected function updateNumPages()
     {
-        $this->numPages = ($this->itemsPerPage == 0 ? 0 : (int) ceil($this->totalItems/$this->itemsPerPage));
+        $this->numPages = ($this->itemsPerPage == 0 ? 0 : (int) ceil($this->totalItems / $this->itemsPerPage));
     }
-     /**
+
+    /**
      * @param int $maxPagesToShow
+     *
      * @throws \InvalidArgumentException if $maxPagesToShow is less than 3.
      */
     public function setMaxPagesToShow($maxPagesToShow)
@@ -123,6 +127,7 @@ class Pagination
 
     /**
      * @param int $pageNum
+     *
      * @return string
      */
     public function getPageUrl($pageNum)
@@ -135,8 +140,6 @@ class Pagination
         if ($this->currentPage < $this->numPages) {
             return $this->currentPage + 1;
         }
-
-        return null;
     }
 
     public function getPrevPage()
@@ -144,14 +147,12 @@ class Pagination
         if ($this->currentPage > 1) {
             return $this->currentPage - 1;
         }
-
-        return null;
     }
 
     public function getNextUrl()
     {
         if (!$this->getNextPage()) {
-            return null;
+            return;
         }
 
         return $this->getPageUrl($this->getNextPage());
@@ -163,12 +164,11 @@ class Pagination
     public function getPrevUrl()
     {
         if (!$this->getPrevPage()) {
-            return null;
+            return;
         }
 
         return $this->getPageUrl($this->getPrevPage());
     }
-
 
     /**
      * Get an array of paginated page data.
@@ -177,10 +177,10 @@ class Pagination
      */
     public function getPages()
     {
-        $pages = array();
+        $pages = [];
 
         if ($this->numPages <= 1) {
-            return array();
+            return [];
         }
 
         if ($this->numPages <= $this->maxPagesToShow) {
@@ -197,10 +197,14 @@ class Pagination
             } else {
                 $slidingStart = $this->currentPage - $numAdjacents;
             }
-            if ($slidingStart < 2) $slidingStart = 2;
+            if ($slidingStart < 2) {
+                $slidingStart = 2;
+            }
 
             $slidingEnd = $slidingStart + $this->maxPagesToShow - 3;
-            if ($slidingEnd >= $this->numPages) $slidingEnd = $this->numPages - 1;
+            if ($slidingEnd >= $this->numPages) {
+                $slidingEnd = $this->numPages - 1;
+            }
 
             // Build the list of pages.
             $pages[] = $this->createPage(1, $this->currentPage == 1);
@@ -216,25 +220,24 @@ class Pagination
             $pages[] = $this->createPage($this->numPages, $this->currentPage == $this->numPages);
         }
 
-
         return $pages;
     }
-
 
     /**
      * Create a page data structure.
      *
-     * @param int $pageNum
+     * @param int  $pageNum
      * @param bool $isCurrent
-     * @return Array
+     *
+     * @return array
      */
     protected function createPage($pageNum, $isCurrent = false)
     {
-        return array(
-            'num' => $pageNum,
-            'url' => $this->getPageUrl($pageNum),
+        return [
+            'num'       => $pageNum,
+            'url'       => $this->getPageUrl($pageNum),
             'isCurrent' => $isCurrent,
-        );
+        ];
     }
 
     /**
@@ -242,11 +245,11 @@ class Pagination
      */
     protected function createPageEllipsis()
     {
-        return array(
-            'num' => '...',
-            'url' => null,
+        return [
+            'num'       => '...',
+            'url'       => null,
             'isCurrent' => false,
-        );
+        ];
     }
 
     /**
@@ -262,19 +265,19 @@ class Pagination
 
         $html = '<ul class="pagination">';
         if ($this->getPrevUrl()) {
-            $html .= '<li><a href="' . $this->getPrevUrl() . '">&laquo; '. $this->previousText .'</a></li>';
+            $html .= '<li><a href="'.$this->getPrevUrl().'">&laquo; '.$this->previousText.'</a></li>';
         }
 
         foreach ($this->getPages() as $page) {
             if ($page['url']) {
-                $html .= '<li' . ($page['isCurrent'] ? ' class="active"' : '') . '><a href="' . $page['url'] . '">' . $page['num'] . '</a></li>';
+                $html .= '<li'.($page['isCurrent'] ? ' class="active"' : '').'><a href="'.$page['url'].'">'.$page['num'].'</a></li>';
             } else {
-                $html .= '<li class="disabled"><span>' . $page['num'] . '</span></li>';
+                $html .= '<li class="disabled"><span>'.$page['num'].'</span></li>';
             }
         }
 
         if ($this->getNextUrl()) {
-            $html .= '<li><a href="' . $this->getNextUrl() . '">'. $this->nextText .' &raquo;</a></li>';
+            $html .= '<li><a href="'.$this->getNextUrl().'">'.$this->nextText.' &raquo;</a></li>';
         }
         $html .= '</ul>';
 
@@ -291,7 +294,7 @@ class Pagination
         $first = ($this->currentPage - 1) * $this->itemsPerPage + 1;
 
         if ($first > $this->totalItems) {
-            return null;
+            return;
         }
 
         return $first;
@@ -301,7 +304,7 @@ class Pagination
     {
         $first = $this->getCurrentPageFirstItem();
         if ($first === null) {
-            return null;
+            return;
         }
 
         $last = $first + $this->itemsPerPage - 1;
@@ -315,13 +318,14 @@ class Pagination
     public function setPreviousText($text)
     {
         $this->previousText = $text;
+
         return $this;
     }
 
     public function setNextText($text)
     {
         $this->nextText = $text;
-        return $this;
-    }   
-}
 
+        return $this;
+    }
+}

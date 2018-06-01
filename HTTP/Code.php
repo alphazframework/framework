@@ -1,5 +1,7 @@
 <?php
+
 namespace Softhub99\Zest_Framework\HTTP;
+
 class Code
 {
     /*
@@ -17,7 +19,7 @@ class Code
     const CONTINUE_ = 100;
     /**
      * 101 - Switching Protocols
-     * The requester has asked the server to switch protocols and the server has agreed to do so
+     * The requester has asked the server to switch protocols and the server has agreed to do so.
      */
     const SWITCHING_PROTOCOLS = 101;
     /**
@@ -103,35 +105,35 @@ class Code
     const MULTIPLE_CHOICES = 300;
     /* Moved Permanently
     * This and all future requests should be directed to the given URI.
-    */    
+    */
     const MOVED_PERMANENTLY = 301;
     /* Found
     * This and all future requests should be directed to the given URI.
-    */      
+    */
     const FOUND = 302;
-    /* 
+    /*
     * Tells the client to look at (browse to) another url. 302 has been superseded by 303 and 307. This is an example of industry practice contradicting the standard. The HTTP/1.0 specification (RFC 1945) required the client to perform a temporary redirect (the original describing phrase was "Moved Temporarily"), but popular browsers implemented 302 with the functionality of a 303 See Other. Therefore, HTTP/1.1 added status codes 303 and 307 to distinguish between the two behaviours. However, some Web applications and frameworks use the 302 status code as if it were the 303.
-    */      
+    */
     const SEE_OTHER = 303;
     /*  Not Modified
     * The response to the request can be found under another URI using the GET method. When received in response to a POST (or PUT/DELETE), the client should presume that the server has received the data and should issue a new GET request to the given URI
-    */      
+    */
     const NOT_MODIFIED = 304;
     /* Use Proxy (since HTTP/1.1)
     * Indicates that the resource has not been modified since the version specified by the request headers If-Modified-Since or If-None-Match. In such case, there is no need to retransmit the resource since the client still has a previously-downloaded copy
-    */      
+    */
     const USE_PROXY = 305;
     /* Switch Proxy
     * No longer used. Originally meant "Subsequent requests should use the specified proxy.
-    */      
+    */
     const SWITCH_PROXY = 306;
     /* Temporary Redirect (since HTTP/1.1)
     * In this case, the request should be repeated with another URI; however, future requests should still use the original URI. In contrast to how 302 was historically implemented, the request method is not allowed to be changed when reissuing the original request. For example, a POST request should be repeated using another POST request.
-    */      
+    */
     const TEMPORARY_REDIRECT = 307;
     /* Permanent Redirect (RFC 7538)
     * The request and all future requests should be repeated using another URI. 307 and 308 parallel the behaviors of 302 and 301, but do not allow the HTTP method to change. So, for example, submitting a form to a permanently redirected resource may continue smoothly.[
-    */      
+    */
     const PERMANENT_REDIRECT = 308;
     /*
      * Client Error codes (4xx)
@@ -193,7 +195,7 @@ class Code
      * 408 - Request Timeout
      * The server timed out waiting for the request. According to HTTP specifications: "The client did not produce
      * a request within the time that the server was prepared to wait. The client MAY repeat the request without
-     * modifications at any later time."
+     * modifications at any later time.".
      */
     const REQUEST_TIMEOUT = 408;
     /**
