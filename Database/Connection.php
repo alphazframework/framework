@@ -49,6 +49,7 @@ class Connection
             } else {
                 throw new \Exception("Driver {$this->driver} is not supportd!");
             }
+
             return $connection
                        ->setHost($this->host)
                        ->setUser($this->user)
