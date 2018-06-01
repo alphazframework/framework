@@ -1,29 +1,32 @@
-<?php 
+<?php
+
 namespace Softhub99\Zest_Framework\Component;
+
 class Component
 {
-
     /**
-     * Associative array of routes (the routing table)
+     * Associative array of routes (the routing table).
+     *
      * @var array
      */
     protected $routes = [];
 
     /**
-     * Parameters from the matched route
+     * Parameters from the matched route.
+     *
      * @var array
      */
     protected $params = [];
 
     /**
-     * Add a route to the routing table
+     * Add a route to the routing table.
      *
      * @param string $route  The route URL
      * @param array  $params Parameters (controller, action, etc.)
      *
      * @return void
      */
-    public function add($route, array$params = [])
+    public function add($route, array $params = [])
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -35,13 +38,13 @@ class Component
         $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
 
         // Add start and end delimiters, and case insensitive flag
-        $route = '/^' . $route . '$/i';
+        $route = '/^'.$route.'$/i';
 
         $this->routes[$route] = $params;
     }
 
     /**
-     * Get all the routes from the routing table
+     * Get all the routes from the routing table.
      *
      * @return array
      */
@@ -56,7 +59,7 @@ class Component
      *
      * @param string $url The route URL
      *
-     * @return boolean  true if a match found, false otherwise
+     * @return bool true if a match found, false otherwise
      */
     public function match($url)
     {
@@ -70,6 +73,7 @@ class Component
                 }
 
                 $this->params = $params;
+
                 return true;
             }
         }
@@ -78,17 +82,18 @@ class Component
     }
 
     /**
-     * Get the currently matched parameters
+     * Get the currently matched parameters.
      *
      * @return array
      */
-    public function getParams(){
+    public function getParams()
+    {
         return $this->params;
     }
 
     /**
      * Dispatch the route, creating the controller object and running the
-     * action method
+     * action method.
      *
      * @param string $url The route URL
      *
@@ -100,7 +105,7 @@ class Component
         if ($this->match($url)) {
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
-            $controller = $this->getNamespace() . $controller;
+            $controller = $this->getNamespace().$controller;
 
             if (class_exists($controller)) {
                 $controller_object = new $controller($this->params);
@@ -109,11 +114,9 @@ class Component
                 $action = $this->convertToCamelCase($action);
                 if (preg_match('/action$/i', $action) == 0) {
                     $controller_object->$action();
-
                 } else {
                     throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
                 }
-
             } else {
                 throw new \Exception("Controller class $controller not found");
             }
@@ -123,7 +126,8 @@ class Component
     }
 
     /**
-     * Convert the string with hyphens to StudlyCaps,
+     * Convert the string with hyphens to StudlyCaps,.
+     *
      * @param string $string The string to convert
      *
      * @return string
@@ -134,35 +138,32 @@ class Component
     }
 
     /**
-     * Convert the string with hyphens to camelCase,
+     * Convert the string with hyphens to camelCase,.
      *
      * @param string $string The string to convert
      *
      * @return string
      */
-    protected function convertToCamelCase( $string)
+    protected function convertToCamelCase($string)
     {
         return lcfirst($this->convertToStudlyCaps($string));
     }
 
     /**
-     * Remove the query string variables from the URL (if any). As the full
+     * Remove the query string variables from the URL (if any). As the full.
+     *
      * @param string $url The full URL
      *
      * @return string The URL with the query string variables removed
      */
-    protected function RemoveQueryString( $url)
+    protected function RemoveQueryString($url)
     {
         if (isset($url) && !empty($url)) {
-
             $parts = explode('&', $url);
 
             if (strpos($parts[0], '=') === false) {
-
                 $url = $parts[0];
-
             } else {
-
                 $url = self::RemoveQueryString($_SERVER['QUERY_STRING']);
             }
         }
@@ -178,20 +179,20 @@ class Component
      */
     protected function getNamespace()
     {
+        (!array_key_exists('namespace', $this->params)) ? $namespace = 'App\Controllers\\' : $namespace .= $this->params['namespace'].'\\';
 
-        (!array_key_exists('namespace',$this->params)) ? $namespace = 'App\Controllers\\' : $namespace .= $this->params['namespace'] . '\\';
         return $namespace;
     }
+
     /**
-     * Parase the url if need
+     * Parase the url if need.
      *
      * @return string The request URL
      */
-    public function parseurl(){
-        if(isset($_GET['url'])){
-            return $url = explode('/',filter_var(rtrim($_GET['url'] , '/') , FILTER_SANITIZE_URL) );
-        } 
-        
-    }    
-
+    public function parseurl()
+    {
+        if (isset($_GET['url'])) {
+            return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
+        }
+    }
 }
