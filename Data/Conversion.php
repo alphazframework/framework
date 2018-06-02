@@ -14,7 +14,7 @@ class Conversion
     public static function arrayObject($array)
     {
         if (is_array($array)) {
-            $object = new stdClass();
+            $object = new \stdClass();
             foreach ($array as $key => $value) {
                 if (is_array($value)) {
                     $object->$key = static::arrayObject($value);
