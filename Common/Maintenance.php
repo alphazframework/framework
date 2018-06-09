@@ -1,11 +1,11 @@
 <?php
 
 namespace Softhub99\Zest_Framework\Common;
+
 use Config\Config;
 
 class Maintenance
 {
-
     public function isMaintain()
     {
         if (file_exists(route()->root.'maintained')) {
@@ -16,18 +16,20 @@ class Maintenance
             return false;
         }
     }
+
     public function updataMaintenance($status)
     {
         if ($status === 'on') {
-            //TODO 
+            //TODO
         } elseif ($status === 'off') {
             //TODO
         }
     }
-    public function run() 
+
+    public function run()
     {
         if (self::isMaintain()) {
-            throw new \Exception ("Sorry, Site is in maintenance mode",503);
+            throw new \Exception('Sorry, Site is in maintenance mode', 503);
         }
     }
 }

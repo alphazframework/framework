@@ -330,7 +330,7 @@ class Files
                     break;
                 default:
                     // occur wrong skill of developers
-                	//throw new \Exception(static::$cecodes['No_Support']." <b>{$ext}</b>",500);
+                    //throw new \Exception(static::$cecodes['No_Support']." <b>{$ext}</b>",500);
                 return static::$cecodes['No_Support']." <b>{$ext}</b>";
             } //end switch
             $AccpetedTypes = [
@@ -350,7 +350,7 @@ class Files
                                     'image/svg+xml',
                     ];
             if (in_array($type, $AccpetedTypes) === false) {
-            	//throw new \Exception(static::$cecodes['No_Support']." <b>{$type}</b>",500);
+                //throw new \Exception(static::$cecodes['No_Support']." <b>{$type}</b>",500);
                 return static::$cecodes['No_Support']." <b>{$type}</b>";
             }
             if (in_array($ext, $allowerd_ext) === true) {
@@ -373,7 +373,7 @@ class Files
                 }
             } else {
                 return static::$cecodes['No_Support']." <b>{$ext}</b>";
-            	//throw new \Exception(static::$cecodes['No_Support']." <b>{$ext}</b>",500);
+                //throw new \Exception(static::$cecodes['No_Support']." <b>{$ext}</b>",500);
             }
         } else {
             return false;
