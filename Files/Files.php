@@ -9,14 +9,14 @@ class Files
     //Declare Vars
 
     //Getting server operating system name. //$this->ServerOS
-    private $ServerOS = PHP_OS;
+    private static $ServerOS = PHP_OS;
 
     //File Upload Max Size //$this->fupmaxs
-    private $fupmaxs = 7992000000;
+    private static $fupmaxs = 7992000000;
 
-    private $fullDirPath;
+    private static $fullDirPath;
     //Class Error Codes //$this->cecodes['']
-    private $cecodes = [
+    private static $cecodes = [
         'No_Support'    => '[Error]: File Type Not Supported ',
         'Cant_Create'   => '[Error]: Can\'t Create ',
         'No_Support_OS' => '[Error]: Sorry! Your Operating System Does Not Support The Command ',
@@ -37,7 +37,7 @@ class Files
         } else {
             self::mkDirs(Config::Data_Dir);
         }
-        $this->fullDirPath = @$data;
+        static::$fullDirPath = @$data;
     }
 
     // end method __construct
@@ -68,7 +68,7 @@ class Files
         * @param $name (string) string $name name of directory
         * @return boolean
     *************************************************************/
-    public function mkDir($name)
+    public static function mkDir($name)
     {
         //if file doesnt exist
         if (!file_exists($name)) {
@@ -91,12 +91,12 @@ class Files
         * @param $name (string) string $name name of directory
         * @return boolean
     *************************************************************/
-    public function mkDirs($name)
+    public static function mkDirs($name)
     {
         //if file doesnt exist
-        if (!file_exists($this->fullDirPath.$name)) {
+        if (!file_exists(static::$fullDirPath.$name)) {
             //create it //also verify that it was created
-            if (mkdir($this->fullDirPath.$name.'/', 0755, true)) {
+            if (mkdir(static::$fullDirPath.$name.'/', 0755, true)) {
                 return true;
             } else {
                 return false;
@@ -117,7 +117,7 @@ class Files
     *************************************************************/
     public static function generateSalts($length)
     {
-        return \Zest_Framework\Site\Site::salts($length);
+        return \Softhub99\Zest_Framework\Site\Site::salts($length);
     }
 
     //end method
@@ -130,12 +130,12 @@ class Files
         *		 'premission' => premission set to be.
         * @return boolean
     *************************************************************/
-    public function permission($params)
+    public static function permission($params)
     {
         if ($params) {
             if (!empty($params['source']) and !empty($params['Permission'])) {
                 //verify chmod
-                if (chmod($this->fullDirPath.$params['source'], $params['Permission'])) {
+                if (chmod(static::$fullDirPath.$params['source'], $params['Permission'])) {
                     return true;
                 } else {
                     return false;
@@ -165,29 +165,29 @@ class Files
     {
         if (is_array($params)) {
             if ($params['status'] === 'files') {
-                if (!is_dir($this->fullDirPath.$params['target'].'/')) {
-                    $this->mkDirs($params['target'].'/');
+                if (!is_dir(static::$fullDirPath.$params['target'].'/')) {
+                    static::mkDirs($params['target'].'/');
                 }
                 foreach ($params['files'] as $file => $value) {
-                    if (file_exists($this->fullDirPath.$params['path'].'/'.$value)) {
-                        copy($this->fullDirPath.$params['path'].'/'.$value, $this->fullDirPath.$params['target'].'/'.$value);
+                    if (file_exists(static::$fullDirPath.$params['path'].'/'.$value)) {
+                        copy(static::$fullDirPath.$params['path'].'/'.$value, static::$fullDirPath.$params['target'].'/'.$value);
                     }
                 }
             }
             if ($params['status'] === 'dir') {
-                if (!is_dir($this->fullDirPath.$params['target'].'/')) {
-                    $this->mkDirs($params['target'].'/');
+                if (!is_dir(static::$fullDirPath.$params['target'].'/')) {
+                    static::$mkDirs($params['target'].'/');
                 }
                 foreach ($params['dirs'] as $file => $from) {
-                    if (is_dir($this->fullDirPath.$value.'/')) {
-                        if ($this->ServerOS === 'WINNT' or $this->ServerOS === 'WIN32' or $this->ServerOS === 'Windows') {
-                            shell_exec('xcopy '.$this->fullDirPath.$from.' '.$this->fullDirPath.$params['to'].'/');
-                        } elseif ($this->ServerOS === 'Linux' or $this->ServerOS === 'FreeBSD' or $this->ServerOS === 'OpenBSD') {
-                            shell_exec('cp -r '.$this->fullDirPath.$from.' '.$this->fullDirPath.$params['to'].'/');
-                        } elseif ($this->ServerOS === 'Unix') {
-                            shell_exec('cp -r '.$this->fullDirPath.$from.' '.$this->fullDirPath.$params['to'].'/');
+                    if (is_dir(static::$fullDirPath.$value.'/')) {
+                        if (static::$ServerOS === 'WINNT' or static::$ServerOS === 'WIN32' or static::$ServerOS === 'Windows') {
+                            shell_exec('xcopy '.static::$fullDirPath.$from.' '.static::$fullDirPath.$params['to'].'/');
+                        } elseif (static::$ServerOS === 'Linux' or static::$ServerOS === 'FreeBSD' or static::$ServerOS === 'OpenBSD') {
+                            shell_exec('cp -r '.$static::$fullDirPath.$from.' '.static::$fullDirPath.$params['to'].'/');
+                        } elseif (static::$ServerOS === 'Unix') {
+                            shell_exec('cp -r '.static::$fullDirPath.$from.' '.static::$fullDirPath.$params['to'].'/');
                         } else {
-                            return $this->cecodes['No_Support_OS'].'<b>COPY</b>';
+                            return static::$cecodes['No_Support_OS'].'<b>COPY</b>';
                         }
                     }
                 }
@@ -215,8 +215,8 @@ class Files
         if (is_array($params)) {
             if ($params['status'] === 'files') {
                 foreach ($params['files'] as $file=>$value) {
-                    if (file_exists($this->fullDirPath.$params['path'].$value)) {
-                        unlink($this->fullDirPath.$params['path'].$value);
+                    if (file_exists(static::$fullDirPath.$params['path'].$value)) {
+                        unlink(static::$fullDirPath.$params['path'].$value);
                     } else {
                         return false;
                     }
@@ -226,8 +226,8 @@ class Files
             }
             if ($params['status'] === 'dir') {
                 foreach ($params['dir'] as $file=>$value) {
-                    if (is_dir($this->fullDirPath.$params['path'].$value)) {
-                        rmdir($this->fullDirPath.$params['path'].$value);
+                    if (is_dir(static::$fullDirPath.$params['path'].$value)) {
+                        rmdir(static::$fullDirPath.$params['path'].$value);
                     } else {
                         return false;
                     }
@@ -257,7 +257,7 @@ class Files
                 if ($params['status'] === 'files') {
                     if (!is_dir($params['to'])) {
                         if (!file_exists($params['to'])) {
-                            $this->mkDirs($params['to']);
+                            static::mkDirs($params['to']);
                         }
                     }
                     foreach ($params['files'] as $file) {
@@ -268,18 +268,18 @@ class Files
                 } elseif ($params['status'] === 'dir') {
                     if (!is_dir($params['to'])) {
                         if (!file_exists($params['to'])) {
-                            $this->mkDirs($params['to']);
+                            static::mkDirs($params['to']);
                         }
                     } //end if
                     foreach ($params['from'] as $key => $from) {
-                        if ($this->ServerOS === 'WINNT' or $this->ServerOS === 'Windows') {
-                            shell_exec('move '.$this->fullDirPath.$from.' '.$this->fullDirPath.$params['to'].'/');
-                        } elseif ($this->ServerOS === 'Linux' or $this->ServerOS === 'FreeBSD' or $this->ServerOS === 'OpenBSD') {
-                            shell_exec('mv '.$this->fullDirPath.$from.' '.$this->fullDirPath.$params['to'].'/');
-                        } elseif ($this->ServerOS === 'Unix') {
-                            shell_exec('mv '.$this->fullDirPath.$from.' '.$this->fullDirPath.$params['to'].'/');
+                        if (static::$ServerOS === 'WINNT' or static::$ServerOS === 'Windows') {
+                            shell_exec('move '.static::$fullDirPath.$from.' '.static::$fullDirPath.$params['to'].'/');
+                        } elseif (static::$ServerOS === 'Linux' or static::$ServerOS === 'FreeBSD' or static::$ServerOS === 'OpenBSD') {
+                            shell_exec('mv '.static::$fullDirPath.$from.' '.static::$fullDirPath.$params['to'].'/');
+                        } elseif (static::$ServerOS === 'Unix') {
+                            shell_exec('mv '.static::$fullDirPath.$from.' '.static::$fullDirPath.$params['to'].'/');
                         } else {
-                            return $this->cecodes['No_Support_OS'].'<b>MOVE</b>';
+                            return static::$cecodes['No_Support_OS'].'<b>MOVE</b>';
                         }
                     } // end foreach
                 }
@@ -313,7 +313,7 @@ class Files
             $error = $params['file']['error'];
             $type = $params['file']['type'];
             $ext = pathinfo($params['file']['name'], PATHINFO_EXTENSION);
-            $newName = $this->generateSalts(30);
+            $newName = static::generateSalts(30);
             $fileNewName = $newName.'.'.$ext;
             switch ($params['filetype']) {
                 case 'image':
@@ -330,7 +330,8 @@ class Files
                     break;
                 default:
                     // occur wrong skill of developers
-                    return $this->cecodes['No_Support']." <b>{$ext}</b>";
+                	//throw new \Exception(static::$cecodes['No_Support']." <b>{$ext}</b>",500);
+                return static::$cecodes['No_Support']." <b>{$ext}</b>";
             } //end switch
             $AccpetedTypes = [
                                     'application/msword',
@@ -349,28 +350,30 @@ class Files
                                     'image/svg+xml',
                     ];
             if (in_array($type, $AccpetedTypes) === false) {
-                return $this->cecodes['No_Support']." <b>{$type}</b>";
+            	//throw new \Exception(static::$cecodes['No_Support']." <b>{$type}</b>",500);
+                return static::$cecodes['No_Support']." <b>{$type}</b>";
             }
             if (in_array($ext, $allowerd_ext) === true) {
                 if ($error === 0) {
-                    if ($fileSize <= $this->fupmaxs) {
-                        if (!is_dir($this->fullDirPath.$params['target']) or !file_exists($this->fullDirPath.$params['target'])) {
-                            $this->mkDirs($params['target'].'/');
+                    if ($fileSize <= static::$fupmaxs) {
+                        if (!is_dir(static::$fullDirPath.$params['target']) or !file_exists(static::$fullDirPath.$params['target'])) {
+                            static::mkDirs($params['target'].'/');
                         }
-                        $fileRoot = $this->fullDirPath.$params['target'].'/'.$fileNewName;
+                        $fileRoot = static::$fullDirPath.$params['target'].'/'.$fileNewName;
                         if (move_uploaded_file($fileTmp, $fileRoot)) {
                             return $fileNewName;
                         } else {
-                            return $this->cecodes['No_Upload']."{$fileRoot}";
+                            return static::$cecodes['No_Upload']."{$fileRoot}";
                         }
                     } else {
-                        return $this->cecodes['Size_Limit'];
+                        return static::$cecodes['Size_Limit'];
                     }
                 } else {
                     return $error;
                 }
             } else {
-                return $this->cecodes['No_Support']." <b>{$ext}</b>";
+                return static::$cecodes['No_Support']." <b>{$ext}</b>";
+            	//throw new \Exception(static::$cecodes['No_Support']." <b>{$ext}</b>",500);
             }
         } else {
             return false;
@@ -406,7 +409,7 @@ class Files
                 $type = $params['file']['type'][$i];
                 $ext = pathinfo($params['file']['name'][$i], PATHINFO_EXTENSION);
 
-                $newName = $this->generateSalts(30);
+                $newName = static::generateSalts(30);
                 $fileNewName = $newName.'.'.$ext;
                 switch ($params['filetype']) {
                     case 'image':				$allowerd_ext = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'svg'];
@@ -422,7 +425,7 @@ class Files
                         break;
                         default:
                         // occur wrong skill of developers
-                        $error['error'][$i] = $this->cecodes['No_Support']." <b>{$ext}</b>";
+                        $error['error'][$i] = static::$cecodes['No_Support']." <b>{$ext}</b>";
                 } //end switch
                 $AccpetedTypes = [
                                         'application/msword',
@@ -441,28 +444,28 @@ class Files
                                     'image/svg+xml',
                         ];
                 if (in_array($type, $AccpetedTypes) === false) {
-                    $status['error'] = $this->cecodes['No_Support']." <b>{$type}</b>";
+                    $status['error'] = static::$cecodes['No_Support']." <b>{$type}</b>";
                 }
                 if (in_array($ext, $allowerd_ext) === true) {
                     if ($error === 0) {
-                        if ($fileSize <= $this->fupmaxs) {
-                            if (!is_dir($this->fullDirPath.$params['target']) or !file_exists($this->fullDirPath.$params['target'])) {
-                                $this->mkDirs($params['target'].'/');
+                        if ($fileSize <= static::$fupmaxs) {
+                            if (!is_dir(static::$fullDirPath.$params['target']) or !file_exists(static::$fullDirPath.$params['target'])) {
+                                static::mkDirs($params['target'].'/');
                             }
-                            $fileRoot = $this->fullDirPath.$params['target'].'/'.$fileNewName;
+                            $fileRoot = static::$fullDirPath.$params['target'].'/'.$fileNewName;
                             if (move_uploaded_file($fileTmp, $fileRoot)) {
                                 $status['success'][$i] = $fileNewName;
                             } else {
-                                $status['error'][$i] = $this->cecodes['No_Upload']."{$fileRoot}";
+                                $status['error'][$i] = static::$cecodes['No_Upload']."{$fileRoot}";
                             }
                         } else {
-                            $status['error'][$i] = $this->cecodes['Size_Limit'];
+                            $status['error'][$i] = static::$cecodes['Size_Limit'];
                         }
                     } else {
                         $status['error'][$i] = $error;
                     }
                 } else {
-                    $status['error'][$i] = $this->cecodes['No_Support']." <b>{$ext}</b>";
+                    $status['error'][$i] = static::$cecodes['No_Support']." <b>{$ext}</b>";
                 }
             }
             if (isset($status['error'])) {
@@ -521,13 +524,13 @@ class Files
                 default:
                     return false;
             } //end switch
-            $fopen = fopen($this->fullDirPath.$params['target'].'/'.$params['name'].'.'.$params['extension'], $mod);
+            $fopen = fopen(static::$fullDirPath.$params['target'].'/'.$params['name'].'.'.$params['extension'], $mod);
             fwrite($fopen, $params['text']);
             switch ($mod) {
                 case 'r':
                 case 'r+':
                 case 'a+':
-                    return fread($fopen, filesize($this->fullDirPath.$params['target'].'/'.$params['name'].'.'.$params['extension']));
+                    return fread($fopen, filesize(static::$fullDirPath.$params['target'].'/'.$params['name'].'.'.$params['extension']));
                     break;
                 case 'w':
                 case 'w+':
