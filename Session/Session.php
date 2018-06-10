@@ -83,12 +83,12 @@ class Session
      */
     public static function unsetValue(string $name)
     {
-        if (static::isSession($name)) { 
+        if (static::isSession($name)) {
             session_destroy();
             session_unset($name);
         } else {
             return false;
         }
-       // return (static::isSession($name)) ? session_unset($_SESSION[$name]) : false;
+        // return (static::isSession($name)) ? session_unset($_SESSION[$name]) : false;
     }
 }
