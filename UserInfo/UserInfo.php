@@ -27,7 +27,7 @@ class UserInfo
     /**
      * For stroring user ip.
      */
-    private $Ip;
+    private static $Ip;
     /**
      * For stroring OsVersion.
      */
@@ -192,7 +192,8 @@ class UserInfo
         } else {
             $ip_add = $_SERVER['REMOTE_ADDR'];
         }
-        $this->Ip = $ip_add;
+        static::$Ip = $ip_add;
+        return static::$Ip;
     }
 
     /**
