@@ -193,6 +193,7 @@ class UserInfo
             $ip_add = $_SERVER['REMOTE_ADDR'];
         }
         static::$Ip = $ip_add;
+
         return static::$Ip;
     }
 
