@@ -46,7 +46,10 @@ class UserInfo
     public function browser()
     {   
         $UserAgent = self::agent();
-        if (preg_match_all('/MSIE/i', $UserAgent)) {
+        if (preg_match_all('/Edge/i', $UserAgent)) {
+            $Browser = 'Microsoft Edge';
+            $B_Agent = "Edge"; 
+        } elseif (preg_match_all('/MSIE/i', $UserAgent)) {
             $Browser = 'Internet Explorer';
             $B_Agent = 'MSIE';
         } elseif (preg_match_all('/Firefox/i', $UserAgent)) {
@@ -119,7 +122,7 @@ class UserInfo
     public function browserVersion()
     {
         $UserAgent = self::agent();
-        $B_Agent = self::Browser()['browser'];
+        $B_Agent = self::Browser()['agent'];
         if ($B_Agent !== null) {
             $known = ['Version', $B_Agent, 'other'];
             $pattern = '#(?<browser>'.implode('|', $known).
