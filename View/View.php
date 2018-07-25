@@ -126,12 +126,12 @@ class View
         }
     }
 
-    public function view($file, array $args = [],$minify = true)
+    public function view($file, array $args = [], $minify = true)
     {
         if ($minify) {
             $minify = new Minify();
             self::views($file, $args);
-            echo $minify->htmlMinify(ob_get_clean(), 'code');           
+            echo $minify->htmlMinify(ob_get_clean(), 'code');
         } else {
             self::views($file, $args);
             echo ob_get_clean();
