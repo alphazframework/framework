@@ -5,7 +5,6 @@ namespace Softhub99\Zest_Framework\View;
 use Config\Config;
 use Softhub99\Zest_Framework\Common\Minify;
 
-
 class View
 {
     //file
@@ -110,6 +109,7 @@ class View
             return false;
         }
     }
+
     public function views($file, array $args = [])
     {
         if (!empty($file)) {
@@ -117,8 +117,7 @@ class View
             $file = Config::THEME_PATH.'/'.$file.'.php';
             if (file_exists($file)) {
                 ob_start();
-              require_once $file;
-               
+                require_once $file;
             } else {
                 return false;
             }
@@ -126,11 +125,12 @@ class View
             return false;
         }
     }
+
     public function view($file, array $args = [])
     {
         $minify = new Minify();
-        self::views($file,$args);
+        self::views($file, $args);
         $buffer = ob_get_clean();
-        echo $minify->htmlMinify($buffer,"code");
+        echo $minify->htmlMinify($buffer, 'code');
     }
 }

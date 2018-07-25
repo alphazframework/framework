@@ -51,7 +51,7 @@ class UserInfo
         $UserAgent = self::agent();
         if (preg_match_all('/Edge/i', $UserAgent)) {
             $Browser = 'Microsoft Edge';
-            $B_Agent = "Edge"; 
+            $B_Agent = 'Edge';
         } elseif (preg_match_all('/MSIE/i', $UserAgent)) {
             $Browser = 'Internet Explorer';
             $B_Agent = 'MSIE';
