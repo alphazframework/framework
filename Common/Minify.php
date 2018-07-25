@@ -1,15 +1,7 @@
 <?php
 
-/**
- * PHP-Minify-Class.
- *
- * @author   Malik Umer Farooq <lablnet01@gmail.com>
- * @author-profile https://www.facebook.com/malikumerfarooq01/
- *
- * @license MIT
- *
- * @link   https://github.com/Lablnet/PHP-Minify-Class
- */
+namespace Softhub99\Zest_Framework\Common;
+
 class Minify
 {
     /**
