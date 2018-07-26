@@ -79,7 +79,7 @@ class Minify
 
         return preg_replace(['/;[\s\r\n\t]*?}[\s\r\n\t]*/ims', '/;[\s\r\n\t]/ims', '/[\s\r\n\t]*:[\s\r\n\t][\s+\/]/ims', '/[\s\r\n\t]*,[\s\r\n\t]*?([^\s\r\n\t]\.[\s+\/])/ims', '/[\s\r\n\t]/ims', '/([\d\.]+)[\s\r\n\t]+(px|em|pt|%)/ims', '/([^\s\.]0)(px|em|pt|%|ex|mm|in|pc|vh|vw|vmin)/ims', '/\s+/'], ['}', ';$1', ',$1', '$1', '$1$2', '$1$2', ' '], $file);
     }
-    
+
     /**
      * Minify Js.
      *
