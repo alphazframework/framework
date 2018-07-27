@@ -14,8 +14,8 @@
  */
 
 namespace Softhub99\Zest_Framework\Router; 
-use Softhub99\Zest_Framework\Router\Router;
-class App 
+
+class App extends \Softhub99\Zest_Framework\Router\Router
 {
 	
 	public function run()

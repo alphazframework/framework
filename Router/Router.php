@@ -24,7 +24,7 @@ class Router
      *
      * @var array
      */
-    public $routes = [];
+    protected $routes = [];
 
     /**
      * Parameters from the matched route.
