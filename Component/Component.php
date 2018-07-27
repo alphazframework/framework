@@ -8,10 +8,10 @@
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * 
+ *
  * @license MIT
  *
- * @note i wrote this file first time by follow the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , and other modification by me 
+ * @note i wrote this file first time by follow the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , and other modification by me
  */
 
 namespace Softhub99\Zest_Framework\Component;
@@ -56,10 +56,8 @@ class Component
 
         if (is_array($params)) {
             $this->routes[$route] = $params;
-
         } elseif (is_callable($params)) {
             $this->routes[$route] = ['callable' => $params];
-
         }
     }
 
@@ -142,7 +140,7 @@ class Component
                     throw new \Exception("Controller class $controller not found");
                 }
             } else {
-                call_user_func($this->params['callable'],$this->params);
+                call_user_func($this->params['callable'], $this->params);
             }
         } else {
             throw new \Exception('No route matched.', 404);
