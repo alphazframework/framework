@@ -16,22 +16,22 @@ namespace Softhub99\Zest_Framework\Benchmark;
 
 class Benchmark implements BenchmarkInterface
 {
-    public static $start;
-    public static $end;
+    private $start;
+    private $end;
 
-    public static function start()
+    public function start()
     {
-        static::$start = microtime(true);
+         $this->start = microtime(true);
     }
 
-    public static function end()
+    public function end()
     {
-        static::$end = microtime(true);
+        $this->end = microtime(true);
     }
 
-    public static function elapsedTime(int $round = null)
+    public function elapsedTime(int $round = null)
     {
-        $time = static::$end - static::$start;
+        $time =  $this->end -  $this->start;
         if (!is_null($round)) {
             $time = round($time, $round);
         }
