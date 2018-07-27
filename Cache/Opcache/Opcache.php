@@ -11,6 +11,7 @@
  *
  * @license MIT
  */
+
 namespace Softhub99\Zest_Framework\Cache\Opcache;
 
 class Opcache
