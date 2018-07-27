@@ -8,7 +8,7 @@ class Root
 {
     public static function path()
     {
-         return '../';
+        return '../';
     }
 
     public function rootPaths()
@@ -28,7 +28,7 @@ class Root
             'config' => static::path().'Config/',
             //public
             'public' => static::path().'public/',
-            //routes 
+            //routes
             'routes' => static::path().'routes/',
             //Storage
             'storage'         => static::path().'Storage/',
