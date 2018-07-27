@@ -15,7 +15,8 @@
  */
 
 namespace Softhub99\Zest_Framework\Router;
-
+use Config\Config;
+use Softhub99\Zest_Framework\Cache\ZestCache\ZestCache;
 class Router
 {
     /**
@@ -23,7 +24,7 @@ class Router
      *
      * @var array
      */
-    protected $routes = [];
+    public $routes = [];
 
     /**
      * Parameters from the matched route.
@@ -31,7 +32,6 @@ class Router
      * @var array
      */
     protected $params = [];
-
     /**
      * Add a route to the routing table.
      *
@@ -79,7 +79,7 @@ class Router
      * @return bool true if a match found, false otherwise
      */
     public function match($url)
-    {
+    {   
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
                 // Get named capture group values
@@ -214,6 +214,32 @@ class Router
     {
         if (isset($_GET['url'])) {
             return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
+        }
+    }
+    public function loadCache()
+    {
+        if ($this->isCached() === true) {
+            return json_decode(file_get_contents('../Storage/Cache/routers.cache'),true)['data'];    
+        }
+    }
+    public function cacheRouters()
+    {
+        if ($this->isCached() !== true) {
+            $routers = $this->getRoutes();
+            $cache = new ZestCache;
+            $cache->create('routers');
+            $cache->store('routers','routes',$routers,Config::ROUTE_CACHE_REGENERATE);
+            $f = fopen("../Storage/Cache/router_time.cache",'w');
+            fwrite($f, time() + Config::ROUTE_CACHE_REGENERATE);
+            fclose($f);        
+        }
+    }
+    public function isCached()
+    { 
+        if (file_exists("../Storage/Cache/routers.cache")) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
