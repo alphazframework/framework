@@ -16,9 +16,9 @@ namespace Softhub99\Zest_Framework\Benchmark;
 
 interface BenchmarkInterface
 {
-    public static function start();
+    public function start();
 
-    public static function end();
+    public function end();
 
-    public static function elapsedTime(int $round);
+    public function elapsedTime(int $round);
 }
