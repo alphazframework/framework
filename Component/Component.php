@@ -1,5 +1,19 @@
 <?php
 
+/**
+ * This file is part of the Zest Framework.
+ *
+ * @author   Malik Umer Farooq <lablnet01@gmail.com>
+ * @author-profile https://www.facebook.com/malikumerfarooq01/
+ *
+ * For the full copyright and license information, please view the LICENSE
+ *  file that was distributed with this source code.
+ * 
+ * @license MIT
+ *
+ * @note i wrote this file first time by follow the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , and other modification by me 
+ */
+
 namespace Softhub99\Zest_Framework\Component;
 
 class Component
@@ -40,7 +54,13 @@ class Component
         // Add start and end delimiters, and case insensitive flag
         $route = '/^'.$route.'$/i';
 
-        $this->routes[$route] = $params;
+        if (is_array($params)) {
+            $this->routes[$route] = $params;
+
+        } elseif (is_callable($params)) {
+            $this->routes[$route] = ['callable' => $params];
+
+        }
     }
 
     /**
@@ -103,22 +123,26 @@ class Component
     {
         $url = $this->RemoveQueryString($url);
         if ($this->match($url)) {
-            $controller = $this->params['controller'];
-            $controller = $this->convertToStudlyCaps($controller);
-            $controller = $this->getNamespace().$controller;
+            if (!isset($this->params['callable'])) {
+                $controller = $this->params['controller'];
+                $controller = $this->convertToStudlyCaps($controller);
+                $controller = $this->getNamespace().$controller;
 
-            if (class_exists($controller)) {
-                $controller_object = new $controller($this->params);
+                if (class_exists($controller)) {
+                    $controller_object = new $controller($this->params);
 
-                $action = $this->params['action'];
-                $action = $this->convertToCamelCase($action);
-                if (preg_match('/action$/i', $action) == 0) {
-                    $controller_object->$action();
+                    $action = $this->params['action'];
+                    $action = $this->convertToCamelCase($action);
+                    if (preg_match('/action$/i', $action) == 0) {
+                        $controller_object->$action();
+                    } else {
+                        throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+                    }
                 } else {
-                    throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+                    throw new \Exception("Controller class $controller not found");
                 }
             } else {
-                throw new \Exception("Controller class $controller not found");
+                call_user_func($this->params['callable'],$this->params);
             }
         } else {
             throw new \Exception('No route matched.', 404);
