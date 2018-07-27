@@ -11,8 +11,8 @@
  *
  * @license MIT
  */
-namespace Softhub99\Zest_Framework\Cache\ZestCache;
 
+namespace Softhub99\Zest_Framework\Cache\ZestCache;
 
 class ZestCache
 {
@@ -30,7 +30,7 @@ class ZestCache
     {
         $this->openDir();
     }
-    
+
     /**
      * get the default cache directory.
      *

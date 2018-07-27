@@ -11,10 +11,10 @@
  *
  * @license MIT
  */
+
 namespace Softhub99\Zest_Framework\Cache\Memcache;
 
 if (class_exists('Memcache')) {
-
     class Memcache
     {
         //Store the connectino of memcache
@@ -37,7 +37,7 @@ if (class_exists('Memcache')) {
          */
         public function connect($server, $port)
         {
-            $mcache = new Memcache();
+            $mcache = new self();
 
             return $mcache->connect($server, $port);
         }
