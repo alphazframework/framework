@@ -21,7 +21,7 @@ class Benchmark implements BenchmarkInterface
 
     public function start()
     {
-         $this->start = microtime(true);
+        $this->start = microtime(true);
     }
 
     public function end()
@@ -31,7 +31,7 @@ class Benchmark implements BenchmarkInterface
 
     public function elapsedTime(int $round = null)
     {
-        $time =  $this->end -  $this->start;
+        $time = $this->end - $this->start;
         if (!is_null($round)) {
             $time = round($time, $round);
         }
