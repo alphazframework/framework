@@ -1,20 +1,20 @@
-<?php 
+<?php
+
 namespace Softhub99\Zest_Framework\Validation;
 
 class JsonRules extends StickyRules
 {
     public function validate($value)
     {
-        if ($this->notBeEmpty($value))
-        {
-            $value = json_decode($value); 
+        if ($this->notBeEmpty($value)) {
+            $value = json_decode($value);
             if ($value !== null) {
-            	return true;
+                return true;
             } else {
-            	return false;
+                return false;
             }
         } else {
-        	return false;
-        }    
-    }    
+            return false;
+        }
+    }
 }
