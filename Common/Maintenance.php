@@ -19,13 +19,13 @@ use Config\Config;
 class Maintenance
 {
     /**
-     * Check is the site maintaince mode is enable
+     * Check is the site maintaince mode is enable.
      *
-     * @return boolean
-     */    
+     * @return bool
+     */
     public function isMaintain()
     {
-        if (file_exists(route()->root . 'maintained')) {
+        if (file_exists(route()->root.'maintained')) {
             return true;
         } elseif (Config::Maintenance) {
             return true;
@@ -35,21 +35,21 @@ class Maintenance
     }
 
     /**
-     * Upgrade the maintaince mode dynamically
+     * Upgrade the maintaince mode dynamically.
      *
      * @return void
      */
     public function updataMaintenance(bool $status)
     {
         if ($status) {
-            if (!file_exists(route()->root . 'maintained')) {
-                $fh = fopen(route()->root . 'maintained','w');
-                fwrite($fh,"maintained");
+            if (!file_exists(route()->root.'maintained')) {
+                $fh = fopen(route()->root.'maintained', 'w');
+                fwrite($fh, 'maintained');
                 fclose($fh);
-            }            
+            }
         } elseif (!$status) {
-            if (file_exists(route()->root . 'maintained')) {
-                unlink(route()->root . 'maintained');
+            if (file_exists(route()->root.'maintained')) {
+                unlink(route()->root.'maintained');
             }
         } else {
             return false;
@@ -57,7 +57,7 @@ class Maintenance
     }
 
     /**
-     * Run the site maintaince mode if enable
+     * Run the site maintaince mode if enable.
      *
      * @return void
      */
