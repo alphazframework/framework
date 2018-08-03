@@ -16,6 +16,10 @@ function input($key)
 {
     return Softhub99\Zest_Framework\Input\InPut::input($key);
 }
+function input_all() 
+{
+    return $_REQUEST;
+}
 function escape($str, $type = 'secured')
 {
     return Softhub99\Zest_Framework\Input\InPut::cleane($str, $type);
@@ -91,4 +95,7 @@ function encrypt($str, $cl = 32)
 function decrypt($str, $cl = 32)
 {
     return Softhub99\Zest_Framework\Cryptography\Cryptography::decrypt($str, $cl);
+}
+function maintenanceInstance() {
+    return new \Softhub99\Zest_Framework\Common\Maintenance();
 }
