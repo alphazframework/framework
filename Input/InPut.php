@@ -93,7 +93,7 @@ class InPut
                     }
                 }
                 if (isset($string) && !empty($string)) {
-                    if (Config::AUTO_CSRF_VARIFIED) {
+                    if (Config::AUTO_CSRF_VERIFIED) {
                         if (static::autoCsrf()) {
                             return $string;
                         } else {
