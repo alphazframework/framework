@@ -23,7 +23,7 @@ class Root
         return '../';
     }
 
-    public function rootPaths()
+    public static function rootPaths()
     {
         $roots = [
             'root' => static::path(),

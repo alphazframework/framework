@@ -25,7 +25,9 @@ class Server
         $server = Str::stringConversion($server, 'lowercase');
         if ($server === 'apache') {
             return;
-        } elseif ($server === 'nginx') {
+        } elseif(preg_match("/[php]/i",$server)){
+			return;
+		} elseif ($server === 'nginx') {
             throw new \Exception("You need more configuration in your {$server} server", 404);
         } else {
             throw new \Exception("Sorry {$server} server not supported", 404);
