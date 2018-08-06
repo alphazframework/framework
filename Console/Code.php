@@ -14,9 +14,11 @@
 
 namespace Softhub99\Zest_Framework\Console;
 
-class Code {
-	public function controller($name) {
-		return  <<<code
+class Code
+{
+    public function controller($name)
+    {
+        return  <<<code
 <?php
 
 namespace App\Controllers;
@@ -37,5 +39,5 @@ class {$name} extends \Softhub99\Zest_Framework\Controller\Controller
 }
 
 code;
-	}
+    }
 }
