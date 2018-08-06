@@ -11,30 +11,36 @@
  *
  * @license MIT
  */
- 
+
 namespace Softhub99\Zest_Framework\Console;
 
-class Write {
-	public function controller($name,$data) {
-		$file = "./App/Controllers/".$name.".php";
-		if (!file_exists($file)) {
-			$fh = fopen($file, "w");
-			fwrite($fh, $data);
-			fclose($fh);
-			return true;			
-		} else {
-			return false;
-		}
-	}
-	public function model($name,$data) {
-		$file = "./App/Models/".$name.".php";
-		if (!file_exists($file)) {
-			$fh = fopen($file, "w");
-			fwrite($fh, $data);
-			fclose($fh);
-			return true;			
-		} else {
-			return false;
-		}
-	}	
+class Write
+{
+    public function controller($name, $data)
+    {
+        $file = './App/Controllers/'.$name.'.php';
+        if (!file_exists($file)) {
+            $fh = fopen($file, 'w');
+            fwrite($fh, $data);
+            fclose($fh);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function model($name, $data)
+    {
+        $file = './App/Models/'.$name.'.php';
+        if (!file_exists($file)) {
+            $fh = fopen($file, 'w');
+            fwrite($fh, $data);
+            fclose($fh);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
