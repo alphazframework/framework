@@ -18,7 +18,7 @@ class OperatingSystem
 {
     public static function get()
     {
-        if (\define(PHP_OS_FAMILY)) {
+        if (@\define(PHP_OS_FAMILY)) {
             return PHP_OS_FAMILY;
         } else {
             return static::phpOs();
