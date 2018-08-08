@@ -23,6 +23,7 @@ class Validation
 
     public function databaseCompile($data, $table)
     {
+        $rule = 'unique';
         call_user_func_array([new databaseRules(), $rule], [$data['field'], $data['value'], $table]);
         if ($passed !== true) {
             Handler::set(
