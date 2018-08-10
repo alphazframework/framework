@@ -14,7 +14,7 @@
 
 namespace Softhub99\Zest_Framework\Mail;
 
-use Config\Email;
+use Config\EMail;
 
 class Mail
 {
@@ -257,10 +257,10 @@ class Mail
 
     public function sendSMPT($to, $from, $message)
     {
-        $host = Email::SMPT_HOST;
-        $user = Email::SMPT_USER;
-        $pass = Email::SMPT_PASS;
-        $port = Email::SMPT_PORT;
+        $host = EMail::SMPT_HOST;
+        $user = EMail::SMPT_USER;
+        $pass = EMail::SMPT_PASS;
+        $port = EMail::SMPT_PORT;
         if ($h = fsockopen($host, $port)) {
             $data = [
                 0,
