@@ -13,8 +13,8 @@
  */
 
 namespace Softhub99\Zest_Framework\Console;
-
 use Config\Config;
+use Softhub99\Zest_Framework\Common\Version;
 
 class Console
 {
@@ -72,7 +72,7 @@ class Console
             if ($x === 'c') {
                 $this->createController();
             } elseif ($x === 'v') {
-                echo 'Zest Framework Version is: '.Config::App_Version."\n";
+                echo 'Zest Framework Version is: '.Version::VERSION."\n";
                 $this->main();
             } elseif ($x === 's') {
                 $this->startServer();
