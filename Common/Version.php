@@ -16,5 +16,5 @@ namespace Softhub99\Zest_Framework\Common;
 
 class Version
 {
-   const VERSION = "1.9.4";
+    const VERSION = '1.9.4';
 }
