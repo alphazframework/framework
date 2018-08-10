@@ -46,7 +46,6 @@ class Language
 
         return $language;
     }
-
     /**
      * include lang string file.
      *
@@ -56,15 +55,10 @@ class Language
     {
         $language = static::getLang();
         if (file_exists("../App//local/{$language}.php")) {
-            require_once "../App//local/{$language}.php";
-            if (is_array($GLOBALS['lang'])) {
-                return $GLOBALS['lang'];
-            } else {
-                return [];
-            }
+          return require "../App//local/{$language}.php";
         } else {
             return false;
-        }
+        }   
     }
 
     /**
