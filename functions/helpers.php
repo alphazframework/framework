@@ -54,23 +54,27 @@ function salts($len)
 }
 function set_cookie($name, $value, $expire, $path, $domain, $secure, $httponly)
 {
-	$cookie = new Softhub99\Zest_Framework\Cookies\Cookies();
-	return $cookie->set(['name'=>$name, 'value'=>$value, 'expire'=> time() + $expire, 'path'=> $path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly]);
+    $cookie = new Softhub99\Zest_Framework\Cookies\Cookies();
+
+    return $cookie->set(['name'=>$name, 'value'=>$value, 'expire'=> time() + $expire, 'path'=> $path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly]);
 }
 function get_cookie($name)
 {
-	$cookie = new Softhub99\Zest_Framework\Cookies\Cookies();
-	return $cookie->get($name);
+    $cookie = new Softhub99\Zest_Framework\Cookies\Cookies();
+
+    return $cookie->get($name);
 }
 function delete_cookie($name)
 {
-	$cookie = new Softhub99\Zest_Framework\Cookies\Cookies();
-	return $cookie->delete($name);
+    $cookie = new Softhub99\Zest_Framework\Cookies\Cookies();
+
+    return $cookie->delete($name);
 }
 function is_cookie($name)
 {
-	$cookie = new Softhub99\Zest_Framework\Cookies\Cookies();
-	return $cookie->isCookie($name);
+    $cookie = new Softhub99\Zest_Framework\Cookies\Cookies();
+
+    return $cookie->isCookie($name);
 }
 function add_system_message($msg, $type = null)
 {
