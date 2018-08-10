@@ -10,7 +10,7 @@
  *  file that was distributed with this source code.
  *
  * @license MIT
- * 
+ *
  * @note this file is deprated and only working not recommended to used only for old users of Zest Framework
  */
 
@@ -20,5 +20,4 @@ use Softhub99\Zest_Framework\Database\Drives\MYSQL\MySqlDb as MySqlDb;
 
 class MYSQL extends MySqlDb
 {
-
 }

@@ -34,6 +34,7 @@ class MySqlDb
      */
     private $db;
     private $query;
+
     /**
      * Set the values.
      *
@@ -41,7 +42,7 @@ class MySqlDb
      */
     public function __construct()
     {
-        $this->query = new Query;
+        $this->query = new Query();
         $this->db = self::connect(true);
     }
 
@@ -56,6 +57,7 @@ class MySqlDb
     {
         if ($status === true) {
             $setting = $this->settings;
+
             return $db = new \PDO('mysql:host='.Database::MYSQL_HOST, Database::MYSQL_USER, Database::MYSQL_PASS);
         }
         if ($status === false) {
@@ -115,6 +117,7 @@ class MySqlDb
         if ($prepare->execute()) {
             $last = $this->db->lastInsertId();
             $prepare->closeCursor();
+
             return $last;
         } else {
             return false;
@@ -154,6 +157,7 @@ class MySqlDb
         $prepare = $this->db->prepare($query);
         if ($prepare->execute()) {
             $prepare->closeCursor();
+
             return true;
         } else {
             return false;
@@ -170,6 +174,7 @@ class MySqlDb
     public function quote($string)
     {
         $quote = $this->db->quote($string);
+
         return $quote;
     }
 
@@ -193,6 +198,7 @@ class MySqlDb
         if ($prepare->execute()) {
             $data = $prepare->fetchAll(\PDO::FETCH_ASSOC);
             $prepare->closeCursor();
+
             return $data;
         } else {
             return false;
@@ -216,6 +222,7 @@ class MySqlDb
         $prepare = $this->db->prepare($query);
         if ($prepare->execute()) {
             $prepare->closeCursor();
+
             return true;
         }
     }
@@ -247,6 +254,7 @@ class MySqlDb
     {
         $sql = $this->query->createDb($name);
         $this->db->exec($sql);
+
         return true;
     }
 
@@ -261,6 +269,7 @@ class MySqlDb
     {
         $sql = $this->query->deleteDb($name);
         $this->db->exec($sql);
+
         return true;
     }
 
@@ -277,6 +286,7 @@ class MySqlDb
         $this->db->exec($this->query->useQuery($dbname));
         $sql = $this->query->deleteTbl($table);
         $this->db->exec($sql);
+
         return true;
     }
 
