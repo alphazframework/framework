@@ -60,7 +60,6 @@ class ComLanguage
         $disk_scan = array_diff(scandir($path), ['..', '.']);
         foreach ($disk_scan as $scans) {
             $data += require_once '../App/Components/'.$scans."/local/{$language}.php";
- 
         }
 
         return $data;
