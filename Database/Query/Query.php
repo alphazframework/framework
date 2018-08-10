@@ -13,12 +13,11 @@
  */
 
 namespace Softhub99\Zest_Framework\Database\Query;
+
 use Softhub99\Zest_Framework\Str\Str;
 
 class Query
 {
-
-
     /**
      * Prepare a query to insert into db.
      *
@@ -53,6 +52,7 @@ class Query
             if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
                 var_dump($query);
             }
+
             return $query;
         } else {
             return false;
@@ -94,12 +94,12 @@ class Query
             if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
                 var_dump($query);
             }
+
             return $query;
         } else {
             return false;
-        }    
+        }
     }
-
 
     /**
      * Prepare a query to select data from database.
@@ -155,10 +155,11 @@ class Query
             if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
                 var_dump($query);
             }
+
             return $query;
         } else {
             return false;
-        }    
+        }
     }
 
     /**
@@ -183,19 +184,22 @@ class Query
             if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
                 var_dump($query);
             }
+
             return $query;
         } else {
             return false;
-        }    
+        }
     }
+
     /**
      * prepare the where statement.
      *
      * @param 'wheres' Specify a selection criteria to get required records
      *
      * @return query
-     */    
-    public function prepareWhere($wheres=null) {
+     */
+    public function prepareWhere($wheres = null)
+    {
         if (isset($wheres)) {
             if (!empty($wheres)) {
                 $wheres = 'WHERE '.implode(' and ', array_values($wheres));
@@ -205,18 +209,22 @@ class Query
         } else {
             $wheres = '';
         }
+
         return $wheres;
     }
+
     /**
      * Prepare the use statement.
      *
      * @param $name name of database
      *
      * @return query
-     */    
-    public function useQuery($name) {
+     */
+    public function useQuery($name)
+    {
         return "USE `{$name}`";
     }
+
     /**
      * Creating database query if not exists.
      *
@@ -228,6 +236,7 @@ class Query
     {
         if (isset($name) && !empty(trim($name))) {
             $sql = "CREATE DATABASE IF NOT EXISTS `{$name}`";
+
             return $sql;
         } else {
             return false;
@@ -245,6 +254,7 @@ class Query
     {
         if (isset($name) && !empty(trim($name))) {
             $sql = "DROP DATABASE `{$name}` ";
+
             return $sql;
         } else {
             return false;
@@ -263,6 +273,7 @@ class Query
     {
         if (isset($table) && !empty(trim($table))) {
             $sql = "DROP TABLE `{$table}` ";
+
             return $sql;
         } else {
             return false;

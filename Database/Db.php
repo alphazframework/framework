@@ -14,22 +14,27 @@
 
 namespace Softhub99\Zest_Framework\Database;
 
+use Config\Database;
 use Softhub99\Zest_Framework\Database\Drives\MYSQL\MySqlDb as MYSQL;
 use Softhub99\Zest_Framework\Str\Str;
-use Config\Database;
 
-class DB
+class Db
 {
     private $db;
-    public function __construct() {
+
+    public function __construct()
+    {
         if (Str::stringConversion(Database::DB_DRIVER, 'lowercase') === 'mysql') {
             $this->db = (new MYSQL());
         } else {
             $db_driver = Database::DB_DRIVER;
-            throw new \Exception("Driver {$db_driver} is not supportd!",500);
+
+            throw new \Exception("Driver {$db_driver} is not supportd!", 500);
         }
     }
-    public function db() {
+
+    public function db()
+    {
         return $this->db;
     }
 }
