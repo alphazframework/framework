@@ -13,7 +13,7 @@
  */
 
 namespace Softhub99\Zest_Framework\Console;
-use Config\Config;
+
 use Softhub99\Zest_Framework\Common\Version;
 
 class Console
