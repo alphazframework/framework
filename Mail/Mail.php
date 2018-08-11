@@ -239,7 +239,7 @@ class Mail
         if (filter_var($email, FILTER_VALIDATE_EMAIL) !== false) {
             return true;
         }
-        if (filter_var(idn_to_ascii(utf8_encode($email)), FILTER_VALIDATE_EMAIL) !== false) {
+        if (filter_var($email, FILTER_SANITIZE_EMAIL) !== false) {
             return true;
         } else {
             return false;
