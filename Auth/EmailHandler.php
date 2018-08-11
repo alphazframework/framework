@@ -20,10 +20,9 @@ use Softhub99\Zest_Framework\Mail\Mail;
 
 class EmailHandler
 {
-
-    public function __construct($subject,$html,$email)
+    public function __construct($subject, $html, $email)
     {
-        $mail = new Mail;
+        $mail = new Mail();
         $mail->setSubject($subject);
         $mail->setSender(EMail::SITE_EMAIL);
         $mail->setContentHTML($html);
@@ -32,5 +31,5 @@ class EmailHandler
             $mail->isSMTP(true);
         }
         $mail->send();
-    }    
+    }
 }

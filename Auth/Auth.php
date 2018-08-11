@@ -18,22 +18,26 @@ class Auth extends Handler
 {
     public function signup()
     {
-        return (new Signup);
-    }          
+        return new Signup();
+    }
+
     public function signin()
     {
-        return (new Signin);
-    }     
+        return new Signin();
+    }
+
     public function logout()
     {
-        return (new Logout);
-    }          
+        return new Logout();
+    }
+
     public function update()
     {
-        return (new Update);
-    }    
+        return new Update();
+    }
+
     public function verify()
     {
-        return (new Verify);
+        return new Verify();
     }
 }

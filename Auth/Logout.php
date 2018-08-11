@@ -16,10 +16,9 @@ namespace Softhub99\Zest_Framework\Auth;
 
 class Logout
 {
-
-    public function __construct() 
+    public function __construct()
     {
-        $user = new User;
+        $user = new User();
         $user->logout();
     }
 }
