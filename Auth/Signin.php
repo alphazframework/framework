@@ -14,59 +14,59 @@
 
 namespace Softhub99\Zest_Framework\Auth;
 
-use Softhub99\Zest_Framework\Validation\Validation;
+use Config\Auth;
 use Softhub99\Zest_Framework\Common\PasswordMAnipulation;
 use Softhub99\Zest_Framework\Session\Session;
-use Config\Auth;
+use Softhub99\Zest_Framework\Validation\Validation;
 
 class Signin extends Handler
 {
     protected $errors = [];
 
-    public function signin($username,$password) 
+    public function signin($username, $password)
     {
         $rules = [
-            'username' => ['required' => true, ],
-            'password' => ['required' => true, ],
-        ];     
+            'username' => ['required' => true],
+            'password' => ['required' => true],
+        ];
         $inputs = [
             'username' => $username,
             'password' => $password,
-        ];       
-        $requireValidate = new Validation($inputs,$rules);
+        ];
+        $requireValidate = new Validation($inputs, $rules);
         if ($requireValidate->fail()) {
             Error::set($requireValidate->error()->get());
-        }             
-        $user = new User;
+        }
+        $user = new User();
         if (!$user->isUsername($username)) {
-            Error::set(Auth::AUTH_ERRORS['username_not_exist'],'username');
+            Error::set(Auth::AUTH_ERRORS['username_not_exist'], 'username');
         } else {
-            $password_hash = $user->getByWhere('username',$username)[0]['password'];
-            if (!(new PasswordMAnipulation())->hashMatched($password,$password_hash)) {
-                Error::set(Auth::AUTH_ERRORS['password_match'],'password');
+            $password_hash = $user->getByWhere('username', $username)[0]['password'];
+            if (!(new PasswordMAnipulation())->hashMatched($password, $password_hash)) {
+                Error::set(Auth::AUTH_ERRORS['password_match'], 'password');
             } else {
-                $token = $user->getByWhere('username',$username)[0]['token'];
-                $email = $user->getByWhere('username',$username)[0]['email'];
+                $token = $user->getByWhere('username', $username)[0]['token'];
+                $email = $user->getByWhere('username', $username)[0]['email'];
                 if ($token !== 'NULL') {
                     $subject = Auth::AUTH_SUBJECTS['need_verify'];
-                    $link = site_base_url() . Auth::VERIFICATION_LINK . '/' . $token;
+                    $link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
                     $html = Auth::AUTH_MAIL_BODIES['need_verify'];
-                    $html = str_replace(":email",$email,$html);
-                    $html = str_replace(":link",$link,$html);
-                    (new EmailHandler($subject,$html,$email));
-                    Error::set(Auth::AUTH_ERRORS['account_verify'],'email');
+                    $html = str_replace(':email', $email, $html);
+                    $html = str_replace(':link', $link, $html);
+                    (new EmailHandler($subject, $html, $email));
+                    Error::set(Auth::AUTH_ERRORS['account_verify'], 'email');
                 }
             }
         }
         if (!$user->isLogin()) {
             if ($this->fail() !== true) {
-                $salts = $user->getByWhere('username',$username)[0]['salts'];     
-                Session::setValue('user',$salts); 
-                set_cookie("user",$salts,3600,'/',$_SERVER['SERVER_NAME'],false,false);
+                $salts = $user->getByWhere('username', $username)[0]['salts'];
+                Session::setValue('user', $salts);
+                set_cookie('user', $salts, 3600, '/', $_SERVER['SERVER_NAME'], false, false);
                 Success::set(Auth::SUCCESS['signin']);
             }
         } else {
-            Error::set(Auth::AUTH_ERRORS['already_login'],'login');
-        }  
+            Error::set(Auth::AUTH_ERRORS['already_login'], 'login');
+        }
     }
 }

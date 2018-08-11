@@ -14,9 +14,9 @@
 
 namespace Softhub99\Zest_Framework\Auth;
 
-class Error 
+class Error
 {
-	private static $errors = [];
+    private static $errors = [];
 
     public static function set($error, $key = null)
     {
@@ -26,15 +26,19 @@ class Error
             static::$errors = $error;
         }
     }
-	public function has()
-	{
-		return (count(static::$errors) > 0) ? true : false;
-	}
-	public function all()
-	{
-		return static::$errors;
-	}
-    public function get($key = null) {
+
+    public function has()
+    {
+        return (count(static::$errors) > 0) ? true : false;
+    }
+
+    public function all()
+    {
+        return static::$errors;
+    }
+
+    public function get($key = null)
+    {
         return (isset($key)) ? static::$errors[$key] : static::$errors;
     }
 }

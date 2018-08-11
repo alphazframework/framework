@@ -20,26 +20,31 @@ class Handler
     {
         return Error::has();
     }
+
     public function error()
     {
         $this->errors = Error::all();
+
         return $this;
     }
+
     public function get($key = null)
     {
         return (isset($key)) ? $this->errors[$key] : $this->errors;
-    }    
+    }
+
     public function last($key = null)
     {
         return end($this->get($key));
     }
-      
+
     public function first($key = null)
     {
         return current($this->get($key));
     }
+
     public function success()
     {
         return Success::get();
-    }    
+    }
 }

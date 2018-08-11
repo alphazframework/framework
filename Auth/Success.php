@@ -14,16 +14,17 @@
 
 namespace Softhub99\Zest_Framework\Auth;
 
-class Success 
+class Success
 {
-	private static $success;
+    private static $success;
 
     public static function set($success)
     {
         static::$success = $success;
     }
-	public function get()
-	{
-		return static::$success;
-	}
+
+    public function get()
+    {
+        return static::$success;
+    }
 }
