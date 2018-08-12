@@ -20,6 +20,15 @@ use Softhub99\Zest_Framework\Mail\Mail;
 
 class EmailHandler
 {
+    /**
+     * Send the email msg.
+     *
+     * @param $subject , subject of email
+     *        $html , body of email
+     *        $email , user email
+     * 
+     * @return void
+     */    
     public function __construct($subject, $html, $email)
     {
         $mail = new Mail();

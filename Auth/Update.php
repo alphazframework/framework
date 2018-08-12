@@ -21,6 +21,14 @@ use Softhub99\Zest_Framework\Validation\Validation;
 
 class Update extends Handler
 {
+    /**
+     * Update the users.
+     *
+     * @param $params , fields like  [name => thisname] array
+     *        $id , id of user    
+     * 
+     * @return void
+     */    
     public function update($params, $id)
     {
         if (is_array($params)) {
@@ -33,7 +41,6 @@ class Update extends Handler
             }
         }
         if ($this->fail() !== true) {
-            if ((new User())->isLogin()) {
                 $fields = [
                     'db_name' => Auth::AUTH_DB_NAME,
                     'table'   => Auth::AUTH_DB_TABLE,
@@ -44,12 +51,17 @@ class Update extends Handler
                 $db->db()->update($fields);
                 $db->db()->close();
                 Success::set(Auth::SUCCESS['update']);
-            } else {
-                Error::set(Auth::AUTH_ERRORS['need_login'], 'login');
-            }
         }
     }
-
+    /**
+     * Check is username is exists or not.
+     *
+     * @param $password , password of user
+     *        $repeat , confirm password
+     *        $id , id of user
+     * 
+     * @return void
+     */
     public function updatePassword($password, $repeat, $id)
     {
         if ($password !== $repeat) {
@@ -60,7 +72,6 @@ class Update extends Handler
             }
         }
         if ($this->fail() !== true) {
-            if ((new User())->isLogin()) {
                 $password_hash = (new PasswordMAnipulation())->hashPassword($password);
                 $params = ['password' => $password_hash];
                 $fields = [
@@ -73,9 +84,6 @@ class Update extends Handler
                 $db->db()->update($fields);
                 $db->db()->close();
                 Success::set(Auth::SUCCESS['update_password']);
-            } else {
-                Error::set(Auth::AUTH_ERRORS['need_login'], 'login');
-            }
         }
     }
 }

@@ -19,6 +19,13 @@ use Softhub99\Zest_Framework\Database\Db as DB;
 
 class Verify extends Handler
 {
+    /**
+     * Verify the user base on token.
+     *
+     * @param $token , token of user
+     * 
+     * @return void
+     */    
     public function verify($token)
     {
         $user = new User();
@@ -29,16 +36,8 @@ class Verify extends Handler
             if (!(new User())->isLogin()) {
                 $id = $user->getByWhere('token', $token)[0]['id'];
                 $email = $user->getByWhere('token', $token)[0]['email'];
-                $params = ['token' => 'NULL'];
-                $fields = [
-                    'db_name' => Auth::AUTH_DB_NAME,
-                    'table'   => Auth::AUTH_DB_TABLE,
-                    'columns' => $params,
-                    'wheres'  => ['id = '.$id],
-                ];
-                $db = new DB();
-                $db->db()->update($fields);
-                $db->db()->close();
+                $update = new Update;
+                $update->update(['token' => 'NULL'],$id);
                 $subject = Auth::AUTH_SUBJECTS['verified'];
                 $link = Auth::VERIFICATION_LINK.'/'.$token;
                 $html = Auth::AUTH_MAIL_BODIES['verified'];

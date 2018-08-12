@@ -16,13 +16,26 @@ namespace Softhub99\Zest_Framework\Auth;
 
 class Success
 {
+    /*
+     * Store the success msgs
+    */
     private static $success;
-
+    /**
+     * Set the success msgs.
+     *
+     * @param $success , message
+     * 
+     * @return void
+     */
     public static function set($success)
     {
         static::$success = $success;
     }
-
+    /**
+     * Get the success message.
+     *     
+     * @return string
+     */
     public function get()
     {
         return static::$success;

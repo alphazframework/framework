@@ -20,6 +20,11 @@ use Softhub99\Zest_Framework\Session\Session;
 
 class User extends Handler
 {
+    /**
+     * Get all the users.
+     * 
+     * @return array
+     */    
     public function getAll()
     {
         $db = new DB();
@@ -28,7 +33,14 @@ class User extends Handler
 
         return $result;
     }
-
+    /**
+     * Get users using specific field.
+     *
+     * @param $where , field of user e.g username
+     *        $value , value fo field like , usr01 
+     * 
+     * @return bool
+     */
     public function getByWhere($where, $value)
     {
         $db = new DB();
@@ -37,7 +49,13 @@ class User extends Handler
 
         return $result;
     }
-
+    /**
+     * Check is username is exists or not.
+     *
+     * @param $username , username of user
+     * 
+     * @return bool
+     */
     public function isUsername($username)
     {
         if (count($this->getByWhere('username', $username)) > 0) {
@@ -46,7 +64,13 @@ class User extends Handler
             return false;
         }
     }
-
+    /**
+     * Check is email is exists or not.
+     *
+     * @param $email , email of user
+     * 
+     * @return bool
+     */
     public function isEmail($email)
     {
         if (count($this->getByWhere('email', $email)) > 0) {
@@ -55,7 +79,13 @@ class User extends Handler
             return false;
         }
     }
-
+    /**
+     * Check is is verification token is exists or not.
+     *
+     * @param $token , token of user
+     * 
+     * @return bool
+     */
     public function isToken($token)
     {
         if (count($this->getByWhere('token', $token)) > 0) {
@@ -64,7 +94,21 @@ class User extends Handler
             return false;
         }
     }
-
+    /**
+     * Check is reset token is exists or not.
+     *
+     * @param $token , token  of user
+     * 
+     * @return bool
+     */    
+    public function isResetToken($token)
+    {
+        if (count($this->getByWhere('resetToken', $token)) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * Check user is login or not.
      *
