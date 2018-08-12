@@ -12,8 +12,8 @@
     ],  
     "autoload": {
         "psr-4": {
-             "Softhub99\\Zest_Framework\\": ""
+             "Zest\\": "src/"
         },
-        "files":["/functions/helpers.php"]
+        "files":["src/functions/helpers.php"]
     }
 }
