@@ -21,16 +21,17 @@ use Softhub99\Zest_Framework\Validation\Validation;
 
 class Signin extends Handler
 {
-    /* 
-      * Store the errors msgs  
+    /*
+      * Store the errors msgs
     */
     protected $errors = [];
+
     /**
      * Signin the users.
      *
      * @param $username , username of user
-     *        $password , password of user 
-     * 
+     *        $password , password of user
+     *
      * @return void
      */
     public function signin($username, $password)

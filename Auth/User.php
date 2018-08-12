@@ -22,9 +22,9 @@ class User extends Handler
 {
     /**
      * Get all the users.
-     * 
+     *
      * @return array
-     */    
+     */
     public function getAll()
     {
         $db = new DB();
@@ -33,12 +33,13 @@ class User extends Handler
 
         return $result;
     }
+
     /**
      * Get users using specific field.
      *
      * @param $where , field of user e.g username
-     *        $value , value fo field like , usr01 
-     * 
+     *        $value , value fo field like , usr01
+     *
      * @return bool
      */
     public function getByWhere($where, $value)
@@ -49,11 +50,12 @@ class User extends Handler
 
         return $result;
     }
+
     /**
      * Check is username is exists or not.
      *
      * @param $username , username of user
-     * 
+     *
      * @return bool
      */
     public function isUsername($username)
@@ -64,11 +66,12 @@ class User extends Handler
             return false;
         }
     }
+
     /**
      * Check is email is exists or not.
      *
      * @param $email , email of user
-     * 
+     *
      * @return bool
      */
     public function isEmail($email)
@@ -79,11 +82,12 @@ class User extends Handler
             return false;
         }
     }
+
     /**
      * Check is is verification token is exists or not.
      *
      * @param $token , token of user
-     * 
+     *
      * @return bool
      */
     public function isToken($token)
@@ -94,13 +98,14 @@ class User extends Handler
             return false;
         }
     }
+
     /**
      * Check is reset token is exists or not.
      *
      * @param $token , token  of user
-     * 
+     *
      * @return bool
-     */    
+     */
     public function isResetToken($token)
     {
         if (count($this->getByWhere('resetToken', $token)) > 0) {
@@ -109,6 +114,7 @@ class User extends Handler
             return false;
         }
     }
+
     /**
      * Check user is login or not.
      *

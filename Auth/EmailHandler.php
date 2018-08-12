@@ -26,9 +26,9 @@ class EmailHandler
      * @param $subject , subject of email
      *        $html , body of email
      *        $email , user email
-     * 
+     *
      * @return void
-     */    
+     */
     public function __construct($subject, $html, $email)
     {
         $mail = new Mail();

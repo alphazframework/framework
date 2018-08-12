@@ -23,7 +23,7 @@ use Softhub99\Zest_Framework\Validation\Validation;
 
 class Signup extends Handler
 {
-    /* 
+    /*
      * Store the error msgs
     */
     protected $errors = [];
@@ -34,8 +34,8 @@ class Signup extends Handler
      * @param $username , username of user
      *        $email , email of user
      *        $password , password of users
-     *        $params , extra field like [name => value] array   
-     * 
+     *        $params , extra field like [name => value] array
+     *
      * @return bool
      */
     public function signup($username, $email, $password, $params)

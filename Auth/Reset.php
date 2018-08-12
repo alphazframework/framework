@@ -15,8 +15,8 @@
 namespace Softhub99\Zest_Framework\Auth;
 
 use Config\Auth;
-use Softhub99\Zest_Framework\Validation\Validation;
 use Softhub99\Zest_Framework\Site\Site;
+use Softhub99\Zest_Framework\Validation\Validation;
 
 class Reset extends Handler
 {
@@ -24,17 +24,18 @@ class Reset extends Handler
      * Store the error msgs.
     */
     protected $errors = [];
+
     /**
      * Add the reset password request.
      *
      * @param $email , email of user
-     * 
+     *
      * @return void
      */
     public function reset($email)
     {
         $rules = [
-            'email' => ['required' => true , 'email' => true],
+            'email' => ['required' => true, 'email' => true],
         ];
         $input = [
             'email' => $email,
@@ -49,11 +50,11 @@ class Reset extends Handler
         }
         if (!$user->isLogin()) {
             if ($this->fail() !== true) {
-                $id = $user->getByWhere('email',$email)[0]['id'];
+                $id = $user->getByWhere('email', $email)[0]['id'];
                 $resetToken = (new Site())::salts(8);
-                $update = new Update;
-                $update->update(['resetToken' => $resetToken],$id);
-                $link = site_base_url() . Auth::RESET_PASSWORD_LINK . $resetToken;
+                $update = new Update();
+                $update->update(['resetToken' => $resetToken], $id);
+                $link = site_base_url().Auth::RESET_PASSWORD_LINK.$resetToken;
                 $subject = Auth::AUTH_SUBJECTS['reset'];
                 $link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
                 $html = Auth::AUTH_MAIL_BODIES['reset'];
@@ -66,21 +67,22 @@ class Reset extends Handler
             Error::set(Auth::AUTH_ERRORS['already_login'], 'login');
         }
     }
+
     /**
      * check token is exists or not.
      *
      * @param $token , token of user
-     * 
+     *
      * @return void
-     */    
-    public function resetUpdate($token) 
+     */
+    public function resetUpdate($token)
     {
         $user = new User();
         if ($token === 'NULL' || $user->isResetToken($token) !== true) {
             Error::set(Auth::AUTH_ERRORS['token'], 'token');
         }
-        if ($this->fail() !== true) { 
+        if ($this->fail() !== true) {
             Success::set(true);
-        }        
+        }
     }
 }
