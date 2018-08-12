@@ -16,5 +16,5 @@ namespace Zest\Common;
 
 class Version
 {
-    const VERSION = '1.9.4';
+    const VERSION = '2.0.1';
 }

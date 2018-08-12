@@ -221,7 +221,7 @@ class Mail
         if (!isset($this->smtp['status']) || $this->smtp['status'] === false) {
             $return = mail($receivers, $this->subject, $msgContent, implode("\r\n", $headers), $this->addparams);
         } else {
-            $return = $this->sendSMPT($receivers, $this->sender, $msgContent);
+            $return = $this->sendSMTP($receivers, $this->sender, $msgContent);
         }
 
         return $return;
@@ -255,12 +255,12 @@ class Mail
         }
     }
 
-    public function sendSMPT($to, $from, $message)
+    public function sendSMTP($to, $from, $message)
     {
-        $host = Email::SMPT_HOST;
-        $user = Email::SMPT_USER;
-        $pass = Email::SMPT_PASS;
-        $port = Email::SMPT_PORT;
+        $host = Email::SMTP_HOST;
+        $user = Email::SMTP_USER;
+        $pass = Email::SMTP_PASS;
+        $port = Email::SMTP_PORT;
         if ($h = fsockopen($host, $port)) {
             $data = [
                 0,
