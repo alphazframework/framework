@@ -13,6 +13,7 @@
  */
 
 namespace Zest\Component\View;
+use Zest\Common\Minify;
 
 class View
 {
@@ -119,18 +120,30 @@ class View
         }
     }
 
-    public function view($name, $file, array $args = [])
+    public function views($name, $file, array $args = [])
     {
         if (!empty($file)) {
             extract($args, EXTR_SKIP);
             $file = "../App/Components/{$name}/Views/".$file.'.php';
             if (file_exists($file)) {
+                ob_start();
                 require_once $file;
             } else {
                 return false;
             }
         } else {
             return false;
+        }
+    }
+    public function view($name ,$file, array $args = [], $isMinify = true)
+    {
+        if ($isMinify) {
+            $minify = new Minify();
+            self::views($name ,$file, $args);
+            echo $minify->htmlMinify(ob_get_clean(), 'code');
+        } else {
+            self::views($name ,$file, $args);
+            echo ob_get_clean();
         }
     }
 }
