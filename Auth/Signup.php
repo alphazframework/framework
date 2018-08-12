@@ -16,7 +16,6 @@ namespace Softhub99\Zest_Framework\Auth;
 
 use Config\Auth;
 use Config\Database;
-use Config\Email;
 use Softhub99\Zest_Framework\Common\PasswordMAnipulation;
 use Softhub99\Zest_Framework\Database\Db as DB;
 use Softhub99\Zest_Framework\Site\Site;

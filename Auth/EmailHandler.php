@@ -15,7 +15,7 @@
 namespace Softhub99\Zest_Framework\Auth;
 
 use Config\Auth;
-use Config\EMail;
+use Config\Email;
 use Softhub99\Zest_Framework\Mail\Mail;
 
 class EmailHandler
@@ -24,7 +24,7 @@ class EmailHandler
     {
         $mail = new Mail();
         $mail->setSubject($subject);
-        $mail->setSender(EMail::SITE_EMAIL);
+        $mail->setSender(Email::SITE_EMAIL);
         $mail->setContentHTML($html);
         $mail->addReceiver($email);
         if (Auth::IS_SMTP) {
