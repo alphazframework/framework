@@ -18,9 +18,9 @@ class Logout
 {
     /**
      * Logout the user.
-     * 
+     *
      * @return void
-     */    
+     */
     public function __construct()
     {
         $user = new User();

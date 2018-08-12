@@ -25,10 +25,10 @@ class Update extends Handler
      * Update the users.
      *
      * @param $params , fields like  [name => thisname] array
-     *        $id , id of user    
-     * 
+     *        $id , id of user
+     *
      * @return void
-     */    
+     */
     public function update($params, $id)
     {
         if (is_array($params)) {
@@ -41,25 +41,26 @@ class Update extends Handler
             }
         }
         if ($this->fail() !== true) {
-                $fields = [
+            $fields = [
                     'db_name' => Auth::AUTH_DB_NAME,
                     'table'   => Auth::AUTH_DB_TABLE,
                     'columns' => $params,
                     'wheres'  => ['id = '.$id],
                 ];
-                $db = new DB();
-                $db->db()->update($fields);
-                $db->db()->close();
-                Success::set(Auth::SUCCESS['update']);
+            $db = new DB();
+            $db->db()->update($fields);
+            $db->db()->close();
+            Success::set(Auth::SUCCESS['update']);
         }
     }
+
     /**
      * Check is username is exists or not.
      *
      * @param $password , password of user
      *        $repeat , confirm password
      *        $id , id of user
-     * 
+     *
      * @return void
      */
     public function updatePassword($password, $repeat, $id)
@@ -72,18 +73,18 @@ class Update extends Handler
             }
         }
         if ($this->fail() !== true) {
-                $password_hash = (new PasswordMAnipulation())->hashPassword($password);
-                $params = ['password' => $password_hash];
-                $fields = [
+            $password_hash = (new PasswordMAnipulation())->hashPassword($password);
+            $params = ['password' => $password_hash];
+            $fields = [
                     'db_name' => Auth::AUTH_DB_NAME,
                     'table'   => Auth::AUTH_DB_TABLE,
                     'columns' => $params,
                     'wheres'  => ['id = '.$id],
                 ];
-                $db = new DB();
-                $db->db()->update($fields);
-                $db->db()->close();
-                Success::set(Auth::SUCCESS['update_password']);
+            $db = new DB();
+            $db->db()->update($fields);
+            $db->db()->close();
+            Success::set(Auth::SUCCESS['update_password']);
         }
     }
 }

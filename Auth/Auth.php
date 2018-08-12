@@ -40,7 +40,8 @@ class Auth extends Handler
     {
         return new Verify();
     }
-    public function reset ()
+
+    public function reset()
     {
         return new Reset();
     }
