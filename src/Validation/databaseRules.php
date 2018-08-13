@@ -2,12 +2,12 @@
 
 namespace Zest\Validation;
 
-use Config\Config;
+use Config\Database;
 use Zest\Database\Db as DB;
 
 class databaseRules extends StickyRules
 {
-    protected static $db_name = Config::DB_NAME;
+    protected static $db_name = Database::MYSQL_NAME;
 
     public function unique($column, $value, $table)
     {
