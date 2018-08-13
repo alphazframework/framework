@@ -73,7 +73,7 @@ class Signin extends Handler
             if ($this->fail() !== true) {
                 $salts = $user->getByWhere('username', $username)[0]['salts'];
                 Session::setValue('user', $salts);
-                set_cookie('user', $salts, 3600, '/', $_SERVER['SERVER_NAME'], false, false);
+                set_cookie('user', $salts, 31104000, '/', $_SERVER['SERVER_NAME'], false, false);
                 Success::set(Auth::SUCCESS['signin']);
             }
         } else {
