@@ -114,26 +114,30 @@ class User extends Handler
             return false;
         }
     }
-	/**
-	 * Get the details of login user.
-	 *
-	 * @return string|boolean
-	 */		    
-	public function loginUser()
-	{
-		$salts = $this->sessionuser();
-		$user = $this->getByWhere("salts",$salts);
-		return $user;
-	}
-	/**
-	 * Get the current session user.
-	 *
-	 * @return string|boolean
-	 */		
-	public function sessionUser()
-	{
-		return (Session::isSession('user')) ? Session::getValue('user') : false;
-	}
+
+    /**
+     * Get the details of login user.
+     *
+     * @return string|bool
+     */
+    public function loginUser()
+    {
+        $salts = $this->sessionuser();
+        $user = $this->getByWhere('salts', $salts);
+
+        return $user;
+    }
+
+    /**
+     * Get the current session user.
+     *
+     * @return string|bool
+     */
+    public function sessionUser()
+    {
+        return (Session::isSession('user')) ? Session::getValue('user') : false;
+    }
+
     /**
      * Check user is login or not.
      *
