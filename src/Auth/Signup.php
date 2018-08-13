@@ -101,6 +101,7 @@ class Signup extends Handler
                     'db_name' => Auth::AUTH_DB_NAME,
                     'table'   => Auth::AUTH_DB_TABLE,
                 ];
+                unset($params['passConfirm']);
                 $data = ['columns' => array_merge($param, $params)];
                 $values = array_merge($fields, $data);
                 $db = new DB();
