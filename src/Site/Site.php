@@ -111,6 +111,7 @@ class Site
     {
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
+
     /**
      * Redirect to another page.
      *
@@ -129,14 +130,15 @@ class Site
             $base_url = self::siteUrl();
         } elseif ($url !== 'self' && $url !== null) {
             $base_url = $url;
-        } elseif($url === 'prev') {
+        } elseif ($url === 'prev') {
             $base_url = self::previous();
-        }else {
+        } else {
             $base_url = $url;
         }
         ob_start();
         header("Location: {$base_url}");
     }
+
     /**
      * Go to the previous URL.
      *
