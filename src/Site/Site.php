@@ -111,12 +111,12 @@ class Site
     {
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
-
     /**
      * Redirect to another page.
      *
      * @param (string) $url optional
      *                      self => itself page
+     *                      prev => previous page
      *                      else => any page you want
      *
      * @return void
@@ -125,16 +125,18 @@ class Site
     {
         if ($url === null or empty($url)) {
             $base_url = self::siteBaseUrl();
-        } elseif ($url === 'self' or isset($_SERVER['HTTP_REFERER'])) {
-            $base_url = self::previous();
+        } elseif ($url === 'self') {
+            $base_url = self::siteUrl();
         } elseif ($url !== 'self' && $url !== null) {
             $base_url = $url;
-        } else {
+        } elseif($url === 'prev') {
+            $base_url = self::previous();
+        }else {
             $base_url = $url;
         }
-        header('Location:'.$base_url);
+        ob_start();
+        header("Location: {$base_url}");
     }
-
     /**
      * Go to the previous URL.
      *
