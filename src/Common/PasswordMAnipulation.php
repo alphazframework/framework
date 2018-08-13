@@ -54,7 +54,14 @@ class PasswordMAnipulation
      */
     public function hashPassword($password)
     {
-        return password_hash($password, PASSWORD_ARGON2I);
+        if (\defined('PASSWORD_ARGON2I')) {
+            $algorithm = PASSWORD_ARGON2I;
+        } elseif(\define('PASSWORD_BCRYPT')) {
+            $algorithm = PASSWORD_BCRYPT;
+        }else {
+            $algorithm = PASSWORD_DEFAULT;
+        }
+        return password_hash($password, $algorithm);
     }
 
     /**
