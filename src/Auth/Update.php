@@ -15,7 +15,7 @@
 namespace Zest\Auth;
 
 use Config\Auth;
-use Zest\Common\PasswordMAnipulation;
+use Zest\Common\PasswordManipulation;
 use Zest\Database\Db as DB;
 use Zest\Validation\Validation;
 
@@ -68,12 +68,12 @@ class Update extends Handler
         if ($password !== $repeat) {
             Error::set(Auth::AUTH_ERRORS['password_confitm'], 'password');
         } elseif (Auth::STICKY_PASSWORD) {
-            if (!(new PasswordMAnipulation())->isValid($password)) {
+            if (!(new PasswordManipulation())->isValid($password)) {
                 Error::set(Auth::AUTH_ERRORS['sticky_password'], 'password');
             }
         }
         if ($this->fail() !== true) {
-            $password_hash = (new PasswordMAnipulation())->hashPassword($password);
+            $password_hash = (new PasswordManipulation())->hashPassword($password);
             $params = ['password' => $password_hash];
             $fields = [
                     'db_name' => Auth::AUTH_DB_NAME,

@@ -15,7 +15,7 @@
 namespace Zest\Auth;
 
 use Config\Auth;
-use Zest\Common\PasswordMAnipulation;
+use Zest\Common\PasswordManipulation;
 use Zest\Session\Session;
 use Zest\Validation\Validation;
 
@@ -53,7 +53,7 @@ class Signin extends Handler
             Error::set(Auth::AUTH_ERRORS['username_not_exist'], 'username');
         } else {
             $password_hash = $user->getByWhere('username', $username)[0]['password'];
-            if (!(new PasswordMAnipulation())->hashMatched($password, $password_hash)) {
+            if (!(new PasswordManipulation())->hashMatched($password, $password_hash)) {
                 Error::set(Auth::AUTH_ERRORS['password_match'], 'password');
             } else {
                 $token = $user->getByWhere('username', $username)[0]['token'];

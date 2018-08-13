@@ -14,7 +14,7 @@
 
 namespace Zest\Common;
 
-class PasswordMAnipulation
+class PasswordManipulation
 {
     const PASS_MIN_LEN = 8;
 

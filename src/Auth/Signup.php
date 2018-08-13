@@ -16,7 +16,7 @@ namespace Zest\Auth;
 
 use Config\Auth;
 use Config\Database;
-use Zest\Common\PasswordMAnipulation;
+use Zest\Common\PasswordManipulation;
 use Zest\Database\Db as DB;
 use Zest\Site\Site;
 use Zest\Validation\Validation;
@@ -77,14 +77,14 @@ class Signup extends Handler
             }
         }
         if (Auth::STICKY_PASSWORD) {
-            if (!(new PasswordMAnipulation())->isValid($password)) {
+            if (!(new PasswordManipulation())->isValid($password)) {
                 Error::set(Auth::AUTH_ERRORS['sticky_password'], 'password');
             }
         }
         if (!(new User())->isLogin()) {
             if ($this->fail() !== true) {
                 $salts = (new Site())::salts(12);
-                $password_hash = (new PasswordMAnipulation())->hashPassword($password);
+                $password_hash = (new PasswordManipulation())->hashPassword($password);
                 if (Auth::IS_VERIFY_EMAIL) {
                     $token = (new Site())::salts(8);
                 } else {
