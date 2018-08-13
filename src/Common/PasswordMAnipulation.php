@@ -56,11 +56,12 @@ class PasswordMAnipulation
     {
         if (\defined('PASSWORD_ARGON2I')) {
             $algorithm = PASSWORD_ARGON2I;
-        } elseif(\define('PASSWORD_BCRYPT')) {
+        } elseif (\define('PASSWORD_BCRYPT')) {
             $algorithm = PASSWORD_BCRYPT;
-        }else {
+        } else {
             $algorithm = PASSWORD_DEFAULT;
         }
+
         return password_hash($password, $algorithm);
     }
 
