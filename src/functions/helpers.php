@@ -44,7 +44,7 @@ function site_url()
 {
     return Zest\Site\Site::siteUrl();
 }
-function redirect($url)
+function redirect($url=null)
 {
     return Zest\Site\Site::redirect($url);
 }
