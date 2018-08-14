@@ -18,7 +18,7 @@ use Config\Config;
 use Softhub99\Zest_Framework\CSRF\CSRF;
 use Softhub99\Zest_Framework\View\View;
 
-class InPut
+class Input
 {
     private static $method;
     private static $csrf_method;
