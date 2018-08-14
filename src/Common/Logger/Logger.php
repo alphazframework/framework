@@ -13,11 +13,13 @@
  */
 
 namespace Zest\Common\Logger;
+
 use Zest\Files\Files;
 
-class Logger extends AbstractLogger {
+class Logger extends AbstractLogger
+{
     /**
-     * Array of conversion levels
+     * Array of conversion levels.
      */
     protected $levels = [
         'emergency' => 0,
@@ -28,10 +30,10 @@ class Logger extends AbstractLogger {
         'notice'    => 5,
         'info'      => 6,
         'debug'     => 7,
-    ]; 
+    ];
     /**
-     * Array of conversion levels in reverse order
-     */    
+     * Array of conversion levels in reverse order.
+     */
     protected $s_levels = [
         0 => 'emergency',
         1 => 'alert',
@@ -40,32 +42,33 @@ class Logger extends AbstractLogger {
         4 => 'warning',
         5 => 'notice',
         6 => 'info',
-        7 => 'debug'
+        7 => 'debug',
     ];
     /**
-     * Store the logs
-     */    
+     * Store the logs.
+     */
     private $log;
+
     /**
-     * Log 
+     * Log.
      *
      * @param  $level Error level (string or PHP syslog priority)
      *         $message Error message
      *         $context Contextual array
      *
      * @return void
-     */    
-    public function log($level, $message, array $context = array()) 
+     */
+    public function log($level, $message, array $context = [])
     {
         if (is_string($level)) {
-            if (!array_key_exists($level,$this->levels)) {
-                throw new \Exception("Log level {$level} is not valid. Please use syslog levels instead",500);
+            if (!array_key_exists($level, $this->levels)) {
+                throw new \Exception("Log level {$level} is not valid. Please use syslog levels instead", 500);
             } else {
-                $level = $this->levels[$level]; 
+                $level = $this->levels[$level];
             }
         }
         if (array_key_exists('exception', $context)) {
-            if($context['exception'] instanceof \Exception) {
+            if ($context['exception'] instanceof \Exception) {
                 $exc = $context['exception'];
                 $message .= " Exception: {$exc->getMessage()}";
                 unset($context['exception']);
@@ -74,52 +77,58 @@ class Logger extends AbstractLogger {
             }
         }
         $level = $this->s_levels[$level];
-        return  $this->interpolate($message, $context,$level);
+
+        return  $this->interpolate($message, $context, $level);
     }
+
     /**
-     * Write the log message in files
+     * Write the log message in files.
      *
      * @param  $string Error level (string or PHP syslog priority)
      *         $message Error message
      *
      * @return void
      */
-    public function writer($level,$message) 
+    public function writer($level, $message)
     {
         $fileName = '.logs';
-        $files = new Files;
-        $prepareText = "Date/time: " . date('Y-m-d h:i:s A'). " , Level: $level , message: " . $message . "\n";
+        $files = new Files();
+        $prepareText = 'Date/time: '.date('Y-m-d h:i:s A')." , Level: $level , message: ".$message."\n";
         $files->filesHandeling([
-            'mods' => 'write+readnotoverride',
-            'target' => '/',
-            'file' => '',
+            'mods'      => 'write+readnotoverride',
+            'target'    => '/',
+            'file'      => '',
             'extension' => $fileName,
-            'text' => $prepareText
+            'text'      => $prepareText,
         ]);
     }
+
     /**
-     * Store the log 
-     * 
-     * @param $log array 
+     * Store the log.
+     *
+     * @param $log array
      *
      * @return array
-     */        
+     */
     public function store($log)
     {
         $this->log = $log;
+
         return $this;
     }
+
     /**
-     * Get the log message
+     * Get the log message.
      *
      * @return array
-     */    
+     */
     public function get()
     {
         return $this->log;
     }
+
     /**
-     * Log an Exception
+     * Log an Exception.
      *
      * @param  $level Error level (string or PHP syslog priority)
      *         $message Error message
@@ -128,29 +137,31 @@ class Logger extends AbstractLogger {
      *
      * @return void
      */
-    public function logException($level, $message, array $context = array(), $exception = null) {
-        $this->log($level, $message, array_merge($context, array('exception'=>$exception)));
+    public function logException($level, $message, array $context = [], $exception = null)
+    {
+        $this->log($level, $message, array_merge($context, ['exception'=>$exception]));
     }
+
     /**
-     * Interpolate string with parameters
+     * Interpolate string with parameters.
      *
      * @param  $string String with parameters
      *         $params Parameter arrays
-     *         $level Level of log 
+     *         $level Level of log
      *
      * @return void
      */
-    public function interpolate($string, array $params = [], $level) {
-        foreach($params as $placeholder => $value) {
-            $params['{' . (string) $placeholder . '}'] = (string) $value;
+    public function interpolate($string, array $params, $level)
+    {
+        foreach ($params as $placeholder => $value) {
+            $params['{'.(string) $placeholder.'}'] = (string) $value;
             unset($params[$placeholder]);
         }
         $message = strtr($string, $params);
-        $this->writer($level,$message);
+        $this->writer($level, $message);
         $this->store([
             'message' => $message,
-            'level' => $level
+            'level'   => $level,
         ]);
-
-    }     
+    }
 }
