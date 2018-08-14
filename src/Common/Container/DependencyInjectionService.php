@@ -16,31 +16,33 @@ namespace Zest\Common\Container;
 
 class DependencyInjectionService
 {
-    /* 
+    /*
      * Store the instance of cotnainer class
     */
     private $container;
+
     /**
-     * __construct
-     *
-     */    
+     * __construct.
+     */
     public function __construct()
     {
         $this->container = Container::getInstance();
     }
+
     /**
-     * Registers a dependency into the Dependency Injection system
+     * Registers a dependency into the Dependency Injection system.
      *
-     * @param string   $identifier The identifier for this dependency
-     *                 $loader     The loader function for the dependency (to be called when needed)
-     *                 $singleton  Whether or not to return always the same instance
-     * 
+     * @param string $identifier The identifier for this dependency
+     *                           $loader     The loader function for the dependency (to be called when needed)
+     *                           $singleton  Whether or not to return always the same instance
+     *
      * @return void
      */
     public function register($identifier, callable $loader, $singleton = true)
     {
         $this->container->add($identifier, $loader, $singleton);
     }
+
     /**
      * Returns the dependency identified by the given identifier.
      *
