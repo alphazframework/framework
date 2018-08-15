@@ -14,7 +14,7 @@ function lang()
 }
 function input($key)
 {
-    return Zest\Input\InPut::input($key);
+    return Zest\Input\Input::input($key);
 }
 function input_all()
 {
