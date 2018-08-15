@@ -22,13 +22,13 @@ class App extends \Zest\Router\Router
         if (\Config\Config::ROUTER_CACHE) {
             if ($this->isExpired()) {
                 $this->delete();
-                require_once '../routes/routes.php';
+                require_once '../Routes/Routes.php';
             } else {
                 $router->routes = $router->loadCache();
                 $router->dispatch($_SERVER['QUERY_STRING']);
             }
         } else {
-            require_once '../routes/routes.php';
+            require_once '../Routes/Routes.php';
         }
     }
 
