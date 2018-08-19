@@ -17,51 +17,54 @@ namespace Zest\Common\Container;
 //DependencyInjectionService
 class DIS
 {
-    /* 
+    /*
      * Store the instance of cotnainer class
     */
     private $container;
-    /* 
+    /*
      * Store the registered dependencies
-    */    
+    */
     private $dependencies;
+
     /**
-     * __construct
-     *
-     */    
+     * __construct.
+     */
     public function __construct()
     {
         $this->container = Container::getInstance();
-        $this->dependencies = require_once route()->config."/Dependencies.php";
+        $this->dependencies = require_once route()->config.'/Dependencies.php';
         $this->handler();
     }
+
     /**
-     * Register the dependencies
+     * Register the dependencies.
      *
      * @return void
-     */      
+     */
     public function handler()
     {
         $dependencies = $this->dependencies;
         foreach ($this->getDependencies() as $depenci => $value) {
-            $this->register($depenci, function() use ($value) {
+            $this->register($depenci, function () use ($value) {
                 return $value;
             });
         }
     }
+
     /**
-     * Registers a dependency into the Dependency Injection system
+     * Registers a dependency into the Dependency Injection system.
      *
-     * @param string   $identifier The identifier for this dependency
-     *                 $loader     The loader function for the dependency (to be called when needed)
-     *                 $singleton  Whether or not to return always the same instance
-     * 
+     * @param string $identifier The identifier for this dependency
+     *                           $loader     The loader function for the dependency (to be called when needed)
+     *                           $singleton  Whether or not to return always the same instance
+     *
      * @return void
      */
     public function register($identifier, callable $loader, $singleton = true)
     {
         $this->container->add($identifier, $loader, $singleton);
     }
+
     /**
      * Returns the dependency identified by the given identifier.
      *
@@ -73,20 +76,22 @@ class DIS
     {
         return $this->container->get($identifier);
     }
+
     /**
      * Returns all the dependencies.
      *
      * @return array
-     */    
+     */
     public function debug()
     {
         return $this->container->debug();
     }
+
     /**
      * Returns all the dependencies.
      *
      * @return array
-     */        
+     */
     public function getDependencies()
     {
         return $this->dependencies;
