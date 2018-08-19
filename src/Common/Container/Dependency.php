@@ -18,11 +18,11 @@ class Dependency
 {
     /*
      * Store the object
-    */
+    */    
     private $object;
     /*
      * Store the singleton
-    */
+    */    
     private $singleton;
     /*
      * Store the callable
@@ -30,14 +30,14 @@ class Dependency
     private $loader;
 
     /**
-     * __construct.
-     */
+     * __construct
+     *
+     */    
     public function __construct(callable $loader, $singleton = true)
     {
-        $this->singleton = (bool) $singleton;
+        $this->singleton = (boolean) $singleton;
         $this->loader = $loader;
     }
-
     /**
      * Returns the specific dependency instance.
      *
@@ -45,13 +45,12 @@ class Dependency
      */
     public function get()
     {
-        if (!$this->singleton) {
+        if (! $this->singleton) {
             return call_user_func($this->loader);
         }
         if ($this->object === null) {
             $this->object = call_user_func($this->loader);
         }
-
         return $this->object;
     }
 }
