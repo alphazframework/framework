@@ -39,30 +39,101 @@ class Router
      * Add a route to the routing table.
      *
      * @param string $route  The route URL
-     * @param array  $params Parameters (controller, action, etc.)
-     *
+     * @param array|string  $params Parameters (controller, action, etc.) or $params Home@index
+     * @param string $methods request method like GET or GET|POST
+     * 
      * @return void
      */
-    public function add($route, $params = [])
+    public function add($route, $params = '' , $methods = "GET|HEAD")
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
-
         // Convert variables e.g. {controller}
         $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
-
         // Convert variables with custom regular expressions e.g. {id:\d+}
         $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
-
         // Add start and end delimiters, and case insensitive flag
         $route = '/^'.$route.'$/i';
         if (is_array($params)) {
+            $methodArray = ['method' => $methods];
+            $params = array_merge($params,$methodArray);
             $this->routes[$route] = $params;
+        } elseif(is_string($params)){
+            $param = [];
+            $parts = explode('@' , $params);
+            $param['controller'] = $parts[0];
+            $param['action'] = $parts[1];
+            $param['method'] = $methods;
+            if (isset($parts[2])) {
+                $param['namespace'] = $parts[2];
+            }
+            $this->routes[$route] = $param;
         } elseif (is_callable($params)) {
-            $this->routes[$route] = ['callable' => $params];
+            $this->routes[$route] = ['callable' => $params, 'method' => $methods];
+        } else {
+            throw new \Exception("Wrong agruments given",500);
         }
     }
-
+    /**
+     * Add a route to the routing table as POST.
+     *
+     * @param string $route  The route URL
+     * @param array|string  $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */    
+    public function post($route, $params)
+    {
+        $this->add($route, $params,"POST");
+    }
+    /**
+     * Add a route to the routing table as GET.
+     *
+     * @param string $route  The route URL
+     * @param array|string  $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */     
+    public function get($route, $params)
+    {
+        $this->add($route, $params,"GET|HEAD");
+    } 
+    /**
+     * Add a route to the routing table as PUT.
+     *
+     * @param string $route  The route URL
+     * @param array|string  $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */      
+    public function put($route, $params)
+    {
+        $this->add($route, $params,"PUT");
+    }
+    /**
+     * Add a route to the routing table as PATCH.
+     *
+     * @param string $route  The route URL
+     * @param array|string  $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */     
+    public function patch($route, $params)
+    {
+        $this->add($route, $params,"PATCH");
+    }
+    /**
+     * Add a route to the routing table as DELETE.
+     *
+     * @param string $route  The route URL
+     * @param array|string  $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */     
+    public function delete($route, $params)
+    {
+        $this->add($route, $params,"DELETE");
+    }             
     /**
      * Get all the routes from the routing table.
      *
@@ -85,22 +156,48 @@ class Router
     {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
-                // Get named capture group values
-                foreach ($matches as $key => $match) {
-                    if (is_string($key)) {
-                        $params[$key] = $match;
-                    }
-                }
-
-                $this->params = $params;
-
-                return true;
+				//Check if given method is matched
+				if ($this->methodMatch($params['method'])) {
+					// Get named capture group values
+					foreach ($matches as $key => $match) {
+						if (is_string($key)) {
+							$params[$key] = $match;
+						}
+					}
+					$this->params = $params;
+					return true;					
+				}
             }
         }
-
-        \Zest\Component\routes::loadComs();
     }
-
+    /**
+     * Match the request methods.
+     *
+     * @param string $methods  router request method
+     * @param string  $requestMethod Requested method
+     *
+     * @return boolean
+     */     
+	public function methodMatch($methods,$requestMethod = null) 
+	{
+		$match = false;
+		if($requestMethod === null) {
+			$requestMethod = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+		}
+		$methods = explode('|', $methods);
+		foreach ($methods as $method) {
+			if (strcasecmp($requestMethod, $method) === 0) {
+				$match = true;
+				break;
+			} else {
+				continue;
+			}	 
+		}
+		if ($match === true) {
+			return true;
+		}
+		return false;
+	}
     /**
      * Get the currently matched parameters.
      *
@@ -219,14 +316,22 @@ class Router
             return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         }
     }
-
+    /**
+     * Load routers form cache.
+     *
+     * @return array
+     */
     public function loadCache()
     {
         if ($this->isCached() === true) {
             return json_decode(file_get_contents('../Storage/Cache/routers.cache'), true)['data'];
         }
     }
-
+    /**
+     * Cache the roouter.
+     *
+     * @return void
+     */
     public function cacheRouters()
     {
         if ($this->isCached() !== true) {
@@ -239,7 +344,11 @@ class Router
             fclose($f);
         }
     }
-
+    /**
+     * Check if cache is exists.
+     *
+     * @return boolean
+     */
     public function isCached()
     {
         if (file_exists('../Storage/Cache/routers.cache')) {
