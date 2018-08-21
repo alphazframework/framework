@@ -11,7 +11,7 @@
  *
  * @license MIT
  *
-  * @note i wrote this file first time by following the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , any further/others modification by me
+ * @note i wrote this file first time by following the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , any further/others modification by me
  */
 
 namespace Zest\Router;
@@ -74,22 +74,24 @@ class Router
             throw new \Exception('Wrong agruments given', 500);
         }
     }
-	/**
-	 * Add multiple routes at once from array in the following format:
-	 *
-	 *   $routes = [route,param,method]
-	 *	 
-	 * @return void
 
-	 */
-	public function addRoutes($routes){
-		if(!is_array($routes) && !$routes instanceof Traversable) {
-			throw new \Exception('Routes should be an array or an instance of Traversable');
-		}
-		foreach($routes as $route) {
-			call_user_func_array(array($this, 'add'), $route);
-		}
-	}
+    /**
+     * Add multiple routes at once from array in the following format:.
+     *
+     *   $routes = [route,param,method]
+     *
+     * @return void
+     */
+    public function addRoutes($routes)
+    {
+        if (!is_array($routes) && !$routes instanceof Traversable) {
+            throw new \Exception('Routes should be an array or an instance of Traversable');
+        }
+        foreach ($routes as $route) {
+            call_user_func_array([$this, 'add'], $route);
+        }
+    }
+
     /**
      * Add a route to the routing table as POST.
      *
