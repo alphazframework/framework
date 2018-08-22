@@ -122,21 +122,6 @@ class MySqlDb
         } else {
             return false;
         }
-        /*if ($stmt = $this->db->prepare($sql)) {
-            foreach ($param as $key => $data) {
-                $stmt->bindValue(':'.$key, $data);
-            }
-
-            $stmt->execute();
-
-            $last = $this->db->lastInsertId();
-
-            $stmt->closeCursor();
-
-            return $last;*/
-       // }
-
-       //return false;
     }
 
     /**
