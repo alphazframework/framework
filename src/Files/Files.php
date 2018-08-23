@@ -346,6 +346,7 @@ class Files
                 return static::$cecodes['No_Support']." <b>{$ext}</b>";
             } //end switch
             $AccpetedTypes = [
+									'application/x-zip-compressed',
                                     'application/msword',
                                     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                                     'image/gif',
