@@ -7,7 +7,7 @@ use Zest\Database\Db as DB;
 
 class databaseRules extends StickyRules
 {
-    protected static $db_name = Database::MYSQL_NAME;
+    protected static $db_name = Database::DB_NAME;
 
     public function unique($column, $value, $table)
     {
