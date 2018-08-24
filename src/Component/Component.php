@@ -11,7 +11,7 @@
  *
  * @license MIT
  *
- * @note i wrote this file first time by follow the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , and other modification by me
+ * @note i wrote this file first time by following the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , any further/others modification by me
  */
 
 namespace Zest\Component;
@@ -35,30 +35,123 @@ class Component
     /**
      * Add a route to the routing table.
      *
-     * @param string $route  The route URL
-     * @param array  $params Parameters (controller, action, etc.)
+     * @param string       $route   The route URL
+     * @param array|string $params  Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $methods request method like GET or GET|POST
      *
      * @return void
      */
-    public function add($route, array $params = [])
+    public function add($route, $params = '', $methods = 'GET|HEAD')
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
-
         // Convert variables e.g. {controller}
         $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
-
         // Convert variables with custom regular expressions e.g. {id:\d+}
         $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
-
         // Add start and end delimiters, and case insensitive flag
         $route = '/^'.$route.'$/i';
-
         if (is_array($params)) {
+            $methodArray = ['method' => $methods];
+            $params = array_merge($params, $methodArray);
             $this->routes[$route] = $params;
+        } elseif (is_string($params)) {
+            $param = [];
+            $parts = explode('@', $params);
+            $param['controller'] = $parts[0];
+            $param['action'] = $parts[1];
+            $param['method'] = $methods;
+            if (isset($parts[2])) {
+                $param['namespace'] = $parts[2];
+            }
+            $this->routes[$route] = $param;
         } elseif (is_callable($params)) {
-            $this->routes[$route] = ['callable' => $params];
+            $this->routes[$route] = ['callable' => $params, 'method' => $methods];
+        } else {
+            throw new \Exception('Wrong agruments given', 500);
         }
+    }
+
+    /**
+     * Add multiple routes at once from array in the following format:.
+     *
+     *   $routes = [route,param,method]
+     *
+     * @return void
+     */
+    public function addRoutes($routes)
+    {
+        if (!is_array($routes) && !$routes instanceof Traversable) {
+            throw new \Exception('Routes should be an array or an instance of Traversable');
+        }
+        foreach ($routes as $route) {
+            call_user_func_array([$this, 'add'], $route);
+        }
+    }
+
+    /**
+     * Add a route to the routing table as POST.
+     *
+     * @param string       $route  The route URL
+     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */
+    public function post($route, $params)
+    {
+        $this->add($route, $params, 'POST');
+    }
+
+    /**
+     * Add a route to the routing table as GET.
+     *
+     * @param string       $route  The route URL
+     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */
+    public function get($route, $params)
+    {
+        $this->add($route, $params, 'GET|HEAD');
+    }
+
+    /**
+     * Add a route to the routing table as PUT.
+     *
+     * @param string       $route  The route URL
+     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */
+    public function put($route, $params)
+    {
+        $this->add($route, $params, 'PUT');
+    }
+
+    /**
+     * Add a route to the routing table as PATCH.
+     *
+     * @param string       $route  The route URL
+     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */
+    public function patch($route, $params)
+    {
+        $this->add($route, $params, 'PATCH');
+    }
+
+    /**
+     * Add a route to the routing table as DELETE.
+     *
+     * @param string       $route  The route URL
+     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     *
+     * @return void
+     */
+    public function delete($route, $params)
+    {
+        $this->add($route, $params, 'DELETE');
     }
 
     /**
@@ -83,22 +176,50 @@ class Component
     {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
-                // Get named capture group values
-                foreach ($matches as $key => $match) {
-                    if (is_string($key)) {
-                        $params[$key] = $match;
+                //Check if given method is matched
+                if ($this->methodMatch($params['method'])) {
+                    // Get named capture group values
+                    foreach ($matches as $key => $match) {
+                        if (is_string($key)) {
+                            $params[$key] = $match;
+                        }
                     }
+                    $this->params = $params;
+
+                    return true;
                 }
-
-                $this->params = $params;
-
-                return true;
             }
+        }
+    }
+    /**
+     * Match the request methods.
+     *
+     * @param string $methods       router request method
+     * @param string $requestMethod Requested method
+     *
+     * @return bool
+     */
+    public function methodMatch($methods, $requestMethod = null)
+    {
+        $match = false;
+        if ($requestMethod === null) {
+            $requestMethod = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+        }
+        $methods = explode('|', $methods);
+        foreach ($methods as $method) {
+            if (strcasecmp($requestMethod, $method) === 0) {
+                $match = true;
+                break;
+            } else {
+                continue;
+            }
+        }
+        if ($match === true) {
+            return true;
         }
 
         return false;
     }
-
     /**
      * Get the currently matched parameters.
      *
