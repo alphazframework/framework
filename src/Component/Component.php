@@ -191,6 +191,7 @@ class Component
             }
         }
     }
+
     /**
      * Match the request methods.
      *
@@ -220,6 +221,7 @@ class Component
 
         return false;
     }
+
     /**
      * Get the currently matched parameters.
      *
