@@ -174,7 +174,7 @@ class Input
      *
      * @return string | boolean
      */
-    public static function cleane($input, $type)
+    public static function clean($input, $type)
     {
         if (!empty($input)) {
             if (!empty($type)) {
