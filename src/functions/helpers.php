@@ -26,7 +26,7 @@ function escape($str, $type = 'secured')
 }
 function restore_line_break($input)
 {
-	return \Zest\Input\input::restoreLineBreaks($input);
+    return \Zest\Input\input::restoreLineBreaks($input);
 }
 function is_ajax()
 {
