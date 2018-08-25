@@ -58,17 +58,17 @@ class Signin extends Handler
             } else {
                 $token = $user->getByWhere('username', $username)[0]['token'];
                 $email = $user->getByWhere('username', $username)[0]['email'];
-				if (Auth::IS_VERIFY_EMAIL) {
-					if ($token !== 'NULL') {
-						$subject = Auth::AUTH_SUBJECTS['need_verify'];
-						$link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
-						$html = Auth::AUTH_MAIL_BODIES['need_verify'];
-						$html = str_replace(':email', $email, $html);
-						$html = str_replace(':link', $link, $html);
-						(new EmailHandler($subject, $html, $email));
-						Error::set(Auth::AUTH_ERRORS['account_verify'], 'email');
-					}
-				}
+                if (Auth::IS_VERIFY_EMAIL) {
+                    if ($token !== 'NULL') {
+                        $subject = Auth::AUTH_SUBJECTS['need_verify'];
+                        $link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
+                        $html = Auth::AUTH_MAIL_BODIES['need_verify'];
+                        $html = str_replace(':email', $email, $html);
+                        $html = str_replace(':link', $link, $html);
+                        (new EmailHandler($subject, $html, $email));
+                        Error::set(Auth::AUTH_ERRORS['account_verify'], 'email');
+                    }
+                }
             }
         }
         if (!$user->isLogin()) {
