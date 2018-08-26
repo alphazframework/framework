@@ -22,11 +22,11 @@ function input_all()
 }
 function escape($str, $type = 'secured')
 {
-    return Zest\Input\input::clean($str, $type);
+    return Zest\Input\Input::clean($str, $type);
 }
 function restore_line_break($input)
 {
-    return \Zest\Input\input::restoreLineBreaks($input);
+    return \Zest\Input\Input::restoreLineBreaks($input);
 }
 function is_ajax()
 {
