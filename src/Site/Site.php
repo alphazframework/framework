@@ -128,8 +128,6 @@ class Site
             $base_url = self::siteBaseUrl();
         } elseif ($url === 'self') {
             $base_url = self::siteUrl();
-        } elseif ($url !== 'self' && $url !== null) {
-            $base_url = $url;
         } elseif ($url === 'prev') {
             $base_url = self::previous();
         } else {
