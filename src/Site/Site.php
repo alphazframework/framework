@@ -35,7 +35,7 @@ class Site
      */
     public static function siteBaseUrl()
     {
-        $base_url = self::getProtocol().self::getServerName().':'.self::getPort().self::getBase().'/';
+        $base_url = self::getProtocol().self::getServerName().':'.self::getPort().self::getBase();
 
         return $base_url;
     }

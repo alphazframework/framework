@@ -1,2 +1,3 @@
 Changes:
 1. Update site class (fix issue in redirect method prev parameter not working)
+2. Update site class (fix double slashes after base url)
