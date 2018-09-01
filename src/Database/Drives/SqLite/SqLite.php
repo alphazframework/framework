@@ -52,7 +52,7 @@ class SqLite
     private function connect($status)
     {
         if ($status === true) {
-            return $db = new \SQLite3(Database::SQLITE_NAME,SQLITE3_OPEN_READWRITE);
+            return $db = new \SQLite3(Database::SQLITE_NAME, SQLITE3_OPEN_READWRITE);
         }
         if ($status === false) {
             return $db = null;
@@ -89,6 +89,7 @@ class SqLite
         if ($prepare->execute()) {
             $last = $this->db->lastInsertId();
             $prepare->closeCursor();
+
             return $last;
         } else {
             return false;
@@ -113,6 +114,7 @@ class SqLite
         if ($prepare) {
             return true;
         }
+
         return false;
     }
 
@@ -126,6 +128,7 @@ class SqLite
     public function quote($string)
     {
         $quote = addslashes($string);
+
         return $quote;
     }
 
@@ -147,8 +150,10 @@ class SqLite
         $prepare = $this->db->query($query);
         if ($prepare) {
             $data = $prepare->fetchArray();
+
             return $data;
         }
+
         return false;
     }
 
@@ -169,6 +174,7 @@ class SqLite
         if ($prepare) {
             return true;
         }
+
         return false;
     }
 
@@ -197,11 +203,13 @@ class SqLite
      */
     public function deleteDb($name)
     {
-        $file = "../Storage/Data/".Database::SQLITE_NAME;
+        $file = '../Storage/Data/'.Database::SQLITE_NAME;
         if (file_exists($file)) {
             unset($file);
+
             return true;
         }
+
         return false;
     }
 
@@ -217,6 +225,7 @@ class SqLite
     {
         $sql = $this->query->deleteTbl($table);
         $this->db->exec($sql);
+
         return true;
     }
 
@@ -232,6 +241,7 @@ class SqLite
     {
         if (isset($sql) && !empty(trim($sql))) {
             $this->db->exec($sql);
+
             return true;
         } else {
             return false;
