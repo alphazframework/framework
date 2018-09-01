@@ -16,6 +16,8 @@ namespace Zest\Database;
 
 use Config\Database;
 use Zest\Database\Drives\MYSQL\MySqlDb as MYSQL;
+use Zest\Database\Drives\SqLite\SqLite as SqLite;
+
 use Zest\Str\Str;
 
 class Db
@@ -26,7 +28,9 @@ class Db
     {
         if (Str::stringConversion(Database::DB_DRIVER, 'lowercase') === 'mysql') {
             $this->db = (new MYSQL());
-        } else {
+        } elseif(Str::stringConversion(Database::DB_DRIVER, 'lowercase') === 'sqlite') {
+			$this->db = (new SqLite());
+		} else {
             $db_driver = Database::DB_DRIVER;
 
             throw new \Exception("Driver {$db_driver} is not supportd!", 500);
