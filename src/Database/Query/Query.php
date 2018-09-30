@@ -121,8 +121,8 @@ class Query
             } else {
                 $columns = implode(', ', array_values($params['params']));
             }
-			if (isset($params['distinct'])) {
-                $distinct = " DISTINCT ";
+            if (isset($params['distinct'])) {
+                $distinct = ' DISTINCT ';
             } else {
                 $distinct = '';
             }
