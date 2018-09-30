@@ -2,3 +2,7 @@ Changes:
 1. Update site class (fix issue in redirect method prev parameter not working)
 2. Update site class (fix double slashes after base url)
 3. Add sqlite drive
+4. Update Query class => {
+     a => Fix prepareWhere method
+     b => Support DISTINCT in select query
+}

@@ -121,6 +121,11 @@ class Query
             } else {
                 $columns = implode(', ', array_values($params['params']));
             }
+			if (isset($params['distinct'])) {
+                $distinct = " DISTINCT ";
+            } else {
+                $distinct = '';
+            }
             $wheres = $this->prepareWhere($params['wheres']);
             if (isset($params['joins'])) {
                 if (!empty($params['joins'])) {
@@ -151,7 +156,7 @@ class Query
             } else {
                 $order_by = '';
             }
-            $query = "SELECT {$columns} FROM {$params['table']} {$join} {$wheres} {$order_by} {$limit} ;";
+            $query = "SELECT {$distinct} {$columns} FROM        {$params['table']} {$join} {$wheres} {$order_by} {$limit} ;";
             if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
                 var_dump($query);
             }
@@ -202,7 +207,7 @@ class Query
     {
         if (isset($wheres)) {
             if (!empty($wheres)) {
-                $wheres = 'WHERE '.implode(' and ', array_values($wheres));
+                $wheres = ' WHERE '.implode(' and ', array_values($wheres));
             } else {
                 $wheres = '';
             }
