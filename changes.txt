@@ -6,3 +6,4 @@ Changes:
      a => Fix prepareWhere method
      b => Support DISTINCT in select query
 }
+5. Add view function in functions.php
