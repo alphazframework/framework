@@ -234,20 +234,23 @@ class Router
     {
         return $this->params;
     }
+
     public function getInput()
     {
         $method = (!empty($default)) ? $default : $_SERVER['REQUEST_METHOD'];
         if ($method === 'POST') {
             $data = $_POST;
-        } elseif ($method === 'GET' ) {
+        } elseif ($method === 'GET') {
             $data = $_GET;
         } elseif ($method === 'REQUEST') {
             $data = $_REQUEST;
         } else {
             parse_str(file_get_contents('php://input'), $data);
         }
-        return (new \Zest\Data\Conversion)::arrayObject($data);
+
+        return (new \Zest\Data\Conversion())::arrayObject($data);
     }
+
     /**
      * Dispatch the route, creating the controller object and running the
      * action method.
@@ -266,7 +269,7 @@ class Router
                 $controller = $this->getNamespace().$controller;
 
                 if (class_exists($controller)) {
-                    $controller_object = new $controller($this->params,$this->getInput($this->params['method']));
+                    $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
 
                     $action = $this->params['action'];
                     $action = $this->convertToCamelCase($action);
