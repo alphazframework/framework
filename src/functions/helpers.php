@@ -112,7 +112,7 @@ function maintenanceInstance()
 {
     return new \Zest\Common\Maintenance();
 }
-function view($file='',$args=[],$minify=true) 
+function view($file = '', $args = [], $minify = true)
 {
-    return (new Zest\View\View)::view($file,$args,$minify);
+    return (new Zest\View\View())::view($file, $args, $minify);
 }

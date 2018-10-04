@@ -23,6 +23,7 @@ abstract class Controller
      */
     protected $route_params = [];
     protected $input;
+
     /**
      * Class constructor.
      *
@@ -30,7 +31,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function __construct($route_params,$input)
+    public function __construct($route_params, $input)
     {
         $this->route_params = $route_params;
         $this->input = $input;
