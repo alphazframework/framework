@@ -22,12 +22,18 @@ abstract class Controller
      * @var array
      */
     protected $route_params = [];
+    /**
+     * Data form the input.
+     *
+     * @var mix-data
+     */	
     protected $input;
 
     /**
      * Class constructor.
      *
      * @param array $route_params Parameters from the route
+	 * @param mix-data $input Data form the input
      *
      * @return void
      */

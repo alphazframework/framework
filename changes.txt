@@ -9,3 +9,5 @@ Changes:
 5. Add view function in functions.php
 6. Added getInput method in Router class
 7. Allow to get input using $this->input properity in controller
+8. Adding comments in Router & Controller class
+9. Update getInput method form Router class (Add missing argument)

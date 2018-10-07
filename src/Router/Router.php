@@ -234,8 +234,12 @@ class Router
     {
         return $this->params;
     }
-
-    public function getInput()
+    /**
+     * Get the current input according to given method.
+     *
+     * @return mix-data
+     */    
+    public function getInput($default)
     {
         $method = (!empty($default)) ? $default : $_SERVER['REQUEST_METHOD'];
         if ($method === 'POST') {
