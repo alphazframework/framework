@@ -11,3 +11,4 @@ Changes:
 7. Allow to get input using $this->input properity in controller
 8. Adding comments in Router & Controller class
 9. Update getInput method form Router class (Add missing argument)
+10. Update userInfo class fix issue in firefox browser return null in browserName and version
