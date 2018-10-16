@@ -21,7 +21,7 @@ class UserInfo
      *
      * @return agent
      */
-    public static function agent()
+    private static function agent()
     {
         return $_SERVER['HTTP_USER_AGENT'];
     }
@@ -36,8 +36,8 @@ class UserInfo
         $UserAgent = self::agent();
         if (preg_match_all('/windows/i', $UserAgent)) {
             $PlatForm = 'Windows';
-        } elseif (preg_match_all('/lunix/i', $UserAgent)) {
-            $PlatForm = 'Lunix';
+        } elseif (preg_match_all('/linux/i', $UserAgent)) {
+            $PlatForm = 'Linux';
         } elseif (preg_match('/macintosh|mac os x/i', $UserAgent)) {
             $PlatForm = 'Macintosh';
         } elseif (preg_match_all('/Android/i', $UserAgent)) {
@@ -65,9 +65,6 @@ class UserInfo
             $Browser = 'Microsoft Edge';
             $B_Agent = 'Edge';
         } elseif (preg_match_all('/MSIE/i', $UserAgent)) {
-            $Browser = 'Internet Explorer';
-            $B_Agent = 'MSIE';
-        } elseif (preg_match_all('/Firefox/i', $UserAgent)) {
             $Browser = 'Mozilla Firefox';
             $B_Agent = 'Firefox';
         } elseif (preg_match_all('/OPR/i', $UserAgent)) {
@@ -82,7 +79,7 @@ class UserInfo
         } elseif (preg_match_all('/Safari/i', $UserAgent)) {
             $Browser = 'Apple Safari';
             $B_Agent = 'Safari';
-        } elseif (preg_match_all('/Firefox/i', $UserAgent)) {
+        } elseif (preg_match_all('/firefox/i',$UserAgent)) {
             $Browser = 'Mozilla Firefox';
             $B_Agent = 'Firefox';
         } else {
@@ -128,9 +125,15 @@ class UserInfo
             $OsVersion = $match;
         } elseif (preg_match_all('/Android +[0-9]/i', $UserAgent, $match)) {
             $OsVersion = $match;
-        }
+        } elseif(preg_match_all('/Linux +x[0-9]+/i', $UserAgent, $match)) {
+            $OsVersion = $match;
+        } elseif (preg_match_all('/mac os x [0-9]+/i',$UserAgent,$match)){
+			$OsVersion = $match;
+		} elseif (preg_match_all('/os [0-9]+/i',$UserAgent,$match)){
+			$OsVersion = $match;
+		}
 
-        return $oSVersion;
+        return isset($OsVersion) ? $OsVersion : false;
     }
 
     /**
@@ -153,7 +156,7 @@ class UserInfo
                 if (strripos($UserAgent, 'Version') < strripos($UserAgent, $B_Agent)) {
                     $Version = $matches['version'][0];
                 } else {
-                    $Version = $matches['version'][1];
+                    $Version = $matches['version'][0];
                 }
             } else {
                 $Version = $matches['version'][0];
