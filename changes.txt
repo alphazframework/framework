@@ -12,3 +12,4 @@ Changes:
 8. Adding comments in Router & Controller class
 9. Update getInput method form Router class (Add missing argument)
 10. Update userInfo class fix issue in firefox browser return null in browserName and version
+11- Update UserInfo Class
