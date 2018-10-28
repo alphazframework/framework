@@ -1,5 +1,4 @@
 <?php
-
 function printl(string $key)
 {
     return Zest\Language\Language::print($key);
