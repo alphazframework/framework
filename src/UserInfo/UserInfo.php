@@ -79,7 +79,7 @@ class UserInfo
         } elseif (preg_match_all('/Safari/i', $UserAgent)) {
             $Browser = 'Apple Safari';
             $B_Agent = 'Safari';
-        } elseif (preg_match_all('/firefox/i',$UserAgent)) {
+        } elseif (preg_match_all('/firefox/i', $UserAgent)) {
             $Browser = 'Mozilla Firefox';
             $B_Agent = 'Firefox';
         } else {
@@ -125,13 +125,13 @@ class UserInfo
             $OsVersion = $match;
         } elseif (preg_match_all('/Android +[0-9]/i', $UserAgent, $match)) {
             $OsVersion = $match;
-        } elseif(preg_match_all('/Linux +x[0-9]+/i', $UserAgent, $match)) {
+        } elseif (preg_match_all('/Linux +x[0-9]+/i', $UserAgent, $match)) {
             $OsVersion = $match;
-        } elseif (preg_match_all('/mac os x [0-9]+/i',$UserAgent,$match)){
-			$OsVersion = $match;
-		} elseif (preg_match_all('/os [0-9]+/i',$UserAgent,$match)){
-			$OsVersion = $match;
-		}
+        } elseif (preg_match_all('/mac os x [0-9]+/i', $UserAgent, $match)) {
+            $OsVersion = $match;
+        } elseif (preg_match_all('/os [0-9]+/i', $UserAgent, $match)) {
+            $OsVersion = $match;
+        }
 
         return isset($OsVersion) ? $OsVersion : false;
     }
