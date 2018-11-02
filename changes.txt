@@ -15,3 +15,4 @@ Changes:
 11- Update UserInfo Class
 12. Added Formats class (for converting time and data unit in houam readable form)
 13. Update the Formats class adding comment to friendlyTime method
+14. Update Formats class fix logical mistake.

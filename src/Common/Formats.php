@@ -20,7 +20,7 @@ class Formats
      * Formats the bytes in human readable form.
      *
      * @param $size The value that you want provided
-     *        $pre round the value default 2
+     *        $pre round the value default 2 
      *
      * @return mix-data
      */
@@ -36,14 +36,14 @@ class Formats
     /**
      * Converts the timespam in to human readable form.
      *
-     * @param $time timespam or time
+     * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @return mix-data
      */
     public function friendlyTime($time)
     {
         $time = strtotime($time) ? strtotime($time) : $time;
-        $time = ($time > time()) ? time() - $time : $time;
+        $time = time() - $time;
         (int) $s = 60;
         (int) $hour = $s * $s;
         (int) $day = $hour * 24;
