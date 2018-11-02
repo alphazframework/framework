@@ -14,3 +14,4 @@ Changes:
 10. Update userInfo class fix issue in firefox browser return null in browserName and version
 11- Update UserInfo Class
 12. Added Formats class (for converting time and data unit in houam readable form)
+13. Update the Formats class adding comment to friendlyTime method

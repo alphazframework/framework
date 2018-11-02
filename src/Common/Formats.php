@@ -17,7 +17,10 @@ namespace Zest\Common;
 class Formats
 {
     /**
-     * Formats the bytes in houam readable form.
+     * Formats the bytes in human readable form.
+     *
+     * @param $size The value that you want provided
+     *        $pre round the value default 2 
      *
      * @return mix-data
      */
@@ -30,6 +33,13 @@ class Formats
         return round(pow(1024, $base - floor($base)), $pre).$suffix[$f_base];
     }
 
+    /**
+     * Converts the timespam in to human readable form.
+     *
+     * @param $time timespam or time
+     *
+     * @return mix-data
+     */
     public function friendlyTime($time)
     {
         $time = strtotime($time) ? strtotime($time) : $time;
