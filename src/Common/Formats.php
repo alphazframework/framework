@@ -20,7 +20,7 @@ class Formats
      * Formats the bytes in human readable form.
      *
      * @param $size The value that you want provided
-     *        $pre round the value default 2 
+     *        $pre round the value default 2
      *
      * @return mix-data
      */
