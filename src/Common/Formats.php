@@ -34,7 +34,7 @@ class Formats
     }
 
     /**
-     * Converts the timespam in to human readable form.
+     * Converts the timestamp in to human readable form.
      *
      * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
@@ -42,7 +42,7 @@ class Formats
      */
     public function friendlyTime($time)
     {
-        $time = strtotime($time) ? strtotime($time) : $time;
+        $time = (is_string($time)) ? strtotime($time) : $time;
         $time = time() - $time;
         (int) $s = 60;
         (int) $hour = $s * $s;
