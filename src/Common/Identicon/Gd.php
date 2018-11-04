@@ -19,7 +19,7 @@ class Gd extends Base
     /*
      * Image mine type
     */
-    public $mineType = "image/png";
+    public $mineType = 'image/png';
 
     /**
      * Generate the iamge.
@@ -28,19 +28,19 @@ class Gd extends Base
      */
     public function genImage()
     {
-        $this->image = imagecreatetruecolor($this->getPxRatio() * 5 , $this->getPxRatio() * 5);
+        $this->image = imagecreatetruecolor($this->getPxRatio() * 5, $this->getPxRatio() * 5);
 
         $bg = $this->getBgColor();
         if (!empty($bg)) {
-            $background = imagecolorallocate($this->image , $bg[0], $bg[1], $bg[2]);
-            imagefill($this->image, 0,0, $background);
+            $background = imagecolorallocate($this->image, $bg[0], $bg[1], $bg[2]);
+            imagefill($this->image, 0, 0, $background);
         } else {
             $transparent = imagecolorallocatealpha($this->image, 255, 255, 255, 127);
             imagefill($this->image, 0, 0, $transparent);
             imagesavealpha($this->image, true);
         }
         $color = $this->getColor();
-        $color = imagecolorallocate($this->image , $color[0], $color[1], $color[2]);
+        $color = imagecolorallocate($this->image, $color[0], $color[1], $color[2]);
         foreach ($this->getArrayOfSquare() as $lineKey => $lineValue) {
             foreach ($lineValue as $colKey => $colValue) {
                 if ($colValue) {
@@ -49,37 +49,39 @@ class Gd extends Base
             }
         }
 
-        return $this->image;        
+        return $this->image;
     }
 
     /**
      * Get Image binary data.
-     * 
+     *
      * @param $string string.
      *        $size side of image.
      *        $color foreground color of image.
-     *        $bg background color of image.      
-     * 
+     *        $bg background color of image.
+     *
      * @return binary
-     */       
+     */
     public function getImgBinary($string, $size = '', $color = '', $bg = '')
     {
         ob_start();
-        imagepng($this->getImgResource($string,$size,$color,$bg));
+        imagepng($this->getImgResource($string, $size, $color, $bg));
+
         return ob_get_clean();
     }
+
     /**
      * Get Image resource data.
-     * 
+     *
      * @param $string string.
      *        $size side of image.
      *        $color foreground color of image.
-     *        $bg background color of image.      
-     * 
+     *        $bg background color of image.
+     *
      * @return resource
-     */    
+     */
     public function getImgResource($string, $size = '', $color = '', $bg = '')
     {
         return $this->setHashString($string)->setSize($size)->setColor($color)->setBgColor($bg)->genImage();
-    }    
+    }
 }
