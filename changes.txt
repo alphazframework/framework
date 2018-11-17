@@ -17,3 +17,4 @@ Changes:
 13. Update the Formats class adding comment to friendlyTime method
 14. Update Formats class fix logical mistake.
 15. Added Identicon library.
+16. Added FTP class
