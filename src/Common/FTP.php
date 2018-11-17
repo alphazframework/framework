@@ -68,7 +68,7 @@ class FTP{
      */	
 	public function isConnected()
 	{
-		return (is_resource($this->getConnection()) ? true : false;
+		return (is_resource($this->getConnection())) ? true : false;
 	}
     /**
      * get the list of files.
