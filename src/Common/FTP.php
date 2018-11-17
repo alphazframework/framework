@@ -41,12 +41,12 @@ class FTP{
 			$conn = ftp_connect($host);
 			$login_result = ftp_login($conn, $user, $pass);
 			$this->connection = $conn;
-			$this->connectionString = 'ftp://' . $params['username']user '@' . $host;
+			$this->connectionString = 'ftp://' . $user . ':' . $pass . '@' . $host;
 		} elseif($secured === true) {
 			$conn = ftp_ssl_connect($host);
 			$login_result = ftp_login($conn, $user, $pass);
 			$this->connection = $conn;
-			$this->connectionString = 'ftps://' . $params['username']user '@' . $host;
+			$this->connectionString = 'ftps://' . $user . ':' . $pass . '@' . $host;
 		} else {
 			$this->connection = null;
 			$this->connectionString = null;
