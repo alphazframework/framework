@@ -16,7 +16,6 @@ namespace Zest\Validation;
 
 class InputRules extends StickyRules
 {
-
     /**
      * Evaulate required.
      *
@@ -28,13 +27,14 @@ class InputRules extends StickyRules
     {
         return ($this->notBeEmpty($value)) ? true : false;
     }
+
     /**
      * Evaulate int.
      *
      * @param $value Value to be checked
      *
      * @return bool
-     */    
+     */
     public function int($value)
     {
         if ($this->notBeEmpty($value)) {
@@ -47,6 +47,7 @@ class InputRules extends StickyRules
             return false;
         }
     }
+
     /**
      * Evaulate float.
      *
@@ -66,6 +67,7 @@ class InputRules extends StickyRules
             return false;
         }
     }
+
     /**
      * Evaulate string.
      *
@@ -85,6 +87,7 @@ class InputRules extends StickyRules
             return false;
         }
     }
+
     /**
      * Evaulate email.
      *
@@ -104,6 +107,7 @@ class InputRules extends StickyRules
             return false;
         }
     }
+
     /**
      * Evaulate ip.
      *
@@ -115,6 +119,7 @@ class InputRules extends StickyRules
     {
         return ($this->notBeEmpty($value)) ? filter_var($value, FILTER_VALIDATE_IP) : false;
     }
+
     /**
      * Evaulate IPv6.
      *
@@ -124,8 +129,9 @@ class InputRules extends StickyRules
      */
     public function ipv6($value)
     {
-        return ($this->notBeEmpty($value)) ? preg_match("/(([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4})/i", $value) : false;
+        return ($this->notBeEmpty($value)) ? preg_match('/(([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4})/i', $value) : false;
     }
+
     /**
      * Evaulate alpha.
      *
@@ -137,15 +143,16 @@ class InputRules extends StickyRules
     {
         return ($this->notBeEmpty($value)) ? preg_match('/^[a-zA-Z]+$/', $value) : false;
     }
+
     /**
      * Evaulate ipv4 subnet.
      *
      * @param $value Value to be checked
      *
      * @return bool
-     */    
+     */
     public function subnet($value)
     {
-        return ($this->notBeEmpty($value)) ? preg_match('/^\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]|[0-9])\b$/', $value): false;
+        return ($this->notBeEmpty($value)) ? preg_match('/^\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]|[0-9])\b$/', $value) : false;
     }
 }

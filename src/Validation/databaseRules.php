@@ -23,12 +23,13 @@ class databaseRules extends StickyRules
      * Database table
     */
     protected static $db_name = Database::DB_NAME;
+
     /**
      * Evaulate unique.
      *
      * @param $column Table column
      *        $value Value to be checked
-     *        $table Database table  
+     *        $table Database table
      *
      * @return bool
      */

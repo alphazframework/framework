@@ -18,29 +18,30 @@ class Handler
 {
     /*
      * Errors
-    */    
+    */
     private static $error = [];
     /*
      * Msgs
-    */    
+    */
     private static $msgs = [
-    'string'   => 'The :field much be type of string like, mango',
-    'required' => 'The :field is required',
-    'int'      => 'The :field must be int like, 20, 200',
-    'float'    => 'The :name field must be of type float e.g. 20.0',
-    'email'    => 'Email address is not valid',
-    'ip'       => 'Ip address is not valid',
-    'ipv6'     => 'The value must be a valid IPv6 address',
-    'alpha'    => 'The value must only contain characters of the alphabet',
-    'subnet'         => 'The value must be a valid IPv4 subnet', 
-    'validate' => 'Json is invilide',
-    'unique'   => 'The :field value already exists, try another',
+    'string'         => 'The :field much be type of string like, mango',
+    'required'       => 'The :field is required',
+    'int'            => 'The :field must be int like, 20, 200',
+    'float'          => 'The :name field must be of type float e.g. 20.0',
+    'email'          => 'Email address is not valid',
+    'ip'             => 'Ip address is not valid',
+    'ipv6'           => 'The value must be a valid IPv6 address',
+    'alpha'          => 'The value must only contain characters of the alphabet',
+    'subnet'         => 'The value must be a valid IPv4 subnet',
+    'validate'       => 'Json is invilide',
+    'unique'         => 'The :field value already exists, try another',
     ];
+
     /**
      * Set the error msg.
      *
      * @param $error the error msg
-     *        $key key of error msg  
+     *        $key key of error msg
      *
      * @return void
      */
@@ -52,18 +53,19 @@ class Handler
             static::$error[] = $error;
         }
     }
+
     /**
-     * check Whether the any error msg exists
+     * check Whether the any error msg exists.
      *
      * @return resource
      */
-
     public function has()
     {
         return (count(static::$error) > 0) ? true : false;
     }
+
     /**
-     * Get all error msgs
+     * Get all error msgs.
      *
      * @return resource
      */
@@ -71,10 +73,11 @@ class Handler
     {
         return static::$error;
     }
+
     /**
      * Get the error msg.
      *
-     * @param $key key of error msg  
+     * @param $key key of error msg
      *
      * @return resource
      */
@@ -82,12 +85,12 @@ class Handler
     {
         return (isset($key)) ? static::$error[$key] : static::$error;
     }
+
     /**
      * Get the msgs.
      *
      * @return resource
      */
-
     public function getMsgs()
     {
         return static::$msgs;
