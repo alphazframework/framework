@@ -22,7 +22,7 @@ class JsonRules extends StickyRules
      * @param $value Value to be checked
      *
      * @return bool
-     */    
+     */
     public function validate($value)
     {
         if ($this->notBeEmpty($value)) {

@@ -22,11 +22,12 @@ class StickyRules
      * @param $value Value to be checked
      *
      * @return bool
-     */	
+     */
     public function notBeEmpty($value)
     {
         return (!empty($value)) ? true : false;
     }
+
     /**
      * Remove spaces.
      *
