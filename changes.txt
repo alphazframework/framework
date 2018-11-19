@@ -17,4 +17,6 @@ Changes:
 13. Update the Formats class adding comment to friendlyTime method
 14. Update Formats class fix logical mistake.
 15. Added Identicon library.
-16. Added FTP class
+16. Added FTP class.
+17. Added comments to Validation system.
+18. Added ipv6,alpha and subnet validation rule method.
