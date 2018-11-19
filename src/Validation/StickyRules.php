@@ -25,7 +25,7 @@ class StickyRules
      */
     public function notBeEmpty($value)
     {
-        return (!empty($this->removeSpaces( $value))) ? true : false;
+        return (!empty($this->removeSpaces($value))) ? true : false;
     }
 
     /**
