@@ -14,7 +14,7 @@
 
 namespace Zest\Common\Logger;
 
-use Zest\Files\Files;
+use Zest\Common\FileHandling;
 
 class Logger extends AbstractLogger
 {
@@ -92,15 +92,10 @@ class Logger extends AbstractLogger
     public function writer($level, $message)
     {
         $fileName = '.logs';
-        $files = new Files();
-        $prepareText = 'Date/time: '.date('Y-m-d h:i:s A')." , Level: $level , message: ".$message."\n";
-        $files->filesHandeling([
-            'mods'      => 'write+readnotoverride',
-            'target'    => '/',
-            'file'      => '',
-            'extension' => $fileName,
-            'text'      => $prepareText,
-        ]);
+        $fileHandling = new FileHandling();
+        $text = 'Date/time: '.date('Y-m-d h:i:s A')." , Level: $level , message: ".$message."\n" ;
+        $file =  route()->storage_logs.'.logs';
+        $fileHandling->open($file,'readWriteAppend')->write($text);
     }
 
     /**
