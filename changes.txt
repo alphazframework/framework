@@ -21,3 +21,4 @@ Changes:
 17. Added comments to Validation system.
 18. Added ipv6,alpha and subnet validation rule method.
 19. Fix bug in StickyRule validation class.
+20. Added FileHandling class.
