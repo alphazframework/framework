@@ -14,8 +14,6 @@
 
 namespace Zest\Common;
 
-use Config\Config;
-
 class FileHandling
 {
     /*
@@ -26,13 +24,14 @@ class FileHandling
      * Mode of files
     */
     private $modes = [
-        'readOnly' => 'r',
-        'readWrite' => 'r+',
-        'writeOnly' => 'w',
-        'writeMaster' => 'w+',
-        'writeAppend' => 'a',
+        'readOnly'        => 'r',
+        'readWrite'       => 'r+',
+        'writeOnly'       => 'w',
+        'writeMaster'     => 'w+',
+        'writeAppend'     => 'a',
         'readWriteAppend' => 'a+',
     ];
+
     /**
      * Open the file.
      *
@@ -41,53 +40,58 @@ class FileHandling
      *
      * @return resource
      */
-    public function open($name,$mode)
+    public function open($name, $mode)
     {
         if (!empty(escape($name))) {
             $this->resource = fopen($name, $this->modes[$mode]);
+
             return $this;
         }
     }
+
     /**
      * Read the file.
      *
      * @param $file file that to be read
      *
      * @return file
-     */    
-    public function read($file) 
+     */
+    public function read($file)
     {
         return fread($this->resource, filesize($file));
     }
+
     /**
      * Write on file.
      *
      * @param $string (string) string that you want write on file
      *
      * @return bool
-     */    
+     */
     public function write(string $string)
     {
         return (!empty($string)) ? fwrite($this->resource, $string) : false;
     }
+
     /**
      * Check if file is already or not.
      *
      * @param $file file
      *
      * @return bool
-     */    
+     */
     public function isFile($file)
     {
         return (file_exists($file)) ? true : false;
     }
+
     /**
      * Delete the file.
      *
      * @param $file file to be deleted
      *
      * @return bool
-     */    
+     */
     public function delete($file)
     {
         return ($this->isFile($file)) ? unlink($file) : false;
