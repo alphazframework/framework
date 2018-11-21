@@ -93,9 +93,9 @@ class Logger extends AbstractLogger
     {
         $fileName = '.logs';
         $fileHandling = new FileHandling();
-        $text = 'Date/time: '.date('Y-m-d h:i:s A')." , Level: $level , message: ".$message."\n" ;
-        $file =  route()->storage_logs.'.logs';
-        $fileHandling->open($file,'readWriteAppend')->write($text);
+        $text = 'Date/time: '.date('Y-m-d h:i:s A')." , Level: $level , message: ".$message."\n";
+        $file = route()->storage_logs.'.logs';
+        $fileHandling->open($file, 'readWriteAppend')->write($text);
     }
 
     /**
