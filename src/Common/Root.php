@@ -46,7 +46,7 @@ class Root
             'storage'         => static::path().'Storage/',
             'storage_backtup' => static::path().'Storage/Backup/',
             'storage_data'    => static::path().'Storage/Data/',
-            'storage_logs'    => static::path().'Storage/Logs /',
+            'storage_logs'    => static::path().'Storage/Logs/',
             'storage_session' => static::path().'Storage/Session/',
         ];
 
