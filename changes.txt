@@ -24,3 +24,4 @@ Changes:
 20. Added FileHandling class.
 21. Update Logger class by using new FileHandling class.
 22. Update ROOT class fix logs route.
+23. Added Avatar package.
