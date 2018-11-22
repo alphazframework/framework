@@ -39,7 +39,7 @@ class ABase
     /*
      * The string
     */
-    protected $string;    
+    protected $string;
     /*
      * The hash
     */
@@ -187,6 +187,7 @@ class ABase
             return $this;
         }
     }
+
     /**
      * Get the character.
      *
@@ -234,4 +235,3 @@ class ABase
         return $this->pxRatio;
     }
 }
-

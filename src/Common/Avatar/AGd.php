@@ -41,8 +41,9 @@ class AGd extends ABase
         }
         $color = $this->getColor();
         $color = imagecolorallocate($this->image, $color[0], $color[1], $color[2]);
-        $font = __DIR__ . DIRECTORY_SEPARATOR.'\fonts\arial.ttf';
-        imagettftext($this->image, $this->getPxRatio() * 3, 0, round(($this->getPxRatio() * 5) /5.5), round(($this->getPxRatio() * 5) / 1.3), $color, $font, $this->getCharacter());
+        $font = __DIR__.DIRECTORY_SEPARATOR.'\fonts\arial.ttf';
+        imagettftext($this->image, $this->getPxRatio() * 3, 0, round(($this->getPxRatio() * 5) / 5.5), round(($this->getPxRatio() * 5) / 1.3), $color, $font, $this->getCharacter());
+
         return $this->image;
     }
 
