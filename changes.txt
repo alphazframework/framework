@@ -27,3 +27,4 @@ Changes:
 23. Added Avatar package.
 24. Fix issue router cached either router cache is set to off.
 25. Update router Cache system.
+26. Added Model class for easily access to models.
