@@ -28,3 +28,5 @@ Changes:
 24. Fix issue router cached either router cache is set to off.
 25. Update router Cache system.
 26. Added Model class for easily access to models.
+27. Added model function
+   - Now you can access any model like <?php model('name')->method() //or model('folder\model')->method()?>	

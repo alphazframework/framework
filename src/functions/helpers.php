@@ -116,3 +116,7 @@ function view($file = '', $args = [], $minify = true)
 {
     return (new Zest\View\View())::view($file, $args, $minify);
 }
+function model($model = 'post')
+{
+    return (new \Zest\Common\Model\Model())->set($model)->execute();
+}
