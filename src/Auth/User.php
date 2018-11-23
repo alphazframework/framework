@@ -61,11 +61,12 @@ class User extends Handler
     public function delete($id)
     {
         $db = new DB();
-        $result = $db->db()->delete(['db_name'=>Auth::AUTH_DB_NAME, 'table'=>Auth::AUTH_DB_TABLE, 'wheres'=>["id ="."'{$id}'"]]);
+        $result = $db->db()->delete(['db_name'=>Auth::AUTH_DB_NAME, 'table'=>Auth::AUTH_DB_TABLE, 'wheres'=>['id ='."'{$id}'"]]);
         $db->db()->close();
 
         return $result;
     }
+
     /**
      * Check is username is exists or not.
      *
