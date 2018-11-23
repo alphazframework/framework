@@ -25,3 +25,4 @@ Changes:
 21. Update Logger class by using new FileHandling class.
 22. Update ROOT class fix logs route.
 23. Added Avatar package.
+24. Fix issue router cached either router cache is set to off.

@@ -384,14 +384,16 @@ class Router
      */
     public function cacheRouters()
     {
-        if ($this->isCached() !== true) {
-            $routers = $this->getRoutes();
-            $cache = new ZestCache();
-            $cache->create('routers');
-            $cache->store('routers', 'routes', $routers, Config::ROUTE_CACHE_REGENERATE);
-            $f = fopen('../Storage/Cache/router_time.cache', 'w');
-            fwrite($f, time() + Config::ROUTE_CACHE_REGENERATE);
-            fclose($f);
+        if (Config::ROUTER_CACHE === true) {
+            if ($this->isCached() !== true) {
+                $routers = $this->getRoutes();
+                $cache = new ZestCache();
+                $cache->create('routers');
+                $cache->store('routers', 'routes', $routers, Config::ROUTE_CACHE_REGENERATE);
+                $f = fopen('../Storage/Cache/router_time.cache', 'w');
+                fwrite($f, time() + Config::ROUTE_CACHE_REGENERATE);
+                fclose($f);
+            }
         }
     }
 
