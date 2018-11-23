@@ -14,36 +14,38 @@
 
 namespace Zest\Common\Model;
 
-class Model 
+class Model
 {
-	/*
-	 * Model
-	*/
-	private $model;
+    /*
+     * Model
+    */
+    private $model;
 
-   /**
+    /**
      * Set the model.
      *
      * @param $set model name
      *
      * @return resource
      */
-	public function set($model)
-	{
-		$this->model = '\App\Models\\' . $model;
-		return $this;
-	}
-   /**
+    public function set($model)
+    {
+        $this->model = '\App\Models\\'.$model;
+
+        return $this;
+    }
+
+    /**
      * Get the instance of model class.
      *
      * @return resource
-     */	
-	public function execute()
-	{
-		if (class_exists($this->model)) {
-			return (new $this->model);
-		}
-		throw new \Exception("Class {$this->model} not found", 500);
-		
-	}
+     */
+    public function execute()
+    {
+        if (class_exists($this->model)) {
+            return new $this->model();
+        }
+
+        throw new \Exception("Class {$this->model} not found", 500);
+    }
 }
