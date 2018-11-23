@@ -30,3 +30,4 @@ Changes:
 26. Added Model class for easily access to models.
 27. Added model function
    - Now you can access any model like <?php model('name')->method() //or model('folder\model')->method()?>	
+28. Update auth class added delete method/member function for delete the user special thanks (https://zestframework.xyz/community/view/uh5UOqe).
