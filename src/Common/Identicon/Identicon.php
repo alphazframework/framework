@@ -94,10 +94,9 @@ class Identicon
      *        $target target including file name and extension
      *
      * @return bool | int
-     */    
-    public function save($string, $size = 128, $color = '', $bg = '', $target)
+     */
+    public function save($string, $size, $color, $bg, $target)
     {
-        return (!file_exists($target)) ? file_put_contents("$target", $this->getImgData($string,$size,$color,$bg)) : false;
-        
-    }    
+        return (!file_exists($target)) ? file_put_contents("$target", $this->getImgData($string, $size, $color, $bg)) : false;
+    }
 }
