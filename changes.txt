@@ -32,3 +32,8 @@ Changes:
    - Now you can access any model like <?php model('name')->method() //or model('folder\model')->method()?>	
 28. Update auth class added delete method/member function for delete the user special thanks (https://zestframework.xyz/community/view/uh5UOqe).
 29. Added save method in Avatar and Identicon class.
+30. Update Files class
+    - Code optimization.
+    - Update methods 
+    - Delete useless code.
+	
