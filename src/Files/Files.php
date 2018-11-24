@@ -41,10 +41,11 @@ class Files
     */
     private $types = [
         'image' => ['jpg', 'png', 'jpeg', 'gif', 'ico', 'svg'],
-        'zip' => ['zip', 'tar', '7zip', 'rar'],
-        'docs' => ['pdf', 'docs', 'docx'],
+        'zip'   => ['zip', 'tar', '7zip', 'rar'],
+        'docs'  => ['pdf', 'docs', 'docx'],
         'media' => ['mp4', 'mp3', 'wav', '3gp'],
     ];
+
     /**
      * Create zest system dir.
      *
@@ -68,21 +69,22 @@ class Files
      */
     public function addMineTypes($type)
     {
-        array_push($this->mineTypes,$type);
+        array_push($this->mineTypes, $type);
     }
 
     /**
      * Add the extemsio.
      *
      * @param $type correct type.
-     *        $sub extensions 
+     *        $sub extensions
      *
      * @return void
      */
-    public function addExt($type,$ext)
+    public function addExt($type, $ext)
     {
-        array_push($this->types[$type],$ext);
+        array_push($this->types[$type], $ext);
     }
+
     /**
      * Make the dir.
      *
@@ -95,9 +97,11 @@ class Files
         if (!is_dir($name)) {
             return (mkdir($name)) ? true : false;
         }
+
         return false;
     }
-     /**
+
+    /**
      * Make the dir.
      *
      * @param $source name of file or directory with path.
@@ -105,15 +109,16 @@ class Files
      *
      * @return bool
      */
-    public function permission($source,$pre)
+    public function permission($source, $pre)
     {
         if (!is_dir($name)) {
             return (file_exists($source)) ? chmod($source, $pre) : false;
         }
+
         return false;
     }
 
-     /**
+    /**
      * Copy files.
      *
      * @param $source name of file or directory with path.
@@ -122,7 +127,7 @@ class Files
      *
      * @return void
      */
-    public function copyFiles($source,$target,$files)
+    public function copyFiles($source, $target, $files)
     {
         $this->mkDir($target);
         foreach ($files as $file => $value) {
@@ -132,7 +137,7 @@ class Files
         }
     }
 
-     /**
+    /**
      * Move files.
      *
      * @param $source name of file or directory with path.
@@ -141,7 +146,7 @@ class Files
      *
      * @return void
      */
-    public function moveFiles($source,$target,$files)
+    public function moveFiles($source, $target, $files)
     {
         $this->mkDir($target);
         foreach ($files as $file => $value) {
@@ -151,7 +156,7 @@ class Files
         }
     }
 
-     /**
+    /**
      * Delete files.
      *
      * @param $file name of file with path.
@@ -159,7 +164,7 @@ class Files
      * @return void
      */
     public function deleteFiles($files)
-    {   
+    {
         foreach ($files as $file => $value) {
             if (file_exists($value)) {
                 unlink($value);
@@ -167,7 +172,7 @@ class Files
         }
     }
 
-     /**
+    /**
      * Copy dirs.
      *
      * @param $source directory with path.
@@ -176,39 +181,39 @@ class Files
      *
      * @return void
      */
-    public function copyDirs($source,$target,$dors)
+    public function copyDirs($source, $target, $dors)
     {
         $this->mkDir($target);
         $serverOs = (new \Zest\Common\OperatingSystem())->get();
-        $command = ($serverOs === 'Windows') ? 'xcopy ' : 'cp -r ' ;
+        $command = ($serverOs === 'Windows') ? 'xcopy ' : 'cp -r ';
         foreach ($dirs as $dir => $value) {
             if (is_dir($source.$value)) {
-                shell_exec($command. $source.$value . ' ' . $target.$value);
+                shell_exec($command.$source.$value.' '.$target.$value);
             }
         }
     }
 
-     /**
+    /**
      * Move dirs.
      *
      * @param $source directory with path.
      *        $target target directory
      *        $dir (array) dir to be move
-     * 
+     *
      * @return void
      */
-    public function moveDirs($source,$target,$dirs)
+    public function moveDirs($source, $target, $dirs)
     {
         $this->mkDir($target);
-        $command = ($serverOs === 'Windows') ? 'move ' : 'mv ' ;        
+        $command = ($serverOs === 'Windows') ? 'move ' : 'mv ';
         foreach ($dirs as $dir => $value) {
             if (is_dir($source.$value)) {
-                shell_exec($command. $source.$value . ' ' . $target.$value);
+                shell_exec($command.$source.$value.' '.$target.$value);
             }
         }
     }
 
-     /**
+    /**
      * Delete dirs.
      *
      * @param $dir Directory with path.
@@ -222,19 +227,19 @@ class Files
                 rmdir($value);
             }
         }
-    }  
+    }
 
-     /**
+    /**
      * Upload file.
      *
      * @param $file file to be uploaded.
      *        $target target where file should be upload
-     *        $imgType supported => image,media,docs,zip 
+     *        $imgType supported => image,media,docs,zip
      *        $maxSize file size to be allowed
      *
      * @return void
-     */     
-    public function fileUpload($file,$target,$imgType,$maxSize = 7992000000)
+     */
+    public function fileUpload($file, $target, $imgType, $maxSize = 7992000000)
     {
         $exactName = basename($file['name']);
         $fileTmp = $file['tmp_name'];
@@ -248,7 +253,7 @@ class Files
         if (in_array($type, $this->mineTypes) === false) {
             return [
                 'status' => 'error',
-                'code' => 'mineType'
+                'code'   => 'mineType',
             ];
         }
         if (in_array($ext, $allowerd_ext) === true) {
@@ -259,45 +264,45 @@ class Files
                     if (move_uploaded_file($fileTmp, $fileRoot)) {
                         return [
                             'status' => 'success',
-                            'code' => $fileNewName,
+                            'code'   => $fileNewName,
                         ];
                     } else {
                         return [
                             'status' => 'error',
-                            'code' => 'somethingwrong',
+                            'code'   => 'somethingwrong',
                         ];
                     }
                 } else {
                     return [
                         'status' => 'error',
-                        'code' => 'exceedlimit'
+                        'code'   => 'exceedlimit',
                     ];
                 }
             } else {
                 return [
                     'status' => 'error',
-                    'code' => $error,
+                    'code'   => $error,
                 ];
             }
         } else {
             return [
                     'status' => 'error',
-                    'code' => 'extension',
-            ];           
-        }            
+                    'code'   => 'extension',
+            ];
+        }
     }
 
-     /**
+    /**
      * Upload files.
      *
      * @param $files (array) files to be uploaded.
      *        $target target where file should be upload
-     *        $imgType supported => image,media,docs,zip 
+     *        $imgType supported => image,media,docs,zip
      *        $maxSize file size to be allowed
      *
      * @return void
-     */     
-    public function filesUpload($files,$target,$imgType,$count,$maxSize = 7992000000)
+     */
+    public function filesUpload($files, $target, $imgType, $count, $maxSize = 7992000000)
     {
         $status = [];
         for ($i = 0; $i < $count; $i++) {
@@ -313,7 +318,7 @@ class Files
             if (in_array($type, $this->mineTypes) === false) {
                 $status[$i] = [
                     'status' => 'error',
-                    'code' => 'mineType'
+                    'code'   => 'mineType',
                 ];
             }
             if (in_array($ext, $allowerd_ext) === true) {
@@ -324,34 +329,34 @@ class Files
                         if (move_uploaded_file($fileTmp, $fileRoot)) {
                             $status[$i] = [
                                 'status' => 'success',
-                                'code' => $fileNewName,
+                                'code'   => $fileNewName,
                             ];
                         } else {
                             $status[$i] = [
                                 'status' => 'error',
-                                'code' => 'somethingwrong'
-                            ];             
+                                'code'   => 'somethingwrong',
+                            ];
                         }
                     } else {
                         $status[$i] = [
                             'status' => 'error',
-                            'code' => 'exceedlimit'
+                            'code'   => 'exceedlimit',
                         ];
                     }
                 } else {
                     $status[$i] = [
                         'status' => 'error',
-                        'code' => $error,
+                        'code'   => $error,
                     ];
                 }
             } else {
                 $status[$i] = [
                         'status' => $error,
-                        'code' => 'extension',
-                ];           
-            } 
-        }    
-        
-        return $status;   
+                        'code'   => 'extension',
+                ];
+            }
+        }
+
+        return $status;
     }
-} 
+}
