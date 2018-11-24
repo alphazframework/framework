@@ -83,4 +83,21 @@ class Identicon
     {
         return sprintf('data:%s;base64,%s', $this->_instance->mineType, base64_encode($this->getImgData($string, $size, $color, $bg)));
     }
+
+    /**
+     * Save the image.
+     *
+     * @param $string string.
+     *        $size side of image.
+     *        $color foreground color of image.
+     *        $bg background color of image.
+     *        $target target including file name and extension
+     *
+     * @return bool | int
+     */    
+    public function save($string, $size = 128, $color = '', $bg = '', $target)
+    {
+        return (!file_exists($target)) ? file_put_contents("$target", $this->getImgData($string,$size,$color,$bg)) : false;
+        
+    }    
 }
