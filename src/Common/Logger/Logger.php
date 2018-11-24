@@ -14,7 +14,7 @@
 
 namespace Zest\Common\Logger;
 
-use Zest\Common\FileHandling;
+use Zest\Files\FileHandling;
 
 class Logger extends AbstractLogger
 {

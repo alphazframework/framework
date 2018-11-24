@@ -373,7 +373,7 @@ class Router
     public function loadCache()
     {
         if ($this->isCached() === true) {
-            $fileHandling = new \Zest\Common\FileHandling();
+            $fileHandling = new \Zest\Files\FileHandling();
 
             return json_decode($fileHandling->open('../Storage/Cache/routers.cache', 'readOnly')->read('../Storage/Cache/routers.cache'), true)['data'];
         }
@@ -388,7 +388,7 @@ class Router
     {
         if (Config::ROUTER_CACHE === true) {
             if ($this->isCached() !== true) {
-                $fileHandling = new \Zest\Common\FileHandling();
+                $fileHandling = new \Zest\Files\FileHandling();
                 $routers = $this->getRoutes();
                 $cache = new ZestCache();
                 $cache->create('routers');

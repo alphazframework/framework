@@ -12,7 +12,7 @@
  * @license MIT
  */
 
-namespace Zest\Common;
+namespace Zest\Files;
 
 class FileHandling
 {
@@ -74,18 +74,6 @@ class FileHandling
     }
 
     /**
-     * Check if file is already or not.
-     *
-     * @param $file file
-     *
-     * @return bool
-     */
-    public function isFile($file)
-    {
-        return (file_exists($file)) ? true : false;
-    }
-
-    /**
      * Delete the file.
      *
      * @param $file file to be deleted
@@ -94,6 +82,6 @@ class FileHandling
      */
     public function delete($file)
     {
-        return ($this->isFile($file)) ? unlink($file) : false;
+        return (file_exists($file)) ? unlink($file) : false;
     }
 }
