@@ -138,7 +138,7 @@ class User extends Handler
      */
     public function loginUser()
     {
-        $salts = $this->sessionuser();
+        $salts = $this->sessionUser();
         $user = $this->getByWhere('salts', $salts);
 
         return $user;

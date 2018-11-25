@@ -38,4 +38,5 @@ Changes:
     - Delete useless code.
 31. Move FileHandling class to Files/
 32. Update Formats class Added formatSeconds for converting time to h:m:s.
+33. Update User class fix typo mistake.
 	
