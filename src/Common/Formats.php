@@ -42,8 +42,7 @@ class Formats
      */
     public function friendlyTime($time)
     {
-        $time = (is_string($time)) ? strtotime($time) : $time;
-        $time = time() - $time;
+        $time = $this->formatTime($time);
         (int) $s = 60;
         (int) $hour = $s * $s;
         (int) $day = $hour * 24;
@@ -67,5 +66,34 @@ class Formats
         }
 
         return $ago;
+    }
+    /**
+     * Formats the time.
+     *
+     * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     *
+     * @return int
+     */    
+    public function formatTime($time)
+    {
+        $time = (is_string($time)) ? strtotime($time) : $time;
+        return time() - $time;        
+    }
+
+    /**
+     * Converts the timestamp in to h:m:s form.
+     *
+     * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     *
+     * @return time
+     */    
+    public function formatsSeconds($seconds)
+    {
+        $time = $this->formatTime($seconds);
+        $h = ($$time <= 3600) ? intval($time / 3600) : 0;
+        $time = ($$time <= 3600) ? $time % 3600 : $time;
+        $m = intval($time / 60);
+        $s = intval($time % 60);
+        return $h.':'.$m.':'.$s;
     }
 }
