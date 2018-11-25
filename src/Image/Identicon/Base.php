@@ -12,9 +12,9 @@
  * @license MIT
  */
 
-namespace Zest\Common\Avatar;
+namespace Zest\Image\Identicon;
 
-class ABase
+class Base
 {
     /*
      * Image binary
@@ -37,13 +37,13 @@ class ABase
     */
     protected $pxRatio;
     /*
-     * The string
-    */
-    protected $string;
-    /*
      * The hash
     */
     protected $hash;
+    /*
+     *Number of blocks
+    */
+    protected $block = 3;
     /*
      * Array of square sides
     */
@@ -79,6 +79,30 @@ class ABase
         }
 
         return $this;
+    }
+
+    /**
+     * Set the blocks.
+     *
+     * @param $block Number of blocks.
+     *
+     * @return void
+     */
+    public function setBlock($block)
+    {
+        if (!empty($block) && $block <= 4 && $block !== 0 && !($block < 0)) {
+            $this->block = $block;
+        }
+    }
+
+    /**
+     * Get the block.
+     *
+     * @return int
+     */
+    public function getBlock()
+    {
+        return $this->block;
     }
 
     /**
@@ -142,6 +166,22 @@ class ABase
      */
     private function convertHashToArrayOfBoolean()
     {
+        $matches = str_split($this->hash, 1);
+        foreach ($matches as $i => $match) {
+            $index = (int) ($i / $this->block);
+            $data = $this->convertHexaToBool($match);
+            $items = [
+                0 => [0, 2],
+                1 => [1, 4],
+                2 => [2, 6],
+                3 => [3, 8],
+            ];
+            foreach ($items[$i % $this->block] as $item) {
+                $this->arrayOfSquare[$index][$item] = $data;
+            }
+
+            ksort($this->arrayOfSquare[$index]);
+        }
         preg_match_all('/(\d)[\w]/', $this->hash, $matches);
         $this->color = array_map(function ($data) {
             return hexdec($data) * 16;
@@ -180,22 +220,11 @@ class ABase
     public function setHashString(string $string)
     {
         if (!empty(trim($string))) {
-            $this->string = $string;
             $this->hash = md5($string);
             $this->convertHashToArrayOfBoolean();
 
             return $this;
         }
-    }
-
-    /**
-     * Get the character.
-     *
-     * @return char
-     */
-    public function getCharacter()
-    {
-        return strtoupper($this->string[0]);
     }
 
     /**

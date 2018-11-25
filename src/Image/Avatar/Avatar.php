@@ -12,7 +12,7 @@
  * @license MIT
  */
 
-namespace Zest\Common\Avatar;
+namespace Zest\Image\Avatar;
 
 class Avatar
 {

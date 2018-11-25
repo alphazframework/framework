@@ -12,7 +12,7 @@
  * @license MIT
  */
 
-namespace Zest\Common\Identicon;
+namespace Zest\Image\Identicon;
 
 class Identicon
 {
