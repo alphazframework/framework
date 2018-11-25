@@ -107,7 +107,7 @@ class Signup extends Handler
                 $db = new DB();
                 Success::set($db->db()->insert($values));
                 $db->db()->close();
-                if (Auth::IS_VERIFY_EMAIL) {
+                if (Auth::IS_VERIFY_EMAIL === true) {
                     $subject = Auth::AUTH_SUBJECTS['need_verify'];
                     $link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
                     $html = Auth::AUTH_MAIL_BODIES['need_verify'];

@@ -58,7 +58,7 @@ class Signin extends Handler
             } else {
                 $token = $user->getByWhere('username', $username)[0]['token'];
                 $email = $user->getByWhere('username', $username)[0]['email'];
-                if (Auth::IS_VERIFY_EMAIL) {
+                if (Auth::IS_VERIFY_EMAIL === true) {
                     if ($token !== 'NULL') {
                         $subject = Auth::AUTH_SUBJECTS['need_verify'];
                         $link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
