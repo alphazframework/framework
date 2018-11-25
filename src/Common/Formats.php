@@ -67,17 +67,19 @@ class Formats
 
         return $ago;
     }
+
     /**
      * Formats the time.
      *
      * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @return int
-     */    
+     */
     public function formatTime($time)
     {
         $time = (is_string($time)) ? strtotime($time) : $time;
-        return time() - $time;        
+
+        return time() - $time;
     }
 
     /**
@@ -86,7 +88,7 @@ class Formats
      * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @return time
-     */    
+     */
     public function formatsSeconds($seconds)
     {
         $time = $this->formatTime($seconds);
@@ -94,6 +96,7 @@ class Formats
         $time = ($$time <= 3600) ? $time % 3600 : $time;
         $m = intval($time / 60);
         $s = intval($time % 60);
+
         return $h.':'.$m.':'.$s;
     }
 }
