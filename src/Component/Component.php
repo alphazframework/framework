@@ -18,5 +18,4 @@ namespace Zest\Component;
 
 class Component extends \Zest\Router\Router
 {
-    
 }
