@@ -40,4 +40,5 @@ Changes:
 32. Update Formats class Added formatSeconds for converting time to h:m:s.
 33. Update User class fix typo mistake.
 34. Update Signup,Signin class fix issue send verification email either not set to true.
-	
+35. Update Component Router class code optimization.
+ 	
