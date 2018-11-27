@@ -46,6 +46,7 @@ class Handler
             'unique'         => printl('unique:validation'),
             ];
     }
+
     /**
      * Set the error msg.
      *
@@ -103,6 +104,7 @@ class Handler
     public function getMsgs()
     {
         self::pushMsgs();
+
         return static::$msgs;
     }
 }
