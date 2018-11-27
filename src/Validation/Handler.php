@@ -23,20 +23,29 @@ class Handler
     /*
      * Msgs
     */
-    private static $msgs = [
-    'string'         => 'The :field much be type of string like, mango',
-    'required'       => 'The :field is required',
-    'int'            => 'The :field must be int like, 20, 200',
-    'float'          => 'The :name field must be of type float e.g. 20.0',
-    'email'          => 'Email address is not valid',
-    'ip'             => 'Ip address is not valid',
-    'ipv6'           => 'The value must be a valid IPv6 address',
-    'alpha'          => 'The value must only contain characters of the alphabet',
-    'subnet'         => 'The value must be a valid IPv4 subnet',
-    'validate'       => 'Json is invilide',
-    'unique'         => 'The :field value already exists, try another',
-    ];
+    private static $msgs = [];
 
+    /**
+     * Push the messages.
+     *
+     * @return void
+     */
+    public static function pushMsgs()
+    {
+        static::$msgs = [
+            'string'         => printl('string:validation'),
+            'required'       => printl('required:validation'),
+            'int'            => printl('int:validation'),
+            'float'          => printl('float:validation'),
+            'email'          => printl('email:validation'),
+            'ip'             => printl('ip:validation'),
+            'ipv6'           => printl('ipv6:validation'),
+            'alpha'          => printl('alpha:validation'),
+            'subnet'         => printl('subnet:validation'),
+            'validate'       => printl('validate:validation'),
+            'unique'         => printl('unique:validation'),
+            ];
+    }
     /**
      * Set the error msg.
      *
@@ -93,6 +102,7 @@ class Handler
      */
     public function getMsgs()
     {
+        self::pushMsgs();
         return static::$msgs;
     }
 }

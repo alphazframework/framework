@@ -42,3 +42,4 @@ Changes:
 34. Update Signup,Signin class fix issue send verification email either not set to true.
 35. Update Component Router class code optimization.
 36. Update Component Controller class code optimization (reuse of controller class). 	
+37. Update Validation Handler class allow users to translate the defaults msgs of validations.
