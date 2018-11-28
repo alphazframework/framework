@@ -128,3 +128,7 @@ function read_file($file, $mode)
 {
     return (new \Zest\Files\FileHandling())->open($file, $mode)->read($file);
 }
+function pagination($total = 10,$perPage = 6,$current = 1 , $urlAppend = '/')
+{
+	return (new \Zest\Common\Pagination($total,$perPage,$current,$urlAppend))->pagination();
+}
