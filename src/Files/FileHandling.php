@@ -64,13 +64,13 @@ class FileHandling
     /**
      * Write on file.
      *
-     * @param $string (string) string that you want write on file
+     * @param $data data that you want write on file
      *
      * @return bool
      */
-    public function write(string $string)
+    public function write($data)
     {
-        return (!empty($string)) ? fwrite($this->resource, $string) : false;
+        return (!empty($data)) ? fwrite($this->resource, $data) : false;
     }
 
     /**

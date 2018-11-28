@@ -120,3 +120,11 @@ function model($model = 'post')
 {
     return (object) (new \Zest\Common\Model\Model())->set($model)->execute();
 }
+function write_file($file,$mode,$value)
+{
+    return (new \Zest\Files\FileHandling())->open($file,$mode)->write($value);
+}
+function read_file($file,$mode)
+{
+    return (new \Zest\Files\FileHandling())->open($file,$mode)->read($file);
+}

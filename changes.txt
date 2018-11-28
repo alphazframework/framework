@@ -43,3 +43,5 @@ Changes:
 35. Update Component Router class code optimization.
 36. Update Component Controller class code optimization (reuse of controller class). 	
 37. Update Validation Handler class allow users to translate the defaults msgs of validations.
+38. Update FileHandling class fix logical mistake.
+39. Added two functions in helper.php (read and write file).
