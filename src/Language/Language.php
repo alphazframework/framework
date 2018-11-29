@@ -55,8 +55,8 @@ class Language
     public static function languageString()
     {
         $language = static::getLang();
-        if (file_exists("../App//Local/{$language}.php")) {
-            return require "../App//Local/{$language}.php";
+        if (file_exists("../App//Locale/{$language}.php")) {
+            return require "../App//Locale/{$language}.php";
         } else {
             return false;
         }

@@ -47,3 +47,4 @@ Changes:
 39. Added two functions in helper.php (read and write file).
 40. Added pagination class and pagination function.
 41. Update Pagination class fix logical mistake.
+42. Fix typo in language string class Local to Locale.
