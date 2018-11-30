@@ -181,7 +181,7 @@ class Files
      *
      * @return void
      */
-    public function copyDirs($source, $target, $dors)
+    public function copyDirs($source, $target, $dirs)
     {
         $this->mkDir($target);
         $serverOs = (new \Zest\Common\OperatingSystem())->get();

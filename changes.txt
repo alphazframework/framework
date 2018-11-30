@@ -48,3 +48,4 @@ Changes:
 40. Added pagination class and pagination function.
 41. Update Pagination class fix logical mistake.
 42. Fix typo in language string class Local to Locale.
+43. Fix typo mistake in Files class.
