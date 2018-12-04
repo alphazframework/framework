@@ -36,9 +36,8 @@ class Conversion
             }
 
             return (object) $object;
-        } else {
-            return false;
-        }
+        } 
+        return false;
     }
 
     /**
@@ -60,9 +59,8 @@ class Conversion
             }
 
             return $array;
-        } else {
-            return false;
-        }
+        } 
+        return false;
     }
 
     /**

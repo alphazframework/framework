@@ -50,3 +50,4 @@ Changes:
 42. Fix typo in language string class Local to Locale.
 43. Fix typo mistake in Files class.
 44. Update FTP class fix typo.
+45. Update Conversion class Code Optimization delete unnecessary code.
