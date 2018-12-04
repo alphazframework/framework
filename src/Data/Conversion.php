@@ -36,7 +36,8 @@ class Conversion
             }
 
             return (object) $object;
-        } 
+        }
+
         return false;
     }
 
@@ -59,7 +60,8 @@ class Conversion
             }
 
             return $array;
-        } 
+        }
+
         return false;
     }
 
