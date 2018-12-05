@@ -46,6 +46,16 @@ class Files
         'media' => ['mp4', 'mp3', 'wav', '3gp'],
     ];
 
+    /*
+    * The default value for recursive create dirs
+    */
+    private $recursiveDirectories = true;
+
+    /*
+     * Default chmod
+    */
+    private $defCHMOD = 0755;
+
     /**
      * Create zest system dir.
      *
@@ -60,6 +70,29 @@ class Files
         $this->mkDir('../Storage/Backup');
     }
 
+    /**
+     * Change the default chmod.
+     *
+     * @param $chomd valid chmod
+     *
+     * @return bool
+     */    
+    public function changeDefaultChmod($chmod)
+    {
+        return ($chmod === null) ? $this->defCHMOD : $this->defCHMOD = $chmod;
+
+    }
+    /**
+     * Create zest system dir.
+     *
+     * @param $value recursive status true|false
+     *
+     * @return bool
+     */
+    public function recursiveCreateDir($value = null)
+    {
+        return ($value === null) ? $this->recursiveDirectories : $this->recursiveDirectories = $value;
+    }
     /**
      * Add the mine type.
      *
@@ -89,11 +122,17 @@ class Files
      * Make the dir.
      *
      * @param $name name of dir with path.
+     *        $recursive recursive mode create: null|true|false.
+     *        $chmod directory permission on create: default 0755
      *
      * @return bool
      */
-    public function mkDir($name)
+    public function mkDir($name,$recursive = null,$chmod = null)
     {
+        // test the recursive mode with default value
+        $recursive = ($recursive === null) ? $this->recursiveDirectories : $recursive;
+        // test the chmod with default value
+        $chmod = ($chmod === null) ? $this->defCHMOD : $chmod;        
         if (!is_dir($name)) {
             return (mkdir($name)) ? true : false;
         }
@@ -102,7 +141,7 @@ class Files
     }
 
     /**
-     * Make the dir.
+     * Change the premission.
      *
      * @param $source name of file or directory with path.
      *        $pre valid premission
