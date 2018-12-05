@@ -76,12 +76,12 @@ class Files
      * @param $chomd valid chmod
      *
      * @return bool
-     */    
+     */
     public function changeDefaultChmod($chmod)
     {
         return ($chmod === null) ? $this->defCHMOD : $this->defCHMOD = $chmod;
-
     }
+
     /**
      * Create zest system dir.
      *
@@ -93,6 +93,7 @@ class Files
     {
         return ($value === null) ? $this->recursiveDirectories : $this->recursiveDirectories = $value;
     }
+
     /**
      * Add the mine type.
      *
@@ -127,12 +128,12 @@ class Files
      *
      * @return bool
      */
-    public function mkDir($name,$recursive = null,$chmod = null)
+    public function mkDir($name, $recursive = null, $chmod = null)
     {
         // test the recursive mode with default value
         $recursive = ($recursive === null) ? $this->recursiveDirectories : $recursive;
         // test the chmod with default value
-        $chmod = ($chmod === null) ? $this->defCHMOD : $chmod;        
+        $chmod = ($chmod === null) ? $this->defCHMOD : $chmod;
         if (!is_dir($name)) {
             return (mkdir($name)) ? true : false;
         }
