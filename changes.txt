@@ -52,3 +52,4 @@ Changes:
 44. Update FTP class fix typo.
 45. Update Conversion class Code Optimization delete unnecessary code.
 46. Update files class, implement folder creation recursively (special thanks => https://github.com/NivaldoMS).
+47. Added shell script file for starting php server , php version and Zest framework version.
