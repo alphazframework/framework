@@ -41,10 +41,11 @@ class Router
      * @param string       $route   The route URL
      * @param array|string $params  Parameters (controller, action, etc.) or $params Home@index
      * @param string       $methods request method like GET or GET|POST
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @return void
      */
-    public function add($route, $params = '', $methods = 'GET|HEAD')
+    public function add($route, $params = '', $methods = 'GET|HEAD', \closure $callback = null)
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -54,9 +55,13 @@ class Router
         $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
         // Add start and end delimiters, and case insensitive flag
         $route = '/^'.$route.'$/i';
+        if ($callback === null) 
+            $callback = (function (){return true;});
         if (is_array($params)) {
             $methodArray = ['method' => $methods];
             $params = array_merge($params, $methodArray);
+            $call = ['callBack' => $callback];
+            $params = array_merge($params,$call);
             $this->routes[$route] = $params;
         } elseif (is_string($params)) {
             $param = [];
@@ -64,6 +69,7 @@ class Router
             $param['controller'] = $parts[0];
             $param['action'] = $parts[1];
             $param['method'] = $methods;
+            $param['callBack'] = $callback;
             if (isset($parts[2])) {
                 $param['namespace'] = $parts[2];
             }
@@ -78,7 +84,7 @@ class Router
     /**
      * Add multiple routes at once from array in the following format:.
      *
-     *   $routes = [route,param,method]
+     *   $routes = [route,param,method,callback]
      *
      * @return void
      */
@@ -97,12 +103,13 @@ class Router
      *
      * @param string       $route  The route URL
      * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
-     *
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     *     
      * @return void
      */
-    public function post($route, $params)
+    public function post($route, $params, $callback = null)
     {
-        $this->add($route, $params, 'POST');
+        $this->add($route, $params, 'POST',$callback);
     }
 
     /**
@@ -110,12 +117,13 @@ class Router
      *
      * @param string       $route  The route URL
      * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
-     *
+      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+      *
      * @return void
      */
-    public function get($route, $params)
+    public function get($route, $params, $callback = null)
     {
-        $this->add($route, $params, 'GET|HEAD');
+        $this->add($route, $params, 'GET|HEAD',$callback);
     }
 
     /**
@@ -123,12 +131,13 @@ class Router
      *
      * @param string       $route  The route URL
      * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @return void
      */
-    public function put($route, $params)
+    public function put($route, $params,$callback = null)
     {
-        $this->add($route, $params, 'PUT');
+        $this->add($route, $params, 'PUT',$callback);
     }
 
     /**
@@ -136,12 +145,13 @@ class Router
      *
      * @param string       $route  The route URL
      * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @return void
      */
-    public function patch($route, $params)
+    public function patch($route, $params,$callback = null)
     {
-        $this->add($route, $params, 'PATCH');
+        $this->add($route, $params, 'PATCH',$callback);
     }
 
     /**
@@ -149,6 +159,7 @@ class Router
      *
      * @param string       $route  The route URL
      * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @return void
      */
@@ -269,22 +280,27 @@ class Router
         $url = $this->RemoveQueryString($url);
         if ($this->match($url)) {
             if (!isset($this->params['callable'])) {
-                $controller = $this->params['controller'];
-                $controller = $this->convertToStudlyCaps($controller);
-                $controller = $this->getNamespace().$controller;
+                if (call_user_func($this->params['callBack']) === true) {
+                    $controller = $this->params['controller'];
+                    $controller = $this->convertToStudlyCaps($controller);
+                    $controller = $this->getNamespace().$controller;
 
-                if (class_exists($controller)) {
-                    $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
+                    if (class_exists($controller)) {
+                        $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
 
-                    $action = $this->params['action'];
-                    $action = $this->convertToCamelCase($action);
-                    if (preg_match('/action$/i', $action) == 0) {
-                        $controller_object->$action();
+                        $action = $this->params['action'];
+                        $action = $this->convertToCamelCase($action);
+                        if (preg_match('/action$/i', $action) == 0) {
+                            $controller_object->$action();
+                        } else {
+                            throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+                        }
                     } else {
-                        throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
-                    }
+                        throw new \Exception("Controller class $controller not found");
+                    }                    
                 } else {
-                    throw new \Exception("Controller class $controller not found");
+                    throw new \Exception("This page is protected", 404);
+                    
                 }
             } else {
                 call_user_func($this->params['callable'], $this->params);
