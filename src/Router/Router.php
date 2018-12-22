@@ -38,9 +38,9 @@ class Router
     /**
      * Add a route to the routing table.
      *
-     * @param string       $route   The route URL
-     * @param array|string $params  Parameters (controller, action, etc.) or $params Home@index
-     * @param string       $methods request method like GET or GET|POST
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $methods  request method like GET or GET|POST
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @return void
@@ -55,13 +55,16 @@ class Router
         $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
         // Add start and end delimiters, and case insensitive flag
         $route = '/^'.$route.'$/i';
-        if ($callback === null) 
-            $callback = (function (){return true;});
+        if ($callback === null) {
+            $callback = (function () {
+                return true;
+            });
+        }
         if (is_array($params)) {
             $methodArray = ['method' => $methods];
             $params = array_merge($params, $methodArray);
             $call = ['callBack' => $callback];
-            $params = array_merge($params,$call);
+            $params = array_merge($params, $call);
             $this->routes[$route] = $params;
         } elseif (is_string($params)) {
             $param = [];
@@ -101,64 +104,64 @@ class Router
     /**
      * Add a route to the routing table as POST.
      *
-     * @param string       $route  The route URL
-     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
-     *     
+     *
      * @return void
      */
     public function post($route, $params, $callback = null)
     {
-        $this->add($route, $params, 'POST',$callback);
+        $this->add($route, $params, 'POST', $callback);
     }
 
     /**
      * Add a route to the routing table as GET.
      *
-     * @param string       $route  The route URL
-     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
-      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
-      *
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     *
      * @return void
      */
     public function get($route, $params, $callback = null)
     {
-        $this->add($route, $params, 'GET|HEAD',$callback);
+        $this->add($route, $params, 'GET|HEAD', $callback);
     }
 
     /**
      * Add a route to the routing table as PUT.
      *
-     * @param string       $route  The route URL
-     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @return void
      */
-    public function put($route, $params,$callback = null)
+    public function put($route, $params, $callback = null)
     {
-        $this->add($route, $params, 'PUT',$callback);
+        $this->add($route, $params, 'PUT', $callback);
     }
 
     /**
      * Add a route to the routing table as PATCH.
      *
-     * @param string       $route  The route URL
-     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @return void
      */
-    public function patch($route, $params,$callback = null)
+    public function patch($route, $params, $callback = null)
     {
-        $this->add($route, $params, 'PATCH',$callback);
+        $this->add($route, $params, 'PATCH', $callback);
     }
 
     /**
      * Add a route to the routing table as DELETE.
      *
-     * @param string       $route  The route URL
-     * @param array|string $params Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @return void
@@ -297,10 +300,9 @@ class Router
                         }
                     } else {
                         throw new \Exception("Controller class $controller not found");
-                    }                    
+                    }
                 } else {
-                    throw new \Exception("This page is protected", 404);
-                    
+                    throw new \Exception('This page is protected', 404);
                 }
             } else {
                 call_user_func($this->params['callable'], $this->params);
