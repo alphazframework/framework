@@ -141,7 +141,8 @@ class InputRules extends StickyRules
      */
     public function alpha($value)
     {
-        return ($this->notBeEmpty($value)) ? preg_match('/^[a-zA-Z]+$/', $value) : false;
+		if ($this->notBeEmpty($value))
+			return (preg_match('/^[a-zA-Z]+$/', $value)) ? true : false;
     }
 
     /**
