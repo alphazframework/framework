@@ -129,8 +129,9 @@ class InputRules extends StickyRules
      */
     public function ipv6($value)
     {
-	if ($this->notBeEmpty($value))
-		return (preg_match('/(([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4})/i', $value)) ? true : false;
+        if ($this->notBeEmpty($value)) {
+            return (preg_match('/(([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4})/i', $value)) ? true : false;
+        }
     }
 
     /**
@@ -142,8 +143,9 @@ class InputRules extends StickyRules
      */
     public function alpha($value)
     {
-		if ($this->notBeEmpty($value))
-			return (preg_match('/^[a-zA-Z]+$/', $value)) ? true : false;
+        if ($this->notBeEmpty($value)) {
+            return (preg_match('/^[a-zA-Z]+$/', $value)) ? true : false;
+        }
     }
 
     /**
@@ -154,7 +156,9 @@ class InputRules extends StickyRules
      * @return bool
      */
     public function subnet($value)
-    {	if ($this->notBeEmpty($value))
-		return (preg_match('/^\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]|[0-9])\b$/', $value)) ? true : false;
+    {
+        if ($this->notBeEmpty($value)) {
+            return (preg_match('/^\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]|[0-9])\b$/', $value)) ? true : false;
+        }
     }
 }
