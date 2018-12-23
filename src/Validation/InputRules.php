@@ -129,7 +129,8 @@ class InputRules extends StickyRules
      */
     public function ipv6($value)
     {
-        return ($this->notBeEmpty($value)) ? preg_match('/(([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4})/i', $value) : false;
+	if ($this->notBeEmpty($value))
+		return (preg_match('/(([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4})/i', $value)) ? true : false;
     }
 
     /**
