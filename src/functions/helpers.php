@@ -86,11 +86,11 @@ function add_system_message($msg, $type = null)
         $type = 'light';
     }
 
-    return Zest\SystemMessage\SystemMessage::add(['msg'=>$msg, 'type'=>$type]);
+    return (new Zest\SystemMessage\SystemMessage())->add(['msg'=>$msg, 'type'=>$type]);
 }
 function view_system_message()
 {
-    return Zest\SystemMessage\SystemMessage::view();
+    return (new Zest\SystemMessage\SystemMessage())->view();
 }
 function csrf_token()
 {
