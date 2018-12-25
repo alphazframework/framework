@@ -19,23 +19,18 @@ use Zest\Str\Str;
 
 class SystemMessage
 {
-    private static $type;
+    private $type;
 
-    public function __construct()
-    {
-        (Session::isSession('sys_msg') !== true) ? setValue('sys_msg', []) : false;
-    }
-
-    public static function add($params)
+    public function add($params)
     {
         if (is_array($params)) {
             if (!empty($params['msg'])) {
                 if (isset($params['type']) && !empty($params['type'])) {
-                    static::type($params['type']);
+                    $this->type = $params['type'];
                 } else {
-                    static::type('light');
+                    $this->type = 'light';
                 }
-                Session::setValue('sys_msg', ['msg'=>$params['msg'], 'type'=>static::$type]);
+                Session::setValue('sys_msg', ['msg'=>$params['msg'], 'type'=>$this->type]);
 
                 return true;
             }
@@ -44,7 +39,7 @@ class SystemMessage
         }
     }
 
-    protected static function type($type)
+    protected function type($type)
     {
         $type = Str::stringConversion($type, 'lowercase');
         switch ($type) {
@@ -81,7 +76,7 @@ class SystemMessage
         (Session::isSession('sys_msg')) ? Session::unsetValue('sys_msg', []) : null;
     }
 
-    public static function view()
+    public function view()
     {
         if (Session::isSession('sys_msg')) {
             $sys_msg = Session::getValue('sys_msg');
@@ -100,7 +95,7 @@ class SystemMessage
                 if (isset($msg) && isset($type)) {
                     $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$msg.'</div>';
                     $msg_data[] = $msg;
-                    static::deleteSysMsgs($type);
+                    $this->deleteSysMsgs($type);
                 }
             }
             if (isset($msg_data)) {
