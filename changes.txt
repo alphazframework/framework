@@ -56,3 +56,4 @@ Changes:
 48. Added callback in Router for creating protected page according to specific certia
    - know issue: its will not work if cache is enable.
 49. Fix sessionUnset() method to delete all sessions.
+50. Update Cryptography class

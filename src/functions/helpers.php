@@ -102,11 +102,11 @@ function route()
 }
 function encrypt($str, $cl = 32)
 {
-    return Zest\Cryptography\Cryptography::encrypt($str, $cl);
+    return (new \Zest\Cryptography\Cryptography())->encrypt($str, $cl);
 }
 function decrypt($str, $cl = 32)
 {
-    return Zest\Cryptography\Cryptography::decrypt($str, $cl);
+    return (new \Zest\Cryptography\Cryptography())->decrypt($str, $cl);
 }
 function maintenanceInstance()
 {
