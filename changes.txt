@@ -55,3 +55,4 @@ Changes:
 47. Added shell script file for starting php server , php version and Zest framework version.
 48. Added callback in Router for creating protected page according to specific certia
    - know issue: its will not work if cache is enable.
+49. Fix sessionUnset() method to delete all sessions.
