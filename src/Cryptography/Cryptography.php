@@ -40,7 +40,6 @@ class Cryptography
     {
         $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($cipher));
         $this->key = hash('sha512', Config::CRYPTO_KEY);
-
     }
 
     /**
@@ -52,7 +51,7 @@ class Cryptography
      */
     public function encrypt($data)
     {
-        return base64_encode(openssl_encrypt($data, $this->cipher, $this->key, 0, $this->iv) . "&&" . bin2hex($this->iv));
+        return base64_encode(openssl_encrypt($data, $this->cipher, $this->key, 0, $this->iv).'&&'.bin2hex($this->iv));
     }
 
     /**
@@ -61,13 +60,13 @@ class Cryptography
      * @param $token => encrypted token
      *
      * @return mix-data
-     */    
+     */
     public function decrypt($token)
     {
         $token = base64_decode($token);
-        list($token, $this->iv) = explode("&&", $token);
-        return openssl_decrypt($token, $this->cipher, $this->key, 0,hex2bin($this->iv));
+        list($token, $this->iv) = explode('&&', $token);
 
+        return openssl_decrypt($token, $this->cipher, $this->key, 0, hex2bin($this->iv));
     }
 
     /**
@@ -81,5 +80,4 @@ class Cryptography
     {
         return openssl_cipher_iv_length($method);
     }
-
 }
