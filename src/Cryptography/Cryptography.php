@@ -39,14 +39,14 @@ class Cryptography
         $cl = (int) $cl;
 
         if ($cl === 16) {
-            $cipher = Cryptography::CIPHER_16;
+            $cipher = self::CIPHER_16;
             $length = 16;
         } elseif ($cl === 32) {
-            $cipher = Cryptography::CIPHER_32;
-            $length = Cryptography::DEFAULT;
+            $cipher = self::CIPHER_32;
+            $length = self::DEFAULT;
         } else {
-            $cipher = Cryptography::CIPHER_32;
-            $length = Cryptography::DEFAULT;
+            $cipher = self::CIPHER_32;
+            $length = self::DEFAULT;
         }
         $iv = $iv = substr(hash('sha256', $this->secret_key), 0, $length);
         $key = hash('sha512', $this->secret_key);
