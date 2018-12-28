@@ -100,13 +100,13 @@ function route()
 {
     return Zest\Common\Root::rootPaths();
 }
-function encrypt($str, $cl = 32)
+function encrypt($data)
 {
-    return (new \Zest\Cryptography\Cryptography())->encrypt($str, $cl);
+    return (new \Zest\Cryptography\Cryptography())->encrypt($data);
 }
-function decrypt($str, $cl = 32)
+function decrypt($token)
 {
-    return (new \Zest\Cryptography\Cryptography())->decrypt($str, $cl);
+    return (new \Zest\Cryptography\Cryptography())->decrypt($token);
 }
 function maintenanceInstance()
 {

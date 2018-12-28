@@ -18,46 +18,68 @@ use Config\Config;
 
 class Cryptography
 {
-    private $secret_key;
-    const CIPHER_16 = 'AES-128-CBC';
-    const CIPHER_32 = 'AES-256-CBC';
-    const DEFAULT = 32;
+    /*
+     * Store the secret key
+    */
+    private $key;
+    /*
+     * Store the iv cipher
+    */
+    private $iv;
+    /*
+     * Cipher
+    */
+    private $cipher = 'AES-256-CBC';
 
-    public function encrypt($str, $cl = 32)
+    /**
+     * __Construct.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        return $this->encyptedDecypted('encrypt', $str, $cl);
+        $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($cipher));
+        $this->key = hash('sha512', Config::CRYPTO_KEY);
+
     }
 
-    public function decrypt($str, $cl = 32)
+    /**
+     * Encrypt the message.
+     *
+     * @param $data => data to be encrypted
+     *
+     * @return token
+     */
+    public function encrypt($data)
     {
-        return $this->encyptedDecypted('decrypt', $str, $cl);
+        return base64_encode(openssl_encrypt($data, $this->cipher, $this->key, 0, $this->iv) . "&&" . bin2hex($this->iv));
     }
 
-    public function encyptedDecypted($action, $str, $cl)
+    /**
+     * Decrypt the message.
+     *
+     * @param $token => encrypted token
+     *
+     * @return mix-data
+     */    
+    public function decrypt($token)
     {
-        $this->secret_key = Config::CRYPTO_KEY;
-        $cl = (int) $cl;
+        $token = base64_decode($token);
+        list($token, $this->iv) = explode("&&", $token);
+        return openssl_decrypt($token, $this->cipher, $this->key, 0,hex2bin($this->iv));
 
-        if ($cl === 16) {
-            $cipher = self::CIPHER_16;
-            $length = 16;
-        } elseif ($cl === 32) {
-            $cipher = self::CIPHER_32;
-            $length = self::DEFAULT;
-        } else {
-            $cipher = self::CIPHER_32;
-            $length = self::DEFAULT;
-        }
-        $iv = $iv = substr(hash('sha256', $this->secret_key), 0, $length);
-        $key = hash('sha512', $this->secret_key);
-        if ($action == 'encrypt') {
-            $output = openssl_encrypt($str, $cipher, $key, 0, $iv);
-            $output = base64_encode($output);
-            $output = $output;
-        } elseif ($action == 'decrypt') {
-            $output = openssl_decrypt(base64_decode($str), $cipher, $key, 0, $iv);
-        }
-
-        return $output;
     }
+
+    /**
+     * Get the length of cipher.
+     *
+     * @param $method
+     *
+     * @return int
+     */
+    protected function iv_bytes($method)
+    {
+        return openssl_cipher_iv_length($method);
+    }
+
 }

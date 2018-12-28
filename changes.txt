@@ -57,3 +57,4 @@ Changes:
    - know issue: its will not work if cache is enable.
 49. Fix sessionUnset() method to delete all sessions.
 50. Update Cryptography class
+51. Update Cryptography system.
