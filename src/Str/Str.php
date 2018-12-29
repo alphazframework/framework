@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.0
+ *
  * @license MIT
  */
 
@@ -26,6 +28,8 @@ class Str
      * 'text' => User input or anyString
      * ISSUE: text uppercase and lowercase issues
      *
+     * @since 1.0.0
+     * 
      * @return string
      */
     public function replaceWords($search, $replace, $text)
@@ -39,6 +43,8 @@ class Str
      * @param   $params (array)
      *                  'type' => possible uppercase and lowercase
      *                  'text' => string to conversion
+     *
+     * @since 1.0.0
      *
      * @return string
      */

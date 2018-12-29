@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ * 
  * @license MIT
  */
 
@@ -18,6 +20,8 @@ class Session
 {
     /**
      * __Construct.
+     *
+     * @since 1.0.0
      *
      * @return void
      */
@@ -30,6 +34,8 @@ class Session
     /**
      * Start the session if not already start.
      *
+     * @since 1.0.0
+     *
      * @return void
      */
     public static function start()
@@ -38,7 +44,9 @@ class Session
     }
 
     /**
-     *Change session path.
+     * Change session path.
+     *
+     * @since 2.0.0
      *
      * @return void
      */
@@ -53,6 +61,8 @@ class Session
      *
      * @param $name (string) name of session e.g users
      *
+     * @since 1.0.0
+     *
      * @return bool
      */
     public static function isSession(string $name):bool
@@ -64,6 +74,8 @@ class Session
      * Get the session value by providing session name.
      *
      * @param $name (string) name of session e.g users
+     *
+     * @since 1.0.0
      *
      * @return string
      */
@@ -79,6 +91,8 @@ class Session
      * 'name' => name of session e.g users
      * 'value' => value store in session e.g user token
      *
+     * @since 1.0.0
+     *
      * @return string
      */
     public static function setValue(string $name, $value)
@@ -90,6 +104,8 @@ class Session
      * Delete/unset the session.
      *
      * @param $name (string) name of session e.g users
+     *
+     * @since 1.0.0
      *
      * @return bool
      */

@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.0
+ *
  * @license MIT
  */
 
@@ -16,6 +18,14 @@ namespace Zest\Router;
 
 class App extends \Zest\Router\Router
 {
+
+     /**
+     * Run the Zest Framework.
+     *
+     * @since 2.0.0
+     *
+     * @return bool
+     */   
     public function run()
     {
         $router = new Router();
@@ -32,6 +42,13 @@ class App extends \Zest\Router\Router
         }
     }
 
+    /**
+     * Determine whether the cache expired.
+     *
+     * @since 2.0.0
+     *
+     * @return bool
+     */
     public function isExpired()
     {
         $f = fopen('../Storage/Cache/router_time.cache', 'r');
@@ -44,6 +61,13 @@ class App extends \Zest\Router\Router
         }
     }
 
+    /**
+     * Delete the cached.
+     *
+     * @since 2.0.0
+     *
+     * @return void
+     */
     public function delete()
     {
         unlink('../Storage/Cache/routers.cache');

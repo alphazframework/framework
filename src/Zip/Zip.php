@@ -10,6 +10,9 @@
  *  file that was distributed with this source code.
  *
  * @license MIT
+ *
+ * @since 1.0.0
+
  */
 
 namespace Zest\Zip;
@@ -24,6 +27,7 @@ class Zip
      * $target -> where you extract file
      * $delete -> true delete zip file false not delete
      *
+     * @since 1.0.0
      * @return bool
      */
     public function extract($file, $target, $delete = false)
@@ -48,6 +52,8 @@ class Zip
      * @files array() list of file
      * @destination where you save compressed file
      * $overwrite -> if already overwrite
+     *
+     * @since 1.0.0
      *
      * @return bool
      */

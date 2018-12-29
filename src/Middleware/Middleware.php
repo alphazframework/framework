@@ -9,6 +9,10 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.9.7
+ *
+ * @deprecated 3.0.0
+ * 
  * @license MIT
  */
 
@@ -16,6 +20,15 @@ namespace Zest\Middleware;
 
 class Middleware
 {
+     /**
+     * Run the middleware.
+     *
+     * @since 1.9.7
+     *
+     * @deprecated 3.0.0
+     *
+     * @return bool
+     */   
     final public function run($type, $middleware, $params = 'null', $namespace = 'App\Middleware\\')
     {
         if (!empty($type) && !empty($middleware)) {

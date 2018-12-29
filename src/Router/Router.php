@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  *
  * @note i wrote this file first time by following the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , any further/others modification by me
@@ -42,6 +44,8 @@ class Router
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param string       $methods  request method like GET or GET|POST
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     *
+     * @since 1.0.0
      *
      * @return void
      */
@@ -89,6 +93,8 @@ class Router
      *
      *   $routes = [route,param,method,callback]
      *
+     * @since 2.0.3
+     *
      * @return void
      */
     public function addRoutes($routes)
@@ -108,6 +114,8 @@ class Router
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
+     * @since 2.0.3
+     *
      * @return void
      */
     public function post($route, $params, $callback = null)
@@ -121,6 +129,8 @@ class Router
      * @param string       $route    The route URL
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -136,6 +146,8 @@ class Router
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
+     * @since 2.0.3
+     *
      * @return void
      */
     public function put($route, $params, $callback = null)
@@ -149,6 +161,8 @@ class Router
      * @param string       $route    The route URL
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -164,6 +178,8 @@ class Router
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
+     * @since 2.0.3
+     *
      * @return void
      */
     public function delete($route, $params)
@@ -173,6 +189,8 @@ class Router
 
     /**
      * Get all the routes from the routing table.
+     *
+     * @since 1.0.0
      *
      * @return array
      */
@@ -186,6 +204,8 @@ class Router
      * property if a route is found.
      *
      * @param string $url The route URL
+     *
+     * @since 1.0.0
      *
      * @return bool true if a match found, false otherwise
      */
@@ -215,6 +235,8 @@ class Router
      * @param string $methods       router request method
      * @param string $requestMethod Requested method
      *
+     * @since 2.0.3
+     *
      * @return bool
      */
     public function methodMatch($methods, $requestMethod = null)
@@ -242,6 +264,8 @@ class Router
     /**
      * Get the currently matched parameters.
      *
+     * @since 1.0.0
+     *
      * @return array
      */
     public function getParams()
@@ -251,6 +275,8 @@ class Router
 
     /**
      * Get the current input according to given method.
+     *
+     * @since 3.0.0
      *
      * @return mix-data
      */
@@ -275,6 +301,8 @@ class Router
      * action method.
      *
      * @param string $url The route URL
+     *
+     * @since 1.0.0
      *
      * @return void
      */
@@ -317,6 +345,8 @@ class Router
      *
      * @param string $string The string to convert
      *
+     * @since 1.0.0
+     *
      * @return string
      */
     protected function convertToStudlyCaps($string)
@@ -329,6 +359,8 @@ class Router
      *
      * @param string $string The string to convert
      *
+     * @since 1.0.0
+     *
      * @return string
      */
     protected function convertToCamelCase($string)
@@ -340,6 +372,8 @@ class Router
      * Remove the query string variables from the URL (if any). As the full.
      *
      * @param string $url The full URL
+     *
+     * @since 1.0.0
      *
      * @return string The URL with the query string variables removed
      */
@@ -362,6 +396,8 @@ class Router
      * Get the namespace for the controller class. The namespace defined in the
      * route parameters is added if present.
      *
+     * @since 1.0.0
+     *
      * @return string The request URL
      */
     protected function getNamespace()
@@ -374,6 +410,8 @@ class Router
     /**
      * Parase the url if need.
      *
+     * @since 1.0.0
+     *
      * @return string The request URL
      */
     public function parseurl()
@@ -385,6 +423,8 @@ class Router
 
     /**
      * Load routers form cache.
+     *
+     * @since 2.0.0
      *
      * @return array
      */
@@ -399,6 +439,8 @@ class Router
 
     /**
      * Cache the roouter.
+     *
+     * @since 2.0.0
      *
      * @return void
      */
@@ -418,6 +460,8 @@ class Router
 
     /**
      * Check if cache is exists.
+     *
+     * @since 2.0.0
      *
      * @return bool
      */

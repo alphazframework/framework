@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -19,6 +21,8 @@ class UserInfo
     /**
      * Get user agente.
      *
+     * @since 1.0.0
+     *
      * @return agent
      */
     private static function agent()
@@ -28,6 +32,8 @@ class UserInfo
 
     /**
      * Get OperatingSystem name.
+     *
+     * @since 1.0.0
      *
      * @return void
      */
@@ -55,6 +61,8 @@ class UserInfo
 
     /**
      * Get Browser Name.
+     * 
+     * @since 1.0.0
      *
      * @return void
      */
@@ -95,6 +103,8 @@ class UserInfo
 
     /**
      * Get Os version.
+     *
+     * @since 1.0.0
      *
      * @return void
      */
@@ -139,6 +149,8 @@ class UserInfo
     /**
      * Get Browser version.
      *
+     * @since 1.0.0
+     *
      * @return void
      */
     public function browserVersion()
@@ -169,6 +181,7 @@ class UserInfo
     /**
      * Get The user ip.
      *
+     * @since 1.0.0
      * @return void
      */
     public function ip()
@@ -186,6 +199,8 @@ class UserInfo
 
     /**
      * Check user from mobile or not.
+     *
+     * @since 3.0.0 
      *
      * @return void
      */

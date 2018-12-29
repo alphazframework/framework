@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -35,6 +37,8 @@ abstract class Controller
      * @param array    $route_params Parameters from the route
      * @param mix-data $input        Data form the input
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     public function __construct($route_params, $input)
@@ -51,6 +55,8 @@ abstract class Controller
      * @param string $name  properity name
      * @param array  $value properity value
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     public function __set($name, $value)
@@ -65,6 +71,8 @@ abstract class Controller
      *
      * @param string $name properity name
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     public function __get($name)
@@ -81,6 +89,8 @@ abstract class Controller
      * @param string $name Method name
      * @param array  $args Arguments passed to the method
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     final public function __call($name, $args)
@@ -108,6 +118,8 @@ abstract class Controller
     /**
      * Before filter - called before an action method.
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     protected function before()
@@ -117,6 +129,8 @@ abstract class Controller
     /**
      * After filter - called after an action method.
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     protected function after()
@@ -125,6 +139,9 @@ abstract class Controller
 
     /**
      * Prevent unserializing.
+      *
+     * @since 1.0.0
+     *      
      **/
     protected function __wakeup()
     {

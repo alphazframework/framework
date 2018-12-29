@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -18,15 +20,29 @@ use Zest\Site\Site;
 
 class CSRF
 {
-    //default time
+    /**
+     * Store the time
+     *
+     * @since 1.0.0
+     *
+     * @var int
+    */
     private static $time;
-    //System time
-    private static $sysTime;
+    /**
+     * Store the time
+     *
+     * @since 1.0.0
+     *
+     * @var int
+    */   
+     private static $sysTime;
 
     /**
      * Do some important actions.
      *
      *
+     * @since 1.0.0
+     *  
      * @return Void;
      */
     public static function action()
@@ -44,6 +60,8 @@ class CSRF
      *
      * @key = $key token tobe deleted
      *
+     * @since 1.0.0
+     *  
      * @return void;
      */
     public static function delete($token)
@@ -57,6 +75,8 @@ class CSRF
      * Delete expire tokens.
      *
      *
+     * @since 1.0.0
+     *  
      * @return void;
      */
     public static function deleteExpires()
@@ -74,6 +94,8 @@ class CSRF
      * Delete unnecessary tokens.
      *
      *
+     * @since 1.0.0
+     *  
      * @return void;
      */
     public static function deleteUnnecessaryTokens()
@@ -91,6 +113,8 @@ class CSRF
      * Debug
      *	return all tokens.
      *
+     * @since 1.0.0
+     *  
      * @return json object;
      */
     public static function debug()
@@ -103,6 +127,8 @@ class CSRF
      *
      * @time = $time tobe updated
      *
+     * @since 1.0.0
+     *  
      * @return bolean;
      */
     public static function updateTime($time)
@@ -119,6 +145,8 @@ class CSRF
     /**
      * Update system time.
      *
+     * @since 1.0.0
+     *  
      * @return void;
      */
     final private function updateSysTime()
@@ -131,6 +159,8 @@ class CSRF
      *
      * @param string $length length of salts
      *
+     * @since 1.0.0
+     *  
      * @return string;
      */
     public static function generateSalts($length)
@@ -144,7 +174,9 @@ class CSRF
      *@param
      *$time => $time
      *$multiplier => 3*3600
-     *
+       *
+     * @since 1.0.0
+     *  
      * @return mix-data;
      */
     public static function generateTokens($time, $multiplier)
@@ -161,6 +193,8 @@ class CSRF
     /**
      * Generate empty session.
      *
+     * @since 1.0.0
+     *  
      * @return void;
      */
     public static function generateSession()
@@ -175,6 +209,8 @@ class CSRF
      *
      * @token = $key
      *
+     * @since 1.0.0
+     *  
      * @return mix-data;
      */
     public static function view($token)
@@ -192,6 +228,8 @@ class CSRF
      *
      * @token = $key
      *
+     * @since 1.0.0
+     *  
      * @return boolean;
      */
     public static function verify($token)
@@ -206,6 +244,8 @@ class CSRF
     /**
      * Last token.
      *
+     * @since 1.0.0
+     *  
      * @return mix-data;
      */
     public static function lastToken()
@@ -220,6 +260,8 @@ class CSRF
     /**
      * Count tokens.
      *
+     * @since 1.0.0
+     *  
      * @return int;
      */
     public static function countsTokens()

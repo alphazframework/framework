@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -19,17 +21,38 @@ use Zest\Common\Minify;
 
 class View
 {
-    //file
+    /**
+     * files
+     *
+     * @since 1.0.0
+     *
+     * @var resource
+    */   
     private static $file;
-    //key for template data
+    /**
+     * key for tamplate
+     *
+     * @since 1.0.0
+     *
+     * @var array
+    */  
     private static $keys = [];
-    //value for template data
+    /**
+     * value for tamplet
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     *
+    */  
     private static $Values = [];
 
     /**
      * Set file.
      *
      * @param $file name of files
+     * 
+     * @since 1.0.0
      *
      * @return void
      */

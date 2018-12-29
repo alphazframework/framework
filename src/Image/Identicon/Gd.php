@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 3.0.0
+ *
  * @license MIT
  */
 
@@ -16,14 +18,20 @@ namespace Zest\Image\Identicon;
 
 class Gd extends Base
 {
-    /*
-     * Image mine type
-    */
+    /**
+     * Image mine/type
+     *
+     * @since 3.0.0
+     *
+     * @var string
+    */    
     public $mineType = 'image/png';
 
     /**
      * Generate the iamge.
      *
+     * @since 3.0.0
+     *  
      * @return resource
      */
     public function genImage()
@@ -60,6 +68,8 @@ class Gd extends Base
      *        $color foreground color of image.
      *        $bg background color of image.
      *
+     * @since 3.0.0
+     *  
      * @return binary
      */
     public function getImgBinary($string, $size = '', $color = '', $bg = '')
@@ -78,6 +88,8 @@ class Gd extends Base
      *        $color foreground color of image.
      *        $bg background color of image.
      *
+     * @since 3.0.0
+     *  
      * @return resource
      */
     public function getImgResource($string, $size = '', $color = '', $bg = '')

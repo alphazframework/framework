@@ -10,6 +10,8 @@
  *  file that was distributed with this source code.
  *
  * @license MIT
+ *
+ * @since 2.0.0
  */
 
 namespace Zest\Benchmark;

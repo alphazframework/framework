@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.0
+ *
  * @license MIT
  */
 
@@ -21,6 +23,8 @@ class Conversion
      *
      * @param array $array Arrays
      *
+     * @since 2.0.0
+     * 
      * @return object
      */
     public static function arrayObject($array)
@@ -45,6 +49,8 @@ class Conversion
      * Convert Objects to arrays.
      *
      * @param object $object
+     * 
+     * @since 2.0.0
      *
      * @return array
      */
@@ -69,6 +75,8 @@ class Conversion
      * Convert XML to arrays.
      *
      * @param xml object $xml xml
+     *
+     * @since 2.0.0
      *
      * @return array
      */

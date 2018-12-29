@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -18,6 +20,8 @@ class Site
 {
     /**
      * Return site URL.
+     *
+     * @since 1.0.0
      *
      * @return string
      */
@@ -31,6 +35,8 @@ class Site
     /**
      * Return site base URL.
      *
+     * @since 2.0.0
+     *
      * @return string
      */
     public static function siteBaseUrl()
@@ -43,6 +49,8 @@ class Site
     /**
      * Return Current Page.
      *
+     * @since 1.0.0
+     *
      * @return string
      */
     public static function crrentPage()
@@ -54,6 +62,8 @@ class Site
 
     /**
      * Get the domain protocol.
+     *
+     * @since 1.0.0
      *
      * @return string
      */
@@ -71,6 +81,8 @@ class Site
     /**
      * Get the server name.
      *
+     * @since 1.0.0
+     *
      * @return string
      */
     public static function getServerName()
@@ -85,6 +97,8 @@ class Site
     /**
      * Get the server port.
      *
+     * @since 1.0.0
+     *
      * @return int
      */
     public static function getPort()
@@ -95,6 +109,8 @@ class Site
     /**
      * Get script path like example.com/login.
      *
+     * @since 1.0.0
+     *
      * @return string example.com/login
      */
     public function getBase()
@@ -104,6 +120,8 @@ class Site
 
     /**
      * Get script path like example.com/login.
+     *
+     * @since 1.0.0
      *
      * @return string example.com/login
      */
@@ -119,6 +137,8 @@ class Site
      *                      self => itself page
      *                      prev => previous page
      *                      else => any page you want
+     *
+     * @since 1.0.0
      *
      * @return void
      */
@@ -140,6 +160,8 @@ class Site
     /**
      * Go to the previous URL.
      *
+     * @since 1.0.0
+     *
      * @return void
      */
     private static function previous()
@@ -151,6 +173,8 @@ class Site
      * Get all URL parts based on a / seperator.
      *
      * @param string $url → URI to segment
+     *
+     * @since 1.0.0
      *
      * @return string
      */
@@ -168,6 +192,8 @@ class Site
     /**
      * Get first item segment.
      *
+     * @since 1.0.0
+     *
      * @return string
      */
     public static function getFirstSegment($segments)
@@ -183,6 +209,8 @@ class Site
 
     /**
      * Get last item segment.
+     *
+     * @since 1.0.0
      *
      * @return string
      */
@@ -201,6 +229,8 @@ class Site
      * generate salts for files.
      *
      * @param string $length length of salts
+     *
+     * @since 1.0.0
      *
      * @return string
      */

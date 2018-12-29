@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -29,6 +31,8 @@ class SystemMessage
      *
      * @param $params['msg'] => message to be store
      *        $params['type'] => alert type
+     *
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -54,6 +58,8 @@ class SystemMessage
      * Set the type of message.
      *
      * @param $type => alert type
+     *
+     * @since 1.0.0
      *
      * @return void
      */
@@ -91,6 +97,8 @@ class SystemMessage
 
     /**
      * View the system message.
+     *
+     * @since 1.0.0
      *
      * @return string
      */

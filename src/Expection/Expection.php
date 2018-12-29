@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -26,6 +28,8 @@ class Expection
      * @param string $file    Filename the error was raised in
      * @param int    $line    Line number in the file
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     public static function errorHandler($level, $message, $file, $line)
@@ -40,6 +44,8 @@ class Expection
      *
      * @param Exception $exception The exception
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     public static function exceptionHandler($exception)

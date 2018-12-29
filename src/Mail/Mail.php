@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.9.0
+ *
  * @license MIT
  */
 
@@ -69,6 +71,8 @@ class Mail
      *
      * @param resource $file
      *
+     * @since 1.9.0
+     * 
      * @return void
      */
     public function addAttachment($file)
@@ -81,6 +85,8 @@ class Mail
      *
      * @param string $bcc
      *
+     * @since 1.9.0
+     * 
      * @return bool
      */
     public function addBcc($bcc)
@@ -99,6 +105,8 @@ class Mail
      *
      * @param string $cc
      *
+     * @since 1.9.0
+     * 
      * @return bool
      */
     public function addCc($cc)
@@ -117,6 +125,8 @@ class Mail
      *
      * @param string $email
      *
+     * @since 1.9.0
+     * 
      * @return bool
      */
     public function addReceiver($email)
@@ -133,6 +143,8 @@ class Mail
     /**
      * For prepare an attachment for sending with mail.
      *
+     * @since 1.9.0
+     * 
      * @return mix-data
      */
     public function prepareAttachment($attachment)
@@ -158,6 +170,8 @@ class Mail
     /**
      * For send the mail.
      *
+     * @since 1.9.0
+     * 
      * @return boolean.
      */
     public function send()
@@ -232,6 +246,8 @@ class Mail
      *
      * @param string $email
      *
+     * @since 1.9.0
+     * 
      * @return bool
      */
     public function isValidEmail($email)
@@ -245,7 +261,15 @@ class Mail
             return false;
         }
     }
-
+    /**
+     * Set SMPT status.
+     *
+     * @param $status
+     *
+     * @since 1.9.0
+     * 
+     * @return bool
+     */
     public function isSMTP(bool $status = false)
     {
         if ($status === true) {
@@ -254,7 +278,17 @@ class Mail
             $this->smtp['status'] = $status;
         }
     }
-
+    /**
+     * Send mail over SMTP.
+     *
+     * @param $to sender email
+     *        $from from email
+     *        $message message to be send  
+     *
+     * @since 1.9.0
+     * 
+     * @return bool
+     */
     public function sendSMTP($to, $from, $message)
     {
         $host = Email::SMTP_HOST;
@@ -289,6 +323,8 @@ class Mail
      *
      * @param string $parameter
      *
+     * @since 1.9.0
+     * 
      * @return void
      */
     public function setaddParams($params)
@@ -301,6 +337,8 @@ class Mail
      *
      * @param string $content
      *
+     * @since 1.9.0
+     * 
      * @return void
      */
     public function setContentHTML($content)
@@ -314,6 +352,8 @@ class Mail
      *
      * @param string $content
      *
+     * @since 1.9.0
+     * 
      * @return void
      */
     public function setContentPlain($content)
@@ -327,6 +367,8 @@ class Mail
      *
      * @param string $subject The subject of the mail.
      *
+     * @since 1.9.0
+     * 
      * @return bool
      */
     public function setReplyTo($email)
@@ -343,6 +385,8 @@ class Mail
      *
      * @param string $subject The subject of the mail.
      *
+     * @since 1.9.0
+     * 
      * @return bool
      */
     public function setSender($email)
@@ -359,6 +403,8 @@ class Mail
      *
      * @param string $subject The subject of the mail.
      *
+     * @since 1.9.0
+     * 
      * @return bool
      */
     public function setSubject($subject)
@@ -371,6 +417,8 @@ class Mail
      *
      * @param resource $file
      *
+     * @since 1.9.0
+     * 
      * @return bool
      */
     public function isFile()
@@ -385,6 +433,8 @@ class Mail
     /**
      * Clear all the information.
      *
+     * @since 1.9.0
+     * 
      * @return void
      */
     public function clear()

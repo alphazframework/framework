@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 3.0.0
+ *
  * @license MIT
  */
 
@@ -16,13 +18,21 @@ namespace Zest\Files;
 
 class FileHandling
 {
-    /*
-     * resource
-    */
+    /**
+     * Resource
+     *
+     * @since 3.0.0
+     *
+     * @var resource
+    */    
     private $resource;
-    /*
-     * Mode of files
-    */
+    /**
+     * Modes of file
+     *
+     * @since 3.0.0
+     *
+     * @var array
+    */    
     private $modes = [
         'readOnly'        => 'r',
         'readWrite'       => 'r+',
@@ -38,6 +48,8 @@ class FileHandling
      * @param $name => name of file
      *        $mode => mode of file
      *
+     * @since 3.0.0
+     *  
      * @return resource
      */
     public function open($name, $mode)
@@ -54,6 +66,8 @@ class FileHandling
      *
      * @param $file file that to be read
      *
+     * @since 3.0.0
+     *  
      * @return file
      */
     public function read($file)
@@ -66,6 +80,8 @@ class FileHandling
      *
      * @param $data data that you want write on file
      *
+     * @since 3.0.0
+     *  
      * @return bool
      */
     public function write($data)
@@ -77,7 +93,9 @@ class FileHandling
      * Delete the file.
      *
      * @param $file file to be deleted
-     *
+      *
+     * @since 3.0.0
+     *  
      * @return bool
      */
     public function delete($file)

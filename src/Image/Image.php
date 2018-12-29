@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -18,6 +20,8 @@ class Image
 {
     /**
      * Change content-header-type.
+     *
+     * @since 1.0.0
      *
      * @return void
      */
@@ -35,6 +39,8 @@ class Image
      * @param   $params (array)
      *                  'image' => Source valid image file
      *                  'target' => target + new name of file
+     *
+     * @since 1.0.0
      *
      * @return image
      */
@@ -55,6 +61,8 @@ class Image
      *
      * @param   $params (string)
      *                  'image' => Source valid image file
+     *
+     * @since 1.0.0
      *
      * @return string
      */
@@ -77,6 +85,8 @@ class Image
      *                  if you do not want save image these parameter are optional if you want save image
      *                  'save' => true
      *                  'target' => target + new name of file
+     *
+     * @since 1.0.0
      *
      * @return image
      */
@@ -127,6 +137,8 @@ class Image
      *                  'save' => true
      *                  'target' => target + new name of file
      *
+     * @since 1.0.0
+     *
      * @return image
      */
     public function imageBrightness($params)
@@ -169,6 +181,8 @@ class Image
      *                  if you do not want save image these parameter are optional if you want save image
      *                  'save' => true
      *                  'target' => target + new name of file
+     *
+     * @since 1.0.0
      *
      * @return image
      */
@@ -222,6 +236,8 @@ class Image
      *                  if you do not want save image these parameter are optional if you want save image
      *                  'save' => true
      *                  'target' => target + new name of file
+     *
+     * @since 1.0.0
      *
      * @return image
      */
@@ -428,6 +444,8 @@ class Image
      *                  'save' => true
      *                  'target' => target + new name of file
      *
+     * @since 1.0.0
+     *
      * @return image
      */
     public function imageCrop($params)
@@ -473,6 +491,8 @@ class Image
      *                  if you do not want save image these parameter are optional if you want save image
      *                  'save' => true
      *                  'target' => target + new name of file
+     *
+     * @since 1.0.0
      *
      * @return image
      */
@@ -523,6 +543,8 @@ class Image
      *                  'save' => true
      *                  'target' => target + new name of file
      *
+     * @since 1.0.0
+     *
      * @return image
      */
     public function imageRotate($params)
@@ -572,6 +594,8 @@ class Image
      *                  if you do not want save image these parameter are optional if you want save image
      *                  'save' => true
      *                  'target' => target + new name of file
+     *
+     * @since 1.0.0
      *
      * @return image
      */

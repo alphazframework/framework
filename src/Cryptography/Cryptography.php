@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -18,22 +20,36 @@ use Config\Config;
 
 class Cryptography
 {
-    /*
+    /**
      * Store the secret key
+     *
+     * @since 1.0.0
+     *
+     * @var key
     */
     private $key;
-    /*
-     * Store the iv cipher
+    /**
+     * Store the cipher iv
+     *
+     * @since 1.0.0
+     *
+     * @var string
     */
     private $iv;
-    /*
+    /**
      * Cipher
+     *
+     * @since 1.0.0
+     *
+     * @var string
     */
     private $cipher = 'AES-256-CBC';
 
     /**
      * __Construct.
      *
+     * @since 1.0.0
+     *  
      * @return void
      */
     public function __construct()
@@ -47,6 +63,8 @@ class Cryptography
      *
      * @param $data => data to be encrypted
      *
+     * @since 1.0.0
+     *  
      * @return token
      */
     public function encrypt($data)
@@ -59,6 +77,8 @@ class Cryptography
      *
      * @param $token => encrypted token
      *
+     * @since 1.0.0
+     *  
      * @return mix-data
      */
     public function decrypt($token)
@@ -74,6 +94,8 @@ class Cryptography
      *
      * @param $method
      *
+     * @since 3.0.0
+     *  
      * @return int
      */
     protected function iv_bytes($method)

@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -20,17 +22,31 @@ use Zest\View\View;
 
 class Input
 {
+    /**
+     * method
+     *
+     * @since 3.0.0
+     *
+     * @var string
+    */  
     private static $method;
+
+    /**
+     * CSRF method
+     *
+     * @since 3.0.0
+     *
+     * @var string
+    */  
     private static $csrf_method;
 
-    public function __construct()
-    {
-    }
 
     /**
      * Wordwrap.
      *
      * @param  $str Str to be wordwraped
+     *
+     * @since 1.0.0
      *
      * @return string | boolean
      */
@@ -47,6 +63,8 @@ class Input
      * Check form sbumit or not.
      *
      * @param  $name => name of submit button/ field
+     *
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -65,6 +83,8 @@ class Input
      *
      * @param  $key
      * 'key' => name of filed (required in get,post request)
+     *
+     * @since 1.0.0
      *
      * @return string | boolean
      */
@@ -114,6 +134,8 @@ class Input
     /**
      * Auto-validate csrf token.
      *
+     * @since 1.0.0
+     *
      * @return bool
      */
     public static function autoCsrf()
@@ -141,6 +163,8 @@ class Input
      *
      * @param  $key
      * 'key' => name of filed (required in get,post request)
+     *
+     * @since 1.0.0
      *
      * @return string | boolean
      */
@@ -172,6 +196,8 @@ class Input
      * 'input' => string
      * 'type' => secured , root
      *
+     * @since 1.0.0
+     *
      * @return string | boolean
      */
     public static function clean($input, $type)
@@ -197,6 +223,8 @@ class Input
      * @param  $params
      * 'str' => string that tobe restored new lines
      *
+     * @since 1.0.0
+     *
      * @return string | boolean
      */
     public static function restoreLineBreaks($str)
@@ -212,6 +240,8 @@ class Input
 
     /**
      * Check request ajax or not.
+     *
+     * @since 1.0.0
      *
      * @return string | boolean
      */
