@@ -96,9 +96,10 @@ class Session
     public static function unsetValue(string $name)
     {
         if (static::isSession($name)) {
-			session_destroy();
+            session_destroy();
             session_unset($name);
-        }     
+        }
+
         return false;
     }
 }
