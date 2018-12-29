@@ -18,70 +18,69 @@ namespace Zest\Image\Avatar;
 
 class ABase
 {
-
     /**
-     * Image binary
+     * Image binary.
      *
      * @since 3.0.0
      *
      * @var binary
-    */    
+     */
     protected $image;
-     /**
-     * Image foreground color
-     *
-     * @since 3.0.0
-     *
-     * @var hexa
-    */        
-     protected $color;
     /**
-     * Image background color
+     * Image foreground color.
      *
      * @since 3.0.0
      *
      * @var hexa
-    */    
+     */
+    protected $color;
+    /**
+     * Image background color.
+     *
+     * @since 3.0.0
+     *
+     * @var hexa
+     */
     protected $bgColor;
     /**
-     * Image size
+     * Image size.
      *
      * @since 3.0.0
      *
      * @var int
-    */    
+     */
     protected $size;
     /**
-     * Image pixel ratio
+     * Image pixel ratio.
      *
      * @since 3.0.0
      *
      * @var int
-    */    
+     */
     protected $pxRatio;
     /**
-     * Hash
+     * Hash.
      *
      * @since 3.0.0
      *
      * @var string
-    */    
+     */
     protected $hash;
     /**
-     * Image area of sqare sides
+     * Image area of sqare sides.
      *
      * @since 3.0.0
      *
      * @var array
-    */    
-    protected $arrayOfSquare;    
+     */
+    protected $arrayOfSquare;
     /**
-     * String
+     * String.
      *
      * @since 3.0.0
      *
      * @var string
-    */  
+     */
     protected $string;
 
     /**
@@ -90,7 +89,7 @@ class ABase
      * @param $color foreground color of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function setColor($color)
@@ -108,7 +107,7 @@ class ABase
      * @param $color background color of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function setBgColor($color)
@@ -127,7 +126,7 @@ class ABase
      *        $alpha (bool) either alpha append or not
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     private function convertColor($hex, $alpha = false)
@@ -148,7 +147,7 @@ class ABase
      * Get the image foreground color.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function getColor()
@@ -158,9 +157,9 @@ class ABase
 
     /**
      * Get the image background color.
-      *
+     *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function getBgColor()
@@ -172,9 +171,9 @@ class ABase
      * Convert the hexa to boolean.
      *
      * @param $hexa Hexa number.
-      *
+     *
      * @since 3.0.0
-     *  
+     *
      * @return bool
      */
     private function convertHexaToBool($hexa)
@@ -186,7 +185,7 @@ class ABase
      * Convert the hash into multidimessional array.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     private function convertHashToArrayOfBoolean()
@@ -201,9 +200,9 @@ class ABase
 
     /**
      * Get the array of squares.
-      *
+     *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function getArrayOfSquare()
@@ -215,7 +214,7 @@ class ABase
      * Get the hash string.
      *
      * @since 3.0.0
-     *  
+     *
      * @return string
      */
     public function getHash()
@@ -229,7 +228,7 @@ class ABase
      * @param $string Text that should be hashed.
      *
      * @since 3.0.0
-     *  
+     *
      * @return mix
      */
     public function setHashString(string $string)
@@ -247,7 +246,7 @@ class ABase
      * Get the character.
      *
      * @since 3.0.0
-     *  
+     *
      * @return char
      */
     public function getCharacter()
@@ -261,7 +260,7 @@ class ABase
      * @param $size size of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return int
      */
     public function setSize($size)
@@ -278,7 +277,7 @@ class ABase
      * Get the size of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return int
      */
     public function getSize()
@@ -290,7 +289,7 @@ class ABase
      * Get the pixel ratio.
      *
      * @since 3.0.0
-     *  
+     *
      * @return int
      */
     public function getPxRatio()

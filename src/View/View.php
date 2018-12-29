@@ -22,36 +22,35 @@ use Zest\Common\Minify;
 class View
 {
     /**
-     * files
+     * files.
      *
      * @since 1.0.0
      *
      * @var resource
-    */   
+     */
     private static $file;
     /**
-     * key for tamplate
+     * key for tamplate.
      *
      * @since 1.0.0
      *
      * @var array
-    */  
+     */
     private static $keys = [];
     /**
-     * value for tamplet
+     * value for tamplet.
      *
      * @since 3.0.0
      *
      * @var array
-     *
-    */  
+     */
     private static $Values = [];
 
     /**
      * Set file.
      *
      * @param $file name of files
-     * 
+     *
      * @since 1.0.0
      *
      * @return void

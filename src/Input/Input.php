@@ -23,23 +23,22 @@ use Zest\View\View;
 class Input
 {
     /**
-     * method
+     * method.
      *
      * @since 3.0.0
      *
      * @var string
-    */  
+     */
     private static $method;
 
     /**
-     * CSRF method
+     * CSRF method.
      *
      * @since 3.0.0
      *
      * @var string
-    */  
+     */
     private static $csrf_method;
-
 
     /**
      * Wordwrap.

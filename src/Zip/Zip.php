@@ -12,7 +12,6 @@
  * @license MIT
  *
  * @since 1.0.0
-
  */
 
 namespace Zest\Zip;
@@ -28,6 +27,7 @@ class Zip
      * $delete -> true delete zip file false not delete
      *
      * @since 1.0.0
+     *
      * @return bool
      */
     public function extract($file, $target, $delete = false)

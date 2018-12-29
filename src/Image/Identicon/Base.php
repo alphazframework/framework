@@ -19,68 +19,68 @@ namespace Zest\Image\Identicon;
 class Base
 {
     /**
-     * Image binary
+     * Image binary.
      *
      * @since 3.0.0
      *
      * @var binary
-    */    
+     */
     protected $image;
-     /**
-     * Image foreground color
-     *
-     * @since 3.0.0
-     *
-     * @var hexa
-    */        
-     protected $color;
     /**
-     * Image background color
+     * Image foreground color.
      *
      * @since 3.0.0
      *
      * @var hexa
-    */    
+     */
+    protected $color;
+    /**
+     * Image background color.
+     *
+     * @since 3.0.0
+     *
+     * @var hexa
+     */
     protected $bgColor;
     /**
-     * Image size
+     * Image size.
      *
      * @since 3.0.0
      *
      * @var int
-    */    
+     */
     protected $size;
     /**
-     * Image pixel ratio
+     * Image pixel ratio.
      *
      * @since 3.0.0
      *
      * @var int
-    */    
+     */
     protected $pxRatio;
     /**
-     * Hash
+     * Hash.
      *
      * @since 3.0.0
      *
      * @var string
-    */    
+     */
     protected $hash;
     /**
-     * Number of blocks
+     * Number of blocks.
      *
      * @since 3.0.0
      *
      * @var int
-    */    
+     */
     protected $block = 3;
     /**
-     * Image area of sqare sides
+     * Image area of sqare sides.
      *
      * @since 3.0.0
      *
      * @var array
-    */    
+     */
     protected $arrayOfSquare;
 
     /**
@@ -89,7 +89,7 @@ class Base
      * @param $color foreground color of image.
      *
      * @since 3.0.0
-     *     
+     *
      * @return array
      */
     public function setColor($color)
@@ -107,7 +107,7 @@ class Base
      * @param $color background color of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function setBgColor($color)
@@ -125,7 +125,7 @@ class Base
      * @param $block Number of blocks.
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function setBlock($block)
@@ -139,7 +139,7 @@ class Base
      * Get the block.
      *
      * @since 3.0.0
-     *  
+     *
      * @return int
      */
     public function getBlock()
@@ -154,7 +154,7 @@ class Base
      *        $alpha (bool) either alpha append or not
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     private function convertColor($hex, $alpha = false)
@@ -175,7 +175,7 @@ class Base
      * Get the image foreground color.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function getColor()
@@ -187,7 +187,7 @@ class Base
      * Get the image background color.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function getBgColor()
@@ -201,7 +201,7 @@ class Base
      * @param $hexa Hexa number.
      *
      * @since 3.0.0
-     *  
+     *
      * @return bool
      */
     private function convertHexaToBool($hexa)
@@ -213,7 +213,7 @@ class Base
      * Convert the hash into multidimessional array.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     private function convertHashToArrayOfBoolean()
@@ -246,7 +246,7 @@ class Base
      * Get the array of squares.
      *
      * @since 3.0.0
-     *  
+     *
      * @return array
      */
     public function getArrayOfSquare()
@@ -258,7 +258,7 @@ class Base
      * Get the hash string.
      *
      * @since 3.0.0
-     *  
+     *
      * @return string
      */
     public function getHash()
@@ -272,7 +272,7 @@ class Base
      * @param $string Text that should be hashed.
      *
      * @since 3.0.0
-     *  
+     *
      * @return mix
      */
     public function setHashString(string $string)
@@ -291,7 +291,7 @@ class Base
      * @param $size size of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return int
      */
     public function setSize($size)
@@ -308,7 +308,7 @@ class Base
      * Get the size of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return int
      */
     public function getSize()
@@ -320,7 +320,7 @@ class Base
      * Get the pixel ratio.
      *
      * @since 3.0.0
-     *  
+     *
      * @return int
      */
     public function getPxRatio()

@@ -29,7 +29,7 @@ class Str
      * ISSUE: text uppercase and lowercase issues
      *
      * @since 1.0.0
-     * 
+     *
      * @return string
      */
     public function replaceWords($search, $replace, $text)

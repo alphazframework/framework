@@ -29,7 +29,7 @@ class Expection
      * @param int    $line    Line number in the file
      *
      * @since 1.0.0
-     *  
+     *
      * @return void
      */
     public static function errorHandler($level, $message, $file, $line)
@@ -45,7 +45,7 @@ class Expection
      * @param Exception $exception The exception
      *
      * @since 1.0.0
-     *  
+     *
      * @return void
      */
     public static function exceptionHandler($exception)

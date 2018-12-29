@@ -19,71 +19,71 @@ namespace Zest\Cookies;
 class Cookies
 {
     /**
-     * Name of cookie
+     * Name of cookie.
      *
      * @since 1.0.0
      *
      * @var string
-    */    
+     */
     private $name;
 
     /**
-     * Value of cookie
+     * Value of cookie.
      *
      * @since 1.0.0
      *
      * @var string
-    */    
-    private $value; 
+     */
+    private $value;
 
     /**
-     * Expire of cookie
+     * Expire of cookie.
      *
      * @since 1.0.0
      *
      * @var date/time
-    */    
+     */
     private $expire;
 
     /**
-     * Domain of cookie
+     * Domain of cookie.
      *
      * @since 1.0.0
      *
      * @var string
-    */    
+     */
     private $domain;
     /**
-     * Path of cookie
+     * Path of cookie.
      *
      * @since 1.0.0
      *
      * @var string
-    */    
-    private $path; 
+     */
+    private $path;
     /**
-     * Secure of cookie
+     * Secure of cookie.
      *
      * @since 1.0.0
      *
      * @var boo;
-    */    
+     */
     private $secure;
 
     /**
-     * HttpOnly of cookie
+     * HttpOnly of cookie.
      *
      * @since 1.0.0
      *
      * @var bool
-    */    
+     */
     private $httponly;
 
     /**
      * __Construct set the default values.
      *
      * @since 1.0.0
-     *  
+     *
      * @return void
      */
     public function __construct()
@@ -107,7 +107,7 @@ class Cookies
      * $httponly of cookie
      *
      * @since 1.0.0
-     *  
+     *
      * @return bool
      */
     public function set($params)
@@ -141,7 +141,7 @@ class Cookies
      * Set the cookie value.
      *
      * @since 1.0.0
-     *  
+     *
      * @return bool
      */
     public function setCookie()
@@ -163,7 +163,7 @@ class Cookies
      * @param  $name of cookie
      *
      * @since 1.0.0
-     *  
+     *
      * @return bool
      */
     public function isCookie($name)
@@ -185,7 +185,7 @@ class Cookies
      * @param  $name of cookie
      *
      * @since 1.0.0
-     *  
+     *
      * @return string | boolean
      */
     public function get($name)
@@ -207,7 +207,7 @@ class Cookies
      * @param  $name of cookie
      *
      * @since 1.0.0
-     *  
+     *
      * @return bool
      */
     public function delete($name)

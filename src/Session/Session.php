@@ -10,7 +10,7 @@
  *  file that was distributed with this source code.
  *
  * @since 1.0.0
- * 
+ *
  * @license MIT
  */
 

@@ -19,12 +19,12 @@ namespace Zest\Files;
 class Files
 {
     /**
-     * MineTypes
+     * MineTypes.
      *
      * @since 3.0.0
      *
      * @var array
-    */    
+     */
     private $mineTypes = [
         'application/x-zip-compressed',
         'application/msword',
@@ -43,12 +43,12 @@ class Files
         'image/svg+xml',
     ];
     /**
-     * Types
+     * Types.
      *
      * @since 3.0.0
      *
      * @var array
-    */    
+     */
     private $types = [
         'image' => ['jpg', 'png', 'jpeg', 'gif', 'ico', 'svg'],
         'zip'   => ['zip', 'tar', '7zip', 'rar'],
@@ -57,28 +57,28 @@ class Files
     ];
 
     /**
-     * The default value for recursive create dirs
+     * The default value for recursive create dirs.
      *
      * @since 1.0.0
      *
      * @var bool
-    */        
+     */
     private $recursiveDirectories = true;
 
     /**
-     * Default CHMOD
+     * Default CHMOD.
      *
      * @since 3.0.0
      *
      * @var int
-    */    
+     */
     private $defCHMOD = 0755;
 
     /**
      * Create zest system dir.
      *
      * @since 1.0.0
-     *  
+     *
      * @return bool
      */
     public function systemDirs()
@@ -96,7 +96,7 @@ class Files
      * @param $chomd valid chmod
      *
      * @since 1.0.0
-     *  
+     *
      * @return bool
      */
     public function changeDefaultChmod($chmod)
@@ -110,7 +110,7 @@ class Files
      * @param $value recursive status true|false
      *
      * @since 3.0.0
-     *  
+     *
      * @return bool
      */
     public function recursiveCreateDir($value = null)
@@ -124,7 +124,7 @@ class Files
      * @param $type correct mine type.
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function addMineTypes($type)
@@ -139,7 +139,7 @@ class Files
      *        $sub extensions
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function addExt($type, $ext)
@@ -155,7 +155,7 @@ class Files
      *        $chmod directory permission on create: default 0755
      *
      * @since 1.0.0
-     *  
+     *
      * @return bool
      */
     public function mkDir($name, $recursive = null, $chmod = null)
@@ -178,7 +178,7 @@ class Files
      *        $pre valid premission
      *
      * @since 1.0.0
-     *  
+     *
      * @return bool
      */
     public function permission($source, $pre)
@@ -198,7 +198,7 @@ class Files
      *        $files (array) files to be copy
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function copyFiles($source, $target, $files)
@@ -219,7 +219,7 @@ class Files
      *        $files (array) files to be move
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function moveFiles($source, $target, $files)
@@ -238,7 +238,7 @@ class Files
      * @param $file name of file with path.
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function deleteFiles($files)
@@ -258,7 +258,7 @@ class Files
      *        $files (array) dirs to be copy
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function copyDirs($source, $target, $dirs)
@@ -281,7 +281,7 @@ class Files
      *        $dir (array) dir to be move
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function moveDirs($source, $target, $dirs)
@@ -301,7 +301,7 @@ class Files
      * @param $dir Directory with path.
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function deleteDirs($dir)
@@ -322,7 +322,7 @@ class Files
      *        $maxSize file size to be allowed
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function fileUpload($file, $target, $imgType, $maxSize = 7992000000)
@@ -387,7 +387,7 @@ class Files
      *        $maxSize file size to be allowed
      *
      * @since 3.0.0
-     *  
+     *
      * @return void
      */
     public function filesUpload($files, $target, $imgType, $count, $maxSize = 7992000000)
