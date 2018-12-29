@@ -19,14 +19,25 @@ use Zest\Str\Str;
 
 class SystemMessage
 {
+    /*
+     * Store the alert type
+    */
     private $type;
 
+    /**
+     * Add the system message
+     *
+     * @param $params['msg'] => message to be store
+     *        $params['type'] => alert type  
+     *
+     * @return bool
+     */
     public function add($params)
     {
         if (is_array($params)) {
             if (!empty($params['msg'])) {
                 if (isset($params['type']) && !empty($params['type'])) {
-                    $this->type = $params['type'];
+                    $this->type($params['type']);
                 } else {
                     $this->type = 'light';
                 }
@@ -39,6 +50,13 @@ class SystemMessage
         }
     }
 
+    /**
+     * Set the type of message.
+     *
+     * @param $type => alert type
+     *
+     * @return void
+     */
     protected function type($type)
     {
         $type = Str::stringConversion($type, 'lowercase');
@@ -68,43 +86,38 @@ class SystemMessage
                     $type = 'light';
                     break;
             }
-        static::$type = $type;
+        $this->type = $type;
     }
 
-    private function deleteSysMsgs($type)
-    {
-        (Session::isSession('sys_msg')) ? Session::unsetValue('sys_msg', []) : null;
-    }
-
+    /**
+     * View the system message.
+     *
+     * @return string
+     */
     public function view()
     {
-        if (Session::isSession('sys_msg')) {
-            $sys_msg = Session::getValue('sys_msg');
-            $count = (isset($sys_msg['msg'])) ? count($sys_msg['msg']) : 0;
-            $msg = (isset($sys_msg['msg'])) ? $sys_msg['msg'] : null;
-            $type = (isset($sys_msg['type'])) ? $sys_msg['type'] : null;
-            if ($count !== 1) {
-                foreach ($sys_msg as $type => $sys_msg) {
-                    if (isset($sys_msg) && isset($type)) {
-                        $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$sys_msg.'</div>';
-                        $msg_data[] = $msg;
-                        static::deleteSysMsgs($type);
-                    }
-                }
-            } else {
-                if (isset($msg) && isset($type)) {
-                    $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$msg.'</div>';
+        $sys_msg = Session::getValue('sys_msg');
+        $count = (isset($sys_msg['msg'])) ? count($sys_msg['msg']) : 0;
+        $msg = (isset($sys_msg['msg'])) ? $sys_msg['msg'] : null;
+        $type = (isset($sys_msg['type'])) ? $sys_msg['type'] : null;
+        if ($count !== 1) {
+            foreach ($sys_msg as $type => $sys_msg) {
+                if (isset($sys_msg) && isset($type)) {
+                    $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$sys_msg.'</div>';
                     $msg_data[] = $msg;
-                    $this->deleteSysMsgs($type);
+                    unset($_SESSION['sys_msg']);
                 }
-            }
-            if (isset($msg_data)) {
-                return implode('', $msg_data);
-            } else {
-                return;
             }
         } else {
-            return;
+            if (isset($msg) && isset($type)) {
+                $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$msg.'</div>';
+                $msg_data[] = $msg;
+            }
+        }
+        if (isset($msg_data)) {
+            $data = implode('', $msg_data);
+            unset($_SESSION['sys_msg']);
+            return $data;
         }
     }
 }
