@@ -61,7 +61,7 @@ class UserInfo
 
     /**
      * Get Browser Name.
-     * 
+     *
      * @since 1.0.0
      *
      * @return void
@@ -182,6 +182,7 @@ class UserInfo
      * Get The user ip.
      *
      * @since 1.0.0
+     *
      * @return void
      */
     public function ip()
@@ -200,7 +201,7 @@ class UserInfo
     /**
      * Check user from mobile or not.
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return void
      */

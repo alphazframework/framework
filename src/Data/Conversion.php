@@ -24,7 +24,7 @@ class Conversion
      * @param array $array Arrays
      *
      * @since 2.0.0
-     * 
+     *
      * @return object
      */
     public static function arrayObject($array)
@@ -49,7 +49,7 @@ class Conversion
      * Convert Objects to arrays.
      *
      * @param object $object
-     * 
+     *
      * @since 2.0.0
      *
      * @return array

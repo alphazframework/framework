@@ -19,19 +19,18 @@ namespace Zest\Image\Identicon;
 class Identicon
 {
     /**
-     * Instance of class
+     * Instance of class.
      *
      * @since 3.0.0
      *
      * @var object
-    */    
+     */
     private $_instance;
 
     /**
      * __construct.
      *
      * @since 3.0.0
-     *       
      */
     public function __construct()
     {
@@ -42,7 +41,7 @@ class Identicon
      * Get the instance of Gd class.
      *
      * @since 3.0.0
-     *  
+     *
      * @return object
      */
     public function getInstance()
@@ -59,7 +58,7 @@ class Identicon
      *        $bg background color of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return binary
      */
     public function getImgData($string, $size = 128, $color = '', $bg = '')
@@ -76,7 +75,7 @@ class Identicon
      *        $bg background color of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return resource
      */
     public function getImgResource($string, $size = 128, $color = '', $bg = '')
@@ -93,7 +92,7 @@ class Identicon
      *        $bg background color of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return base64
      */
     public function getImgDataBase64($string, $size = 128, $color = '', $bg = '')
@@ -111,7 +110,7 @@ class Identicon
      *        $target target including file name and extension
      *
      * @since 3.0.0
-     *  
+     *
      * @return bool | int
      */
     public function save($string, $size, $color, $bg, $target)

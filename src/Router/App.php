@@ -18,14 +18,13 @@ namespace Zest\Router;
 
 class App extends \Zest\Router\Router
 {
-
-     /**
+    /**
      * Run the Zest Framework.
      *
      * @since 2.0.0
      *
      * @return bool
-     */   
+     */
     public function run()
     {
         $router = new Router();

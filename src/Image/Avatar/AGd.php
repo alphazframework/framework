@@ -19,19 +19,19 @@ namespace Zest\Image\Avatar;
 class AGd extends ABase
 {
     /**
-     * Image mine/tyoe
+     * Image mine/tyoe.
      *
      * @since 3.0.0
      *
      * @var string
-    */  
+     */
     public $mineType = 'image/png';
 
     /**
      * Generate the iamge.
      *
      * @since 3.0.0
-     *  
+     *
      * @return resource
      */
     public function genImage()
@@ -64,7 +64,7 @@ class AGd extends ABase
      *        $bg background color of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return binary
      */
     public function getImgBinary($string, $size = '', $color = '', $bg = '')
@@ -84,7 +84,7 @@ class AGd extends ABase
      *        $bg background color of image.
      *
      * @since 3.0.0
-     *  
+     *
      * @return resource
      */
     public function getImgResource($string, $size = '', $color = '', $bg = '')

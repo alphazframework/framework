@@ -21,35 +21,35 @@ use Config\Config;
 class Cryptography
 {
     /**
-     * Store the secret key
+     * Store the secret key.
      *
      * @since 1.0.0
      *
      * @var key
-    */
+     */
     private $key;
     /**
-     * Store the cipher iv
+     * Store the cipher iv.
      *
      * @since 1.0.0
      *
      * @var string
-    */
+     */
     private $iv;
     /**
-     * Cipher
+     * Cipher.
      *
      * @since 1.0.0
      *
      * @var string
-    */
+     */
     private $cipher = 'AES-256-CBC';
 
     /**
      * __Construct.
      *
      * @since 1.0.0
-     *  
+     *
      * @return void
      */
     public function __construct()
@@ -64,7 +64,7 @@ class Cryptography
      * @param $data => data to be encrypted
      *
      * @since 1.0.0
-     *  
+     *
      * @return token
      */
     public function encrypt($data)
@@ -78,7 +78,7 @@ class Cryptography
      * @param $token => encrypted token
      *
      * @since 1.0.0
-     *  
+     *
      * @return mix-data
      */
     public function decrypt($token)
@@ -95,7 +95,7 @@ class Cryptography
      * @param $method
      *
      * @since 3.0.0
-     *  
+     *
      * @return int
      */
     protected function iv_bytes($method)
