@@ -25,10 +25,10 @@ class SystemMessage
     private $type;
 
     /**
-     * Add the system message
+     * Add the system message.
      *
      * @param $params['msg'] => message to be store
-     *        $params['type'] => alert type  
+     *        $params['type'] => alert type
      *
      * @return bool
      */
@@ -117,6 +117,7 @@ class SystemMessage
         if (isset($msg_data)) {
             $data = implode('', $msg_data);
             unset($_SESSION['sys_msg']);
+
             return $data;
         }
     }
