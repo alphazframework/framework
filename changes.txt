@@ -60,3 +60,5 @@ Changes:
 51. Update Cryptography system.
 52. Update systemMessage class fix serveral issues.
 53. Update Session class fix session not deleting issue.
+54. Update Pagination Ssystem 
+    - Allow developers to add custum class to ul,li and a tag.
