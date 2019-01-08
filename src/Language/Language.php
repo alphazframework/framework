@@ -9,8 +9,6 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @since 1.0.0
- *
  * @license MIT
  */
 
@@ -26,11 +24,9 @@ class Language
      *
      * @param $value=> language symbol
      *
-     * @since 1.0.0
-     *
      * @return string
      */
-    public static function setLanguage($value)
+    public function setLanguage($value)
     {
         Cookies::set(['name'=>'lang', 'expir'=>time() + 100000, 'value'=>$value, 'domain'=>$_SERVER['SERVER_NAME'], 'path'=>'/', 'secure'=>false, 'httponly'=>false]);
     }
@@ -38,11 +34,9 @@ class Language
     /**
      * Get the current language.
      *
-     * @since 1.0.0
-     *
      * @return string
      */
-    public static function getLang()
+    public function getLang()
     {
         if (Cookies::isCookie('lang')) {
             $language = Cookies::get('lang');
@@ -56,18 +50,25 @@ class Language
     /**
      * include lang string file.
      *
-     * @since 1.0.0
-     *
      * @return string
      */
-    public static function languageString()
+    public function languageString()
     {
-        $language = static::getLang();
-        if (file_exists("../App//Locale/{$language}.php")) {
-            return require "../App//Locale/{$language}.php";
-        } else {
-            return false;
+        $data = $data1 = $data2 = [];
+        $language = $this->getLang();
+        if (file_exists(route()->locale."{$language}.php")) {
+            $data1 += require route()->locale."{$language}.php";
+        } 
+        $path = route()->com;
+        $disk_scan = array_diff(scandir($path), ['..', '.']);
+        foreach ($disk_scan as $scans) {
+            if (file_exists($path.$scans."/Locale/{$language}.php")) {
+                $data2 += require $path.$scans."/Locale/{$language}.php";
+            }
         }
+        $data = array_merge($data1,$data2);
+
+        return $data;        
     }
 
     /**
@@ -75,15 +76,13 @@ class Language
      *
      * @param $key language key
      *
-     * @since 1.0.0
-     *
      * @return string
      */
-    public static function print($key)
+    public function print($key)
     {
         if (!empty($key)) {
-            if (array_key_exists(Str::stringConversion($key, 'lowercase'), static::languageString())) {
-                return static::languageString()[Str::stringConversion($key, 'lowercase')];
+            if (array_key_exists(Str::stringConversion($key, 'lowercase'), $this->languageString())) {
+                return $this->languageString()[Str::stringConversion($key, 'lowercase')];
             } else {
                 return Str::stringConversion($key, 'lowercase');
             }
@@ -99,11 +98,9 @@ class Language
      * 'allkeys'=>'on' ==> return all keys in array
      * 'search' => 'value' ==> return boolean true on find false not find Note: it only keys string in language file
      *
-     * @since 1.0.0
-     *
      * @return string
      */
-    public static function debug($params)
+    public function debug($params)
     {
         if (is_array($params)) {
             if (isset($params['allkeys']) and Str::stringConversion($params['allkeys'], 'lowercase') === 'on') {

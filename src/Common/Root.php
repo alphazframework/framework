@@ -18,36 +18,36 @@ use Zest\Data\Conversion;
 
 class Root
 {
-    public static function path()
+    public function root()
     {
         return '../';
     }
 
-    public static function rootPaths()
+    public function paths()
     {
         $roots = [
-            'root' => static::path(),
+            'root' => $this->root(),
             //App
-            'app'         => static::path().'App/',
-            'controllers' => static::path().'App/Controllers/',
-            'local'       => static::path().'App/local/',
-            'middleware'  => static::path().'App/Middleware/',
-            'models'      => static::path().'App/Models/',
-            'views'       => static::path().'App/Views/',
+            'app'         => $this->root().'App/',
+            'controllers' => $this->root().'App/Controllers/',
+            'locale'       => $this->root().'App/Locale/',
+            'middleware'  => $this->root().'App/Middleware/',
+            'models'      => $this->root().'App/Models/',
+            'views'       => $this->root().'App/Views/',
             //components
-            'com' => static::path().'App/Component/',
+            'com' => $this->root().'App/Components/',
             //config
-            'config' => static::path().'Config/',
+            'config' => $this->root().'Config/',
             //public
-            'public' => static::path().'public/',
+            'public' => $this->root().'public/',
             //routes
-            'routes' => static::path().'routes/',
+            'routes' => $this->root().'routes/',
             //Storage
-            'storage'         => static::path().'Storage/',
-            'storage_backtup' => static::path().'Storage/Backup/',
-            'storage_data'    => static::path().'Storage/Data/',
-            'storage_logs'    => static::path().'Storage/Logs/',
-            'storage_session' => static::path().'Storage/Session/',
+            'storage'         => $this->root().'Storage/',
+            'storage_backtup' => $this->root().'Storage/Backup/',
+            'storage_data'    => $this->root().'Storage/Data/',
+            'storage_logs'    => $this->root().'Storage/Logs/',
+            'storage_session' => $this->root().'Storage/Session/',
         ];
 
         return Conversion::arrayObject($roots);

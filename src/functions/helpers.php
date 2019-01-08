@@ -2,11 +2,11 @@
 
 function printl(string $key)
 {
-    return Zest\Language\Language::print($key);
+    return (new \Zest\Language\Language())->print($key);
 }
-function printc(string $key)
+function debug_printl($params)
 {
-    return Zest\Component\Language\comLanguage::printC($key);
+    return (new \Zest\Language\Language())->debug($params);
 }
 function lang()
 {
@@ -98,7 +98,7 @@ function csrf_token()
 }
 function route()
 {
-    return Zest\Common\Root::rootPaths();
+    return (new \Zest\Common\Root())->paths();
 }
 function encrypt($data)
 {

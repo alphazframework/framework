@@ -62,3 +62,7 @@ Changes:
 53. Update Session class fix session not deleting issue.
 54. Update Pagination Ssystem 
     - Allow developers to add custum class to ul,li and a tag.
+55. Update Language Class.
+56. Update Root class fix typos.
+57. Delete Language Class form Component 
+	- Now you can use printl function in component as well
