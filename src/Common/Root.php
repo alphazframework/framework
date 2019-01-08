@@ -28,12 +28,12 @@ class Root
         $roots = [
             'root' => $this->root(),
             //App
-            'app'         => $this->root().'App/',
-            'controllers' => $this->root().'App/Controllers/',
+            'app'          => $this->root().'App/',
+            'controllers'  => $this->root().'App/Controllers/',
             'locale'       => $this->root().'App/Locale/',
-            'middleware'  => $this->root().'App/Middleware/',
-            'models'      => $this->root().'App/Models/',
-            'views'       => $this->root().'App/Views/',
+            'middleware'   => $this->root().'App/Middleware/',
+            'models'       => $this->root().'App/Models/',
+            'views'        => $this->root().'App/Views/',
             //components
             'com' => $this->root().'App/Components/',
             //config
