@@ -26,12 +26,16 @@ class Router
     /**
      * Associative array of routes (the routing table).
      *
+     * @since 1.0.0
+     *
      * @var array
      */
     protected $routes = [];
 
     /**
      * Parameters from the matched route.
+     *
+     * @since 1.0.0
      *
      * @var array
      */

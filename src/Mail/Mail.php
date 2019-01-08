@@ -22,47 +22,91 @@ class Mail
 {
     /**
      * Additional parameters for sending the mail.
+     *
+     * @since 1.9.0
+     *
+     * @var string     
      */
     private $addparams = '';
 
     /**
      * Collection of all attachments.
+     *
+     * @since 1.9.0
+     *
+     * @var array
      */
     private $attachments = [];
     /**
      * Collection of all BCC (Blind Copy Carbon) mail-addresses.
+     *
+     * @since 1.9.0
+     *
+     * @var array
      */
     private $bcc = [];
     /**
      * Collection of all CC (Copy Carbon) mail-addresses.
+     *
+     * @since 1.9.0
+     *
+     * @var array
      */
     private $cc = [];
     /**
      * The formatted content (HTML) of the mail.
+     *
+     * @since 1.9.0
+     *
+     * @var String|HTML
      */
     private $contentHTML = '';
     /**
      * The plain content (non HTML) content of the mail.
+     *
+     * @since 1.9.0
+     *
+     * @var string
      */
     private $contentPlain = '';
     /**
      * Collection of all receivers.
+     *
+     * @since 1.9.0
+     *
+     * @var array
      */
     private $receivers = [];
     /**
      * The mail-address on which should be answered.
+     *
+     * @since 1.9.0
+     *
+     * @var string
      */
     private $replyTo = '';
     /**
      * The sender of the mail.
+     *
+     * @since 1.9.0
+     *
+     * @var string
      */
     private $sender = '';
     /**
      * The subject of the mail.
+     *
+     * @since 1.9.0
+     *
+     * @var string
      */
     private $subject = '';
     /**
      * Configuration for smtp.
+     *
+     * @since 1.9.0
+     *
+     * @var string
      */
     private $smtp = [];
 

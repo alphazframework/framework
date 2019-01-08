@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.0.0
+ *
  * @license MIT
  */
 
@@ -24,6 +26,8 @@ class Language
      *
      * @param $value=> language symbol
      *
+     * @since 1.0.0
+     *
      * @return string
      */
     public function setLanguage($value)
@@ -33,6 +37,8 @@ class Language
 
     /**
      * Get the current language.
+     *
+     * @since 1.0.0
      *
      * @return string
      */
@@ -49,6 +55,8 @@ class Language
 
     /**
      * include lang string file.
+     *
+     * @since 1.0.0
      *
      * @return string
      */
@@ -76,6 +84,8 @@ class Language
      *
      * @param $key language key
      *
+     * @since 1.0.0
+     *
      * @return string
      */
     public function print($key)
@@ -97,6 +107,8 @@ class Language
      * @param =>$params (array)
      * 'allkeys'=>'on' ==> return all keys in array
      * 'search' => 'value' ==> return boolean true on find false not find Note: it only keys string in language file
+     *
+     * @since 1.0.0
      *
      * @return string
      */

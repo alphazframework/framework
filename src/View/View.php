@@ -66,11 +66,14 @@ class View
     }
 
     /**
-     * Set attributes for template.
+     * Set the attribute for tamplet.
      *
-     * @param $arrays
+     * @param $file name of files
+     *        $params attributes
      *
-     * @return booleans
+     * @since 1.0.0
+     *
+     * @return void
      */
     public static function randerTemplate($file, $params = [])
     {
@@ -90,6 +93,8 @@ class View
     /**
      * Get content form file.
      *
+     * @since 1.0.0
+     *
      * @return raw-data
      */
     public static function fetchFile()
@@ -106,6 +111,8 @@ class View
     /**
      * Check file exists or not.
      *
+     * @since 1.0.0
+     *
      * @return bool
      */
     public static function isFile()
@@ -120,6 +127,8 @@ class View
 
     /**
      * Rander template.
+     *
+     * @since 1.0.0
      *
      * @return raw-data
      */
@@ -144,6 +153,16 @@ class View
         }
     }
 
+    /**
+     * views.
+     *
+     * @param $file name of files
+     *        $args argoument need to be passed
+     *
+     * @since 1.0.0
+     *
+     * @return buffer
+     */
     public function views($file, array $args = [])
     {
         if (!empty($file)) {
@@ -159,7 +178,17 @@ class View
             return false;
         }
     }
-
+    /**
+     * Set file.
+     *
+     * @param $file name of files
+     *        $args argoument need to be passed
+     *        $minify is code should be minify
+     *
+     * @since 1.0.0
+     *
+     * @return bugger
+     */
     public function view($file, array $args = [], $minify = true)
     {
         if ($minify) {
