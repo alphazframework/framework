@@ -25,7 +25,7 @@ class Mail
      *
      * @since 1.9.0
      *
-     * @var string     
+     * @var string
      */
     private $addparams = '';
 
@@ -58,7 +58,7 @@ class Mail
      *
      * @since 1.9.0
      *
-     * @var String|HTML
+     * @var string|HTML
      */
     private $contentHTML = '';
     /**
