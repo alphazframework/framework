@@ -66,3 +66,6 @@ Changes:
 56. Update Root class fix typos.
 57. Delete Language Class form Component 
 	- Now you can use printl function in component as well
+58. Update PasswordManipulation class
+    - Added method for set custum password length
+	

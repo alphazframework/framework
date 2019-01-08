@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.9.7
+ *
  * @license MIT
  */
 
@@ -16,10 +18,41 @@ namespace Zest\Common;
 
 class PasswordManipulation
 {
-    const PASS_MIN_LEN = 8;
+    /**
+     * Store password default length
+     * 
+     * @since 3.0.0
+     *
+     * @var int
+    */
+    private $password_len = 8;
 
     /**
+     * Set the password default length.
+     *
+     * @since 3.0.0
+     *
+     * @return int
+     */
+    public function setLength($length)
+    {
+        return (is_int($length)) ? $this->password_len = $length : false;
+    }
+    /**
+     * Get the password default length.
+     *
+     * @since 3.0.0
+     *
+     * @return int
+     */    
+    public function getLength()
+    {
+        return $this->password_len;
+    }
+    /**
      * Generate the password.
+     *
+     * @since 2.9.7
      *
      * @return mix-data
      */
@@ -38,6 +71,8 @@ class PasswordManipulation
      *
      * @param $password userPassword , $hash password hash
      *
+     * @since 2.9.7
+     *
      * @return bool
      */
     public function hashMatched($password, $hash)
@@ -49,6 +84,8 @@ class PasswordManipulation
      * Hash the password.
      *
      * @param $password userPassword
+     *
+     * @since 2.9.7
      *
      * @return bool
      */
@@ -70,17 +107,21 @@ class PasswordManipulation
      *
      * @param $password userPassword
      *
+     * @since 2.9.7
+     *
      * @return int
      */
     public function isValid($password)
     {
-        return ($this->isU($password) && $this->isL($password) && $this->isN($password) && $this->isS($password) && $this->len($password) >= self::PASS_MIN_LEN) ? true : false;
+        return ($this->isU($password) && $this->isL($password) && $this->isN($password) && $this->isS($password) && $this->len($password) >= $this->getLength()) ? true : false;
     }
 
     /**
      * Check is capital letter is included in password.
      *
      * @param $password userPassword
+     *
+     * @since 2.9.7
      *
      * @return int
      */
@@ -94,6 +135,8 @@ class PasswordManipulation
      *
      * @param $password userPassword
      *
+     * @since 2.9.7
+     *
      * @return int
      */
     public function isL($password)
@@ -105,6 +148,8 @@ class PasswordManipulation
      * Check is the integer included in password.
      *
      * @param $password userPassword
+     *
+     * @since 2.9.7
      *
      * @return int
      */
@@ -118,6 +163,8 @@ class PasswordManipulation
      *
      * @param $password userPassword
      *
+     * @since 2.9.7
+     *
      * @return int
      */
     public function isS($password)
@@ -129,6 +176,8 @@ class PasswordManipulation
      * Get password length.
      *
      * @param $password userPassword
+     *
+     * @since 2.9.7
      *
      * @return int
      */
