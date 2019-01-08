@@ -19,12 +19,12 @@ namespace Zest\Common;
 class PasswordManipulation
 {
     /**
-     * Store password default length
-     * 
+     * Store password default length.
+     *
      * @since 3.0.0
      *
      * @var int
-    */
+     */
     private $password_len = 8;
 
     /**
@@ -38,17 +38,19 @@ class PasswordManipulation
     {
         return (is_int($length)) ? $this->password_len = $length : false;
     }
+
     /**
      * Get the password default length.
      *
      * @since 3.0.0
      *
      * @return int
-     */    
+     */
     public function getLength()
     {
         return $this->password_len;
     }
+
     /**
      * Generate the password.
      *
