@@ -178,6 +178,7 @@ class View
             return false;
         }
     }
+
     /**
      * Set file.
      *

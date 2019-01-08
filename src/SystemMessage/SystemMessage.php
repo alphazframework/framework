@@ -22,13 +22,12 @@ use Zest\Str\Str;
 class SystemMessage
 {
     /**
-      * Store the alert type
-      *
-      * @since 1.0.0
-      *
-      * @var string
-      *
-    */
+     * Store the alert type.
+     *
+     * @since 1.0.0
+     *
+     * @var string
+     */
     private $type;
 
     /**
