@@ -12,17 +12,15 @@
  * @since 3.0.0
  *
  * @license MIT
- *
  */
 
 namespace Zest\http;
 
-class HTTP 
+class HTTP
 {
-
-	/*Request*/
+    /*Request*/
     /**
-     * Request URI
+     * Request URI.
      *
      * @since 3.0.0
      *
@@ -31,7 +29,7 @@ class HTTP
     protected $requestUri = null;
 
     /**
-     * Path segments
+     * Path segments.
      *
      * @since 3.0.0
      *
@@ -40,7 +38,7 @@ class HTTP
     protected $segments = [];
 
     /**
-     * Base path
+     * Base path.
      *
      * @since 3.0.0
      *
@@ -49,7 +47,7 @@ class HTTP
     protected $basePath = null;
 
     /**
-     * Headers
+     * Headers.
      *
      * @since 3.0.0
      *
@@ -58,7 +56,7 @@ class HTTP
     protected $headers = [];
 
     /**
-     * Raw data
+     * Raw data.
      *
      * @since 3.0.0
      *
@@ -67,7 +65,7 @@ class HTTP
     protected $rawData = null;
 
     /**
-     * Parsed data
+     * Parsed data.
      *
      * @since 3.0.0
      *
@@ -76,89 +74,89 @@ class HTTP
     protected $parsedData = null;
 
     /**
-     * GET array
+     * GET array.
      *
      * @since 3.0.0
      *
      * @var array
      */
-    protected $get    = [];
+    protected $get = [];
 
     /**
-     * POST array
+     * POST array.
      *
      * @since 3.0.0
      *
-     * @var array     
+     * @var array
      */
-    protected $post   = [];
+    protected $post = [];
 
     /**
-     * FILES array
+     * FILES array.
      *
      * @since 3.0.0
      *
-     * @var array       
+     * @var array
      */
-    protected $files  = [];
+    protected $files = [];
 
     /**
-     * PUT array
+     * PUT array.
      *
      * @since 3.0.0
      *
-     * @var array       
+     * @var array
      */
-    protected $put    = [];
+    protected $put = [];
 
     /**
-     * PATCH array
+     * PATCH array.
      *
      * @since 3.0.0
      *
-     * @var array       
+     * @var array
      */
-    protected $patch  = [];
+    protected $patch = [];
 
     /**
-     * DELETE array
+     * DELETE array.
      *
      * @since 3.0.0
      *
-     * @var array       
+     * @var array
      */
     protected $delete = [];
 
     /**
-     * COOKIE array
+     * COOKIE array.
      *
      * @since 3.0.0
      *
-     * @var array       
+     * @var array
      */
     protected $cookie = [];
 
     /**
-     * SERVER array
+     * SERVER array.
      *
      * @since 3.0.0
      *
-     * @var array       
+     * @var array
      */
     protected $server = [];
 
     /**
-     * ENV array
+     * ENV array.
      *
      * @since 3.0.0
      *
-     * @var array       
+     * @var array
      */
-    protected $env    = [];
+    protected $env = [];
 
     /* Response */
     /**
-     * Response codes & messages
+     * Response codes & messages.
      *
      * @since 3.0.0
      *
@@ -234,11 +232,11 @@ class HTTP
         508 => 'Loop Detected',
         509 => 'Bandwidth Limit Exceeded',
         510 => 'Not Extended',
-        511 => 'Network Authentication Required'
+        511 => 'Network Authentication Required',
     ];
     /**
-     * HTTP version
-     * 
+     * HTTP version.
+     *
      * @since 3.0.0
      *
      * @var string
@@ -246,8 +244,8 @@ class HTTP
     protected $version = '1.1';
 
     /**
-     * Response code
-     * 
+     * Response code.
+     *
      * @since 3.0.0
      *
      * @var int
@@ -255,8 +253,8 @@ class HTTP
     protected $code = null;
 
     /**
-     * Response message
-     * 
+     * Response message.
+     *
      * @since 3.0.0
      *
      * @var string
@@ -264,133 +262,143 @@ class HTTP
     protected $message = null;
 
     /**
-     * Response body
-     * 
+     * Response body.
+     *
      * @since 3.0.0
      *
      * @var string
      */
     protected $body = null;
 
-     /**
-     * Get a value from $_SERVER['REQUEST_METHOD']
+    /**
+     * Get a value from $_SERVER['REQUEST_METHOD'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   
-	public function getRequestMethod()
-	{
-		return (isset($_SERVER['REQUEST_METHOD'])) ? $_SERVER['REQUEST_METHOD'] : false;
-	}
-     /**
-     * Get a value from $_SERVER['REQUEST_URI']
+     */
+    public function getRequestMethod()
+    {
+        return (isset($_SERVER['REQUEST_METHOD'])) ? $_SERVER['REQUEST_METHOD'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['REQUEST_URI'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   	
-	public function getRequestUrl()
-	{
-		return (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : false;
-	}	
-     /**
-     * Get a value from $_SERVER['CONTENT_TYPE']
+     */
+    public function getRequestUrl()
+    {
+        return (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['CONTENT_TYPE'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   
-	public function getContentType()
-	{
-		return (isset($_SERVER['CONTENT_TYPE'])) ? $_SERVER['CONTENT_TYPE'] : false;
-	}
-     /**
-     * Get a value from $_SERVER['QUERY_STRING']
+     */
+    public function getContentType()
+    {
+        return (isset($_SERVER['CONTENT_TYPE'])) ? $_SERVER['CONTENT_TYPE'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['QUERY_STRING'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   	
-	public function getQueryString()
-	{
-		return (isset($_SERVER['QUERY_STRING'])) ? $_SERVER['QUERY_STRING'] : false;
-	}
-     /**
-     * Get a value from $_SERVER['SERVER_PORT']
+     */
+    public function getQueryString()
+    {
+        return (isset($_SERVER['QUERY_STRING'])) ? $_SERVER['QUERY_STRING'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['SERVER_PORT'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   	
-	public function getServerPort()
-	{
-		return (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : false;
-	}
-     /**
-     * Get a value from $_SERVER['DOCUMENT_ROOT']
+     */
+    public function getServerPort()
+    {
+        return (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['DOCUMENT_ROOT'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   	
-	public function getDocumentRoot()
-	{
-		return (isset($_SERVER['DOCUMENT_ROOT'])) ? $_SERVER['DOCUMENT_ROOT'] : false;
-	}
-     /**
-     * Get a value from $_SERVER['HTTP_HOST']
+     */
+    public function getDocumentRoot()
+    {
+        return (isset($_SERVER['DOCUMENT_ROOT'])) ? $_SERVER['DOCUMENT_ROOT'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['HTTP_HOST'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   	
-	public function getHost()
-	{
-		return (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : false;		
-	}
-     /**
-     * Get a value from $_SERVER['SERVER_NAME']
+     */
+    public function getHost()
+    {
+        return (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['SERVER_NAME'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   	
-	public function getServerName()
-	{
-		return (isset($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : false;		
-	}	
-     /**
-     * Get a headers
+     */
+    public function getServerName()
+    {
+        return (isset($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : false;
+    }
+
+    /**
+     * Get a headers.
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   	
-	public function getHeaders()
-	{
-		return getallheaders();
-	}
-     /**
-     * Get a value from $_SERVER['HTTP']
+     */
+    public function getHeaders()
+    {
+        return getallheaders();
+    }
+
+    /**
+     * Get a value from $_SERVER['HTTP'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   
-	public function gethttp()
-	{
-		return (isset($_SERVER['HTTP'])) ? $_SERVER['HTTP'] : false;		
-	}
-     /**
-     * Get a value from $_SERVER['HTTPS']
+     */
+    public function gethttp()
+    {
+        return (isset($_SERVER['HTTP'])) ? $_SERVER['HTTP'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['HTTPS'].
      *
      * @since 3.0.0
      *
      * @return bool|array
-     */   	
-	public function gethttps()
-	{
-		return (isset($_SERVER['HTTPS'])) ? $_SERVER['HTTPS'] : false;		
-	}		
+     */
+    public function gethttps()
+    {
+        return (isset($_SERVER['HTTPS'])) ? $_SERVER['HTTPS'] : false;
+    }
 }
