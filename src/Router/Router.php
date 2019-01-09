@@ -18,6 +18,7 @@
 
 namespace Zest\Router;
 
+use Zest\http\Request;
 use Config\Config;
 use Zest\Cache\ZestCache\ZestCache;
 
@@ -41,6 +42,34 @@ class Router
      */
     protected $params = [];
 
+    /**
+     * Parameters from the matched route.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    private $request;
+
+    /**
+     * __construct
+     *
+     * @since 3.0.0
+    */
+    public function __construct()
+    {
+        $this->request = new Request;
+    }
+
+    /**
+     * Get the HTTP Request instance
+     *
+     * @since 3.0.0
+    */    
+    public function getRequestInstance()
+    {
+        return $this->request;
+    }
     /**
      * Add a route to the routing table.
      *
@@ -247,7 +276,7 @@ class Router
     {
         $match = false;
         if ($requestMethod === null) {
-            $requestMethod = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+            $requestMethod = ($this->request->getRequestMethod()) ? $this->request->getRequestMethod() : 'GET';
         }
         $methods = explode('|', $methods);
         foreach ($methods as $method) {
@@ -286,7 +315,7 @@ class Router
      */
     public function getInput($default)
     {
-        $method = (!empty($default)) ? $default : $_SERVER['REQUEST_METHOD'];
+        $method = (!empty($default)) ? $default : $this->request->getRequestMethod();
         if ($method === 'POST') {
             $data = $_POST;
         } elseif ($method === 'GET') {
@@ -389,7 +418,7 @@ class Router
             if (strpos($parts[0], '=') === false) {
                 $url = $parts[0];
             } else {
-                $url = self::RemoveQueryString($_SERVER['QUERY_STRING']);
+                $url = self::RemoveQueryString($this->request->getQueryString());
             }
         }
 
