@@ -18,9 +18,9 @@
 
 namespace Zest\Router;
 
-use Zest\http\Request;
 use Config\Config;
 use Zest\Cache\ZestCache\ZestCache;
+use Zest\http\Request;
 
 class Router
 {
@@ -52,24 +52,25 @@ class Router
     private $request;
 
     /**
-     * __construct
+     * __construct.
      *
      * @since 3.0.0
-    */
+     */
     public function __construct()
     {
-        $this->request = new Request;
+        $this->request = new Request();
     }
 
     /**
-     * Get the HTTP Request instance
+     * Get the HTTP Request instance.
      *
      * @since 3.0.0
-    */    
+     */
     public function getRequestInstance()
     {
         return $this->request;
     }
+
     /**
      * Add a route to the routing table.
      *

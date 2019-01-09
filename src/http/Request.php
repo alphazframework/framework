@@ -12,57 +12,52 @@
  * @since 3.0.0
  *
  * @license MIT
- *
  */
 
 namespace Zest\http;
 
 class Request extends HTTP
 {
-	
-
     /**
-     * Constructor
+     * Constructor.
      *
      * Instantiate the request object
      *
-     * @param  string $uri
+     * @param string $uri
      *
      * @since 3.0.0
      *
-     * @param  string $basePath
+     * @param string $basePath
      */
     public function __construct($uri = null, $basePath = null)
     {
         $this->setRequestUri($uri, $basePath);
 
-        $this->get    = (isset($_GET))    ? $_GET    : [];
-        $this->post   = (isset($_POST))   ? $_POST   : [];
-        $this->files  = (isset($_FILES))  ? $_FILES  : [];
+        $this->get = (isset($_GET)) ? $_GET : [];
+        $this->post = (isset($_POST)) ? $_POST : [];
+        $this->files = (isset($_FILES)) ? $_FILES : [];
         $this->cookie = (isset($_COOKIE)) ? $_COOKIE : [];
         $this->server = (isset($_SERVER)) ? $_SERVER : [];
-        $this->env    = (isset($_ENV))    ? $_ENV    : [];
+        $this->env = (isset($_ENV)) ? $_ENV : [];
 
         if ($this->getRequestMethod()) {
             $this->parseData();
         }
         $this->headers = $this->getHeaders();
-        
     }
 
     /**
-     * Determine whether or not the request has FILES
+     * Determine whether or not the request has FILES.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasFiles()
     {
-        return (count($this->files) > 0);
+        return count($this->files) > 0;
     }
 
-
     /**
-     * Determine whether or not the method is GET
+     * Determine whether or not the method is GET.
      *
      * @since 3.0.0
      *
@@ -70,11 +65,11 @@ class Request extends HTTP
      */
     public function isGet()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'GET'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'GET');
     }
 
     /**
-     * Determine whether or not the method is HEAD
+     * Determine whether or not the method is HEAD.
      *
      * @since 3.0.0
      *
@@ -82,11 +77,11 @@ class Request extends HTTP
      */
     public function isHead()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'HEAD'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'HEAD');
     }
 
     /**
-     * Determine whether or not the method is POST
+     * Determine whether or not the method is POST.
      *
      * @since 3.0.0
      *
@@ -94,11 +89,11 @@ class Request extends HTTP
      */
     public function isPost()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'POST'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'POST');
     }
 
     /**
-     * Determine whether or not the method is PUT
+     * Determine whether or not the method is PUT.
      *
      * @since 3.0.0
      *
@@ -106,11 +101,11 @@ class Request extends HTTP
      */
     public function isPut()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'PUT'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'PUT');
     }
 
     /**
-     * Determine whether or not the method is DELETE
+     * Determine whether or not the method is DELETE.
      *
      * @since 3.0.0
      *
@@ -118,11 +113,11 @@ class Request extends HTTP
      */
     public function isDelete()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'DELETE'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'DELETE');
     }
 
     /**
-     * Determine whether or not the method is TRACE
+     * Determine whether or not the method is TRACE.
      *
      * @since 3.0.0
      *
@@ -130,11 +125,11 @@ class Request extends HTTP
      */
     public function isTrace()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'TRACE'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'TRACE');
     }
 
     /**
-     * Determine whether or not the method is OPTIONS
+     * Determine whether or not the method is OPTIONS.
      *
      * @since 3.0.0
      *
@@ -142,11 +137,11 @@ class Request extends HTTP
      */
     public function isOptions()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'OPTIONS'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'OPTIONS');
     }
 
     /**
-     * Determine whether or not the method is CONNECT
+     * Determine whether or not the method is CONNECT.
      *
      * @since 3.0.0
      *
@@ -154,11 +149,11 @@ class Request extends HTTP
      */
     public function isConnect()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'CONNECT'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'CONNECT');
     }
 
     /**
-     * Determine whether or not the method is PATCH
+     * Determine whether or not the method is PATCH.
      *
      * @since 3.0.0
      *
@@ -166,12 +161,12 @@ class Request extends HTTP
      */
     public function isPatch()
     {
-        return ($this->getRequestMethod() && ($this->getRequestMethod() === 'PATCH'));
+        return $this->getRequestMethod() && ($this->getRequestMethod() === 'PATCH');
     }
 
     /**
-     * Return whether or not the request is secure
-      *
+     * Return whether or not the request is secure.
+     *
      * @since 3.0.0
      *
      * @return bool
@@ -182,7 +177,7 @@ class Request extends HTTP
     }
 
     /**
-     * Get scheme
+     * Get scheme.
      *
      * @since 3.0.0
      *
@@ -191,10 +186,10 @@ class Request extends HTTP
     public function getScheme()
     {
         return ($this->isSecure()) ? 'https' : 'http';
-    }   
+    }
 
     /**
-     * Get the base path
+     * Get the base path.
      *
      * @since 3.0.0
      *
@@ -206,7 +201,7 @@ class Request extends HTTP
     }
 
     /**
-     * Get the request URI
+     * Get the request URI.
      *
      * @since 3.0.0
      *
@@ -218,7 +213,7 @@ class Request extends HTTP
     }
 
     /**
-     * Get the full request URI, including base path
+     * Get the full request URI, including base path.
      *
      * @since 3.0.0
      *
@@ -226,16 +221,16 @@ class Request extends HTTP
      */
     public function getFullRequestUri()
     {
-        return $this->basePath . $this->requestUri;
+        return $this->basePath.$this->requestUri;
     }
 
     /**
      * Get a path segment, divided by the forward slash,
      * where $i refers to the array key index, i.e.,
      *    0     1     2
-     * /hello/world/page
+     * /hello/world/page.
      *
-     * @param  int $i
+     * @param int $i
      *
      * @since 3.0.0
      *
@@ -243,11 +238,11 @@ class Request extends HTTP
      */
     public function getSegment($i)
     {
-        return (isset($this->segments[(int)$i])) ? $this->segments[(int)$i] : null;
+        return (isset($this->segments[(int) $i])) ? $this->segments[(int) $i] : null;
     }
 
     /**
-     * Get all path segments
+     * Get all path segments.
      *
      * @since 3.0.0
      *
@@ -258,11 +253,10 @@ class Request extends HTTP
         return $this->segments;
     }
 
-
     /**
-     * Get a value from $_GET, or the whole array
+     * Get a value from $_GET, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -278,9 +272,9 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from $_POST, or the whole array
+     * Get a value from $_POST, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -296,9 +290,9 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from $_FILES, or the whole array
+     * Get a value from $_FILES, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -314,9 +308,9 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from PUT query data, or the whole array
+     * Get a value from PUT query data, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -332,9 +326,9 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from PATCH query data, or the whole array
+     * Get a value from PATCH query data, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -350,9 +344,9 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from DELETE query data, or the whole array
+     * Get a value from DELETE query data, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -368,9 +362,9 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from $_COOKIE, or the whole array
+     * Get a value from $_COOKIE, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -386,9 +380,9 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from $_SERVER, or the whole array
+     * Get a value from $_SERVER, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -404,9 +398,9 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from $_ENV, or the whole array
+     * Get a value from $_ENV, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -420,10 +414,11 @@ class Request extends HTTP
             return (isset($this->env[$key])) ? $this->env[$key] : null;
         }
     }
+
     /**
-     * Get a value from parsed data, or the whole array
+     * Get a value from parsed data, or the whole array.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -433,7 +428,7 @@ class Request extends HTTP
     {
         $result = null;
 
-        if ( $this->parsedData !== null && is_array($this->parsedData)) {
+        if ($this->parsedData !== null && is_array($this->parsedData)) {
             if (null === $key) {
                 $result = $this->parsedData;
             } else {
@@ -443,10 +438,11 @@ class Request extends HTTP
 
         return $result;
     }
+
     /**
-     * Get a value from the request headers
+     * Get a value from the request headers.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -458,7 +454,7 @@ class Request extends HTTP
     }
 
     /**
-     * Get the raw data
+     * Get the raw data.
      *
      * @since 3.0.0
      *
@@ -470,9 +466,9 @@ class Request extends HTTP
     }
 
     /**
-     * Set the base path
+     * Set the base path.
      *
-     * @param  string $path
+     * @param string $path
      *
      * @since 3.0.0
      *
@@ -481,11 +477,12 @@ class Request extends HTTP
     public function setBasePath($path = null)
     {
         $this->basePath = $path;
+
         return $this;
     }
 
     /**
-     * Set the request URI
+     * Set the request URI.
      *
      * @param  $uri
      * 		   $basePath
@@ -500,10 +497,10 @@ class Request extends HTTP
             $uri = $this->getRequestUrl();
         }
         if (!empty($basePath)) {
-            if (substr($uri, 0, (strlen($basePath) + 1)) == $basePath . '/') {
+            if (substr($uri, 0, (strlen($basePath) + 1)) == $basePath.'/') {
                 $uri = substr($uri, (strpos($uri, $basePath) + strlen($basePath)));
-            } else if (substr($uri, 0, (strlen($basePath) + 1)) == $basePath . '?') {
-                $uri = '/' . substr($uri, (strpos($uri, $basePath) + strlen($basePath)));
+            } elseif (substr($uri, 0, (strlen($basePath) + 1)) == $basePath.'?') {
+                $uri = '/'.substr($uri, (strpos($uri, $basePath) + strlen($basePath)));
             }
         }
 
@@ -513,8 +510,8 @@ class Request extends HTTP
 
         // Some slash clean up
         $this->requestUri = $uri;
-        $docRoot  = ($this->getDocumentRoot()) ? str_replace('\\', '/', $this->getDocumentRoot()) : null;
-        $dir              = str_replace('\\', '/', getcwd());
+        $docRoot = ($this->getDocumentRoot()) ? str_replace('\\', '/', $this->getDocumentRoot()) : null;
+        $dir = str_replace('\\', '/', getcwd());
 
         if ($dir != $docRoot && strlen($dir) > strlen($docRoot)) {
             $realBasePath = str_replace($docRoot, '', $dir);
@@ -538,7 +535,7 @@ class Request extends HTTP
     }
 
     /**
-     * Magic method to get a value from one of the server/environment variables
+     * Magic method to get a value from one of the server/environment variables.
      *
      * @param  $name
      *
@@ -583,12 +580,12 @@ class Request extends HTTP
                 return $this->rawData;
                 break;
             default:
-                return null;
+                return;
         }
     }
 
     /**
-     * Parse any data that came with the request
+     * Parse any data that came with the request.
      *
      * @since 3.0.0
      *
@@ -609,7 +606,7 @@ class Request extends HTTP
         if ($this->getQueryString() && stripos($this->getQueryString(), 'json') !== false) {
             $this->parsedData = json_decode($this->rawData, true);
         // Else, if the content-type is XML
-        } else if ($this->getContentType() && stripos($this->getContentType(), 'xml') !== false) {
+        } elseif ($this->getContentType() && stripos($this->getContentType(), 'xml') !== false) {
             $matches = [];
             preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $this->rawData, $matches);
 
@@ -622,7 +619,7 @@ class Request extends HTTP
                 $this->rawData = str_replace($match, $strip, $this->rawData);
             }
 
-            $this->parsedData = json_decode(json_encode((array)simplexml_load_string($this->rawData)), true);
+            $this->parsedData = json_decode(json_encode((array) simplexml_load_string($this->rawData)), true);
         // Else, default to a regular URL-encoded string
         } else {
             switch (strtoupper($this->getRequestMethod())) {
@@ -653,6 +650,5 @@ class Request extends HTTP
                 $this->delete = $this->parsedData;
                 break;
         }
-    }        
-             
+    }
 }

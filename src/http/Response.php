@@ -12,11 +12,10 @@
  * @since 3.0.0
  *
  * @license MIT
- *
  */
 
 namespace Zest\http;
 
 class Response extends HTTP
 {
-}	
+}
