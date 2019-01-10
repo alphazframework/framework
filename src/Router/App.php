@@ -16,7 +16,7 @@
 
 namespace Zest\Router;
 
-class App extends \Zest\Router\Router
+class App extends Router
 {
     /**
      * Run the Zest Framework.
@@ -34,7 +34,7 @@ class App extends \Zest\Router\Router
                 require_once '../Routes/Routes.php';
             } else {
                 $router->routes = $router->loadCache();
-                $router->dispatch($_SERVER['QUERY_STRING']);
+                $router->dispatch($this->getRequestInstance()->getQueryString());
             }
         } else {
             require_once '../Routes/Routes.php';
