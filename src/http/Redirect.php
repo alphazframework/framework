@@ -19,14 +19,14 @@ namespace Zest\http;
 class Redirect extends HTTP
 {
     /**
-     * Send redirect
+     * Send redirect.
      *
      * @param  $url
      *   	   $code
      *   	   $version
-	 *
-	 * @since 3.0.0
-	 *
+     *
+     * @since 3.0.0
+     *
      * @return void
      */
     public function __construct($url, $code = '302', $version = '1.1')
@@ -36,10 +36,10 @@ class Redirect extends HTTP
         }
 
         if (!array_key_exists($code, self::$responseCodes)) {
-            throw new Exception('The header code '. $code . ' is not allowed.');
+            throw new Exception('The header code '.$code.' is not allowed.');
         }
 
-        header("HTTP/{$version} {$code} " . self::$responseCodes[$code]);
+        header("HTTP/{$version} {$code} ".self::$responseCodes[$code]);
         header("Location: {$url}");
-    }	
-}	
+    }
+}
