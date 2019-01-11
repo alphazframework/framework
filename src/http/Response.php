@@ -18,16 +18,14 @@ namespace Zest\http;
 
 class Response extends HTTP
 {
-
     /**
-     * __construct
+     * __construct.
      *
      * Instantiate the response object
      *
      * @param  $config
      *
      * @since 3.0.0
-     *
      */
     public function __construct(array $config = [])
     {
@@ -56,8 +54,9 @@ class Response extends HTTP
              ->setHeaders($config['headers'])
              ->setBody($config['body']);
     }
+
     /**
-     * Get response message from code
+     * Get response message from code.
      *
      * @param  $code
      *
@@ -68,17 +67,17 @@ class Response extends HTTP
     public static function getMessageFromCode($code)
     {
         if (!array_key_exists($code, self::$responseCodes)) {
-            throw new Exception('The header code ' . $code . ' is not valid.');
+            throw new Exception('The header code '.$code.' is not valid.');
         }
 
         return self::$responseCodes[$code];
     }
 
     /**
-     * Encode the body data
+     * Encode the body data.
      *
      * @param   $body
-     * 		    $encode
+     *                $encode
      *
      * @since 3.0.0
      *
@@ -113,7 +112,7 @@ class Response extends HTTP
     }
 
     /**
-     * Decode the body data
+     * Decode the body data.
      *
      * @param  $body
      * 		   $decode
@@ -152,72 +151,77 @@ class Response extends HTTP
     }
 
     /**
-     * Determine if the response is a success
+     * Determine if the response is a success.
      *
      * @since 3.0.0
      *
-     * @return boolean
+     * @return bool
      */
     public function isSuccess()
     {
         $type = floor($this->code / 100);
-        return (($type == 1) || ($type == 2) || ($type == 3));
+
+        return ($type == 1) || ($type == 2) || ($type == 3);
     }
 
     /**
-     * Determine if the response is a redirect
+     * Determine if the response is a redirect.
      *
      * @since 3.0.0
      *
-     * @return boolean
+     * @return bool
      */
     public function isRedirect()
     {
         $type = floor($this->code / 100);
-        return ($type == 3);
+
+        return $type == 3;
     }
 
     /**
-     * Determine if the response is an error
+     * Determine if the response is an error.
      *
      * @since 3.0.0
      *
-     * @return boolean
+     * @return bool
      */
     public function isError()
     {
         $type = floor($this->code / 100);
-        return (($type == 4) || ($type == 5));
+
+        return ($type == 4) || ($type == 5);
     }
 
     /**
-     * Determine if the response is a client error
+     * Determine if the response is a client error.
      *
      * @since 3.0.0
      *
-     * @return boolean
+     * @return bool
      */
     public function isClientError()
     {
         $type = floor($this->code / 100);
-        return ($type == 4);
+
+        return $type == 4;
     }
 
     /**
-     * Determine if the response is a server error
+     * Determine if the response is a server error.
      *
      * @since 3.0.0
      *
-     * @return boolean
+     * @return bool
      */
     public function isServerError()
     {
         $type = floor($this->code / 100);
-        return ($type == 5);
+
+        return $type == 5;
     }
 
     /**
-     * Get the response version
+     * Get the response version.
      *
      * @since 3.0.0
      *
@@ -229,7 +233,7 @@ class Response extends HTTP
     }
 
     /**
-     * Get the response code
+     * Get the response code.
      *
      * @since 3.0.0
      *
@@ -241,7 +245,7 @@ class Response extends HTTP
     }
 
     /**
-     * Get the response message
+     * Get the response message.
      *
      * @since 3.0.0
      *
@@ -253,7 +257,7 @@ class Response extends HTTP
     }
 
     /**
-     * Get the response body
+     * Get the response body.
      *
      * @since 3.0.0
      *
@@ -265,7 +269,7 @@ class Response extends HTTP
     }
 
     /**
-     * Get the response headers
+     * Get the response headers.
      *
      * @since 3.0.0
      *
@@ -277,7 +281,7 @@ class Response extends HTTP
     }
 
     /**
-     * Get the response header
+     * Get the response header.
      *
      * @param $name
      *
@@ -291,7 +295,7 @@ class Response extends HTTP
     }
 
     /**
-     * Get the response headers as a string
+     * Get the response headers as a string.
      *
      * @param  $status
      * 		   $eol
@@ -316,9 +320,9 @@ class Response extends HTTP
     }
 
     /**
-     * Set the response version
+     * Set the response version.
      *
-     * @param  float $version
+     * @param float $version
      *
      * @since 3.0.0
      *
@@ -329,11 +333,12 @@ class Response extends HTTP
         if (($version == 1.0) || ($version == 1.1)) {
             $this->version = $version;
         }
+
         return $this;
     }
 
     /**
-     * Set the response code
+     * Set the response code.
      *
      * @param  $code
      *
@@ -344,19 +349,19 @@ class Response extends HTTP
     public function setCode($code = 200)
     {
         if (!array_key_exists($code, self::$responseCodes)) {
-            throw new Exception('That header code ' . $code . ' is not allowed.');
+            throw new Exception('That header code '.$code.' is not allowed.');
         }
 
-        $this->code    = $code;
+        $this->code = $code;
         $this->message = self::$responseCodes[$code];
 
         return $this;
     }
 
     /**
-     * Set the response message
+     * Set the response message.
      *
-     * @param  string $message
+     * @param string $message
      *
      * @since 3.0.0
      *
@@ -365,11 +370,12 @@ class Response extends HTTP
     public function setMessage($message = null)
     {
         $this->message = $message;
+
         return $this;
     }
 
     /**
-     * Set the response body
+     * Set the response body.
      *
      * @param  $body
      *
@@ -380,11 +386,12 @@ class Response extends HTTP
     public function setBody($body = null)
     {
         $this->body = $body;
+
         return $this;
     }
 
     /**
-     * Set a response header
+     * Set a response header.
      *
      * @param  $name
      * 	 	   $value
@@ -396,14 +403,17 @@ class Response extends HTTP
     public function setHeader($name, $value)
     {
         $this->headers[$name] = $value;
+
         return $this;
     }
 
     /**
-     * Set response headers
+     * Set response headers.
      *
-     * @param  array $headers
+     * @param array $headers
+     *
      * @throws Exception
+     *
      * @return Response
      */
     public function setHeaders(array $headers)
@@ -424,15 +434,15 @@ class Response extends HTTP
      */
     public function setSslHeaders()
     {
-        $this->headers['Expires']       = 0;
+        $this->headers['Expires'] = 0;
         $this->headers['Cache-Control'] = 'private, must-revalidate';
-        $this->headers['Pragma']        = 'cache';
+        $this->headers['Pragma'] = 'cache';
 
         return $this;
     }
 
     /**
-     * Send headers
+     * Send headers.
      *
      * @since 3.0.0
      *
@@ -446,12 +456,12 @@ class Response extends HTTP
 
         header("HTTP/{$this->version} {$this->code} {$this->message}");
         foreach ($this->headers as $name => $value) {
-            header($name . ": " . $value);
+            header($name.': '.$value);
         }
     }
 
     /**
-     * Send response
+     * Send response.
      *
      * @param  $code
      * 		   $headers
@@ -481,7 +491,7 @@ class Response extends HTTP
     }
 
     /**
-     * Send response and exit
+     * Send response and exit.
      *
      * @param  $code
      * 		   $headers
@@ -497,9 +507,9 @@ class Response extends HTTP
     }
 
     /**
-     * Magic method to get a value from the headers
+     * Magic method to get a value from the headers.
      *
-     * @param  string $name
+     * @param string $name
      *
      * @return mixed
      */
@@ -510,12 +520,12 @@ class Response extends HTTP
                 return $this->headers;
                 break;
             default:
-                return null;
+                return;
         }
     }
 
     /**
-     * Return entire response as a string
+     * Return entire response as a string.
      *
      * @return string
      */
@@ -528,7 +538,6 @@ class Response extends HTTP
             $this->headers['Content-Length'] = strlen($body);
         }
 
-        return $this->getHeadersAsString() . "\n" . $body;
+        return $this->getHeadersAsString()."\n".$body;
     }
-
 }

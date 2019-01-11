@@ -13,15 +13,17 @@
  */
 
 namespace Zest\Site;
-use Zest\http\Request;
+
 use Zest\http\Redirect;
+use Zest\http\Request;
 
 class Site
 {
     private function requestInstance()
     {
-        return (new Request());
+        return new Request();
     }
+
     /**
      * Return site URL.
      *
@@ -100,7 +102,7 @@ class Site
             $base_url = $url;
         }
         ob_start();
-        (new Redirect($base_url,200));
+        (new Redirect($base_url, 200));
     }
 
     /**
