@@ -9,25 +9,27 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @since 1.0.0
- *
  * @license MIT
  */
 
 namespace Zest\Site;
+use Zest\http\Request;
+use Zest\http\Redirect;
 
 class Site
 {
+    private function requestInstance()
+    {
+        return (new Request());
+    }
     /**
      * Return site URL.
-     *
-     * @since 1.0.0
      *
      * @return string
      */
     public static function siteUrl()
     {
-        $base_url = self::getProtocol().self::getServerName().':'.self::getPort().self::getUri();
+        $base_url = self::requestInstance()->getScheme().'://'.self::requestInstance()->getServerName().':'.self::requestInstance()->getServerPort().self::getUri();
 
         return $base_url;
     }
@@ -35,21 +37,17 @@ class Site
     /**
      * Return site base URL.
      *
-     * @since 2.0.0
-     *
      * @return string
      */
     public static function siteBaseUrl()
     {
-        $base_url = self::getProtocol().self::getServerName().':'.self::getPort().self::getBase();
+        $base_url = self::requestInstance()->getScheme().'://'.self::requestInstance()->getServerName().':'.self::requestInstance()->getServerPort().self::getBase();
 
         return $base_url;
     }
 
     /**
      * Return Current Page.
-     *
-     * @since 1.0.0
      *
      * @return string
      */
@@ -61,73 +59,23 @@ class Site
     }
 
     /**
-     * Get the domain protocol.
-     *
-     * @since 1.0.0
-     *
-     * @return string
-     */
-    public static function getProtocol()
-    {
-        if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off') {
-            $protocol = 'http://';
-        } else {
-            $protocol = 'https://';
-        }
-
-        return $protocol;
-    }
-
-    /**
-     * Get the server name.
-     *
-     * @since 1.0.0
-     *
-     * @return string
-     */
-    public static function getServerName()
-    {
-        if (isset($_SERVER['SERVER_NAME'])) {
-            return $_SERVER['SERVER_NAME'];
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Get the server port.
-     *
-     * @since 1.0.0
-     *
-     * @return int
-     */
-    public static function getPort()
-    {
-        return $_SERVER['SERVER_PORT'];
-    }
-
-    /**
      * Get script path like example.com/login.
-     *
-     * @since 1.0.0
      *
      * @return string example.com/login
      */
     public function getBase()
     {
-        return dirname($_SERVER['PHP_SELF']);
+        return dirname(self::requestInstance()->getSelf());
     }
 
     /**
      * Get script path like example.com/login.
      *
-     * @since 1.0.0
-     *
      * @return string example.com/login
      */
     public static function getUri()
     {
-        return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        return parse_url(self::requestInstance()->getRequestUrl(), PHP_URL_PATH);
     }
 
     /**
@@ -137,8 +85,6 @@ class Site
      *                      self => itself page
      *                      prev => previous page
      *                      else => any page you want
-     *
-     * @since 1.0.0
      *
      * @return void
      */
@@ -154,27 +100,23 @@ class Site
             $base_url = $url;
         }
         ob_start();
-        header("Location: {$base_url}");
+        (new Redirect($base_url,200));
     }
 
     /**
      * Go to the previous URL.
      *
-     * @since 1.0.0
-     *
      * @return void
      */
     private static function previous()
     {
-        header('Location: '.$_SERVER['HTTP_REFERER']);
+        self::redirect(self::requestInstance()->getReference());
     }
 
     /**
      * Get all URL parts based on a / seperator.
      *
      * @param string $url → URI to segment
-     *
-     * @since 1.0.0
      *
      * @return string
      */
@@ -183,7 +125,7 @@ class Site
         if (!is_null($url) && !empty($url)) {
             $url = $url;
         } else {
-            $url = $_SERVER['REQUEST_URI'];
+            $url = self::requestInstance()->getRequestUrl();
         }
 
         return explode('/', trim($url, '/'));
@@ -191,8 +133,6 @@ class Site
 
     /**
      * Get first item segment.
-     *
-     * @since 1.0.0
      *
      * @return string
      */
@@ -209,8 +149,6 @@ class Site
 
     /**
      * Get last item segment.
-     *
-     * @since 1.0.0
      *
      * @return string
      */
@@ -229,8 +167,6 @@ class Site
      * generate salts for files.
      *
      * @param string $length length of salts
-     *
-     * @since 1.0.0
      *
      * @return string
      */

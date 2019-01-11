@@ -16,7 +16,7 @@
 
 namespace Zest\http;
 
-class HTTP
+abstract class HTTP
 {
     /*Request*/
     /**
@@ -400,5 +400,29 @@ class HTTP
     public function gethttps()
     {
         return (isset($_SERVER['HTTPS'])) ? $_SERVER['HTTPS'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['PHP_SELF'].
+     *
+     * @since 3.0.0
+     *
+     * @return bool|array
+     */
+    public function getSelf()
+    {
+        return (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : false;
+    }
+
+    /**
+     * Get a value from $_SERVER['HTTP_REFERER'].
+     *
+     * @since 3.0.0
+     *
+     * @return bool|array
+     */
+    public function getReference()
+    {
+        return (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : false;
     }
 }
