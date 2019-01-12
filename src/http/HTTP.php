@@ -186,7 +186,7 @@ abstract class HTTP extends Headers
     protected $reasonPhrase = null;
 
     /**
-     * Uri scheme (without "://" suffix)
+     * Uri scheme (without "://" suffix).
      *
      * @since 3.0.0
      *
@@ -195,7 +195,7 @@ abstract class HTTP extends Headers
     protected $scheme = '';
 
     /**
-     * Uri user
+     * Uri user.
      *
      * @since 3.0.0
      *
@@ -204,7 +204,7 @@ abstract class HTTP extends Headers
     protected $user = '';
 
     /**
-     * Uri password
+     * Uri password.
      *
      * @since 3.0.0
      *
@@ -213,7 +213,7 @@ abstract class HTTP extends Headers
     protected $password = '';
 
     /**
-     * Uri host
+     * Uri host.
      *
      * @since 3.0.0
      *
@@ -222,7 +222,7 @@ abstract class HTTP extends Headers
     protected $host = '';
 
     /**
-     * Uri port number
+     * Uri port number.
      *
      * @since 3.0.0
      *
@@ -230,9 +230,8 @@ abstract class HTTP extends Headers
      */
     protected $port;
 
-
     /**
-     * Uri path
+     * Uri path.
      *
      * @since 3.0.0
      *
@@ -241,7 +240,7 @@ abstract class HTTP extends Headers
     protected $path = '';
 
     /**
-     * Uri query string (without "?" prefix)
+     * Uri query string (without "?" prefix).
      *
      * @since 3.0.0
      *
@@ -250,7 +249,7 @@ abstract class HTTP extends Headers
     protected $query = '';
 
     /**
-     * Uri fragment string (without "#" prefix)
+     * Uri fragment string (without "#" prefix).
      *
      * @since 3.0.0
      *
@@ -268,10 +267,10 @@ abstract class HTTP extends Headers
     protected $body = null;
 
     /**
-     * __construct
+     * __construct.
      *
      * @since 3.0.0
-     */    
+     */
     public function __construct()
     {
         parent::__construct();

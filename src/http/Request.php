@@ -79,7 +79,7 @@ class Request extends Uri
      */
     public function isGet()
     {
-        return ($this->isMethod("GET"));
+        return $this->isMethod('GET');
     }
 
     /**
@@ -91,7 +91,7 @@ class Request extends Uri
      */
     public function isHead()
     {
-        return ($this->isMethod("HEAD"));
+        return $this->isMethod('HEAD');
     }
 
     /**
@@ -103,7 +103,7 @@ class Request extends Uri
      */
     public function isPost()
     {
-        return ($this->isMethod("POST"));
+        return $this->isMethod('POST');
     }
 
     /**
@@ -115,7 +115,7 @@ class Request extends Uri
      */
     public function isPut()
     {
-        return ($this->isMethod("PUT"));
+        return $this->isMethod('PUT');
     }
 
     /**
@@ -127,7 +127,7 @@ class Request extends Uri
      */
     public function isDelete()
     {
-        return ($this->isMethod("DELETE"));
+        return $this->isMethod('DELETE');
     }
 
     /**
@@ -139,7 +139,7 @@ class Request extends Uri
      */
     public function isTrace()
     {
-        return ($this->isMethod("TRACE"));
+        return $this->isMethod('TRACE');
     }
 
     /**
@@ -151,7 +151,7 @@ class Request extends Uri
      */
     public function isOptions()
     {
-        return ($this->isMethod("OPTIONS"));
+        return $this->isMethod('OPTIONS');
     }
 
     /**
@@ -163,7 +163,7 @@ class Request extends Uri
      */
     public function isConnect()
     {
-        return ($this->isMethod("CONNECT"));
+        return $this->isMethod('CONNECT');
     }
 
     /**
@@ -175,7 +175,7 @@ class Request extends Uri
      */
     public function isPatch()
     {
-        return ($this->isMethod("PATCH"));
+        return $this->isMethod('PATCH');
     }
 
     /**
@@ -199,7 +199,7 @@ class Request extends Uri
      */
     public function isXhr()
     {
-        return (strtolower($this->getHeaderLine('X-Requested-With')) === 'xmlhttpRequest');
+        return strtolower($this->getHeaderLine('X-Requested-With')) === 'xmlhttpRequest';
     }
 
     /**
