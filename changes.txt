@@ -75,3 +75,4 @@ Changes:
 63. Update HTTP Response class.
 64. Added HTTP Message class.
 65. Added HTTP Headers classs.
+66. Added HTTP URI class.

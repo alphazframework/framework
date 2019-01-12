@@ -186,6 +186,79 @@ abstract class HTTP extends Headers
     protected $reasonPhrase = null;
 
     /**
+     * Uri scheme (without "://" suffix)
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $scheme = '';
+
+    /**
+     * Uri user
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $user = '';
+
+    /**
+     * Uri password
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $password = '';
+
+    /**
+     * Uri host
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $host = '';
+
+    /**
+     * Uri port number
+     *
+     * @since 3.0.0
+     *
+     * @var null|int
+     */
+    protected $port;
+
+
+    /**
+     * Uri path
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $path = '';
+
+    /**
+     * Uri query string (without "?" prefix)
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $query = '';
+
+    /**
+     * Uri fragment string (without "#" prefix)
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $fragment = '';
+
+    /**
      * Response body.
      *
      * @since 3.0.0
@@ -193,6 +266,16 @@ abstract class HTTP extends Headers
      * @var string
      */
     protected $body = null;
+
+    /**
+     * __construct
+     *
+     * @since 3.0.0
+     */    
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * Get a value from $_SERVER['REQUEST_METHOD'].

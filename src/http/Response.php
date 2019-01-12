@@ -29,6 +29,7 @@ class Response extends Message
      */
     public function __construct(array $config = [])
     {
+        parent::__construct();
         // Check for config values and set defaults
         if (!isset($config['version'])) {
             $config['version'] = '1.1';

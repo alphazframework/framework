@@ -16,6 +16,7 @@
 
 namespace Zest\http;
 
-class ServerRequest
+class ServerRequest extends Request
 {
+	
 }

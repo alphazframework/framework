@@ -16,7 +16,7 @@
 
 namespace Zest\http;
 
-class Request extends Message
+class Request extends Uri
 {
     /**
      * Constructor.
@@ -29,10 +29,9 @@ class Request extends Message
      *
      * @param string $basePath
      */
-    public function __construct($uri = null, $basePath = null)
+    public function __construct()
     {
-        $this->setRequestUri($uri, $basePath);
-
+        parent::__construct();
         $this->get = (isset($_GET)) ? $_GET : [];
         $this->post = (isset($_POST)) ? $_POST : [];
         $this->files = (isset($_FILES)) ? $_FILES : [];
@@ -43,11 +42,26 @@ class Request extends Message
         if ($this->getRequestMethod()) {
             $this->parseData();
         }
-        $this->set();
+    }
+
+    /**
+     * Does this request use a given method?
+     *
+     * @param  $method HTTP method
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function isMethod($method)
+    {
+        return $this->getRequestMethod() === $method;
     }
 
     /**
      * Determine whether or not the request has FILES.
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -57,7 +71,7 @@ class Request extends Message
     }
 
     /**
-     * Determine whether or not the method is GET.
+     * Is this an GET request.
      *
      * @since 3.0.0
      *
@@ -65,11 +79,11 @@ class Request extends Message
      */
     public function isGet()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'GET');
+        return ($this->isMethod("GET"));
     }
 
     /**
-     * Determine whether or not the method is HEAD.
+     * Is this an HEAD request.
      *
      * @since 3.0.0
      *
@@ -77,11 +91,11 @@ class Request extends Message
      */
     public function isHead()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'HEAD');
+        return ($this->isMethod("HEAD"));
     }
 
     /**
-     * Determine whether or not the method is POST.
+     * Is this an POST request.
      *
      * @since 3.0.0
      *
@@ -89,11 +103,11 @@ class Request extends Message
      */
     public function isPost()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'POST');
+        return ($this->isMethod("POST"));
     }
 
     /**
-     * Determine whether or not the method is PUT.
+     * Is this an PUT request.
      *
      * @since 3.0.0
      *
@@ -101,11 +115,11 @@ class Request extends Message
      */
     public function isPut()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'PUT');
+        return ($this->isMethod("PUT"));
     }
 
     /**
-     * Determine whether or not the method is DELETE.
+     * Is this an DELETE request.
      *
      * @since 3.0.0
      *
@@ -113,11 +127,11 @@ class Request extends Message
      */
     public function isDelete()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'DELETE');
+        return ($this->isMethod("DELETE"));
     }
 
     /**
-     * Determine whether or not the method is TRACE.
+     * Is this an TRACE request.
      *
      * @since 3.0.0
      *
@@ -125,11 +139,11 @@ class Request extends Message
      */
     public function isTrace()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'TRACE');
+        return ($this->isMethod("TRACE"));
     }
 
     /**
-     * Determine whether or not the method is OPTIONS.
+     * Is this an OPTIONS request.
      *
      * @since 3.0.0
      *
@@ -137,11 +151,11 @@ class Request extends Message
      */
     public function isOptions()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'OPTIONS');
+        return ($this->isMethod("OPTIONS"));
     }
 
     /**
-     * Determine whether or not the method is CONNECT.
+     * Is this an CONNEXT request.
      *
      * @since 3.0.0
      *
@@ -149,11 +163,11 @@ class Request extends Message
      */
     public function isConnect()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'CONNECT');
+        return ($this->isMethod("CONNECT"));
     }
 
     /**
-     * Determine whether or not the method is PATCH.
+     * Is this an PATH request.
      *
      * @since 3.0.0
      *
@@ -161,7 +175,7 @@ class Request extends Message
      */
     public function isPatch()
     {
-        return $this->getRequestMethod() && ($this->getRequestMethod() === 'PATCH');
+        return ($this->isMethod("PATCH"));
     }
 
     /**
@@ -177,80 +191,15 @@ class Request extends Message
     }
 
     /**
-     * Get scheme.
+     * Is this an XHR request?
      *
      * @since 3.0.0
      *
-     * @return string
+     * @return bool
      */
-    public function getScheme()
+    public function isXhr()
     {
-        return ($this->isSecure()) ? 'https' : 'http';
-    }
-
-    /**
-     * Get the base path.
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    public function getBasePath()
-    {
-        return $this->basePath;
-    }
-
-    /**
-     * Get the request URI.
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    public function getRequestUri()
-    {
-        return $this->requestUri;
-    }
-
-    /**
-     * Get the full request URI, including base path.
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    public function getFullRequestUri()
-    {
-        return $this->basePath.$this->requestUri;
-    }
-
-    /**
-     * Get a path segment, divided by the forward slash,
-     * where $i refers to the array key index, i.e.,
-     *    0     1     2
-     * /hello/world/page.
-     *
-     * @param int $i
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    public function getSegment($i)
-    {
-        return (isset($this->segments[(int) $i])) ? $this->segments[(int) $i] : null;
-    }
-
-    /**
-     * Get all path segments.
-     *
-     * @since 3.0.0
-     *
-     * @return array
-     */
-    public function getSegments()
-    {
-        return $this->segments;
+        return (strtolower($this->getHeaderLine('X-Requested-With')) === 'xmlhttpRequest');
     }
 
     /**
@@ -452,75 +401,6 @@ class Request extends Message
     }
 
     /**
-     * Set the base path.
-     *
-     * @param string $path
-     *
-     * @since 3.0.0
-     *
-     * @return Request
-     */
-    public function setBasePath($path = null)
-    {
-        $this->basePath = $path;
-
-        return $this;
-    }
-
-    /**
-     * Set the request URI.
-     *
-     * @param  $uri
-     * 		   $basePath
-     *
-     * @since 3.0.0
-     *
-     * @return Request
-     */
-    public function setRequestUri($uri = null, $basePath = null)
-    {
-        if ($uri === null && $this->getRequestUrl()) {
-            $uri = $this->getRequestUrl();
-        }
-        if (!empty($basePath)) {
-            if (substr($uri, 0, (strlen($basePath) + 1)) == $basePath.'/') {
-                $uri = substr($uri, (strpos($uri, $basePath) + strlen($basePath)));
-            } elseif (substr($uri, 0, (strlen($basePath) + 1)) == $basePath.'?') {
-                $uri = '/'.substr($uri, (strpos($uri, $basePath) + strlen($basePath)));
-            }
-        }
-
-        if (($uri == '') || ($uri == $basePath)) {
-            $uri = '/';
-        }
-
-        // Some slash clean up
-        $this->requestUri = $uri;
-        $docRoot = ($this->getDocumentRoot()) ? str_replace('\\', '/', $this->getDocumentRoot()) : null;
-        $dir = str_replace('\\', '/', getcwd());
-
-        if ($dir != $docRoot && strlen($dir) > strlen($docRoot)) {
-            $realBasePath = str_replace($docRoot, '', $dir);
-            if (substr($uri, 0, strlen($realBasePath)) == $realBasePath) {
-                $this->requestUri = substr($uri, strlen($realBasePath));
-            }
-        }
-
-        $this->basePath = ($basePath === null) ? str_replace($docRoot, '', $dir) : $basePath;
-
-        if (strpos($this->requestUri, '?') !== false) {
-            $this->requestUri = substr($this->requestUri, 0, strpos($this->requestUri, '?'));
-        }
-
-        if (($this->requestUri != '/') && strpos($this->requestUri, '/') !== false) {
-            $uri = (substr($this->requestUri, 0, 1) == '/') ? substr($this->requestUri, 1) : $this->requestUri;
-            $this->segments = explode('/', $uri);
-        }
-
-        return $this;
-    }
-
-    /**
      * Parse any data that came with the request.
      *
      * @since 3.0.0
@@ -572,7 +452,6 @@ class Request extends Message
                     }
             }
         }
-
         switch (strtoupper($this->getRequestMethod())) {
             case 'PUT':
                 $this->put = $this->parsedData;

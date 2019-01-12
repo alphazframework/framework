@@ -18,19 +18,13 @@ namespace Zest\http;
 
 abstract class Headers
 {
-    public function set()
-    {
-        $this->headers = $this->all();
-    }
 
     /**
      * Get the headers.
      *
      * @since 3.0.0
-     *
-     * @return bool|array
      */
-    public function all()
+    public function __construct()
     {
         $headers = [];
         if (function_exists('getallheaders')) {
@@ -50,10 +44,11 @@ abstract class Headers
                 }
             }
         }
-
-        return $headers;
+        $headers = array_change_key_case($headers, CASE_LOWER);
+        
+        $this->headers = $headers;
     }
-
+ 
     /**
      * append new header.
      *
@@ -102,6 +97,18 @@ abstract class Headers
         if (!empty($this->get($this->normalizeKey($key)))) {
             $this->headers[$this->normalizeKey($key)] = $value;
         }
+    }
+
+    /**
+     * Get all headers.
+     *
+     * @since 3.0.0
+     *
+     * @return bool|string
+     */
+    public function gets()
+    {
+        return $this->headers;
     }
 
     /**

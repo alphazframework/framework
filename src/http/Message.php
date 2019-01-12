@@ -18,6 +18,16 @@ namespace Zest\http;
 
 class Message extends HTTP
 {
+
+    /**
+     * __construct
+     *
+     * @since 3.0.0
+     */        
+    public function __construct()
+    {
+        parent::__construct();
+    }
     /**
      * Get the protocol version.
      *
@@ -58,7 +68,7 @@ class Message extends HTTP
      */
     public function getHeaders()
     {
-        return $this->all();
+        return $this->gets();
     }
 
     /**
