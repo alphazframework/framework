@@ -12,9 +12,6 @@ php:
 # Commands to be run before your environment runs.
 before_script:
   - composer self-update
-  
-script:
-    -coverage-clover=coverage.xml
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
