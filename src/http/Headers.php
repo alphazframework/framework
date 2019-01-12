@@ -18,7 +18,6 @@ namespace Zest\http;
 
 abstract class Headers
 {
-
     /**
      * Get the headers.
      *
@@ -45,10 +44,10 @@ abstract class Headers
             }
         }
         $headers = array_change_key_case($headers, CASE_LOWER);
-        
+
         $this->headers = $headers;
     }
- 
+
     /**
      * append new header.
      *

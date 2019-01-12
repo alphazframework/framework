@@ -18,18 +18,17 @@ namespace Zest\http;
 
 class Uri extends Message
 {
-
-	public function __construct()
-	{
+    public function __construct()
+    {
         parent::__construct();
-	}
+    }
 
     /**
      * Set the Uri.
      *
      * @param $url valid url
-     *        $host valid host 
-     *		  $port valid port number	
+     *        $host valid host
+     *		  $port valid port number
      *		  $path valid path
      *		  $query query URI
      *		  $fragment fragment
@@ -40,8 +39,8 @@ class Uri extends Message
      *
      * @return object
      */
-	public function setUri($scheme,$host,$port = null,$path = '/',$query = '', $fragment = '',$user = '',$password = '') 
-	{
+    public function setUri($scheme, $host, $port = null, $path = '/', $query = '', $fragment = '', $user = '', $password = '')
+    {
         $this->scheme = $this->filterScheme($scheme);
         $this->host = $host;
         $this->port = $this->filterPort($port);
@@ -49,10 +48,10 @@ class Uri extends Message
         $this->query = $this->filterQuery($query);
         $this->fragment = $this->filterQuery($fragment);
         $this->user = $user;
-        $this->password = $password;	
+        $this->password = $password;
 
         return $this;
-	}
+    }
 
     /**
      * Get the scheme component of the URL.
@@ -62,10 +61,10 @@ class Uri extends Message
      * @since 3.0.0
      *
      * @return object
-     */	
-	public function createFormUrl($url)
-	{
-		$urlParts = parse_url($url);
+     */
+    public function createFormUrl($url)
+    {
+        $urlParts = parse_url($url);
 
         $scheme = isset($urlParts['scheme']) ? $urlParts['scheme'] : '';
         $user = isset($urlParts['user']) ? $urlParts['user'] : '';
@@ -76,10 +75,10 @@ class Uri extends Message
         $query = isset($urlParts['query']) ? $urlParts['query'] : '';
         $fragment = isset($urlParts['fragment']) ? $urlParts['fragment'] : '';
 
-        $this->setUri($scheme,$host,$port,$path,$query,$fragment,$user,$password);
+        $this->setUri($scheme, $host, $port, $path, $query, $fragment, $user, $password);
 
         return $this;
-	}
+    }
 
     /**
      * Filter the url scheme component.
@@ -89,21 +88,21 @@ class Uri extends Message
      * @since 3.0.0
      *
      * @return string
-     */	
-	public function filterScheme($scheme)
-	{
-		$valids = [
-			'' => true,
-			'http' => true,
-			'https' => true,
-		];
-        $scheme = str_replace('://', '', strtolower((string)$scheme));
+     */
+    public function filterScheme($scheme)
+    {
+        $valids = [
+            ''      => true,
+            'http'  => true,
+            'https' => true,
+        ];
+        $scheme = str_replace('://', '', strtolower((string) $scheme));
         if (!isset($valids[$scheme])) {
             throw new \InvalidArgumentException('Uri scheme must be one of: "", "https", "http"');
         }
 
-        return $scheme;		
-	}
+        return $scheme;
+    }
 
     /**
      * Filter port.
@@ -113,15 +112,15 @@ class Uri extends Message
      * @since 3.0.0
      *
      * @return string
-     */	
-	public function filterPort($port)
-	{
-		if (is_null($port) || is_integer($port)) {
-			return $port;
-			
-		}
-		throw new \InvalidArgumentException('Uri port much be type int');	
-	}
+     */
+    public function filterPort($port)
+    {
+        if (is_null($port) || is_int($port)) {
+            return $port;
+        }
+
+        throw new \InvalidArgumentException('Uri port much be type int');
+    }
 
     /**
      * Filter the Query uri.
@@ -131,11 +130,11 @@ class Uri extends Message
      * @since 3.0.0
      *
      * @return string
-     */	
-	public function filterQuery($query)
-	{
-		return rawurlencode($query);
-	}
+     */
+    public function filterQuery($query)
+    {
+        return rawurlencode($query);
+    }
 
     /**
      * Get the scheme component of the URL.
@@ -161,7 +160,6 @@ class Uri extends Message
         return ($this->isSecure()) ? 'https' : 'http';
     }
 
-
     /**
      * Get the authority component of the URL.
      *
@@ -171,8 +169,8 @@ class Uri extends Message
      */
     public function getAuthority()
     {
-    	return ($this->getUserInfo() !== '') ? $this->getUserInfo() . 
-    	'@' : '' . $this->getHost() . ($this->getPort() !== '') ? ':' . $this->getPort() : '';   
+        return ($this->getUserInfo() !== '') ? $this->getUserInfo().
+        '@' : ''.$this->getHost().($this->getPort() !== '') ? ':'.$this->getPort() : '';
     }
 
     /**
@@ -184,7 +182,7 @@ class Uri extends Message
      */
     public function getUserInfo()
     {
-    	return ($this->user !== '') ? $this->user : '' . ($this->password !== '') ? ':' . $this->password : '';   
+        return ($this->user !== '') ? $this->user : ''.($this->password !== '') ? ':'.$this->password : '';
     }
 
     /**
@@ -196,7 +194,7 @@ class Uri extends Message
      */
     public function getHost()
     {
-    	return $this->host;
+        return $this->host;
     }
 
     /**
@@ -208,7 +206,7 @@ class Uri extends Message
      */
     public function getPath()
     {
-    	return $this->path;
+        return $this->path;
     }
 
     /**
@@ -220,7 +218,7 @@ class Uri extends Message
      */
     public function getPort()
     {
-    	return $this->port;
+        return $this->port;
     }
 
     /**
@@ -232,7 +230,7 @@ class Uri extends Message
      */
     public function getQuery()
     {
-    	return $this->query;
+        return $this->query;
     }
 
     /**
@@ -244,8 +242,8 @@ class Uri extends Message
      */
     public function getFragment()
     {
-    	return $this->fragment;
-    }  
+        return $this->fragment;
+    }
 
     /**
      * Get the basePath segment component of the URL.
@@ -256,129 +254,129 @@ class Uri extends Message
      */
     public function getBasePath()
     {
-    	return $this->basePath;
+        return $this->basePath;
     }
 
     /**
      * Return an instance with the specified user information.
      *
      * @param $user username
-     *        $password password 
-     * 
+     *        $password password
+     *
      * @since 3.0.0
      *
      * @return object
      */
     public function withUserInfo($user, $password = null)
     {
-    	$this->user = $user;
-    	$this->password = $password;
+        $this->user = $user;
+        $this->password = $password;
 
-    	return $this;
+        return $this;
     }
 
     /**
      * Return an instance with the specified host.
      *
      * @param $host valid host
-     * 
+     *
      * @since 3.0.0
      *
      * @return object
      */
     public function withHost($host)
     {
-    	$this->host = $host;
+        $this->host = $host;
 
-    	return $this;
+        return $this;
     }
 
     /**
      * Return an instance with the specified path.
      *
      * @param $path valid path
-     * 
+     *
      * @since 3.0.0
      *
      * @return object
      */
     public function withPath($path)
-    {    	
+    {
         // if the path is absolute, then clear basePath
         if (substr($path, 0, 1) == '/') {
             $clone->basePath = '';
         }
         $this->path = $this->filterQuery($path);
 
-    	return $this;
+        return $this;
     }
 
     /**
      * Return an instance with the specified port.
      *
      * @param $port valid port
-     * 
+     *
      * @since 3.0.0
      *
      * @return object
      */
     public function withPort($port)
     {
-    	$this->port = $this->filterPort($port);
+        $this->port = $this->filterPort($port);
 
-    	return $this;
+        return $this;
     }
 
     /**
      * Return an instance with the specified query.
      *
      * @param $query valid query
-     * 
+     *
      * @since 3.0.0
      *
      * @return object
      */
     public function withQuery($query)
     {
-    	$this->query = $this->filterQuery(ltrim($query,"?"));
+        $this->query = $this->filterQuery(ltrim($query, '?'));
 
-    	return $this;
+        return $this;
     }
 
     /**
      * Return an instance with the specified fragment.
      *
      * @param $fragment valid fragment
-     * 
+     *
      * @since 3.0.0
      *
      * @return object
      */
     public function withFragment($fragment)
     {
-    	$this->fragment = $this->filterQuery(ltrim($fragment,"#"));
+        $this->fragment = $this->filterQuery(ltrim($fragment, '#'));
 
-    	return $this;
-    } 
+        return $this;
+    }
 
     /**
      * Return an instance with the specified basePath segment.
      *
      * @param $fragment valid fragment
-     * 
+     *
      * @since 3.0.0
      *
      * @return object
      */
     public function withBasePath($basePath)
     {
-    	$this->basePath = $this->filterQuery($basePath);
+        $this->basePath = $this->filterQuery($basePath);
 
-    	return $this;
-    } 
+        return $this;
+    }
 
- 	public function __toString()
- 	{
+    public function __toString()
+    {
         $scheme = $this->getScheme();
         $authority = $this->getAuthority();
         $basePath = $this->getBasePath();
@@ -386,14 +384,14 @@ class Uri extends Message
         $query = $this->getQuery();
         $fragment = $this->getFragment();
 
-        $path = $basePath . '/' . ltrim($path, '/');
+        $path = $basePath.'/'.ltrim($path, '/');
 
-        return ($scheme !== '' ? $scheme . ':' : '')
-            . ($authority !== '' ? '//' . $authority : '')
-            . $path
-            . ($query !== '' ? '?' . $query : '')
-            . ($fragment !== '' ? '#' . $fragment : ''); 		
- 	}
+        return ($scheme !== '' ? $scheme.':' : '')
+            .($authority !== '' ? '//'.$authority : '')
+            .$path
+            .($query !== '' ? '?'.$query : '')
+            .($fragment !== '' ? '#'.$fragment : '');
+    }
 
     /**
      * Get the fully qualified base URL.
@@ -409,11 +407,11 @@ class Uri extends Message
         $basePath = $this->getBasePath();
 
         if ($authority !== '' && substr($basePath, 0, 1) !== '/') {
-            $basePath = $basePath . '/' . $basePath;
+            $basePath = $basePath.'/'.$basePath;
         }
 
-        return ($scheme !== '' ? $scheme . ':' : '')
-            . ($authority ? '//' . $authority : '')
-            . rtrim($basePath, '/');
+        return ($scheme !== '' ? $scheme.':' : '')
+            .($authority ? '//'.$authority : '')
+            .rtrim($basePath, '/');
     }
 }
