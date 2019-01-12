@@ -18,11 +18,11 @@ namespace Zest\http;
 
 abstract class Headers
 {
-
     public function set()
     {
         $this->headers = $this->all();
-    }   
+    }
+
     /**
      * Get the headers.
      *
@@ -33,15 +33,15 @@ abstract class Headers
     public function all()
     {
         $headers = [];
-        if (function_exists("getallheaders")) {
+        if (function_exists('getallheaders')) {
             $headers = getallheaders();
         } else {
-           foreach ($_SERVER as $key => $value) {
+            foreach ($_SERVER as $key => $value) {
                 if (substr($key, 0, 5) == 'HTTP_') {
                     $key = ucfirst(strtolower(str_replace('HTTP_', '', $key)));
                     if (strpos($key, '_') !== false) {
                         $ary = explode('_', $key);
-                        foreach ($ary as $k => $v){
+                        foreach ($ary as $k => $v) {
                             $ary[$k] = ucfirst(strtolower($v));
                         }
                         $key = implode('-', $ary);
@@ -50,6 +50,7 @@ abstract class Headers
                 }
             }
         }
+
         return $headers;
     }
 
@@ -62,7 +63,7 @@ abstract class Headers
      * @since 3.0.0
      *
      * @return void
-     */    
+     */
     public function setHeader($key, $value)
     {
         $this->headers[$this->normalizeKey($key)] = $value;
@@ -84,7 +85,8 @@ abstract class Headers
         }
 
         return $this;
-    }    
+    }
+
     /**
      * Update existing header.
      *
@@ -94,7 +96,7 @@ abstract class Headers
      * @since 3.0.0
      *
      * @return void
-     */  
+     */
     public function update($key, $value)
     {
         if (!empty($this->get($this->normalizeKey($key)))) {
@@ -110,7 +112,7 @@ abstract class Headers
      * @since 3.0.0
      *
      * @return bool|string
-     */      
+     */
     public function get($key)
     {
         return $this->headers[$this->normalizeKey($key)];
@@ -124,7 +126,7 @@ abstract class Headers
      * @since 3.0.0
      *
      * @return bool
-     */      
+     */
     public function has($key)
     {
         return (isset($this->headers[$this->normalizeKey($key)])) ? true : false;
@@ -138,14 +140,14 @@ abstract class Headers
      * @since 3.0.0
      *
      * @return void
-     */      
+     */
     public function remove($key)
     {
         unset($this->headers[$key]);
     }
 
     /**
-     * Normalize header name
+     * Normalize header name.
      *
      * @param  $key The case-insensitive header name
      *
@@ -156,8 +158,7 @@ abstract class Headers
         $key = strtr(strtolower($key), '_', '-');
 
         return $key;
-    }   
-
+    }
 
     /**
      * Send response.
@@ -206,5 +207,5 @@ abstract class Headers
         foreach ($this->headers as $name => $value) {
             header($name.': '.$value);
         }
-    }     
+    }
 }

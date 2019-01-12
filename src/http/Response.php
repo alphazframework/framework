@@ -18,7 +18,6 @@ namespace Zest\http;
 
 class Response extends Message
 {
-
     /**
      * __construct.
      *
@@ -78,7 +77,7 @@ class Response extends Message
      * Encode the body data.
      *
      * @param   $body
-     *          $encode
+     *                $encode
      *
      * @since 3.0.0
      *
@@ -160,7 +159,7 @@ class Response extends Message
      */
     public function isEmpty()
     {
-        return is_array($this->getStatusCode(),[204,205,304]);
+        return is_array($this->getStatusCode(), [204, 205, 304]);
     }
 
     /**
@@ -172,7 +171,7 @@ class Response extends Message
      */
     public function isOk()
     {
-        return ($this->getStatusCode() === 200);
+        return $this->getStatusCode() === 200;
     }
 
     /**
@@ -184,7 +183,7 @@ class Response extends Message
      */
     public function isSuccessful()
     {
-        return ($this->getStatusCode() >= 200 && $this->getStatusCode() < 300);
+        return $this->getStatusCode() >= 200 && $this->getStatusCode() < 300;
     }
 
     /**
@@ -196,7 +195,7 @@ class Response extends Message
      */
     public function isRedirect()
     {
-        return is_array($this->getStatusCode(),[301,302,303,307,308]);
+        return is_array($this->getStatusCode(), [301, 302, 303, 307, 308]);
     }
 
     /**
@@ -208,7 +207,7 @@ class Response extends Message
      */
     public function isForbidden()
     {
-        return ($this->getStatusCode() === 403);
+        return $this->getStatusCode() === 403;
     }
 
     /**
@@ -220,7 +219,7 @@ class Response extends Message
      */
     public function isNotFound()
     {
-        return ($this->getStatusCode() === 404);
+        return $this->getStatusCode() === 404;
     }
 
     /**
@@ -232,7 +231,7 @@ class Response extends Message
      */
     public function isClientError()
     {
-        return ($this->getStatusCode() >= 400 && $this->getStatusCode() < 500);
+        return $this->getStatusCode() >= 400 && $this->getStatusCode() < 500;
     }
 
     /**
@@ -242,10 +241,9 @@ class Response extends Message
      *
      * @return bool
      */
-    public function isServertusCode() 
+    public function isServertusCode()
     {
-        return ($this->getStatusCode() >= 500 && $this->getStatusCode() < 600);
-
+        return $this->getStatusCode() >= 500 && $this->getStatusCode() < 600;
     }
 
     /**
@@ -271,7 +269,7 @@ class Response extends Message
         }
 
         return $headers;
-    } 
+    }
 
     /**
      * Set the reasonPhrase.
@@ -338,7 +336,6 @@ class Response extends Message
         return $this;
     }
 
-
     /**
      * Set the response body.
      *
@@ -364,9 +361,9 @@ class Response extends Message
      */
     public function setSslHeaders()
     {
-        $this->setHeader('Expires',0);
-        $this->setHeader('Cache-Control','private, must-revalidate');
-        $this->setHeader('Pragma','cache');
+        $this->setHeader('Expires', 0);
+        $this->setHeader('Cache-Control', 'private, must-revalidate');
+        $this->setHeader('Pragma', 'cache');
 
         return $this;
     }

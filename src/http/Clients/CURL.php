@@ -18,9 +18,7 @@ namespace Zest\http\Clients;
 
 class CURL extends AbstractClient
 {
-	
-	function __construct()
-	{
-		
-	}
+    public function __construct()
+    {
+    }
 }

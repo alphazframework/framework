@@ -16,7 +16,6 @@
 
 namespace Zest\http\Clients;
 
-abstract class AbstractClient 
+abstract class AbstractClient
 {
-	
 }

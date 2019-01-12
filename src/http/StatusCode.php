@@ -24,7 +24,7 @@ trait StatusCode
      * @since 3.0.0
      *
      * @var array
-     */    
+     */
     protected static $responseCodes = [
         // Informational 1xx
         100 => 'Continue',
@@ -97,4 +97,4 @@ trait StatusCode
         510 => 'Not Extended',
         511 => 'Network Authentication Required',
     ];
-} 
+}
