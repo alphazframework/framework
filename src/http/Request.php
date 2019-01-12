@@ -16,8 +16,9 @@
 
 namespace Zest\http;
 
-class Request extends HTTP
+class Request extends Message
 {
+
     /**
      * Constructor.
      *
@@ -43,7 +44,7 @@ class Request extends HTTP
         if ($this->getRequestMethod()) {
             $this->parseData();
         }
-        $this->headers = $this->getHeaders();
+        $this->set();
     }
 
     /**
@@ -440,20 +441,6 @@ class Request extends HTTP
     }
 
     /**
-     * Get a value from the request headers.
-     *
-     * @param string $key
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    public function getHeader($key)
-    {
-        return (isset($this->headers[$key])) ? $this->headers[$key] : null;
-    }
-
-    /**
      * Get the raw data.
      *
      * @since 3.0.0
@@ -532,56 +519,6 @@ class Request extends HTTP
         }
 
         return $this;
-    }
-
-    /**
-     * Magic method to get a value from one of the server/environment variables.
-     *
-     * @param  $name
-     *
-     * @since 3.0.0
-     *
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        switch ($name) {
-            case 'get':
-                return $this->get;
-                break;
-            case 'post':
-                return $this->post;
-                break;
-            case 'files':
-                return $this->files;
-                break;
-            case 'put':
-                return $this->put;
-                break;
-            case 'patch':
-                return $this->patch;
-                break;
-            case 'delete':
-                return $this->delete;
-                break;
-            case 'cookie':
-                return $this->cookie;
-                break;
-            case 'server':
-                return $this->server;
-                break;
-            case 'env':
-                return $this->env;
-                break;
-            case 'parsed':
-                return $this->parsedData;
-                break;
-            case 'raw':
-                return $this->rawData;
-                break;
-            default:
-                return;
-        }
     }
 
     /**

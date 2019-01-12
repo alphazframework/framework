@@ -16,8 +16,9 @@
 
 namespace Zest\http;
 
-class Response extends HTTP
+class Response extends Message
 {
+
     /**
      * __construct.
      *
@@ -38,10 +39,10 @@ class Response extends HTTP
         }
 
         $this->setVersion($config['version'])
-             ->setCode($config['code']);
+             ->withStatus($config['code']);
 
-        if (!isset($config['message'])) {
-            $config['message'] = self::$responseCodes[$config['code']];
+        if (!isset($config['reasonPhrase'])) {
+            $config['reasonPhrase'] = self::$responseCodes[$config['code']];
         }
         if (!isset($config['headers']) || (isset($config['headers']) && !is_array($config['headers']))) {
             $config['headers'] = ['Content-Type' => 'text/html'];
@@ -50,7 +51,7 @@ class Response extends HTTP
             $config['body'] = null;
         }
 
-        $this->setMessage($config['message'])
+        $this->setReasonPhrase($config['reasonPhrase'])
              ->setHeaders($config['headers'])
              ->setBody($config['body']);
     }
@@ -67,7 +68,7 @@ class Response extends HTTP
     public static function getMessageFromCode($code)
     {
         if (!array_key_exists($code, self::$responseCodes)) {
-            throw new Exception('The header code '.$code.' is not valid.');
+            throw new \Exception('The header code '.$code.' is not valid.');
         }
 
         return self::$responseCodes[$code];
@@ -77,7 +78,7 @@ class Response extends HTTP
      * Encode the body data.
      *
      * @param   $body
-     *                $encode
+     *          $encode
      *
      * @since 3.0.0
      *
@@ -89,7 +90,7 @@ class Response extends HTTP
             // GZIP compression
             case 'gzip':
                 if (!function_exists('gzencode')) {
-                    throw new Exception('Gzip compression is not available.');
+                    throw new \Exception('Gzip compression is not available.');
                 }
                 $encodedBody = gzencode($body);
                 break;
@@ -97,7 +98,7 @@ class Response extends HTTP
             // Deflate compression
             case 'deflate':
                 if (!function_exists('gzdeflate')) {
-                    throw new Exception('Deflate compression is not available.');
+                    throw new \Exception('Deflate compression is not available.');
                 }
                 $encodedBody = gzdeflate($body);
                 break;
@@ -127,7 +128,7 @@ class Response extends HTTP
             // GZIP compression
             case 'gzip':
                 if (!function_exists('gzinflate')) {
-                    throw new Exception('Gzip compression is not available.');
+                    throw new \Exception('Gzip compression is not available.');
                 }
                 $decodedBody = gzinflate(substr($body, 10));
                 break;
@@ -135,7 +136,7 @@ class Response extends HTTP
             // Deflate compression
             case 'deflate':
                 if (!function_exists('gzinflate')) {
-                    throw new Exception('Deflate compression is not available.');
+                    throw new \Exception('Deflate compression is not available.');
                 }
                 $zlibHeader = unpack('n', substr($body, 0, 2));
                 $decodedBody = ($zlibHeader[1] % 31 == 0) ? gzuncompress($body) : gzinflate($body);
@@ -151,21 +152,43 @@ class Response extends HTTP
     }
 
     /**
-     * Determine if the response is a success.
+     * Is this response empty?.
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public function isSuccess()
+    public function isEmpty()
     {
-        $type = floor($this->code / 100);
-
-        return ($type == 1) || ($type == 2) || ($type == 3);
+        return is_array($this->getStatusCode(),[204,205,304]);
     }
 
     /**
-     * Determine if the response is a redirect.
+     * Is this response ok?.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function isOk()
+    {
+        return ($this->getStatusCode() === 200);
+    }
+
+    /**
+     * Is this response successful?.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function isSuccessful()
+    {
+        return ($this->getStatusCode() >= 200 && $this->getStatusCode() < 300);
+    }
+
+    /**
+     * Is this response redirect.
      *
      * @since 3.0.0
      *
@@ -173,27 +196,35 @@ class Response extends HTTP
      */
     public function isRedirect()
     {
-        $type = floor($this->code / 100);
-
-        return $type == 3;
+        return is_array($this->getStatusCode(),[301,302,303,307,308]);
     }
 
     /**
-     * Determine if the response is an error.
+     * Is this response Forbidden?.
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public function isError()
+    public function isForbidden()
     {
-        $type = floor($this->code / 100);
-
-        return ($type == 4) || ($type == 5);
+        return ($this->getStatusCode() === 403);
     }
 
     /**
-     * Determine if the response is a client error.
+     * Is this response not found?.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function isNotFound()
+    {
+        return ($this->getStatusCode() === 404);
+    }
+
+    /**
+     * Is this response Client error?.
      *
      * @since 3.0.0
      *
@@ -201,97 +232,20 @@ class Response extends HTTP
      */
     public function isClientError()
     {
-        $type = floor($this->code / 100);
-
-        return $type == 4;
+        return ($this->getStatusCode() >= 400 && $this->getStatusCode() < 500);
     }
 
     /**
-     * Determine if the response is a server error.
+     * Is this response Server error?.
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public function isServerError()
+    public function isServertusCode() 
     {
-        $type = floor($this->code / 100);
+        return ($this->getStatusCode() >= 500 && $this->getStatusCode() < 600);
 
-        return $type == 5;
-    }
-
-    /**
-     * Get the response version.
-     *
-     * @since 3.0.0
-     *
-     * @return float
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
-    /**
-     * Get the response code.
-     *
-     * @since 3.0.0
-     *
-     * @return int
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
-     * Get the response message.
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-    /**
-     * Get the response body.
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    public function getBody()
-    {
-        return $this->body;
-    }
-
-    /**
-     * Get the response headers.
-     *
-     * @since 3.0.0
-     *
-     * @return array
-     */
-    public function getHeaders()
-    {
-        return $this->headers;
-    }
-
-    /**
-     * Get the response header.
-     *
-     * @param $name
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    public function getHeader($name)
-    {
-        return (isset($this->headers[$name])) ? $this->headers[$name] : null;
     }
 
     /**
@@ -309,7 +263,7 @@ class Response extends HTTP
         $headers = '';
 
         if ($status) {
-            $headers = "HTTP/{$this->version} {$this->code} {$this->message}{$eol}";
+            $headers = "HTTP/{$this->version} {$this->code} {$this->reasonPhrase}{$eol}";
         }
 
         foreach ($this->headers as $name => $value) {
@@ -317,62 +271,73 @@ class Response extends HTTP
         }
 
         return $headers;
-    }
+    } 
 
     /**
-     * Set the response version.
+     * Set the reasonPhrase.
      *
      * @param float $version
      *
      * @since 3.0.0
      *
-     * @return resource
+     * @return object
      */
-    public function setVersion($version = 1.1)
+    public function setReasonPhrase($reasonPhrase = '')
     {
-        if (($version == 1.0) || ($version == 1.1)) {
-            $this->version = $version;
-        }
+        $this->reasonPhrase = $reasonPhrase;
 
         return $this;
     }
 
     /**
-     * Set the response code.
+     * Set the protocol version.
+     *
+     * @param float $version
+     *
+     * @since 3.0.0
+     *
+     * @return object
+     */
+    public function setVersion($version = 1.1)
+    {
+        $this->withProtocolVersion($version);
+
+        return $this;
+    }
+
+    /**
+     * Get the status code.
+     *
+     * @since 3.0.0
+     *
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * Set the status code.
      *
      * @param  $code
      *
      * @since 3.0.0
      *
-     * @return resource
+     * @return object
      */
-    public function setCode($code = 200)
+    public function withStatus($code = 200)
     {
         if (!array_key_exists($code, self::$responseCodes)) {
             throw new Exception('That header code '.$code.' is not allowed.');
         }
 
         $this->code = $code;
-        $this->message = self::$responseCodes[$code];
+        $this->reasonPhrase = self::$responseCodes[$code];
 
         return $this;
     }
 
-    /**
-     * Set the response message.
-     *
-     * @param string $message
-     *
-     * @since 3.0.0
-     *
-     * @return resource
-     */
-    public function setMessage($message = null)
-    {
-        $this->message = $message;
-
-        return $this;
-    }
 
     /**
      * Set the response body.
@@ -381,46 +346,11 @@ class Response extends HTTP
      *
      * @since 3.0.0
      *
-     * @return resource
+     * @return object
      */
     public function setBody($body = null)
     {
-        $this->body = $body;
-
-        return $this;
-    }
-
-    /**
-     * Set a response header.
-     *
-     * @param  $name
-     * 	 	   $value
-     *
-     * @since 3.0.0
-     *
-     * @return resource
-     */
-    public function setHeader($name, $value)
-    {
-        $this->headers[$name] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Set response headers.
-     *
-     * @param array $headers
-     *
-     * @throws Exception
-     *
-     * @return Response
-     */
-    public function setHeaders(array $headers)
-    {
-        foreach ($headers as $name => $value) {
-            $this->headers[$name] = $value;
-        }
+        $this->withBody($body);
 
         return $this;
     }
@@ -430,64 +360,15 @@ class Response extends HTTP
      *
      * @since 3.0.0
      *
-     * @return resource
+     * @return object
      */
     public function setSslHeaders()
     {
-        $this->headers['Expires'] = 0;
-        $this->headers['Cache-Control'] = 'private, must-revalidate';
-        $this->headers['Pragma'] = 'cache';
+        $this->setHeader('Expires',0);
+        $this->setHeader('Cache-Control','private, must-revalidate');
+        $this->setHeader('Pragma','cache');
 
         return $this;
-    }
-
-    /**
-     * Send headers.
-     *
-     * @since 3.0.0
-     *
-     * @return void
-     */
-    public function sendHeaders()
-    {
-        if (headers_sent()) {
-            throw new Exception('The headers have already been sent.');
-        }
-
-        header("HTTP/{$this->version} {$this->code} {$this->message}");
-        foreach ($this->headers as $name => $value) {
-            header($name.': '.$value);
-        }
-    }
-
-    /**
-     * Send response.
-     *
-     * @param  $code
-     * 		   $headers
-     *
-     * @since 3.0.0
-     *
-     * @return void
-     */
-    public function send($code = null, array $headers = null)
-    {
-        if ($code !== null) {
-            $this->setCode($code);
-        }
-        if ($header !== null) {
-            $this->setHeaders($headers);
-        }
-
-        $body = $this->body;
-
-        if (array_key_exists('Content-Encoding', $this->headers)) {
-            $body = self::encodeBody($body, $this->headers['Content-Encoding']);
-            $this->headers['Content-Length'] = strlen($body);
-        }
-
-        $this->sendHeaders();
-        echo $body;
     }
 
     /**
@@ -504,24 +385,6 @@ class Response extends HTTP
     {
         $this->send($code, $headers);
         exit();
-    }
-
-    /**
-     * Magic method to get a value from the headers.
-     *
-     * @param string $name
-     *
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        switch ($name) {
-            case 'headers':
-                return $this->headers;
-                break;
-            default:
-                return;
-        }
     }
 
     /**

@@ -71,4 +71,7 @@ Changes:
 59. Added HTTP Request library more will added soon.
 60. Update Router class using http\Request.
 61. Add HTTP Redirect class.
-62. Add HTTP Response class.	
+62. Add HTTP Response class.
+63. Update HTTP Response class.
+64. Added HTTP Message class.
+65. Added HTTP Headers classs.
