@@ -18,7 +18,6 @@ namespace Zest\http;
 
 class Request extends Message
 {
-
     /**
      * Constructor.
      *

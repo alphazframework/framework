@@ -18,18 +18,17 @@ namespace Zest\http;
 
 class Message extends HTTP
 {
-
     /**
      * Get the protocol version.
      *
      * @since 3.0.0
      *
      * @return string
-     */  
-	public function getProtocolVersion()
-	{
-		return $this->version;
-	}
+     */
+    public function getProtocolVersion()
+    {
+        return $this->version;
+    }
 
     /**
      * Return an instance with the specified HTTP protocol version.
@@ -39,16 +38,16 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return void
-     */  
-	public function withProtocolVersion($version)
-	{
-		if (!isset(self::$validProtocolVersions[$version])) {
-			throw new \InvalidArgumentException('Invalid HTTP version. Must be one of: '. implode(', ', array_keys(self::$validProtocolVersions)),500);
-		} 
-		$this->version = $version;
+     */
+    public function withProtocolVersion($version)
+    {
+        if (!isset(self::$validProtocolVersions[$version])) {
+            throw new \InvalidArgumentException('Invalid HTTP version. Must be one of: '.implode(', ', array_keys(self::$validProtocolVersions)), 500);
+        }
+        $this->version = $version;
 
-		return $this;
-	}
+        return $this;
+    }
 
     /**
      * Get all message headers value.
@@ -56,11 +55,11 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return void
-     */  
-	public function getHeaders()
-	{
-		return $this->all();
-	}
+     */
+    public function getHeaders()
+    {
+        return $this->all();
+    }
 
     /**
      * Determine headers is exists.
@@ -70,11 +69,11 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return bool
-     */  	
-	public function hasHeader($name)
-	{
-		return $this->has($name);
-	}
+     */
+    public function hasHeader($name)
+    {
+        return $this->has($name);
+    }
 
     /**
      * Get the header by key/name.
@@ -84,11 +83,11 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return string
-     */  	
-	public function getHeader($name)
-	{
-		return $this->get($name);
-	}
+     */
+    public function getHeader($name)
+    {
+        return $this->get($name);
+    }
 
     /**
      * Get a comma-separated string of the values for a single header.
@@ -98,11 +97,11 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return array
-     */  	
-	public function getHeaderLine($name)
-	{
-		return implode(",", $this->get($name));
-	}
+     */
+    public function getHeaderLine($name)
+    {
+        return implode(',', $this->get($name));
+    }
 
     /**
      * Return an instance with the provided value replacing the specified header.
@@ -113,12 +112,13 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return object
-     */	
-	public function withHeader($name, $value)
-	{
-		$this->update($name,$value);
-		return $this;
-	}
+     */
+    public function withHeader($name, $value)
+    {
+        $this->update($name, $value);
+
+        return $this;
+    }
 
     /**
      * Return an instance with the specified header appended with the given value.
@@ -129,12 +129,13 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return object
-     */		
-	public function withAddedHeader($name, $value)
-	{
-		$this->setHeader($name,$value);
-		return $this;
-	}
+     */
+    public function withAddedHeader($name, $value)
+    {
+        $this->setHeader($name, $value);
+
+        return $this;
+    }
 
     /**
      * Return an instance without the specified header.
@@ -144,12 +145,13 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return object
-     */		
-	public function withoutHeader($name)
-	{
-		$this->remove($name);
-		return $this;
-	}		
+     */
+    public function withoutHeader($name)
+    {
+        $this->remove($name);
+
+        return $this;
+    }
 
     /**
      * Gets the body of the message.
@@ -157,11 +159,11 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return array
-     */		
-	public function getBody()
-	{
-		return $this->body;
-	}
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
 
     /**
      * Return an instance with the specified message body.
@@ -171,10 +173,11 @@ class Message extends HTTP
      * @since 3.0.0
      *
      * @return object
-     */		
-	public function withBody($body)
-	{
-		$this->body = $body;
-		return $this;
-	}
+     */
+    public function withBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
 }

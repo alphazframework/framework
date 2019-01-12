@@ -18,5 +18,4 @@ namespace Zest\http;
 
 class UploadedFile
 {
-
-}	
+}

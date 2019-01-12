@@ -157,7 +157,7 @@ abstract class HTTP extends Headers
      */
     protected $env = [];
 
-    /* Response */  
+    /* Response */
     /**
      * HTTP version.
      *
@@ -183,7 +183,7 @@ abstract class HTTP extends Headers
      *
      * @var string
      */
-    protected $reasonPhrase  = null;
+    protected $reasonPhrase = null;
 
     /**
      * Response body.

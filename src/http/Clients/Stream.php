@@ -16,11 +16,9 @@
 
 namespace Zest\http\Clients;
 
-class Stream extends AbstractClient 
+class Stream extends AbstractClient
 {
-	
-	function __construct()
-	{
-		
-	}
+    public function __construct()
+    {
+    }
 }
