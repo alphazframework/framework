@@ -18,13 +18,14 @@ namespace Zest\Files;
 
 class Files
 {
+
     /**
-     * MineTypes.
+     * Mine Types of files
      *
      * @since 3.0.0
-     *
+     * 
      * @var array
-     */
+    */
     private $mineTypes = [
         'application/x-zip-compressed',
         'application/msword',
@@ -42,13 +43,14 @@ class Files
         'image/icon',
         'image/svg+xml',
     ];
+
     /**
-     * Types.
+     * Types
      *
      * @since 3.0.0
-     *
+     * 
      * @var array
-     */
+    */
     private $types = [
         'image' => ['jpg', 'png', 'jpeg', 'gif', 'ico', 'svg'],
         'zip'   => ['zip', 'tar', '7zip', 'rar'],
@@ -57,28 +59,28 @@ class Files
     ];
 
     /**
-     * The default value for recursive create dirs.
+     * The default value for recursive create dirs
      *
-     * @since 1.0.0
-     *
+     * @since 3.0.0
+     * 
      * @var bool
-     */
+    */
     private $recursiveDirectories = true;
 
     /**
-     * Default CHMOD.
+     * Default chmod
      *
      * @since 3.0.0
-     *
+     * 
      * @var int
-     */
+    */
     private $defCHMOD = 0755;
 
     /**
      * Create zest system dir.
-     *
+     *     
      * @since 1.0.0
-     *
+     * 
      * @return bool
      */
     public function systemDirs()
@@ -94,37 +96,36 @@ class Files
      * Change the default chmod.
      *
      * @param $chomd valid chmod
-     *
-     * @since 1.0.0
-     *
+     *     
+     * @since 3.0.0
+     * 
      * @return bool
-     */
+     */    
     public function changeDefaultChmod($chmod)
     {
         return ($chmod === null) ? $this->defCHMOD : $this->defCHMOD = $chmod;
-    }
 
+    }
     /**
      * Create zest system dir.
      *
      * @param $value recursive status true|false
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return bool
      */
     public function recursiveCreateDir($value = null)
     {
         return ($value === null) ? $this->recursiveDirectories : $this->recursiveDirectories = $value;
     }
-
     /**
      * Add the mine type.
      *
      * @param $type correct mine type.
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function addMineTypes($type)
@@ -137,9 +138,9 @@ class Files
      *
      * @param $type correct type.
      *        $sub extensions
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function addExt($type, $ext)
@@ -153,17 +154,17 @@ class Files
      * @param $name name of dir with path.
      *        $recursive recursive mode create: null|true|false.
      *        $chmod directory permission on create: default 0755
-     *
-     * @since 1.0.0
-     *
+     *     
+     * @since 2.0.0
+     * 
      * @return bool
      */
-    public function mkDir($name, $recursive = null, $chmod = null)
+    public function mkDir($name,$recursive = null,$chmod = null)
     {
         // test the recursive mode with default value
         $recursive = ($recursive === null) ? $this->recursiveDirectories : $recursive;
         // test the chmod with default value
-        $chmod = ($chmod === null) ? $this->defCHMOD : $chmod;
+        $chmod = ($chmod === null) ? $this->defCHMOD : $chmod;        
         if (!is_dir($name)) {
             return (mkdir($name)) ? true : false;
         }
@@ -176,9 +177,9 @@ class Files
      *
      * @param $source name of file or directory with path.
      *        $pre valid premission
-     *
-     * @since 1.0.0
-     *
+     *     
+     * @since 2.0.0
+     * 
      * @return bool
      */
     public function permission($source, $pre)
@@ -191,14 +192,60 @@ class Files
     }
 
     /**
+     * Change the owner of an array of files.
+     *
+     * @param $source name of file or directory with path.
+     *        $target target directory
+     *        $files (array) files to be copy
+     *        $time  The new owner user name
+     *     
+     * @since 3.0.0
+     * 
+     * @return bool
+     */
+    public function chown($source, $target, $files,$user)
+    {
+        foreach ($files as $file => $value) {
+            if (file_exists($source.$value)) {
+                @chown($file, $user)
+            }
+        }
+    }
+
+    /**
+     * Sets access and modification time of file.
+     *
+     * @param $source name of file or directory with path.
+     *        $target target directory
+     *        $files (array) files to be copy
+     *        $time  The touch time as a Unix timestamp
+     *        $atime The access time as a Unix timestamp
+     *     
+     * @since 3.0.0
+     * 
+     * @return bool
+     */
+    public function touch($source, $target, $files,$time = null, $atime = null)
+    {
+        foreach ($files as $file => $value) {
+            if (file_exists($source.$value)) {
+                $touch = $time ? @touch($file, $time, $atime) : @touch($file);
+            }
+            if ($touch !== true) {
+                return false;
+            }
+        }
+    }
+
+    /**
      * Copy files.
      *
      * @param $source name of file or directory with path.
      *        $target target directory
      *        $files (array) files to be copy
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function copyFiles($source, $target, $files)
@@ -217,9 +264,9 @@ class Files
      * @param $source name of file or directory with path.
      *        $target target directory
      *        $files (array) files to be move
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function moveFiles($source, $target, $files)
@@ -236,9 +283,9 @@ class Files
      * Delete files.
      *
      * @param $file name of file with path.
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function deleteFiles($files)
@@ -256,9 +303,9 @@ class Files
      * @param $source directory with path.
      *        $target target directory
      *        $files (array) dirs to be copy
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function copyDirs($source, $target, $dirs)
@@ -279,9 +326,9 @@ class Files
      * @param $source directory with path.
      *        $target target directory
      *        $dir (array) dir to be move
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function moveDirs($source, $target, $dirs)
@@ -299,9 +346,9 @@ class Files
      * Delete dirs.
      *
      * @param $dir Directory with path.
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function deleteDirs($dir)
@@ -320,9 +367,9 @@ class Files
      *        $target target where file should be upload
      *        $imgType supported => image,media,docs,zip
      *        $maxSize file size to be allowed
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function fileUpload($file, $target, $imgType, $maxSize = 7992000000)
@@ -385,9 +432,9 @@ class Files
      *        $target target where file should be upload
      *        $imgType supported => image,media,docs,zip
      *        $maxSize file size to be allowed
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return void
      */
     public function filesUpload($files, $target, $imgType, $count, $maxSize = 7992000000)

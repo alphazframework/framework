@@ -19,20 +19,21 @@ namespace Zest\Files;
 class FileHandling
 {
     /**
-     * Resource.
+     * resource
      *
      * @since 3.0.0
-     *
-     * @var resource
-     */
+     * 
+     * @var object
+    */
     private $resource;
+
     /**
-     * Modes of file.
+     * Modes of file
      *
      * @since 3.0.0
-     *
+     * 
      * @var array
-     */
+    */
     private $modes = [
         'readOnly'        => 'r',
         'readWrite'       => 'r+',
@@ -47,9 +48,9 @@ class FileHandling
      *
      * @param $name => name of file
      *        $mode => mode of file
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return resource
      */
     public function open($name, $mode)
@@ -65,9 +66,9 @@ class FileHandling
      * Read the file.
      *
      * @param $file file that to be read
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return file
      */
     public function read($file)
@@ -79,9 +80,9 @@ class FileHandling
      * Write on file.
      *
      * @param $data data that you want write on file
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return bool
      */
     public function write($data)
@@ -93,9 +94,9 @@ class FileHandling
      * Delete the file.
      *
      * @param $file file to be deleted
-     *
+     *     
      * @since 3.0.0
-     *
+     * 
      * @return bool
      */
     public function delete($file)

@@ -76,3 +76,6 @@ Changes:
 64. Added HTTP Message class.
 65. Added HTTP Headers classs.
 66. Added HTTP URI class.
+67. Update Files Class.
+    - Add touch method for (Sets access and modification time of file).
+	- Add chown method for (Change the owner of files).
