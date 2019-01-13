@@ -13,17 +13,15 @@
  */
 
 namespace Zest\Site;
-
-use Zest\http\Redirect;
 use Zest\http\Request;
+use Zest\http\Redirect;
 
 class Site
 {
     private function requestInstance()
     {
-        return new Request();
+        return (new Request());
     }
-
     /**
      * Return site URL.
      *
@@ -31,7 +29,7 @@ class Site
      */
     public static function siteUrl()
     {
-        $base_url = self::requestInstance()->getScheme().'://'.self::requestInstance()->getServerName().':'.self::requestInstance()->getServerPort().self::getUri();
+        $base_url = self::requestInstance()->getDeterminedScheme().'://'.self::requestInstance()->getServerName().':'.self::requestInstance()->getServerPort().self::getUri();
 
         return $base_url;
     }
@@ -43,7 +41,7 @@ class Site
      */
     public static function siteBaseUrl()
     {
-        $base_url = self::requestInstance()->getScheme().'://'.self::requestInstance()->getServerName().':'.self::requestInstance()->getServerPort().self::getBase();
+        $base_url = self::requestInstance()->getDeterminedScheme().'://'.self::requestInstance()->getServerName().':'.self::requestInstance()->getServerPort().self::getBase();
 
         return $base_url;
     }
@@ -102,7 +100,7 @@ class Site
             $base_url = $url;
         }
         ob_start();
-        (new Redirect($base_url, 200));
+        (new Redirect($base_url,200));
     }
 
     /**
