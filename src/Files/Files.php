@@ -207,7 +207,7 @@ class Files
     {
         foreach ($files as $file => $value) {
             if (file_exists($source.$value)) {
-                @chown($file, $user)
+                @chown($file, $user);
             }
         }
     }
