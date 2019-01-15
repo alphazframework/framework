@@ -108,7 +108,7 @@ class Router
             $call = ['callBack' => $callback];
             $params = array_merge($params, $call);
             $this->routes[$route] = $params;
-        } elseif (is_string($params)) { 
+        } elseif (is_string($params)) {
             //If string
             $param = [];
             $parts = explode('@', $params);
