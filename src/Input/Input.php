@@ -16,7 +16,6 @@
 
 namespace Zest\Input;
 
-use Config\Config;
 use Zest\View\View;
 
 class Input

@@ -117,7 +117,7 @@ class Message extends HTTP
      * Return an instance with the provided value replacing the specified header.
      *
      * @param (string) $name header field/key name
-     *        (string) $value header value
+     *                       (string) $value header value
      *
      * @since 3.0.0
      *
@@ -134,7 +134,7 @@ class Message extends HTTP
      * Return an instance with the specified header appended with the given value.
      *
      * @param (string) $name header field/key name
-     *        (string) $value header value
+     *                       (string) $value header value
      *
      * @since 3.0.0
      *

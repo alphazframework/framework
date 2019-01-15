@@ -16,181 +16,181 @@
 
 namespace Zest\http\Clients;
 
-abstract class AbstractClient 
+abstract class AbstractClient
 {
     /**
-     * Client resource object
+     * Client resource object.
      *
      * @since 3.0.0
-     * 
+     *
      * @var object
      */
     protected $resource = '';
 
     /**
-     * URL
+     * URL.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
     protected $url = '';
 
     /**
-     * Method
+     * Method.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
     protected $method = '';
 
     /**
-     * Fields
+     * Fields.
      *
      * @since 3.0.0
-     * 
+     *
      * @var array
      */
     protected $fields = [];
 
     /**
-     * Query
+     * Query.
      *
      * @since 3.0.0
-     *   
+     *
      * @var string
      */
     protected $query = '';
 
     /**
-     * Request headers
+     * Request headers.
      *
      * @since 3.0.0
-     * 
+     *
      * @var array
      */
     protected $requestHeaders = [];
 
     /**
-     * HTTP version from response
+     * HTTP version from response.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
     protected $version = '';
 
     /**
-     * Response code
+     * Response code.
      *
      * @since 3.0.0
-     * 
+     *
      * @var int
      */
     protected $code;
 
     /**
-     * Response message
+     * Response message.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
     protected $message = '';
 
     /**
-     * Raw response string
+     * Raw response string.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
     protected $response = '';
 
     /**
-     * Raw response header
+     * Raw response header.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
     protected $responseHeader = '';
 
     /**
-     * Response headers
+     * Response headers.
      *
      * @since 3.0.0
-     * 
+     *
      * @var array
      */
     protected $responseHeaders = [];
 
     /**
-     * Response body
+     * Response body.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
-    protected $body = '';	
+    protected $body = '';
 
     /**
-     * CURL options
+     * CURL options.
      *
      * @since 3.0.0
-     * 
+     *
      * @var array
      */
-    protected $options = [];	
+    protected $options = [];
 
     /**
-     * Stream context
+     * Stream context.
      *
      * @since 3.0.0
-     *      
+     *
      * @var resource
      */
     protected $context = null;
 
     /**
-     * Stream context options
+     * Stream context options.
      *
      * @since 3.0.0
-     * 
+     *
      * @var array
      */
     protected $contextOptions = [];
 
     /**
-     * Stream context parameters
+     * Stream context parameters.
      *
      * @since 3.0.0
-     * 
+     *
      * @var array
      */
     protected $contextParams = [];
 
     /**
-     * HTTP Response Headers
+     * HTTP Response Headers.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
     protected $httpResponseHeaders = null;
 
     /**
-     * Stream mode
+     * Stream mode.
      *
      * @since 3.0.0
-     * 
+     *
      * @var string
      */
     protected $mode = 'r';
 
     /**
-     * Set the URL
+     * Set the URL.
      *
      * @param (string) $url
      *
@@ -206,7 +206,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get the URL
+     * Get the URL.
      *
      * @since 3.0.0
      *
@@ -215,12 +215,12 @@ abstract class AbstractClient
     public function getUrl()
     {
         return $this->url;
-    }   
+    }
 
     /**
-     * Set the method
+     * Set the method.
      *
-     * @param  (string) $method
+     * @param (string) $method
      *
      * @since 3.0.0
      *
@@ -228,7 +228,7 @@ abstract class AbstractClient
      */
     public function setMethod($method)
     {
-        $valid  = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'TRACE', 'CONNECT'];
+        $valid = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'TRACE', 'CONNECT'];
         $method = strtoupper($method);
 
         if (!in_array($method, $valid)) {
@@ -237,10 +237,10 @@ abstract class AbstractClient
         $this->method = $method;
 
         return $this;
-    }     
+    }
 
     /**
-     * Get the method
+     * Get the method.
      *
      * @since 3.0.0
      *
@@ -248,14 +248,14 @@ abstract class AbstractClient
      */
     public function getMethod()
     {
-    	return $this->method;
+        return $this->method;
     }
 
     /**
-     * Set the fields
+     * Set the fields.
      *
      * @param (string) $name
-     *        (string) $value
+     *                       (string) $value
      *
      * @since 3.0.0
      *
@@ -268,10 +268,10 @@ abstract class AbstractClient
         return $this;
     }
 
-     /**
-     * Set fields
+    /**
+     * Set fields.
      *
-     * @param  (array) $fields
+     * @param (array) $fields
      *
      * @since 3.0.0
      *
@@ -280,16 +280,16 @@ abstract class AbstractClient
     public function setFields(array $fields)
     {
         foreach ($fields as $name => $value) {
-        	$this->setField($name,$value);
+            $this->setField($name, $value);
         }
 
         $this->prepareQuery();
 
         return $this;
-    }   
+    }
 
     /**
-     * Get a field
+     * Get a field.
      *
      * @param (string) $name name of field
      *
@@ -299,11 +299,11 @@ abstract class AbstractClient
      */
     public function getField($name)
     {
-    	return (isset($this->fields[$name])) ? $this->fields[$name] : false;
+        return (isset($this->fields[$name])) ? $this->fields[$name] : false;
     }
 
     /**
-     * Remove a fuekd
+     * Remove a fuekd.
      *
      * @param (string) $name name of field
      *
@@ -313,17 +313,17 @@ abstract class AbstractClient
      */
     public function getFields($name)
     {
-    	if (isset($this->fields[$name])) {
-    		unset($this->fields[$name]);
-    	}
+        if (isset($this->fields[$name])) {
+            unset($this->fields[$name]);
+        }
 
-    	$this->prepareQuery();
+        $this->prepareQuery();
 
-    	return $this;
-    }     
+        return $this;
+    }
 
     /**
-     * Prepare the HTTP query
+     * Prepare the HTTP query.
      *
      * @since 3.0.0
      *
@@ -334,10 +334,10 @@ abstract class AbstractClient
         $this->query = http_build_query($this->fields);
 
         return $this;
-    }    
+    }
 
     /**
-     * Get the HTTP query
+     * Get the HTTP query.
      *
      * @since 3.0.0
      *
@@ -346,10 +346,10 @@ abstract class AbstractClient
     public function getQuery()
     {
         return $this->query;
-    }   
+    }
 
     /**
-     * Get HTTP query length
+     * Get HTTP query length.
      *
      * @param (bool) $mb
      *
@@ -360,13 +360,13 @@ abstract class AbstractClient
     public function getQueryLength($mb = true)
     {
         return ($mb) ? mb_strlen($this->query) : strlen($this->query);
-    }         
+    }
 
     /**
-     * Set a request header
+     * Set a request header.
      *
-     * @param  (string) $name
-     * @param  (string) $value
+     * @param (string) $name
+     * @param (string) $value
      *
      * @since 3.0.0
      *
@@ -375,13 +375,14 @@ abstract class AbstractClient
     public function setRequestHeader($name, $value)
     {
         $this->requestHeaders[$name] = $value;
+
         return $this;
     }
 
     /**
-     * Set all request headers
+     * Set all request headers.
      *
-     * @param  (arryay) $headers
+     * @param (arryay) $headers
      *
      * @since 3.0.0
      *
@@ -395,9 +396,9 @@ abstract class AbstractClient
     }
 
     /**
-     * Get a request header
+     * Get a request header.
      *
-     * @param  (string) $name
+     * @param (string) $name
      *
      * @since 3.0.0
      *
@@ -409,7 +410,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get all request headers
+     * Get all request headers.
      *
      * @since 3.0.0
      *
@@ -421,7 +422,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Determine if there are request headers
+     * Determine if there are request headers.
      *
      * @since 3.0.0
      *
@@ -429,13 +430,13 @@ abstract class AbstractClient
      */
     public function hasRequestHeaders()
     {
-        return (count($this->requestHeaders) > 0);
+        return count($this->requestHeaders) > 0;
     }
 
     /**
-     * Get a response header
+     * Get a response header.
      *
-     * @param  (string) $name
+     * @param (string) $name
      *
      * @since 3.0.0
      *
@@ -447,7 +448,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get all response headers
+     * Get all response headers.
      *
      * @since 3.0.0
      *
@@ -459,7 +460,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Determine if there are response headers
+     * Determine if there are response headers.
      *
      * @since 3.0.0
      *
@@ -467,11 +468,11 @@ abstract class AbstractClient
      */
     public function hasResponseHeaders()
     {
-        return (count($this->responseHeaders) > 0);
+        return count($this->responseHeaders) > 0;
     }
 
     /**
-     * Get raw response header
+     * Get raw response header.
      *
      * @since 3.0.0
      *
@@ -483,7 +484,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get the response body
+     * Get the response body.
      *
      * @since 3.0.0
      *
@@ -495,7 +496,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get the response code
+     * Get the response code.
      *
      * @since 3.0.0
      *
@@ -507,7 +508,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get the response HTTP version
+     * Get the response HTTP version.
      *
      * @since 3.0.0
      *
@@ -519,7 +520,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get the response HTTP message
+     * Get the response HTTP message.
      *
      * @since 3.0.0
      *
@@ -531,7 +532,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get the raw response
+     * Get the raw response.
      *
      * @since 3.0.0
      *
@@ -543,11 +544,11 @@ abstract class AbstractClient
     }
 
     /**
-     * Determine whether or not resource is available
+     * Determine whether or not resource is available.
      *
      * @since 3.0.0
      *
-     * @return boolean
+     * @return bool
      */
     public function hasResource()
     {
@@ -555,7 +556,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Get the resource
+     * Get the resource.
      *
      * @since 3.0.0
      *
@@ -567,7 +568,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Decode the body
+     * Decode the body.
      *
      * @since 3.0.0
      *
@@ -579,7 +580,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Create and open the client resource
+     * Create and open the client resource.
      *
      * @since 3.0.0
      *
@@ -588,20 +589,20 @@ abstract class AbstractClient
     abstract public function open();
 
     /**
-     * Method to send the request and get the response
+     * Method to send the request and get the response.
      *
      * @since 3.0.0
      *
      * @return void
      */
-    abstract public function send(); 
+    abstract public function send();
 
     /**
-     * Close the client resource
+     * Close the client resource.
      *
      * @since 3.0.0
      *
      * @return void
      */
-    abstract public function close();        
+    abstract public function close();
 }

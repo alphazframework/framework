@@ -52,7 +52,7 @@ abstract class Headers extends Clients\Client
      * append new header.
      *
      * @param (string) $key The header key
-     *        (string) $value The header value
+     *                      (string) $value The header value
      *
      * @since 3.0.0
      *
@@ -83,7 +83,7 @@ abstract class Headers extends Clients\Client
      * Update existing header.
      *
      * @param (string) $key The header key
-     *        (string) $value The new header value
+     *                      (string) $value The new header value
      *
      * @since 3.0.0
      *
@@ -153,7 +153,7 @@ abstract class Headers extends Clients\Client
     /**
      * Normalize header name.
      *
-     * @param  (string) $key The case-insensitive header name
+     * @param (string) $key The case-insensitive header name
      *
      * @return string
      */
@@ -167,8 +167,8 @@ abstract class Headers extends Clients\Client
     /**
      * Send response.
      *
-     * @param  (int) $code
-     *         (array) $headers
+     * @param (int) $code
+     *                    (array) $headers
      *
      * @since 3.0.0
      *
