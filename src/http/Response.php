@@ -77,8 +77,8 @@ class Response extends Message
     /**
      * Encode the body data.
      *
-     * @param  (mixed) $body
-     *         (string) $encode
+     * @param (mixed) $body
+     *                      (string) $encode
      *
      * @since 3.0.0
      *
@@ -115,8 +115,8 @@ class Response extends Message
     /**
      * Decode the body data.
      *
-     * @param  (mixed) $body
-     *         (string) $encode
+     * @param (mixed) $body
+     *                      (string) $encode
      *
      * @since 3.0.0
      *
@@ -250,8 +250,8 @@ class Response extends Message
     /**
      * Get the response headers as a string.
      *
-     * @param  (bool) $status
-     * 		   (string) $eol
+     * @param (bool) $status
+     *                       (string) $eol
      *
      * @since 3.0.0
      *
@@ -373,7 +373,7 @@ class Response extends Message
      * Send response and exit.
      *
      * @param (int) $code
-     * 		  (array) $headers
+     *                    (array) $headers
      *
      * @since 3.0.0
      *

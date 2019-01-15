@@ -27,13 +27,13 @@ class Uri extends Message
      * Set the Uri.
      *
      * @param (string) $url valid url
-     *        (string) $host valid host
-     *		  (int) $port valid port number
-     *		  (string) $path valid path
-     *		  (string) $query query URI
-     *		  (string) $fragment fragment
-     *        (string) $user username
-     *        (string) $password password
+     *                      (string) $host valid host
+     *                      (int) $port valid port number
+     *                      (string) $path valid path
+     *                      (string) $query query URI
+     *                      (string) $fragment fragment
+     *                      (string) $user username
+     *                      (string) $password password
      *
      * @since 3.0.0
      *
@@ -261,7 +261,7 @@ class Uri extends Message
      * Return an instance with the specified user information.
      *
      * @param (string) $user username
-     *        (string) $password password
+     *                       (string) $password password
      *
      * @since 3.0.0
      *
