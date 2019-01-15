@@ -75,11 +75,11 @@ class Router
     /**
      * Add a route to the routing table.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string       $methods  request method like GET or GET|POST
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $methods    request method like GET or GET|POST
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 1.0.0
      *
@@ -116,10 +116,10 @@ class Router
             if (isset($parts[2])) {
                 $param['namespace'] = $parts[2];
             }
-            (!empty($middleware)) ? $param['middleware'] = $this->addMiddleware($middleware) : $param;            
+            (!empty($middleware)) ? $param['middleware'] = $this->addMiddleware($middleware) : $param;
             $this->routes[$route] = $param;
         } elseif (is_callable($params)) {
-            (!empty($middleware)) ? $this->routes[$route] = ['callable' => $params, 'method' => $methods, 'middleware' => $this->addMiddleware($middleware)] : $this->routes[$route] = ['callable' => $params, 'method' => $methods];     
+            (!empty($middleware)) ? $this->routes[$route] = ['callable' => $params, 'method' => $methods, 'middleware' => $this->addMiddleware($middleware)] : $this->routes[$route] = ['callable' => $params, 'method' => $methods];
         } else {
             throw new \Exception('Wrong agruments given', 500);
         }
@@ -129,18 +129,18 @@ class Router
     {
         $namespace = "App\Middleware\\";
         $middleware = $namespace.$name;
-        $middleware_object = new $middleware;
+        $middleware_object = new $middleware();
         if (class_exists($middleware)) {
-            if (method_exists($middleware_object, "before") && method_exists($middleware_object, "after")) {
-                    return $middleware_object; 
+            if (method_exists($middleware_object, 'before') && method_exists($middleware_object, 'after')) {
+                return $middleware_object;
             } else {
-                throw new \Exception("Middleware methods before and after not exists", 500);
-                
+                throw new \Exception('Middleware methods before and after not exists', 500);
             }
         } else {
             throw new \Exception("Middleware Class {$middleware} not found", 500);
         }
     }
+
     /**
      * Add multiple routes at once from array in the following format:.
      *
@@ -163,26 +163,28 @@ class Router
     /**
      * Add a route to the routing table as POST.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.     *
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.     *
+     *
      * @since 2.0.3
      *
      * @return void
      */
-    public function post($route, $params,$middleware = '' , $callback = null)
+    public function post($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'POST',$middleware ,$callback);
+        $this->add($route, $params, 'POST', $middleware, $callback);
     }
 
     /**
      * Add a route to the routing table as GET.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.     *
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.     *
+     *
      * @since 2.0.3
      *
      * @return void
@@ -195,16 +197,16 @@ class Router
     /**
      * Add a route to the routing table as PUT.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function put($route, $params,$middleare = '' ,$callback = null)
+    public function put($route, $params, $middleare = '', $callback = null)
     {
         $this->add($route, $params, 'PUT', $middleware, $callback);
     }
@@ -212,10 +214,10 @@ class Router
     /**
      * Add a route to the routing table as PATCH.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
@@ -223,16 +225,16 @@ class Router
      */
     public function patch($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'PATCH',$middleware, $callback);
+        $this->add($route, $params, 'PATCH', $middleware, $callback);
     }
 
     /**
      * Add a route to the routing table as DELETE.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
@@ -240,16 +242,16 @@ class Router
      */
     public function delete($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'DELETE',$middleware, $callback);
+        $this->add($route, $params, 'DELETE', $middleware, $callback);
     }
 
     /**
      * Add a route to the routing table as OPTIONS.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
@@ -257,16 +259,16 @@ class Router
      */
     public function options($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'OPTIONS',$middleware, $callback);
+        $this->add($route, $params, 'OPTIONS', $middleware, $callback);
     }
 
-     /**
+    /**
      * Add a route to the routing table as TRACE.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
@@ -274,16 +276,16 @@ class Router
      */
     public function trace($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'TRACE',$middleware, $callback);
-    }   
+        $this->add($route, $params, 'TRACE', $middleware, $callback);
+    }
 
-      /**
+    /**
      * Add a route to the routing table as CONNECT.
      *
-     * @param string       $route    The route URL
-     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param string $middleware Middleare name
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
@@ -291,8 +293,8 @@ class Router
      */
     public function connect($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'CONNECT',$middleware, $callback);
-    } 
+        $this->add($route, $params, 'CONNECT', $middleware, $callback);
+    }
 
     /**
      * Get all the routes from the routing table.
@@ -440,7 +442,7 @@ class Router
                     throw new \Exception('This page is protected', 404);
                 }
             } else {
-                (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response()) : null;                
+                (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response()) : null;
                 call_user_func($this->params['callable'], $this->params);
                 (is_object($this->params['middleware'])) ? $this->params['middleware']->after(new Request(), new Response()) : null;
             }
