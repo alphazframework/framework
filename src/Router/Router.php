@@ -83,7 +83,7 @@ class Router
      *
      * @since 1.0.0
      *
-     * @return object
+     * @return void
      */
     public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '', \closure $callback = null)
     {
@@ -190,8 +190,6 @@ class Router
     public function get($route, $params, $middleware = '', $callback = null)
     {
         $this->add($route, $params, 'GET|HEAD', $middleware, $callback);
-
-        return $this;
     }
 
     /**
