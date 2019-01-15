@@ -21,6 +21,7 @@ namespace Zest\Router;
 use Config\Config;
 use Zest\Cache\ZestCache\ZestCache;
 use Zest\http\Request;
+use Zest\http\Response;
 
 class Router
 {
@@ -77,13 +78,14 @@ class Router
      * @param string       $route    The route URL
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
      * @param string       $methods  request method like GET or GET|POST
+     * @param string $middleware Middleare name
      * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 1.0.0
      *
-     * @return void
+     * @return object
      */
-    public function add($route, $params = '', $methods = 'GET|HEAD', \closure $callback = null)
+    public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '', \closure $callback = null)
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -114,18 +116,35 @@ class Router
             if (isset($parts[2])) {
                 $param['namespace'] = $parts[2];
             }
+            (!empty($middleware)) ? $param['middleware'] = $this->addMiddleware($middleware) : $param;            
             $this->routes[$route] = $param;
         } elseif (is_callable($params)) {
-            $this->routes[$route] = ['callable' => $params, 'method' => $methods];
+            (!empty($middleware)) ? $this->routes[$route] = ['callable' => $params, 'method' => $methods, 'middleware' => $this->addMiddleware($middleware)] : $this->routes[$route] = ['callable' => $params, 'method' => $methods];     
         } else {
             throw new \Exception('Wrong agruments given', 500);
         }
     }
 
+    public function addMiddleware($name)
+    {
+        $namespace = "App\Middleware\\";
+        $middleware = $namespace.$name;
+        $middleware_object = new $middleware;
+        if (class_exists($middleware)) {
+            if (method_exists($middleware_object, "before") && method_exists($middleware_object, "after")) {
+                    return $middleware_object; 
+            } else {
+                throw new \Exception("Middleware methods before and after not exists", 500);
+                
+            }
+        } else {
+            throw new \Exception("Middleware Class {$middleware} not found", 500);
+        }
+    }
     /**
      * Add multiple routes at once from array in the following format:.
      *
-     *   $routes = [route,param,method,callback]
+     * @param $routes = [route,param,method,callback]
      *
      * @since 2.0.3
      *
@@ -146,15 +165,15 @@ class Router
      *
      * @param string       $route    The route URL
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
-     *
+     * @param string $middleware Middleare name
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.     *
      * @since 2.0.3
      *
      * @return void
      */
-    public function post($route, $params, $callback = null)
+    public function post($route, $params,$middleware = '' , $callback = null)
     {
-        $this->add($route, $params, 'POST', $callback);
+        $this->add($route, $params, 'POST',$middleware ,$callback);
     }
 
     /**
@@ -162,15 +181,17 @@ class Router
      *
      * @param string       $route    The route URL
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
-     *
+     * @param string $middleware Middleare name
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.     *
      * @since 2.0.3
      *
      * @return void
      */
-    public function get($route, $params, $callback = null)
+    public function get($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'GET|HEAD', $callback);
+        $this->add($route, $params, 'GET|HEAD', $middleware, $callback);
+
+        return $this;
     }
 
     /**
@@ -178,15 +199,16 @@ class Router
      *
      * @param string       $route    The route URL
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     * @param string $middleware Middleare name
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function put($route, $params, $callback = null)
+    public function put($route, $params,$middleare = '' ,$callback = null)
     {
-        $this->add($route, $params, 'PUT', $callback);
+        $this->add($route, $params, 'PUT', $middleware, $callback);
     }
 
     /**
@@ -194,15 +216,16 @@ class Router
      *
      * @param string       $route    The route URL
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     * @param string $middleware Middleare name
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function patch($route, $params, $callback = null)
+    public function patch($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'PATCH', $callback);
+        $this->add($route, $params, 'PATCH',$middleware, $callback);
     }
 
     /**
@@ -210,16 +233,68 @@ class Router
      *
      * @param string       $route    The route URL
      * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
-     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.
+     * @param string $middleware Middleare name
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function delete($route, $params)
+    public function delete($route, $params, $middleware = '', $callback = null)
     {
-        $this->add($route, $params, 'DELETE');
+        $this->add($route, $params, 'DELETE',$middleware, $callback);
     }
+
+    /**
+     * Add a route to the routing table as OPTIONS.
+     *
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
+     * @param string $middleware Middleare name
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     *
+     * @since 2.0.3
+     *
+     * @return void
+     */
+    public function options($route, $params, $middleware = '', $callback = null)
+    {
+        $this->add($route, $params, 'OPTIONS',$middleware, $callback);
+    }
+
+     /**
+     * Add a route to the routing table as TRACE.
+     *
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
+     * @param string $middleware Middleare name
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     *
+     * @since 2.0.3
+     *
+     * @return void
+     */
+    public function trace($route, $params, $middleware = '', $callback = null)
+    {
+        $this->add($route, $params, 'TRACE',$middleware, $callback);
+    }   
+
+      /**
+     * Add a route to the routing table as CONNECT.
+     *
+     * @param string       $route    The route URL
+     * @param array|string $params   Parameters (controller, action, etc.) or $params Home@index
+     * @param string $middleware Middleare name
+     * @param closure      $callback for protection of page if closure function will return ture then route will be dispached.   
+     *
+     * @since 2.0.3
+     *
+     * @return void
+     */
+    public function connect($route, $params, $middleware = '', $callback = null)
+    {
+        $this->add($route, $params, 'CONNECT',$middleware, $callback);
+    } 
 
     /**
      * Get all the routes from the routing table.
@@ -349,14 +424,14 @@ class Router
                     $controller = $this->params['controller'];
                     $controller = $this->convertToStudlyCaps($controller);
                     $controller = $this->getNamespace().$controller;
-
                     if (class_exists($controller)) {
+                        (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response()) : null;
                         $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
-
                         $action = $this->params['action'];
                         $action = $this->convertToCamelCase($action);
                         if (preg_match('/action$/i', $action) == 0) {
                             $controller_object->$action();
+                            (is_object($this->params['middleware'])) ? $this->params['middleware']->after(new Request(), new Response()) : null;
                         } else {
                             throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
                         }
@@ -367,7 +442,9 @@ class Router
                     throw new \Exception('This page is protected', 404);
                 }
             } else {
+                (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response()) : null;                
                 call_user_func($this->params['callable'], $this->params);
+                (is_object($this->params['middleware'])) ? $this->params['middleware']->after(new Request(), new Response()) : null;
             }
         } else {
             \Zest\Component\routes::loadComs();

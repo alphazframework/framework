@@ -84,3 +84,5 @@ Changes:
 70. Remove Useless CSRF class.
 71. Remove function is_ajax() form helpers.php.
 72. Update Input class remove csrf methods.
+73. Added Middleware supports in Routes.
+74. Added few more rests routes OPTIONS, TRACE and CONNECT.
