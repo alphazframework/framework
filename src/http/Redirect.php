@@ -21,9 +21,9 @@ class Redirect extends HTTP
     /**
      * Send redirect.
      *
-     * @param  $url
-     *   	   $code
-     *   	   $version
+     * @param  (string) $url
+     *   	   (int) $code
+     *   	   (mixed) $version
      *
      * @since 3.0.0
      *

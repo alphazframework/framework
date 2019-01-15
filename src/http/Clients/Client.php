@@ -9,14 +9,27 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @todo 3.0.1 
+ * @since 3.0.0 
  *
  * @license MIT
  */
 
 namespace Zest\http\Clients;
 
-class Stream extends AbstractClient
+class Client
 {
-    //TODO
+
+    /**
+     * Access to curl clients
+     *
+     * @param (string) $url
+     *        (string) $method
+     *        (array) $options 
+     *
+     * @since 3.0.0
+     */		
+    public function curl($url, $method = 'GET', array $options = null)
+    {
+    	return (new CURL($url,$method,$options));
+    }
 }

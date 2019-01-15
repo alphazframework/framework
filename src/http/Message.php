@@ -43,7 +43,7 @@ class Message extends HTTP
     /**
      * Return an instance with the specified HTTP protocol version.
      *
-     * @param $version valid Protocol version
+     * @param (string) $version valid Protocol version
      *
      * @since 3.0.0
      *
@@ -74,7 +74,7 @@ class Message extends HTTP
     /**
      * Determine headers is exists.
      *
-     * @param $name header field/key name
+     * @param (string) $name header field/key name
      *
      * @since 3.0.0
      *
@@ -88,7 +88,7 @@ class Message extends HTTP
     /**
      * Get the header by key/name.
      *
-     * @param $name header field/key name
+     * @param (string) $name header field/key name
      *
      * @since 3.0.0
      *
@@ -102,7 +102,7 @@ class Message extends HTTP
     /**
      * Get a comma-separated string of the values for a single header.
      *
-     * @param $name header field/key name
+     * @param (string) $name header field/key name
      *
      * @since 3.0.0
      *
@@ -116,8 +116,8 @@ class Message extends HTTP
     /**
      * Return an instance with the provided value replacing the specified header.
      *
-     * @param $name header field/key name
-     *        $value header value
+     * @param (string) $name header field/key name
+     *        (string) $value header value
      *
      * @since 3.0.0
      *
@@ -133,8 +133,8 @@ class Message extends HTTP
     /**
      * Return an instance with the specified header appended with the given value.
      *
-     * @param $name header field/key name
-     *        $value header value
+     * @param (string) $name header field/key name
+     *        (string) $value header value
      *
      * @since 3.0.0
      *
@@ -150,7 +150,7 @@ class Message extends HTTP
     /**
      * Return an instance without the specified header.
      *
-     * @param $name header field/key name
+     * @param (string) $name header field/key name
      *
      * @since 3.0.0
      *
@@ -178,7 +178,7 @@ class Message extends HTTP
     /**
      * Return an instance with the specified message body.
      *
-     * @param $body Body
+     * @param (mixed) $body Body
      *
      * @since 3.0.0
      *

@@ -9,13 +9,14 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @since 3.0.0
+ * @todo 3.0.1
  *
  * @license MIT
  */
 
 namespace Zest\http;
 
-class UploadedFile
+class UploadedFile extends \Files\Files
 {
+	//TODO
 }

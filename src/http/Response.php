@@ -23,7 +23,7 @@ class Response extends Message
      *
      * Instantiate the response object
      *
-     * @param  $config
+     * @param (array) $config
      *
      * @since 3.0.0
      */
@@ -59,7 +59,7 @@ class Response extends Message
     /**
      * Get response message from code.
      *
-     * @param  $code
+     * @param (int) $code
      *
      * @since 3.0.0
      *
@@ -77,8 +77,8 @@ class Response extends Message
     /**
      * Encode the body data.
      *
-     * @param   $body
-     *                $encode
+     * @param  (mixed) $body
+     *         (string) $encode
      *
      * @since 3.0.0
      *
@@ -115,8 +115,8 @@ class Response extends Message
     /**
      * Decode the body data.
      *
-     * @param  $body
-     * 		   $decode
+     * @param  (mixed) $body
+     *         (string) $encode
      *
      * @since 3.0.0
      *
@@ -250,8 +250,8 @@ class Response extends Message
     /**
      * Get the response headers as a string.
      *
-     * @param  $status
-     * 		   $eol
+     * @param  (bool) $status
+     * 		   (string) $eol
      *
      * @since 3.0.0
      *
@@ -275,7 +275,7 @@ class Response extends Message
     /**
      * Set the reasonPhrase.
      *
-     * @param float $version
+     * @param (float) $version
      *
      * @since 3.0.0
      *
@@ -291,7 +291,7 @@ class Response extends Message
     /**
      * Set the protocol version.
      *
-     * @param float $version
+     * @param (float) $version
      *
      * @since 3.0.0
      *
@@ -319,7 +319,7 @@ class Response extends Message
     /**
      * Set the status code.
      *
-     * @param  $code
+     * @param (int) $code
      *
      * @since 3.0.0
      *
@@ -340,7 +340,7 @@ class Response extends Message
     /**
      * Set the response body.
      *
-     * @param  $body
+     * @param (mixed) $body
      *
      * @since 3.0.0
      *
@@ -372,8 +372,8 @@ class Response extends Message
     /**
      * Send response and exit.
      *
-     * @param  $code
-     * 		   $headers
+     * @param (int) $code
+     * 		  (array) $headers
      *
      * @since 3.0.0
      *

@@ -26,14 +26,14 @@ class Uri extends Message
     /**
      * Set the Uri.
      *
-     * @param $url valid url
-     *        $host valid host
-     *		  $port valid port number
-     *		  $path valid path
-     *		  $query query URI
-     *		  $fragment fragment
-     *        $user username
-     *        $password password
+     * @param (string) $url valid url
+     *        (string) $host valid host
+     *		  (int) $port valid port number
+     *		  (string) $path valid path
+     *		  (string) $query query URI
+     *		  (string) $fragment fragment
+     *        (string) $user username
+     *        (string) $password password
      *
      * @since 3.0.0
      *
@@ -56,7 +56,7 @@ class Uri extends Message
     /**
      * Get the scheme component of the URL.
      *
-     * @param $url valid url
+     * @param (string) $url valid url
      *
      * @since 3.0.0
      *
@@ -83,7 +83,7 @@ class Uri extends Message
     /**
      * Filter the url scheme component.
      *
-     * @param $scheme valid scheme
+     * @param (string) $scheme valid scheme
      *
      * @since 3.0.0
      *
@@ -107,7 +107,7 @@ class Uri extends Message
     /**
      * Filter port.
      *
-     * @param $port port number
+     * @param (int) $port port number
      *
      * @since 3.0.0
      *
@@ -125,7 +125,7 @@ class Uri extends Message
     /**
      * Filter the Query uri.
      *
-     * @param $query query uri
+     * @param (string) $query query uri
      *
      * @since 3.0.0
      *
@@ -260,8 +260,8 @@ class Uri extends Message
     /**
      * Return an instance with the specified user information.
      *
-     * @param $user username
-     *        $password password
+     * @param (string) $user username
+     *        (string) $password password
      *
      * @since 3.0.0
      *
@@ -278,7 +278,7 @@ class Uri extends Message
     /**
      * Return an instance with the specified host.
      *
-     * @param $host valid host
+     * @param (string) $host valid host
      *
      * @since 3.0.0
      *
@@ -294,7 +294,7 @@ class Uri extends Message
     /**
      * Return an instance with the specified path.
      *
-     * @param $path valid path
+     * @param (string) $path valid path
      *
      * @since 3.0.0
      *
@@ -314,7 +314,7 @@ class Uri extends Message
     /**
      * Return an instance with the specified port.
      *
-     * @param $port valid port
+     * @param (string) $port valid port
      *
      * @since 3.0.0
      *
@@ -330,7 +330,7 @@ class Uri extends Message
     /**
      * Return an instance with the specified query.
      *
-     * @param $query valid query
+     * @param (string) $query valid query
      *
      * @since 3.0.0
      *
@@ -346,7 +346,7 @@ class Uri extends Message
     /**
      * Return an instance with the specified fragment.
      *
-     * @param $fragment valid fragment
+     * @param (string) $fragment valid fragment
      *
      * @since 3.0.0
      *
@@ -362,7 +362,7 @@ class Uri extends Message
     /**
      * Return an instance with the specified basePath segment.
      *
-     * @param $fragment valid fragment
+     * @param (string) $fragment valid fragment
      *
      * @since 3.0.0
      *

@@ -23,11 +23,7 @@ class Request extends Uri
      *
      * Instantiate the request object
      *
-     * @param string $uri
-     *
      * @since 3.0.0
-     *
-     * @param string $basePath
      */
     public function __construct()
     {
@@ -47,7 +43,7 @@ class Request extends Uri
     /**
      * Does this request use a given method?
      *
-     * @param  $method HTTP method
+     * @param (string) $method HTTP method
      *
      * @since 3.0.0
      *
@@ -205,11 +201,11 @@ class Request extends Uri
     /**
      * Get a value from $_GET, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getQuery($key = null)
     {
@@ -223,11 +219,11 @@ class Request extends Uri
     /**
      * Get a value from $_POST, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getPost($key = null)
     {
@@ -241,11 +237,11 @@ class Request extends Uri
     /**
      * Get a value from $_FILES, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getFiles($key = null)
     {
@@ -259,11 +255,11 @@ class Request extends Uri
     /**
      * Get a value from PUT query data, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getPut($key = null)
     {
@@ -277,11 +273,11 @@ class Request extends Uri
     /**
      * Get a value from PATCH query data, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getPatch($key = null)
     {
@@ -295,11 +291,11 @@ class Request extends Uri
     /**
      * Get a value from DELETE query data, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getDelete($key = null)
     {
@@ -313,11 +309,11 @@ class Request extends Uri
     /**
      * Get a value from $_COOKIE, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getCookie($key = null)
     {
@@ -331,11 +327,11 @@ class Request extends Uri
     /**
      * Get a value from $_SERVER, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getServer($key = null)
     {
@@ -349,11 +345,11 @@ class Request extends Uri
     /**
      * Get a value from $_ENV, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getEnv($key = null)
     {
@@ -367,11 +363,11 @@ class Request extends Uri
     /**
      * Get a value from parsed data, or the whole array.
      *
-     * @param string $key
+     * @param (string) $key
      *
      * @since 3.0.0
      *
-     * @return string|array
+     * @return mixed
      */
     public function getParsedData($key = null)
     {

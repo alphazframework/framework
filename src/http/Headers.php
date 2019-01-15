@@ -16,7 +16,7 @@
 
 namespace Zest\http;
 
-abstract class Headers
+abstract class Headers extends Clients\Client
 {
     /**
      * Get the headers.
@@ -51,8 +51,8 @@ abstract class Headers
     /**
      * append new header.
      *
-     * @param $key The header key
-     *        $value The header value
+     * @param (string) $key The header key
+     *        (string) $value The header value
      *
      * @since 3.0.0
      *
@@ -66,9 +66,7 @@ abstract class Headers
     /**
      * Set response headers.
      *
-     * @param array $headers
-     *
-     * @throws Exception
+     * @param (array) $headers
      *
      * @return object
      */
@@ -84,8 +82,8 @@ abstract class Headers
     /**
      * Update existing header.
      *
-     * @param $key The header key
-     *        $value The new header value
+     * @param (string) $key The header key
+     *        (string) $value The new header value
      *
      * @since 3.0.0
      *
@@ -113,7 +111,7 @@ abstract class Headers
     /**
      * Determine if header exists.
      *
-     * @param $key The header key
+     * @param (string) $key The header key
      *
      * @since 3.0.0
      *
@@ -127,7 +125,7 @@ abstract class Headers
     /**
      * Get the header by key.
      *
-     * @param $key The header key
+     * @param (string) $key The header key
      *
      * @since 3.0.0
      *
@@ -141,7 +139,7 @@ abstract class Headers
     /**
      * Remove the header by key.
      *
-     * @param $key The header key
+     * @param (string) $key The header key
      *
      * @since 3.0.0
      *
@@ -155,7 +153,7 @@ abstract class Headers
     /**
      * Normalize header name.
      *
-     * @param  $key The case-insensitive header name
+     * @param  (string) $key The case-insensitive header name
      *
      * @return string
      */
@@ -169,8 +167,8 @@ abstract class Headers
     /**
      * Send response.
      *
-     * @param  $code
-     *         $headers
+     * @param  (int) $code
+     *         (array) $headers
      *
      * @since 3.0.0
      *

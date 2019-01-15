@@ -28,10 +28,6 @@ function restore_line_break($input)
 {
     return \Zest\Input\Input::restoreLineBreaks($input);
 }
-function is_ajax()
-{
-    return Zest\Input\InPut::isAjax();
-}
 function is_submit($name)
 {
     return Zest\Input\InPut::isFromSubmit($name);

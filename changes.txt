@@ -79,3 +79,8 @@ Changes:
 67. Update Files Class.
     - Add touch method for (Sets access and modification time of file).
 	- Add chown method for (Change the owner of files).
+68. Added HTTP Client Classes.
+69. Complete HTTP Package.
+70. Remove Useless CSRF class.
+71. Remove function is_ajax() form helpers.php.
+72. Update Input class remove csrf methods.

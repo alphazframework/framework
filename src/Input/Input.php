@@ -17,7 +17,6 @@
 namespace Zest\Input;
 
 use Config\Config;
-use Zest\CSRF\CSRF;
 use Zest\View\View;
 
 class Input
@@ -112,78 +111,10 @@ class Input
                     }
                 }
                 if (isset($string) && !empty($string)) {
-                    if (Config::AUTO_CSRF_VERIFIED) {
-                        if (static::autoCsrf()) {
-                            return $string;
-                        } else {
-                            return  View::view('errors/csrf');
-                        }
-                    } else {
-                        return $string;
-                    }
-
                     return $string;
                 } else {
                     return false;
                 }
-            }
-        }
-    }
-
-    /**
-     * Auto-validate csrf token.
-     *
-     * @since 1.0.0
-     *
-     * @return bool
-     */
-    public static function autoCsrf()
-    {
-        CSRF::action();
-        if (self::csrfInput('csrf_token')) {
-            $token = self::csrfInput('csrf_token');
-            CSRF::action();
-            CSRF::deleteUnnecessaryTokens();
-            if (CSRF::verify($token)) {
-                CSRF::delete($token);
-
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Accpet csrf input
-     * Support get.post,put,server.
-     *
-     * @param  $key
-     * 'key' => name of filed (required in get,post request)
-     *
-     * @since 1.0.0
-     *
-     * @return string | boolean
-     */
-    public static function csrfInput($key)
-    {
-        static::$method = $_SERVER['REQUEST_METHOD'];
-        if (isset(static::$method) && !empty(static::$method)) {
-            if (isset($key) && !empty($key)) {
-                if (static::$method === 'POST' && isset($_POST[$key])) {
-                    $token = $_POST["$key"];
-                } elseif (static::$method === 'GET' && isset($_GET[$key])) {
-                    $token = $_GET[$key];
-                } else {
-                    $token = $_SERVER[$key];
-                }
-                if (isset($token)) {
-                    return $token;
-                }
-            } else {
-                return false;
             }
         }
     }
@@ -232,22 +163,6 @@ class Input
             $result = str_replace(PHP_EOL, "\n\r<br />\n\r", $str);
 
             return $result;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Check request ajax or not.
-     *
-     * @since 1.0.0
-     *
-     * @return string | boolean
-     */
-    public static function isAjax()
-    {
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
-            return true;
         } else {
             return false;
         }
