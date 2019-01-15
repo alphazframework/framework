@@ -95,18 +95,21 @@ class Router
         $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
         // Add start and end delimiters, and case insensitive flag
         $route = '/^'.$route.'$/i';
+        //Check if callback is'nt set set default return value to true
         if ($callback === null) {
             $callback = (function () {
                 return true;
             });
         }
+        //If array
         if (is_array($params)) {
             $methodArray = ['method' => $methods];
             $params = array_merge($params, $methodArray);
             $call = ['callBack' => $callback];
             $params = array_merge($params, $call);
             $this->routes[$route] = $params;
-        } elseif (is_string($params)) {
+        } elseif (is_string($params)) { 
+            //If string
             $param = [];
             $parts = explode('@', $params);
             $param['controller'] = $parts[0];
@@ -116,6 +119,7 @@ class Router
             if (isset($parts[2])) {
                 $param['namespace'] = $parts[2];
             }
+            //If middleware is set then used
             (!empty($middleware)) ? $param['middleware'] = $this->addMiddleware($middleware) : $param;
             $this->routes[$route] = $param;
         } elseif (is_callable($params)) {
@@ -125,6 +129,15 @@ class Router
         }
     }
 
+    /**
+     * Add the middleware.
+     *
+     * @param (string) $name name of middleware
+     *
+     * @since 3.0.0
+     *
+     * @return object
+     */
     public function addMiddleware($name)
     {
         $namespace = "App\Middleware\\";
