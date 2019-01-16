@@ -22,7 +22,7 @@ class AbstractLogger
      * System is unusable.
      *
      * @param (string) $message
-     *        (array)  $context
+     *                          (array)  $context
      *
      * @since 2.0.3
      *
@@ -37,7 +37,7 @@ class AbstractLogger
      * Action must be taken immediately.
      *
      * @param (string) $message
-     *        (array)  $context
+     *                          (array)  $context
      *
      * @since 2.0.3
      *
@@ -52,7 +52,7 @@ class AbstractLogger
      * Critical conditions.
      *
      * @param (string) $message
-     *        (array)  $context
+     *                          (array)  $context
      *
      * @since 2.0.3
      *
@@ -64,10 +64,10 @@ class AbstractLogger
     }
 
     /**
-     * Runtime errors that do not require immediate action but should typically
+     * Runtime errors that do not require immediate action but should typically.
      *
      * @param (string) $message
-     *        (array)  $context
+     *                          (array)  $context
      *
      * @since 2.0.3
      *
@@ -82,7 +82,7 @@ class AbstractLogger
      * Exceptional occurrences that are not errors.
      *
      * @param (string) $message
-     *        (array)  $context
+     *                          (array)  $context
      *
      * @since 2.0.3
      *

@@ -22,7 +22,7 @@ class Formats
      * Formats the bytes in human readable form.
      *
      * @param (int) $size The value that you want provided
-     *        (int) $pre round the value default 2
+     *                    (int) $pre round the value default 2
      *
      * @since 3.0.0
      *
