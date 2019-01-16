@@ -87,3 +87,5 @@ Changes:
 73. Added Middleware supports in Routes.
 74. Added few more rests routes OPTIONS, TRACE and CONNECT.
 75. Added Middleware supports in Components.
+76. Update Logger class add setCustumFile() method.
+77. Update Expection class use Logger in expection for creating log file.

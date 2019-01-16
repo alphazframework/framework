@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 3.0.0
+ *
  * @license MIT
  */
 
@@ -16,25 +18,33 @@ namespace Zest\Common;
 
 class FTP
 {
-    /*
+    /**
      * Connection
+     *
+     * @since 3.0.0
+     *
+     * @var resource
     */
     private $connection;
 
-    /*
+    /**
      * connectionString
+     *
+     * @since 3.0.0
+     *
+     * @var resource
     */
     private $connectionString;
 
     /**
      * Instantiate the FTP object.
      *
-     * @param $host server host
-     *        $user username
-     *        $pass password
-     *        $secured ftp or sftp
+     * @param (string) $host server host
+     *        (string) $user username
+     *        (string) $pass password
+     *        (string) $secured ftp or ftps
      *
-     * @return bool
+     * @since 3.0.0
      */
     public function __construct($host, $user, $pass, $secured)
     {
@@ -47,7 +57,7 @@ class FTP
             $conn = ftp_ssl_connect($host);
             $login_result = ftp_login($conn, $user, $pass);
             $this->connection = $conn;
-            $this->connectionString = 'sftp://'.$user.':'.$pass.'@'.$host;
+            $this->connectionString = 'ftps://'.$user.':'.$pass.'@'.$host;
         } else {
             $this->connection = null;
             $this->connectionString = null;
@@ -56,6 +66,8 @@ class FTP
 
     /**
      * get the connection.
+     *
+     * @since 3.0.0
      *
      * @return resource
      */
@@ -66,6 +78,8 @@ class FTP
 
     /**
      * check whether the ftp is connected.
+      *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -77,9 +91,11 @@ class FTP
     /**
      * get the list of files.
      *
-     * @param $dir directory
+     * @param (string) $dir directory
      *
-     * @return bool | array
+     * @since 3.0.0
+     *
+     * @return mixed
      */
     public function ftpFiles($dir)
     {
@@ -89,7 +105,9 @@ class FTP
     /**
      * get the current working directory.
      *
-     * @return bool | array
+     * @since 3.0.0
+     *
+     * @return mixed
      */
     public function pwd()
     {
@@ -99,8 +117,10 @@ class FTP
     /**
      * Change directories.
      *
-     * @param $dir directory
-     *        $new naw name
+     * @param (string) $dir directory
+     *        (string) $new naw name
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -112,7 +132,9 @@ class FTP
     /**
      * Make directory.
      *
-     * @param $dir directory name
+     * @param (string) $dir directory name
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -124,9 +146,11 @@ class FTP
     /**
      * Make nested sub-directories.
      *
-     * @param string $dirs
+     * @param (array) $dirs
      *
-     * @return Ftp
+     * @since 3.0.0
+     *
+     * @return object
      */
     public function mkdirs($dirs)
     {
@@ -152,7 +176,9 @@ class FTP
     /**
      * Remove directory.
      *
-     * @param $dir directory
+     * @param (string) $dir directory
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -164,7 +190,9 @@ class FTP
     /**
      * Check if file exists.
      *
-     * @param $dir directory
+     * @param (string) $file
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -176,7 +204,9 @@ class FTP
     /**
      * Check is the dir is exists.
      *
-     * @param $dir directory
+     * @param (string) $dir directory
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -188,9 +218,11 @@ class FTP
     /**
      * Get the file.
      *
-     * @param $local local
-     *        $remote remote
-     *        $mode mode
+     * @param (mixed) $local local
+     *        (mixed)$remote remote
+     *        (mixed) $mode mode
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -202,8 +234,10 @@ class FTP
     /**
      * Rename file.
      *
-     * @param $old old
-     *        $new naw name
+     * @param (string) $old old
+     *        (string) $new naw name
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -215,8 +249,10 @@ class FTP
     /**
      * Change premission.
      *
-     * @param $file file
-     *        $mode mode
+     * @param (string) $file file
+     *        (mixed) $mode mode
+       *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -228,7 +264,9 @@ class FTP
     /**
      * Delete the files.
      *
-     * @param $file file you want to delete
+     * @param (string) $file file you want to delete
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -240,7 +278,9 @@ class FTP
     /**
      * Switch the passive mod.
      *
-     * @param $flag flag
+     * @param (bool) $flag flag
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -251,6 +291,8 @@ class FTP
 
     /**
      * Close the FTP connection.
+     *
+     * @since 3.0.0
      *
      * @return void
      */
@@ -264,10 +306,12 @@ class FTP
     /**
      * Upload the files.
      *
-     * @param $files number of files you want to uplaod
-     * 		  $root Server root directory or sub
+     * @param (array) $files number of files you want to uplaod
+     * 		  (string) $root Server root directory or sub
      *
-     * @return mix-data
+     * @since 3.0.0
+     *
+     * @return mixed
      */
     public function put($files, $root = 'public_html')
     {

@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -20,6 +22,8 @@ class Maintenance
 {
     /**
      * Check is the site maintaince mode is enable.
+     *
+     * @since 2.0.3 
      *
      * @return bool
      */
@@ -36,6 +40,10 @@ class Maintenance
 
     /**
      * Upgrade the maintaince mode dynamically.
+     *
+     * @param (bool) $status
+     *
+     * @since 2.0.3 
      *
      * @return void
      */
@@ -58,6 +66,8 @@ class Maintenance
 
     /**
      * Run the site maintaince mode if enable.
+     *
+     * @since 2.0.3 
      *
      * @return void
      */

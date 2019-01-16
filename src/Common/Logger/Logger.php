@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -20,6 +22,10 @@ class Logger extends AbstractLogger
 {
     /**
      * Array of conversion levels.
+     *
+     * @since 2.0.3
+     *
+     * @var array
      */
     protected $levels = [
         'emergency' => 0,
@@ -31,8 +37,13 @@ class Logger extends AbstractLogger
         'info'      => 6,
         'debug'     => 7,
     ];
+
     /**
      * Array of conversion levels in reverse order.
+     *
+     * @since 2.0.3
+     *
+     * @var array
      */
     protected $s_levels = [
         0 => 'emergency',
@@ -44,17 +55,33 @@ class Logger extends AbstractLogger
         6 => 'info',
         7 => 'debug',
     ];
+
     /**
      * Store the logs.
+     *
+     * @since 2.0.3
+     *
+     * @var array
      */
     private $log;
 
     /**
+     * Store the logs.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    private $file;
+
+    /**
      * Log.
      *
-     * @param  $level Error level (string or PHP syslog priority)
-     *         $message Error message
-     *         $context Contextual array
+     * @param  (string) $level Error level (string or PHP syslog priority)
+     *         (string) $message Error message
+     *         (array) $context Contextual array
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -84,24 +111,44 @@ class Logger extends AbstractLogger
     /**
      * Write the log message in files.
      *
-     * @param  $string Error level (string or PHP syslog priority)
-     *         $message Error message
+     * @param  (string) $string Error level (string or PHP syslog priority)
+     *         (string) $message Error message
+     *
+     * @since 2.0.3
      *
      * @return void
      */
     public function writer($level, $message)
     {
-        $fileName = '.logs';
+        (!empty($this->file)) ? $fileName = $this->file : $fileName = '.logs';
         $fileHandling = new FileHandling();
         $text = 'Date/time: '.date('Y-m-d h:i:s A')." , Level: $level , message: ".$message."\n";
-        $file = route()->storage_logs.'.logs';
+        $file = route()->storage_logs.$fileName;
         $fileHandling->open($file, 'readWriteAppend')->write($text);
+    }
+
+    /**
+     * Set the custum file.
+     *
+     * @param (string) $name valid name of file if file not exists it create for you.
+     *
+     * @since 3.0.0
+     *
+     * @return object
+     */    
+    public function setCustumFile($name)
+    {
+        $this->file = $name;
+
+        return $this;
     }
 
     /**
      * Store the log.
      *
-     * @param $log array
+     * @param (array) $log 
+     *
+     * @since 2.0.3
      *
      * @return array
      */
@@ -115,6 +162,8 @@ class Logger extends AbstractLogger
     /**
      * Get the log message.
      *
+     * @since 2.0.3
+     *
      * @return array
      */
     public function get()
@@ -125,10 +174,12 @@ class Logger extends AbstractLogger
     /**
      * Log an Exception.
      *
-     * @param  $level Error level (string or PHP syslog priority)
-     *         $message Error message
-     *         $context Contextual array
-     *         $exception Exception
+     * @param  (string) $level Error level (string or PHP syslog priority)
+     *         (string) $message Error message
+     *         (array) $context Contextual array
+     *         (Expection) $exception Exception
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -140,9 +191,11 @@ class Logger extends AbstractLogger
     /**
      * Interpolate string with parameters.
      *
-     * @param  $string String with parameters
-     *         $params Parameter arrays
-     *         $level Level of log
+     * @param  (string) $string String with parameters
+     *         (array) $params Parameter arrays
+     *         (string) $level Level of log
+     *
+     * @since 2.0.3
      *
      * @return void
      */

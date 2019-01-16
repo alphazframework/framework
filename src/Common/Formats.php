@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 3.0.0
+ *
  * @license MIT
  */
 
@@ -19,10 +21,12 @@ class Formats
     /**
      * Formats the bytes in human readable form.
      *
-     * @param $size The value that you want provided
-     *        $pre round the value default 2
+     * @param (int) $size The value that you want provided
+     *        (int) $pre round the value default 2
      *
-     * @return mix-data
+     * @since 3.0.0
+     *
+     * @return mixed
      */
     public function formatBytes($size, $pre = 2)
     {
@@ -36,9 +40,11 @@ class Formats
     /**
      * Converts the timestamp in to human readable form.
      *
-     * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param (mixes) $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
-     * @return mix-data
+     * @since 3.0.0
+     *
+     * @return mixed
      */
     public function friendlyTime($time)
     {
@@ -71,7 +77,9 @@ class Formats
     /**
      * Formats the time.
      *
-     * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param (int) $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     *
+     * @since 3.0.0
      *
      * @return int
      */
@@ -85,9 +93,11 @@ class Formats
     /**
      * Converts the timestamp in to h:m:s form.
      *
-     * @param $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param (int) $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
-     * @return time
+     * @since 3.0.0
+     *
+     * @return mixed
      */
     public function formatsSeconds($seconds)
     {
