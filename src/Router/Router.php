@@ -142,7 +142,7 @@ class Router
     {
         //Support middleware in comoponents
         //pattern => App\Components\Example\Middleware\@Example;
-        $parts = explode("@", $name);
+        $parts = explode('@', $name);
         if (strcasecmp($parts[0], $name) === 0) {
             //If namespace not givent then contine to defaukt
             $namespace = "App\Middleware\\";
@@ -545,7 +545,6 @@ class Router
      * Parase the url if need.
      *
      * @since 1.0.0
-     *
      * @deprecated 3.0.0
      *
      * @return string The request URL
