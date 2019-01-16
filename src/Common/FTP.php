@@ -42,7 +42,7 @@ class FTP
      * @param (string) $host server host
      *                       (string) $user username
      *                       (string) $pass password
-     *                       (string) $secured ftp or ftps
+     *                       (string) $secured ftp or sftp
      *
      * @since 3.0.0
      */
@@ -57,7 +57,7 @@ class FTP
             $conn = ftp_ssl_connect($host);
             $login_result = ftp_login($conn, $user, $pass);
             $this->connection = $conn;
-            $this->connectionString = 'ftps://'.$user.':'.$pass.'@'.$host;
+            $this->connectionString = 'sftp://'.$user.':'.$pass.'@'.$host;
         } else {
             $this->connection = null;
             $this->connectionString = null;
@@ -85,7 +85,7 @@ class FTP
      */
     public function isConnected()
     {
-        return (is_resource($this->getConnection())) ? true : false;
+             return (is_resource($this->getConnection())) ? true : false;
     }
 
     /**
