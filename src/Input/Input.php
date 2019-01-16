@@ -20,7 +20,6 @@ use Zest\http\Request;
 
 class Input
 {
-
     /**
      * Wordwrap.
      *
@@ -42,7 +41,7 @@ class Input
     /**
      * Check form sbumit or not.
      *
-     * @param  (string) $name name of submit button/ field
+     * @param (string) $name name of submit button/ field
      *
      * @since 1.0.0
      *
@@ -59,9 +58,9 @@ class Input
 
     /**
      * Accpet input
-     * Support get.post,put,patch,delete,others
+     * Support get.post,put,patch,delete,others.
      *
-     * @param  (string) $key name of filed (required in get,post request)
+     * @param (string) $key name of filed (required in get,post request)
      *
      * @since 1.0.0
      *
@@ -84,7 +83,7 @@ class Input
             $string = $request->getFiles($key);
         } else {
             parse_str(file_get_contents('php://input'), $_STR);
-            $string = $_STR[$key];            
+            $string = $_STR[$key];
         }
 
         return (isset($string) && !empty($string)) ? $string : false;
@@ -94,7 +93,7 @@ class Input
      * Clean input.
      *
      * @param (string) $input string
-     *        (string) $type secured,root 
+     *                        (string) $type secured,root
      *
      * @since 1.0.0
      *
@@ -120,7 +119,7 @@ class Input
     /**
      * Restore new lines.
      *
-     * @param  (string) $str string that tobe restored new lines
+     * @param (string) $str string that tobe restored new lines
      *
      * @since 1.0.0
      *
