@@ -77,9 +77,9 @@ class Logger extends AbstractLogger
     /**
      * Log.
      *
-     * @param  (string) $level Error level (string or PHP syslog priority)
-     *         (string) $message Error message
-     *         (array) $context Contextual array
+     * @param (string) $level Error level (string or PHP syslog priority)
+     *                        (string) $message Error message
+     *                        (array) $context Contextual array
      *
      * @since 2.0.3
      *
@@ -111,8 +111,8 @@ class Logger extends AbstractLogger
     /**
      * Write the log message in files.
      *
-     * @param  (string) $string Error level (string or PHP syslog priority)
-     *         (string) $message Error message
+     * @param (string) $string Error level (string or PHP syslog priority)
+     *                         (string) $message Error message
      *
      * @since 2.0.3
      *
@@ -135,7 +135,7 @@ class Logger extends AbstractLogger
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function setCustumFile($name)
     {
         $this->file = $name;
@@ -146,7 +146,7 @@ class Logger extends AbstractLogger
     /**
      * Store the log.
      *
-     * @param (array) $log 
+     * @param (array) $log
      *
      * @since 2.0.3
      *
@@ -174,10 +174,10 @@ class Logger extends AbstractLogger
     /**
      * Log an Exception.
      *
-     * @param  (string) $level Error level (string or PHP syslog priority)
-     *         (string) $message Error message
-     *         (array) $context Contextual array
-     *         (Expection) $exception Exception
+     * @param (string) $level Error level (string or PHP syslog priority)
+     *                        (string) $message Error message
+     *                        (array) $context Contextual array
+     *                        (Expection) $exception Exception
      *
      * @since 2.0.3
      *
@@ -191,9 +191,9 @@ class Logger extends AbstractLogger
     /**
      * Interpolate string with parameters.
      *
-     * @param  (string) $string String with parameters
-     *         (array) $params Parameter arrays
-     *         (string) $level Level of log
+     * @param (string) $string String with parameters
+     *                         (array) $params Parameter arrays
+     *                         (string) $level Level of log
      *
      * @since 2.0.3
      *

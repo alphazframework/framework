@@ -23,7 +23,7 @@ class Maintenance
     /**
      * Check is the site maintaince mode is enable.
      *
-     * @since 2.0.3 
+     * @since 2.0.3
      *
      * @return bool
      */
@@ -43,7 +43,7 @@ class Maintenance
      *
      * @param (bool) $status
      *
-     * @since 2.0.3 
+     * @since 2.0.3
      *
      * @return void
      */
@@ -67,7 +67,7 @@ class Maintenance
     /**
      * Run the site maintaince mode if enable.
      *
-     * @since 2.0.3 
+     * @since 2.0.3
      *
      * @return void
      */

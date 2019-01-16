@@ -19,30 +19,30 @@ namespace Zest\Common;
 class FTP
 {
     /**
-     * Connection
+     * Connection.
      *
      * @since 3.0.0
      *
      * @var resource
-    */
+     */
     private $connection;
 
     /**
-     * connectionString
+     * connectionString.
      *
      * @since 3.0.0
      *
      * @var resource
-    */
+     */
     private $connectionString;
 
     /**
      * Instantiate the FTP object.
      *
      * @param (string) $host server host
-     *        (string) $user username
-     *        (string) $pass password
-     *        (string) $secured ftp or ftps
+     *                       (string) $user username
+     *                       (string) $pass password
+     *                       (string) $secured ftp or ftps
      *
      * @since 3.0.0
      */
@@ -78,7 +78,7 @@ class FTP
 
     /**
      * check whether the ftp is connected.
-      *
+     *
      * @since 3.0.0
      *
      * @return bool
@@ -118,7 +118,7 @@ class FTP
      * Change directories.
      *
      * @param (string) $dir directory
-     *        (string) $new naw name
+     *                      (string) $new naw name
      *
      * @since 3.0.0
      *
@@ -219,8 +219,8 @@ class FTP
      * Get the file.
      *
      * @param (mixed) $local local
-     *        (mixed)$remote remote
-     *        (mixed) $mode mode
+     *                       (mixed)$remote remote
+     *                       (mixed) $mode mode
      *
      * @since 3.0.0
      *
@@ -235,7 +235,7 @@ class FTP
      * Rename file.
      *
      * @param (string) $old old
-     *        (string) $new naw name
+     *                      (string) $new naw name
      *
      * @since 3.0.0
      *
@@ -250,8 +250,8 @@ class FTP
      * Change premission.
      *
      * @param (string) $file file
-     *        (mixed) $mode mode
-       *
+     *                       (mixed) $mode mode
+     *
      * @since 3.0.0
      *
      * @return bool
@@ -307,7 +307,7 @@ class FTP
      * Upload the files.
      *
      * @param (array) $files number of files you want to uplaod
-     * 		  (string) $root Server root directory or sub
+     *                       (string) $root Server root directory or sub
      *
      * @since 3.0.0
      *

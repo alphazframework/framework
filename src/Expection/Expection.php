@@ -16,18 +16,18 @@
 
 namespace Zest\Expection;
 
-use Zest\View\View;
 use Zest\Common\Logger\Logger;
+use Zest\View\View;
 
 class Expection
 {
     /**
      * Error handler. Convert all errors to Exceptions by throwing an ErrorException.
      *
-     * @param (int)    $level   Error level
-     *        (string) $message Error message
-     *        (string) $file    Filename the error was raised in
-     *        (int)    $line    Line number in the file
+     * @param (int) $level Error level
+     *                     (string) $message Error message
+     *                     (string) $file    Filename the error was raised in
+     *                     (int)    $line    Line number in the file
      *
      * @since 1.0.0
      *
