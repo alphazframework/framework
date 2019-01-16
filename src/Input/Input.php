@@ -16,36 +16,19 @@
 
 namespace Zest\Input;
 
-use Zest\View\View;
+use Zest\http\Request;
 
 class Input
 {
-    /**
-     * method.
-     *
-     * @since 3.0.0
-     *
-     * @var string
-     */
-    private static $method;
-
-    /**
-     * CSRF method.
-     *
-     * @since 3.0.0
-     *
-     * @var string
-     */
-    private static $csrf_method;
 
     /**
      * Wordwrap.
      *
-     * @param  $str Str to be wordwraped
+     * @param (string) $str Str to be wordwraped
      *
      * @since 1.0.0
      *
-     * @return string | boolean
+     * @return mixed
      */
     public static function wordWrapEnable($str, $width)
     {
@@ -59,7 +42,7 @@ class Input
     /**
      * Check form sbumit or not.
      *
-     * @param  $name => name of submit button/ field
+     * @param  (string) $name name of submit button/ field
      *
      * @since 1.0.0
      *
@@ -76,54 +59,42 @@ class Input
 
     /**
      * Accpet input
-     * Support get.post,put.
+     * Support get.post,put,patch,delete,others
      *
-     * @param  $key
-     * 'key' => name of filed (required in get,post request)
+     * @param  (string) $key name of filed (required in get,post request)
      *
      * @since 1.0.0
      *
-     * @return string | boolean
+     * @return mixed
      */
     public static function input($key)
     {
-        static::$method = $_SERVER['REQUEST_METHOD'];
-        if (isset(static::$method) && !empty(static::$method)) {
-            if (isset($key) && !empty($key)) {
-                if (static::$method === 'POST' && isset($_POST[$key])) {
-                    $string = $_POST["$key"];
-                } elseif (static::$method === 'GET' && isset($_GET[$key])) {
-                    $string = $_GET[$key];
-                } elseif (static::$method === 'PUT') {
-                    parse_str(file_get_contents('php://input'), $_PUT);
-                    $string = $_PUT[$key];
-                } elseif (static::$method === 'DELETE') {
-                    parse_str(file_get_contents('php://input'), $_DEL);
-                    $string = $_DEL[$key];
-                } elseif (static::$method === 'REQUEST') {
-                    if (isset($_REQUEST[$key])) {
-                        $string = $_REQUEST[$key];
-                    }
-                } else {
-                    if (isset($_SERVER[$key])) {
-                        $string = $_SERVER[$key];
-                    }
-                }
-                if (isset($string) && !empty($string)) {
-                    return $string;
-                } else {
-                    return false;
-                }
-            }
+        $request = new Request();
+        if ($request->isGet() || $request->isHead()) {
+            $string = $request->getQuery($key);
+        } elseif ($request->isPost()) {
+            $string = $request->getPost($key);
+        } elseif ($request->isPatch()) {
+            $string = $request->getPatch($key);
+        } elseif ($request->isPut()) {
+            $string = $request->getPut($key);
+        } elseif ($request->isDelete()) {
+            $string = $request->getDelete($key);
+        } elseif ($request->hasFiles()) {
+            $string = $request->getFiles($key);
+        } else {
+            parse_str(file_get_contents('php://input'), $_STR);
+            $string = $_STR[$key];            
         }
+
+        return (isset($string) && !empty($string)) ? $string : false;
     }
 
     /**
      * Clean input.
      *
-     * @param  $params
-     * 'input' => string
-     * 'type' => secured , root
+     * @param (string) $input string
+     *        (string) $type secured,root 
      *
      * @since 1.0.0
      *
@@ -149,12 +120,11 @@ class Input
     /**
      * Restore new lines.
      *
-     * @param  $params
-     * 'str' => string that tobe restored new lines
+     * @param  (string) $str string that tobe restored new lines
      *
      * @since 1.0.0
      *
-     * @return string | boolean
+     * @return mixed
      */
     public static function restoreLineBreaks($str)
     {
