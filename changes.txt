@@ -86,3 +86,4 @@ Changes:
 72. Update Input class remove csrf methods.
 73. Added Middleware supports in Routes.
 74. Added few more rests routes OPTIONS, TRACE and CONNECT.
+75. Added Middleware supports in Components.

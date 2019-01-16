@@ -140,8 +140,18 @@ class Router
      */
     public function addMiddleware($name)
     {
-        $namespace = "App\Middleware\\";
-        $middleware = $namespace.$name;
+        //Support middleware in comoponents
+        //pattern => App\Components\Example\Middleware\@Example;
+        $parts = explode("@", $name);
+        if (strcasecmp($parts[0], $name) === 0) {
+            //If namespace not givent then contine to defaukt
+            $namespace = "App\Middleware\\";
+            $middleware = $namespace.$name;
+        } else {
+            //If given then continue to provided namespace
+            $namespace = $parts[0];
+            $middleware = $namespace.$parts[1];
+        }
         $middleware_object = new $middleware();
         if (class_exists($middleware)) {
             if (method_exists($middleware_object, 'before') && method_exists($middleware_object, 'after')) {
@@ -157,7 +167,7 @@ class Router
     /**
      * Add multiple routes at once from array in the following format:.
      *
-     * @param $routes = [route,param,method,callback]
+     * @param $routes = [route,param,method,middleware,callback]
      *
      * @since 2.0.3
      *
@@ -535,6 +545,8 @@ class Router
      * Parase the url if need.
      *
      * @since 1.0.0
+     *
+     * @deprecated 3.0.0
      *
      * @return string The request URL
      */
