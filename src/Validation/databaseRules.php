@@ -18,7 +18,6 @@ use Zest\Database\Db as DB;
 
 class databaseRules extends StickyRules
 {
-
     /**
      * Evaulate unique.
      *

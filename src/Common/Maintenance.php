@@ -16,8 +16,6 @@
 
 namespace Zest\Common;
 
-use Config\Config;
-
 class Maintenance
 {
     /**
