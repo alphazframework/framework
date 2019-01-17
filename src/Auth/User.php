@@ -14,7 +14,6 @@
 
 namespace Zest\Auth;
 
-use Config\Auth;
 use Zest\Database\Db as DB;
 use Zest\Session\Session;
 
@@ -28,7 +27,7 @@ class User extends Handler
     public function getAll()
     {
         $db = new DB();
-        $result = $db->db()->select(['db_name'=>Auth::AUTH_DB_NAME, 'table'=>Auth::AUTH_DB_TABLE]);
+        $result = $db->db()->select(['db_name'=>__config()->auth->db_name, 'table'=>__config()->auth->db_table]);
         $db->db()->close();
 
         return $result;
@@ -45,7 +44,7 @@ class User extends Handler
     public function getByWhere($where, $value)
     {
         $db = new DB();
-        $result = $db->db()->select(['db_name'=>Auth::AUTH_DB_NAME, 'table'=>Auth::AUTH_DB_TABLE, 'wheres'=>["{$where} ="."'{$value}'"]]);
+        $result = $db->db()->select(['db_name'=>__config()->auth->db_name, 'table'=>__config()->auth->db_table, 'wheres'=>["{$where} ="."'{$value}'"]]);
         $db->db()->close();
 
         return $result;
@@ -61,7 +60,7 @@ class User extends Handler
     public function delete($id)
     {
         $db = new DB();
-        $result = $db->db()->delete(['db_name'=>Auth::AUTH_DB_NAME, 'table'=>Auth::AUTH_DB_TABLE, 'wheres'=>['id ='."'{$id}'"]]);
+        $result = $db->db()->delete(['db_name'=>__config()->auth->db_name, 'table'=>__config()->auth->db_table, 'wheres'=>['id ='."'{$id}'"]]);
         $db->db()->close();
 
         return $result;

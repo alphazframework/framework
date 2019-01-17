@@ -16,8 +16,6 @@
 
 namespace Zest\Mail;
 
-use Config\Email;
-
 class Mail
 {
     /**
@@ -337,10 +335,10 @@ class Mail
      */
     public function sendSMTP($to, $from, $message)
     {
-        $host = Email::SMTP_HOST;
-        $user = Email::SMTP_USER;
-        $pass = Email::SMTP_PASS;
-        $port = Email::SMTP_PORT;
+        $host = __config()->email->smtp_host;
+        $user = __config()->email->smtp_user;
+        $pass = __config()->email->smtp_pass;
+        $port = __config()->email->smtp_port;
         if ($h = fsockopen($host, $port)) {
             $data = [
                 0,

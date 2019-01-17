@@ -14,8 +14,6 @@
 
 namespace Zest\Auth;
 
-use Config\Auth;
-use Config\Email;
 use Zest\Mail\Mail;
 
 class EmailHandler
@@ -33,10 +31,10 @@ class EmailHandler
     {
         $mail = new Mail();
         $mail->setSubject($subject);
-        $mail->setSender(Email::SITE_EMAIL);
+        $mail->setSender(__config()->email->site_email);
         $mail->setContentHTML($html);
         $mail->addReceiver($email);
-        if (Auth::IS_SMTP) {
+        if (__config()->auth->is_smtp) {
             $mail->isSMTP(true);
         }
         $mail->send();

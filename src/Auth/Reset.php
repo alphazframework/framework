@@ -14,7 +14,6 @@
 
 namespace Zest\Auth;
 
-use Config\Auth;
 use Zest\Site\Site;
 use Zest\Validation\Validation;
 
@@ -46,7 +45,7 @@ class Reset extends Handler
         }
         $user = new User();
         if (!$user->isEmail($email)) {
-            Error::set(Auth::AUTH_ERRORS['email_not_exist'], 'username');
+            Error::set(__config()->auth->errors->email_not_exist, 'username');
         }
         if (!$user->isLogin()) {
             if ($this->fail() !== true) {
@@ -54,17 +53,17 @@ class Reset extends Handler
                 $resetToken = (new Site())::salts(8);
                 $update = new Update();
                 $update->update(['resetToken' => $resetToken], $id);
-                $link = site_base_url().Auth::RESET_PASSWORD_LINK.$resetToken;
-                $subject = Auth::AUTH_SUBJECTS['reset'];
-                $link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
-                $html = Auth::AUTH_MAIL_BODIES['reset'];
+                $link = site_base_url().__config()->auth->reset_password_link.$resetToken;
+                $subject = __config()->auth->subjects->reset;
+                $link = site_base_url().__config()->auth->reset_password_link.'/'.$token;
+                $html = __config()->auth->bodies->reset;
                 $html = str_replace(':email', $email, $html);
                 $html = str_replace(':link', $link, $html);
                 (new EmailHandler($subject, $html, $email));
-                Success::set(Auth::SUCCESS['reset']);
+                Success::set(__config()->auth->success->reset);
             }
         } else {
-            Error::set(Auth::AUTH_ERRORS['already_login'], 'login');
+            Error::set(__config()->auth->errors->already_login, 'login');
         }
     }
 
@@ -79,7 +78,7 @@ class Reset extends Handler
     {
         $user = new User();
         if ($token === 'NULL' || $user->isResetToken($token) !== true) {
-            Error::set(Auth::AUTH_ERRORS['token'], 'token');
+            Error::set(__config()->auth->errors->token, 'token');
         }
         if ($this->fail() !== true) {
             Success::set(true);

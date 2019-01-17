@@ -47,7 +47,7 @@ class Language
         if (Cookies::isCookie('lang')) {
             $language = Cookies::get('lang');
         } else {
-            $language = \Config\Config::Language;
+            $language = __config()->config->language;
         }
 
         return $language;

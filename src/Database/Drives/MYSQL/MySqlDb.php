@@ -14,7 +14,6 @@
 
 namespace Zest\Database\Drives\MYSQL;
 
-use Config\Database;
 use Zest\Database\Query\Query;
 
 /**
@@ -58,7 +57,7 @@ class MySqlDb
         if ($status === true) {
             $setting = $this->settings;
 
-            return $db = new \PDO('mysql:host='.Database::MYSQL_HOST, Database::MYSQL_USER, Database::MYSQL_PASS);
+            return $db = new \PDO('mysql:host='.__config()->database->mysql_host, __config()->database->mysql_user, __config()->database->mysql_pass);
         }
         if ($status === false) {
             return $db = null;

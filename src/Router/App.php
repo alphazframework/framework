@@ -28,7 +28,7 @@ class App extends Router
     public function run()
     {
         $router = new Router();
-        if (\Config\Config::ROUTER_CACHE) {
+        if (__config()->config->router_cache) {
             if ($this->isExpired()) {
                 $this->delete();
                 require_once '../Routes/Routes.php';

@@ -16,7 +16,6 @@
 
 namespace Zest\View;
 
-use Config\Config;
 use Zest\Common\Minify;
 
 class View
@@ -57,7 +56,7 @@ class View
      */
     private static function setFile($file)
     {
-        $file = Config::THEME_PATH.'/'.$file;
+        $file = __config()->config->theme_path.'/'.$file;
         if (file_exists($file)) {
             static::$file = $file;
         } else {
@@ -167,7 +166,7 @@ class View
     {
         if (!empty($file)) {
             extract($args, EXTR_SKIP);
-            $file = Config::THEME_PATH.'/'.$file.'.php';
+            $file = __config()->config->theme_path.'/'.$file.'.php';
             if (file_exists($file)) {
                 ob_start();
                 require_once $file;

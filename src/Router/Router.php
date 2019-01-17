@@ -18,7 +18,6 @@
 
 namespace Zest\Router;
 
-use Config\Config;
 use Zest\Cache\ZestCache\ZestCache;
 use Zest\http\Request;
 use Zest\http\Response;
@@ -581,14 +580,14 @@ class Router
      */
     public function cacheRouters()
     {
-        if (Config::ROUTER_CACHE === true) {
+        if (__config()->config->router_cache === true) {
             if ($this->isCached() !== true) {
                 $fileHandling = new \Zest\Files\FileHandling();
                 $routers = $this->getRoutes();
                 $cache = new ZestCache();
                 $cache->create('routers');
-                $cache->store('routers', 'routes', $routers, Config::ROUTE_CACHE_REGENERATE);
-                $fileHandling->open('../Storage/Cache/router_time.cache', 'writeOnly')->write(time() + Config::ROUTE_CACHE_REGENERATE);
+                $cache->store('routers', 'routes', $routers, __config()->config->router_cache_regenerate);
+                $fileHandling->open('../Storage/Cache/router_time.cache', 'writeOnly')->write(time() + __config()->config->router_cache_regenerate);
             }
         }
     }

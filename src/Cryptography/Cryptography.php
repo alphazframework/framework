@@ -16,8 +16,6 @@
 
 namespace Zest\Cryptography;
 
-use Config\Config;
-
 class Cryptography
 {
     /**
@@ -55,7 +53,7 @@ class Cryptography
     public function __construct()
     {
         $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($cipher));
-        $this->key = hash('sha512', Config::CRYPTO_KEY);
+        $this->key = hash('sha512', __config()->config->crypto_key);
     }
 
     /**

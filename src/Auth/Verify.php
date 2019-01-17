@@ -14,8 +14,6 @@
 
 namespace Zest\Auth;
 
-use Config\Auth;
-
 class Verify extends Handler
 {
     /**
@@ -29,7 +27,7 @@ class Verify extends Handler
     {
         $user = new User();
         if ($token === 'NULL' || $user->isToken($token) !== true) {
-            Error::set(Auth::AUTH_ERRORS['token'], 'token');
+            Error::set(__config()->auth->errors->token, 'token');
         }
         if ($this->fail() !== true) {
             if (!(new User())->isLogin()) {
@@ -37,14 +35,14 @@ class Verify extends Handler
                 $email = $user->getByWhere('token', $token)[0]['email'];
                 $update = new Update();
                 $update->update(['token' => 'NULL'], $id);
-                $subject = Auth::AUTH_SUBJECTS['verified'];
-                $link = Auth::VERIFICATION_LINK.'/'.$token;
-                $html = Auth::AUTH_MAIL_BODIES['verified'];
+                $subject = __config()->auth->subjects->verified;
+                $link = __config()->auth->verification_link.'/'.$token;
+                $html = __config()->auth->bodies->verified;
                 $html = str_replace(':email', $email, $html);
                 $email = new EmailHandler($subject, $html, $email);
-                Success::set(Auth::SUCCESS['verified']);
+                Success::set(__config()->auth->success->verified);
             } else {
-                Error::set(Auth::AUTH_ERRORS['already_login'], 'login');
+                Error::set(__config()->auth->errors->already_login, 'login');
             }
         }
     }

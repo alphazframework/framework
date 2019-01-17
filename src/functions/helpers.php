@@ -128,3 +128,23 @@ function pagination($total = 10, $perPage = 6, $current = 1, $urlAppend = '/', $
 {
     return (new \Zest\Common\Pagination($total, $perPage, $current, $urlAppend, $ulCLass, $liClass, $aClass))->pagination();
 }
+if (!function_exists('config')) {
+    function config()
+    {
+        return (new \Zest\Common\Configuration())->get();
+    } 
+}
+function __config()
+{
+    return (new \Zest\Common\Configuration())->get();
+}
+if (!function_exists('container')) {
+    function container($identifier)
+    {
+        return (new \Zest\Common\Container\DIS())->get($identifier);
+    }
+}
+function __container($identifier)
+{
+    return (new \Zest\Common\Container\DIS())->get($identifier);
+}

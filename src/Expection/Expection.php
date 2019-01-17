@@ -56,7 +56,7 @@ class Expection
         if ($code != 404) {
             $code = 500;
         }
-        if (\Config\Config::SHOW_ERRORS) {
+        if (__config()->config->show_errors) {
             echo '<h1>Fatal error</h1>';
             echo "<p>Uncaught exception: '".get_class($exception)."'</p>";
             echo "<p>Message: '".$exception->getMessage()."'</p>";

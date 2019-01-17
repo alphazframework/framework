@@ -14,8 +14,6 @@
 
 namespace Zest\Auth;
 
-use Config\Auth;
-use Config\Database;
 use Zest\Common\PasswordManipulation;
 use Zest\Database\Db as DB;
 use Zest\Site\Site;
@@ -54,11 +52,11 @@ class Signup extends Handler
         if ($requireValidate->fail()) {
             Error::set($requireValidate->error()->get());
         }
-        $uniqueUsername = new Validation(['field'=> 'username', 'value'=>$username], Auth::AUTH_DB_TABLE, 'database');
+        $uniqueUsername = new Validation(['field'=> 'username', 'value'=>$username], __config()->auth->db_table, 'database');
         if ($uniqueUsername->fail()) {
             Error::set($uniqueUsername->error()->get());
         }
-        $uniqueEmail = new Validation(['field'=> 'email', 'value'=>$email], Auth::AUTH_DB_TABLE, 'database');
+        $uniqueEmail = new Validation(['field'=> 'email', 'value'=>$email], __config()->auth->db_table, 'database');
         if ($uniqueEmail->fail()) {
             Error::set($uniqueEmail->error()->get());
         }
@@ -72,20 +70,20 @@ class Signup extends Handler
             }
             if (isset($params['passConfirm'])) {
                 if ($password !== $params['passConfirm']) {
-                    Error::set(Auth::AUTH_ERRORS['password_confitm'], 'password');
+                    Error::set(__config()->auth->errors->password_confirm, 'password');
                 }
             }
         }
-        if (Auth::STICKY_PASSWORD) {
+        if (__config()->auth->sticky_password) {
             if (!(new PasswordManipulation())->isValid($password)) {
-                Error::set(Auth::AUTH_ERRORS['sticky_password'], 'password');
+                Error::set(__config()->auth->errors->sticky_password, 'password');
             }
         }
         if (!(new User())->isLogin()) {
             if ($this->fail() !== true) {
                 $salts = (new Site())::salts(12);
                 $password_hash = (new PasswordManipulation())->hashPassword($password);
-                if (Auth::IS_VERIFY_EMAIL) {
+                if (__config()->auth->is_verify_email) {
                     $token = (new Site())::salts(8);
                 } else {
                     $token = 'NULL';
@@ -98,8 +96,8 @@ class Signup extends Handler
                     'token'    => $token,
                 ];
                 $fields = [
-                    'db_name' => Auth::AUTH_DB_NAME,
-                    'table'   => Auth::AUTH_DB_TABLE,
+                    'db_name' => __config()->auth->db_name,
+                    'table'   => __config()->auth->db_table,
                 ];
                 unset($params['passConfirm']);
                 $data = ['columns' => array_merge($param, $params)];
@@ -107,17 +105,17 @@ class Signup extends Handler
                 $db = new DB();
                 Success::set($db->db()->insert($values));
                 $db->db()->close();
-                if (Auth::IS_VERIFY_EMAIL === true) {
-                    $subject = Auth::AUTH_SUBJECTS['need_verify'];
-                    $link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
-                    $html = Auth::AUTH_MAIL_BODIES['need_verify'];
+                if (__config()->auth->is_verify_email === true) {
+                    $subject = __config()->auth->subjects->need_verify;
+                    $link = site_base_url().__config()->auth->verification_link.'/'.$token;
+                    $html = __config()->auth->errors->need_verify;
                     $html = str_replace(':email', $email, $html);
                     $html = str_replace(':link', $link, $html);
                     (new EmailHandler($subject, $html, $email));
                 }
             }
         } else {
-            Error::set(Auth::AUTH_ERRORS['already_login'], 'login');
+            Error::set(__config()->auth->errors->already_login, 'login');
         }
     }
 }

@@ -14,7 +14,6 @@
 
 namespace Zest\Auth;
 
-use Config\Auth;
 use Zest\Common\PasswordManipulation;
 use Zest\Session\Session;
 use Zest\Validation\Validation;
@@ -50,23 +49,23 @@ class Signin extends Handler
         }
         $user = new User();
         if (!$user->isUsername($username)) {
-            Error::set(Auth::AUTH_ERRORS['username_not_exist'], 'username');
+            Error::set(__config()->auth->errors->username_not_exist, 'username');
         } else {
             $password_hash = $user->getByWhere('username', $username)[0]['password'];
             if (!(new PasswordManipulation())->hashMatched($password, $password_hash)) {
-                Error::set(Auth::AUTH_ERRORS['password_match'], 'password');
+                Error::set(__config()->auth->errors->password_match, 'password');
             } else {
                 $token = $user->getByWhere('username', $username)[0]['token'];
                 $email = $user->getByWhere('username', $username)[0]['email'];
-                if (Auth::IS_VERIFY_EMAIL === true) {
+                if (__config()->auth->is_verify_email === true) {
                     if ($token !== 'NULL') {
-                        $subject = Auth::AUTH_SUBJECTS['need_verify'];
-                        $link = site_base_url().Auth::VERIFICATION_LINK.'/'.$token;
-                        $html = Auth::AUTH_MAIL_BODIES['need_verify'];
+                        $subject = __config()->auth->subjects->need_verify;
+                        $link = site_base_url().__config()->auth->verification_link.'/'.$token;
+                        $html = __config()->auth->bodies->need_verify;
                         $html = str_replace(':email', $email, $html);
                         $html = str_replace(':link', $link, $html);
                         (new EmailHandler($subject, $html, $email));
-                        Error::set(Auth::AUTH_ERRORS['account_verify'], 'email');
+                        Error::set(__config()->auth->errrs->need_verify, 'email');
                     }
                 }
             }
@@ -76,10 +75,10 @@ class Signin extends Handler
                 $salts = $user->getByWhere('username', $username)[0]['salts'];
                 Session::setValue('user', $salts);
                 set_cookie('user', $salts, 31104000, '/', $_SERVER['SERVER_NAME'], false, false);
-                Success::set(Auth::SUCCESS['signin']);
+                Success::set(__config()->auth->success->signin);
             }
         } else {
-            Error::set(Auth::AUTH_ERRORS['already_login'], 'login');
+            Error::set(__config()->auth->errors->already_login, 'login');
         }
     }
 }

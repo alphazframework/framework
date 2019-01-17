@@ -14,7 +14,6 @@
 
 namespace Zest\Database\Drives\SqLite;
 
-use Config\Database;
 use Zest\Database\Query\Query;
 
 /**
@@ -52,7 +51,7 @@ class SqLite
     private function connect($status)
     {
         if ($status === true) {
-            return $db = new \SQLite3(Database::SQLITE_NAME, SQLITE3_OPEN_READWRITE);
+            return $db = new \SQLite3(__config()->database->sqlite_name, SQLITE3_OPEN_READWRITE);
         }
         if ($status === false) {
             return $db = null;
@@ -203,7 +202,7 @@ class SqLite
      */
     public function deleteDb($name)
     {
-        $file = '../Storage/Data/'.Database::SQLITE_NAME;
+        $file = __config()->database->sqlite_name;
         if (file_exists($file)) {
             unset($file);
 

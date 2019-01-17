@@ -90,3 +90,7 @@ Changes:
 76. Update Logger class add setCustumFile() method.
 77. Update Expection class use Logger in expection for creating log file.
 78. Update input Class (code optimization) => https://github.com/Softhub99/Zest/issues/24
+79. Update Dependency Injection system.
+    - now you can use container() and __container() function to access IOC class.
+80. Added Configuraion class.
+81. Update Zest Classes using new config file.	

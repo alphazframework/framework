@@ -14,7 +14,6 @@
 
 namespace Zest\Auth;
 
-use Config\Auth;
 use Zest\Common\PasswordManipulation;
 use Zest\Database\Db as DB;
 use Zest\Validation\Validation;
@@ -42,15 +41,15 @@ class Update extends Handler
         }
         if ($this->fail() !== true) {
             $fields = [
-                    'db_name' => Auth::AUTH_DB_NAME,
-                    'table'   => Auth::AUTH_DB_TABLE,
+                    'db_name' => __config()->auth->db_name,
+                    'table'   => __config()->auth->db_table,
                     'columns' => $params,
                     'wheres'  => ['id = '.$id],
                 ];
             $db = new DB();
             $db->db()->update($fields);
             $db->db()->close();
-            Success::set(Auth::SUCCESS['update']);
+            Success::set(__config()->auth->success->update);
         }
     }
 
@@ -66,25 +65,25 @@ class Update extends Handler
     public function updatePassword($password, $repeat, $id)
     {
         if ($password !== $repeat) {
-            Error::set(Auth::AUTH_ERRORS['password_confitm'], 'password');
-        } elseif (Auth::STICKY_PASSWORD) {
+            Error::set(__config()->auth->errors->password_confirm, 'password');
+        } elseif (__config()->auth->sticky_password === true) {
             if (!(new PasswordManipulation())->isValid($password)) {
-                Error::set(Auth::AUTH_ERRORS['sticky_password'], 'password');
+                Error::set(__config()->auth->errors->sticky_password, 'password');
             }
         }
         if ($this->fail() !== true) {
             $password_hash = (new PasswordManipulation())->hashPassword($password);
             $params = ['password' => $password_hash];
             $fields = [
-                    'db_name' => Auth::AUTH_DB_NAME,
-                    'table'   => Auth::AUTH_DB_TABLE,
+                    'db_name' => __config()->auth->db_name,
+                    'table'   => __config()->auth->db_table,
                     'columns' => $params,
                     'wheres'  => ['id = '.$id],
                 ];
             $db = new DB();
             $db->db()->update($fields);
             $db->db()->close();
-            Success::set(Auth::SUCCESS['update_password']);
+            Success::set(__config()->auth->success->update_password);
         }
     }
 }

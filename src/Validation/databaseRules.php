@@ -14,15 +14,10 @@
 
 namespace Zest\Validation;
 
-use Config\Database;
 use Zest\Database\Db as DB;
 
 class databaseRules extends StickyRules
 {
-    /*
-     * Database table
-    */
-    protected static $db_name = Database::DB_NAME;
 
     /**
      * Evaulate unique.
@@ -36,7 +31,7 @@ class databaseRules extends StickyRules
     public function unique($column, $value, $table)
     {
         $db = new DB();
-        $result = $db->db()->count(['db_name'=>static::$db_name, 'table'=>$table, 'wheres' => [$column.' ='."'{$value}'"]]);
+        $result = $db->db()->count(['db_name'=>__config()->database->db_name, 'table'=>$table, 'wheres' => [$column.' ='."'{$value}'"]]);
         $db->db()->close();
         if ($result === 0) {
             return true;

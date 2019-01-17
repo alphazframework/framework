@@ -32,7 +32,7 @@ class DIS
     public function __construct()
     {
         $this->container = Container::getInstance();
-        $this->dependencies = require_once route()->config.'/Dependencies.php';
+        $this->dependencies = __config()->dependencies;
         $this->handler();
     }
 
@@ -44,10 +44,10 @@ class DIS
     public function handler()
     {
         $dependencies = $this->dependencies;
-        foreach ($this->getDependencies() as $depenci => $value) {
+        foreach ($dependencies as $depenci => $value) {
             $this->register($depenci, function () use ($value) {
-                return (object) $value;
-            });
+                return (object) new $value;
+            },true);
         }
     }
 

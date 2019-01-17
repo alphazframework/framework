@@ -31,7 +31,7 @@ class Maintenance
     {
         if (file_exists(route()->root.'maintained')) {
             return true;
-        } elseif (Config::Maintenance) {
+        } elseif (__config()->config->maintenance) {
             return true;
         } else {
             return false;
