@@ -46,8 +46,8 @@ class DIS
         $dependencies = $this->dependencies;
         foreach ($dependencies as $depenci => $value) {
             $this->register($depenci, function () use ($value) {
-                return (object) new $value;
-            },true);
+                return (object) new $value();
+            }, true);
         }
     }
 

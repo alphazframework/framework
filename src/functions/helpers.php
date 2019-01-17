@@ -132,7 +132,7 @@ if (!function_exists('config')) {
     function config()
     {
         return (new \Zest\Common\Configuration())->get();
-    } 
+    }
 }
 function __config()
 {
