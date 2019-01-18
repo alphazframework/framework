@@ -17,7 +17,6 @@
 namespace Zest\SystemMessage;
 
 use Zest\Session\Session;
-use Zest\Str\Str;
 
 class SystemMessage
 {
