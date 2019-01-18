@@ -185,7 +185,7 @@ class UserInfo
      *
      * @return void
      */
-    public function ip()  
+    public function ip()
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip_add = $_SERVER['HTTP_CLIENT_IP'];
