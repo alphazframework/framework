@@ -24,9 +24,9 @@ class Db
 
     public function __construct()
     {
-        if (Str::stringConversion(__config()->database->db_driver, 'lowercase') === 'mysql') {
+        if (strtolower(__config()->database->db_driver) === 'mysql') {
             $this->db = (new MYSQL());
-        } elseif (Str::stringConversion(__config()->database->db_driver, 'lowercase') === 'sqlite') {
+        } elseif (strtolower(__config()->database->db_driver) === 'sqlite') {
             $this->db = (new SqLite());
         } else {
             $db_driver = __config()->database->db_driver;

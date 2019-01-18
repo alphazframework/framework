@@ -16,9 +16,6 @@
 
 namespace Zest\Language;
 
-use Zest\Cookies\Cookies;
-use Zest\Str\Str;
-
 class Language
 {
     /**
@@ -32,7 +29,7 @@ class Language
      */
     public function setLanguage($value)
     {
-        Cookies::set(['name'=>'lang', 'expir'=>time() + 100000, 'value'=>$value, 'domain'=>$_SERVER['SERVER_NAME'], 'path'=>'/', 'secure'=>false, 'httponly'=>false]);
+        cookie_set('lang',$value,time()+100000,'/',$_SERVER['SERVER_NAME'],false,false);
     }
 
     /**
@@ -44,8 +41,8 @@ class Language
      */
     public function getLang()
     {
-        if (Cookies::isCookie('lang')) {
-            $language = Cookies::get('lang');
+        if (is_cookie('lang')) {
+            $language = get_cookie('lang');
         } else {
             $language = __config()->config->language;
         }
@@ -91,10 +88,10 @@ class Language
     public function print($key)
     {
         if (!empty($key)) {
-            if (array_key_exists(Str::stringConversion($key, 'lowercase'), $this->languageString())) {
-                return $this->languageString()[Str::stringConversion($key, 'lowercase')];
+            if (array_key_exists(strtolower($key), $this->languageString())) {
+                return $this->languageString()[strtolower($key)];
             } else {
-                return Str::stringConversion($key, 'lowercase');
+                return strtolower($key);
             }
         } else {
             return false;
@@ -115,7 +112,7 @@ class Language
     public function debug($params)
     {
         if (is_array($params)) {
-            if (isset($params['allkeys']) and Str::stringConversion($params['allkeys'], 'lowercase') === 'on') {
+            if (isset($params['allkeys']) and strtolower($params['allkeys']) === 'on') {
                 return array_keys($this->languageString());
             }
             if (isset($params['search'])) {

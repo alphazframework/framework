@@ -11,6 +11,7 @@
  *
  * @since 2.0.0
  *
+ * @deprecated 3.0.0 
  * @license MIT
  */
 

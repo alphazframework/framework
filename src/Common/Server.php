@@ -9,12 +9,11 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @deprecated 3.0.0
  * @license MIT
  */
 
 namespace Zest\Common;
-
-use Zest\Str\Str;
 
 class Server
 {
@@ -22,7 +21,7 @@ class Server
     {
         $server = static::determineServer();
         $server = explode('/', $server)[0];
-        $server = Str::stringConversion($server, 'lowercase');
+        $server = strtolower($server);
         if ($server === 'apache') {
             return;
         } elseif (preg_match('/[php]/i', $server)) {

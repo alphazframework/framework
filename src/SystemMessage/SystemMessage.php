@@ -69,7 +69,7 @@ class SystemMessage
      */
     protected function type($type)
     {
-        $type = Str::stringConversion($type, 'lowercase');
+        $type = strtolower($type);
         switch ($type) {
                 case 'success':
                     $type = 'success';

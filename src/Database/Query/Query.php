@@ -14,8 +14,6 @@
 
 namespace Zest\Database\Query;
 
-use Zest\Str\Str;
-
 class Query
 {
     /**
@@ -49,7 +47,7 @@ class Query
             }
             $columns = implode(' , ', $columns);
             $query = "INSERT INTO `{$params['table']}`SET {$columns}";
-            if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
+            if (isset($params['debug']) and strtolower($params['debug']) === 'on') {
                 var_dump($query);
             }
 
@@ -91,7 +89,7 @@ class Query
             $columns = implode(' , ', $columns);
             $wheres = $this->prepareWhere($params['wheres']);
             $query = "UPDATE `{$params['table']}`SET {$columns} {$wheres}";
-            if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
+            if (isset($params['debug']) and strtolower($params['debug']) === 'on') {
                 var_dump($query);
             }
 
@@ -157,7 +155,7 @@ class Query
                 $order_by = '';
             }
             $query = "SELECT {$distinct} {$columns} FROM        {$params['table']} {$join} {$wheres} {$order_by} {$limit} ;";
-            if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
+            if (isset($params['debug']) and strtolower($params['debug']) === 'on') {
                 var_dump($query);
             }
 
@@ -186,7 +184,7 @@ class Query
                 return false;
             }
             $query = "DELETE FROM `{$params['table']}` {$wheres};";
-            if (isset($params['debug']) and Str::stringConversion($params['debug'], 'lowercase') === 'on') {
+            if (isset($params['debug']) and strtolower($params['debug']) === 'on') {
                 var_dump($query);
             }
 
