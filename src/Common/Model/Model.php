@@ -19,13 +19,13 @@ namespace Zest\Common\Model;
 class Model
 {
     /**
-     * Model
-	 *
-	 *
-	 * @since 3.0.0
-	 *	
-	 * @var string
-    */
+     * Model.
+     *
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
     private $model;
 
     /**
@@ -33,8 +33,8 @@ class Model
      *
      * @param (string) $model model name
      *
-	 * @since 3.0.0
-	 *
+     * @since 3.0.0
+     *
      * @return resource
      */
     public function set($model)
@@ -47,8 +47,8 @@ class Model
     /**
      * Get the instance of model class.
      *
-	 * @since 3.0.0
-	 *
+     * @since 3.0.0
+     *
      * @return resource
      */
     public function execute()

@@ -22,20 +22,20 @@ use Zest\Data\Conversion;
 class DIS
 {
     /**
-     * Store the instance of cotnainer class
+     * Store the instance of cotnainer class.
      *
      * @since 2.0.3
      *
      * @var object
-    */
+     */
     private $container;
     /**
-     * Store the registered dependencies
+     * Store the registered dependencies.
      *
      * @since 2.0.3
      *
      * @var array
-    */
+     */
     private $dependencies;
 
     /**
@@ -65,8 +65,8 @@ class DIS
         $dependencies = $this->dependencies;
         foreach ($this->getDependencies() as $depenci => $value) {
             $this->register($depenci, function () use ($value) {
-                return (object) new $value;
-            },true);
+                return (object) new $value();
+            }, true);
         }
     }
 
@@ -74,8 +74,8 @@ class DIS
      * Registers a dependency into the Dependency Injection system.
      *
      * @param (string) $identifier The identifier for this dependency
-     *        (callable) $loader     The loader function for the dependency (to be called when needed)
-     *        (bool) $singleton  Whether or not to return always the same instance
+     *                             (callable) $loader     The loader function for the dependency (to be called when needed)
+     *                             (bool) $singleton  Whether or not to return always the same instance
      *
      * @since 2.0.3
      *
@@ -124,7 +124,7 @@ class DIS
         return $this->dependencies;
     }
 
-     /**
+    /**
      * Merge to container.
      *
      * @param (array) $dependency valid dependency
@@ -132,7 +132,7 @@ class DIS
      * @since 2.0.3
      *
      * @return void
-     */   
+     */
     public function mergeDependencies($dependency = [])
     {
         $this->dependencies = array_merge((array) $dependency, (array) $this->getDependencies());

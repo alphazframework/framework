@@ -88,7 +88,7 @@ class Session
      * Set/store value in session.
      *
      * @param (string) $name name of session e.g users
-     *        (string) $value value store in session e.g user token
+     *                       (string) $value value store in session e.g user token
      *
      * @since 1.0.0
      *
@@ -114,7 +114,7 @@ class Session
             unset($_SESSION[$name]);
         }
 
-       return false;
+        return false;
     }
 
     /**

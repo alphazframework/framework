@@ -22,7 +22,7 @@ class Container
      * The singleton instance of this class.
      *
      * @since 2.0.3
-     * 
+     *
      * @var object
      */
     private static $instance;
@@ -81,7 +81,7 @@ class Container
     /**
      * Gets the dependency identified by the given identifier.
      *
-     * @param  (string) $identifier The identifier of the dependency
+     * @param (string) $identifier The identifier of the dependency
      *
      * @since 2.0.3
      *

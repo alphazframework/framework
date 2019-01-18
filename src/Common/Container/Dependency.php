@@ -19,28 +19,28 @@ namespace Zest\Common\Container;
 class Dependency
 {
     /**
-     * Store the object
+     * Store the object.
      *
      * @since 2.0.3
      *
      * @var object
-    */
+     */
     private $object;
     /**
-     * Store the singleton
+     * Store the singleton.
      *
      * @since 2.0.3
      *
      * @var bool
-    */
+     */
     private $singleton;
     /**
-     * Store the callable
+     * Store the callable.
      *
      * @since 2.0.3
      *
      * @var callable
-    */
+     */
     private $loader;
 
     /**
@@ -68,7 +68,7 @@ class Dependency
         }
         if ($this->object === null) {
             $this->object = call_user_func($this->loader);
-            $object = new $this->object;
+            $object = new $this->object();
         }
 
         return (object) $object;
