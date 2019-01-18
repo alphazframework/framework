@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 3.0.0
+ *
  * @license MIT
  */
 
@@ -16,16 +18,23 @@ namespace Zest\Common\Model;
 
 class Model
 {
-    /*
+    /**
      * Model
+	 *
+	 *
+	 * @since 3.0.0
+	 *	
+	 * @var string
     */
     private $model;
 
     /**
      * Set the model.
      *
-     * @param $set model name
+     * @param (string) $model model name
      *
+	 * @since 3.0.0
+	 *
      * @return resource
      */
     public function set($model)
@@ -38,6 +47,8 @@ class Model
     /**
      * Get the instance of model class.
      *
+	 * @since 3.0.0
+	 *
      * @return resource
      */
     public function execute()
