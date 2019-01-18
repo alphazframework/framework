@@ -1,82 +1,192 @@
 <?php
 
-function printl(string $key)
+if (!function_exists('printl')) {
+    function printl(string $key)
+    {
+        return (new \Zest\Language\Language())->print($key);
+    }    
+}
+function __printl(string $key)
 {
     return (new \Zest\Language\Language())->print($key);
 }
-function debug_printl($params)
+if (!function_exists('debug_printl')) {
+    function debug_printl($params)
+    {
+        return (new \Zest\Language\Language())->debug($params);
+    }    
+}
+function __debug_printl($params)
 {
     return (new \Zest\Language\Language())->debug($params);
 }
-function lang()
-{
-    return \Config\Config::Language;
+if (!function_exists('lang')) {
+    function lang()
+    {
+        return __config()->config->language;
+    }
 }
-function input($key)
+function __lang()
+{
+    return __config()->config->language;
+}
+if (!function_exists('input')) {
+    function input($key)
+    {
+        return Zest\Input\Input::input($key);
+    }    
+}
+function __input($key)
 {
     return Zest\Input\Input::input($key);
 }
-function input_all()
+if (!function_exists('input_all')) {
+    function input_all()
+    {
+        return $_REQUEST;
+    }    
+}
+function __input_all()
 {
     return $_REQUEST;
 }
-function escape($str, $type = 'secured')
+if (!function_exists('escape')) {
+    function escape($str, $type = 'secured')
+    {
+        return Zest\Input\Input::clean($str, $type);
+    }    
+}
+function __escape($str, $type = 'secured')
 {
     return Zest\Input\Input::clean($str, $type);
 }
-function restore_line_break($input)
+if (!function_exists('restore_line_break')) {
+    function restore_line_break($input)
+    {
+        return \Zest\Input\Input::restoreLineBreaks($input);
+    }    
+}
+function __restore_line_break($input)
 {
     return \Zest\Input\Input::restoreLineBreaks($input);
 }
-function is_submit($name)
+if (!function_exists('is_submit')) {
+    function is_submit($name)
+    {
+        return Zest\Input\InPut::isFromSubmit($name);
+    }    
+}
+function __is_submit($name)
 {
     return Zest\Input\InPut::isFromSubmit($name);
 }
-function restore_new_line($str)
-{
-    return Zest\Input\InPut::restoreLineBreaks($str);
+if (!function_exists('site_base_url')) {
+    function site_base_url()
+    {
+        return Zest\Site\Site::siteBaseUrl();
+    }    
 }
-function site_base_url()
+function __site_base_url()
 {
     return Zest\Site\Site::siteBaseUrl();
 }
-function site_url()
+if (!function_exists('current_url')) {
+    function current_url()
+    {
+        return Zest\Site\Site::siteUrl();
+    }   
+}
+function __current_url()
 {
     return Zest\Site\Site::siteUrl();
 }
-function redirect($url = null)
+if (!function_exists('redirect')) {
+    function redirect($url = null)
+    {
+        return Zest\Site\Site::redirect($url);
+    }    
+}
+function __redirect($url = null)
 {
     return Zest\Site\Site::redirect($url);
 }
-function salts($len)
+if (!function_exists('salts')) {
+    function salts($len)
+    {
+        return Zest\Site\Site::salts($len);
+    }    
+}
+function __salts($len)
 {
     return Zest\Site\Site::salts($len);
 }
-function set_cookie($name, $value, $expire, $path, $domain, $secure, $httponly)
+if (!function_exists('set_cookie')) {
+    function set_cookie($name, $value, $expire, $path, $domain, $secure, $httponly)
+    {
+        $cookie = new Zest\Cookies\Cookies();
+
+        return $cookie->set(['name'=>$name, 'value'=>$value, 'expire'=> time() + $expire, 'path'=> $path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly]);
+    }    
+}
+function __set_cookie($name, $value, $expire, $path, $domain, $secure, $httponly)
 {
     $cookie = new Zest\Cookies\Cookies();
 
     return $cookie->set(['name'=>$name, 'value'=>$value, 'expire'=> time() + $expire, 'path'=> $path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly]);
 }
-function get_cookie($name)
+if (!function_exists('get_cookie')) {
+    function get_cookie($name)
+    {
+        $cookie = new Zest\Cookies\Cookies();
+
+        return $cookie->get($name);
+    }    
+}
+function __get_cookie($name)
 {
     $cookie = new Zest\Cookies\Cookies();
 
     return $cookie->get($name);
 }
-function delete_cookie($name)
+if (!function_exists('delete_cookie')) {
+    function delete_cookie($name)
+    {
+        $cookie = new Zest\Cookies\Cookies();
+
+        return $cookie->delete($name);
+    }    
+}
+function __delete_cookie($name)
 {
     $cookie = new Zest\Cookies\Cookies();
 
     return $cookie->delete($name);
 }
-function is_cookie($name)
+if (!function_exists('is_cookie')) {
+    function is_cookie($name)
+    {
+        $cookie = new Zest\Cookies\Cookies();
+
+        return $cookie->isCookie($name);
+    }    
+}
+function __is_cookie($name)
 {
     $cookie = new Zest\Cookies\Cookies();
 
     return $cookie->isCookie($name);
 }
-function add_system_message($msg, $type = null)
+if (!function_exists('add_system_message')) {
+    function add_system_message($msg, $type = null)
+    {
+        if (!isset($type) && empty($type)) {
+            $type = 'light';
+        }
+
+        return (new Zest\SystemMessage\SystemMessage())->add(['msg'=>$msg, 'type'=>$type]);
+    }    
+}
+function __add_system_message($msg, $type = null)
 {
     if (!isset($type) && empty($type)) {
         $type = 'light';
@@ -84,49 +194,105 @@ function add_system_message($msg, $type = null)
 
     return (new Zest\SystemMessage\SystemMessage())->add(['msg'=>$msg, 'type'=>$type]);
 }
-function view_system_message()
+if (!function_exists('view_system_message')) {
+    function view_system_message()
+    {
+        return (new Zest\SystemMessage\SystemMessage())->view();
+    }    
+}
+function __view_system_message()
 {
     return (new Zest\SystemMessage\SystemMessage())->view();
 }
-function csrf_token()
-{
-    return Zest\CSRF\CSRF::generateTokens(1, \Config\Config::CSRF_TIMESTAMP);
+if (!function_exists('route')) {
+    function route()
+    {
+        return (new \Zest\Common\Root())->paths();
+    }    
 }
-function route()
+function __route()
 {
     return (new \Zest\Common\Root())->paths();
 }
-function encrypt($data)
+if (!function_exists('encrypt')) {
+    function encrypt($data)
+    {
+        return (new \Zest\Cryptography\Cryptography())->encrypt($data);
+    }    
+}
+function __encrypt($data)
 {
     return (new \Zest\Cryptography\Cryptography())->encrypt($data);
 }
-function decrypt($token)
+if (!function_exists('decrypt')) {
+    function decrypt($token)
+    {
+        return (new \Zest\Cryptography\Cryptography())->decrypt($token);
+    }    
+}
+function __decrypt($token)
 {
     return (new \Zest\Cryptography\Cryptography())->decrypt($token);
 }
-function maintenanceInstance()
-{
-    return new \Zest\Common\Maintenance();
+if (!function_exists('view')) {
+    function view($file = '', $args = [], $minify = true)
+    {
+        return (new Zest\View\View())::view($file, $args, $minify);
+    }    
 }
-function view($file = '', $args = [], $minify = true)
+function __view($file = '', $args = [], $minify = true)
 {
     return (new Zest\View\View())::view($file, $args, $minify);
 }
-function model($model = 'post')
+if (!function_exists('model')) {
+    function model($model = 'post')
+    {
+        return (object) (new \Zest\Common\Model\Model())->set($model)->execute();
+    }    
+}
+function __model($model = 'post')
 {
     return (object) (new \Zest\Common\Model\Model())->set($model)->execute();
 }
-function write_file($file, $mode, $value)
+if (!function_exists('write_file')) {
+    function write_file($file, $mode, $value)
+    {
+        return (new \Zest\Files\FileHandling())->open($file, $mode)->write($value);
+    }    
+}
+function __write_file($file, $mode, $value)
 {
     return (new \Zest\Files\FileHandling())->open($file, $mode)->write($value);
 }
-function read_file($file, $mode)
+if (!function_exists('read_file')) {
+    function read_file($file, $mode)
+    {
+        return (new \Zest\Files\FileHandling())->open($file, $mode)->read($file);
+    }    
+}
+function __read_file($file, $mode)
 {
     return (new \Zest\Files\FileHandling())->open($file, $mode)->read($file);
 }
-function pagination($total = 10, $perPage = 6, $current = 1, $urlAppend = '/', $ulCLass = 'pagination', $liClass = 'page-item', $aClass = 'page-link')
+if (!function_exists('pagination')) {
+    function pagination($total = 10, $perPage = 6, $current = 1, $urlAppend = '/', $ulCLass = 'pagination', $liClass = 'page-item', $aClass = 'page-link')
+    {
+        return (new \Zest\Common\Pagination($total, $perPage, $current, $urlAppend, $ulCLass, $liClass, $aClass))->pagination();
+    }    
+}
+function __pagination($total = 10, $perPage = 6, $current = 1, $urlAppend = '/', $ulCLass = 'pagination', $liClass = 'page-item', $aClass = 'page-link')
 {
     return (new \Zest\Common\Pagination($total, $perPage, $current, $urlAppend, $ulCLass, $liClass, $aClass))->pagination();
+}
+if (!function_exists('container')) {
+    function container($identifier)
+    {
+        return (new \Zest\Common\Container\DIS())->get($identifier);
+    }
+}
+function __container($identifier)
+{
+    return (new \Zest\Common\Container\DIS())->get($identifier);
 }
 if (!function_exists('config')) {
     function config()
@@ -138,13 +304,18 @@ function __config()
 {
     return (new \Zest\Common\Configuration())->get();
 }
-if (!function_exists('container')) {
-    function container($identifier)
+if (!function_exists('log_message')) {
+    function log_message($message,$type = 'info',$file = '')
     {
-        return (new \Zest\Common\Container\DIS())->get($identifier);
+        return (new \Zest\Common\Logger\Logger())->setCustumFile($file)->$type($message);
     }
 }
-function __container($identifier)
+function __log_message($message,$type = 'info',$file = '')
 {
-    return (new \Zest\Common\Container\DIS())->get($identifier);
+    return (new \Zest\Common\Logger\Logger())->setCustumFile($file)->$type($message);
+}
+
+function maintenanceInstance()
+{
+    return new \Zest\Common\Maintenance();
 }
