@@ -10,6 +10,7 @@
  *  file that was distributed with this source code.
  *
  * @deprecated 3.0.0
+ *
  * @license MIT
  */
 
