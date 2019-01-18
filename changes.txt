@@ -93,4 +93,5 @@ Changes:
 79. Update Dependency Injection system.
     - now you can use container() and __container() function to access IOC class.
 80. Added Configuraion class.
-81. Update Zest Classes using new config file.	
+81. Update Zest Classes using new config file.
+82. Added destroy method in session class for destroy all sessions.

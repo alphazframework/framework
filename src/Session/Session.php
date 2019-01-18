@@ -57,15 +57,15 @@ class Session
     }
 
     /**
-     *Check if session is already set with specific name.
+     * Check if session is already set with specific name.
      *
-     * @param $name (string) name of session e.g users
+     * @param (string) $name name of session e.g users
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public static function isSession(string $name):bool
+    public static function isSession($name)
     {
         return (isset($_SESSION[$name])) ? true : false;
     }
@@ -73,13 +73,13 @@ class Session
     /**
      * Get the session value by providing session name.
      *
-     * @param $name (string) name of session e.g users
+     * @param (string) $name name of session e.g users
      *
      * @since 1.0.0
      *
      * @return string
      */
-    public static function getValue(string $name)
+    public static function getValue($name)
     {
         return (static::isSession($name)) ? $_SESSION[$name] : false;
     }
@@ -87,15 +87,14 @@ class Session
     /**
      * Set/store value in session.
      *
-     * @param $params (array)
-     * 'name' => name of session e.g users
-     * 'value' => value store in session e.g user token
+     * @param (string) $name name of session e.g users
+     *        (string) $value value store in session e.g user token
      *
      * @since 1.0.0
      *
      * @return string
      */
-    public static function setValue(string $name, $value)
+    public static function setValue($name, $value)
     {
         return (static::isSession($name) !== true) ? $_SESSION[$name] = $value : false;
     }
@@ -103,19 +102,31 @@ class Session
     /**
      * Delete/unset the session.
      *
-     * @param $name (string) name of session e.g users
+     * @param (string) $name name of session e.g users
      *
      * @since 1.0.0
      *
-     * @return bool
+     * @return mixed
      */
     public static function unsetValue(string $name)
     {
-        if (static::isSession($name)) {
-            session_destroy();
-            session_unset($name);
+        if (self::isSession($name)) {
+            unset($_SESSION[$name]);
         }
 
-        return false;
+       return false;
+    }
+
+    /**
+     * Destroy the session.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public static function destroy()
+    {
+        session_unset();
+        session_destroy();
     }
 }
