@@ -18,36 +18,35 @@ namespace Zest\Cache\Adapter;
 
 class Memcache extends AbstractAdapter
 {
-
     /**
-     * Store the object 
-     * 
+     * Store the object.
+     *
      * @since 3.0.0
      *
      * @var object
-    */
+     */
     private $memcache;
 
     /**
-     * __construct
+     * __construct.
      *
      * @param (int) $ttl time to live
      *
      * @since 3.0.0
-     */ 
+     */
     public function __construct($ttl = 0, $host = 'localhost', $port = 255)
     {
         parent::__construct($ttl);
 
-        if (!class_exists('Memcache',false)) {
-            throw new \Exception("Memcache Class not found", 500);
+        if (!class_exists('Memcache', false)) {
+            throw new \Exception('Memcache Class not found', 500);
         }
         $this->memcache = new \Memcache();
         $host = __config()->cache->memcache->host;
         $port = __config()->cache->memcache->port;
 
         if (!$this->memcache->connect($host, $port)) {
-            throw new \Exception('Error: Unable to connect to the memcache server.',500);
+            throw new \Exception('Error: Unable to connect to the memcache server.', 500);
         }
     }
 
@@ -83,7 +82,7 @@ class Memcache extends AbstractAdapter
      * @since 3.0.0
      *
      * @return mixed
-     */ 
+     */
     public function getItemTtl($key)
     {
         $data = $this->memcache->get($key);
@@ -101,21 +100,21 @@ class Memcache extends AbstractAdapter
      * Save an item to cache.
      *
      * @param (string) $key
-     *        (mixed) $value 
-     *        (int) $ttl 
+     *                      (mixed) $value
+     *                      (int) $ttl
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function saveItem($key, $value, $ttl = null)
     {
         $cache = [
             'start' => time(),
             'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
-            'value' => $value 
+            'value' => $value,
         ];
-        
+
         $this->memcache->set($key, $cache, true, $cache['ttl']);
 
         return $this;
@@ -139,7 +138,6 @@ class Memcache extends AbstractAdapter
         } else {
             $this->deleteItem($key);
         }
-        
 
         return (isset($value)) ? $value : false;
     }
@@ -155,7 +153,7 @@ class Memcache extends AbstractAdapter
      */
     public function hasItem($key)
     {
-        return ($this->getItem($key) !== false);
+        return $this->getItem($key) !== false;
     }
 
     /**
@@ -166,7 +164,7 @@ class Memcache extends AbstractAdapter
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function deleteItem($key)
     {
         $this->memcache->delete($key);
@@ -183,7 +181,7 @@ class Memcache extends AbstractAdapter
      */
     public function close()
     {
-        $this->memcache->close();        
+        $this->memcache->close();
     }
 
     /**

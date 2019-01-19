@@ -132,7 +132,7 @@ class CURL extends AbstractClient
      * Set curl session option.
      *
      * @param (mixed) $option
-     *		  (mixed) $value
+     *                        (mixed) $value
      *
      * @since 3.0.0
      *

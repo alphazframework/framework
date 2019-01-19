@@ -18,62 +18,62 @@ namespace Zest\Cache\Adapter;
 
 abstract class AbstractAdapter
 {
-	/**
-	 * Time to live
-	 *
-	 * @since 3.0.0
-	 *
-	 * @var int
-	*/
-	private $ttl = 0;
+    /**
+     * Time to live.
+     *
+     * @since 3.0.0
+     *
+     * @var int
+     */
+    private $ttl = 0;
 
     /**
-     * __construct
+     * __construct.
      *
      * @param (int) $ttl time to live
      *
      * @since 3.0.0
-     */	
-	public function __construct($ttl = 0)
-	{
-		$this->setTtl($ttl);
-	}
+     */
+    public function __construct($ttl = 0)
+    {
+        $this->setTtl($ttl);
+    }
 
     /**
-     * Set the ttl
+     * Set the ttl.
      *
      * @param (int) $ttl time to live
      *
      * @since 3.0.0
-     * 
+     *
      * @return object
-     */	
-	public function setTtl($ttl)
-	{
-		$this->ttl = $ttl;
+     */
+    public function setTtl($ttl)
+    {
+        $this->ttl = $ttl;
 
-		return $this;
-	}
+        return $this;
+    }
 
     /**
-     * Get the time-to-live for cache
+     * Get the time-to-live for cache.
      *
      * @since 3.0.0
-     * 
+     *
      * @return int
      */
-	public function getTtl()
-	{
-		return $this->ttl;
-	}
+    public function getTtl()
+    {
+        return $this->ttl;
+    }
 
     /**
      * Get the time-to-live for an item in cache.
      *
-     * @param  (string) $key
+     * @param (string) $key
      *
      * @since 3.0.0
-     * 
+     *
      * @return int
      */
     abstract public function getItemTtl($key);
@@ -82,11 +82,11 @@ abstract class AbstractAdapter
      * Save an item to cache.
      *
      * @param (string) $key
-     *        (mixed)  $value
-     *   	  (int)    $ttl
+     *                      (mixed)  $value
+     *                      (int)    $ttl
      *
      * @since 3.0.0
-     * 
+     *
      * @return void
      */
     abstract public function saveItem($key, $value, $ttl = null);
@@ -94,10 +94,10 @@ abstract class AbstractAdapter
     /**
      * Get an item from cache.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
-     * 
+     *
      * @return mixed
      */
     abstract public function getItem($key);
@@ -105,10 +105,10 @@ abstract class AbstractAdapter
     /**
      * Determine if the item exist in cache.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
-     * 
+     *
      * @return bool
      */
     abstract public function hasItem($key);
@@ -116,10 +116,10 @@ abstract class AbstractAdapter
     /**
      * Delete a value in cache.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @since 3.0.0
-     * 
+     *
      * @return void
      */
     abstract public function deleteItem($key);
@@ -128,8 +128,8 @@ abstract class AbstractAdapter
      * Destroy cache resource.
      *
      * @since 3.0.0
-     * 
+     *
      * @return void
      */
-    abstract public function destroy();	
+    abstract public function destroy();
 }

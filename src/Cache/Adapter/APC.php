@@ -18,21 +18,19 @@ namespace Zest\Cache\Adapter;
 
 class APC extends AbstractAdapter
 {
-
     /**
-     * __construct
+     * __construct.
      *
      * @param (int) $ttl time to live
      *
      * @since 3.0.0
-     */ 
+     */
     public function __construct($ttl = 0)
     {
         parent::__construct($ttl);
 
         if (!function_exists('apc_cache_info')) {
-            throw new \Exception("APC cache extension not installed", 500);
-            
+            throw new \Exception('APC cache extension not installed', 500);
         }
     }
 
@@ -54,7 +52,7 @@ class APC extends AbstractAdapter
      * @since 3.0.0
      *
      * @return mixed
-     */ 
+     */
     public function getItemTtl($key)
     {
         $data = apc_fetch($key);
@@ -71,21 +69,21 @@ class APC extends AbstractAdapter
      * Save an item to cache.
      *
      * @param (string) $key
-     *        (mixed) $value 
-     *        (int) $ttl 
+     *                      (mixed) $value
+     *                      (int) $ttl
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function saveItem($key, $value, $ttl = null)
     {
         $cache = [
             'start' => time(),
             'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
-            'value' => $value 
+            'value' => $value,
         ];
-        
+
         apc_store($key, $cache, $cache['ttl']);
 
         return $this;
@@ -108,7 +106,6 @@ class APC extends AbstractAdapter
         } else {
             $this->deleteItem($key);
         }
-        
 
         return (isset($value)) ? $value : false;
     }
@@ -124,7 +121,7 @@ class APC extends AbstractAdapter
      */
     public function hasItem($key)
     {
-        return ($this->getItem($key) !== false);
+        return $this->getItem($key) !== false;
     }
 
     /**
@@ -135,7 +132,7 @@ class APC extends AbstractAdapter
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function deleteItem($key)
     {
         apc_delete($key);

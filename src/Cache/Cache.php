@@ -19,16 +19,16 @@ namespace Zest\Cache;
 class Cache
 {
     /**
-     * Store the adapter object
+     * Store the adapter object.
      *
      * @since 3.0.0
      *
      * @var object
-    */
+     */
     private $adapter = null;
 
     /**
-     * __construct
+     * __construct.
      *
      * @since 3.0.0
      */
@@ -36,20 +36,21 @@ class Cache
     {
         $this->setProperAdapter(__config()->cache->driver);
     }
+
     /**
-     * Get the adapter of cache
+     * Get the adapter of cache.
      *
      * @since 3.0.0
      *
      * @return string
-     */    
+     */
     public function getAdapter()
     {
         return $adapter;
     }
 
     /**
-     * Set the valid adapter
+     * Set the valid adapter.
      *
      * @param (string) $adapter
      *
@@ -65,14 +66,14 @@ class Cache
     }
 
     /**
-     * Set the valid adapter
+     * Set the valid adapter.
      *
      * @param (string) $adapter
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function setProperAdapter($adapter)
     {
         switch ($adapter) {
@@ -87,26 +88,26 @@ class Cache
                 break;
             case 'memcache':
                 $adapter = '\Zest\Cache\Adapter\Memcached';
-                break;                                      
+                break;
             case 'redis':
                 $adapter = '\Zest\Cache\Adapter\Redis';
-                break;        
+                break;
             case 'session':
                 $adapter = '\Zest\Cache\Adapter\Session';
-                break;  
+                break;
 
             default:
                 $adapter = '\Zest\Cache\Adapter\FileCache';
                 break;
         }
 
-        $this->adapter = new $adapter;
+        $this->adapter = new $adapter();
 
         return $this;
     }
 
     /**
-     * Get default ttl
+     * Get default ttl.
      *
      * @since 3.0.0
      *
@@ -118,7 +119,7 @@ class Cache
     }
 
     /**
-     * Get item ttl
+     * Get item ttl.
      *
      * @param (string) $key
      *
@@ -130,11 +131,12 @@ class Cache
     {
         $this->adapter->getItemTtl($key);
     }
+
     /**
-     * Get the value from cache
+     * Get the value from cache.
      *
      * @param (mixed) $key
-     *        (mixed) $default
+     *                     (mixed) $default
      *
      * @since 3.0.0
      *
@@ -148,10 +150,10 @@ class Cache
     }
 
     /**
-     * Get the multiple values from cache
+     * Get the multiple values from cache.
      *
      * @param (array) $keys
-     *        (mixed) $default
+     *                      (mixed) $default
      *
      * @since 3.0.0
      *
@@ -167,72 +169,72 @@ class Cache
         return $cache;
     }
 
-
     /**
-     * Save item to cache
+     * Save item to cache.
      *
      * @param (mixed) $key key for cache
-     *        (mixed) $value value to be cached
-     *        (int) $ttl time to live for cache
+     *                     (mixed) $value value to be cached
+     *                     (int) $ttl time to live for cache
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function set($key, $value, $ttl = null)
     {
-        $this->adapter->saveItem($key,$value,$ttl);
+        $this->adapter->saveItem($key, $value, $ttl);
 
         return $this;
     }
 
     /**
-     * Save multiple items to cache
+     * Save multiple items to cache.
      *
      * @param (array) $cache [key,value,ttl]
      *
      * @since 3.0.0
      *
      * @return object
-     */        
+     */
     public function setMultiple($cache)
     {
         foreach ($cache as $key => $value) {
-            $this->set($value['key'],$value['value'],$value['ttl']);
+            $this->set($value['key'], $value['value'], $value['ttl']);
         }
 
         return $this;
     }
+
     public function has($key)
     {
         return $this->adapter->hasItem($key);
     }
 
     /**
-     * Delete item form cache
+     * Delete item form cache.
      *
      * @param (mixed) $key key for cache
      *
      * @since 3.0.0
      *
      * @return object
-     */            
+     */
     public function delete($key)
     {
         $this->adapter->deleteItem($key);
 
         return $this;
-    }        
+    }
 
     /**
-     * Delete multiples items form cache
+     * Delete multiples items form cache.
      *
      * @param (array) $keys
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function deleteMultiple()
     {
         foreach ($keys as $key => $value) {
@@ -243,16 +245,16 @@ class Cache
     }
 
     /**
-     * Clear all caches
+     * Clear all caches.
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function clear()
     {
         $this->adapter->destroy();
 
         return $this;
-    }      
+    }
 }
