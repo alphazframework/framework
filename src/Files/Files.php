@@ -345,15 +345,15 @@ class Files
     /**
      * Delete dirs.
      *
-     * @param $dir Directory with path.
+     * @param $dirs Directory with path.
      *
      * @since 3.0.0
      *
      * @return void
      */
-    public function deleteDirs($dir)
+    public function deleteDirs($dirs)
     {
-        foreach ($files as $file => $value) {
+        foreach ($dirs as $dir => $value) {
             if (is_dir($value)) {
                 rmdir($value);
             }

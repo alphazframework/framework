@@ -101,7 +101,11 @@ class FileHandling
      */
     public function delete($file)
     {
-        return (file_exists($file)) ? unlink($file) : false;
+		if (file_exists($file)) {
+			unlink($file);
+		}
+
+		return true;	
     }
 
     /**
