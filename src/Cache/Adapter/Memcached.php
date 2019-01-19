@@ -18,29 +18,28 @@ namespace Zest\Cache\Adapter;
 
 class Memcached extends AbstractAdapter
 {
-
     /**
-     * Store the object 
-     * 
+     * Store the object.
+     *
      * @since 3.0.0
      *
      * @var object
-    */
+     */
     private $memcached;
 
     /**
-     * __construct
+     * __construct.
      *
      * @param (int) $ttl time to live
      *
      * @since 3.0.0
-     */ 
+     */
     public function __construct($ttl = 0)
     {
         parent::__construct($ttl);
 
-        if (!class_exists('Memcached',false)) {
-            throw new \Exception("Memcached Class not found", 500);
+        if (!class_exists('Memcached', false)) {
+            throw new \Exception('Memcached Class not found', 500);
         }
         $this->memcached = new \Memcached();
         $host = __config()->cache->memcached->host;
@@ -49,8 +48,8 @@ class Memcached extends AbstractAdapter
         $this->addServer($host, $port, $weight);
 
         $version = $this->memcached->getVersion();
-        if (isset($version[$host . ':' . $port])) {
-            $this->version = $version[$host . ':' . $port];
+        if (isset($version[$host.':'.$port])) {
+            $this->version = $version[$host.':'.$port];
         }
     }
 
@@ -69,12 +68,12 @@ class Memcached extends AbstractAdapter
     /**
      * Add server to Memcached.
      *
-     * @param  (string) $host
-     *         (int) $port
-     *         (int) $weight 
+     * @param (string) $host
+     *                       (int) $port
+     *                       (int) $weight
      *
      * @since 3.0.0
-     * 
+     *
      * @return object
      */
     public function addServer($host, $port = 11211, $weight = 1)
@@ -87,10 +86,10 @@ class Memcached extends AbstractAdapter
     /**
      * Add servers to Memcached.
      *
-     * @param  (array) $servers
+     * @param (array) $servers
      *
      * @since 3.0.0
-     * 
+     *
      * @return object
      */
     public function addServers(array $servers)
@@ -120,7 +119,7 @@ class Memcached extends AbstractAdapter
      * @since 3.0.0
      *
      * @return mixed
-     */ 
+     */
     public function getItemTtl($key)
     {
         $data = $this->memcached->get($key);
@@ -138,21 +137,21 @@ class Memcached extends AbstractAdapter
      * Save an item to cache.
      *
      * @param (string) $key
-     *        (mixed) $value 
-     *        (int) $ttl 
+     *                      (mixed) $value
+     *                      (int) $ttl
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function saveItem($key, $value, $ttl = null)
     {
         $cache = [
             'start' => time(),
             'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
-            'value' => $value 
+            'value' => $value,
         ];
-        
+
         $this->memcached->set($key, $cache, $cache['ttl']);
 
         return $this;
@@ -176,7 +175,6 @@ class Memcached extends AbstractAdapter
         } else {
             $this->deleteItem($key);
         }
-        
 
         return (isset($value)) ? $value : false;
     }
@@ -192,7 +190,7 @@ class Memcached extends AbstractAdapter
      */
     public function hasItem($key)
     {
-        return ($this->getItem($key) !== false);
+        return $this->getItem($key) !== false;
     }
 
     /**
@@ -203,7 +201,7 @@ class Memcached extends AbstractAdapter
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function deleteItem($key)
     {
         $this->memcached->delete($key);
@@ -220,7 +218,7 @@ class Memcached extends AbstractAdapter
      */
     public function close()
     {
-        $this->memcached->quit();        
+        $this->memcached->quit();
     }
 
     /**

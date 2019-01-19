@@ -18,10 +18,9 @@
 
 namespace Zest\Router;
 
-use Zest\Cache\ZestCache\ZestCache;
+use Zest\Cache\Cache;
 use Zest\http\Request;
 use Zest\http\Response;
-use Zest\Cache\Cache;
 
 class Router
 {
@@ -425,7 +424,7 @@ class Router
     {
         $url = $this->RemoveQueryString($url);
         if ($this->match($url)) {
-            (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware'] : null;
+            (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware']() : null;
             if (!isset($this->params['callable'])) {
                 $controller = $this->params['controller'];
                 $controller = $this->convertToStudlyCaps($controller);
@@ -525,7 +524,6 @@ class Router
      * Parase the url if need.
      *
      * @since 1.0.0
-     *
      * @deprecated 3.0.0
      *
      * @return string The request URL
@@ -546,7 +544,7 @@ class Router
      */
     public function loadCache()
     {
-        $cache = new Cache;
+        $cache = new Cache();
         if ($cache->has('router')) {
             return $cache->get('router');
         }
@@ -562,10 +560,10 @@ class Router
     public function cacheRouters()
     {
         if (__config()->config->router_cache === true) {
-            $cache = new Cache;
+            $cache = new Cache();
             if (!$cache->has('router')) {
                 $routers = $this->getRoutes();
-                $cache->set('router',$routers,__config()->config->router_cache_regenerate);
+                $cache->set('router', $routers, __config()->config->router_cache_regenerate);
             }
         }
     }

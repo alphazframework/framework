@@ -20,18 +20,17 @@ use Zest\Files\FileHandling;
 
 class FileCache extends AbstractAdapter
 {
-
     /**
-     * __construct
+     * __construct.
      *
      * @param (int) $ttl time to live
      *
      * @since 3.0.0
-     */	
-	public function __construct($ttl = 0)
-	{
-		parent::__construct($ttl);
-	}
+     */
+    public function __construct($ttl = 0)
+    {
+        parent::__construct($ttl);
+    }
 
     /**
      * Get the time-to-live for an item in cache.
@@ -41,19 +40,19 @@ class FileCache extends AbstractAdapter
      * @since 3.0.0
      *
      * @return mixed
-     */ 
+     */
     public function getItemTtl($key)
     {
         $cacheFile = route()->storage.'Cache/'.md5($key);
         if (file_exists($cacheFile)) {
             $fileHandling = new FileHandling();
-            $data = $fileHandling->open($cacheFile,"readOnly")->read($cacheFile);
-            $data = json_decode($data,true);       
+            $data = $fileHandling->open($cacheFile, 'readOnly')->read($cacheFile);
+            $data = json_decode($data, true);
             if ($data['ttl'] === 0 || (time() - $data['start'] <= $data['ttl'])) {
                 $ttl = $data['ttl'];
             } else {
                 $this->deleteItem($key);
-            }    
+            }
         }
 
         return (isset($ttl)) ? $ttl : false;
@@ -63,22 +62,22 @@ class FileCache extends AbstractAdapter
      * Save an item to cache.
      *
      * @param (string) $key
-     *        (mixed) $value 
-     *        (int) $ttl 
+     *                      (mixed) $value
+     *                      (int) $ttl
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function saveItem($key, $value, $ttl = null)
     {
         if (!$this->hasItem($key)) {
             $cacheFile = route()->storage.'Cache/'.md5($key);
-            $fileHandling = new FileHandling;
-            $fileHandling->open($cacheFile,'writeAppend')->write(json_encode([
+            $fileHandling = new FileHandling();
+            $fileHandling->open($cacheFile, 'writeAppend')->write(json_encode([
                 'start' => time(),
                 'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
-                'value' => $value 
+                'value' => $value,
             ]));
             $fileHandling->close();
         }
@@ -100,8 +99,8 @@ class FileCache extends AbstractAdapter
         $cacheFile = route()->storage.'Cache/'.md5($key);
         if (file_exists($cacheFile)) {
             $fileHandling = new FileHandling();
-            $data = $fileHandling->open($cacheFile,"readOnly")->read($cacheFile);
-            $data = json_decode($data,true);
+            $data = $fileHandling->open($cacheFile, 'readOnly')->read($cacheFile);
+            $data = json_decode($data, true);
             if ($data['ttl'] === 0 || (time() - $data['start'] <= $data['ttl'])) {
                 $value = $data['value'];
             } else {
@@ -134,7 +133,7 @@ class FileCache extends AbstractAdapter
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function deleteItem($key)
     {
         $cacheFile = route()->storage.'Cache/'.md5($key);

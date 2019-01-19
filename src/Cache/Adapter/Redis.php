@@ -18,38 +18,36 @@ namespace Zest\Cache\Adapter;
 
 class Redis extends AbstractAdapter
 {
-
     /**
-     * Store the object 
-     * 
+     * Store the object.
+     *
      * @since 3.0.0
      *
      * @var object
-    */
+     */
     private $redis;
 
     /**
-     * __construct
+     * __construct.
      *
      * @param (int) $ttl time to live
      *
      * @since 3.0.0
-     */ 
+     */
     public function __construct($ttl = 0)
     {
         parent::__construct($ttl);
 
-        if (!class_exists('Redis',false)) {
-            throw new \Exception("Redis Class not found", 500);
+        if (!class_exists('Redis', false)) {
+            throw new \Exception('Redis Class not found', 500);
         }
         $this->redis = new \Redis();
         $host = __config()->cache->redis->host;
         $port = __config()->cache->redis->port;
 
         if (!$this->redis->connect($host, $port)) {
-            throw new \Exception('Error: Unable to connect to the redis server.',500);
+            throw new \Exception('Error: Unable to connect to the redis server.', 500);
         }
-        
     }
 
     /**
@@ -84,12 +82,12 @@ class Redis extends AbstractAdapter
      * @since 3.0.0
      *
      * @return mixed
-     */ 
+     */
     public function getItemTtl($key)
     {
         $data = $this->redis->get($key);
         if ($data !== false) {
-            $data = json_decode($data,true);
+            $data = json_decode($data, true);
             if ((($data['ttl'] == 0) || ((time() - $data['start']) <= $data['ttl']))) {
                 $ttl = $data['ttl'];
             } else {
@@ -98,6 +96,7 @@ class Redis extends AbstractAdapter
         } else {
             $this->deleteItem($id);
         }
+
         return (isset($ttl)) ? $ttl : false;
     }
 
@@ -105,19 +104,19 @@ class Redis extends AbstractAdapter
      * Save an item to cache.
      *
      * @param (string) $key
-     *        (mixed) $value 
-     *        (int) $ttl 
+     *                      (mixed) $value
+     *                      (int) $ttl
      *
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function saveItem($key, $value, $ttl = null)
     {
         $cache = [
             'start' => time(),
             'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
-            'value' => $value 
+            'value' => $value,
         ];
         if ($cache['ttl'] != 0) {
             $this->redis->set($key, json_encode($cache), $cache['ttl']);
@@ -141,7 +140,7 @@ class Redis extends AbstractAdapter
     {
         $data = $this->redis->get($key);
         if ($data !== false) {
-            $data = json_decode($data,true);
+            $data = json_decode($data, true);
             if ((($data['ttl'] == 0) || ((time() - $data['start']) <= $data['ttl']))) {
                 $value = $data['value'];
             } else {
@@ -150,7 +149,6 @@ class Redis extends AbstractAdapter
         } else {
             $this->deleteItem($id);
         }
-        
 
         return (isset($value)) ? $value : false;
     }
@@ -166,7 +164,7 @@ class Redis extends AbstractAdapter
      */
     public function hasItem($key)
     {
-        return ($this->getItem($key) !== false);
+        return $this->getItem($key) !== false;
     }
 
     /**
@@ -177,7 +175,7 @@ class Redis extends AbstractAdapter
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function deleteItem($key)
     {
         $this->redis->delete($key);
@@ -194,7 +192,7 @@ class Redis extends AbstractAdapter
      */
     public function close()
     {
-        $this->redis->close();        
+        $this->redis->close();
     }
 
     /**
