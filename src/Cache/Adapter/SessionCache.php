@@ -75,7 +75,7 @@ class SessionCache extends AbstractAdapter
             'start' => time(),
             'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
             'value' => $value 
-        ])
+        ]);
         
         return $this;
     }

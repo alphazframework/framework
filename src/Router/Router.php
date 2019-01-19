@@ -235,7 +235,7 @@ class Router
      */
     public function patch($route, $params, $middleware = '')
     {
-        $this->add($route, $params, 'PATCH', $middleware,);
+        $this->add($route, $params, 'PATCH', $middleware);
     }
 
     /**
