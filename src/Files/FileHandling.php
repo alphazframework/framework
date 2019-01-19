@@ -101,11 +101,11 @@ class FileHandling
      */
     public function delete($file)
     {
-		if (file_exists($file)) {
-			unlink($file);
-		}
+        if (file_exists($file)) {
+            unlink($file);
+        }
 
-		return true;	
+        return true;
     }
 
     /**
@@ -118,5 +118,5 @@ class FileHandling
     public function close()
     {
         return fclose($this->resource);
-    }    
+    }
 }
