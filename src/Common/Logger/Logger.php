@@ -125,8 +125,7 @@ class Logger extends AbstractLogger
         $text = 'Date/time: '.date('Y-m-d h:i:s A')." , Level: $level , message: ".$message."\n";
         $file = route()->storage_logs.$fileName;
         $fileHandling->open($file, 'readWriteAppend')->write($text);
-		$fileHandling-close();
-		
+        $fileHandling - closedir();
     }
 
     /**
