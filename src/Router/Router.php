@@ -21,6 +21,7 @@ namespace Zest\Router;
 use Zest\Cache\ZestCache\ZestCache;
 use Zest\http\Request;
 use Zest\http\Response;
+use Zest\Cache\Cache;
 
 class Router
 {
@@ -78,13 +79,12 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $methods    request method like GET or GET|POST
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 1.0.0
      *
      * @return void
      */
-    public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '', \closure $callback = null)
+    public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '')
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -94,18 +94,11 @@ class Router
         $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
         // Add start and end delimiters, and case insensitive flag
         $route = '/^'.$route.'$/i';
-        //Check if callback is'nt set set default return value to true
-        if ($callback === null) {
-            $callback = (function () {
-                return true;
-            });
-        }
+
         //If array
         if (is_array($params)) {
             $methodArray = ['method' => $methods];
             $params = array_merge($params, $methodArray);
-            $call = ['callBack' => $callback];
-            $params = array_merge($params, $call);
             $this->routes[$route] = $params;
         } elseif (is_string($params)) {
             //If string
@@ -114,7 +107,6 @@ class Router
             $param['controller'] = $parts[0];
             $param['action'] = $parts[1];
             $param['method'] = $methods;
-            $param['callBack'] = $callback;
             if (isset($parts[2])) {
                 $param['namespace'] = $parts[2];
             }
@@ -154,7 +146,7 @@ class Router
         $middleware_object = new $middleware();
         if (class_exists($middleware)) {
             if (method_exists($middleware_object, 'before') && method_exists($middleware_object, 'after')) {
-                return $middleware_object;
+                return $middleware;
             } else {
                 throw new \Exception('Middleware methods before and after not exists', 500);
             }
@@ -166,7 +158,7 @@ class Router
     /**
      * Add multiple routes at once from array in the following format:.
      *
-     * @param $routes = [route,param,method,middleware,callback]
+     * @param $routes = [route,param,method,middleware]
      *
      * @since 2.0.3
      *
@@ -188,15 +180,14 @@ class Router
      * @param string       $route      The route URL
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.     *
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function post($route, $params, $middleware = '', $callback = null)
+    public function post($route, $params, $middleware = '')
     {
-        $this->add($route, $params, 'POST', $middleware, $callback);
+        $this->add($route, $params, 'POST', $middleware);
     }
 
     /**
@@ -205,15 +196,14 @@ class Router
      * @param string       $route      The route URL
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.     *
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function get($route, $params, $middleware = '', $callback = null)
+    public function get($route, $params, $middleware = '')
     {
-        $this->add($route, $params, 'GET|HEAD', $middleware, $callback);
+        $this->add($route, $params, 'GET|HEAD', $middleware);
     }
 
     /**
@@ -222,15 +212,14 @@ class Router
      * @param string       $route      The route URL
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function put($route, $params, $middleare = '', $callback = null)
+    public function put($route, $params, $middleare = '')
     {
-        $this->add($route, $params, 'PUT', $middleware, $callback);
+        $this->add($route, $params, 'PUT', $middleware);
     }
 
     /**
@@ -239,15 +228,14 @@ class Router
      * @param string       $route      The route URL
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function patch($route, $params, $middleware = '', $callback = null)
+    public function patch($route, $params, $middleware = '')
     {
-        $this->add($route, $params, 'PATCH', $middleware, $callback);
+        $this->add($route, $params, 'PATCH', $middleware,);
     }
 
     /**
@@ -256,15 +244,14 @@ class Router
      * @param string       $route      The route URL
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function delete($route, $params, $middleware = '', $callback = null)
+    public function delete($route, $params, $middleware = '')
     {
-        $this->add($route, $params, 'DELETE', $middleware, $callback);
+        $this->add($route, $params, 'DELETE', $middleware);
     }
 
     /**
@@ -273,15 +260,14 @@ class Router
      * @param string       $route      The route URL
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function options($route, $params, $middleware = '', $callback = null)
+    public function options($route, $params, $middleware = '')
     {
-        $this->add($route, $params, 'OPTIONS', $middleware, $callback);
+        $this->add($route, $params, 'OPTIONS', $middleware);
     }
 
     /**
@@ -290,15 +276,14 @@ class Router
      * @param string       $route      The route URL
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function trace($route, $params, $middleware = '', $callback = null)
+    public function trace($route, $params, $middleware = '')
     {
-        $this->add($route, $params, 'TRACE', $middleware, $callback);
+        $this->add($route, $params, 'TRACE', $middleware);
     }
 
     /**
@@ -307,15 +292,14 @@ class Router
      * @param string       $route      The route URL
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
-     * @param closure      $callback   for protection of page if closure function will return ture then route will be dispached.
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function connect($route, $params, $middleware = '', $callback = null)
+    public function connect($route, $params, $middleware = '')
     {
-        $this->add($route, $params, 'CONNECT', $middleware, $callback);
+        $this->add($route, $params, 'CONNECT', $middleware);
     }
 
     /**
@@ -441,27 +425,24 @@ class Router
     {
         $url = $this->RemoveQueryString($url);
         if ($this->match($url)) {
+            (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware'] : null;
             if (!isset($this->params['callable'])) {
-                if (call_user_func($this->params['callBack']) === true) {
-                    $controller = $this->params['controller'];
-                    $controller = $this->convertToStudlyCaps($controller);
-                    $controller = $this->getNamespace().$controller;
-                    if (class_exists($controller)) {
-                        (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response(), $this->params) : null;
-                        $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
-                        $action = $this->params['action'];
-                        $action = $this->convertToCamelCase($action);
-                        if (preg_match('/action$/i', $action) == 0) {
-                            $controller_object->$action();
-                            (is_object($this->params['middleware'])) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
-                        } else {
-                            throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
-                        }
+                $controller = $this->params['controller'];
+                $controller = $this->convertToStudlyCaps($controller);
+                $controller = $this->getNamespace().$controller;
+                if (class_exists($controller)) {
+                    (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response(), $this->params) : null;
+                    $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
+                    $action = $this->params['action'];
+                    $action = $this->convertToCamelCase($action);
+                    if (preg_match('/action$/i', $action) == 0) {
+                        $controller_object->$action();
+                        (is_object($this->params['middleware'])) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
                     } else {
-                        throw new \Exception("Controller class $controller not found");
+                        throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
                     }
                 } else {
-                    throw new \Exception('This page is protected', 404);
+                    throw new \Exception("Controller class $controller not found");
                 }
             } else {
                 (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response(), $this->params) : null;
@@ -544,6 +525,7 @@ class Router
      * Parase the url if need.
      *
      * @since 1.0.0
+     *
      * @deprecated 3.0.0
      *
      * @return string The request URL
@@ -564,10 +546,9 @@ class Router
      */
     public function loadCache()
     {
-        if ($this->isCached() === true) {
-            $fileHandling = new \Zest\Files\FileHandling();
-
-            return json_decode($fileHandling->open('../Storage/Cache/routers.cache', 'readOnly')->read('../Storage/Cache/routers.cache'), true)['data'];
+        $cache = new Cache;
+        if ($cache->has('router')) {
+            return $cache->get('router');
         }
     }
 
@@ -581,30 +562,11 @@ class Router
     public function cacheRouters()
     {
         if (__config()->config->router_cache === true) {
-            if ($this->isCached() !== true) {
-                $fileHandling = new \Zest\Files\FileHandling();
+            $cache = new Cache;
+            if (!$cache->has('router')) {
                 $routers = $this->getRoutes();
-                $cache = new ZestCache();
-                $cache->create('routers');
-                $cache->store('routers', 'routes', $routers, __config()->config->router_cache_regenerate);
-                $fileHandling->open('../Storage/Cache/router_time.cache', 'writeOnly')->write(time() + __config()->config->router_cache_regenerate);
+                $cache->set('router',$routers,__config()->config->router_cache_regenerate);
             }
-        }
-    }
-
-    /**
-     * Check if cache is exists.
-     *
-     * @since 2.0.0
-     *
-     * @return bool
-     */
-    public function isCached()
-    {
-        if (file_exists('../Storage/Cache/routers.cache')) {
-            return true;
-        } else {
-            return false;
         }
     }
 }

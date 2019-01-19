@@ -96,3 +96,14 @@ Changes:
 81. Update Zest Classes using new config file.
 82. Added destroy method in session class for destroy all sessions.
 83. Added close() method in FileHandling class.
+84. Added New cache System old system is deprecated.
+	- Supported Adapters
+	  A. APC
+	  B. APCU
+	  C. FileSystem
+	  D. Memcache
+	  E. Memcached
+	  F. Redis
+	  G. Session
+85 Update router cache and router middleware.	  
+86. Remove (48) Callbacks form router.

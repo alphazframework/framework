@@ -16,6 +16,8 @@
 
 namespace Zest\Router;
 
+use Zest\Cache\Cache;
+
 class App extends Router
 {
     /**
@@ -28,10 +30,11 @@ class App extends Router
     public function run()
     {
         $router = new Router();
-        if (__config()->config->router_cache) {
-            if ($this->isExpired()) {
-                $this->delete();
+        $cache = new Cache();
+        if (__config()->config->router_cache === true) {
+            if (!$cache->has('router')) {
                 require_once '../Routes/Routes.php';
+                $router->cacheRouters();
             } else {
                 $router->routes = $router->loadCache();
                 $router->dispatch($this->getRequestInstance()->getQueryString());
@@ -39,37 +42,5 @@ class App extends Router
         } else {
             require_once '../Routes/Routes.php';
         }
-    }
-
-    /**
-     * Determine whether the cache expired.
-     *
-     * @since 2.0.0
-     *
-     * @return bool
-     */
-    public function isExpired()
-    {
-        $f = fopen('../Storage/Cache/router_time.cache', 'r');
-        $expire = fread($f, filesize('../Storage/Cache/router_time.cache'));
-        fclose($f);
-        if ($expire <= time()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Delete the cached.
-     *
-     * @since 2.0.0
-     *
-     * @return void
-     */
-    public function delete()
-    {
-        unlink('../Storage/Cache/routers.cache');
-        unlink('../Storage/Cache/router_time.cache');
     }
 }
