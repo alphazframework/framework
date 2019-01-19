@@ -95,3 +95,4 @@ Changes:
 80. Added Configuraion class.
 81. Update Zest Classes using new config file.
 82. Added destroy method in session class for destroy all sessions.
+83. Added close() method in FileHandling class.

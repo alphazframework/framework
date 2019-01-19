@@ -103,4 +103,16 @@ class FileHandling
     {
         return (file_exists($file)) ? unlink($file) : false;
     }
+
+    /**
+     * Close the file resource.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function close()
+    {
+        return fclose($this->resource);
+    }    
 }
