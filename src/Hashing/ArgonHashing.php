@@ -18,33 +18,32 @@ namespace Zest\Hashing;
 
 class ArgonHashing extends AbstractHashing
 {
+    /**
+     * The default memory cost.
+     *
+     * @since 3.0.0
+     *
+     * @var int
+     */
+    private $memory = 1024;
 
-	/**
-	 * The default memory cost.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @var int
-	*/
-	private $memory = 1024;
+    /**
+     * The default time cost.
+     *
+     * @since 3.0.0
+     *
+     * @var int
+     */
+    private $time = 2;
 
-	/**
-	 * The default time cost.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @var int
-	*/
-	private $time = 2;
-
-	/**
-	 * The default threads cost.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @var int
-	*/
-	private $threads = 2;
+    /**
+     * The default threads cost.
+     *
+     * @since 3.0.0
+     *
+     * @var int
+     */
+    private $threads = 2;
 
     /**
      * Determine whether to perform an algorithm check.
@@ -53,21 +52,21 @@ class ArgonHashing extends AbstractHashing
      *
      * @var bool
      */
-	private $verifyAlgorithm = false;
+    private $verifyAlgorithm = false;
 
     /**
      * __construct.
      *
-     * @param  (array) $options
+     * @param (array) $options
      *
      * @since 3.0.0
      */
-	public function __construct(array $options)
-	{
-		$this->setMemory($options['memory'])->setTime($options['time'])->setThreads($options['threads']);
+    public function __construct(array $options)
+    {
+        $this->setMemory($options['memory'])->setTime($options['time'])->setThreads($options['threads']);
 
-		$this->verifyAlgorithm = $options['verify'];
-	}
+        $this->verifyAlgorithm = $options['verify'];
+    }
 
     /**
      * Verify the hash value.
@@ -75,26 +74,26 @@ class ArgonHashing extends AbstractHashing
      * @param (string) $original
      * @param (string) $hash
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return bool
-     */    
-    public function verify($original,$hash)
+     */
+    public function verify($original, $hash)
     {
-		if ($this->verifyAlgorithm && $this->info($hash)['algoName'] !== $this->algorithmKeys()) {
-			throw new \Exception('This hash does not use '. $this->algorithmKeys() . ' algorithm', 500);
-		}
+        if ($this->verifyAlgorithm && $this->info($hash)['algoName'] !== $this->algorithmKeys()) {
+            throw new \Exception('This hash does not use '.$this->algorithmKeys().' algorithm', 500);
+        }
 
-		return parent::verify($original,$hash);
+        return parent::verify($original, $hash);
     }
 
     /**
      * Generate the hash.
      *
-     * @param (string) $original
-     * @param (array) optional $options     
+     * @param (string)         $original
+     * @param (array) optional $options
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return string
      */
@@ -104,27 +103,26 @@ class ArgonHashing extends AbstractHashing
             $this->setMemory($options['memory'])->setTime($options['time'])->setThreads($options['threads']);
         }
 
-    	$hash = password_hash($original, $this->algorithm(), [
+        $hash = password_hash($original, $this->algorithm(), [
             'memory_cost' => $this->getMemory(),
-            'time_cost' => $this->getTime(),
-            'threads' => $this->getThreads(),    		
-    	]);
+            'time_cost'   => $this->getTime(),
+            'threads'     => $this->getThreads(),
+        ]);
 
-    	if (empty($hash)) {
-    		throw new \Exception($this->algorithmKeys() .' hashing not supported.', 500);
-    		
-    	} 
+        if (empty($hash)) {
+            throw new \Exception($this->algorithmKeys().' hashing not supported.', 500);
+        }
 
-    	return $hash;
+        return $hash;
     }
 
     /**
      * Check if the given hash has been hashed using the given options.
      *
-     * @param (string) $hash
+     * @param (string)         $hash
      * @param (array) optional $options
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -134,11 +132,11 @@ class ArgonHashing extends AbstractHashing
             $this->setMemory($options['memory'])->setTime($options['time'])->setThreads($options['threads']);
         }
 
-    	return password_needs_rehash($hash, $this->algorithm(), [
+        return password_needs_rehash($hash, $this->algorithm(), [
             'memory_cost' => $this->getMemory(),
-            'time_cost' => $this->getTime(),
-            'threads' => $this->getThreads(),    		
-    	]);
+            'time_cost'   => $this->getTime(),
+            'threads'     => $this->getThreads(),
+        ]);
     }
 
     /**
@@ -146,15 +144,15 @@ class ArgonHashing extends AbstractHashing
      *
      * @param (int) $memory
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return object
      */
     public function setMemory($memory)
     {
-    	$this->memory = $memory ?? $this->memory;
+        $this->memory = $memory ?? $this->memory;
 
-    	return $this;
+        return $this;
     }
 
     /**
@@ -162,15 +160,15 @@ class ArgonHashing extends AbstractHashing
      *
      * @param (int) $time
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return object
      */
     public function setTime($time)
     {
-    	$this->time = $time ?? $this->time;
+        $this->time = $time ?? $this->time;
 
-    	return $this;
+        return $this;
     }
 
     /**
@@ -178,101 +176,100 @@ class ArgonHashing extends AbstractHashing
      *
      * @param (int) $threads
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return object
      */
     public function setThreads($threads)
     {
-    	$this->threads = $threads ?? $this->threads;
+        $this->threads = $threads ?? $this->threads;
 
-    	return $this;
+        return $this;
     }
 
     /**
      * Get the memory.
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return int
      */
     public function getMemory()
     {
-    	return $this->memory;
+        return $this->memory;
     }
 
     /**
      * Get the time.
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return int
      */
     public function getTime()
     {
-    	return $this->time;
+        return $this->time;
     }
 
     /**
      * Get the threads.
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return int
      */
     public function getThreads()
     {
-    	return $this->threads;
+        return $this->threads;
     }
 
     /**
      * Get the algroithm.
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return \Constant
      */
     protected function algorithm()
     {
-    	$algo = __config()->hashing->driver;
+        $algo = __config()->hashing->driver;
 
-    	switch (strtolower($algo)) {
-    		case 'argon2i':
-    			$algorithm = \PASSWORD_ARGON2I;
-    			break;
-    		case 'argon2id':
-    			$algorithm = \PASSWORD_ARGON2ID;
-    		default:
-    			$algorithm = \PASSWORD_ARGON2ID;
-    			break;
-    	}
+        switch (strtolower($algo)) {
+            case 'argon2i':
+                $algorithm = \PASSWORD_ARGON2I;
+                break;
+            case 'argon2id':
+                $algorithm = \PASSWORD_ARGON2ID;
+            default:
+                $algorithm = \PASSWORD_ARGON2ID;
+                break;
+        }
 
-    	return $algorithm;
+        return $algorithm;
     }
 
     /**
      * Get the algroithm keys.
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return string
      */
     protected function algorithmKeys()
     {
-     	$algo = __config()->hashing->driver;
+        $algo = __config()->hashing->driver;
 
-    	switch (strtolower($algo)) {
-    		case 'argon2i':
-    			$algorithm = 'argon2i';
-    			break;
-    		case 'argon2id':
-    			$algorithm = 'argon2id';
-    		default:
-    			$algorithm = 'argon2id';
-    			break;
-    	}
+        switch (strtolower($algo)) {
+            case 'argon2i':
+                $algorithm = 'argon2i';
+                break;
+            case 'argon2id':
+                $algorithm = 'argon2id';
+            default:
+                $algorithm = 'argon2id';
+                break;
+        }
 
-    	return $algorithm;
-   	
+        return $algorithm;
     }
 }
