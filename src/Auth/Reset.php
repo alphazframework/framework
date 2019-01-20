@@ -27,7 +27,7 @@ class Reset extends Handler
      * @since 2.0.3
      *
      * @var array
-    */
+     */
     protected $errors = [];
 
     /**
