@@ -172,9 +172,9 @@ class Cache
     /**
      * Save item to cache.
      *
-     * @param (mixed) $key key for cache
+     * @param (mixed) $key   key for cache
      * @param (mixed) $value value to be cached
-     * @param (int) $ttl time to live for cache
+     * @param (int)   $ttl   time to live for cache
      *
      * @since 3.0.0
      *

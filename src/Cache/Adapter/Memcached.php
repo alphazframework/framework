@@ -137,8 +137,8 @@ class Memcached extends AbstractAdapter
      * Save an item to cache.
      *
      * @param (string) $key
-     * @param (mixed) $value
-     * @param (int) $ttl
+     * @param (mixed)  $value
+     * @param (int)    $ttl
      *
      * @since 3.0.0
      *
