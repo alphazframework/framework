@@ -16,7 +16,7 @@
 
 namespace Zest\Zip;
 
-use Zest\Contracts\Zip\Zip as ZipContract
+use Zest\Contracts\Zip\Zip as ZipContract;
 
 class Zip implements ZipContract
 {
