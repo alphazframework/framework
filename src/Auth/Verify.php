@@ -39,7 +39,7 @@ class Verify extends Handler
                 $email = $user->getByWhere('token', $token)[0]['email'];
                 $update = new Update();
                 $update->update(['token' => 'NULL'], $id);
-                $subject = __printl('auth:subject:verified')
+                $subject = __printl('auth:subject:verified');
                 $link = __config()->auth->verification_link.'/'.$token;
                 $html = __printl('auth:body:verified');
                 $html = str_replace(':email', $email, $html);
