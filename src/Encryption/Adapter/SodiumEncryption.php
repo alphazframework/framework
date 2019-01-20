@@ -25,6 +25,10 @@ class SodiumEncryption extends AbstractAdapter
      */
     public function __construct()
     {
+        if (!function_exists('sodium_crypto_secretbox_keygen')) {
+            throw new \Exception('The sodium php extension is\'nt installed or enabled', 500);
+        }
+
         $this->key = sodium_crypto_secretbox_keygen();
     }
 
