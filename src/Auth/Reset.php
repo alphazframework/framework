@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -19,15 +21,21 @@ use Zest\Validation\Validation;
 
 class Reset extends Handler
 {
-    /*
+    /**
      * Store the error msgs.
+     *
+     * @since 2.0.3
+     *
+     * @var array
     */
     protected $errors = [];
 
     /**
      * Add the reset password request.
      *
-     * @param $email , email of user
+     * @param (string) $email email of user
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -54,23 +62,25 @@ class Reset extends Handler
                 $update = new Update();
                 $update->update(['resetToken' => $resetToken], $id);
                 $link = site_base_url().__config()->auth->reset_password_link.$resetToken;
-                $subject = __config()->auth->subjects->reset;
+                $subject = __printl('auth:subject:reset');
                 $link = site_base_url().__config()->auth->reset_password_link.'/'.$token;
-                $html = __config()->auth->bodies->reset;
+                $html = __printl('auth:body:reset');
                 $html = str_replace(':email', $email, $html);
                 $html = str_replace(':link', $link, $html);
                 (new EmailHandler($subject, $html, $email));
-                Success::set(__config()->auth->success->reset);
+                Success::set(__printl('auth:success:reset'));
             }
         } else {
-            Error::set(__config()->auth->errors->already_login, 'login');
+            Error::set(__printl('auth:error:already:login'), 'login');
         }
     }
 
     /**
      * check token is exists or not.
      *
-     * @param $token , token of user
+     * @param (mixed) $token token of user
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -78,7 +88,7 @@ class Reset extends Handler
     {
         $user = new User();
         if ($token === 'NULL' || $user->isResetToken($token) !== true) {
-            Error::set(__config()->auth->errors->token, 'token');
+            Error::set(__printl('auth:error:token'), 'token');
         }
         if ($this->fail() !== true) {
             Success::set(true);
