@@ -32,7 +32,7 @@ class App extends Router
         $router = new Router();
         $cache = new Cache();
         if (__config()->config->router_cache === true) {
-            if (!$cache->has('router')) {
+            if (!$cache->setAdapter('file')->has('router')) {
                 require_once '../Routes/Routes.php';
                 $router->cacheRouters();
             } else {

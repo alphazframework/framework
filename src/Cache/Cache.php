@@ -93,7 +93,7 @@ class Cache
                 $adapter = '\Zest\Cache\Adapter\Redis';
                 break;
             case 'session':
-                $adapter = '\Zest\Cache\Adapter\Session';
+                $adapter = '\Zest\Cache\Adapter\SessionCache';
                 break;
 
             default:
@@ -136,7 +136,7 @@ class Cache
      * Get the value from cache.
      *
      * @param (mixed) $key
-     *                     (mixed) $default
+     * @param (mixed) $default
      *
      * @since 3.0.0
      *
@@ -153,7 +153,7 @@ class Cache
      * Get the multiple values from cache.
      *
      * @param (array) $keys
-     *                      (mixed) $default
+     * @param (mixed) $default
      *
      * @since 3.0.0
      *
@@ -173,8 +173,8 @@ class Cache
      * Save item to cache.
      *
      * @param (mixed) $key key for cache
-     *                     (mixed) $value value to be cached
-     *                     (int) $ttl time to live for cache
+     * @param (mixed) $value value to be cached
+     * @param (int) $ttl time to live for cache
      *
      * @since 3.0.0
      *

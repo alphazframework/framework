@@ -545,8 +545,8 @@ class Router
     public function loadCache()
     {
         $cache = new Cache();
-        if ($cache->has('router')) {
-            return $cache->get('router');
+        if ($cache->setAdapter('file')->has('router')) {
+            return $cache->setAdapter('file')->get('router');
         }
     }
 
@@ -561,9 +561,9 @@ class Router
     {
         if (__config()->config->router_cache === true) {
             $cache = new Cache();
-            if (!$cache->has('router')) {
+            if (!$cache->setAdapter('file')->has('router')) {
                 $routers = $this->getRoutes();
-                $cache->set('router', $routers, __config()->config->router_cache_regenerate);
+                $cache->setAdapter('file')->set('router', $routers, __config()->config->router_cache_regenerate);
             }
         }
     }

@@ -82,8 +82,8 @@ abstract class AbstractAdapter
      * Save an item to cache.
      *
      * @param (string) $key
-     *                      (mixed)  $value
-     *                      (int)    $ttl
+     * @param (mixed)  $value
+     * @param (int)    $ttl
      *
      * @since 3.0.0
      *
