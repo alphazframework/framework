@@ -14,9 +14,9 @@
  * @license MIT
  */
 
-namespace Zest\Auth;
+namespace Zest\Contracts\Auth;
 
-class Update extends Handler
+interface Update
 {
     /**
      * Update the users.
