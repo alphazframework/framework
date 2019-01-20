@@ -16,9 +16,9 @@
 
 namespace Zest\Auth;
 
+use Zest\Contracts\Auth\User as UserContract;
 use Zest\Database\Db as DB;
 use Zest\Session\Session;
-use Zest\Contracts\Auth\User as UserContract;
 
 class User extends Handler implements UserContract
 {

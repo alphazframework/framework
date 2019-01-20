@@ -93,6 +93,7 @@ interface User
      * @return bool
      */
     public function isResetToken($token);
+
     /**
      * Get the details of login user.
      *

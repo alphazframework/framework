@@ -18,9 +18,9 @@ namespace Zest\Auth;
 
 use Zest\Common\PasswordManipulation;
 use Zest\Database\Db as DB;
+use Zest\Hashing\Hash;
 use Zest\Site\Site;
 use Zest\Validation\Validation;
-use Zest\Hashing\Hash;
 
 class Signup extends Handler
 {
@@ -30,16 +30,16 @@ class Signup extends Handler
      * @since 2.0.3
      *
      * @var array
-    */
+     */
     protected $errors = [];
 
     /**
      * Signup the users.
      *
      * @param (mixed) $username username of user
-     * @param (mixed) $email email of user
+     * @param (mixed) $email    email of user
      * @param (mixed) $password password of users
-     * @param (array) $params extra field like [name => value] array
+     * @param (array) $params   extra field like [name => value] array
      *
      * @since 2.0.3
      *

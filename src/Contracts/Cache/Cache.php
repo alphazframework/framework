@@ -18,7 +18,6 @@ namespace Zest\Contracts\Cache;
 
 interface Cache
 {
-
     /**
      * __construct.
      *
@@ -34,7 +33,7 @@ interface Cache
      * @return string
      */
     public function getAdapter();
-	
+
     /**
      * Set the valid adapter.
      *
@@ -65,6 +64,7 @@ interface Cache
      * @return int
      */
     public function getDefaultTtl();
+
     /**
      * Get item ttl.
      *
@@ -75,6 +75,7 @@ interface Cache
      * @return int
      */
     public function getItemTtl($key);
+
     /**
      * Get the value from cache.
      *
@@ -111,6 +112,7 @@ interface Cache
      * @return object
      */
     public function set($key, $value, $ttl = null);
+
     /**
      * Save multiple items to cache.
      *
@@ -122,7 +124,7 @@ interface Cache
      */
     public function setMultiple($cache);
 
-	/**
+    /**
      * Determine if cache exixts.
      *
      * @param (mixed) $key key for cache
@@ -132,7 +134,7 @@ interface Cache
      * @return bool
      */
     public function has($key);
-	
+
     /**
      * Delete item form cache.
      *
@@ -143,7 +145,7 @@ interface Cache
      * @return object
      */
     public function delete($key);
-	
+
     /**
      * Delete multiples items form cache.
      *

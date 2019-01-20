@@ -16,7 +16,7 @@
 
 namespace Zest\Benchmark;
 
-use \Zest\Contracts\Benchmark as BenchmarkContract;
+use Zest\Contracts\Benchmark as BenchmarkContract;
 
 class Benchmark implements BenchmarkContract
 {

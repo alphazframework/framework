@@ -26,7 +26,7 @@ class Auth extends Handler implements AuthContract
      * @since 2.0.3
      *
      * @return object
-     */    
+     */
     public function signup()
     {
         return new Signup();

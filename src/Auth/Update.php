@@ -17,10 +17,10 @@
 namespace Zest\Auth;
 
 use Zest\Common\PasswordManipulation;
-use Zest\Database\Db as DB;
-use Zest\Validation\Validation;
-use Zest\Hashing\Hash;
 use Zest\Contracts\Auth\Update as UpdateContract;
+use Zest\Database\Db as DB;
+use Zest\Hashing\Hash;
+use Zest\Validation\Validation;
 
 class Update extends Handler implements UpdateContract
 {
@@ -28,7 +28,7 @@ class Update extends Handler implements UpdateContract
      * Update the users.
      *
      * @param (array) $params fields like  [name => thisname]
-     * @param (int) $id id of user
+     * @param (int)   $id     id of user
      *
      * @since 2.0.3
      *
@@ -63,8 +63,8 @@ class Update extends Handler implements UpdateContract
      * Check is username is exists or not.
      *
      * @param (mixed) $password password of user
-     * @param (mixed) $repeat confirm password
-     * @param (int)   $id id of user
+     * @param (mixed) $repeat   confirm password
+     * @param (int)   $id       id of user
      *
      * @since 2.0.3
      *

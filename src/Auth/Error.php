@@ -24,14 +24,14 @@ class Error
      * @since 2.0.3
      *
      * @var array
-    */
+     */
     private static $errors = [];
 
     /**
      * Set the error msg.
      *
-     * @param (string) $error error msg
-     * @param (string) optional $key key of error msg like username 
+     * @param (string)          $error error msg
+     * @param (string) optional $key   key of error msg like username
      *
      * @since 2.0.3
      *

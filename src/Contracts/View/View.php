@@ -16,10 +16,8 @@
 
 namespace Zest\Contracts\View;
 
-
 interface View
 {
-
     /**
      * Set file.
      *

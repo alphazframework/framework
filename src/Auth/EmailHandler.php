@@ -24,8 +24,8 @@ class EmailHandler
      * Send the email msg.
      *
      * @param (string) $subject subject of email
-     * @param (mixeds) $html body of email
-     * @param (mixed) $email user email
+     * @param (mixeds) $html    body of email
+     * @param (mixed)  $email   user email
      *
      * @since 2.0.3
      *

@@ -45,7 +45,7 @@ class Hashing
                 'verify'  => $verify,
             ]);
         } else {
-            throw new \Exception('We\'re sorry, The hashing driver '. $driver .' not supported.', 500);
+            throw new \Exception('We\'re sorry, The hashing driver '.$driver.' not supported.', 500);
         }
     }
 

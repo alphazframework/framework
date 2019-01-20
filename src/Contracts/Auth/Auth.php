@@ -24,9 +24,9 @@ interface Auth
      * @since 2.0.3
      *
      * @return object
-     */    
+     */
     public function signup();
-	
+
     /**
      * Instance of signin class.
      *
@@ -62,7 +62,7 @@ interface Auth
      * @return object
      */
     public function verify();
-	
+
     /**
      * Instance of reset class.
      *

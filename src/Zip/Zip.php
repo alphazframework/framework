@@ -23,9 +23,9 @@ class Zip implements ZipContract
     /**
      * Open zip extract zip.
      *
-     * @param (string) $file file that you want uncompress/open
+     * @param (string) $file   file that you want uncompress/open
      * @param (string) $target where you extract file
-     * @param (bool) $delete true delete zip file false not delete
+     * @param (bool)   $delete true delete zip file false not delete
      *
      * @since 1.0.0
      *
@@ -49,9 +49,9 @@ class Zip implements ZipContract
     /**
      * Compress file into zip.
      *
-     * @param (string) $file file that you want compress
+     * @param (string) $file        file that you want compress
      * @param (string) $destination destination
-     * @param (bool)d $overwrite true delete zip file false not delete
+     * @param (bool)d  $overwrite   true delete zip file false not delete
      *
      * @since 1.0.0
      *
