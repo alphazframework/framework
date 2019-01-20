@@ -108,4 +108,4 @@ Changes:
 85 Update router cache and router middleware.	  
 86. Remove (48) Callbacks form router.
 87. Added Hashing System.
-88. Deprecated passwordManipulation class.
+88. Deprecated passwordManipulation class hashMatched and hashPassword method.
