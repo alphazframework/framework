@@ -14,26 +14,26 @@
 
 namespace Zest\Auth;
 
+use Zest\Hashing\Hash;
 use Zest\Session\Session;
 use Zest\Validation\Validation;
-use Zest\Hashing\Hash;
 
 class Signin extends Handler
 {
     /**
-      * Store the errors msgs.
-      *
-      * @since 2.0.3
-      *
-      * @var array
-    */
+     * Store the errors msgs.
+     *
+     * @since 2.0.3
+     *
+     * @var array
+     */
     protected $errors = [];
 
     /**
      * Signin the users.
      *
      * @param (string) $username username of user
-     * @param (mixed) $password password of user
+     * @param (mixed)  $password password of user
      *
      * @since 2.0.3
      *
@@ -85,7 +85,7 @@ class Signin extends Handler
                 if (Hash::needsRehash($password_hash) === true) {
                     $hashed = Hash::make($password);
                     $update = new Update();
-                    $update->update(['password'=>$hashed],$user->getByWhere('username', $username)[0]['id']);
+                    $update->update(['password'=>$hashed], $user->getByWhere('username', $username)[0]['id']);
                 }
 
                 Success::set(__printl('auth:success:signin'));

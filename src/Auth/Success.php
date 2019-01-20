@@ -24,7 +24,7 @@ class Success
      * @since 2.0.3
      *
      * @var mixed
-    */
+     */
     private static $success;
 
     /**

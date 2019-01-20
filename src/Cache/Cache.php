@@ -215,7 +215,7 @@ class Cache implements CacheContract
      * @since 3.0.0
      *
      * @return bool
-     */    
+     */
     public function has($key)
     {
         return $this->adapter->hasItem($key);

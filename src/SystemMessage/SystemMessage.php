@@ -16,8 +16,8 @@
 
 namespace Zest\SystemMessage;
 
-use Zest\Session\Session;
 use Zest\Contracts\SystemMessage\SystemMessage as SystemMessageContract;
+use Zest\Session\Session;
 
 class SystemMessage implements SystemMessageContract
 {

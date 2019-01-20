@@ -18,8 +18,6 @@ namespace Zest\Contracts\SystemMessage;
 
 interface SystemMessage
 {
-
-
     /**
      * Add the system message.
      *

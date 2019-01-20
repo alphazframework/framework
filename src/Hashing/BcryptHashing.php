@@ -72,7 +72,7 @@ class BcryptHashing extends AbstractHashing
     /**
      * Generate the hash.
      *
-     * @param (string) $original
+     * @param (string)         $original
      * @param (array) optional $options
      *
      * @since 3.0.0

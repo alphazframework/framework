@@ -22,7 +22,7 @@ interface Update
      * Update the users.
      *
      * @param (array) $paramsfields like  [name => thisname]
-     * @param (int) $id id of user
+     * @param (int)   $id           id of user
      *
      * @return void
      */
@@ -33,10 +33,10 @@ interface Update
      *
      * @param (mixed)$password password of user
      * @param (mixed) $repeat confirm password
-     * @param (int) $id id of user
+     * @param (int)   $id     id of user
      *
-	 * @since 2.0.3
-	 *
+     * @since 2.0.3
+     *
      * @return void
      */
     public function updatePassword($password, $repeat, $id);
