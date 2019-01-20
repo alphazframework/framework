@@ -155,7 +155,7 @@ interface Cache
      *
      * @return object
      */
-    public function deleteMultiple();
+    public function deleteMultiple($keys);
 
     /**
      * Clear all caches.

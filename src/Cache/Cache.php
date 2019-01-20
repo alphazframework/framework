@@ -164,8 +164,8 @@ class Cache implements CacheContract
     public function getMultiple($keys, $default = null)
     {
         $cache = [];
-        foreach ($keys as $key => $value) {
-            $cache += $this->get($key, $default);
+        foreach ($keys as $key) {
+            $cache[$key] = $this->get($key, $default);
         }
 
         return $cache;
@@ -192,7 +192,7 @@ class Cache implements CacheContract
     /**
      * Save multiple items to cache.
      *
-     * @param (array) $cache [key,value,ttl]
+     * @param (array) $cache [key=>keyVal,value=> val,ttl=>ttl]
      *
      * @since 3.0.0
      *
@@ -200,7 +200,7 @@ class Cache implements CacheContract
      */
     public function setMultiple($cache)
     {
-        foreach ($cache as $key => $value) {
+        foreach ($cache as $value) {
             $this->set($value['key'], $value['value'], $value['ttl']);
         }
 
@@ -246,9 +246,9 @@ class Cache implements CacheContract
      *
      * @return object
      */
-    public function deleteMultiple()
+    public function deleteMultiple($keys)
     {
-        foreach ($keys as $key => $value) {
+        foreach ($keys as $key) {
             $this->delete($key);
         }
 
