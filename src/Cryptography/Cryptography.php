@@ -26,7 +26,7 @@ class Cryptography
      * @var key
      */
     private $key;
-    
+
     /**
      * Store the cipher iv.
      *
@@ -57,9 +57,8 @@ class Cryptography
         if (isset(__config()->config->crypto_key) && strtolower(__config()->config->crypto_key) !== 'your-key') {
             $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($cipher));
             $this->key = hash('sha512', __config()->config->crypto_key);
-        } else {
+        } else {			
             throw new \Exception("Crypto key not found", 500);
-            
         }
     }
 
