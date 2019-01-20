@@ -14,9 +14,9 @@
  * @license MIT
  */
 
-namespace Zest\Cryptography;
+namespace Zest\Encryption\Adapter;
 
-class Cryptography
+class OpenSslEncryption
 {
     /**
      * Store the secret key.
@@ -54,9 +54,9 @@ class Cryptography
      */
     public function __construct()
     {
-        if (isset(__config()->config->crypto_key) && strtolower(__config()->config->crypto_key) !== 'your-key') {
+        if (isset(__config()->encryption->openssl->key) && strtolower(__config()->encryption->openssl->key) !== 'your-key') {
             $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($cipher));
-            $this->key = hash('sha512', __config()->config->crypto_key);
+            $this->key = hash('sha512', __config()->encryption->openssl->key);
         } else {
             throw new \Exception('Crypto key not found', 500);
         }

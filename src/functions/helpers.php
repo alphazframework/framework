@@ -217,22 +217,22 @@ function __route()
 if (!function_exists('encrypt')) {
     function encrypt($data)
     {
-        return (new \Zest\Cryptography\Cryptography())->encrypt($data);
+        return (new \Zest\Encryption\Encryption())->encrypt($data);
     }
 }
 function __encrypt($data)
 {
-    return (new \Zest\Cryptography\Cryptography())->encrypt($data);
+    return (new \Zest\Encryption\Encryption())->encrypt($data);
 }
 if (!function_exists('decrypt')) {
     function decrypt($token)
     {
-        return (new \Zest\Cryptography\Cryptography())->decrypt($token);
+        return (new \Zest\Encryption\Encryption())->decrypt($token);
     }
 }
 function __decrypt($token)
 {
-    return (new \Zest\Cryptography\Cryptography())->decrypt($token);
+    return (new \Zest\Encryption\Encryption())->decrypt($token);
 }
 if (!function_exists('view')) {
     function view($file = '', $args = [], $minify = true)

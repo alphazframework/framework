@@ -109,3 +109,6 @@ Changes:
 86. Remove (48) Callbacks form router.
 87. Added Hashing System.
 88. Deprecated passwordManipulation class hashMatched and hashPassword method.
+89. Added Encryption Class.
+	- Support Sodium and OpenSsl encryption.
+	
