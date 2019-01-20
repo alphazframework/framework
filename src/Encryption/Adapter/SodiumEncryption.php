@@ -18,7 +18,6 @@ namespace Zest\Encryption\Adapter;
 
 class SodiumEncryption extends AbstractAdapter
 {
-
     /**
      * __Construct.
      *
@@ -41,9 +40,9 @@ class SodiumEncryption extends AbstractAdapter
     public function encrypt($data)
     {
         $nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-        $token =  base64_encode($nonce.sodium_crypto_secretbox($data,$nonce,$this->key).'&&'.$this->key);
+        $token = base64_encode($nonce.sodium_crypto_secretbox($data, $nonce, $this->key).'&&'.$this->key);
 
-        return $token;       
+        return $token;
     }
 
     /**
@@ -69,12 +68,12 @@ class SodiumEncryption extends AbstractAdapter
         $ciphertext = mb_substr($decoded, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit');
 
         $plain = sodium_crypto_secretbox_open($ciphertext,
-        $nonce,$this->key );
+        $nonce, $this->key);
 
         if ($plain === false) {
-             throw new \Exception('The message was tampered with in transit');
+            throw new \Exception('The message was tampered with in transit');
         }
 
-        return $plain;    
+        return $plain;
     }
 }

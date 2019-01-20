@@ -18,7 +18,6 @@ namespace Zest\Contracts\Encryption;
 
 interface Encrypt
 {
-
     /**
      * Set the adapter.
      *
@@ -27,7 +26,7 @@ interface Encrypt
      * @since 3.0.0
      *
      * @return object
-     */     
+     */
     public static function setAdapter($adapter);
 
     /**
@@ -51,5 +50,4 @@ interface Encrypt
      * @return mixed
      */
     public static function decrypt($token, $adapter = null);
-
 }

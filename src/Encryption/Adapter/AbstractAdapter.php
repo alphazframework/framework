@@ -50,5 +50,4 @@ abstract class AbstractAdapter implements AbstractAdapterContract
      * @return mixed
      */
     abstract public function decrypt($token);
-
 }

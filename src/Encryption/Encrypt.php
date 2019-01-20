@@ -20,14 +20,13 @@ use Zest\Contracts\Encryption\Encrypt as EncryptContract;
 
 class Encrypt implements EncryptContract
 {
-
     /**
      * Store the adapter object.
      *
      * @since 3.0.0
      *
      * @var object
-    */
+     */
     private static $adapter = null;
 
     /**
@@ -38,7 +37,7 @@ class Encrypt implements EncryptContract
      * @since 3.0.0
      *
      * @return object
-     */     
+     */
     public static function setAdapter($adapter)
     {
         switch (strtolower($adapter)) {
@@ -53,7 +52,7 @@ class Encrypt implements EncryptContract
                 break;
         }
 
-        self::$adapter = new $adapterSet;
+        self::$adapter = new $adapterSet();
 
         return self;
     }
@@ -70,6 +69,7 @@ class Encrypt implements EncryptContract
     public static function encrypt($data, $adapter = null)
     {
         ($adapter !== null) ? self::setAdapter($adapter) : self::setAdapter(__config()->encryption->driver);
+
         return self::$adapter->encrypt($data);
     }
 
@@ -85,7 +85,7 @@ class Encrypt implements EncryptContract
     public static function decrypt($token, $adapter = null)
     {
         ($adapter !== null) ? self::setAdapter($adapter) : self::setAdapter(__config()->encryption->driver);
+
         return self::$adapter->decrypt($token);
     }
-
 }
