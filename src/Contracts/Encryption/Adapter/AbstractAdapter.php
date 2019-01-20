@@ -39,5 +39,4 @@ interface AbstractAdapter
      * @return mixed
      */
     public function decrypt($token);
-
 }

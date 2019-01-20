@@ -18,14 +18,13 @@ namespace Zest\Contracts\Encryption;
 
 interface Encryption
 {
-
     /**
      * __construct.
      *
      * @since 3.0.0
-    */
+     */
     public function __construct($adaoter = null);
-	
+
     /**
      * Set the adapter.
      *
@@ -34,9 +33,9 @@ interface Encryption
      * @since 3.0.0
      *
      * @return object
-     */    
+     */
     public function setAdapter($adapter);
-	
+
     /**
      * Encrypt the message.
      *
