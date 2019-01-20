@@ -18,16 +18,15 @@ namespace Zest\Hashing;
 
 abstract class AbstractHashing
 {
-
     /**
      * Get information about the given hash.
      *
      * @param (string) $hash
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return array
-     */    
+     */
     public function info($hash)
     {
         return password_get_info($hash);
@@ -39,16 +38,16 @@ abstract class AbstractHashing
      * @param (string) $original
      * @param (string) $hash
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return bool
      */
-    public function verify($original,$hash)
+    public function verify($original, $hash)
     {
         if (empty($hash)) {
             return false;
         }
-        
-        return password_verify($original,$hash);
+
+        return password_verify($original, $hash);
     }
 }

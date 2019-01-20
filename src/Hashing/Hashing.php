@@ -18,23 +18,22 @@ namespace Zest\Hashing;
 
 class Hashing
 {
-
     /**
      * Store the instance of Hash driver.
      *
      * @since 3.0.0
      *
      * @var object
-    */
+     */
     private $driver;
 
     /**
-     * __construct. 
+     * __construct.
      *
      * @since 3.0.0
      */
-	public function __construct($verify = false)
-	{
+    public function __construct($verify = false)
+    {
         $driver = __config()->hashing->driver;
         if ($driver === 'bcrypt') {
             $this->driver = new BcryptHashing(['cost' => __config()->hashing->bcrypt->cost]);
@@ -47,20 +46,19 @@ class Hashing
             ]);
         } else {
             throw new \Exception('We\'re sorry, The hashing driver {$driver} not supported.', 500);
-            
         }
-	}
+    }
 
     /**
      * Generate the hash.
      *
-     * @param (string) $original
+     * @param (string)         $original
      * @param (array) optional $options
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return string
-     */    
+     */
     public function make($original, $options = null)
     {
         return $this->driver->make($original, $options);
@@ -72,27 +70,27 @@ class Hashing
      * @param (string) $original
      * @param (string) $hash
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return string
      */
-    public function verify($original,$hash)
+    public function verify($original, $hash)
     {
-        return $this->driver->verify($original,$hash);
+        return $this->driver->verify($original, $hash);
     }
 
     /**
      * Check if the given hash has been hashed using the given options.
      *
-     * @param (string) $hash
+     * @param (string)         $hash
      * @param (array) optional $options
      *
-     * @since 3.0.0 
+     * @since 3.0.0
      *
      * @return bool
      */
     public function needsRehash($hash, $options = null)
     {
-        return $this->driver->needsRehash($hash,$options);
+        return $this->driver->needsRehash($hash, $options);
     }
 }
