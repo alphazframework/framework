@@ -9,25 +9,27 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @since 2.0.3
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Auth;
+namespace Zest\Contracts\View;
 
-class Logout
+
+interface View
 {
+
     /**
-     * Logout the user.
+     * Set file.
      *
-     * @since 2.0.3
+     * @param $file name of files
+     *        $args argoument need to be passed
+     *        $minify is code should be minify
      *
-     * @return void
+     * @since 1.0.0
+     *
+     * @return mixed
      */
-    public function __construct()
-    {
-        $user = new User();
-        $user->logout();
-    }
+    public function view($file, array $args = [], $minify = true);
 }

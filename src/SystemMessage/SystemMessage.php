@@ -17,8 +17,9 @@
 namespace Zest\SystemMessage;
 
 use Zest\Session\Session;
+use Zest\Contracts\SystemMessage\SystemMessage as SystemMessageContract;
 
-class SystemMessage
+class SystemMessage implements SystemMessageContract
 {
     /**
      * Store the alert type.

@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -16,11 +18,14 @@ namespace Zest\Auth;
 
 use Zest\Database\Db as DB;
 use Zest\Session\Session;
+use Zest\Contracts\Auth\User as UserContract;
 
-class User extends Handler
+class User extends Handler implements UserContract
 {
     /**
      * Get all the users.
+     *
+     * @since 2.0.3
      *
      * @return array
      */
@@ -36,8 +41,10 @@ class User extends Handler
     /**
      * Get users using specific field.
      *
-     * @param $where , field of user e.g username
-     *        $value , value fo field like , usr01
+     * @param (string) $where field of user e.g username
+     * @param (string) $value value fo field like , usr01
+     *
+     * @since 2.0.3
      *
      * @return bool
      */
@@ -55,6 +62,8 @@ class User extends Handler
      *
      * @param $id id or guide of user
      *
+     * @since 3.0.0
+     *
      * @return bool
      */
     public function delete($id)
@@ -69,7 +78,9 @@ class User extends Handler
     /**
      * Check is username is exists or not.
      *
-     * @param $username , username of user
+     * @param (string) $username username of user
+     *
+     * @since 2.0.3
      *
      * @return bool
      */
@@ -85,7 +96,9 @@ class User extends Handler
     /**
      * Check is email is exists or not.
      *
-     * @param $email , email of user
+     * @param (mixed) $email email of user
+     *
+     * @since 2.0.3
      *
      * @return bool
      */
@@ -101,7 +114,9 @@ class User extends Handler
     /**
      * Check is is verification token is exists or not.
      *
-     * @param $token , token of user
+     * @param (mixed) $token token of user
+     *
+     * @since 2.0.3
      *
      * @return bool
      */
@@ -117,7 +132,9 @@ class User extends Handler
     /**
      * Check is reset token is exists or not.
      *
-     * @param $token , token  of user
+     * @param (mixed) $token token  of user
+     *
+     * @since 2.0.3
      *
      * @return bool
      */
@@ -133,7 +150,9 @@ class User extends Handler
     /**
      * Get the details of login user.
      *
-     * @return string|bool
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function loginUser()
     {
@@ -146,7 +165,9 @@ class User extends Handler
     /**
      * Get the current session user.
      *
-     * @return string|bool
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function sessionUser()
     {
@@ -155,6 +176,8 @@ class User extends Handler
 
     /**
      * Check user is login or not.
+     *
+     * @since 2.0.3
      *
      * @return bool
      */
@@ -165,6 +188,8 @@ class User extends Handler
 
     /**
      * Logout the user.
+     *
+     * @since 2.0.3
      *
      * @return bool
      */

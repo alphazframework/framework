@@ -14,22 +14,28 @@
 
 namespace Zest\Auth;
 
-use Zest\Common\PasswordManipulation;
 use Zest\Session\Session;
 use Zest\Validation\Validation;
+use Zest\Hashing\Hash;
 
 class Signin extends Handler
 {
-    /*
-      * Store the errors msgs
+    /**
+      * Store the errors msgs.
+      *
+      * @since 2.0.3
+      *
+      * @var array
     */
     protected $errors = [];
 
     /**
      * Signin the users.
      *
-     * @param $username , username of user
-     *        $password , password of user
+     * @param (string) $username username of user
+     * @param (mixed) $password password of user
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -49,23 +55,23 @@ class Signin extends Handler
         }
         $user = new User();
         if (!$user->isUsername($username)) {
-            Error::set(__config()->auth->errors->username_not_exist, 'username');
+            Error::set(__printl('auth:error:username:not:exists'), 'username');
         } else {
             $password_hash = $user->getByWhere('username', $username)[0]['password'];
-            if (!(new PasswordManipulation())->hashMatched($password, $password_hash)) {
-                Error::set(__config()->auth->errors->password_match, 'password');
+            if (!Hash::verify($password, $password_hash)) {
+                Error::set(__printl('auth:error:password:confirm'), 'password');
             } else {
                 $token = $user->getByWhere('username', $username)[0]['token'];
                 $email = $user->getByWhere('username', $username)[0]['email'];
                 if (__config()->auth->is_verify_email === true) {
                     if ($token !== 'NULL') {
-                        $subject = __config()->auth->subjects->need_verify;
+                        $subject = __printl('auth:subject:need:verify');
                         $link = site_base_url().__config()->auth->verification_link.'/'.$token;
-                        $html = __config()->auth->bodies->need_verify;
+                        $html = __printl('auth:body:need:verify');
                         $html = str_replace(':email', $email, $html);
                         $html = str_replace(':link', $link, $html);
                         (new EmailHandler($subject, $html, $email));
-                        Error::set(__config()->auth->errrs->need_verify, 'email');
+                        Error::set(__printl('auth:error:need:verification'), 'email');
                     }
                 }
             }
@@ -75,10 +81,17 @@ class Signin extends Handler
                 $salts = $user->getByWhere('username', $username)[0]['salts'];
                 Session::setValue('user', $salts);
                 set_cookie('user', $salts, 31104000, '/', $_SERVER['SERVER_NAME'], false, false);
-                Success::set(__config()->auth->success->signin);
+                $password_hash = $user->getByWhere('username', $username)[0]['password'];
+                if (Hash::needsRehash($password_hash) === true) {
+                    $hashed = Hash::make($password);
+                    $update = new Update();
+                    $update->update(['password'=>$hashed],$user->getByWhere('username', $username)[0]['id']);
+                }
+
+                Success::set(__printl('auth:success:signin'));
             }
         } else {
-            Error::set(__config()->auth->errors->already_login, 'login');
+            Error::set(__printl('auth:error:already:login'), 'login');
         }
     }
 }

@@ -9,25 +9,18 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @since 2.0.3
+ * @since 2.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Auth;
+namespace Zest\Contracts\Benchmark;
 
-class Logout
+interface Benchmark
 {
-    /**
-     * Logout the user.
-     *
-     * @since 2.0.3
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $user = new User();
-        $user->logout();
-    }
+    public function start();
+
+    public function end();
+
+    public function elapsedTime(int $round);
 }

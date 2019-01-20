@@ -16,15 +16,16 @@
 
 namespace Zest\Zip;
 
-class Zip
+use Zest\Contracts\Zip\Zip as ZipContract
+
+class Zip implements ZipContract
 {
     /**
      * Open zip extract zip.
      *
-     * @param
-     * $file -> file that you want uncompress/open
-     * $target -> where you extract file
-     * $delete -> true delete zip file false not delete
+     * @param (string) $file file that you want uncompress/open
+     * @param (string) $target where you extract file
+     * @param (bool) $delete true delete zip file false not delete
      *
      * @since 1.0.0
      *
@@ -48,10 +49,9 @@ class Zip
     /**
      * Compress file into zip.
      *
-     * @param
-     * @files array() list of file
-     * @destination where you save compressed file
-     * $overwrite -> if already overwrite
+     * @param (string) $file file that you want compress
+     * @param (string) $destination destination
+     * @param (bool)d $overwrite true delete zip file false not delete
      *
      * @since 1.0.0
      *

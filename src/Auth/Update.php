@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -17,14 +19,18 @@ namespace Zest\Auth;
 use Zest\Common\PasswordManipulation;
 use Zest\Database\Db as DB;
 use Zest\Validation\Validation;
+use Zest\Hashing\Hash;
+use Zest\Contracts\Auth\Update as UpdateContract;
 
-class Update extends Handler
+class Update extends Handler implements UpdateContract
 {
     /**
      * Update the users.
      *
-     * @param $params , fields like  [name => thisname] array
-     *        $id , id of user
+     * @param (array) $params fields like  [name => thisname]
+     * @param (int) $id id of user
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -49,30 +55,32 @@ class Update extends Handler
             $db = new DB();
             $db->db()->update($fields);
             $db->db()->close();
-            Success::set(__config()->auth->success->update);
+            Success::set(__printl('auth:success:update'));
         }
     }
 
     /**
      * Check is username is exists or not.
      *
-     * @param $password , password of user
-     *        $repeat , confirm password
-     *        $id , id of user
+     * @param (mixed) $password password of user
+     * @param (mixed) $repeat confirm password
+     * @param (int)   $id id of user
+     *
+     * @since 2.0.3
      *
      * @return void
      */
     public function updatePassword($password, $repeat, $id)
     {
         if ($password !== $repeat) {
-            Error::set(__config()->auth->errors->password_confirm, 'password');
+            Error::set(__printl('auth:error:password:confirm'), 'password');
         } elseif (__config()->auth->sticky_password === true) {
             if (!(new PasswordManipulation())->isValid($password)) {
-                Error::set(__config()->auth->errors->sticky_password, 'password');
+                Error::set(__printl('auth:error:password:sticky'), 'password');
             }
         }
         if ($this->fail() !== true) {
-            $password_hash = (new PasswordManipulation())->hashPassword($password);
+            $password_hash = Hash::make($password);
             $params = ['password' => $password_hash];
             $fields = [
                     'db_name' => __config()->auth->db_name,
@@ -83,7 +91,7 @@ class Update extends Handler
             $db = new DB();
             $db->db()->update($fields);
             $db->db()->close();
-            Success::set(__config()->auth->success->update_password);
+            Success::set(__printl('auth:success:update_password'));
         }
     }
 }

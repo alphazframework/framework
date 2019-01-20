@@ -33,17 +33,17 @@ class Handler
     public static function pushMsgs()
     {
         static::$msgs = [
-            'string'         => printl('string:validation'),
-            'required'       => printl('required:validation'),
-            'int'            => printl('int:validation'),
-            'float'          => printl('float:validation'),
-            'email'          => printl('email:validation'),
-            'ip'             => printl('ip:validation'),
-            'ipv6'           => printl('ipv6:validation'),
-            'alpha'          => printl('alpha:validation'),
-            'subnet'         => printl('subnet:validation'),
-            'validate'       => printl('validate:validation'),
-            'unique'         => printl('unique:validation'),
+            'string'         => __printl('string:validation'),
+            'required'       => __printl('required:validation'),
+            'int'            => __printl('int:validation'),
+            'float'          => __printl('float:validation'),
+            'email'          => __printl('email:validation'),
+            'ip'             => __printl('ip:validation'),
+            'ipv6'           => __printl('ipv6:validation'),
+            'alpha'          => __printl('alpha:validation'),
+            'subnet'         => __printl('subnet:validation'),
+            'validate'       => __printl('validate:validation'),
+            'unique'         => __printl('unique:validation'),
             ];
     }
 

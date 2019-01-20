@@ -16,7 +16,9 @@
 
 namespace Zest\Cache;
 
-class Cache
+use Zest\Contracts\Cache\Cache as CacheContract;
+
+class Cache implements CacheContract
 {
     /**
      * Store the adapter object.
@@ -205,6 +207,15 @@ class Cache
         return $this;
     }
 
+    /**
+     * Determine if cache exixts.
+     *
+     * @param (mixed) $key key for cache
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */    
     public function has($key)
     {
         return $this->adapter->hasItem($key);

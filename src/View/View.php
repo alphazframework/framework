@@ -17,8 +17,9 @@
 namespace Zest\View;
 
 use Zest\Common\Minify;
+use Zest\Contracts\View\view as ViewContract;
 
-class View
+class View implements ViewContract
 {
     /**
      * files.

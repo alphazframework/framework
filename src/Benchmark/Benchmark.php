@@ -9,14 +9,16 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @license MIT
- *
  * @since 2.0.0
+ *
+ * @license MIT
  */
 
 namespace Zest\Benchmark;
 
-class Benchmark implements BenchmarkInterface
+use \Zest\Contracts\Benchmark as BenchmarkContract;
+
+class Benchmark implements BenchmarkContract
 {
     private $start;
     private $end;

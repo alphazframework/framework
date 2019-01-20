@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -18,21 +20,28 @@ use Zest\Common\PasswordManipulation;
 use Zest\Database\Db as DB;
 use Zest\Site\Site;
 use Zest\Validation\Validation;
+use Zest\Hashing\Hash;
 
 class Signup extends Handler
 {
-    /*
-     * Store the error msgs
+    /**
+     * Store the error msgs.
+     *
+     * @since 2.0.3
+     *
+     * @var array
     */
     protected $errors = [];
 
     /**
      * Signup the users.
      *
-     * @param $username , username of user
-     *        $email , email of user
-     *        $password , password of users
-     *        $params , extra field like [name => value] array
+     * @param (mixed) $username username of user
+     * @param (mixed) $email email of user
+     * @param (mixed) $password password of users
+     * @param (array) $params extra field like [name => value] array
+     *
+     * @since 2.0.3
      *
      * @return bool
      */
@@ -70,19 +79,19 @@ class Signup extends Handler
             }
             if (isset($params['passConfirm'])) {
                 if ($password !== $params['passConfirm']) {
-                    Error::set(__config()->auth->errors->password_confirm, 'password');
+                    Error::set(__printl('auth:error:password:confirm'), 'password');
                 }
             }
         }
         if (__config()->auth->sticky_password) {
             if (!(new PasswordManipulation())->isValid($password)) {
-                Error::set(__config()->auth->errors->sticky_password, 'password');
+                Error::set(__printl('auth:error:password:sticky'), 'password');
             }
         }
         if (!(new User())->isLogin()) {
             if ($this->fail() !== true) {
                 $salts = (new Site())::salts(12);
-                $password_hash = (new PasswordManipulation())->hashPassword($password);
+                $password_hash = Hash::make($password);
                 if (__config()->auth->is_verify_email) {
                     $token = (new Site())::salts(8);
                 } else {
@@ -106,16 +115,16 @@ class Signup extends Handler
                 Success::set($db->db()->insert($values));
                 $db->db()->close();
                 if (__config()->auth->is_verify_email === true) {
-                    $subject = __config()->auth->subjects->need_verify;
+                    $subject = __printl('auth:subject:need:verify');
                     $link = site_base_url().__config()->auth->verification_link.'/'.$token;
-                    $html = __config()->auth->errors->need_verify;
+                    $html = __printl('auth:body:need:verify');
                     $html = str_replace(':email', $email, $html);
                     $html = str_replace(':link', $link, $html);
                     (new EmailHandler($subject, $html, $email));
                 }
             }
         } else {
-            Error::set(__config()->auth->errors->already_login, 'login');
+            Error::set(__printl('auth:error:already:login'), 'login');
         }
     }
 }

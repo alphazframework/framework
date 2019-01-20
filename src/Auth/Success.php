@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -16,15 +18,21 @@ namespace Zest\Auth;
 
 class Success
 {
-    /*
-     * Store the success msgs
+    /**
+     * Store the success msgs.
+     *
+     * @since 2.0.3
+     *
+     * @var mixed
     */
     private static $success;
 
     /**
      * Set the success msgs.
      *
-     * @param $success , message
+     * @param (string) $success message
+     *
+     * @since 2.0.3
      *
      * @return void
      */
@@ -35,6 +43,8 @@ class Success
 
     /**
      * Get the success message.
+     *
+     * @since 2.0.3
      *
      * @return string
      */

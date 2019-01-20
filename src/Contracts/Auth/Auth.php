@@ -14,11 +14,9 @@
  * @license MIT
  */
 
-namespace Zest\Auth;
+namespace Zest\Contracts\Auth;
 
-use Zest\Contracts\Auth\Auth as AuthContract;
-
-class Auth extends Handler implements AuthContract
+interface Auth
 {
     /**
      * Instance of signup class.
@@ -27,11 +25,8 @@ class Auth extends Handler implements AuthContract
      *
      * @return object
      */    
-    public function signup()
-    {
-        return new Signup();
-    }
-
+    public function signup();
+	
     /**
      * Instance of signin class.
      *
@@ -39,10 +34,7 @@ class Auth extends Handler implements AuthContract
      *
      * @return object
      */
-    public function signin()
-    {
-        return new Signin();
-    }
+    public function signin();
 
     /**
      * Instance of logout class.
@@ -51,10 +43,7 @@ class Auth extends Handler implements AuthContract
      *
      * @return object
      */
-    public function logout()
-    {
-        return new Logout();
-    }
+    public function logout();
 
     /**
      * Instance of update class.
@@ -63,10 +52,7 @@ class Auth extends Handler implements AuthContract
      *
      * @return object
      */
-    public function update()
-    {
-        return new Update();
-    }
+    public function update();
 
     /**
      * Instance of verify class.
@@ -75,11 +61,8 @@ class Auth extends Handler implements AuthContract
      *
      * @return object
      */
-    public function verify()
-    {
-        return new Verify();
-    }
-
+    public function verify();
+	
     /**
      * Instance of reset class.
      *
@@ -87,8 +70,5 @@ class Auth extends Handler implements AuthContract
      *
      * @return object
      */
-    public function reset()
-    {
-        return new Reset();
-    }
+    public function reset();
 }
