@@ -58,7 +58,7 @@ class Cryptography
             $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($cipher));
             $this->key = hash('sha512', __config()->config->crypto_key);
         } else {
-            throw new \Exception("Crypto key not found", 500);
+            throw new \Exception('Crypto key not found', 500);
         }
     }
 
