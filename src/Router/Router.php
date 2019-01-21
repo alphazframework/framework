@@ -423,6 +423,8 @@ class Router
     public function dispatch($url)
     {
         $url = $this->RemoveQueryString($url);
+        //$csrf = new CSRFProtection();
+        //var_dump(is_array($url, $csrf->getExcludedUris()));
         if ($this->match($url)) {
             (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware']() : null;
             if (!isset($this->params['callable'])) {
@@ -430,13 +432,13 @@ class Router
                 $controller = $this->convertToStudlyCaps($controller);
                 $controller = $this->getNamespace().$controller;
                 if (class_exists($controller)) {
-                    (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response(), $this->params) : null;
+                    (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->before(new Request(), new Response(), $this->params) : null;
                     $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
                     $action = $this->params['action'];
                     $action = $this->convertToCamelCase($action);
                     if (preg_match('/action$/i', $action) == 0) {
                         $controller_object->$action();
-                        (is_object($this->params['middleware'])) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
+                        (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
                     } else {
                         throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
                     }
@@ -444,9 +446,9 @@ class Router
                     throw new \Exception("Controller class $controller not found");
                 }
             } else {
-                (is_object($this->params['middleware'])) ? $this->params['middleware']->before(new Request(), new Response(), $this->params) : null;
+                (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->before(new Request(), new Response(), $this->params) : null;
                 call_user_func($this->params['callable'], $this->params);
-                (is_object($this->params['middleware'])) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
+                (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
             }
         } else {
             \Zest\Component\routes::loadComs();

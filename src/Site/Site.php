@@ -19,7 +19,7 @@ use Zest\http\Request;
 
 class Site
 {
-    private function requestInstance()
+    private static function requestInstance()
     {
         return new Request();
     }
@@ -65,7 +65,7 @@ class Site
      *
      * @return string example.com/login
      */
-    public function getBase()
+    public static function getBase()
     {
         return dirname(self::requestInstance()->getSelf());
     }
