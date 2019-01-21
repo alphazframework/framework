@@ -195,7 +195,7 @@ class Request extends Uri
      */
     public function isXhr()
     {
-        return strtolower($this->getHeaderLine('X-Requested-With')) === 'xmlhttpRequest';
+        return strtolower($this->getHeader('x-requested-with')) === 'xmlhttprequest';
     }
 
     /**
