@@ -423,8 +423,6 @@ class Router
     public function dispatch($url)
     {
         $url = $this->RemoveQueryString($url);
-        //$csrf = new CSRFProtection();
-        //var_dump(is_array($url, $csrf->getExcludedUris()));
         if ($this->match($url)) {
             (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware']() : null;
             if (!isset($this->params['callable'])) {
