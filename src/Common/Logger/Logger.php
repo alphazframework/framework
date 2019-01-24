@@ -129,7 +129,7 @@ class Logger extends AbstractLogger
     }
 
     /**
-     * Set the custum file.
+     * Set the custom file.
      *
      * @param (string) $name valid name of file if file not exists it create for you.
      *
@@ -137,7 +137,7 @@ class Logger extends AbstractLogger
      *
      * @return object
      */
-    public function setCustumFile($name)
+    public function setCustomFile($name)
     {
         $this->file = $name;
 

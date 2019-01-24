@@ -307,12 +307,12 @@ function __config()
 if (!function_exists('log_message')) {
     function log_message($message, $type = 'info', $file = '')
     {
-        return (new \Zest\Common\Logger\Logger())->setCustumFile($file)->$type($message);
+        return (new \Zest\Common\Logger\Logger())->setCustomFile($file)->$type($message);
     }
 }
 function __log_message($message, $type = 'info', $file = '')
 {
-    return (new \Zest\Common\Logger\Logger())->setCustumFile($file)->$type($message);
+    return (new \Zest\Common\Logger\Logger())->setCustomFile($file)->$type($message);
 }
 
 function maintenanceInstance()
