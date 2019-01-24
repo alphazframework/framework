@@ -179,7 +179,7 @@ abstract class Headers extends Clients\Client
         if ($code !== null) {
             $this->withStatus($code);
         }
-        if ($header !== null) {
+        if ($headers !== null) {
             $this->setHeaders($headers);
         }
 
