@@ -16,6 +16,8 @@
 
 namespace Zest\Files;
 
+use Zest\Data\Conversion;
+
 class Files
 {
     /**
@@ -25,23 +27,7 @@ class Files
      *
      * @var array
      */
-    private $mineTypes = [
-        'application/x-zip-compressed',
-        'application/msword',
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        'image/gif',
-        'image/jpeg',
-        'image/jpeg',
-        'audio/mpeg',
-        'video/mp4',
-        'application/pdf',
-        'image/png',
-        'application/zip',
-        'application/et-stream',
-        'image/x-icon',
-        'image/icon',
-        'image/svg+xml',
-    ];
+    private $mineTypes = [];
 
     /**
      * Types.
@@ -50,12 +36,7 @@ class Files
      *
      * @var array
      */
-    private $types = [
-        'image' => ['jpg', 'png', 'jpeg', 'gif', 'ico', 'svg'],
-        'zip'   => ['zip', 'tar', '7zip', 'rar'],
-        'docs'  => ['pdf', 'docs', 'docx'],
-        'media' => ['mp4', 'mp3', 'wav', '3gp'],
-    ];
+    private $types = [];
 
     /**
      * The default value for recursive create dirs.
@@ -75,6 +56,12 @@ class Files
      */
     private $defCHMOD = 0755;
 
+    public function __construct()
+    {
+        $files = json_decode(json_encode(__config()->files), true);
+        $this->mineTypes = $files['mine']['type'];
+        $this->types = $files['types'];  
+    }
     /**
      * Create zest system dir.
      *
