@@ -65,6 +65,9 @@ class Conversion
                 $property->setAccessible(false);
             }
 
+            //If above method failed? try, this one.
+            $array = (empty($array)) ? json_decode(json_encode($object), true) : $array;
+
             return $array;
         }
 
