@@ -17,7 +17,7 @@
 namespace Zest\View;
 
 use Zest\Common\Minify;
-use Zest\Contracts\View\view as ViewContract;
+use Zest\Contracts\View\View as ViewContract;
 
 class View implements ViewContract
 {
@@ -163,7 +163,7 @@ class View implements ViewContract
      *
      * @return buffer
      */
-    public function views($file, array $args = [])
+    public static function views($file, array $args = [])
     {
         if (!empty($file)) {
             extract($args, EXTR_SKIP);
@@ -190,9 +190,9 @@ class View implements ViewContract
      *
      * @return bugger
      */
-    public function view($file, array $args = [], $minify = true)
+    public static function view($file, array $args = [], $minify = true)
     {
-        if ($minify) {
+        if ($minify === true) {
             $minify = new Minify();
             self::views($file, $args);
             echo $minify->htmlMinify(ob_get_clean(), 'code');

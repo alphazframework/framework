@@ -237,12 +237,12 @@ function __decrypt($token)
 if (!function_exists('view')) {
     function view($file = '', $args = [], $minify = true)
     {
-        return (new Zest\View\View())->view($file, $args, $minify);
+        return (new Zest\View\View())::view($file, $args, $minify);
     }
 }
 function __view($file = '', $args = [], $minify = true)
 {
-    return (new Zest\View\View())->view($file, $args, $minify);
+    return (new Zest\View\View())::view($file, $args, $minify);
 }
 if (!function_exists('model')) {
     function model($model = 'post')

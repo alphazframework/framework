@@ -104,7 +104,7 @@ class Query
      *
      * @param array array();
      *           'table' Names of table
-     * 			 'db_name' => Database name
+     *           'db_name' => Database name
      *           'params' Names of columns which you want to select
      *           'wheres' Specify a selection criteria to get required records
      *            'debug' If on var_dump sql query
@@ -124,7 +124,7 @@ class Query
             } else {
                 $distinct = '';
             }
-            $wheres = $this->prepareWhere($params['wheres']);
+            $wheres = (isset($params['wheres'])) ? $this->prepareWhere($params['wheres']) : '';
             if (isset($params['joins'])) {
                 if (!empty($params['joins'])) {
                     if (!isset($params['joins']['using'])) {
@@ -170,7 +170,7 @@ class Query
      *
      * @param $params array array();
      *           'table' Names of table
-     *			 'db_name' => Database name
+     *           'db_name' => Database name
      *           'wheres' Specify a selection criteria to get required records
      *
      * @return query

@@ -29,5 +29,5 @@ interface View
      *
      * @return mixed
      */
-    public function view($file, array $args = [], $minify = true);
+    public static function view($file, array $args = [], $minify = true);
 }
