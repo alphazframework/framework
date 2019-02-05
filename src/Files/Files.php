@@ -353,14 +353,14 @@ class Files
      *
      * @param $file file to be uploaded.
      *        $target target where file should be upload
-     *        $imgType supported => image,media,docs,zip
+     *        $fileType supported => image,media,docs,zip
      *        $maxSize file size to be allowed
      *
      * @since 3.0.0
      *
      * @return void
      */
-    public function fileUpload($file, $target, $imgType, $maxSize = 7992000000)
+    public function fileUpload($file, $target, $fileType, $maxSize = 7992000000)
     {
         $exactName = basename($file['name']);
         $fileTmp = $file['tmp_name'];
@@ -370,11 +370,12 @@ class Files
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $newName = \Zest\Site\Site::salts(30);
         $fileNewName = $newName.'.'.$ext;
-        $allowerd_ext = $this->types[$imgType];
+        $allowerd_ext = $this->types[$fileType];
         if (in_array($type, $this->mineTypes) === false) {
             return [
                 'status' => 'error',
                 'code'   => 'mineType',
+                'message' => sprintf(printl('z:files:error:mine:type'), $type)
             ];
         }
         if (in_array($ext, $allowerd_ext) === true) {
@@ -382,33 +383,46 @@ class Files
                 if ($fileSize <= $maxSize) {
                     $this->mkdir($target);
                     $fileRoot = $target.$fileNewName;
-                    if (move_uploaded_file($fileTmp, $fileRoot)) {
-                        return [
-                            'status' => 'success',
-                            'code'   => $fileNewName,
-                        ];
+                    if (is_uploaded_file($fileTmp)) {
+                        if (move_uploaded_file($fileTmp, $fileRoot)) {
+                            return [
+                                'status' => 'success',
+                                'code'   => $fileNewName,
+                                'message' => printl('z:files:success')
+                            ];
+                        } else {
+                            return [
+                                'status' => 'error',
+                                'code'   => 'somethingwrong',
+                                'message' => printl('z:files:error:somethingwrong')
+                            ];
+                        }
                     } else {
                         return [
                             'status' => 'error',
-                            'code'   => 'somethingwrong',
+                            'code' => 'invilidfile',
+                            'message' => printl('z:files:error:invilid:file')
                         ];
                     }
                 } else {
                     return [
                         'status' => 'error',
                         'code'   => 'exceedlimit',
+                        'message' => sprintf(printl('z:files:error:exceed:limit'),$maxSize)
                     ];
                 }
             } else {
                 return [
                     'status' => 'error',
                     'code'   => $error,
+                    'message' => $error
                 ];
             }
         } else {
             return [
                     'status' => 'error',
                     'code'   => 'extension',
+                    'message' => sprintf(printl('z:files:error:extension'),$ext)
             ];
         }
     }
@@ -418,17 +432,17 @@ class Files
      *
      * @param $files (array) files to be uploaded.
      *        $target target where file should be upload
-     *        $imgType supported => image,media,docs,zip
+     *        $fileType supported => image,media,docs,zip
      *        $maxSize file size to be allowed
      *
      * @since 3.0.0
      *
      * @return void
      */
-    public function filesUpload($files, $target, $imgType, $count, $maxSize = 7992000000)
+    public function filesUpload($files, $target, $fileType, $count, $maxSize = 7992000000)
     {
         $status = [];
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i <= $count; $i++) {
             $exactName = basename($files['name'][$i]);
             $fileTmp = $files['tmp_name'][$i];
             $fileSize = $files['size'][$i];
@@ -437,11 +451,12 @@ class Files
             $ext = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
             $newName = \Zest\Site\Site::salts(30);
             $fileNewName = $newName.'.'.$ext;
-            $allowerd_ext = $this->types[$imgType];
+            $allowerd_ext = $this->types[$fileType];
             if (in_array($type, $this->mineTypes) === false) {
                 $status[$i] = [
                     'status' => 'error',
                     'code'   => 'mineType',
+                    'message' => sprintf(printl('z:files:error:mine:type'), $type)
                 ];
             }
             if (in_array($ext, $allowerd_ext) === true) {
@@ -449,33 +464,46 @@ class Files
                     if ($fileSize <= $maxSize) {
                         $this->mkdir($target);
                         $fileRoot = $target.$fileNewName;
-                        if (move_uploaded_file($fileTmp, $fileRoot)) {
-                            $status[$i] = [
-                                'status' => 'success',
-                                'code'   => $fileNewName,
-                            ];
+                        if (is_uploaded_file($fileTmp)) {
+                            if (move_uploaded_file($fileTmp, $fileRoot)) {
+                                $status[$i] = [
+                                    'status' => 'success',
+                                    'code'   => $fileNewName,
+                                    'message' => printl('z:files:success')
+                                ];
+                            } else {
+                                $status[$i] = [
+                                    'status' => 'error',
+                                    'code'   => 'somethingwrong',
+                                    'message' => printl('z:files:error:somethingwrong')
+                                ];
+                            }
                         } else {
-                            $status[$i] = [
+                            return [
                                 'status' => 'error',
-                                'code'   => 'somethingwrong',
+                                'code' => 'invilidfile',
+                                'message' => printl('z:files:error:invilid:file')
                             ];
-                        }
+                        }    
                     } else {
                         $status[$i] = [
                             'status' => 'error',
                             'code'   => 'exceedlimit',
+                            'message' => sprintf(printl('z:files:error:exceed:limit'),$maxSize)
                         ];
                     }
                 } else {
                     $status[$i] = [
                         'status' => 'error',
                         'code'   => $error,
+                        'message' => $error
                     ];
                 }
             } else {
                 $status[$i] = [
-                        'status' => $error,
+                        'status' => 'error',
                         'code'   => 'extension',
+                        'message' => sprintf(printl('z:files:error:extension'),$ext)                        
                 ];
             }
         }
