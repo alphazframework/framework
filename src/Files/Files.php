@@ -60,7 +60,7 @@ class Files
     {
         $files = Conversion::objectArray(__config()->files);
         $this->mineTypes = $files['mine']['type'];
-        $this->types = $files['types'];  
+        $this->types = $files['types'];
     }
 
     /**
