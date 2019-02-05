@@ -373,9 +373,9 @@ class Files
         $allowerd_ext = $this->types[$fileType];
         if (in_array($type, $this->mineTypes) === false) {
             return [
-                'status' => 'error',
-                'code'   => 'mineType',
-                'message' => sprintf(printl('z:files:error:mine:type'), $type)
+                'status'  => 'error',
+                'code'    => 'mineType',
+                'message' => sprintf(printl('z:files:error:mine:type'), $type),
             ];
         }
         if (in_array($ext, $allowerd_ext) === true) {
@@ -386,43 +386,43 @@ class Files
                     if (is_uploaded_file($fileTmp)) {
                         if (move_uploaded_file($fileTmp, $fileRoot)) {
                             return [
-                                'status' => 'success',
-                                'code'   => $fileNewName,
-                                'message' => printl('z:files:success')
+                                'status'  => 'success',
+                                'code'    => $fileNewName,
+                                'message' => printl('z:files:success'),
                             ];
                         } else {
                             return [
-                                'status' => 'error',
-                                'code'   => 'somethingwrong',
-                                'message' => printl('z:files:error:somethingwrong')
+                                'status'  => 'error',
+                                'code'    => 'somethingwrong',
+                                'message' => printl('z:files:error:somethingwrong'),
                             ];
                         }
                     } else {
                         return [
-                            'status' => 'error',
-                            'code' => 'invilidfile',
-                            'message' => printl('z:files:error:invilid:file')
+                            'status'  => 'error',
+                            'code'    => 'invilidfile',
+                            'message' => printl('z:files:error:invilid:file'),
                         ];
                     }
                 } else {
                     return [
-                        'status' => 'error',
-                        'code'   => 'exceedlimit',
-                        'message' => sprintf(printl('z:files:error:exceed:limit'),$maxSize)
+                        'status'  => 'error',
+                        'code'    => 'exceedlimit',
+                        'message' => sprintf(printl('z:files:error:exceed:limit'), $maxSize),
                     ];
                 }
             } else {
                 return [
-                    'status' => 'error',
-                    'code'   => $error,
-                    'message' => $error
+                    'status'  => 'error',
+                    'code'    => $error,
+                    'message' => $error,
                 ];
             }
         } else {
             return [
-                    'status' => 'error',
-                    'code'   => 'extension',
-                    'message' => sprintf(printl('z:files:error:extension'),$ext)
+                    'status'  => 'error',
+                    'code'    => 'extension',
+                    'message' => sprintf(printl('z:files:error:extension'), $ext),
             ];
         }
     }
@@ -454,9 +454,9 @@ class Files
             $allowerd_ext = $this->types[$fileType];
             if (in_array($type, $this->mineTypes) === false) {
                 $status[$i] = [
-                    'status' => 'error',
-                    'code'   => 'mineType',
-                    'message' => sprintf(printl('z:files:error:mine:type'), $type)
+                    'status'  => 'error',
+                    'code'    => 'mineType',
+                    'message' => sprintf(printl('z:files:error:mine:type'), $type),
                 ];
             }
             if (in_array($ext, $allowerd_ext) === true) {
@@ -467,43 +467,43 @@ class Files
                         if (is_uploaded_file($fileTmp)) {
                             if (move_uploaded_file($fileTmp, $fileRoot)) {
                                 $status[$i] = [
-                                    'status' => 'success',
-                                    'code'   => $fileNewName,
-                                    'message' => printl('z:files:success')
+                                    'status'  => 'success',
+                                    'code'    => $fileNewName,
+                                    'message' => printl('z:files:success'),
                                 ];
                             } else {
                                 $status[$i] = [
-                                    'status' => 'error',
-                                    'code'   => 'somethingwrong',
-                                    'message' => printl('z:files:error:somethingwrong')
+                                    'status'  => 'error',
+                                    'code'    => 'somethingwrong',
+                                    'message' => printl('z:files:error:somethingwrong'),
                                 ];
                             }
                         } else {
                             return [
-                                'status' => 'error',
-                                'code' => 'invilidfile',
-                                'message' => printl('z:files:error:invilid:file')
+                                'status'  => 'error',
+                                'code'    => 'invilidfile',
+                                'message' => printl('z:files:error:invilid:file'),
                             ];
-                        }    
+                        }
                     } else {
                         $status[$i] = [
-                            'status' => 'error',
-                            'code'   => 'exceedlimit',
-                            'message' => sprintf(printl('z:files:error:exceed:limit'),$maxSize)
+                            'status'  => 'error',
+                            'code'    => 'exceedlimit',
+                            'message' => sprintf(printl('z:files:error:exceed:limit'), $maxSize),
                         ];
                     }
                 } else {
                     $status[$i] = [
-                        'status' => 'error',
-                        'code'   => $error,
-                        'message' => $error
+                        'status'  => 'error',
+                        'code'    => $error,
+                        'message' => $error,
                     ];
                 }
             } else {
                 $status[$i] = [
-                        'status' => 'error',
-                        'code'   => 'extension',
-                        'message' => sprintf(printl('z:files:error:extension'),$ext)                        
+                        'status'  => 'error',
+                        'code'    => 'extension',
+                        'message' => sprintf(printl('z:files:error:extension'), $ext),
                 ];
             }
         }
