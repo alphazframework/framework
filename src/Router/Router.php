@@ -430,13 +430,13 @@ class Router
                 $controller = $this->convertToStudlyCaps($controller);
                 $controller = $this->getNamespace().$controller;
                 if (class_exists($controller)) {
-                    (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->before(new Request(), new Response(), $this->params) : null;
+                     (isset($this->params['middleware']) && is_object($this->params['middleware'])) ? ( new $this->params['middleware'])->before(new Request(), new Response(), $this->params) : null;
                     $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
                     $action = $this->params['action'];
                     $action = $this->convertToCamelCase($action);
                     if (preg_match('/action$/i', $action) == 0) {
                         $controller_object->$action();
-                        (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
+                        (isset($this->params['middleware']) && is_object($this->params['middleware'])) ? (new $this->params['middleware'])->after(new Request(), new Response(), $this->params) : null;
                     } else {
                         throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
                     }
