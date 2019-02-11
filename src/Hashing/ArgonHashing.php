@@ -65,7 +65,7 @@ class ArgonHashing extends AbstractHashing
     {
         $this->setMemory($options['memory'])->setTime($options['time'])->setThreads($options['threads']);
 
-        $this->verifyAlgorithm = $options['verify'];
+        $this->verifyAlgorithm = (isset($options['verify'])) ? $options['verify'] : false;
     }
 
     /**
