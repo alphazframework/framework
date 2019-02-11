@@ -112,4 +112,5 @@ Changes:
 89. Added Encryption Class.
 	- Support Sodium and OpenSsl encryption.
 90. Added LanguageCodes Trait.
+91. Added Whoops custum library for show more friendly error log on display if turn on.
 	
