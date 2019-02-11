@@ -53,7 +53,7 @@ class Error
      *
      * @return bool
      */
-    public function has()
+    public static function has()
     {
         return (count(static::$errors) > 0) ? true : false;
     }
