@@ -55,8 +55,7 @@ class Whoops
             $e->getMessage(),
             $e->getFile(),
             $e->getLine(),
-            $e->getTraceAsString(),
-        );
+            $e->getTraceAsString());
 
         return $this->render();
     }
