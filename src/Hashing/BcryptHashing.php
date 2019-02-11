@@ -47,7 +47,7 @@ class BcryptHashing extends AbstractHashing
     {
         $this->setCost($options['cost']);
 
-        $this->verifyAlgorithm = $options['verify'];
+        $this->verifyAlgorithm = (isset($options['verify'])) ? $options['verify'] : false;
     }
 
     /**
