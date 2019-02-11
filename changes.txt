@@ -111,4 +111,5 @@ Changes:
 88. Deprecated passwordManipulation class hashMatched and hashPassword method.
 89. Added Encryption Class.
 	- Support Sodium and OpenSsl encryption.
+90. Added LanguageCodes Trait.
 	

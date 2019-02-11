@@ -18,6 +18,9 @@ namespace Zest\Language;
 
 class Language
 {
+    /* Use of language codes trait */
+    use LanguageCodesTrait;
+
     /**
      * set the language.
      *
@@ -42,12 +45,26 @@ class Language
     public function getLang()
     {
         if (is_cookie('lang')) {
-            $language = get_cookie('lang');
+            $language = (array_key_exists(get_cookie('lang'), $this->_languages)) ? get_cookie('lang') : __config()->config->language;
         } else {
             $language = __config()->config->language;
         }
 
         return $language;
+    }
+
+    /**
+     * Get the language name by key.
+     *
+     * @param (string) $key valid key
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+    public function getNameByKey($key)
+    {
+        return (array_key_exists($key, $this->_languages)) ? $this->_languages[$key] : null;
     }
 
     /**
