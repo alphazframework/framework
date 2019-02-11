@@ -69,7 +69,7 @@ class Handler
      *
      * @return resource
      */
-    public function has()
+    public static function has()
     {
         return (count(static::$error) > 0) ? true : false;
     }
@@ -101,7 +101,7 @@ class Handler
      *
      * @return resource
      */
-    public function getMsgs()
+    public static function getMsgs()
     {
         self::pushMsgs();
 
