@@ -15,25 +15,26 @@
  */
 
 namespace Zest\Expection\Whoops;
+
 use Zest\Common\Logger\Logger;
 use Zest\View\View;
 
 class Whoops
 {
     /**
-     * Store the errors stack
+     * Store the errors stack.
      *
      * @since 3.0.0
      *
      * @var array
-    */
+     */
     private $stack = [];
 
     /**
-     * __construct
+     * __construct.
      *
      * @since 3.0.0
-    */
+     */
     public function __construct()
     {
         error_reporting(E_ALL);
@@ -42,12 +43,12 @@ class Whoops
     }
 
     /**
-     * expection handler
+     * expection handler.
      *
      * @since 3.0.0
      *
      * @return mixed
-    */
+     */
     public function exception($e)
     {
         $this->setParams(
@@ -61,12 +62,12 @@ class Whoops
     }
 
     /**
-     * Error handler
+     * Error handler.
      *
      * @since 3.0.0
      *
      * @return mixed
-    */       
+     */
     public function error($code, $msg, $file, $line)
     {
         $this->setParams($code, $msg, $file, $line, '');
@@ -75,29 +76,29 @@ class Whoops
     }
 
     /**
-     * Set the error item to stack
+     * Set the error item to stack.
      *
-     * @param (int) $code
+     * @param (int)    $code
      * @param (string) $msg
      * @param (string) $file
-     * @param (int) $line
+     * @param (int)    $line
      * @param (string) $trace
      *
      * @since 3.0.0
      *
      * @return mixed
-    */   
+     */
     protected function setParams($code, $msg, $file, $line, $trace)
     {
         return $this->stack = [
-            'message' => $msg,
-            'file' => $file,
-            'line' => $line,
-            'code' => ($code === 0) ? 404 : $code ,
-            'trace' => $trace,
+            'message'     => $msg,
+            'file'        => $file,
+            'line'        => $line,
+            'code'        => ($code === 0) ? 404 : $code,
+            'trace'       => $trace,
             'previewCode' => '',
         ];
-    } 
+    }
 
     /**
      * Get the code from file.
@@ -105,7 +106,7 @@ class Whoops
      * @since 3.0.0
      *
      * @return void
-    */   
+     */
     protected function getPreviewCode()
     {
         $file = file($this->stack['file']);
@@ -125,41 +126,40 @@ class Whoops
             $text = escape($file[$i]);
             if ($i === $_line) {
                 $this->stack['previewCode'] .=
-                    "<span style='background:red' class='line'>" . ($i + 1) . '</span>' .
-                    "<span style='background:red'>" . $text . '</span><br>';
+                    "<span style='background:red' class='line'>".($i + 1).'</span>'.
+                    "<span style='background:red'>".$text.'</span><br>';
                 continue;
             }
             $this->stack['previewCode'] .=
-                "<span class='line'>" . ($i + 1) . '</span>' .
-                "<span>" . $text . '</span><br>';
-        }      
+                "<span class='line'>".($i + 1).'</span>'.
+                '<span>'.$text.'</span><br>';
+        }
     }
 
     /**
-     * Rander the error
+     * Rander the error.
      *
      * @since 3.0.0
      *
      * @return mixed
-    */    
+     */
     public function render()
     {
         $this->getPreviewCode();
         $stack = $this->stack;
         if (__config()->config->show_errors === true) {
-            $file = "views/view.php";
+            $file = 'views/view.php';
             require $file;
         } else {
             $logger = new Logger();
             $log = date('Y-m-d').'.log';
-            $message = "Message: ".$stack['message'];
+            $message = 'Message: '.$stack['message'];
             $message .= "\n Stack trace: ".$stack['trace'];
-            $message .= "\n Thrwo in ". $stack['file']. " " . $stack['line'];
+            $message .= "\n Thrwo in ".$stack['file'].' '.$stack['line'];
             $logger->setCustomFile($log)->error($message);
-            View::View("errors/".$stack['code']);
-
-        } 
+            View::View('errors/'.$stack['code']);
+        }
 
         return true;
-    } 
+    }
 }

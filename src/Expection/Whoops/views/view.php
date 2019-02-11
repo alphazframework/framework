@@ -29,16 +29,16 @@
         <div class="container">
             <div>
                 <h5>Message:</h5>
-                <p><?php echo isset($stack['message'])? $stack['message'] : '<span style="color:red">Sorry, message not found</span>' ?></p>
+                <p><?php echo isset($stack['message']) ? $stack['message'] : '<span style="color:red">Sorry, message not found</span>' ?></p>
             </div>
             <div>
               <h5>Code:</h5>
-              <p><span style='color:red'>File: </span><?php echo isset($stack['file'])? $stack['file'] : '<span style="color:red">Sorry, message not found</span>' ?></p>
-              <pre><code class=""><?php echo isset($stack['previewCode'])? $stack['previewCode'] : '<span style="color:red">Sorry, code not loaded</span>' ?></code></pre>
+              <p><span style='color:red'>File: </span><?php echo isset($stack['file']) ? $stack['file'] : '<span style="color:red">Sorry, message not found</span>' ?></p>
+              <pre><code class=""><?php echo isset($stack['previewCode']) ? $stack['previewCode'] : '<span style="color:red">Sorry, code not loaded</span>' ?></code></pre>
             </div>
             <div>
               <h5>Trace:</h5>
-              <pre><?php echo isset($stack['trace'])? $stack['trace'] : '<span style="color:red">Sorry, message not found</span>' ?></pre>
+              <pre><?php echo isset($stack['trace']) ? $stack['trace'] : '<span style="color:red">Sorry, message not found</span>' ?></pre>
             </div>
             <div>
               <h5>Need help?</h5>

@@ -15,16 +15,16 @@
  */
 
 namespace Zest\Expection;
+
 use Zest\Expection\Whoops\Whoops;
 
 class Expection
 {
-    
     /**
-     * __construct
+     * __construct.
      *
      * @since 3.0.0
-    */    
+     */
     public function __construct()
     {
         (new Whoops());
