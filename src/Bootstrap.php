@@ -16,27 +16,26 @@
 
 namespace Zest;
 
-use Zest\Router\App;
 use Zest\Common\AliasLoader;
+use Zest\Router\App;
 
 class Bootstrap
 {
-
     /**
-     * Register the class aliases
+     * Register the class aliases.
      *
      * @since 3.0.0
      *
      * @return void
-    */
+     */
     protected function registerClassAliases()
     {
         $aliases = __config()->class_aliases;
-        if(!empty($aliases)) {
+        if (!empty($aliases)) {
             $aliasLoader = new AliasLoader($aliases);
             spl_autoload_register([$aliasLoader, 'load']);
         }
-    }    
+    }
 
     /**
      * Register the App.
@@ -44,7 +43,7 @@ class Bootstrap
      * @since 3.0.0
      *
      * @return void
-    */
+     */
     public function registerApp()
     {
         $app = new App();
@@ -57,10 +56,10 @@ class Bootstrap
      * @since 3.0.0
      *
      * @return void
-    */    
+     */
     public function boot()
-    {   
-       $this->registerClassAliases(); 
-       $this->registerApp();
+    {
+        $this->registerClassAliases();
+        $this->registerApp();
     }
 }
