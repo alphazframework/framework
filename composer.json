@@ -15,5 +15,8 @@
              "Zest\\": "src/"
         },
         "files":["src/functions/helpers.php"]
-    }
+    },
+    "require":{
+        "lablnet/whoops": "^1.1"
+    }	
 }
