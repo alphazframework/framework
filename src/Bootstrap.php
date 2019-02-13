@@ -95,6 +95,5 @@ class Bootstrap
         $this->bootstrap();
         //register the app
         $this->registerApp();
-
     }
 }
