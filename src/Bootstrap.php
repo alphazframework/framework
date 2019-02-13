@@ -64,6 +64,21 @@ class Bootstrap
     }
 
     /**
+     * Load the boostrap file.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function bootstrap()
+    {
+        $file = route()->root.'/bootstrap.php';
+        if (file_exists($file)) {
+            include_once $file;
+        }
+    }
+
+    /**
      * Boot the application.
      *
      * @since 3.0.0
@@ -76,7 +91,10 @@ class Bootstrap
         $this->configure();
         //Loaded class aliases
         $this->registerClassAliases();
+        //Load the application bootstrap file
+        $this->bootstrap();
         //register the app
         $this->registerApp();
+
     }
 }
