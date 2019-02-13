@@ -17,12 +17,11 @@
 namespace Zest;
 
 use Zest\Common\AliasLoader;
-use Zest\Router\App;
 use Zest\Common\TimeZone;
+use Zest\Router\App;
 
 class Bootstrap
 {
-
     /**
      * Set Default configuration.
      *
