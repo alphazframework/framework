@@ -18,16 +18,15 @@ namespace Zest\Common;
 
 class TimeZone extends \DateTimeZone
 {
-
     /**
      * Set Default timeZone.
-      *
+     *
      * @param (string) $tz valid time zone
      *
      * @since 3.0.0
      *
      * @return void
-     */    
+     */
     public static function seteDefaultTz($tz) :void
     {
         date_default_timezone_set(static::validate($tz));
@@ -39,7 +38,7 @@ class TimeZone extends \DateTimeZone
      * @since 3.0.0
      *
      * @return void
-     */    
+     */
     public static function tZIdentifiers() :array
     {
         return static::listIdentifiers();
@@ -56,6 +55,6 @@ class TimeZone extends \DateTimeZone
      */
     public static function validate($tz) :string
     {
-       return (in_array($tz, static::tZIdentifiers()) === true) ? $tz : "UTC";
+        return (in_array($tz, static::tZIdentifiers()) === true) ? $tz : 'UTC';
     }
 }
