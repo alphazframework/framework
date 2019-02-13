@@ -19,10 +19,10 @@
 namespace Zest\Router;
 
 use Zest\Cache\Cache;
+use Zest\Data\Conversion;
 use Zest\http\Request;
 use Zest\http\Response;
 use Zest\Input\Input;
-use Zest\Data\Conversion;
 
 class Router
 {
@@ -298,6 +298,7 @@ class Router
     {
         $this->add($route, $params, 'GET|HEAD|POST|DELETE|OPTIONS|TRACE|PUT|PATCH|CONNECT', $middleware);
     }
+
     /**
      * Get all the routes from the routing table.
      *
@@ -325,7 +326,7 @@ class Router
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
                 //Check if given method is matched
-                if ($this->methodMatch($params['method'],null , new Request())) {
+                if ($this->methodMatch($params['method'], null, new Request())) {
                     // Get named capture group values
                     foreach ($matches as $key => $match) {
                         if (is_string($key)) {
@@ -350,7 +351,7 @@ class Router
      *
      * @return bool
      */
-    public function methodMatch($methods, $requestMethod = null, Request $request)
+    public function methodMatch($methods, $requestMethod, Request $request)
     {
         $match = false;
         if ($requestMethod === null) {
