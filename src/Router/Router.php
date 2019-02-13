@@ -21,6 +21,8 @@ namespace Zest\Router;
 use Zest\Cache\Cache;
 use Zest\http\Request;
 use Zest\http\Response;
+use Zest\Input\Input;
+use Zest\Data\Conversion;
 
 class Router
 {
@@ -50,26 +52,6 @@ class Router
      * @var array
      */
     private $request;
-
-    /**
-     * __construct.
-     *
-     * @since 3.0.0
-     */
-    public function __construct()
-    {
-        $this->request = new Request();
-    }
-
-    /**
-     * Get the HTTP Request instance.
-     *
-     * @since 3.0.0
-     */
-    public function getRequestInstance()
-    {
-        return $this->request;
-    }
 
     /**
      * Add a route to the routing table.
@@ -302,6 +284,21 @@ class Router
     }
 
     /**
+     * Add a route to the routing table as all method.
+     *
+     * @param string       $route      The route URL
+     * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
+     * @param string       $middleware Middleare name
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function all($route, $params, $middleware = '')
+    {
+        $this->add($route, $params, 'GET|HEAD|POST|DELETE|OPTIONS|TRACE|PUT|PATCH|CONNECT', $middleware);
+    }
+    /**
      * Get all the routes from the routing table.
      *
      * @since 1.0.0
@@ -328,7 +325,7 @@ class Router
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
                 //Check if given method is matched
-                if ($this->methodMatch($params['method'])) {
+                if ($this->methodMatch($params['method'],null , new Request())) {
                     // Get named capture group values
                     foreach ($matches as $key => $match) {
                         if (is_string($key)) {
@@ -353,11 +350,11 @@ class Router
      *
      * @return bool
      */
-    public function methodMatch($methods, $requestMethod = null)
+    public function methodMatch($methods, $requestMethod = null, Request $request)
     {
         $match = false;
         if ($requestMethod === null) {
-            $requestMethod = ($this->request->getRequestMethod()) ? $this->request->getRequestMethod() : 'GET';
+            $requestMethod = ($request->getRequestMethod()) ? $request->getRequestMethod() : 'GET';
         }
         $methods = explode('|', $methods);
         foreach ($methods as $method) {
@@ -392,22 +389,13 @@ class Router
      *
      * @since 3.0.0
      *
-     * @return mix-data
+     * @return mixed
      */
-    public function getInput($default)
+    public function getInput(Input $input)
     {
-        $method = (!empty($default)) ? $default : $this->request->getRequestMethod();
-        if ($method === 'POST') {
-            $data = $_POST;
-        } elseif ($method === 'GET') {
-            $data = $_GET;
-        } elseif ($method === 'REQUEST') {
-            $data = $_REQUEST;
-        } else {
-            parse_str(file_get_contents('php://input'), $data);
-        }
+        $inputData = $input::inputAll();
 
-        return (new \Zest\Data\Conversion())::arrayObject($data);
+        return (new Conversion())::arrayObject($inputData);
     }
 
     /**
@@ -420,9 +408,10 @@ class Router
      *
      * @return void
      */
-    public function dispatch($url)
+    public function dispatch(Request $request)
     {
-        $url = $this->RemoveQueryString($url);
+        $url = $request->getQueryString();
+        $url = $this->RemoveQueryString($url, new Request());
         if ($this->match($url)) {
             (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware']() : null;
             if (!isset($this->params['callable'])) {
@@ -431,7 +420,7 @@ class Router
                 $controller = $this->getNamespace().$controller;
                 if (class_exists($controller)) {
                     (isset($this->params['middleware']) && is_object($this->params['middleware'])) ? ( new $this->params['middleware']())->before(new Request(), new Response(), $this->params) : null;
-                    $controller_object = new $controller($this->params, $this->getInput($this->params['method']));
+                    $controller_object = new $controller($this->params, $this->getInput(new Input()));
                     $action = $this->params['action'];
                     $action = $this->convertToCamelCase($action);
                     if (preg_match('/action$/i', $action) == 0) {
@@ -490,7 +479,7 @@ class Router
      *
      * @return string The URL with the query string variables removed
      */
-    protected function RemoveQueryString($url)
+    protected function RemoveQueryString($url, Request $request)
     {
         if (isset($url) && !empty($url)) {
             $parts = explode('&', $url);
@@ -498,7 +487,7 @@ class Router
             if (strpos($parts[0], '=') === false) {
                 $url = $parts[0];
             } else {
-                $url = self::RemoveQueryString($this->request->getQueryString());
+                $url = self::RemoveQueryString($request->getQueryString());
             }
         }
 

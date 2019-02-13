@@ -90,6 +90,37 @@ class Input
     }
 
     /**
+     * Accpet input
+     * Support get.post,put,patch,delete,others.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public static function inputAll()
+    {
+        $request = new Request();
+        if ($request->isGet() || $request->isHead()) {
+            $string = $request->getQuery();
+        } elseif ($request->isPost()) {
+            $string = $request->getPost();
+        } elseif ($request->isPatch()) {
+            $string = $request->getPatch();
+        } elseif ($request->isPut()) {
+            $string = $request->getPut();
+        } elseif ($request->isDelete()) {
+            $string = $request->getDelete();
+        } elseif ($request->hasFiles()) {
+            $string = $request->getFiles();
+        } else {
+            parse_str(file_get_contents('php://input'), $_STR);
+            $string = $_STR;
+        }
+
+        return (isset($string) && !empty($string)) ? $string : false;
+    }
+
+    /**
      * Clean input.
      *
      * @param (string) $input string
