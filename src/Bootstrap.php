@@ -18,9 +18,23 @@ namespace Zest;
 
 use Zest\Common\AliasLoader;
 use Zest\Router\App;
+use Zest\Common\TimeZone;
 
 class Bootstrap
 {
+
+    /**
+     * Set Default configuration.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function configure()
+    {
+        TimeZone::seteDefaultTz(__config()->config->timezone);
+    }
+
     /**
      * Register the class aliases.
      *
@@ -59,7 +73,11 @@ class Bootstrap
      */
     public function boot()
     {
+        //Set default configuration
+        $this->configure();
+        //Loaded class aliases
         $this->registerClassAliases();
+        //register the app
         $this->registerApp();
     }
 }

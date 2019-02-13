@@ -115,4 +115,6 @@ Changes:
 91. Added Whoops custum library for show more friendly error log on display if turn on.
 92. Added Class aliases support.
 93. Added All method in Router class for supporting all requested method.
+94. Added TimeZone class.
+95. Add option to change timeZone of your application.
 	
