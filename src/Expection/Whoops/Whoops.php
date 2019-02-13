@@ -123,7 +123,7 @@ class Whoops
             if (!isset($file[$i])) {
                 break;
             }
-            $text = escape($file[$i]);
+            $text = trim($file[$i]);
             if ($i === $_line) {
                 $this->stack['previewCode'] .=
                     "<span style='background:red' class='line'>".($i + 1).'</span>'.
