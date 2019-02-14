@@ -15,5 +15,6 @@
              "Zest\\": "src/"
         },
         "files":["src/functions/helpers.php"]
-    }
+    },
+    "prefer-stable": true
 }
