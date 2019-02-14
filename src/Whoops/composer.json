@@ -1,7 +1,7 @@
 {
-    "name": "zest/framework",
-    "description": "The Zest Framework.",
-    "keywords": ["framework", "zest"],
+    "name": "zest/whoops",
+    "description": "The Zest Error Handler package.",
+    "keywords": ["php", "Zest", "error","error handler", "Whoops","free","package","Lablnet"],
     "license": "MIT",
     "authors": [
         {
@@ -12,8 +12,7 @@
     ],  
     "autoload": {
         "psr-4": {
-             "Zest\\": "src/"
-        },
-        "files":["src/functions/helpers.php"]
+             "Zest\\Whoops\\": ""
+        }
     }
 }

@@ -16,7 +16,7 @@
 
 namespace Zest\Expection;
 
-use Lablnet\Whoops;
+use Zest\Whoops\Whoops;
 
 class Expection
 {
