@@ -34,7 +34,7 @@ class Encryption implements EncryptionContract
      *
      * @since 3.0.0
      */
-    public function __construct($adaoter = null)
+    public function __construct($adapter = null)
     {
         ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter(__config()->encryption->driver);
     }

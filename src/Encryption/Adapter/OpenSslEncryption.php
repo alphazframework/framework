@@ -18,14 +18,6 @@ namespace Zest\Encryption\Adapter;
 
 class OpenSslEncryption
 {
-    /**
-     * Store the secret key.
-     *
-     * @since 1.0.0
-     *
-     * @var key
-     */
-    private $key;
 
     /**
      * Store the cipher iv.
@@ -54,9 +46,9 @@ class OpenSslEncryption
      */
     public function __construct()
     {
-        if (isset(__config()->encryption->openssl->key) && strtolower(__config()->encryption->openssl->key) !== 'your-key') {
+        if (isset(__config()->encryption->key) && strtolower(__config()->encryption->key) !== 'your-key') {
             $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($this->cipher));
-            $this->key = hash('sha512', __config()->encryption->openssl->key);
+            $this->key = hash('sha512', __config()->encryption->key);
         } else {
             throw new \Exception('Crypto key not found', 500);
         }

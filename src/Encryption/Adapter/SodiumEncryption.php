@@ -29,7 +29,14 @@ class SodiumEncryption extends AbstractAdapter
             throw new \Exception('The sodium php extension does not installed or enabled', 500);
         }
 
-        $this->key = sodium_crypto_secretbox_keygen();
+        if (isset(__config()->encryption->key) && strtolower(__config()->encryption->key) !== 'your-key') {
+            
+            //$this->key = sodium_crypto_secretbox_keygen();
+            //Should use user define key.
+            $this->key = substr(hash('sha512', __config()->encryption->key),0 , 32);
+        } else {
+            throw new \Exception('Crypto key not found', 500);
+        }
     }
 
     /**
