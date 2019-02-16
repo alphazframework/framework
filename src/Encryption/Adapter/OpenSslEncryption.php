@@ -18,7 +18,6 @@ namespace Zest\Encryption\Adapter;
 
 class OpenSslEncryption
 {
-
     /**
      * Store the cipher iv.
      *
