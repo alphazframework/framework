@@ -9,12 +9,22 @@
             "email":"lablnet01@gmail.com",
             "homepage": "https://softhub99.com"
         }
-    ],  
+    ],
+
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+
     "autoload": {
         "psr-4": {
              "Zest\\": "src/"
         },
         "files":["src/functions/helpers.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zest\\Tests\\": "tests/"
+        }
     },
     "prefer-stable": true
 }
