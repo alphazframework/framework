@@ -85,7 +85,7 @@ class Formats
      */
     public function formatTime($time)
     {
-        $time = (is_string($time)) ? strtotime($time) : $time;
+        $time = preg_match('~\D~', $time) ? strtotime($time) : $time;
 
         return time() - $time;
     }
