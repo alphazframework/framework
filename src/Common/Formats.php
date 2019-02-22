@@ -40,7 +40,7 @@ class Formats
     /**
      * Converts the timestamp in to human readable form.
      *
-     * @param (int|string) $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param (int|string) $time Timespan or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @since 3.0.0
      *
@@ -77,7 +77,7 @@ class Formats
     /**
      * Formats the time.
      *
-     * @param (int|string) $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param (int|string) $time Timespan or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @since 3.0.0
      *
@@ -93,7 +93,7 @@ class Formats
     /**
      * Converts the timestamp in to h:m:s form.
      *
-     * @param (int) $time timespam or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param (int) $time Timespan or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @since 3.0.0
      *
