@@ -21,7 +21,6 @@ class Model
     /**
      * Model.
      *
-     *
      * @since 3.0.0
      *
      * @var string
