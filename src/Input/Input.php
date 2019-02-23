@@ -124,11 +124,11 @@ class Input
      * Clean input.
      *
      * @param (string) $input string
-     *                        (string) $type secured,root
+     * @param (string) $type secured,root
      *
      * @since 1.0.0
      *
-     * @return string | boolean
+     * @return mixed
      */
     public static function clean($input, $type)
     {
