@@ -18,11 +18,25 @@ use Zest\Data\Conversion;
 
 class Root
 {
+    /**
+     * Return the root path of app.
+     *
+     * @since 1.9.1
+     *
+     * @return string
+    */
     public function root()
     {
         return '../';
     }
 
+    /**
+     * Get the path.
+     *
+     * @since 1.9.7
+     *
+     * @return object
+    */
     public function paths()
     {
         $roots = [
