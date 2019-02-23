@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -19,7 +21,12 @@ class Minify
     /**
      * Fetch the content of file.
      *
-     * @return mix-data
+     * @param (string) $file valid file with path.
+     * @param (string) $type file or buffer
+     *
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function getFile($file, $type = 'file')
     {
@@ -33,7 +40,11 @@ class Minify
     /**
      * Remove White spaces,tabs,new lines etc.
      *
-     * @return mix-data
+     * @param (mixed) $file valid code.
+     *
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function cleanSpaces($file)
     {
@@ -45,7 +56,11 @@ class Minify
     /**
      * Remove comments.
      *
-     * @return mix-data
+     * @param (mixed) $file valid code.
+     *
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function removeComments($file)
     {
@@ -55,7 +70,11 @@ class Minify
     /**
      * Add single space after <?php.
      *
-     * @return mix-data
+     * @param (mixed) $file valid code.
+     *
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function fixMaster($file)
     {
@@ -65,7 +84,11 @@ class Minify
     /**
      * Minify html.
      *
-     * @return mix-data
+     * @param (mixed) $file valid code.
+     *
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function htmlMinify($file, $type = 'file')
     {
@@ -80,7 +103,11 @@ class Minify
     /**
      * Minify CSS.
      *
-     * @return mix-data
+     * @param (mixed) $file valid code.
+     *
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function cssMinify($file, $type = 'file')
     {
@@ -95,7 +122,11 @@ class Minify
     /**
      * Minify Js.
      *
-     * @return mix-data
+     * @param (mixed) $file valid code.
+     *
+     * @since 2.0.3
+     *
+     * @return mixed
      */
     public function javascriptMinify($file, $type = 'file')
     {
