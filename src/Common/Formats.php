@@ -93,7 +93,7 @@ class Formats
     /**
      * Converts the timestamp in to h:m:s form.
      *
-     * @param (int) $time Timestamp 
+     * @param (int) $time Timestamp
      *
      * @since 3.0.0
      *
@@ -106,6 +106,6 @@ class Formats
         $m = (int) $time / 60;
         $s = (int) $time % 60;
 
-        return (int)$h.':'.(int)$m.':'.(int)$s;
+        return (int) $h.':'.(int) $m.':'.(int) $s;
     }
 }
