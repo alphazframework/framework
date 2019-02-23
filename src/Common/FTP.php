@@ -39,9 +39,9 @@ class FTP
     /**
      * Instantiate the FTP object.
      *
-     * @param (string) $host server host
-     * @param (string) $user username
-     * @param (string) $pass password
+     * @param (string) $host    server host
+     * @param (string) $user    username
+     * @param (string) $pass    password
      * @param (string) $secured ftp or sftp
      *
      * @since 3.0.0
@@ -250,7 +250,7 @@ class FTP
      * Change premission.
      *
      * @param (string) $file file
-     * @param (mixed) $mode mode
+     * @param (mixed)  $mode mode
      *
      * @since 3.0.0
      *
@@ -306,8 +306,8 @@ class FTP
     /**
      * Upload the files.
      *
-     * @param (array) $files number of files you want to uplaod
-     * @param (string) $root Server root directory or sub
+     * @param (array)  $files number of files you want to uplaod
+     * @param (string) $root  Server root directory or sub
      *
      * @since 3.0.0
      *
