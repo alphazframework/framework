@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 2.0.3
+ *
  * @license MIT
  */
 
@@ -16,6 +18,14 @@ namespace Zest\Common;
 
 class OperatingSystem
 {
+
+    /**
+     * Get the operating system name.
+     *
+     * @since 2.0.3
+     *
+     * @return string
+    */
     public static function get()
     {
         if (@\define(PHP_OS_FAMILY)) {
@@ -25,6 +35,13 @@ class OperatingSystem
         }
     }
 
+    /**
+     * Get the operating system name.
+     *
+     * @since 2.0.3
+     *
+     * @return string
+    */
     public static function phpOs()
     {
         $os = PHP_OS;
