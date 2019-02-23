@@ -18,14 +18,13 @@ namespace Zest\Common;
 
 class OperatingSystem
 {
-
     /**
      * Get the operating system name.
      *
      * @since 2.0.3
      *
      * @return string
-    */
+     */
     public static function get()
     {
         if (@\define(PHP_OS_FAMILY)) {
@@ -41,7 +40,7 @@ class OperatingSystem
      * @since 2.0.3
      *
      * @return string
-    */
+     */
     public static function phpOs()
     {
         $os = PHP_OS;

@@ -24,7 +24,7 @@ class Root
      * @since 1.9.1
      *
      * @return string
-    */
+     */
     public function root()
     {
         return '../';
@@ -36,7 +36,7 @@ class Root
      * @since 1.9.7
      *
      * @return object
-    */
+     */
     public function paths()
     {
         $roots = [
