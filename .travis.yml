@@ -3,6 +3,7 @@ language: php
 
 env:
   - PACKAGE_VERSION="3.0.0"
+  - CODECOV_TOKEN="d50c0ae4-de73-4b6e-8e92-35a4c81cfa87"
 
 # Versions of PHP you want your project run with.
 php:
