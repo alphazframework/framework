@@ -20,19 +20,58 @@ use Zest\Contracts\Benchmark as BenchmarkContract;
 
 class Benchmark implements BenchmarkContract
 {
+
+    /**
+     * Store start time.
+     *
+     * @since 2.0.0
+     *
+     * @var int
+    */
     private $start;
+
+    /**
+     * Store end time.
+     *
+     * @since 2.0.0
+     *
+     * @var int
+    */    
     private $end;
 
+    /**
+     * Start time.
+     *
+     * @since 2.0.0
+     *
+     * @return void
+    */
     public function start()
     {
         $this->start = microtime(true);
     }
 
+    /**
+     * end time.
+     *
+     * @since 2.0.0
+     *
+     * @return void
+    */
     public function end()
     {
         $this->end = microtime(true);
     }
 
+    /**
+     * Get the elapsed time.
+     *
+     * @param (int) $round round.
+     *
+     * @since 2.0.0
+     *
+     * @return void
+    */
     public function elapsedTime(int $round = null)
     {
         $time = $this->end - $this->start;
