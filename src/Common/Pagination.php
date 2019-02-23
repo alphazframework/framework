@@ -24,7 +24,7 @@ class Pagination
      * @since 3.0.0
      *
      * @var int
-    */
+     */
     private $totalItems;
 
     /**
@@ -33,7 +33,7 @@ class Pagination
      * @since 3.0.0
      *
      * @var int
-    */
+     */
     private $itemPerPage = 6;
 
     /**
@@ -41,8 +41,8 @@ class Pagination
      *
      * @since 3.0.0
      *
-     * @var int    
-    */
+     * @var int
+     */
     private $current;
 
     /**
@@ -51,7 +51,7 @@ class Pagination
      * @since 3.0.0
      *
      * @var string
-    */
+     */
     private $baseUrl;
 
     /**
@@ -60,7 +60,7 @@ class Pagination
      * @since 3.0.0
      *
      * @var string
-    */
+     */
     private $urlAppend;
 
     /**
@@ -69,7 +69,7 @@ class Pagination
      * @since 3.0.0
      *
      * @var int
-    */
+     */
     private $ulCLass;
 
     /**
@@ -78,7 +78,7 @@ class Pagination
      * @since 3.0.0
      *
      * @var int
-    */
+     */
     private $liClass;
 
     /**
@@ -87,19 +87,19 @@ class Pagination
      * @since 3.0.0
      *
      * @var int
-    */
+     */
     private $aClass;
 
     /**
      * __construct.
      *
-     * @param (int) $items int total count.
-     * @param (int) $perPage item in per page.
-     * @param (int) $current current page.
+     * @param (int)    $items     int total count.
+     * @param (int)    $perPage   item in per page.
+     * @param (int)    $current   current page.
      * @param (string) $urlAppend sub url.
-     * @param (string) $ulClass ul class value.
-     * @param (string) $liClass li class value.
-     * @param (string) $aClass a class value
+     * @param (string) $ulClass   ul class value.
+     * @param (string) $liClass   li class value.
+     * @param (string) $aClass    a class value
      *
      * @since 3.0.0
      */
