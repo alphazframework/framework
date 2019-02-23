@@ -27,13 +27,12 @@ class Maintenance
      */
     public function isMaintain()
     {
-        if (file_exists(route()->root.'maintained')) {
+        if (file_exists(route()->root.'maintained'))
             return true;
-        } elseif (__config()->config->maintenance) {
+        elseif (__config()->config->maintenance)
             return true;
-        } else {
+        else
             return false;
-        }
     }
 
     /**
@@ -71,7 +70,7 @@ class Maintenance
      */
     public function run()
     {
-        if (self::isMaintain()) {
+        if ($this->isMaintain()) {
             throw new \Exception('Sorry, Site is in maintenance mode', 503);
         }
     }
