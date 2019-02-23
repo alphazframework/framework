@@ -19,5 +19,13 @@
         },
         "files":["src/functions/helpers.php"]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Framework\\Tests\\": "Tests/"
+        }
+    },  
+    "config":{
+        "optimize-autoloader":true
+    },      
     "prefer-stable": true
 }

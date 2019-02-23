@@ -16,7 +16,7 @@ before_script:
 
 script:
 - "phpunit -c phpunit.xml"
-  
+
 after_success:
     - bash <(curl -s https://codecov.io/bash)
 
