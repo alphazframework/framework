@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/zestframework/Zest_Framework.svg?branch=master)](https://travis-ci.org/zestframework/Zest_Framework)
 [![StyleCI](https://github.styleci.io/repos/135673638/shield?branch=master)](https://github.styleci.io/repos/135673638)
 [![Latest Stable Version](https://poser.pugx.org/softhub99/zest_framework/v/stable)](https://packagist.org/packages/softhub99/zest_framework)
 [![Latest Unstable Version](https://poser.pugx.org/softhub99/zest_framework/v/unstable)](https://packagist.org/packages/softhub99/zest_framework)
