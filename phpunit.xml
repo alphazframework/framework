@@ -5,8 +5,10 @@
             <directory>Tests</directory>
         </testsuite>
     </testsuites>
-
     <php>
         <const name="PHPUNIT_RUNNING" value="true"/>
     </php>
+	<logging>
+        <log type="coverage-clover" target="clover.xml"/>
+    </logging>    
 </phpunit>
