@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 3.0.0
+ *
  * @license MIT
  */
 
@@ -16,48 +18,90 @@ namespace Zest\Common;
 
 class Pagination
 {
-    /*
-     * Total items
+    /**
+     * Total items.
+     *
+     * @since 3.0.0
+     *
+     * @var int
     */
     private $totalItems;
-    /*
-     * Item per page
+
+    /**
+     * Item per page.
+     *
+     * @since 3.0.0
+     *
+     * @var int
     */
     private $itemPerPage = 6;
-    /*
-    * Current page
+
+    /**
+     * Current page.
+     *
+     * @since 3.0.0
+     *
+     * @var int    
     */
     private $current;
-    /*
-     * Site base url
+
+    /**
+     * Site base url.
+     *
+     * @since 3.0.0
+     *
+     * @var string
     */
     private $baseUrl;
-    /*
-    * Url append
+
+    /**
+     * Url append.
+     *
+     * @since 3.0.0
+     *
+     * @var string
     */
     private $urlAppend;
-    /*
-     * ul tag class
+
+    /**
+     * ul tag class.
+     *
+     * @since 3.0.0
+     *
+     * @var int
     */
     private $ulCLass;
-    /*
-     * li tag class
+
+    /**
+     * li tag class.
+     *
+     * @since 3.0.0
+     *
+     * @var int
     */
     private $liClass;
-    /*
-     * a tag class
+
+    /**
+     * a tag class.
+     *
+     * @since 3.0.0
+     *
+     * @var int
     */
     private $aClass;
 
     /**
      * __construct.
      *
-     * @param  $items int total count
-     *         $perPage item in per page
-     *         $current current page
-     *         $urlAppend sub url
+     * @param (int) $items int total count.
+     * @param (int) $perPage item in per page.
+     * @param (int) $current current page.
+     * @param (string) $urlAppend sub url.
+     * @param (string) $ulClass ul class value.
+     * @param (string) $liClass li class value.
+     * @param (string) $aClass a class value
      *
-     * @return void
+     * @since 3.0.0
      */
     public function __construct($total = 10, $perPage = 6, $current = 1, $urlAppend = '/', $ulCLass = 'pagination', $liClass = 'page-item', $aClass = 'page-link')
     {
@@ -76,7 +120,9 @@ class Pagination
      *
      * @param  $append int sub url to be appended
      *
-     * @return bool
+     * @since 3.0.0
+     *
+     * @return void
      */
     public function setUrlAppend($append)
     {
@@ -86,7 +132,9 @@ class Pagination
     /**
      * Set the current page.
      *
-     * @param  $current int current page
+     * @param (int) $current current page.
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -97,6 +145,8 @@ class Pagination
 
     /**
      * Set the base url.
+     *
+     * @since 3.0.0
      *
      * @return object
      */
@@ -110,7 +160,9 @@ class Pagination
     /**
      * Set the per page item.
      *
-     * @param  $items int per page item
+     * @param(int) $items item per page item.
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -122,7 +174,9 @@ class Pagination
     /**
      * Set the total items.
      *
-     * @param  $items int total count
+     * @param (int) $items total item count.
+     *
+     * @since 3.0.0
      *
      * @return bool
      */
@@ -131,6 +185,15 @@ class Pagination
         return ($items > 0) ? $this->totalItems = $items : false;
     }
 
+    /**
+     * Generate pagination link.
+     *
+     * @param (int) $number page number.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
     public function generateLink($number)
     {
         return $this->baseUrl.$this->urlAppend.$number.' ';
@@ -139,7 +202,9 @@ class Pagination
     /**
      * Generate the pagination.
      *
-     * @return HTML
+     * @since 3.0.0
+     *
+     * @return mixed
      */
     public function pagination()
     {
@@ -162,7 +227,9 @@ class Pagination
     /**
      * __Tostring.
      *
-     * @return void
+     * @since 3.0.0
+     *
+     * @return mixed
      */
     public function __toString()
     {
