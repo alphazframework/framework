@@ -16,6 +16,8 @@
 
 namespace Zest\Common;
 
+use Zest\Site\Site;
+
 class PasswordManipulation
 {
     /**
@@ -60,50 +62,12 @@ class PasswordManipulation
      */
     public function generatePassword()
     {
-        $salts = (new \Zest\Site\Site())->salts(12);
+        $salts = Site::salts(12);
         $special_char1 = '~<>?|:.(),';
         $special_char2 = '!@#$%^&*_+-*+';
         $pass = $special_char2.$salts.$special_char1;
 
         return str_shuffle($pass);
-    }
-
-    /**
-     * Match the password.
-     *
-     * @param $password userPassword , $hash password hash
-     *
-     * @deprecated 3.0.0
-     * @since 2.9.7
-     *
-     * @return bool
-     */
-    public function hashMatched($password, $hash)
-    {
-        return password_verify($password, $hash);
-    }
-
-    /**
-     * Hash the password.
-     *
-     * @param $password userPassword
-     *
-     * @deprecated 3.0.0
-     * @since 2.9.7
-     *
-     * @return bool
-     */
-    public function hashPassword($password)
-    {
-        if (\defined('PASSWORD_ARGON2I')) {
-            $algorithm = PASSWORD_ARGON2I;
-        } elseif (\define('PASSWORD_BCRYPT')) {
-            $algorithm = PASSWORD_BCRYPT;
-        } else {
-            $algorithm = PASSWORD_DEFAULT;
-        }
-
-        return password_hash($password, $algorithm);
     }
 
     /**
