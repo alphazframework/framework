@@ -93,7 +93,7 @@ class Formats
     /**
      * Converts the timestamp in to h:m:s form.
      *
-     * @param (int) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param (int) $time Timestamp 
      *
      * @since 3.0.0
      *
@@ -101,12 +101,11 @@ class Formats
      */
     public function formatsSeconds($seconds)
     {
-        $time = $this->formatTime($seconds);
-        $h = ($$time <= 3600) ? intval($time / 3600) : 0;
-        $time = ($$time <= 3600) ? $time % 3600 : $time;
-        $m = intval($time / 60);
-        $s = intval($time % 60);
+        $h = ($seconds >= 3600) ? (int) round($seconds / 3600) : 0;
+        $time = ($seconds >= 3600) ? $seconds % 3600 : $seconds;
+        $m = (int) $time / 60;
+        $s = (int) $time % 60;
 
-        return $h.':'.$m.':'.$s;
+        return (int)$h.':'.(int)$m.':'.(int)$s;
     }
 }
