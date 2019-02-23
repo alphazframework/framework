@@ -124,7 +124,7 @@ class Input
      * Clean input.
      *
      * @param (string) $input string
-     * @param (string) $type secured,root
+     * @param (string) $type  secured,root
      *
      * @since 1.0.0
      *
