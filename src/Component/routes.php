@@ -20,12 +20,12 @@ class routes extends Component
 {
 
     /**
-     * Load the components
+     * Load the components.
      *
      * @since 1.9.7
      *
      * @return void
-    */
+     */
     public static function loadComs()
     {
         $com = new Component();
