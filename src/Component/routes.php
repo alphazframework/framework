@@ -18,7 +18,6 @@ namespace Zest\Component;
 
 class routes extends Component
 {
-
     /**
      * Load the components.
      *
