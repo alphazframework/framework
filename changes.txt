@@ -117,4 +117,4 @@ Changes:
 93. Added All method in Router class for supporting all requested method.
 94. Added TimeZone class.
 95. Add option to change timeZone of your application.
-	
+96. Added PHPUnit testing.
