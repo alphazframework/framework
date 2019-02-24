@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.9.7
+ *
  * @license MIT
  */
 
@@ -16,11 +18,15 @@ namespace Zest\Component;
 
 class routes extends Component
 {
-    public function __construct()
-    {
-    }
 
-    public function loadComs()
+    /**
+     * Load the components
+     *
+     * @since 1.9.7
+     *
+     * @return void
+    */
+    public static function loadComs()
     {
         $com = new Component();
         $path = '../App/Components/';
