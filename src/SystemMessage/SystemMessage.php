@@ -112,7 +112,7 @@ class SystemMessage implements SystemMessageContract
         $count = (isset($sys_msg['msg'])) ? count($sys_msg['msg']) : 0;
         $msg = (isset($sys_msg['msg'])) ? $sys_msg['msg'] : null;
         $type = (isset($sys_msg['type'])) ? $sys_msg['type'] : null;
-        if ($count !== 1) {
+        if ($count > 1) {
             foreach ($sys_msg as $type => $sys_msg) {
                 if (isset($sys_msg) && isset($type)) {
                     $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$sys_msg.'</div>';
@@ -120,7 +120,7 @@ class SystemMessage implements SystemMessageContract
                     unset($_SESSION['sys_msg']);
                 }
             }
-        } else {
+        } elseif ($count === 1) {
             if (isset($msg) && isset($type)) {
                 $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$msg.'</div>';
                 $msg_data[] = $msg;
