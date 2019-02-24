@@ -77,6 +77,7 @@ class Files
         $this->mkDir('../Storage/Logs');
         $this->mkDir('../Storage/Session');
         $this->mkDir('../Storage/Backup');
+        $this->mkDIr('../Storage/Cache');
     }
 
     /**
