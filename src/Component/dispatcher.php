@@ -13,7 +13,6 @@
  *
  * @license MIT
  */
-
 use Zest\http\Request;
 
 //Dispatch the request
