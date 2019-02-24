@@ -14,6 +14,9 @@
 
 namespace Zest\Whoops;
 
+use \Zest\Common\Logger\Logger;
+use Zest\View\View;
+
 class Whoops
 {
     /**
@@ -211,8 +214,19 @@ class Whoops
     {
         $this->getPreviewCode();
         $stack = $this->stack;
-        $file = 'views/view.php';
-        require $file;
+        //Only for Zest Framework
+        if (__config()->config->show_errors === true) {
+            $file = "views/view.php";
+            require $file;
+        } else {
+            $logger = new Logger();
+            $log = date('Y-m-d').'.log';
+            $message = "Message: ".$stack['message'];
+            $message .= "\n Stack trace: ".$stack['trace'];
+            $message .= "\n Thrwo in ". $stack['file']. " " . $stack['line'];
+            $logger->setCustomFile($log)->error($message);
+            View::View("errors/".$stack['code']);
+        } 
 
         return true;
     }
