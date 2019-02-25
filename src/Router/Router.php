@@ -514,6 +514,7 @@ class Router
      * Parase the url if need.
      *
      * @since 1.0.0
+     *
      * @deprecated 3.0.0
      *
      * @return string The request URL
