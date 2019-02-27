@@ -73,7 +73,7 @@ class DIS
     /**
      * Registers a dependency into the Dependency Injection system.
      *
-     * @param (string) $identifier The identifier for this dependency
+     * @param (string)   $identifier The identifier for this dependency
      * @param (callable) $loader     The loader function for the dependency (to be called when needed)
      *
      * @since 2.0.3

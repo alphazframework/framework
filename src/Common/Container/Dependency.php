@@ -18,7 +18,6 @@ namespace Zest\Common\Container;
 
 class Dependency
 {
-
     /**
      * Store the callable.
      *
@@ -65,7 +64,7 @@ class Dependency
             return $reflector->newInstance();
         }
         // get constructor params
-        $parameters   = $constructor->getParameters();
+        $parameters = $constructor->getParameters();
         $dependencies = $this->getResolveDependencies($parameters, $params);
         // get new instance with dependencies resolved
         return $reflector->newInstanceArgs($dependencies);
@@ -75,7 +74,7 @@ class Dependency
      * Get all dependencies resolved.
      *
      * @param (array) $parameters required params
-     * @param (array) $params constructure args.
+     * @param (array) $params     constructure args.
      *
      * @since 3.0.0
      *
@@ -104,6 +103,7 @@ class Dependency
                 $dependencies[] = $this->get($dependency->name);
             }
         }
+
         return $dependencies;
     }
 
