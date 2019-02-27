@@ -18,22 +18,7 @@ namespace Zest\Common\Container;
 
 class Dependency
 {
-    /**
-     * Store the object.
-     *
-     * @since 2.0.3
-     *
-     * @var object
-     */
-    private $object;
-    /**
-     * Store the singleton.
-     *
-     * @since 2.0.3
-     *
-     * @var bool
-     */
-    private $singleton;
+
     /**
      * Store the callable.
      *
@@ -48,10 +33,78 @@ class Dependency
      *
      * @since 2.0.3
      */
-    public function __construct(callable $loader, $singleton = true)
+    public function __construct($loader)
     {
-        $this->singleton = (bool) $singleton;
         $this->loader = $loader;
+    }
+
+    /**
+     * Resolve single.
+     *
+     * @param $concrete the class.
+     * @param $params constructur args.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public function resolve($concrete, $params)
+    {
+        if ($concrete instanceof \Closure) {
+            return $concrete($this, $params);
+        }
+        $reflector = new \ReflectionClass($concrete);
+        // check if class is instantiable
+        if (!$reflector->isInstantiable()) {
+            throw new \Exception("Class {$concrete} is not instantiable", 500);
+        }
+        // get class constructor
+        $constructor = $reflector->getConstructor();
+        if (is_null($constructor)) {
+            // get new instance from class
+            return $reflector->newInstance();
+        }
+        // get constructor params
+        $parameters   = $constructor->getParameters();
+        $dependencies = $this->getResolveDependencies($parameters, $params);
+        // get new instance with dependencies resolved
+        return $reflector->newInstanceArgs($dependencies);
+    }
+
+    /**
+     * Get all dependencies resolved.
+     *
+     * @param (array) $parameters required params
+     * @param (array) $params constructure args.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public function getResolveDependencies($parameters, $params)
+    {
+        $dependencies = [];
+        foreach ($parameters as $parameter) {
+            // get the type hinted class
+            $dependency = $parameter->getClass();
+            if ($dependency === null) {
+                // check if default value for a parameter is available
+                if ($parameter->isDefaultValueAvailable()) {
+                    // get default value of parameter
+                    $dependencies[] = $parameter->getDefaultValue();
+                } else {
+                    if (empty($params[$parameter->name])) {
+                        throw new \Exception("Can not resolve class dependency {$parameter->name}", 500);
+                    }
+                    $dependencies[] = $params[$parameter->name];
+                }
+            } else {
+                // get dependency resolved
+                $this->loader = $dependency->name;
+                $dependencies[] = $this->get($dependency->name);
+            }
+        }
+        return $dependencies;
     }
 
     /**
@@ -61,16 +114,8 @@ class Dependency
      *
      * @return mixed
      */
-    public function get()
+    public function get($params = [])
     {
-        if (!$this->singleton) {
-            return (object) call_user_func($this->loader);
-        }
-        if ($this->object === null) {
-            $this->object = call_user_func($this->loader);
-            $object = new $this->object();
-        }
-
-        return (object) $object;
+        return $this->resolve(call_user_func($this->loader), $params);
     }
 }

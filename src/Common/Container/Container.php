@@ -73,9 +73,9 @@ class Container
      *
      * @return void
      */
-    public function add($identifier, callable $loader, $singleton = true)
+    public function add($identifier, callable $loader)
     {
-        $this->dependencies[$identifier] = new Dependency($loader, $singleton);
+        $this->dependencies[$identifier] = new Dependency($loader);
     }
 
     /**
@@ -87,13 +87,13 @@ class Container
      *
      * @return object
      */
-    public function get($identifier)
+    public function get($identifier, $params = [])
     {
         if (!isset($this->dependencies[$identifier])) {
             throw new \Exception("Dependency identified by '$identifier' does not exist", 500);
         }
 
-        return $this->dependencies[$identifier]->get();
+        return $this->dependencies[$identifier]->get($params);
     }
 
     /**

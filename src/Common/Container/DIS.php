@@ -65,8 +65,8 @@ class DIS
         $dependencies = $this->dependencies;
         foreach ($this->getDependencies() as $depenci => $value) {
             $this->register($depenci, function () use ($value) {
-                return (object) new $value();
-            }, true);
+                return $value;
+            });
         }
     }
 
@@ -74,16 +74,15 @@ class DIS
      * Registers a dependency into the Dependency Injection system.
      *
      * @param (string) $identifier The identifier for this dependency
-     *                             (callable) $loader     The loader function for the dependency (to be called when needed)
-     *                             (bool) $singleton  Whether or not to return always the same instance
+     * @param (callable) $loader     The loader function for the dependency (to be called when needed)
      *
      * @since 2.0.3
      *
      * @return void
      */
-    public function register($identifier, callable $loader, $singleton = true)
+    public function register($identifier, callable $loader)
     {
-        $this->container->add($identifier, $loader, $singleton);
+        $this->container->add($identifier, $loader);
     }
 
     /**
@@ -95,9 +94,9 @@ class DIS
      *
      * @return mixed
      */
-    public function get($identifier)
+    public function get($identifier, $params = [])
     {
-        return $this->container->get($identifier);
+        return $this->container->get($identifier, $params);
     }
 
     /**
