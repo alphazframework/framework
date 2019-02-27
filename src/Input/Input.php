@@ -135,9 +135,9 @@ class Input
         if (!empty($input)) {
             if (!empty($type)) {
                 if ($type === 'secured') {
-                    return stripslashes(trim(htmlspecialchars($input, ENT_QUOTES)));
+                    return stripslashes(trim(htmlentities($input, ENT_QUOTES | ENT_HTML5, 'UTF-8')));
                 } elseif ($type === 'root') {
-                    return stripslashes(trim(htmlspecialchars(htmlspecialchars(strip_tags($input), ENT_HTML5), ENT_QUOTES)));
+                    return stripslashes(trim(htmlentities(htmlspecialchars(strip_tags($input), ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
                 }
             } else {
                 return false;
