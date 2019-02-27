@@ -16,6 +16,8 @@
 
 namespace Zest\Language;
 
+use Zest\http\Request;
+
 class Language
 {
     /* Use of language codes trait */
@@ -32,7 +34,7 @@ class Language
      */
     public function setLanguage($value)
     {
-        cookie_set('lang', $value, time() + 100000, '/', $_SERVER['SERVER_NAME'], false, false);
+        cookie_set('lang', $value, time() + 100000, '/', (new Request())->getServerName(), false, false);
     }
 
     /**
