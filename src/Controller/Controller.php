@@ -21,21 +21,26 @@ abstract class Controller
     /**
      * Parameters from the matched route.
      *
+     * @since 1.0.0
+     *
      * @var array
      */
     protected $route_params = [];
+
     /**
      * Data form the input.
      *
-     * @var mix-data
+     * @since 3.0.0
+     *
+     * @var mixed
      */
     protected $input;
 
     /**
      * Class constructor.
      *
-     * @param array    $route_params Parameters from the route
-     * @param mix-data $input        Data form the input
+     * @param (array) $route_params Parameters from the route
+     * @param (mixed) $input        Data form the input
      *
      * @since 1.0.0
      *
@@ -47,13 +52,14 @@ abstract class Controller
         $this->input = $input;
     }
 
-    /** Overriding...
+    /** 
+     * Overriding...
      * Magic method called when a non-existent or inaccessible property is
      * write on an object of this class.
      * in this case we trow error.
      *
-     * @param string $name  properity name
-     * @param array  $value properity value
+     * @param (string) $name  properity name
+     * @param (array)  $value properity value
      *
      * @since 1.0.0
      *
@@ -64,12 +70,13 @@ abstract class Controller
         throw new \Exception("You're doing wrong job", 500);
     }
 
-    /** Overriding...
+    /** 
+     *Overriding...
      * Magic method called when a non-existent or inaccessible property is
      * called on an object of this class.
      * in this case we trow error.
      *
-     * @param string $name properity name
+     * @param (string) $name properity name
      *
      * @since 1.0.0
      *
@@ -80,14 +87,15 @@ abstract class Controller
         throw new \Exception("You're doing wrong job", 500);
     }
 
-    /** Overriding...
+    /** 
+     * Overriding...
      * Magic method called when a non-existent or inaccessible method is
      * called on an object of this class. Used to execute before and after
      * filter methods on action methods. Action methods need to be named
      * with an "Action" suffix, e.g. indexAction, showAction etc.
      *
-     * @param string $name Method name
-     * @param array  $args Arguments passed to the method
+     * @param (string) $name Method name
+     * @param (array)  $args Arguments passed to the method
      *
      * @since 1.0.0
      *
@@ -142,6 +150,7 @@ abstract class Controller
      *
      * @since 1.0.0
      *
+     * @return void
      **/
     protected function __wakeup()
     {
