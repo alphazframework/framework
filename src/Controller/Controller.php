@@ -52,7 +52,7 @@ abstract class Controller
         $this->input = $input;
     }
 
-    /** 
+    /**
      * Overriding...
      * Magic method called when a non-existent or inaccessible property is
      * write on an object of this class.
@@ -70,7 +70,7 @@ abstract class Controller
         throw new \Exception("You're doing wrong job", 500);
     }
 
-    /** 
+    /**
      *Overriding...
      * Magic method called when a non-existent or inaccessible property is
      * called on an object of this class.
@@ -87,7 +87,7 @@ abstract class Controller
         throw new \Exception("You're doing wrong job", 500);
     }
 
-    /** 
+    /**
      * Overriding...
      * Magic method called when a non-existent or inaccessible method is
      * called on an object of this class. Used to execute before and after
