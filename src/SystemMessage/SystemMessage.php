@@ -49,7 +49,7 @@ class SystemMessage implements SystemMessageContract
                 } else {
                     $this->type = 'light';
                 }
-                Session::setValue('sys_msg', ['msg'=>$params['msg'], 'type'=>$this->type]);
+                Session::set('sys_msg', ['msg'=>$params['msg'], 'type'=>$this->type]);
 
                 return true;
             }
@@ -108,7 +108,7 @@ class SystemMessage implements SystemMessageContract
      */
     public function view()
     {
-        $sys_msg = Session::getValue('sys_msg');
+        $sys_msg = Session::get('sys_msg');
         $count = (isset($sys_msg['msg'])) ? count($sys_msg['msg']) : 0;
         $msg = (isset($sys_msg['msg'])) ? $sys_msg['msg'] : null;
         $type = (isset($sys_msg['type'])) ? $sys_msg['type'] : null;
@@ -128,7 +128,8 @@ class SystemMessage implements SystemMessageContract
         }
         if (isset($msg_data)) {
             $data = implode('', $msg_data);
-            unset($_SESSION['sys_msg']);
+            Session::delete('sys_msg');
+            //unset($_SESSION['sys_msg']);
 
             return $data;
         }
