@@ -21,7 +21,6 @@ use Zest\http\Request;
 
 class Site
 {
-
     /**
      * Get the Request instance.
      *
