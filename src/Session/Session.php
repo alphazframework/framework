@@ -73,7 +73,7 @@ class Session
     /**
      * Get the session value by providing session name.
      *
-     * @param (string) $name   name of session e.g users
+     * @param (string) $name    name of session e.g users
      * @param (mixed)  $default default value if sesion is not exists
      *
      * @since 1.0.0
@@ -88,7 +88,7 @@ class Session
     /**
      * Set/store value in session.
      *
-     * @param (string) $name name of session e.g users
+     * @param (string) $name  name of session e.g users
      * @param (string) $value value store in session e.g user token
      *
      * @since 1.0.0
@@ -121,8 +121,8 @@ class Session
     /**
      * Get multiple values in session.
      *
-     * @param (array) $keys keys
-     * @param (mixed)  $default default value if sesion is not exists
+     * @param (array) $keys    keys
+     * @param (mixed) $default default value if sesion is not exists
      *
      * @since 3.0.0
      *
