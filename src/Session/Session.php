@@ -65,7 +65,7 @@ class Session
      *
      * @return bool
      */
-    public static function isSession($name)
+    public static function has($name)
     {
         return (isset($_SESSION[$name])) ? true : false;
     }
@@ -73,30 +73,85 @@ class Session
     /**
      * Get the session value by providing session name.
      *
-     * @param (string) $name name of session e.g users
+     * @param (string) $name   name of session e.g users
+     * @param (mixed)  $default default value if sesion is not exists
      *
      * @since 1.0.0
      *
      * @return string
      */
-    public static function getValue($name)
+    public static function get($name, $default = null)
     {
-        return (static::isSession($name)) ? $_SESSION[$name] : false;
+        return (self::has($name)) ? $_SESSION[$name] : $default;
     }
 
     /**
      * Set/store value in session.
      *
      * @param (string) $name name of session e.g users
-     *                       (string) $value value store in session e.g user token
+     * @param (string) $value value store in session e.g user token
      *
      * @since 1.0.0
      *
      * @return string
      */
-    public static function setValue($name, $value)
+    public static function set($name, $value)
     {
-        return (static::isSession($name) !== true) ? $_SESSION[$name] = $value : false;
+        return (self::has($name) !== true) ? $_SESSION[$name] = $value : false;
+    }
+
+    /**
+     * Set/store multiple values in session.
+     *
+     * @param (array) $values keys and values
+     *
+     * @since 3.0.0
+     *
+     * @return object
+     */
+    public function setMultiple($values)
+    {
+        foreach ($values as $value) {
+            self::set($value['key'], $value['value'], $ttl);
+        }
+
+        return self;
+    }
+
+    /**
+     * Get multiple values in session.
+     *
+     * @param (array) $keys keys
+     * @param (mixed)  $default default value if sesion is not exists
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public function getMultiple($keys)
+    {
+        $cache = [];
+        foreach ($keys as $key) {
+            $cache[$key] = self::get($key, $default);
+        }
+
+        return $cache;
+    }
+
+    /**
+     * Delete multiple values in session.
+     *
+     * @param (array) $keys keys
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function getMultiple($keys)
+    {
+        foreach ($keys as $key) {
+            self::delete($key);
+        }
     }
 
     /**
@@ -108,9 +163,9 @@ class Session
      *
      * @return mixed
      */
-    public static function unsetValue(string $name)
+    public static function delete(string $name)
     {
-        if (self::isSession($name)) {
+        if (self::has($name)) {
             unset($_SESSION[$name]);
         }
 
