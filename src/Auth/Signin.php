@@ -79,7 +79,7 @@ class Signin extends Handler
         if (!$user->isLogin()) {
             if ($this->fail() !== true) {
                 $salts = $user->getByWhere('username', $username)[0]['salts'];
-                Session::setValue('user', $salts);
+                Session::set('user', $salts);
                 set_cookie('user', $salts, 31104000, '/', $_SERVER['SERVER_NAME'], false, false);
                 $password_hash = $user->getByWhere('username', $username)[0]['password'];
                 if (Hash::needsRehash($password_hash) === true) {
