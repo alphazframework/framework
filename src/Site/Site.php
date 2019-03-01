@@ -28,7 +28,7 @@ class Site
      * @since 3.0.0
      *
      * @return object
-    */
+     */
     private static function requestInstance()
     {
         return new Request();
