@@ -197,6 +197,6 @@ class User extends Handler implements UserContract
     {
         delete_cookie('user');
 
-        return Session::unsetValue('user');
+        return Session::delete('user');
     }
 }
