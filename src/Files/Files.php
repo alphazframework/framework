@@ -142,7 +142,7 @@ class Files
      *
      * @param (string) $name      Name of dir with path.
      * @param (string) $recursive Recursive mode create: null|true|false.
-     * @param (string)  $chmod    Directory permission on create: default 0755.
+     * @param (string) $chmod     Directory permission on create: default 0755.
      *
      * @since 2.0.0
      *
@@ -352,10 +352,10 @@ class Files
     /**
      * Upload file.
      *
-     * @param (string) $file   File to be uploaded.
-     * @param (string) $target Target where file should be upload.
-     * @param (string)  $fileType Supported => image,media,docs,zip.
-     * @param (int)     $maxSize File size to be allowed.
+     * @param (string) $file     File to be uploaded.
+     * @param (string) $target   Target where file should be upload.
+     * @param (string) $fileType Supported => image,media,docs,zip.
+     * @param (int)    $maxSize  File size to be allowed.
      *
      * @since 3.0.0
      *
@@ -431,11 +431,11 @@ class Files
     /**
      * Upload files.
      *
-     * @param (array) $files   Files to be uploaded.
-     * @param (string) $target Target where file should be upload.
-     * @param (string)  $fileType Supported => image,media,docs,zip.
-     * @param (int)     $count Number of file count.
-     * @param (int)     $maxSize File size to be allowed.
+     * @param (array)  $files    Files to be uploaded.
+     * @param (string) $target   Target where file should be upload.
+     * @param (string) $fileType Supported => image,media,docs,zip.
+     * @param (int)    $count    Number of file count.
+     * @param (int)    $maxSize  File size to be allowed.
      *
      * @since 3.0.0
      *
