@@ -125,14 +125,14 @@ if (!function_exists('set_cookie')) {
     {
         $cookie = new Zest\Cookies\Cookies();
 
-        return $cookie->set(['name'=>$name, 'value'=>$value, 'expire'=> time() + $expire, 'path'=> $path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly]);
+        return $cookie->set($name, $value, time() + $expire, $path, $domain, $secure, $httponly);
     }
 }
 function __set_cookie($name, $value, $expire, $path, $domain, $secure, $httponly)
 {
     $cookie = new Zest\Cookies\Cookies();
 
-    return $cookie->set(['name'=>$name, 'value'=>$value, 'expire'=> time() + $expire, 'path'=> $path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly]);
+    return $cookie->set($name, $value, time() + $expire, $path, $domain, $secure, $httponly);
 }
 if (!function_exists('get_cookie')) {
     function get_cookie($name)
