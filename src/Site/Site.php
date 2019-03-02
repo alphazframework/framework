@@ -102,7 +102,7 @@ class Site
     /**
      * Redirect to another page.
      *
-     * @param (string) $url url to be redirected
+     * @param (string) $url url to be redirected.
      *
      * @since 1.0.0
      *
@@ -138,7 +138,7 @@ class Site
     /**
      * Get all URL parts based on a / seperator.
      *
-     * @param (string) $url URI to segment
+     * @param (string) $url URI to segment.
      *
      * @since 1.0.0
      *
@@ -158,6 +158,8 @@ class Site
     /**
      * Get first item segment.
      *
+     * @param (mixed) $segments Url segments.
+     *
      * @since 1.0.0
      *
      * @return string
@@ -175,6 +177,8 @@ class Site
 
     /**
      * Get last item segment.
+     *
+     * @param (mixed) $segments Url segments.
      *
      * @since 1.0.0
      *
@@ -194,7 +198,7 @@ class Site
     /**
      * generate salts for files.
      *
-     * @param string $length length of salts
+     * @param (int) $length Length of salts.
      *
      * @since 1.0.0
      *
