@@ -79,7 +79,7 @@ class Handler
      *
      * @return resource
      */
-    public function all()
+    public static function all()
     {
         return static::$error;
     }
