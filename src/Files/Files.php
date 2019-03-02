@@ -83,7 +83,7 @@ class Files
     /**
      * Change the default chmod.
      *
-     * @param $chomd valid chmod
+     * @param (mixed) $chomd Valid chmod
      *
      * @since 3.0.0
      *
@@ -95,9 +95,9 @@ class Files
     }
 
     /**
-     * Create zest system dir.
+     * Create recurisve dir.
      *
-     * @param $value recursive status true|false
+     * @param (mixed) $value recursive status true|false.
      *
      * @since 3.0.0
      *
@@ -111,7 +111,7 @@ class Files
     /**
      * Add the mine type.
      *
-     * @param $type correct mine type.
+     * @param (string) $type Correct mine type.
      *
      * @since 3.0.0
      *
@@ -125,8 +125,8 @@ class Files
     /**
      * Add the extemsio.
      *
-     * @param $type correct type.
-     *        $sub extensions
+     * @param (string) $type Correct type.
+     * @param (string) $sub  Extensions/
      *
      * @since 3.0.0
      *
@@ -140,9 +140,9 @@ class Files
     /**
      * Make the dir.
      *
-     * @param $name name of dir with path.
-     *        $recursive recursive mode create: null|true|false.
-     *        $chmod directory permission on create: default 0755
+     * @param (string) $name      Name of dir with path.
+     * @param (string) $recursive Recursive mode create: null|true|false.
+     * @param (string)  $chmod    Directory permission on create: default 0755.
      *
      * @since 2.0.0
      *
@@ -164,8 +164,8 @@ class Files
     /**
      * Change the premission.
      *
-     * @param $source name of file or directory with path.
-     *        $pre valid premission
+     * @param (string) $source Name of file or directory with path.
+     * @param (mixed)  $pre    Valid premission.
      *
      * @since 2.0.0
      *
@@ -183,10 +183,10 @@ class Files
     /**
      * Change the owner of an array of files.
      *
-     * @param $source name of file or directory with path.
-     *        $target target directory
-     *        $files (array) files to be copy
-     *        $time  The new owner user name
+     * @param (string) $source Name of file or directory with path.
+     * @param (string) $target Target directory.
+     * @param (array)  $files  Files to be copy.
+     * @param (mixed)  $user   he new owner user name.
      *
      * @since 3.0.0
      *
@@ -204,11 +204,11 @@ class Files
     /**
      * Sets access and modification time of file.
      *
-     * @param $source name of file or directory with path.
-     *        $target target directory
-     *        $files (array) files to be copy
-     *        $time  The touch time as a Unix timestamp
-     *        $atime The access time as a Unix timestamp
+     * @param (string) $source Name of file or directory with path.
+     * @param (string) $target Target directory.
+     * @param (array)  $files  Files to be copy.
+     * @param (int)    $time   The touch time as a Unix timestamp.
+     * @param (int)    $atime  The access time as a Unix timestamp.
      *
      * @since 3.0.0
      *
@@ -229,9 +229,9 @@ class Files
     /**
      * Copy files.
      *
-     * @param $source name of file or directory with path.
-     *        $target target directory
-     *        $files (array) files to be copy
+     * @param (string) $source Name of file or directory with path.
+     * @param (string) $target Target directory.
+     * @param (array)  $files  Files to be copy.
      *
      * @since 3.0.0
      *
@@ -250,9 +250,9 @@ class Files
     /**
      * Move files.
      *
-     * @param $source name of file or directory with path.
-     *        $target target directory
-     *        $files (array) files to be move
+     * @param (string) $source Name of file or directory with path.
+     * @param (string) $target Target directory.
+     * @param (array)  $files  Fles to be move.
      *
      * @since 3.0.0
      *
@@ -271,7 +271,7 @@ class Files
     /**
      * Delete files.
      *
-     * @param $file name of file with path.
+     * @param (string) $file Name of file with path.
      *
      * @since 3.0.0
      *
@@ -289,9 +289,9 @@ class Files
     /**
      * Copy dirs.
      *
-     * @param $source directory with path.
-     *        $target target directory
-     *        $files (array) dirs to be copy
+     * @param (string) $source Directory with path.
+     * @param (string) $target Target directory.
+     * @param (array)  $dirs   Dirs to be copy.
      *
      * @since 3.0.0
      *
@@ -312,9 +312,9 @@ class Files
     /**
      * Move dirs.
      *
-     * @param $source directory with path.
-     *        $target target directory
-     *        $dir (array) dir to be move
+     * @param (string) $source Directory with path.
+     * @param (string) $target Target directory.
+     * @param (array)  $dirs   Dirs to be copy.
      *
      * @since 3.0.0
      *
@@ -334,7 +334,7 @@ class Files
     /**
      * Delete dirs.
      *
-     * @param $dirs Directory with path.
+     * @param (array) $dirs Directory with path.
      *
      * @since 3.0.0
      *
@@ -352,14 +352,14 @@ class Files
     /**
      * Upload file.
      *
-     * @param $file file to be uploaded.
-     *        $target target where file should be upload
-     *        $fileType supported => image,media,docs,zip
-     *        $maxSize file size to be allowed
+     * @param (string) $file   File to be uploaded.
+     * @param (string) $target Target where file should be upload.
+     * @param (string)  $fileType Supported => image,media,docs,zip.
+     * @param (int)     $maxSize File size to be allowed.
      *
      * @since 3.0.0
      *
-     * @return void
+     * @return mixed
      */
     public function fileUpload($file, $target, $fileType, $maxSize = 7992000000)
     {
@@ -431,10 +431,11 @@ class Files
     /**
      * Upload files.
      *
-     * @param $files (array) files to be uploaded.
-     *        $target target where file should be upload
-     *        $fileType supported => image,media,docs,zip
-     *        $maxSize file size to be allowed
+     * @param (array) $files   Files to be uploaded.
+     * @param (string) $target Target where file should be upload.
+     * @param (string)  $fileType Supported => image,media,docs,zip.
+     * @param (int)     $count Number of file count.
+     * @param (int)     $maxSize File size to be allowed.
      *
      * @since 3.0.0
      *
