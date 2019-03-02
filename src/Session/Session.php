@@ -130,12 +130,12 @@ class Session
      */
     public function getMultiple($keys)
     {
-        $cache = [];
+        $value = [];
         foreach ($keys as $key) {
-            $cache[$key] = self::get($key, $default);
+            $value[$key] = self::get($key, $default);
         }
 
-        return $cache;
+        return $value;
     }
 
     /**
