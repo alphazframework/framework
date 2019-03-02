@@ -21,37 +21,38 @@ class Cookies
     /**
      * Set the cookie value.
      *
-     * @param (string) $name Name of cookie.
-     * @param (mixed)  $value Value to store in cookie.
-     * @param (expire) $expire TTL.
-     * @param (string) $path Path.
-     * @param (domain) $domain Domain.
-     * @param (bool)   $secure true | false.
+     * @param (string) $name     Name of cookie.
+     * @param (mixed)  $value    Value to store in cookie.
+     * @param (expire) $expire   TTL.
+     * @param (string) $path     Path.
+     * @param (domain) $domain   Domain.
+     * @param (bool)   $secure   true | false.
      * @param (bool)   $httponly true | false.
      *
      * @since 1.0.0
      *
      * @return bool
      */
-
     public function set(string $name, $value, $expire, $path, $domain, bool $secure, bool $httponly)
     {
-        $name = preg_match('/[=,; \t\r\n\013\014]/', $name) ? rand(1,25) : $name;
-        if ($expire instanceof \DateTime)
+        $name = preg_match('/[=,; \t\r\n\013\014]/', $name) ? rand(1, 25) : $name;
+        if ($expire instanceof \DateTime) {
             $expire = $expire->format('U');
-        elseif (preg_match('~\D~', $expire)) 
+        } elseif (preg_match('~\D~', $expire)) {
             $expire = strtotime($expire);
-        else 
+        } else {
             $expire = $expire;
+        }
         $path = empty($path) ? '/' : $path;
-        if (!$this->has($name)) 
+        if (!$this->has($name)) {
             return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
-        else
-            return false;        
+        } else {
+            return false;
+        }
     }
 
     /**
-     * Set the multiple cookies value
+     * Set the multiple cookies value.
      *
      * @param (array) $array valid array.
      *
@@ -62,7 +63,7 @@ class Cookies
     public function setMultiple(array $array)
     {
         foreach ($array as $key) {
-            $this->set($key[0],$key[1],$key[2],$key[3],$key[4],$key[5],$key[6]);
+            $this->set($key[0], $key[1], $key[2], $key[3], $key[4], $key[5], $key[6]);
         }
 
         return $this;
@@ -80,10 +81,11 @@ class Cookies
     public function has($name)
     {
         if (isset($name) && !empty($name)) {
-            if (isset($_COOKIE[$name]))
+            if (isset($_COOKIE[$name])) {
                 return true;
-            else
+            } else {
                 return false;
+            }
         } else {
             return false;
         }
@@ -92,8 +94,8 @@ class Cookies
     /**
      * Get the cookie value.
      *
-     * @param (sring) $name of cookie
-     * @param (mixed)  $default default value if cookie is not exists
+     * @param (sring) $name    of cookie
+     * @param (mixed) $default default value if cookie is not exists
      *
      * @since 1.0.0
      *
@@ -115,8 +117,8 @@ class Cookies
     /**
      * Get multiple values from cookie.
      *
-     * @param (array) $keys name
-     * @param (mixed)  $default default value if cookie is not exists
+     * @param (array) $keys    name
+     * @param (mixed) $default default value if cookie is not exists
      *
      * @since 3.0.0
      *
@@ -126,7 +128,7 @@ class Cookies
     {
         $value = [];
         foreach ($keys as $key) {
-           $this->has($key) ? $value[$key] = $this->get($key, $default) : null;
+            $this->has($key) ? $value[$key] = $this->get($key, $default) : null;
         }
 
         return $value;
@@ -145,7 +147,8 @@ class Cookies
     {
         if (isset($name) && !empty($name)) {
             if ($this->has($name)) {
-                setcookie($name, '', time() - 3600,'/');
+                setcookie($name, '', time() - 3600, '/');
+
                 return true;
             } else {
                 return false;
@@ -169,5 +172,5 @@ class Cookies
         foreach ($keys as $key) {
             $this->delete($key);
         }
-    }    
+    }
 }
