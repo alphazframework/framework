@@ -167,14 +167,14 @@ if (!function_exists('is_cookie')) {
     {
         $cookie = new Zest\Cookies\Cookies();
 
-        return $cookie->isCookie($name);
+        return $cookie->has($name);
     }
 }
 function __is_cookie($name)
 {
     $cookie = new Zest\Cookies\Cookies();
 
-    return $cookie->isCookie($name);
+    return $cookie->has($name);
 }
 if (!function_exists('add_system_message')) {
     function add_system_message($msg, $type = null)
