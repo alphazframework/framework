@@ -46,8 +46,8 @@ class FileHandling
     /**
      * Open the file.
      *
-     * @param $name => name of file
-     *        $mode => mode of file
+     * @param (string) $name Name of file
+     * @param (string) $mode Mode of file
      *
      * @since 3.0.0
      *
@@ -65,11 +65,11 @@ class FileHandling
     /**
      * Read the file.
      *
-     * @param $file file that to be read
+     * @param (string) $file File that to be read
      *
      * @since 3.0.0
      *
-     * @return file
+     * @return mixed
      */
     public function read($file)
     {
@@ -79,7 +79,7 @@ class FileHandling
     /**
      * Write on file.
      *
-     * @param $data data that you want write on file
+     * @param (mixed) $data Data that you want write on file
      *
      * @since 3.0.0
      *
@@ -93,7 +93,7 @@ class FileHandling
     /**
      * Delete the file.
      *
-     * @param $file file to be deleted
+     * @param (string) $file File to be deleted
      *
      * @since 3.0.0
      *
