@@ -1,4 +1,4 @@
-Changes:
+## Zest Framework - V3.0.0 {Dev} 
 1. Update site class (fix issue in redirect method prev parameter not working)
 2. Update site class (fix double slashes after base url)
 3. Add sqlite drive
@@ -56,47 +56,45 @@ Changes:
 48. Added callback in Router for creating protected page according to specific certia
    - know issue: its will not work if cache is enable.
 49. Fix sessionUnset() method to delete all sessions.
-50. Update Cryptography class
-51. Update Cryptography system.
-52. Update systemMessage class fix serveral issues.
-53. Update Session class fix session not deleting issue.
-54. Update Pagination Ssystem 
+50. Update systemMessage class fix serveral issues.
+51. Update Session class fix session not deleting issue.
+52. Update Pagination Ssystem 
     - Allow developers to add custum class to ul,li and a tag.
-55. Update Language Class.
-56. Update Root class fix typos.
-57. Delete Language Class form Component 
+53. Update Language Class.
+54. Update Root class fix typos.
+55. Delete Language Class form Component 
 	- Now you can use printl function in component as well
-58. Update PasswordManipulation class
+56. Update PasswordManipulation class
     - Added method for set custum password length
-59. Added HTTP Request library more will added soon.
-60. Update Router class using http\Request.
-61. Add HTTP Redirect class.
-62. Add HTTP Response class.
-63. Update HTTP Response class.
-64. Added HTTP Message class.
-65. Added HTTP Headers classs.
-66. Added HTTP URI class.
-67. Update Files Class.
-    - Add touch method for (Sets access and modification time of file).
+57. Added HTTP Request library more will added soon.
+58. Update Router class using http\Request.
+59. Add HTTP Redirect class.
+60. Add HTTP Response class.
+61. Update HTTP Response class.
+62. Added HTTP Message class.
+63. Added HTTP Headers classs.
+64. Added HTTP URI class.
+65. Update Files Class.
+    	- Add touch method for (Sets access and modification time of file).
 	- Add chown method for (Change the owner of files).
-68. Added HTTP Client Classes.
-69. Complete HTTP Package.
-70. Remove Useless CSRF class.
-71. Remove function is_ajax() form helpers.php.
-72. Update Input class remove csrf methods.
-73. Added Middleware supports in Routes.
-74. Added few more rests routes OPTIONS, TRACE and CONNECT.
-75. Added Middleware supports in Components.
-76. Update Logger class add setCustumFile() method.
-77. Update Expection class use Logger in expection for creating log file.
-78. Update input Class (code optimization) => https://github.com/Softhub99/Zest/issues/24
-79. Update Dependency Injection system.
+63. Added HTTP Client Classes.
+67. Complete HTTP Package.
+68. Remove Useless CSRF class.
+69. Remove function is_ajax() form helpers.php.
+70. Update Input class remove csrf methods.
+71. Added Middleware supports in Routes.
+73. Added few more rests routes OPTIONS, TRACE and CONNECT.
+73. Added Middleware supports in Components.
+74. Update Logger class add setCustumFile() method.
+75. Update Expection class use Logger in expection for creating log file.
+76. Update input Class (code optimization)
+77. Update Dependency Injection system.
     - now you can use container() and __container() function to access IOC class.
-80. Added Configuraion class.
-81. Update Zest Classes using new config file.
-82. Added destroy method in session class for destroy all sessions.
-83. Added close() method in FileHandling class.
-84. Added New cache System old system is deprecated.
+78. Added Configuraion class.
+79. Update Zest Classes using new config file.
+80. Added destroy method in session class for destroy all sessions.
+81. Added close() method in FileHandling class.
+82. Added New cache System old system is deprecated.
 	- Supported Adapters
 	  A. APC
 	  B. APCU
@@ -105,18 +103,18 @@ Changes:
 	  E. Memcached
 	  F. Redis
 	  G. Session
-85 Update router cache and router middleware.	  
-86. Remove (48) Callbacks form router.
-87. Added Hashing System.
-88. Deprecated passwordManipulation class hashMatched and hashPassword method.
-89. Added Encryption Class.
+83 Update router cache and router middleware.	  
+84. Remove (48) Callbacks form router.
+85. Added Hashing System.
+86. Deprecated passwordManipulation class hashMatched and hashPassword method.
+87. Added Encryption Class.
 	- Support Sodium and OpenSsl encryption.
-90. Added LanguageCodes Trait.
-91. Added Whoops custum library for show more friendly error log on display if turn on.
-92. Added Class aliases support.
-93. Added All method in Router class for supporting all requested method.
-94. Added TimeZone class.
-95. Add option to change timeZone of your application.
-96. Added PHPUnit testing.
-97. Added Constructur args support in container class.
-98. Update Session & Cookie class allow developer to set/delete/get Multiple values.
+88. Added LanguageCodes Trait.
+89. Added Whoops custum library for show more friendly error log on display if turn on.
+90. Added Class aliases support.
+91. Added All method in Router class for supporting all requested method.
+92. Added TimeZone class.
+93. Add option to change timeZone of your application.
+94. Added PHPUnit testing.
+95. Added Constructur args support in container class.
+96. Update Session & Cookie class allow developer to set/delete/get Multiple values.
