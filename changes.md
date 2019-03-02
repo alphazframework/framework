@@ -119,3 +119,4 @@ Changes:
 95. Add option to change timeZone of your application.
 96. Added PHPUnit testing.
 97. Added Constructur args support in container class.
+98. Update Session & Cookie class allow developer to set/delete/get Multiple values.
