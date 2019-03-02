@@ -19,161 +19,71 @@ namespace Zest\Cookies;
 class Cookies
 {
     /**
-     * Name of cookie.
-     *
-     * @since 1.0.0
-     *
-     * @var string
-     */
-    private $name;
-
-    /**
-     * Value of cookie.
-     *
-     * @since 1.0.0
-     *
-     * @var string
-     */
-    private $value;
-
-    /**
-     * Expire of cookie.
-     *
-     * @since 1.0.0
-     *
-     * @var date/time
-     */
-    private $expire;
-
-    /**
-     * Domain of cookie.
-     *
-     * @since 1.0.0
-     *
-     * @var string
-     */
-    private $domain;
-    /**
-     * Path of cookie.
-     *
-     * @since 1.0.0
-     *
-     * @var string
-     */
-    private $path;
-    /**
-     * Secure of cookie.
-     *
-     * @since 1.0.0
-     *
-     * @var boo;
-     */
-    private $secure;
-
-    /**
-     * HttpOnly of cookie.
-     *
-     * @since 1.0.0
-     *
-     * @var bool
-     */
-    private $httponly;
-
-    /**
-     * __Construct set the default values.
-     *
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->expire = 0;
-        $this->domain = 'localhost';
-        $this->path = '/';
-        $this->secure = true;
-        $this->httponly = false;
-    }
-
-    /**
      * Set the cookie value.
      *
-     * @param
-     * $name of cookie
-     * $value of cookie
-     * $expire of cookie
-     * $domain of cookie
-     * $secure of cookie
-     * $httponly of cookie
+     * @param (string) $name Name of cookie.
+     * @param (mixed)  $value Value to store in cookie.
+     * @param (expire) $expire TTL.
+     * @param (string) $path Path.
+     * @param (domain) $domain Domain.
+     * @param (bool)   $secure true | false.
+     * @param (bool)   $httponly true | false.
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public function set($params)
-    {
-        if (is_array($params)) {
-            if (preg_match("/[=,; \t\r\n\013\014]/", $params['name'])) {
-                $this->name = rand(1, 25);
-            } else {
-                $this->name = $params['name'];
-            }
-            if ($params['expire'] instanceof \DateTime) {
-                $expire = $expire->format('U');
-            } elseif (!is_numeric($params['expire'])) {
-                $expire = strtotime($params['expire']);
-            } else {
-                $this->expire = $params['expire'];
-            }
-            $this->value = $params['value'];
-            $this->domain = $params['domain'];
-            $this->path = empty($path) ? '/' : $params['path'];
-            $this->secure = (bool) $params['secure'];
-            $this->httponly = (bool) $params['httponly'];
 
-            return $this->setCookie();
-        } else {
-            return false;
-        }
+    public function set(string $name, $value, $expire, $path, $domain, bool $secure, bool $httponly)
+    {
+        $name = preg_match('/[=,; \t\r\n\013\014]/', $name) ? rand(1,25) : $name;
+        if ($expire instanceof \DateTime)
+            $expire = $expire->format('U');
+        elseif (preg_match('~\D~', $expire)) 
+            $expire = strtotime($expire);
+        else 
+            $expire = $expire;
+        $path = empty($path) ? '/' : $path;
+        if (!$this->has($name)) 
+            return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
+        else
+            return false;        
     }
 
     /**
-     * Set the cookie value.
+     * Set the multiple cookies value
      *
-     * @since 1.0.0
+     * @param (array) $array valid array.
      *
-     * @return bool
+     * @since 3.0.0
+     *
+     * @return object
      */
-    public function setCookie()
+    public function setMultiple(array $array)
     {
-        if (!empty($this->name) && !empty($this->value) && !empty($this->expire) && !empty($this->path) && !empty($this->domain) && is_bool($this->secure) && is_bool($this->httponly)) {
-            if (static::isCookie($this->name) === false) {
-                return setcookie($this->name, $this->value, $this->expire, $this->path, $this->domain, $this->secure, $this->httponly);
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+        foreach ($array as $key) {
+            $this->set($key[0],$key[1],$key[2],$key[3],$key[4],$key[5],$key[6]);
         }
+
+        return $this;
     }
 
     /**
-     * Check if cookie set or not.
+     * Determine if cookie set or not.
      *
-     * @param  $name of cookie
+     * @param (string) $name of cookie
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public function isCookie($name)
+    public function has($name)
     {
         if (isset($name) && !empty($name)) {
-            if (isset($_COOKIE[$name])) {
+            if (isset($_COOKIE[$name]))
                 return true;
-            } else {
+            else
                 return false;
-            }
         } else {
             return false;
         }
@@ -182,17 +92,61 @@ class Cookies
     /**
      * Get the cookie value.
      *
-     * @param  $name of cookie
+     * @param (sring) $name of cookie
+     * @param (mixed)  $default default value if cookie is not exists
      *
      * @since 1.0.0
      *
-     * @return string | boolean
+     * @return mixed
      */
-    public function get($name)
+    public function get($name, $default = null)
     {
         if (isset($name) && !empty($name)) {
-            if ($this->isCookie($name)) {
+            if ($this->has($name)) {
                 return $_COOKIE[$name];
+            } else {
+                return $default;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Get multiple values from cookie.
+     *
+     * @param (array) $keys name
+     * @param (mixed)  $default default value if cookie is not exists
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public function getMultiple($keys, $default = null)
+    {
+        $value = [];
+        foreach ($keys as $key) {
+           $this->has($key) ? $value[$key] = $this->get($key, $default) : null;
+        }
+
+        return $value;
+    }
+
+    /**
+     * Delete the cookie.
+     *
+     * @param (string) $name of cookie
+     *
+     * @since 1.0.0
+     *
+     * @return bool
+     */
+    public function delete($name)
+    {
+        if (isset($name) && !empty($name)) {
+            if ($this->has($name)) {
+                setcookie($name, '', time() - 3600,'/');
+                return true;
             } else {
                 return false;
             }
@@ -202,28 +156,18 @@ class Cookies
     }
 
     /**
-     * Delete the cookie.
+     * Delete multiple cookies.
      *
-     * @param  $name of cookie
+     * @param (array) $keys keys
      *
-     * @since 1.0.0
+     * @since 3.0.0
      *
-     * @return bool
+     * @return void
      */
-    public function delete($name)
+    public function deleteMultiple($keys)
     {
-        if (isset($name) && !empty($name)) {
-            if (static::isCookie($name)) {
-                $this->name = $name;
-                $this->value = $this->get($name);
-                setcookie($this->name, $this->value, time() - 3600000, $this->path, $_SERVER['SERVER_NAME']);
-
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+        foreach ($keys as $key) {
+            $this->delete($key);
         }
-    }
+    }    
 }
