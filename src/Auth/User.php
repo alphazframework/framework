@@ -171,7 +171,7 @@ class User extends Handler implements UserContract
      */
     public function sessionUser()
     {
-        return (Session::isSession('user')) ? Session::getValue('user') : false;
+        return (Session::has('user')) ? Session::get('user') : false;
     }
 
     /**
@@ -183,7 +183,7 @@ class User extends Handler implements UserContract
      */
     public function isLogin()
     {
-        return (Session::isSession('user')) ? true : false;
+        return (Session::has('user')) ? true : false;
     }
 
     /**
