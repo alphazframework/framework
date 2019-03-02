@@ -9,6 +9,8 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
+ * @since 1.9.7
+ *
  * @license MIT
  */
 
@@ -47,7 +49,7 @@ class Root
             'locale'       => $this->root().'App/Locale/',
             'middleware'   => $this->root().'App/Middleware/',
             'models'       => $this->root().'App/Models/',
-            'views'        => $this->root().'App/Views/',
+            'views'        => __config()->config->theme_path,
             //components
             'com' => $this->root().'App/Components/',
             //config
@@ -59,9 +61,10 @@ class Root
             //Storage
             'storage'         => $this->root().'Storage/',
             'storage_backtup' => $this->root().'Storage/Backup/',
-            'storage_data'    => $this->root().'Storage/Data/',
+            'storage_data'    => __config()->config->data_dir,
+            'cache_dir'       => __config()->config->cache_dir,
             'storage_logs'    => $this->root().'Storage/Logs/',
-            'storage_session' => $this->root().'Storage/Session/',
+            'storage_session' => __config()->config->session_path,
         ];
 
         return Conversion::arrayObject($roots);
