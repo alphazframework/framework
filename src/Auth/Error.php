@@ -65,7 +65,7 @@ class Error
      *
      * @return array
      */
-    public function all()
+    public static function all()
     {
         return static::$errors;
     }
