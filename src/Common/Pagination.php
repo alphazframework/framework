@@ -211,10 +211,10 @@ class Pagination
         $pageCount = ceil($this->totalItems / $this->itemPerPage);
         if ($this->current >= 1 && $this->current <= $pageCount) {
             $current_range = [($this->current - 2 < 1 ? 1 : $this->current - 2), ($this->current + 2 > $pageCount ? $pageCount : $this->current + 2)];
-            $first_page = $this->current > 5 ? '<li><a href="'.$this->baseUrl.$this->urlAppend.'1'.'">'.printl('first:page:pagination').'</a></li>'.($this->current < 5 ? ', ' : ' <li class="'.$this->liClass.'"><a href="#!" class="'.$this->aClass.' disable" disabled >...</a></li> ') : null;
+            $first_page = $this->current > 5 ? '<li><a href="'.$this->baseUrl.$this->urlAppend.'1'.'" class="'.$this->aClass.'">'.printl('first:page:pagination').'</a></li>'.($this->current < 5 ? ', ' : ' <li class="'.$this->liClass.'"><a href="#!" class="'.$this->aClass.' disable" disabled >...</a></li> ') : null;
             $last_page = $this->current < $pageCount - 2 ? ($this->current > $pageCount - 4 ? ', ' : ' <li class="'.$this->liClass.' disable"><a href="#!" class="'.$this->aClass.'" disabled >...</a></li>  ').'<li><a href="'.$this->baseUrl.$this->urlAppend.$pageCount.'">'.printl('last:page:pagination').'</a></li>' : null;
-            $previous_page = $this->current > 1 ? '<li class="'.$this->liClass.'"><a class="'.$this->aClass.'"href="'.$this->baseUrl.$this->urlAppend.($this->current - 1).'">Previous</a></li> | ' : null;
-            $next_page = $this->current < $pageCount ? ' | <li class="'.$this->liClass.'"><a class="'.$this->aClass.'" href="'.$this->baseUrl.$this->urlAppend.($this->current + 1).'">Next</a></li>' : null;
+            $previous_page = $this->current > 1 ? '<li class="'.$this->liClass.'"><a class="'.$this->aClass.'"href="'.$this->baseUrl.$this->urlAppend.($this->current - 1).'">Previous</a></li>  ' : null;
+            $next_page = $this->current < $pageCount ? '  <li class="'.$this->liClass.'"><a class="'.$this->aClass.'" href="'.$this->baseUrl.$this->urlAppend.($this->current + 1).'">Next</a></li>' : null;
             for ($x = $current_range[0]; $x <= $current_range[1]; $x++) {
                 $pages[] = '<li class="'.$this->liClass.'"active"><a class="'.$this->aClass.'" href="'.$this->baseUrl.$this->urlAppend.$x.'" '.($x == $this->current ? 'class="'.$this->aClass.'"' : '').'>'.$x.'</a></li>';
             }
