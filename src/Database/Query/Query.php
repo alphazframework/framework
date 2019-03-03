@@ -154,7 +154,7 @@ class Query
             } else {
                 $order_by = '';
             }
-            $query = "SELECT {$distinct} {$columns} FROM        {$params['table']} {$join} {$wheres} {$order_by} {$limit} ;";
+            $query = "SELECT {$distinct} {$columns} FROM {$params['table']} {$join} {$wheres} {$order_by} {$limit} ;";
             if (isset($params['debug']) and strtolower($params['debug']) === 'on') {
                 var_dump($query);
             }
