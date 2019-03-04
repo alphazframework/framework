@@ -121,7 +121,7 @@ class View
         }
     }
 
-    public function views($name, $file, array $args = [])
+    public static function views($name, $file, array $args = [])
     {
         if (!empty($file)) {
             extract($args, EXTR_SKIP);
@@ -137,7 +137,7 @@ class View
         }
     }
 
-    public function view($name, $file, array $args = [], $isMinify = true)
+    public static function view($name, $file, array $args = [], $isMinify = true)
     {
         if ($isMinify) {
             $minify = new Minify();
