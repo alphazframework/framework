@@ -499,11 +499,13 @@ class Router
      * Get the namespace for the controller class. The namespace defined in the
      * route parameters is added if present.
      *
+     * @param (string) $namespace valid namespace
+     *
      * @since 1.0.0
      *
      * @return string The request URL
      */
-    protected function getNamespace()
+    protected function getNamespace($namespace = null)
     {
         (!array_key_exists('namespace', $this->params)) ? $namespace = 'App\Controllers\\' : $namespace .= $this->params['namespace'].'\\';
 
