@@ -41,7 +41,6 @@ class routes extends Component
                 if ($config['status'] === true) {
                     require_once route()->com.$scans.'/routes.php';
                 }
-
             }
         }
         require_once 'dispatcher.php';
