@@ -16,6 +16,8 @@
 
 namespace Zest\Component;
 
+use Zest\Files\FileHandling;
+
 class routes extends Component
 {
     /**
@@ -31,7 +33,16 @@ class routes extends Component
         $path = '../App/Components/';
         $disk_scan = array_diff(scandir($path), ['..', '.']);
         foreach ($disk_scan as $scans) {
-            require_once '../App/Components/'.$scans.'/routes.php';
+            $configFile = route()->com . $scans . '/component.json';
+            if (file_exists($configFile)) {
+                $file = new FileHandling();
+                $c = $file->open($configFile,'readOnly')->read($configFile);
+                $config = json_decode($c, true);
+                if ($config['status'] === true) {
+                    require_once route()->com .$scans.'/routes.php';
+                }
+
+            }
         }
         require_once 'dispatcher.php';
     }
