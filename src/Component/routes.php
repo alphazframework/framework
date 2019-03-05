@@ -33,13 +33,13 @@ class routes extends Component
         $path = '../App/Components/';
         $disk_scan = array_diff(scandir($path), ['..', '.']);
         foreach ($disk_scan as $scans) {
-            $configFile = route()->com . $scans . '/component.json';
+            $configFile = route()->com . $scans.'/component.json';
             if (file_exists($configFile)) {
                 $file = new FileHandling();
-                $c = $file->open($configFile,'readOnly')->read($configFile);
+                $c = $file->open($configFile, 'readOnly')->read($configFile);
                 $config = json_decode($c, true);
                 if ($config['status'] === true) {
-                    require_once route()->com .$scans.'/routes.php';
+                    require_once route()->com.$scans.'/routes.php';
                 }
 
             }
