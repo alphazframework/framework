@@ -31,7 +31,7 @@ class Bootstrap
      */
     public function configure()
     {
-        TimeZone::seteDefaultTz(__config()->config->timezone);
+        TimeZone::seteDefaultTz(__config()->config->time_zone);
     }
 
     /**
