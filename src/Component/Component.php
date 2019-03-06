@@ -13,7 +13,6 @@
  *
  * @license MIT
  *
- * @note i wrote this file first time by following the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , any further/others modification by me
  */
 
 namespace Zest\Component;
