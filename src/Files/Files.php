@@ -227,6 +227,25 @@ class Files
     }
 
     /**
+     * Copy file.
+     *
+     * @param (string) $source Name of file or directory with path.
+     * @param (string) $target Target directory.
+     * @param (string) $files  Files to be copy.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function copyFile($source, $target, $file)
+    {
+        $this->mkDir($target);
+        if (file_exists($source.$file)) {
+            copy($source.$file, $target.$file);
+        }
+    }
+
+    /**
      * Copy files.
      *
      * @param (string) $source Name of file or directory with path.
@@ -239,11 +258,26 @@ class Files
      */
     public function copyFiles($source, $target, $files)
     {
-        $this->mkDir($target);
-        foreach ($files as $file => $value) {
-            if (file_exists($source.$value)) {
-                copy($source.$value, $target.$value);
-            }
+        foreach ($files as $file) {
+            $this->copyFile($source, $target, $file);
+        }
+    }
+
+    /**
+     * Move file.
+     *
+     * @param (string) $source Name of file or directory with path.
+     * @param (string) $target Target directory.
+     * @param (string) $file   Fles to be move.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function moveFile($source, $target, $file)
+    {
+        if (file_exists($source.$file)) {
+            rename($source.$file, $target.$file);
         }
     }
 
@@ -258,18 +292,16 @@ class Files
      *
      * @return void
      */
-    public function moveFiles($source, $target, $files)
+
+    public function moveFiles($files)
     {
-        $this->mkDir($target);
-        foreach ($files as $file => $value) {
-            if (file_exists($source.$value)) {
-                rename($source.$value, $target.$value);
-            }
+        foreach ($files as $file) {
+            $this->moveFile($source, $target, $files);
         }
     }
 
     /**
-     * Delete files.
+     * Delete file.
      *
      * @param (string) $file Name of file with path.
      *
@@ -277,13 +309,49 @@ class Files
      *
      * @return void
      */
+    public function deleteFile($file)
+    {
+        if (file_exists($file)) {
+            unlink($file);
+        }
+    }
+
+    /**
+     * Delete files.
+     *
+     * @param (array) $file Name of file with path.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
     public function deleteFiles($files)
     {
-        foreach ($files as $file => $value) {
-            if (file_exists($value)) {
-                unlink($value);
-            }
+        foreach ($files as $file) {
+            $this->deleteFile($file);
         }
+    }
+
+    /**
+     * Copy dir.
+     *
+     * @param (string) $source Directory with path.
+     * @param (string) $target Target directory.
+     * @param (string) $dir   Dirs to be copy.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function copyDir($source, $target, $dir)
+    {
+        $this->mkDir($target);
+        $serverOs = (new \Zest\Common\OperatingSystem())->get();
+        $command = ($serverOs === 'Windows') ? 'xcopy ' : 'cp -r ';
+        if (is_dir($source.$dir)) {
+            shell_exec($command.$source.$dir.' '.$target.$dir);
+        }
+
     }
 
     /**
@@ -299,14 +367,30 @@ class Files
      */
     public function copyDirs($source, $target, $dirs)
     {
-        $this->mkDir($target);
-        $serverOs = (new \Zest\Common\OperatingSystem())->get();
-        $command = ($serverOs === 'Windows') ? 'xcopy ' : 'cp -r ';
-        foreach ($dirs as $dir => $value) {
-            if (is_dir($source.$value)) {
-                shell_exec($command.$source.$value.' '.$target.$value);
-            }
+        foreach ($dirs as $dir) {
+            $this->copyDir($source, $target, $dir);
         }
+    }
+
+    /**
+     * Move dir.
+     *
+     * @param (string) $source Directory with path.
+     * @param (string) $target Target directory.
+     * @param (string) $dir    Dirs to be copy.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function moveDir($source, $target, $dir)
+    {
+        $this->mkDir($target);
+        $command = ($serverOs === 'Windows') ? 'move ' : 'mv ';       
+        if (is_dir($source.$value)) {
+            shell_exec($command.$source.$dir.' '.$target.$dir);
+        }
+
     }
 
     /**
@@ -322,13 +406,38 @@ class Files
      */
     public function moveDirs($source, $target, $dirs)
     {
-        $this->mkDir($target);
-        $command = ($serverOs === 'Windows') ? 'move ' : 'mv ';
-        foreach ($dirs as $dir => $value) {
-            if (is_dir($source.$value)) {
-                shell_exec($command.$source.$value.' '.$target.$value);
+        foreach ($dirs as $dir) {
+            $this->moveDir($source, $target, $dir);
+        }
+    }
+
+    /**
+     * Delete dir.
+     *
+     * @param (string) $dir Directory with path.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function deleteDir($dir)
+    {
+        if (!file_exists($dir)) {
+            return true;
+        }
+
+        if (!is_dir($dir)) {
+            return unlink($dir);
+        }
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+            if (!$this->deleteDir($dir . DIRECTORY_SEPARATOR . $item)) {
+                return false;
             }
         }
+        return rmdir($dir);
     }
 
     /**
@@ -342,10 +451,8 @@ class Files
      */
     public function deleteDirs($dirs)
     {
-        foreach ($dirs as $dir => $value) {
-            if (is_dir($value)) {
-                rmdir($value);
-            }
+        foreach ($dirs as $dir) {
+            $this->deleteDir($dir);
         }
     }
 
