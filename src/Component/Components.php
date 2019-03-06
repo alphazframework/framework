@@ -12,7 +12,6 @@
  * @since 1.0.0
  *
  * @license MIT
- *
  */
 
 namespace Zest\Component;
@@ -22,45 +21,40 @@ use Zest\Files\Files;
 
 class Components
 {
-	public function getAll()
-	{
-		return Conversion::arrayObject(array_diff(scandir(route()->com), ['..', '.']));
-	}	
+    public function getAll()
+    {
+        return Conversion::arrayObject(array_diff(scandir(route()->com), ['..', '.']));
+    }
 
-	public function getById($id)
-	{
-		//return $this->getAll();
-	}
+    public function getById($id)
+    {
+        //return $this->getAll();
+    }
 
-	public function delete($name)
-	{
-		if (file_exists(route()->com.$name))
-			(new Files())->deleteDir(route()->com.$name);
+    public function delete($name)
+    {
+        if (file_exists(route()->com.$name)) {
+            (new Files())->deleteDir(route()->com.$name);
+        }
+    }
 
-	}
+    public function install()
+    {
+    }
 
-	public function install()
-	{
+    public function active($id)
+    {
+    }
 
-	}
+    public function disable($id)
+    {
+    }
 
-	public function active($id)
-	{
+    public function moveToTrash($name)
+    {
+    }
 
-	}
-
-	public function disable($id)
-	{
-
-	}
-
-	public function moveToTrash($name)
-	{
-
-	}
-
-	public function restoreFromTrash($name)
-	{
-
-	}	
+    public function restoreFromTrash($name)
+    {
+    }
 }
