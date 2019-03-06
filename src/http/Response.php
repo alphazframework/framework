@@ -77,8 +77,8 @@ class Response extends Message
     /**
      * Encode the body data.
      *
-     * @param (mixed) $body
-     *                      (string) $encode
+     * @param (mixed)  $body
+     * @param (string) $encode
      *
      * @since 3.0.0
      *
@@ -115,8 +115,8 @@ class Response extends Message
     /**
      * Decode the body data.
      *
-     * @param (mixed) $body
-     *                      (string) $encode
+     * @param (mixed)  $body
+     * @param (string) $encode
      *
      * @since 3.0.0
      *
