@@ -18,7 +18,6 @@ namespace Zest\Contracts\View;
 
 interface View
 {
-
     /**
      * Render a view template.
      *
@@ -38,5 +37,5 @@ interface View
      *
      * @return void
      */
-     public function compile();    
+    public function compile();
 }
