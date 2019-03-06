@@ -204,7 +204,7 @@ abstract class Headers extends Clients\Client
     public function sendHeaders()
     {
         if (headers_sent()) {
-            throw new Exception('The headers have already been sent.');
+            throw new \Exception('The headers have already been sent.');
         }
 
         header("HTTP/{$this->version} {$this->code} {$this->reasonPhrase}");
