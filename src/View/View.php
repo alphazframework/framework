@@ -111,7 +111,7 @@ class View implements ViewContract
             $config = [
                 'body'    => $minify->htmlMinify(ob_get_clean(), 'code'),
                 'headers' => [
-                    $headers
+                    $headers,
                 ],
             ];
             $response = new Response($config);
@@ -121,7 +121,7 @@ class View implements ViewContract
             $config = [
                 'body'    => ob_get_clean(),
                 'headers' => [
-                    $headers
+                    $headers,
                 ],
             ];
             $response = new Response($config);

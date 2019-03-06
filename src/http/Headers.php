@@ -210,10 +210,12 @@ abstract class Headers extends Clients\Client
         header("HTTP/{$this->version} {$this->code} {$this->reasonPhrase}");
         foreach ($this->headers as $name => $value) {
             if (is_array($value)) {
-                foreach ($value as $key => $val)
+                foreach ($value as $key => $val) {
                     header($key.': '.$val);
-            } else
+                }
+            } else {
                 header($name.': '.$value);
+            }
         }
     }
 }
