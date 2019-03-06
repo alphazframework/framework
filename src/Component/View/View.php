@@ -27,7 +27,7 @@ class View extends \Zest\View\View
      * @since 1.0.0
      *
      * @return mixed
-     */   
+     */
     public static function rander($file, array $args = [], bool $minify = false, array $headers = [])
     {
         static::$isCom = true;

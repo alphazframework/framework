@@ -16,20 +16,19 @@
 
 namespace Zest\View;
 
-use Zest\Contracts\View\View as ViewContract;
 use Zest\Common\Minify;
+use Zest\Contracts\View\View as ViewContract;
 use Zest\http\Response;
 
 class View implements ViewContract
 {
-  
     /**
      * Is component.
      *
      * @since 3.0.0
      *
      * @var bool
-     */   
+     */
     protected static $isCom = false;
 
     /**
@@ -54,12 +53,14 @@ class View implements ViewContract
     {
         if (self::$isCom === false) {
             $incFile = __config()->config->theme_path.'/'.$file.'.php';
-            if (file_exists($incFile))
-                self::$file = $incFile;        
+            if (file_exists($incFile)) {
+                self::$file = $incFile;
+            }
         } else {
             $incFile = route()->com.$file.'.php';
-            if (file_exists($incFile))
-                self::$file = $incFile;              
+            if (file_exists($incFile)) {
+                self::$file = $incFile;
+            }
         }
     }
 
@@ -85,8 +86,8 @@ class View implements ViewContract
                 throw new \Exception("Sorry, view file {$file} not exists", 404);
             }
         } else {
-            throw new \Exception("Sorry, file much be provided", 404);
-        }    
+            throw new \Exception('Sorry, file much be provided', 404);
+        }
     }
 
     /**
@@ -107,26 +108,25 @@ class View implements ViewContract
             $minify = new Minify();
             self::randerTemplate($file, $args);
             $config = [
-                'body' => $minify->htmlMinify(ob_get_clean(), 'code'),
+                'body'    => $minify->htmlMinify(ob_get_clean(), 'code'),
                 'headers' => [
-                    'Content-Type' => 'text/html'
-                ]
+                    'Content-Type' => 'text/html',
+                ],
             ];
             $response = new Response($config);
             $response->send();
         } else {
             self::randerTemplate($file, $args);
             $config = [
-                'body' => ob_get_clean(),
+                'body'    => ob_get_clean(),
                 'headers' => [
-                    'Content-Type' => 'text/html'
-                ]
+                    'Content-Type' => 'text/html',
+                ],
             ];
             $response = new Response($config);
             $response->send();
         }
     }
-
 
     /**
      * Compile.
@@ -135,5 +135,7 @@ class View implements ViewContract
      *
      * @return void
      */
-    public function compile() {}
+    public function compile()
+    {
+    }
 }
