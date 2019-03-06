@@ -30,9 +30,8 @@ class routes extends Component
     public static function loadComs()
     {
         $com = new Component();
-        $path = '../App/Components/';
-        $disk_scan = array_diff(scandir($path), ['..', '.']);
-        foreach ($disk_scan as $scans) {
+        $diskScan = array_diff(scandir(route()->com), ['..', '.']);
+        foreach ($diskScan as $scans) {
             $configFile = route()->com.$scans.'/component.json';
             if (file_exists($configFile)) {
                 $file = new FileHandling();
