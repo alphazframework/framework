@@ -292,7 +292,6 @@ class Files
      *
      * @return void
      */
-
     public function moveFiles($files)
     {
         foreach ($files as $file) {
@@ -337,7 +336,7 @@ class Files
      *
      * @param (string) $source Directory with path.
      * @param (string) $target Target directory.
-     * @param (string) $dir   Dirs to be copy.
+     * @param (string) $dir    Dirs to be copy.
      *
      * @since 3.0.0
      *
@@ -351,7 +350,6 @@ class Files
         if (is_dir($source.$dir)) {
             shell_exec($command.$source.$dir.' '.$target.$dir);
         }
-
     }
 
     /**
@@ -386,11 +384,10 @@ class Files
     public function moveDir($source, $target, $dir)
     {
         $this->mkDir($target);
-        $command = ($serverOs === 'Windows') ? 'move ' : 'mv ';       
+        $command = ($serverOs === 'Windows') ? 'move ' : 'mv ';
         if (is_dir($source.$value)) {
             shell_exec($command.$source.$dir.' '.$target.$dir);
         }
-
     }
 
     /**
@@ -433,10 +430,11 @@ class Files
             if ($item == '.' || $item == '..') {
                 continue;
             }
-            if (!$this->deleteDir($dir . DIRECTORY_SEPARATOR . $item)) {
+            if (!$this->deleteDir($dir.DIRECTORY_SEPARATOR.$item)) {
                 return false;
             }
         }
+
         return rmdir($dir);
     }
 
