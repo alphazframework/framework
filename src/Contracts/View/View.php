@@ -18,16 +18,25 @@ namespace Zest\Contracts\View;
 
 interface View
 {
+
     /**
-     * Set file.
+     * Render a view template.
      *
-     * @param $file name of files
-     *        $args argoument need to be passed
-     *        $minify is code should be minify
+     * @param (string) $file Name of files.
+     * @param (array)  $args Attributes.
      *
      * @since 1.0.0
      *
-     * @return mixed
+     * @return void
      */
-    public static function view($file, array $args = [], $minify = true);
+    public static function randerTemplate($file, $args = []);
+
+    /**
+     * Compile.
+     *
+     * @todo future
+     *
+     * @return void
+     */
+     public function compile();    
 }

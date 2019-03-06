@@ -16,189 +16,124 @@
 
 namespace Zest\View;
 
-use Zest\Common\Minify;
 use Zest\Contracts\View\View as ViewContract;
+use Zest\Common\Minify;
+use Zest\http\Response;
 
 class View implements ViewContract
 {
+  
     /**
-     * files.
-     *
-     * @since 1.0.0
-     *
-     * @var resource
-     */
-    private static $file;
-    /**
-     * key for tamplate.
-     *
-     * @since 1.0.0
-     *
-     * @var array
-     */
-    private static $keys = [];
-    /**
-     * value for tamplet.
+     * Is component.
      *
      * @since 3.0.0
      *
-     * @var array
+     * @var bool
+     */   
+    protected static $isCom = false;
+
+    /**
+     * File.
+     *
+     * @since 3.0.0
+     *
+     * @var string
      */
-    private static $Values = [];
+    protected static $file = '';
 
     /**
      * Set file.
      *
-     * @param $file name of files
+     * @param $file file with path.
      *
      * @since 1.0.0
      *
      * @return void
      */
-    private static function setFile($file)
+    protected static function setFile($file)
     {
-        $file = __config()->config->theme_path.'/'.$file;
-        if (file_exists($file)) {
-            static::$file = $file;
+        if (self::$isCom === false) {
+            $incFile = __config()->config->theme_path.'/'.$file.'.php';
+            if (file_exists($incFile))
+                self::$file = $incFile;        
         } else {
-            return false;
+            $incFile = route()->com.$file.'.php';
+            if (file_exists($incFile))
+                self::$file = $incFile;              
         }
     }
 
     /**
-     * Set the attribute for tamplet.
+     * Render a view template.
      *
-     * @param $file name of files
-     *        $params attributes
+     * @param (string) $file Name of files.
+     * @param (array)  $args Attributes.
      *
      * @since 1.0.0
      *
      * @return void
      */
-    public static function randerTemplate($file, $params = [])
+    public static function randerTemplate($file, $args = [])
     {
         if (!empty($file)) {
-            static::setFile($file);
-        } else {
-            return false;
-        }
-        $keys = array_keys($params);
-        $value = array_values($params);
-        static::$keys = $keys;
-        static::$Values = $value;
-
-        return static::rander();
-    }
-
-    /**
-     * Get content form file.
-     *
-     * @since 1.0.0
-     *
-     * @return raw-data
-     */
-    public static function fetchFile()
-    {
-        if (static::isFile()) {
-            $file = static::$file;
-
-            return file_get_contents($file);
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Check file exists or not.
-     *
-     * @since 1.0.0
-     *
-     * @return bool
-     */
-    public static function isFile()
-    {
-        $file = static::$file;
-        if (file_exists($file)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Rander template.
-     *
-     * @since 1.0.0
-     *
-     * @return raw-data
-     */
-    public static function rander()
-    {
-        $file = static::fetchFile();
-        $CountKeys = count(static::$keys);
-        $CountValues = count(static::$Values);
-        if ($CountKeys === $CountValues && static::IsFile()) {
-            $counter = $CountKeys = $CountValues;
-            for ($i = 0; $i < $counter; $i++) {
-                $keys = static::$keys[$i];
-                $values = static::$Values[$i];
-                $tag = "{% $keys %}";
-                $pattern = "/$tag/";
-                $file = preg_replace("/$tag/i", $values, $file);
-            }
-
-            return $file;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * views.
-     *
-     * @param $file name of files
-     *        $args argoument need to be passed
-     *
-     * @since 1.0.0
-     *
-     * @return buffer
-     */
-    public static function views($file, array $args = [])
-    {
-        if (!empty($file)) {
+            self::setFile($file);
             extract($args, EXTR_SKIP);
-            $file = __config()->config->theme_path.'/'.$file.'.php';
-            if (file_exists($file)) {
+            if (file_exists(self::$file)) {
                 ob_start();
-                require_once $file;
+                require_once self::$file;
             } else {
-                return false;
+                throw new \Exception("Sorry, view file {$file} not exists", 404);
             }
         } else {
-            return false;
-        }
+            throw new \Exception("Sorry, file much be provided", 404);
+        }    
     }
 
     /**
-     * Set file.
+     * Rander the view.
      *
-     * @param $file name of files
-     *        $args argoument need to be passed
-     *        $minify is code should be minify
+     * @param (string) $file    Name of files
+     * @param (array)  $args    Attributes.
+     * @param (bool)   $minify  Is code should be minify
+     * @param (array)  $headers Custom headers.
      *
      * @since 1.0.0
      *
-     * @return bugger
+     * @return mixed
      */
-    public static function view($file, array $args = [], $minify = true)
+    public static function view($file, array $args = [], bool $minify = false, array $headers = [])
     {
         if ($minify === true) {
             $minify = new Minify();
-            self::views($file, $args);
-            echo $minify->htmlMinify(ob_get_clean(), 'code');
+            self::randerTemplate($file, $args);
+            $config = [
+                'body' => $minify->htmlMinify(ob_get_clean(), 'code'),
+                'headers' => [
+                    'Content-Type' => 'text/html'
+                ]
+            ];
+            $response = new Response($config);
+            $response->send();
         } else {
-            self::views($file, $args);
-            echo ob_get_clean();
+            self::randerTemplate($file, $args);
+            $config = [
+                'body' => ob_get_clean(),
+                'headers' => [
+                    'Content-Type' => 'text/html'
+                ]
+            ];
+            $response = new Response($config);
+            $response->send();
         }
     }
+
+
+    /**
+     * Compile.
+     *
+     * @todo future
+     *
+     * @return void
+     */
+    public function compile() {}
 }
