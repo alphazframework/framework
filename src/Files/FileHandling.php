@@ -127,7 +127,7 @@ class FileHandling
      */
     public function close()
     {
-         fclose($this->resource);
-         unset($this->file);
+        fclose($this->resource);
+        unset($this->file);
     }
 }
