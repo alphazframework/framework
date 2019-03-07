@@ -267,12 +267,12 @@ function __write_file($file, $mode, $value)
 if (!function_exists('read_file')) {
     function read_file($file, $mode)
     {
-        return (new \Zest\Files\FileHandling())->open($file, $mode)->read($file);
+        return (new \Zest\Files\FileHandling())->open($file, $mode)->read();
     }
 }
 function __read_file($file, $mode)
 {
-    return (new \Zest\Files\FileHandling())->open($file, $mode)->read($file);
+    return (new \Zest\Files\FileHandling())->open($file, $mode)->read();
 }
 if (!function_exists('pagination')) {
     function pagination($total = 10, $perPage = 6, $current = 1, $urlAppend = '/', $ulCLass = 'pagination', $liClass = 'page-item', $aClass = 'page-link')
