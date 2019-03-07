@@ -62,10 +62,10 @@ class FileHandling
      *
      * @return resource
      */
-    public function open($name, $mode)
+    public function open($file, $mode)
     {
-        if (!empty(escape($name))) {
-            $this->resource = fopen($name, $this->modes[$mode]);
+        if (!empty(trim($file)) && !empty(trim($mode))) {
+            $this->resource = fopen($file, $this->modes[$mode]);
             $this->file = $file;
 
             return $this;
