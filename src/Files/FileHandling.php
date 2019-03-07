@@ -19,13 +19,22 @@ namespace Zest\Files;
 class FileHandling
 {
     /**
-     * resource.
+     * Resource.
      *
      * @since 3.0.0
      *
      * @var object
      */
     private $resource;
+
+    /**
+     * File.
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    private $file;
 
     /**
      * Modes of file.
@@ -46,8 +55,8 @@ class FileHandling
     /**
      * Open the file.
      *
-     * @param (string) $name Name of file
-     * @param (string) $mode Mode of file
+     * @param (string) $file Name of file with oath.
+     * @param (string) $mode Mode of file.
      *
      * @since 3.0.0
      *
@@ -57,23 +66,24 @@ class FileHandling
     {
         if (!empty(escape($name))) {
             $this->resource = fopen($name, $this->modes[$mode]);
+            $this->file = $file;
 
             return $this;
         }
+
+        return false;
     }
 
     /**
      * Read the file.
      *
-     * @param (string) $file File that to be read
-     *
      * @since 3.0.0
      *
      * @return mixed
      */
-    public function read($file)
+    public function read()
     {
-        return fread($this->resource, filesize($file));
+        return fread($this->resource, filesize($this->file));
     }
 
     /**
@@ -93,7 +103,7 @@ class FileHandling
     /**
      * Delete the file.
      *
-     * @param (string) $file File to be deleted
+     * @param (string) $file File to be deleted.
      *
      * @since 3.0.0
      *
@@ -113,10 +123,11 @@ class FileHandling
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return void
      */
     public function close()
     {
-        return fclose($this->resource);
+         fclose($this->resource);
+         unset($this->file);
     }
 }
