@@ -35,7 +35,8 @@ class routes extends Component
             $configFile = route()->com.$scans.'/component.json';
             if (file_exists($configFile)) {
                 $file = new FileHandling();
-                $c = $file->open($configFile, 'readOnly')->read($configFile);
+                $c = $file->open($configFile, 'readOnly')->read();
+                $file->close();
                 $config = json_decode($c, true);
                 if ($config['status'] === true) {
                     require_once route()->com.$scans.'/routes.php';
