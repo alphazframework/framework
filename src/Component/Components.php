@@ -18,19 +18,32 @@ namespace Zest\Component;
 
 use Zest\Data\Conversion;
 use Zest\Files\Files;
+use Zest\Common\Version;
 
 class Components
 {
+
+    /**
+     * Get all components name.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
     public function getAll()
     {
         return Conversion::arrayObject(array_diff(scandir(route()->com), ['..', '.']));
     }
 
-    public function getById($id)
-    {
-        //return $this->getAll();
-    }
-
+    /**
+     * Delete component by name.
+     *
+     * @param (string) $name Name of component.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
     public function delete($name)
     {
         if (file_exists(route()->com.$name)) {
@@ -50,11 +63,55 @@ class Components
     {
     }
 
-    public function moveToTrash($name)
+    /**
+     * Determine whether the component is supported with current version of Zest.
+     *
+     * @param (string) $zVersion Zest version number from component config file.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function isSupported($zVersion)
     {
+        if (version_compare($zVersion, Version::VERSION, '<=') === true) {
+            return true;
+        }
+
+        return false;
     }
 
+    /**
+     * Move to trash component by name.
+     *
+     * @param (string) $name Name of component.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function moveToTrash($name)
+    {
+        if (file_exists(route()->com.$name)) {
+            (new Files())->moveDir(route()->com, route()->storage_data.'com', $name);
+        }
+
+    }
+
+    /**
+     * Restore from trash component by name.
+     *
+     * @param (string) $name Name of component.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
     public function restoreFromTrash($name)
     {
+        if (file_exists(route()->storage_data.'com/'.$name)) {
+            (new Files())->moveDir(route()->storage_data.'com', route()->com, $name);
+        }
+
     }
 }
