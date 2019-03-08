@@ -41,7 +41,7 @@ class Zip implements ZipContract
             if ($delete === true) {
                 unlink($file);
             }
-            
+
             return true;
         }
     }
