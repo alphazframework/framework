@@ -38,11 +38,11 @@ class Zip implements ZipContract
         if ($x === true) {
             $zip->extractTo($target);
             $zip->close();
-
-            return true;
             if ($delete === true) {
                 unlink($file);
             }
+            
+            return true;
         }
     }
 
