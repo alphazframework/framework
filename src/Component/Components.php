@@ -16,9 +16,9 @@
 
 namespace Zest\Component;
 
+use Zest\Common\Version;
 use Zest\Data\Conversion;
 use Zest\Files\Files;
-use Zest\Common\Version;
 
 class Components
 {
