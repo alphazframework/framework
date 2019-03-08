@@ -33,7 +33,7 @@ class Zip implements ZipContract
      */
     public function extract($file, $target, $delete = false)
     {
-        $zip = new ZipArchive();
+        $zip = new \ZipArchive();
         $x = $zip->open($file);
         if ($x === true) {
             $zip->extractTo($target);
@@ -76,7 +76,7 @@ class Zip implements ZipContract
         }  //if we have good files...
         if (count($valid_files)) {
             //create the archive
-            $zip = new ZipArchive();
+            $zip = new \ZipArchive();
             if ($zip->open($destination, $overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
                 return false;
             }
