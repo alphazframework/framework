@@ -348,7 +348,7 @@ class Files
         $serverOs = (new \Zest\Common\OperatingSystem())->get();
         $command = ($serverOs === 'Windows') ? 'xcopy ' : 'cp -r ';
         if (is_dir($source.$dir)) {
-            shell_exec($command.$source.$dir.' '.$target.$dir);
+            shell_exec($command.$source.$dir.' '.$target);
         }
     }
 
@@ -384,9 +384,10 @@ class Files
     public function moveDir($source, $target, $dir)
     {
         $this->mkDir($target);
+        $serverOs = (new \Zest\Common\OperatingSystem())->get();
         $command = ($serverOs === 'Windows') ? 'move ' : 'mv ';
-        if (is_dir($source.$value)) {
-            shell_exec($command.$source.$dir.' '.$target.$dir);
+        if (is_dir($source.$dir)) {
+            shell_exec($command.$source.$dir.' '.$target);
         }
     }
 
