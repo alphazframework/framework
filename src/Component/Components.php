@@ -22,7 +22,6 @@ use Zest\Files\Files;
 
 class Components
 {
-
     /**
      * Get all components name.
      *
