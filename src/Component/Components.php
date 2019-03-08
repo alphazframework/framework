@@ -95,7 +95,6 @@ class Components
         if (file_exists(route()->com.$name)) {
             (new Files())->moveDir(route()->com, route()->storage_data.'com', $name);
         }
-
     }
 
     /**
@@ -112,6 +111,5 @@ class Components
         if (file_exists(route()->storage_data.'com/'.$name)) {
             (new Files())->moveDir(route()->storage_data.'com', route()->com, $name);
         }
-
     }
 }
