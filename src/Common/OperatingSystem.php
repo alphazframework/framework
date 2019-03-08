@@ -25,12 +25,12 @@ class OperatingSystem
      *
      * @return string
      */
-    public static function get()
+    public function get()
     {
-        if (@\define(PHP_OS_FAMILY)) {
+        if (\defined(PHP_OS_FAMILY)) {
             return PHP_OS_FAMILY;
         } else {
-            return static::phpOs();
+            return $this->phpOs();
         }
     }
 
@@ -41,7 +41,7 @@ class OperatingSystem
      *
      * @return string
      */
-    public static function phpOs()
+    public function phpOs()
     {
         $os = PHP_OS;
         switch ($os) {
