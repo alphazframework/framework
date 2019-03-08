@@ -496,6 +496,7 @@ class Files
                                 'status'  => 'success',
                                 'code'    => $fileNewName,
                                 'message' => printl('z:files:success'),
+                                'name'    => $exactName,
                             ];
                         } else {
                             return [
@@ -578,6 +579,7 @@ class Files
                                     'status'  => 'success',
                                     'code'    => $fileNewName,
                                     'message' => printl('z:files:success'),
+                                    'name'    => $exactName,
                                 ];
                             } else {
                                 $status[$i] = [
