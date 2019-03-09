@@ -102,13 +102,14 @@ class View implements ViewContract
      *
      * @return mixed
      */
-    public static function view($file, array $args = [], bool $minify = false, array $headers = [])
+    public static function view($file, array $args = [], bool $minify = false, array $headers = [], $code = 200)
     {
         $headers['Content-Type'] = 'text/html';
         if ($minify === true) {
             $minify = new Minify();
             self::randerTemplate($file, $args);
             $config = [
+                'code'    => $code,
                 'body'    => $minify->htmlMinify(ob_get_clean(), 'code'),
                 'headers' => [
                     $headers,
@@ -119,6 +120,7 @@ class View implements ViewContract
         } else {
             self::randerTemplate($file, $args);
             $config = [
+                'code'    => $code,
                 'body'    => ob_get_clean(),
                 'headers' => [
                     $headers,
