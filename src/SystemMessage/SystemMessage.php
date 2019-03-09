@@ -109,22 +109,11 @@ class SystemMessage implements SystemMessageContract
     public function view()
     {
         $sys_msg = Session::get('sys_msg');
-        $count = (isset($sys_msg['msg'])) ? count($sys_msg['msg']) : 0;
         $msg = (isset($sys_msg['msg'])) ? $sys_msg['msg'] : null;
         $type = (isset($sys_msg['type'])) ? $sys_msg['type'] : null;
-        if ($count > 1) {
-            foreach ($sys_msg as $type => $sys_msg) {
-                if (isset($sys_msg) && isset($type)) {
-                    $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$sys_msg.'</div>';
-                    $msg_data[] = $msg;
-                    unset($_SESSION['sys_msg']);
-                }
-            }
-        } elseif ($count === 1) {
-            if (isset($msg) && isset($type)) {
-                $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$msg.'</div>';
-                $msg_data[] = $msg;
-            }
+        if (isset($msg) && isset($type)) {
+            $msg = "<div class='alert alert-".$type."'>".'<a href="#" class="close" data-dismiss="alert">&times;</a>'.$msg.'</div>';
+            $msg_data[] = $msg;
         }
         if (isset($msg_data)) {
             $data = implode('', $msg_data);
