@@ -63,7 +63,7 @@ class Component extends \Zest\Router\Router
                 (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
             }
         } else {
-            View::view("errors/404", [], true, [], 404);
+            View::view('errors/404', [], true, [], 404);
         }
     }
 }
