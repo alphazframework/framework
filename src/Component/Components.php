@@ -75,7 +75,7 @@ class Components
             $c = $file->open($storageData.'/tmp/'.$name.'/component.json', 'readOnly')->read();
             $file->close();
             $config = json_decode($c, true);
-            if ($this->isSupported($config['zversion'], $config['comparator']) === true) {
+            if ($this->isSupported($config['requires']['version'], $config['requires']['comparator']) === true) {
                 if (!file_exists($route()->com.$name)) {
                     $files->moveDir($storageData.'tmp/', route()->com, $name);
 
@@ -97,7 +97,7 @@ class Components
      *
      * @return bool
      */
-    public function activeOrDisable($name, $status)
+    public function enableOrDisable($name, $status)
     {
         $file = route()->com.$name.'/component.json';
         if (file_exists($file)) {
@@ -124,9 +124,9 @@ class Components
      *
      * @return bool
      */
-    public function active($name)
+    public function enable($name)
     {
-        $this->activeOrDisable($name, true);
+        $this->enableOrDisable($name, true);
     }
 
     /**
@@ -140,7 +140,28 @@ class Components
      */
     public function disable($name)
     {
-        $this->activeOrDisable($name, false);
+        $this->enableOrDisable($name, false);
+    }
+
+    /**
+     * Get the component json file configuration.
+     *
+     * @param (string) $name Name of component.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function getConponentConfigByName($name)
+    {
+        $file = route()->com.$name.'/component.json';
+        if (file_exists($file)) {
+            $fileHandling = new FileHandling();
+            $c = $fileHandling->open($file, 'readOnly')->read();
+            return json_decode($c, true);
+        }
+
+        return false;
     }
 
     /**
