@@ -89,6 +89,9 @@ class Cache implements CacheContract
                 $adapter = '\Zest\Cache\Adapter\FileCache';
                 break;
             case 'memcache':
+                $adapter = '\Zest\Cache\Adapter\Memcache';
+                break;
+            case 'memcached':
                 $adapter = '\Zest\Cache\Adapter\Memcached';
                 break;
             case 'redis':
