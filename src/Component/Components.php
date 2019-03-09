@@ -158,7 +158,7 @@ class Components
         if (file_exists($file)) {
             $fileHandling = new FileHandling();
             $c = $fileHandling->open($file, 'readOnly')->read();
-            
+ 
             return json_decode($c, true);
         }
 
