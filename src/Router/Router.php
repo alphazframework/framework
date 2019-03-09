@@ -439,7 +439,7 @@ class Router
                 (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
             }
         } else {
-            \Zest\Component\routes::loadComs();
+            \Zest\Component\Router::loadComponents();
         }
     }
 
