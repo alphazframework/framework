@@ -18,8 +18,8 @@ namespace Zest\Component;
 
 use Zest\Common\Version;
 use Zest\Data\Conversion;
-use Zest\Files\Files;
 use Zest\Files\FileHandling;
+use Zest\Files\Files;
 use Zest\Zip\Zip;
 
 class Components
@@ -69,20 +69,22 @@ class Components
         $files = new Files();
         $files->mkdir($storageData.'tmp/');
         $files->mkdir($storageData.'tmp/'.$name);
-        var_dump((new Zip())->extract($file,$storageData.'tmp/'.$name.'/', true));
+        var_dump((new Zip())->extract($file, $storageData.'tmp/'.$name.'/', true));
         if (file_exists($storageData.'tmp/'.$name.'/component.json')) {
             $file = new FileHandling();
-            $c = $file->open($storageData.'/tmp/'.$name.'/component.json','readOnly')->read();
+            $c = $file->open($storageData.'/tmp/'.$name.'/component.json', 'readOnly')->read();
             $file->close();
             $config = json_decode($c, true);
             if ($this->isSupported($config['zversion'], $config['comparator']) === true) {
                 if (!file_exists($route()->com.$name)) {
                     $files->moveDir($storageData.'tmp/', route()->com, $name);
+
                     return true;
                 }
-            } 
-        } 
-        return false;    
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -106,10 +108,11 @@ class Components
             $config = json_encode($config, JSON_PRETTY_PRINT);
             $fileHandling->open($file, 'writeOnly')->write($config);
             $fileHandling->close();
+
             return true;
         }
 
-        return false;        
+        return false;
     }
 
     /**
