@@ -18,7 +18,7 @@ namespace Zest\Component;
 
 use Zest\Files\FileHandling;
 
-class routes extends Component
+class Router extends Component
 {
     /**
      * Load the components.
@@ -27,14 +27,14 @@ class routes extends Component
      *
      * @return void
      */
-    public static function loadComs()
+    public static function loadComponents()
     {
         $com = new Component();
+        $file = new FileHandling();
         $diskScan = array_diff(scandir(route()->com), ['..', '.']);
         foreach ($diskScan as $scans) {
             $configFile = route()->com.$scans.'/component.json';
             if (file_exists($configFile)) {
-                $file = new FileHandling();
                 $c = $file->open($configFile, 'readOnly')->read();
                 $file->close();
                 $config = json_decode($c, true);
