@@ -116,7 +116,7 @@ class Router
         //pattern => App\Components\Example\Middleware\@Example;
         $parts = explode('@', $name);
         if (strcasecmp($parts[0], $name) === 0) {
-            //If namespace not givent then contine to defaukt
+            //If namespace not givent then continue to defaukt
             $namespace = "App\Middleware\\";
             $middleware = $namespace.$name;
         } else {
