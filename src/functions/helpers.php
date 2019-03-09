@@ -235,14 +235,14 @@ function __decrypt($token)
     return (new \Zest\Encryption\Encryption())->decrypt($token);
 }
 if (!function_exists('view')) {
-    function view($file = '', $args = [], $minify = false, $headers = [])
+    function view($file = '', $args = [], $minify = false, $headers = [], $code = 200)
     {
-        return (new Zest\View\View())::view($file, $args, $minify, $headers);
+        return (new Zest\View\View())::view($file, $args, $minify, $headers, $code);
     }
 }
-function __view($file = '', $args = [], $minify = false, $headers = [])
+function __view($file = '', $args = [], $minify = false, $headers = [], $code = 200)
 {
-    return (new Zest\View\View())::view($file, $args, $minify, $headers);
+    return (new Zest\View\View())::view($file, $args, $minify, $headers, $code);
 }
 if (!function_exists('model')) {
     function model($model = 'post')
