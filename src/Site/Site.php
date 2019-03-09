@@ -84,7 +84,7 @@ class Site
      */
     public static function getBase()
     {
-        return dirname(self::requestInstance()->getSelf());
+        return preg_replace('{/$}', '', dirname(self::requestInstance()->getSelf()));
     }
 
     /**
