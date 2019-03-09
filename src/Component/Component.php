@@ -19,6 +19,7 @@ namespace Zest\Component;
 use Zest\http\Request;
 use Zest\http\Response;
 use Zest\Input\Input;
+use Zest\View\View;
 
 class Component extends \Zest\Router\Router
 {
@@ -62,7 +63,7 @@ class Component extends \Zest\Router\Router
                 (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
             }
         } else {
-            throw new \Exception("No Route matched {$url}", 404);
+            View::view("errors/404",[],true,[],404);
         }
     }
 }
