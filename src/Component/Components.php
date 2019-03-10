@@ -64,19 +64,21 @@ class Components
      */
     public function install($archive, $name)
     {
+        $exploadName = explode('.', $name);
+        $name = $exploadName[0];
         $storageData = route()->storage_data;
         $file = $storageData.$archive;
         $files = new Files();
         $files->mkdir($storageData.'tmp/');
         $files->mkdir($storageData.'tmp/'.$name);
-        var_dump((new Zip())->extract($file, $storageData.'tmp/'.$name.'/', true));
+        (new Zip())->extract($file, $storageData.'tmp/'.$name.'/', true);
         if (file_exists($storageData.'tmp/'.$name.'/component.json')) {
             $file = new FileHandling();
             $c = $file->open($storageData.'/tmp/'.$name.'/component.json', 'readOnly')->read();
             $file->close();
             $config = json_decode($c, true);
             if ($this->isSupported($config['requires']['version'], $config['requires']['comparator']) === true) {
-                if (!file_exists($route()->com.$name)) {
+                if (!file_exists(route()->com.$name)) {
                     $files->moveDir($storageData.'tmp/', route()->com, $name);
 
                     return true;
