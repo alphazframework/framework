@@ -140,7 +140,7 @@ class Pagination
      */
     public function setCurrentPage($current)
     {
-        return ($items >= 0) ? $this->current = $current : false;
+        return ($current >= 0) ? $this->current = $current : false;
     }
 
     /**
