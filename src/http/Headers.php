@@ -51,7 +51,7 @@ abstract class Headers extends Clients\Client
     /**
      * append new header.
      *
-     * @param (string) $key The header key.
+     * @param (string) $key   The header key.
      * @param (string) $value The header value.
      *
      * @since 3.0.0
@@ -82,7 +82,7 @@ abstract class Headers extends Clients\Client
     /**
      * Update existing header.
      *
-     * @param (string) $key The header key
+     * @param (string) $key   The header key
      * @param (string) $value The new header value
      *
      * @since 3.0.0
