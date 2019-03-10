@@ -22,8 +22,8 @@ class Redirect extends HTTP
      * Send redirect.
      *
      * @param (string) $url
-     *                      (int) $code
-     *                      (mixed) $version
+     * @param (int)    $code
+     * @param (mixed)  $version
      *
      * @since 3.0.0
      *
@@ -41,5 +41,8 @@ class Redirect extends HTTP
 
         header("HTTP/{$version} {$code} ".self::$responseCodes[$code]);
         header("Location: {$url}");
+
+        //Need to stop current execution after redirect.
+        exit();
     }
 }
