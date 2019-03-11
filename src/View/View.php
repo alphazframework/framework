@@ -74,7 +74,7 @@ class View implements ViewContract
      *
      * @return void
      */
-    public static function randerTemplate($file, $args = [])
+    public static function renderTemplate($file, $args = [])
     {
         if (!empty($file)) {
             self::setFile($file);
@@ -107,7 +107,7 @@ class View implements ViewContract
         $headers['Content-Type'] = 'text/html';
         if ($minify === true) {
             $minify = new Minify();
-            self::randerTemplate($file, $args);
+            self::renderTemplate($file, $args);
             $config = [
                 'code'    => $code,
                 'body'    => $minify->htmlMinify(ob_get_clean(), 'code'),
@@ -118,7 +118,7 @@ class View implements ViewContract
             $response = new Response($config);
             $response->send();
         } else {
-            self::randerTemplate($file, $args);
+            self::renderTemplate($file, $args);
             $config = [
                 'code'    => $code,
                 'body'    => ob_get_clean(),
