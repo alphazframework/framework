@@ -17,6 +17,7 @@
 namespace Zest\Common;
 
 use Zest\Data\Conversion;
+use Zest\Site\Site;
 
 class Root
 {
@@ -55,7 +56,7 @@ class Root
             //config
             'config' => $this->root().'Config/',
             //public
-            'public' => $this->root().'public/',
+            'public' => $this->root().Site::getBase().'/',
             //routes
             'routes' => $this->root().'routes/',
             //Storage
