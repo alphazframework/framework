@@ -303,7 +303,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Remove a fuekd.
+     * Remove a field.
      *
      * @param (string) $name name of field
      *
