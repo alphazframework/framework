@@ -192,7 +192,7 @@ abstract class Headers extends Clients\Client
             if (preg_match('/ *gzip *,?/', $this->headers['accept-encoding'])) {
                 $encoding = 'gzip';
             } elseif (preg_match('/ *deflate *,?/', $this->headers['accept-encoding'])) {
-                $encoding = 'deflate';       
+                $encoding = 'deflate';
             }
             (!empty($encoding)) ? $this->headers['Content-Encoding'] = $encoding : null;
             $body = static::encodeBody($body, $encoding);
