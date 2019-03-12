@@ -186,7 +186,7 @@ abstract class Headers extends Clients\Client
 
         $body = $this->body;
         $this->headers['Content-Length'] = strlen($body);
-        
+
         if ($compress === true) {
             $encoding = '';
             if (preg_match('/ *gzip *,?/', $this->headers['accept-encoding'])) {
@@ -194,10 +194,9 @@ abstract class Headers extends Clients\Client
             } elseif(preg_match('/ *deflate *,?/', $this->headers['accept-encoding'])) {
                 $encoding = 'deflate';       
             }
-            (!empty($encoding)) ? $this->headers['Content-Encoding']  = $encoding : null;
+            (!empty($encoding)) ? $this->headers['Content-Encoding'] = $encoding : null;
             $body = static::encodeBody($body, $encoding);
-        }    
-        
+        }
         $this->sendHeaders();
         echo $body;
     }
