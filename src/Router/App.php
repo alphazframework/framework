@@ -32,13 +32,13 @@ class App extends Router
     {
         $router = new Router();
         $cache = new Cache();
-        if (file_exists('../Routes/Routes.php'))
+        if (file_exists('../Routes/Routes.php')) {
             $routeFile = '../Routes/Routes.php';
-        elseif (file_exists('Routes/Routes.php'))
+        } elseif (file_exists('Routes/Routes.php')) {
             $routeFile = 'Routes/Routes.php';
-        else
-            throw new \Exception("Error while loading Route.php file", 500);
-            
+        } else {
+            throw new \Exception('Error while loading Route.php file', 500);
+        }
         if (__config()->config->router_cache === true) {
             if (!$cache->setAdapter('file')->has('router')) {
                 require_once $routeFile;

@@ -46,13 +46,13 @@ class Configuration
         $data = [];
         $file1 = 'Config/App.php';
         $file2 = '../Config/App.php';
-        if (file_exists($file1))
+        if (file_exists($file1)) {
             $data += require $file1;
-        elseif(file_exists($file2))
+        } elseif (file_exists($file2)) {
             $data += require $file2;
-        else
+        } else {
             throw new \Exception("Error, while loading Config {$file1} file", 404);
-            
+        }
         return $data;
     }
 
