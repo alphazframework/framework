@@ -28,7 +28,7 @@ interface View
      *
      * @return void
      */
-    public static function randerTemplate($file, $args = []);
+    public static function renderTemplate($file, $args = []);
 
     /**
      * Compile.
