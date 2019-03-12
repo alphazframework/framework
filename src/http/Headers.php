@@ -167,14 +167,15 @@ abstract class Headers extends Clients\Client
     /**
      * Send response.
      *
-     * @param (int)   $code
-     * @param (array) $headers
+     * @param (int)   $code     Status code.
+     * @param (array) $headers  Headers.
+     * @param (bool)  $compress Content compression.
      *
      * @since 3.0.0
      *
      * @return void
      */
-    public function send($code = null, array $headers = null)
+    public function send($code = null, array $headers = null, $compress = false)
     {
         if ($code !== null) {
             $this->withStatus($code);
@@ -184,12 +185,18 @@ abstract class Headers extends Clients\Client
         }
 
         $body = $this->body;
+        $this->headers['Content-Length'] = strlen($body);
 
-        if (array_key_exists('Content-Encoding', $this->headers)) {
-            $body = self::encodeBody($body, $this->headers['Content-Encoding']);
-            $this->headers['Content-Length'] = strlen($body);
+        if ($compress === true) {
+            $encoding = '';
+            if (preg_match('/ *gzip *,?/', $this->headers['accept-encoding'])) {
+                $encoding = 'gzip';
+            } elseif (preg_match('/ *deflate *,?/', $this->headers['accept-encoding'])) {
+                $encoding = 'deflate';
+            }
+            (isset($encoding)) ? $this->headers['Content-Encoding'] = $encoding : null;
+            $body = static::encodeBody($body, $encoding);
         }
-
         $this->sendHeaders();
         echo $body;
     }
