@@ -194,7 +194,7 @@ abstract class Headers extends Clients\Client
             } elseif (preg_match('/ *deflate *,?/', $this->headers['accept-encoding'])) {
                 $encoding = 'deflate';
             }
-            (!empty($encoding)) ? $this->headers['Content-Encoding'] = $encoding : null;
+            (isset($encoding)) ? $this->headers['Content-Encoding'] = $encoding : null;
             $body = static::encodeBody($body, $encoding);
         }
         $this->sendHeaders();
