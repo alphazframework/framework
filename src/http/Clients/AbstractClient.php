@@ -303,7 +303,7 @@ abstract class AbstractClient
     }
 
     /**
-     * Remove a fuekd.
+     * Remove a field.
      *
      * @param (string) $name name of field
      *
@@ -311,7 +311,7 @@ abstract class AbstractClient
      *
      * @return object
      */
-    public function getFields($name)
+    public function removeField($name)
     {
         if (isset($this->fields[$name])) {
             unset($this->fields[$name]);
