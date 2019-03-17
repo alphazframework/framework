@@ -315,10 +315,10 @@ function __log_message($message, $type = 'info', $file = '')
     return (new \Zest\Common\Logger\Logger())->setCustomFile($file)->$type($message);
 }
 if (!function_exists('decode_html_entity')) {
-   function decode_html_entity($content)
-   {
+    function decode_html_entity($content)
+    {
         return (new \Zest\Input\Input())->decodeHtmlEntity($content);
-   }     
+    }
 }
 function __decode_html_entity($content)
 {
