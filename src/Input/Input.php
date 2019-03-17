@@ -148,6 +148,20 @@ class Input
     }
 
     /**
+     * Decode HTML entity.
+     *
+     * @param (string) $input string.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public function decodeHtmlEntity($input)
+    {
+        return html_entity_decode($input, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    }
+
+    /**
      * Restore new lines.
      *
      * @param (string) $str string that tobe restored new lines
