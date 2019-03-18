@@ -19,6 +19,33 @@ namespace Zest\Cookies;
 class Cookies
 {
     /**
+     * The default path (if specified).
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $path = '/';
+
+    /**
+     * The default domain (if specified).
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $domain;
+
+    /**
+     * The default secure setting (defaults to false).
+     *
+     * @since 3.0.0
+     *
+     * @var bool
+     */
+    protected $secure = false;
+
+    /**
      * Set the cookie value.
      *
      * @param (string) $name     Name of cookie.
@@ -33,7 +60,7 @@ class Cookies
      *
      * @return bool
      */
-    public function set(string $name, $value, $expire, $path, $domain, bool $secure, bool $httponly)
+    public function set(string $name, $value, $expire = 0, $path = null, $domain = null, bool $secure = false, bool $httponly = true)
     {
         $name = preg_match('/[=,; \t\r\n\013\014]/', $name) ? rand(1, 25) : $name;
         if ($expire instanceof \DateTime) {
@@ -42,13 +69,46 @@ class Cookies
             $expire = strtotime($expire);
         } else {
             $expire = $expire;
+            if (false === $expire) {
+                throw new \InvalidArgumentException('The cookie expiration time is not valid.', 500);
+            }
         }
-        $path = empty($path) ? '/' : $path;
-        if (!$this->has($name)) {
-            return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
-        } else {
-            return false;
-        }
+        [$path, $domain, $secure] = $this->getPathAndDomain($path, $domain, $secure);
+        return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
+    }
+
+    /**
+     * Get the path and domain, or the default values.
+     *
+     * @param  string  $path
+     * @param  string  $domain
+     * @param  bool    $secure
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    protected function getPathAndDomain($path, $domain, $secure = false, $sameSite = null)
+    {
+        return [$path ?: $this->path, $domain ?: $this->domain, is_bool($secure) ? $secure : $this->secure];
+    }
+
+    /**
+     * Set the default path and domain for the jar.
+     *
+     * @param  string  $path
+     * @param  string  $domain
+     * @param  bool    $secure
+     *
+     * @since 3.0.0
+     *
+     * @return object
+     */
+    public function setDefaultPathAndDomain($path, $domain, $secure = false, $sameSite = null)
+    {
+        [$this->path, $this->domain, $this->secure] = [$path, $domain, $secure];
+
+        return $this;
     }
 
     /**
@@ -143,19 +203,9 @@ class Cookies
      *
      * @return bool
      */
-    public function delete($name)
+    public function delete($name, $path = null, $domain = null)
     {
-        if (isset($name) && !empty($name)) {
-            if ($this->has($name)) {
-                setcookie($name, '', time() - 3600, '/');
-
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+        $this->set($name, null, -2628000, $path, $domain);
     }
 
     /**
