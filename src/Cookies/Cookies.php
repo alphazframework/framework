@@ -74,15 +74,16 @@ class Cookies
             }
         }
         [$path, $domain, $secure] = $this->getPathAndDomain($path, $domain, $secure);
+
         return setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
     }
 
     /**
      * Get the path and domain, or the default values.
      *
-     * @param  string  $path
-     * @param  string  $domain
-     * @param  bool    $secure
+     * @param string $path
+     * @param string $domain
+     * @param bool   $secure
      *
      * @since 3.0.0
      *
@@ -96,9 +97,9 @@ class Cookies
     /**
      * Set the default path and domain for the jar.
      *
-     * @param  string  $path
-     * @param  string  $domain
-     * @param  bool    $secure
+     * @param string $path
+     * @param string $domain
+     * @param bool   $secure
      *
      * @since 3.0.0
      *

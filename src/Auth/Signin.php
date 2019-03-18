@@ -15,9 +15,9 @@
 namespace Zest\Auth;
 
 use Zest\Hashing\Hash;
+use Zest\http\Request;
 use Zest\Session\Session;
 use Zest\Validation\Validation;
-use Zest\http\Request;
 
 class Signin extends Handler
 {

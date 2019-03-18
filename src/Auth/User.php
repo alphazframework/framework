@@ -17,10 +17,10 @@
 namespace Zest\Auth;
 
 use Zest\Contracts\Auth\User as UserContract;
-use Zest\Database\Db as DB;
-use Zest\Session\Session;
-use Zest\http\Request;
 use Zest\Cookies\Cookies;
+use Zest\Database\Db as DB;
+use Zest\http\Request;
+use Zest\Session\Session;
 
 class User extends Handler implements UserContract
 {
