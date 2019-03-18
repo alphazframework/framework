@@ -19,6 +19,8 @@ namespace Zest\Auth;
 use Zest\Contracts\Auth\User as UserContract;
 use Zest\Database\Db as DB;
 use Zest\Session\Session;
+use Zest\http\Request;
+use Zest\Cookies\Cookies;
 
 class User extends Handler implements UserContract
 {
@@ -195,7 +197,8 @@ class User extends Handler implements UserContract
      */
     public function logout()
     {
-        delete_cookie('user');
+        $request = new Request();
+        (new Cookies())->delete('user', '/', $request->getServerName());
 
         return Session::delete('user');
     }
