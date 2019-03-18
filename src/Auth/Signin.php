@@ -17,6 +17,7 @@ namespace Zest\Auth;
 use Zest\Hashing\Hash;
 use Zest\Session\Session;
 use Zest\Validation\Validation;
+use Zest\http\Request;
 
 class Signin extends Handler
 {
@@ -80,7 +81,8 @@ class Signin extends Handler
             if ($this->fail() !== true) {
                 $salts = $user->getByWhere('username', $username)[0]['salts'];
                 Session::set('user', $salts);
-                set_cookie('user', $salts, 31104000, '/', $_SERVER['SERVER_NAME'], true, true);
+                $request = new Request();
+                set_cookie('user', $salts, 31104000, '/', $request->getServerName(), false, true);
                 $password_hash = $user->getByWhere('username', $username)[0]['password'];
                 if (Hash::needsRehash($password_hash) === true) {
                     $hashed = Hash::make($password);
