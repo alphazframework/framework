@@ -121,14 +121,14 @@ function __salts($len)
     return Zest\Site\Site::salts($len);
 }
 if (!function_exists('set_cookie')) {
-    function set_cookie($name, $value, $expire, $path, $domain, $secure, $httponly)
+    function set_cookie($name, $value, $expire = 0, $path = null, $domain = null, $secure = false, $httponly = true)
     {
         $cookie = new Zest\Cookies\Cookies();
 
         return $cookie->set($name, $value, time() + $expire, $path, $domain, $secure, $httponly);
     }
 }
-function __set_cookie($name, $value, $expire, $path, $domain, $secure, $httponly)
+function __set_cookie($name, $value, $expire = 0, $path = null, $domain = null, $secure = false, $httponly = true)
 {
     $cookie = new Zest\Cookies\Cookies();
 
@@ -149,18 +149,18 @@ function __get_cookie($name)
     return $cookie->get($name);
 }
 if (!function_exists('delete_cookie')) {
-    function delete_cookie($name)
+    function delete_cookie($name, $path = null, $domain = null)
     {
         $cookie = new Zest\Cookies\Cookies();
 
-        return $cookie->delete($name);
+        return $cookie->delete($name, $path, $domain);
     }
 }
-function __delete_cookie($name)
+function __delete_cookie($name, $path = null, $domain = null)
 {
     $cookie = new Zest\Cookies\Cookies();
 
-    return $cookie->delete($name);
+    return $cookie->delete($name, $path, $domain);
 }
 if (!function_exists('is_cookie')) {
     function is_cookie($name)
@@ -295,10 +295,10 @@ function __container($identifier, $params = [])
     return (new \Zest\Common\Container\DIS())->get($identifier, $params);
 }
 if (!function_exists('config')) {
-    function config()
-    {
-        return (new \Zest\Common\Configuration())->get();
-    }
+   function config()
+   {
+       return (new \Zest\Common\Configuration())->get();
+   }
 }
 function __config()
 {
@@ -314,11 +314,12 @@ function __log_message($message, $type = 'info', $file = '')
 {
     return (new \Zest\Common\Logger\Logger())->setCustomFile($file)->$type($message);
 }
+
 if (!function_exists('decode_html_entity')) {
-    function decode_html_entity($content)
-    {
+   function decode_html_entity($content)
+   {
         return (new \Zest\Input\Input())->decodeHtmlEntity($content);
-    }
+   }
 }
 function __decode_html_entity($content)
 {
