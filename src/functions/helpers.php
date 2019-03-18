@@ -295,10 +295,10 @@ function __container($identifier, $params = [])
     return (new \Zest\Common\Container\DIS())->get($identifier, $params);
 }
 if (!function_exists('config')) {
-   function config()
-   {
-       return (new \Zest\Common\Configuration())->get();
-   }
+    function config()
+    {
+        return (new \Zest\Common\Configuration())->get();
+    }
 }
 function __config()
 {
@@ -316,10 +316,10 @@ function __log_message($message, $type = 'info', $file = '')
 }
 
 if (!function_exists('decode_html_entity')) {
-   function decode_html_entity($content)
-   {
+    function decode_html_entity($content)
+    {
         return (new \Zest\Input\Input())->decodeHtmlEntity($content);
-   }
+    }
 }
 function __decode_html_entity($content)
 {
