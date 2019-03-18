@@ -199,7 +199,8 @@ class User extends Handler implements UserContract
     {
         $request = new Request();
         (new Cookies())->delete('user', '/', $request->getServerName());
-
+        session_regenerate_id(); //Aviod session hijacking
+        
         return Session::delete('user');
     }
 }
