@@ -50,6 +50,7 @@ class FileHandling
         'writeMaster'     => 'w+',
         'writeAppend'     => 'a',
         'readWriteAppend' => 'a+',
+        'writeOverride'   => 'wa+',
     ];
 
     /**
@@ -130,4 +131,19 @@ class FileHandling
         fclose($this->resource);
         unset($this->file);
     }
+
+    /**
+     * Add custom mode.
+     *
+     * @param (string) $name  Valid name.
+     *.@param (string) $value Valid mode.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */    
+    public function addCustomMode($name, $value)
+    {
+        array_push($this->modes[$name], $value);
+    }    
 }
