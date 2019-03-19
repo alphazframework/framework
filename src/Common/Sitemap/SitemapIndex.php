@@ -25,7 +25,7 @@ class SitemapIndex extends SitemapWriter
      *
      * @var string
      */
-    const START    = '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+    const START = '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
     /**
      * End of sitemap.
@@ -33,8 +33,8 @@ class SitemapIndex extends SitemapWriter
      * @since 3.0.0
      *
      * @var string
-     */    
-    const END     = '</sitemapindex>';
+     */
+    const END = '</sitemapindex>';
 
     /**
      * Last modify.
@@ -60,7 +60,7 @@ class SitemapIndex extends SitemapWriter
      * @since 3.0.0
      *
      * @var string
-     */    
+     */
     private $raw = '
     <sitemap>
         <loc>:url</loc>
@@ -69,14 +69,14 @@ class SitemapIndex extends SitemapWriter
 
     /**
      * __construct.
-     * Specify file name wiht extension, the path will be the public
+     * Specify file name wiht extension, the path will be the public.
      *
      * @param (string) $file File name with extension (.xml).
      *
      * @since 3.0.0
      *
      * @return void
-    */    
+     */
     public function __construct($file)
     {
         $this->file = route()->public.$file;
@@ -93,24 +93,24 @@ class SitemapIndex extends SitemapWriter
      * @since 3.0.0
      *
      * @return bool
-    */
+     */
     private function create($mode, $url, $lastMod = null)
     {
-        $lastMod    = $lastMod     ?: $this->lastMod;
+        $lastMod = $lastMod ?: $this->lastMod;
         $raw = str_replace([':url', ':lastmod'], [$url, $lastMod], $this->raw);
         if ($mode === 'create') {
             $fileH = new SitemapWriter($this->file, 'writeOnly');
-            $fileH->write(SitemapIndex::START.PHP_EOL);
+            $fileH->write(self::START.PHP_EOL);
             $fileH->write($raw);
-            $fileH->write(PHP_EOL.SitemapIndex::END);
+            $fileH->write(PHP_EOL.self::END);
         } elseif ($mode === 'append') {
             $fileH = new SitemapWriter($this->file, 'readOnly');
             $sitemapData = $fileH->read();
             $fileH = new SitemapWriter($this->file, 'writeOverride');
             $sitemapData = str_replace('</sitemapindex>', '', $sitemapData);
-            $sitemapData = $sitemapData . $raw;
+            $sitemapData = $sitemapData.$raw;
             $fileH->write($sitemapData);
-            $fileH->write(PHP_EOL.SitemapIndex::END);
+            $fileH->write(PHP_EOL.self::END);
         }
         $fileH->close();
     }
@@ -124,7 +124,7 @@ class SitemapIndex extends SitemapWriter
      * @since 3.0.0
      *
      * @return void
-    */
+     */
     public function addItem($url, $lastMod = null)
     {
         if ($this->has($this->file)) {
@@ -143,7 +143,7 @@ class SitemapIndex extends SitemapWriter
      * @since 3.0.0
      *
      * @return void
-    */
+     */
     private function appendItem($url, $lastMod)
     {
         $this->create('append', $url, $lastMod);
@@ -155,7 +155,7 @@ class SitemapIndex extends SitemapWriter
      * @since 3.0.0
      *
      * @return bool
-    */
+     */
     public function has()
     {
         return file_exists($this->file) ? true : false;
@@ -167,7 +167,7 @@ class SitemapIndex extends SitemapWriter
      * @since 3.0.0
      *
      * @return object
-    */
+     */
     public function delete()
     {
         if (file_exists($this->file)) {
@@ -176,5 +176,4 @@ class SitemapIndex extends SitemapWriter
 
         return $this;
     }
-
 }

@@ -31,7 +31,7 @@ class SitemapWriter
 
     /**
      * __construct.
-     * Open the sitemap file
+     * Open the sitemap file.
      *
      * @param (string) $file File name with extension (.xml).
      * @param (string) $mode Valid file opening mode.
@@ -39,7 +39,7 @@ class SitemapWriter
      * @since 3.0.0
      *
      * @return void
-    */    
+     */
     public function __construct($file, $mode = 'readWriteAppend')
     {
         $this->file = (new FileHandling())->open($file, $mode);
@@ -53,33 +53,35 @@ class SitemapWriter
      * @since 3.0.0
      *
      * @return void
-    */    
+     */
     public function write($data)
     {
-        if (null !== $this->file)
+        if (null !== $this->file) {
             $this->file->write($data);
+        }
     }
 
     /**
-     * Read the sitemap file
+     * Read the sitemap file.
      *
      * @since 3.0.0
      *
      * @return xml
-    */    
+     */
     public function read()
     {
-        if (null !== $this->file)
+        if (null !== $this->file) {
             return $this->file->read();
+        }
     }
 
     /**
-     * Close the sitemap file
+     * Close the sitemap file.
      *
      * @since 3.0.0
      *
      * @return void
-    */        
+     */
     public function close()
     {
         $this->file->close();
