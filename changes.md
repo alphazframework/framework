@@ -119,3 +119,4 @@
 95. Added Constructur args support in container class.
 96. Update Session & Cookie class allow developer to set/delete/get Multiple values.
 97. Added Component Manipulator class.
+98. Added Sitemap package.
