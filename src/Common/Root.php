@@ -56,7 +56,7 @@ class Root
             //config
             'config' => $this->root().'Config/',
             //public
-            'public' => $this->root().Site::getBase().'/',
+            'public' => getcwd().'/',
             //routes
             'routes' => $this->root().'routes/',
             //Storage
