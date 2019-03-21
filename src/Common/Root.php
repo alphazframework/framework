@@ -30,7 +30,7 @@ class Root
      */
     public function root()
     {
-        return '../';
+        return $_SERVER['DOCUMENT_ROOT'].'/';
     }
 
     /**
@@ -62,10 +62,10 @@ class Root
             //Storage
             'storage'         => $this->root().'Storage/',
             'storage_backtup' => $this->root().'Storage/Backup/',
-            'storage_data'    => __config()->config->data_dir,
-            'cache_dir'       => __config()->config->cache_dir,
+            'storage_data'    => $this->root(). 'Storage/'.__config()->config->data_dir,
+            'cache_dir'       =>  $this->root(). 'Storage/'.__config()->config->cache_dir,
             'storage_logs'    => $this->root().'Storage/Logs/',
-            'storage_session' => __config()->config->session_path,
+            'storage_session' =>  $this->root(). 'Storage/'.__config()->config->session_path,
         ];
 
         return Conversion::arrayObject($roots);
