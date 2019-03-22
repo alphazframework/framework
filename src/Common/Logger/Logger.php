@@ -77,7 +77,7 @@ class Logger extends AbstractLogger
     /**
      * Log.
      *
-     * @param (string) $level Error level (string or PHP syslog priority)
+     * @param (string) $level   Error level (string or PHP syslog priority)
      * @param (string) $message Error message
      * @param (array)  $context Contextual array
      *
@@ -111,7 +111,7 @@ class Logger extends AbstractLogger
     /**
      * Write the log message in files.
      *
-     * @param (string) $string Error level (string or PHP syslog priority)
+     * @param (string) $string  Error level (string or PHP syslog priority)
      * @param (string) $message Error message
      *
      * @since 2.0.3
@@ -175,9 +175,10 @@ class Logger extends AbstractLogger
     /**
      * Log an Exception.
      *
-     * @param (string)    $level Error level (string or PHP syslog priority)
+     * @param (string) $level Error level (string or PHP syslog priority)
      * @oaram (string)    $message Error message
-     * @param (array)     $context Contextual array
+     *
+     * @param (array)     $context   Contextual array
      * @param (Expection) $exception Exception
      *
      * @since 2.0.3
@@ -194,7 +195,7 @@ class Logger extends AbstractLogger
      *
      * @param (string) $string String with parameters
      * @param (array)  $params Parameter arrays
-     * @param (string) $level Level of log
+     * @param (string) $level  Level of log
      *
      * @since 2.0.3
      *
