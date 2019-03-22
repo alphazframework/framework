@@ -46,6 +46,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      * @var string
      */
     protected $ext = '.xml';
+
     /**
      * Determine whether the sitemap exists.
      *
