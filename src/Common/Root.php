@@ -30,7 +30,7 @@ class Root
      */
     public function root()
     {
-        return $_SERVER['DOCUMENT_ROOT'].'/';
+        return __ZEST__ROOT__.'/';
     }
 
     /**
