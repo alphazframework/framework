@@ -52,8 +52,7 @@ class Session
      */
     public static function sessionPath()
     {
-        $path = __config()->config->session_path;
-        ini_set('session.save_path', $path);
+        ini_set('session.save_path', session_path());
     }
 
     /**
