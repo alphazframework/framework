@@ -43,7 +43,7 @@ class Root
     public function paths()
     {
         $roots = [
-            'root' => $this->root(),
+            'root'         => $this->root(),
             //App
             'app'          => $this->root().'App/',
             'controllers'  => $this->root().'App/Controllers/',
@@ -52,20 +52,23 @@ class Root
             'models'       => $this->root().'App/Models/',
             'views'        => __config()->config->theme_path,
             //components
-            'com' => $this->root().'App/Components/',
+            'com'          => $this->root().'App/Components/',
             //config
-            'config' => $this->root().'Config/',
+            'config'       => $this->root().'Config/',
             //public
-            'public' => getcwd().'/',
+            'public'       => getcwd().'/',
             //routes
-            'routes' => $this->root().'routes/',
+            'routes'       => $this->root().'routes/',
             //Storage
-            'storage'         => $this->root().'Storage/',
-            'storage_backtup' => $this->root().'Storage/Backup/',
-            'storage_data'    => $this->root(). 'Storage/'.__config()->config->data_dir,
-            'cache_dir'       =>  $this->root(). 'Storage/'.__config()->config->cache_dir,
-            'storage_logs'    => $this->root().'Storage/Logs/',
-            'storage_session' =>  $this->root(). 'Storage/'.__config()->config->session_path,
+            'storage'      => [
+                'storage'  => $this->root().'Storage/',
+                'backup'   => $this->root().'Storage/Backup/',
+                'data'     => $this->root(). 'Storage/'.__config()->config->data_dir,
+                'cache'    => $this->root(). 'Storage/'.__config()->config->cache_dir,
+                'session'  => $this->root(). 'Storage/'.__config()->config->session_path,
+                'log'      => $this->root().'Storage/Logs/',
+            ],
+            'views'        => $this->root().__config()->config->theme_path,
         ];
 
         return Conversion::arrayObject($roots);
