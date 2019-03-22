@@ -16,7 +16,9 @@
 
 namespace Zest\Common\Sitemap;
 
-class SitemapIndex extends SitemapWriter
+use Zest\Contracts\Sitemap\SitemapIndex as SitemapIndexContracts;
+
+class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
 {
     /**
      * Start of sitemap.
@@ -35,24 +37,6 @@ class SitemapIndex extends SitemapWriter
      * @var string
      */
     const END = '</sitemapindex>';
-
-    /**
-     * Last modify.
-     *
-     * @since 3.0.0
-     *
-     * @var Datetime
-     */
-    private $lastMod;
-
-    /**
-     * Sitemap file.
-     *
-     * @since 3.0.0
-     *
-     * @var string
-     */
-    private $file;
 
     /**
      * XML structure.
@@ -94,7 +78,7 @@ class SitemapIndex extends SitemapWriter
      *
      * @return bool
      */
-    private function create($mode, $url, $lastMod = null)
+    private function create($mode, $url, $lastMod = null):void
     {
         $lastMod = $lastMod ?: $this->lastMod;
         $raw = str_replace([':url', ':lastmod'], [$url, $lastMod], $this->raw);
@@ -125,7 +109,7 @@ class SitemapIndex extends SitemapWriter
      *
      * @return void
      */
-    public function addItem($url, $lastMod = null)
+    public function addItem($url, $lastMod = null):void
     {
         if ($this->has($this->file)) {
             $this->appendItem($url, $lastMod);
@@ -144,36 +128,9 @@ class SitemapIndex extends SitemapWriter
      *
      * @return void
      */
-    private function appendItem($url, $lastMod)
+    private function appendItem($url, $lastMod):void
     {
         $this->create('append', $url, $lastMod);
     }
 
-    /**
-     * Determine whether the sitemap exists.
-     *
-     * @since 3.0.0
-     *
-     * @return bool
-     */
-    public function has()
-    {
-        return file_exists($this->file) ? true : false;
-    }
-
-    /**
-     * Delete the sitemap.
-     *
-     * @since 3.0.0
-     *
-     * @return object
-     */
-    public function delete()
-    {
-        if (file_exists($this->file)) {
-            unlink($this->$file);
-        }
-
-        return $this;
-    }
 }

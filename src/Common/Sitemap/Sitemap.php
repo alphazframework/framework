@@ -16,7 +16,9 @@
 
 namespace Zest\Common\Sitemap;
 
-class Sitemap extends SitemapWriter
+use Zest\Contracts\Sitemap\Sitemap as SitemapContracts;
+
+class Sitemap extends AbstractSitemap implements SitemapContracts
 {
     /**
      * Start of sitemap.
@@ -58,15 +60,6 @@ class Sitemap extends SitemapWriter
     private $priority = 0.5;
 
     /**
-     * Last modify.
-     *
-     * @since 3.0.0
-     *
-     * @var Datetime
-     */
-    private $lastMod;
-
-    /**
      * Change frequency.
      *
      * @since 3.0.0
@@ -74,15 +67,6 @@ class Sitemap extends SitemapWriter
      * @var string
      */
     private $changeFreq = 'weekly';
-
-    /**
-     * Sitemap file.
-     *
-     * @since 3.0.0
-     *
-     * @var string
-     */
-    private $file;
 
     /**
      * XML structure.
@@ -128,7 +112,7 @@ class Sitemap extends SitemapWriter
      *
      * @return bool
      */
-    private function create($mode, $url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly')
+    private function create($mode, $url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly'):void
     {
         [$lastMod, $priority, $changeFreq] = [$lastMod ?: $this->lastMod, $priority ?: $this->priority, $changeFreq ?: $this->changeFreq];
         if (!in_array($changeFreq, $this->validFrequencies, true)) {
@@ -150,8 +134,6 @@ class Sitemap extends SitemapWriter
             $fileH->write(PHP_EOL.self::END);
         }
         $fileH->close();
-
-        return true;
     }
 
     /**
@@ -166,7 +148,7 @@ class Sitemap extends SitemapWriter
      *
      * @return void
      */
-    public function addItem($url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly')
+    public function addItem($url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly'):void
     {
         if ($this->has($this->file)) {
             $this->appendItem($url, $lastMod, $priority, $changeFreq);
@@ -187,37 +169,9 @@ class Sitemap extends SitemapWriter
      *
      * @return void
      */
-    private function appendItem($url, $lastMod, $priority, $changeFreq)
+    private function appendItem($url, $lastMod, $priority, $changeFreq):void
     {
         $this->create('append', $url, $lastMod, $priority, $changeFreq);
     }
 
-    /**
-     * Determine whether the sitemap exists.
-     **.
-     *
-     * @since 3.0.0
-     *
-     * @return bool
-     */
-    public function has()
-    {
-        return file_exists($this->file) ? true : false;
-    }
-
-    /**
-     * Delete the sitemap.
-     *
-     * @since 3.0.0
-     *
-     * @return object
-     */
-    public function delete()
-    {
-        if (file_exists($this->file)) {
-            unlink($this->$file);
-        }
-
-        return $this;
-    }
 }

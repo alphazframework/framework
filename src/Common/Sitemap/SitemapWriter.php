@@ -17,8 +17,9 @@
 namespace Zest\Common\Sitemap;
 
 use Zest\Files\FileHandling;
+use Zest\Contracts\Sitemap\SitemapWriter as SitemapWriterContracts;
 
-class SitemapWriter
+class SitemapWriter implements SitemapWriterContracts
 {
     /**
      * resource.
@@ -54,7 +55,7 @@ class SitemapWriter
      *
      * @return void
      */
-    public function write($data)
+    public function write($data):void
     {
         if (null !== $this->file) {
             $this->file->write($data);
@@ -68,7 +69,7 @@ class SitemapWriter
      *
      * @return xml
      */
-    public function read()
+    public function read():string
     {
         if (null !== $this->file) {
             return $this->file->read();
@@ -82,7 +83,7 @@ class SitemapWriter
      *
      * @return void
      */
-    public function close()
+    public function close():void
     {
         $this->file->close();
         unset($this->file);
