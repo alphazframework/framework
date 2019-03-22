@@ -63,7 +63,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
      */
     public function __construct($file)
     {
-        $this->file = route()->public.$file.$this->ext;
+        $this->file = __public_path().$file.$this->ext;
         $this->lastMod = date('d:m:y');
     }
 
