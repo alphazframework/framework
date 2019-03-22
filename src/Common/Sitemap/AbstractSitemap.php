@@ -27,7 +27,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      *
      * @var Datetime
      */
-    private $lastMod;
+    protected $lastMod;
 
     /**
      * Sitemap file.
@@ -36,8 +36,16 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      *
      * @var string
      */
-    private $file;
+    protected $file;
 
+    /**
+     * Extension.
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    protected $ext = '.xml';
     /**
      * Determine whether the sitemap exists.
      *
@@ -63,8 +71,8 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      */
     public function delete($file):AbstractSitemapContracts
     {
-        if ($this->has(route()->public.$file)) {
-            unlink(route()->public.$file);
+        if ($this->has(route()->public.$file.$this->ext)) {
+            unlink(route()->public.$file.$this->ext);
         }
 
         return $this;
