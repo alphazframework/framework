@@ -173,5 +173,4 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
     {
         $this->create('append', $url, $lastMod, $priority, $changeFreq);
     }
-
 }

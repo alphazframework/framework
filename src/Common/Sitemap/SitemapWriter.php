@@ -16,8 +16,8 @@
 
 namespace Zest\Common\Sitemap;
 
-use Zest\Files\FileHandling;
 use Zest\Contracts\Sitemap\SitemapWriter as SitemapWriterContracts;
+use Zest\Files\FileHandling;
 
 class SitemapWriter implements SitemapWriterContracts
 {

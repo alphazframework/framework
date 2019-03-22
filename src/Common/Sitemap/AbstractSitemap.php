@@ -57,7 +57,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      * Delete the sitemap.
      *
      * @param (string) $file File name with extension (.xml).
-     *     
+     *
      * @since 3.0.0
      *
      * @return object

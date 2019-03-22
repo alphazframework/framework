@@ -132,5 +132,4 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
     {
         $this->create('append', $url, $lastMod);
     }
-
 }

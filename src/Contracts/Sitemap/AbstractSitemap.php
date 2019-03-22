@@ -21,7 +21,7 @@ interface AbstractSitemap
     /**
      * Determine whether the sitemap exists.
      *
-     * @param (string) $file File name with extension (.xml). 
+     * @param (string) $file File name with extension (.xml).
      *
      * @since 3.0.0
      *
@@ -32,8 +32,8 @@ interface AbstractSitemap
     /**
      * Delete the sitemap.
      *
-     * @param (string) $file File name with extension (.xml). 
-     *     
+     * @param (string) $file File name with extension (.xml).
+     *
      * @since 3.0.0
      *
      * @return object
