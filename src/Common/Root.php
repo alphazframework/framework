@@ -17,7 +17,6 @@
 namespace Zest\Common;
 
 use Zest\Data\Conversion;
-use Zest\Site\Site;
 
 class Root
 {
@@ -63,9 +62,9 @@ class Root
             'storage'      => [
                 'storage'  => $this->root().'Storage/',
                 'backup'   => $this->root().'Storage/Backup/',
-                'data'     => $this->root(). 'Storage/'.__config()->config->data_dir,
-                'cache'    => $this->root(). 'Storage/'.__config()->config->cache_dir,
-                'session'  => $this->root(). 'Storage/'.__config()->config->session_path,
+                'data'     => $this->root().'Storage/'.__config()->config->data_dir,
+                'cache'    => $this->root().'Storage/'.__config()->config->cache_dir,
+                'session'  => $this->root().'Storage/'.__config()->config->session_path,
                 'log'      => $this->root().'Storage/Logs/',
             ],
             'views'        => $this->root().__config()->config->theme_path,
