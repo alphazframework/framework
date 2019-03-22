@@ -325,6 +325,56 @@ function __decode_html_entity($content)
 {
     return (new \Zest\Input\Input())->decodeHtmlEntity($content);
 }
+if (!function_exists('base_path')) {
+    function base_path()
+    {
+        return route()->root;
+    }
+}
+function __base_path()
+{
+    return route()->root;
+}
+if (!function_exists('app_path')) {
+    function app_path()
+    {
+        return route()->app;
+    }
+}
+function __app_path()
+{
+    return route()->app;
+}
+if (!function_exists('session_path')) {
+    function session_path()
+    {
+        return route()->storage->session;
+    }
+}
+function __session_path()
+{
+    return route()->storage->session;
+}
+if (!function_exists('public_path')) {
+    function public_path()
+    {
+        return route()->public;
+    }
+}
+function __public_path()
+{
+    return route()->public;
+}
+if (!function_exists('cache_path')) {
+    function cache_path()
+    {
+        return route()->storage->cache;
+    }
+}
+function __cache_path()
+{
+    return route()->storage->cache;
+}
 function maintenanceInstance()
 {
     return new \Zest\Common\Maintenance();
