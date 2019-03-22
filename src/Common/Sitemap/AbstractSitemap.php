@@ -20,7 +20,6 @@ use Zest\Contracts\Sitemap\AbstractSitemap as AbstractSitemapContracts;
 
 class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
 {
-
     /**
      * Last modify.
      *

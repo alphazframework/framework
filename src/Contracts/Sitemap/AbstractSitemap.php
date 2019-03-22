@@ -38,5 +38,5 @@ interface AbstractSitemap
      *
      * @return object
      */
-    public function delete($file):AbstractSitemap;
+    public function delete($file):self;
 }
