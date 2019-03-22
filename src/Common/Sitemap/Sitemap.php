@@ -95,7 +95,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
      */
     public function __construct($file)
     {
-        $this->file = route()->public.$file;
+        $this->file = route()->public.$file.$this->ext;
         $this->lastMod = date('d:m:y');
     }
 
