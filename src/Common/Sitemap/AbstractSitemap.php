@@ -72,8 +72,8 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      */
     public function delete($file):AbstractSitemapContracts
     {
-        if ($this->has(route()->public.$file.$this->ext)) {
-            unlink(route()->public.$file.$this->ext);
+        if ($this->has(__public_path().$file.$this->ext)) {
+            unlink(__public_path().$file.$this->ext);
         }
 
         return $this;
