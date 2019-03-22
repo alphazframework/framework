@@ -17,6 +17,7 @@
 namespace Zest\Cache\Adapter;
 
 use Zest\Files\FileHandling;
+use Zest\Files\Files;
 
 class FileCache extends AbstractAdapter
 {
@@ -43,7 +44,7 @@ class FileCache extends AbstractAdapter
      */
     public function getItemTtl($key)
     {
-        $cacheFile = route()->storage.'Cache/'.md5($key);
+        $cacheFile = cache_path().md5($key);
         if (file_exists($cacheFile)) {
             $fileHandling = new FileHandling();
             $data = $fileHandling->open($cacheFile, 'readOnly')->read($cacheFile);
@@ -72,7 +73,7 @@ class FileCache extends AbstractAdapter
     public function saveItem($key, $value, $ttl = null)
     {
         if (!$this->hasItem($key)) {
-            $cacheFile = route()->storage.'Cache/'.md5($key);
+            $cacheFile = cache_path().md5($key);
             $fileHandling = new FileHandling();
             $fileHandling->open($cacheFile, 'writeAppend')->write(json_encode([
                 'start' => time(),
@@ -96,7 +97,7 @@ class FileCache extends AbstractAdapter
      */
     public function getItem($key)
     {
-        $cacheFile = route()->storage.'Cache/'.md5($key);
+        $cacheFile = cache_path().md5($key);
         if (file_exists($cacheFile)) {
             $fileHandling = new FileHandling();
             $data = $fileHandling->open($cacheFile, 'readOnly')->read($cacheFile);
@@ -136,7 +137,7 @@ class FileCache extends AbstractAdapter
      */
     public function deleteItem($key)
     {
-        $cacheFile = route()->storage.'Cache/'.md5($key);
+        $cacheFile = cache_path().md5($key);
         if (file_exists($cacheFile)) {
             unlink($cacheFile);
         }
@@ -153,9 +154,9 @@ class FileCache extends AbstractAdapter
      */
     public function destroy()
     {
-        $cacheDir = route()->storage.'Cache/';
+        $cacheDir = cache_path();
         if (is_dir($cacheDir)) {
-            rmdir($cacheDir);
+            (new Files())->deleteDir($cacheDir);
         }
 
         return $this;
