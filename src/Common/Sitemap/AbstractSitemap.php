@@ -58,7 +58,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      */
     public function has($file):bool
     {
-        return file_exists($file) ? true : false;
+        return file_exists($file);
     }
 
     /**
