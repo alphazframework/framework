@@ -26,6 +26,6 @@
     },  
     "config":{
         "optimize-autoloader":true
-    },      
-    "prefer-stable": true
+    }
+    //"prefer-stable": true
 }
