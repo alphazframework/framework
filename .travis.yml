@@ -13,6 +13,7 @@ php:
 # Commands to be run before your environment runs.
 before_script:
 - "composer install"
+- "composer require zest/zest"
 
 script:
 - vendor/bin/phpunit
