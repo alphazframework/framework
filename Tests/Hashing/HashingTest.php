@@ -31,7 +31,7 @@ class HashingTest extends TestCase
         $value = $hashing->make('password');
         $this->assertNotSame('password', $value);
         $this->assertTrue($hashing->verify('password', $value));
-	$this->assertFalse($hashing->needsRehash($value));
+        $this->assertFalse($hashing->needsRehash($value));
         $this->assertTrue($hashing->needsRehash($value, ['memory' => 512, 'time' => 5, 'threads' => 3]));
         $this->assertSame('argon2i', password_get_info($value)['algoName']);
     }
@@ -39,19 +39,19 @@ class HashingTest extends TestCase
     public function testBasicBcryptVerification()
     {
         $this->expectException(RuntimeException::class);
-        $hashing = new BcryptHashing(['cost' => 10,'verify' => true]);
+        $hashing = new BcryptHashing(['cost' => 10, 'verify' => true]);
         $value = $hashing->make('password');
-	$hashing->verify($value);
+        $hashing->verify($value);
     }
+
     public function testBasicArgon2iVerification()
     {
-	 if (!defined('PASSWORD_ARGON2I')) {
+        if (!defined('PASSWORD_ARGON2I')) {
             $this->markTestSkipped('PHP not compiled with Argon2i hashing support.');
         }
         $this->expectException(RuntimeException::class);
-	$hashing = new ArgonHashing(['memory' => 512,'time' => 5,'threads' => 3,'verify' => true]);
+        $hashing = new ArgonHashing(['memory' => 512, 'time' => 5, 'threads' => 3, 'verify' => true]);
         $value = $hashing->make('password');
-	$hashing->verify($value);
+        $hashing->verify($value);
     }
-
 }
