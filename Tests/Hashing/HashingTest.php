@@ -5,7 +5,6 @@ namespace Framework\Tests;
 namespace Zest\Tests\Hashing;
 
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 use Zest\Hashing\ArgonHashing;
 use Zest\Hashing\BcryptHashing;
 
@@ -27,6 +26,9 @@ class HashingTest extends TestCase
         if (!defined('PASSWORD_ARGON2I')) {
             $this->markTestSkipped('PHP not compiled with Argon2i hashing support.');
         }
+        if (!defined('PASSWORD_ARGON2ID')) {
+            $this->markTestSkipped('PHP not compiled with Argon2id hashing support.');
+        }
         $hashing = new ArgonHashing(['memory' => 512, 'time' => 5, 'threads' => 3]);
         $value = $hashing->make('password');
         $this->assertNotSame('password', $value);
@@ -38,10 +40,10 @@ class HashingTest extends TestCase
 
     public function testBasicBcryptVerification()
     {
-        $this->expectException(RuntimeException::class);
+        $original = 'password';
         $hashing = new BcryptHashing(['cost' => 10, 'verify' => true]);
-        $value = $hashing->make('password');
-        $hashing->verify($value);
+        $hashValue = $hashing->make($original);
+        $this->assertTrue($hashing->verify($original, $hashValue));
     }
 
     public function testBasicArgon2iVerification()
@@ -49,9 +51,12 @@ class HashingTest extends TestCase
         if (!defined('PASSWORD_ARGON2I')) {
             $this->markTestSkipped('PHP not compiled with Argon2i hashing support.');
         }
-        $this->expectException(RuntimeException::class);
+        if (!defined('PASSWORD_ARGON2ID')) {
+            $this->markTestSkipped('PHP not compiled with Argon2id hashing support.');
+        }
+        $original = 'password';
         $hashing = new ArgonHashing(['memory' => 512, 'time' => 5, 'threads' => 3, 'verify' => true]);
-        $value = $hashing->make('password');
-        $hashing->verify($value);
+        $hashValue = $hashing->make($original);
+        $hashing->verify($original, $hashValue);
     }
 }
