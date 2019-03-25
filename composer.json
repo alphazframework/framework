@@ -23,9 +23,9 @@
         "psr-4": {
             "Framework\\Tests\\": "Tests/"
         }
-    },  
+    },
     "config":{
         "optimize-autoloader":true
-    },      
+    },
     "prefer-stable": true
 }

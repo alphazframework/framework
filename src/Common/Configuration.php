@@ -44,15 +44,19 @@ class Configuration
     public function parseData()
     {
         $data = [];
-        $file1 = 'Config/App.php';
-        $file2 = '../Config/App.php';
+        $file1 = __DIR__.'/Config/App.php';
+        $file2 = __DIR__.'/../Config/App.php';
+        $file3 = __DIR__.'/../../config.php';
         if (file_exists($file1)) {
             $data += require $file1;
         } elseif (file_exists($file2)) {
             $data += require $file2;
+        } elseif (file_exists($file3)) {
+            $data += require $file3;
         } else {
             throw new \Exception("Error, while loading Config {$file1} file", 404);
         }
+
         return $data;
     }
 
