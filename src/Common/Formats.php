@@ -56,19 +56,19 @@ class Formats
         (int) $month = $day * 30;
         (int) $year = $month * 12;
         if ($time <= 60) {
-            $ago = ($time === 0 || $time === 1) ? printl('z:format:just:now') : sprintf(printl('z:format:secs'), $time) . ' ' .printl('z:format:ago');
+            $ago = ($time === 0 || $time === 1) ? printl('z:format:just:now') : sprintf(printl('z:format:secs'), $time).' '.printl('z:format:ago');
         } elseif ($time >= $s && $time < $hour) {
-            $ago = (round($time / $s) === 1) ? '1 '.printl('z:format:min').' '.printl('z:format:ago') : sprintf(printl('z:format:mints'), round($time / $s)) . ' '. printl('z:format:ago');
+            $ago = (round($time / $s) === 1) ? '1 '.printl('z:format:min').' '.printl('z:format:ago') : sprintf(printl('z:format:mints'), round($time / $s)).' '.printl('z:format:ago');
         } elseif ($time >= $hour && $time < $day) {
-            $ago = (round($time / $hour) === 1) ? '1 '.printl('z:format:hour'). ' '. printl('z:format:ago') : sprintf(printl('z:format:hours'), round($time / $hour)) . ' ' .printl('z:format:ago');
+            $ago = (round($time / $hour) === 1) ? '1 '.printl('z:format:hour').' '.printl('z:format:ago') : sprintf(printl('z:format:hours'), round($time / $hour)).' '.printl('z:format:ago');
         } elseif ($time >= $day && $time < $week) {
-            $ago = (round($time / $day) === 1) ? '1 '. printl('z:format:day') . ' ' .printl('z:format:ago') : sprintf(printl('z:format:days'), round($time / $day)) . ' ' . printl('z:format:ago');
+            $ago = (round($time / $day) === 1) ? '1 '.printl('z:format:day').' '.printl('z:format:ago') : sprintf(printl('z:format:days'), round($time / $day)).' '.printl('z:format:ago');
         } elseif ($time >= $week && $time < $month) {
-            $ago = (round($time / $week) === 1) ? '1 '. printl('z:format:week') . ' ' . printl('z:format:ago') : sprintf(printl('z:format:weeks'), round($time / $week)) .' ' . printl('z:format:ago');
+            $ago = (round($time / $week) === 1) ? '1 '.printl('z:format:week').' '.printl('z:format:ago') : sprintf(printl('z:format:weeks'), round($time / $week)).' '.printl('z:format:ago');
         } elseif ($time >= $month && $time < $year) {
-            $ago = (round($time / $month) === 1) ? '1 ' . printl('z:format:month') . ' ' . printl('z:format:ago') : sprintf(printl('z:format:months'), round($time / $month)) . ' ' . printl('z:format:ago');
+            $ago = (round($time / $month) === 1) ? '1 '.printl('z:format:month').' '.printl('z:format:ago') : sprintf(printl('z:format:months'), round($time / $month)).' '.printl('z:format:ago');
         } elseif ($time >= $month) {
-            $ago = (round($time / $month) === 1) ? '1 ' . printl('z:format:year') . ' ' . printl('z:format:ago')  : sprintf(printl('z:format:years'), round($time / $year)) . ' ' . printl('z:format:ago');
+            $ago = (round($time / $month) === 1) ? '1 '.printl('z:format:year').' '.printl('z:format:ago') : sprintf(printl('z:format:years'), round($time / $year)).' '.printl('z:format:ago');
         }
 
         return $ago;
