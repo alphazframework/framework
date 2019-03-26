@@ -57,13 +57,13 @@ class ArgonHashing extends AbstractHashing
     /**
      * __construct.
      *
-     * @param (array) $options
+     * @param array $options
      *
      * @since 3.0.0
      */
-    public function __construct(array $options)
+    public function __construct(array $options = null)
     {
-        $this->setMemory($options['memory'])->setTime($options['time'])->setThreads($options['threads']);
+        $this->setMemory($options['memory'] ?? $this->memory)->setTime($options['time'] ?? $this->time)->setThreads($options['threads'] ?? $this->threads);
 
         $this->verifyAlgorithm = (isset($options['verify'])) ? $options['verify'] : false;
     }
@@ -71,8 +71,8 @@ class ArgonHashing extends AbstractHashing
     /**
      * Verify the hash value.
      *
-     * @param (string) $original
-     * @param (string) $hash
+     * @param string $original
+     * @param string $hash
      *
      * @since 3.0.0
      *
@@ -90,8 +90,8 @@ class ArgonHashing extends AbstractHashing
     /**
      * Generate the hash.
      *
-     * @param (string)         $original
-     * @param (array) optional $options
+     * @param string $original
+     * @param array  $options
      *
      * @since 3.0.0
      *
@@ -119,8 +119,8 @@ class ArgonHashing extends AbstractHashing
     /**
      * Check if the given hash has been hashed using the given options.
      *
-     * @param (string)         $hash
-     * @param (array) optional $options
+     * @param string $hash
+     * @param array  $options
      *
      * @since 3.0.0
      *
@@ -142,7 +142,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Set the memory.
      *
-     * @param (int) $memory
+     * @param int $memory
      *
      * @since 3.0.0
      *
@@ -158,7 +158,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Set the time.
      *
-     * @param (int) $time
+     * @param int $time
      *
      * @since 3.0.0
      *
@@ -174,7 +174,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Set the threads.
      *
-     * @param (int) $threads
+     * @param int $threads
      *
      * @since 3.0.0
      *
@@ -232,20 +232,7 @@ class ArgonHashing extends AbstractHashing
      */
     protected function algorithm()
     {
-        $algo = __config()->hashing->driver;
-
-        switch (strtolower($algo)) {
-            case 'argon2i':
-                $algorithm = \PASSWORD_ARGON2I;
-                break;
-            case 'argon2id':
-                $algorithm = \PASSWORD_ARGON2ID;
-            default:
-                $algorithm = \PASSWORD_ARGON2ID;
-                break;
-        }
-
-        return $algorithm;
+        return \PASSWORD_ARGON2I;
     }
 
     /**
@@ -257,19 +244,6 @@ class ArgonHashing extends AbstractHashing
      */
     protected function algorithmKeys()
     {
-        $algo = __config()->hashing->driver;
-
-        switch (strtolower($algo)) {
-            case 'argon2i':
-                $algorithm = 'argon2i';
-                break;
-            case 'argon2id':
-                $algorithm = 'argon2id';
-            default:
-                $algorithm = 'argon2id';
-                break;
-        }
-
-        return $algorithm;
+        return 'argon2i';
     }
 }
