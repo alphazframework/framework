@@ -16,7 +16,9 @@
 
 namespace Zest\Data;
 
-class Arrays implements \ArrayAccess
+use ArrayAccess;
+
+class Arrays
 {
     /**
      * Determine array is accessible.
@@ -265,22 +267,6 @@ class Arrays implements \ArrayAccess
      * @return array
      */
     public function subSetOfArray(array $array, $keys)
-    {
-    }
-
-    public function offsetExists($offset) :bool
-    {
-    }
-
-    public function offsetGet($offset)
-    {
-    }
-
-    public function offsetSet($offset, $value) :void
-    {
-    }
-
-    public function offsetUnset($offset) :void
     {
     }
 }
