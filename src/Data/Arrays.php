@@ -18,24 +18,24 @@ namespace Zest\Data;
 
 class Arrays implements \ArrayAccess
 {
-    public function accessible($value) :bool
+    public static function accessible($value) :bool
     {
         return is_array($value) || $value instanceof ArrayAccess;
     }
-    public function isSequential($array) :bool
+    public static function isSequential($array) :bool
     {
-        return is_array($array) && !$this->isAssoc($array) && !$this->isMulti($array);
+        return is_array($array) && !self::isAssoc($array) && !self::isMulti($array);
     }
-    public function isAssoc(array $array) :bool
+    public static function isAssoc(array $array) :bool
     {
-        return array_keys($array) !== range(0, count($array) - 1) && !$this->isMulti($array);
+        return array_keys($array) !== range(0, count($array) - 1) && !self::isMulti($array);
     }
-     public function isMulti(array $array) :bool
+     public static function isMulti(array $array) :bool
     {
         sort($array, SORT_REGULAR);
         return isset($array[0]) && is_array($array[0]);
     }   
-    public function set(&$array, $key = null, $value = null, $opr = null)
+    public static function set(&$array, $key = null, $value = null, $opr = null)
     {
         if (null === $value) {
             return $array;
@@ -56,20 +56,24 @@ class Arrays implements \ArrayAccess
         $array = $value;
         return $array;        
     }
-    public function get(&$array, $default, $opr = null)
+    public static function get(&$array, $default, $opr = null)
     {
 
     }
-    public function isRealyArray($value)
+    public static function has($array, $keys)
+    {
+
+    }
+    public static function isRealyArray($value)
     {
         return is_array($value) && !empty($value);
     }
-    public function multiToAssoc(array $arrays)
+    public static function multiToAssoc(array $arrays)
     {
         $results = [];
         foreach ($arrays as $key => $value) {
-            if ($this->isRealyArray($value) === true) {
-                $results = array_merge($results, $this->multiToAssoc($value));
+            if (self::isRealyArray($value) === true) {
+                $results = array_merge($results, self::multiToAssoc($value));
             } else {
                 $results[$key] = $value;
             }
@@ -77,16 +81,16 @@ class Arrays implements \ArrayAccess
 
         return $results;
     }
-    public function dot(array $arrays, $prepend = '')
+    public static function dot(array $arrays, $prepend = '')
     {
-        return $this->multiToAssocWithSpecificOpr($arrays, $prepend, '.');
+        return self::multiToAssocWithSpecificOpr($arrays, $prepend, '.');
     }
-    public function multiToAssocWithSpecificOpr(array $arrays, $prepend = '', $opr = null)
+    public static function multiToAssocWithSpecificOpr(array $arrays, $prepend = '', $opr = null)
     {
         $results = [];
         foreach ($arrays as $key => $value) {
-            if ($this->isRealyArray($value) === true) {
-                $results = array_merge($results, $this->multiToAssocWithSpecificOpr($value, $prepend.$key. $opr));
+            if (self::isRealyArray($value) === true) {
+                $results = array_merge($results, self::multiToAssocWithSpecificOpr($value, $prepend.$key. $opr));
             } else {
                 $results[$prepend.$key] = $value;
             }
@@ -94,11 +98,11 @@ class Arrays implements \ArrayAccess
 
         return $results;
     }
-    public function prepend()
+    public static function prepend()
     {
 
     }
-    public function append()
+    public static function append()
     {
 
     }
