@@ -16,6 +16,7 @@
 
 namespace Zest\Data;
 
+use Zest\Contracts\Data\Arrays as ArraysContract;
 use ArrayAccess;
 
 class Arrays
@@ -137,7 +138,7 @@ class Arrays
      *
      * @return bool
      */
-    public static function isRealyArray($value)
+    public static function isReallyArray($value)
     {
         return is_array($value) && !empty($value);
     }
@@ -155,7 +156,7 @@ class Arrays
     {
         $results = [];
         foreach ($arrays as $key => $value) {
-            if (self::isRealyArray($value) === true) {
+            if (self::isReallyArray($value) === true) {
                 $results = array_merge($results, self::multiToAssoc($value));
             } else {
                 $results[$key] = $value;
@@ -195,7 +196,7 @@ class Arrays
     {
         $results = [];
         foreach ($arrays as $key => $value) {
-            if (self::isRealyArray($value) === true) {
+            if (self::isReallyArray($value) === true) {
                 $results = array_merge($results, self::multiToAssocWithSpecificOpr($value, $prepend.$key.$opr));
             } else {
                 $results[$prepend.$key] = $value;
