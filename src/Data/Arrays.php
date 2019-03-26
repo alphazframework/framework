@@ -232,6 +232,34 @@ class Arrays implements \ArrayAccess
     {
 
     }
+
+    /**
+     * Get the unique elements of array with key => pair.
+     *
+     * @param (array) $array Array ot evaulated
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public function unique(..$array)
+    {
+
+    }
+
+    /**
+     * Get a subset of the items from the given array.
+     *
+     * @param (array) $array Array to be evaulated.
+     * @param (mixed) $keys Keys
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public function subSetOfArray(array $array, $keys)
+    {
+    }
     public function offsetExists($offset) :bool
     {
 
