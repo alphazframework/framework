@@ -215,7 +215,7 @@ class Arrays implements ArraysContract
     /**
      * Converted a multi-dimensional associative array with `dot`.
      *
-     * @param (array)  $value   arrays.
+     * @param array $arrays Arrays.
      *
      * @since 3.0.0
      *
@@ -229,8 +229,8 @@ class Arrays implements ArraysContract
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *
-     * @param array  $array   arrays.
-     * @param string $opr     Operator
+     * @param array  $arrays   Arrays.
+     * @param string $opr      Operator
      *
      * @since 3.0.0
      *
