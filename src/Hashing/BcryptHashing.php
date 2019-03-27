@@ -128,7 +128,7 @@ class BcryptHashing extends AbstractHashing
      */
     public function setCost($cost)
     {
-        $this->cost = $cost;
+        $this->cost = $cost ?? $this->cost;
 
         return $this;
     }
