@@ -115,7 +115,7 @@ class ArraysTest extends TestCase
     public function testPull()
     {
         $array = ['name' => 'Alex', 'age' => 18];
-        $name = Array::pull($array, 'name');
+        $name = Arrays::pull($array, 'name');
         $this->assertEquals('Alex', $name);
     }
     public function testSet()
