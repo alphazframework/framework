@@ -39,13 +39,13 @@ class BcryptHashing extends AbstractHashing
     /**
      * __construct.
      *
-     * @param (array) $options
+     * @param array $options
      *
      * @since 3.0.0
      */
     public function __construct(array $options)
     {
-        $this->setCost($options['cost']);
+        $this->setCost($options['cost'] ?? $this->cost);
 
         $this->verifyAlgorithm = (isset($options['verify'])) ? $options['verify'] : false;
     }
@@ -53,8 +53,8 @@ class BcryptHashing extends AbstractHashing
     /**
      * Verify the hash value.
      *
-     * @param (string) $original
-     * @param (string) $hash
+     * @param string $original
+     * @param string $hash
      *
      * @since 3.0.0
      *
@@ -72,8 +72,8 @@ class BcryptHashing extends AbstractHashing
     /**
      * Generate the hash.
      *
-     * @param (string)         $original
-     * @param (array) optional $options
+     * @param string $original
+     * @param array  $options
      *
      * @since 3.0.0
      *
@@ -99,8 +99,8 @@ class BcryptHashing extends AbstractHashing
     /**
      * Check if the given hash has been hashed using the given options.
      *
-     * @param (string)         $original
-     * @param (array) optional $options
+     * @param strin $original
+     * @param array $options
      *
      * @since 3.0.0
      *
@@ -120,7 +120,7 @@ class BcryptHashing extends AbstractHashing
     /**
      * Set the cost.
      *
-     * @param (int) $cost
+     * @param int $cost
      *
      * @since 3.0.0
      *

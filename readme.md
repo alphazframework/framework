@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/zestframework/Zest_Framework.svg?branch=master)](https://travis-ci.org/zestframework/Zest_Framework)
 [![StyleCI](https://github.styleci.io/repos/135673638/shield?branch=master)](https://github.styleci.io/repos/135673638)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://zestframework.xyz/contribute/index)
+[![codecov](https://codecov.io/gh/zestframework/Zest_Framework/branch/master/graph/badge.svg)](https://codecov.io/gh/zestframework/Zest_Framework)
 [![Latest Stable Version](https://poser.pugx.org/softhub99/zest_framework/v/stable)](https://packagist.org/packages/softhub99/zest_framework)
 [![Latest Unstable Version](https://poser.pugx.org/softhub99/zest_framework/v/unstable)](https://packagist.org/packages/softhub99/zest_framework)
 [![License](https://poser.pugx.org/softhub99/zest_framework/license)](https://packagist.org/packages/softhub99/zest_framework)
