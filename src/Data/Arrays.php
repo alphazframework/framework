@@ -216,36 +216,34 @@ class Arrays implements ArraysContract
      * Converted a multi-dimensional associative array with `dot`.
      *
      * @param (array)  $value   arrays.
-     * @param (string) $prepend Prepend value
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public static function dot(array $arrays, $prepend = '')
+    public static function dot(array $arrays)
     {
-        return self::multiToAssocWithSpecificOpr($arrays, $prepend, '.');
+        return self::multiToAssocWithSpecificOpr($arrays, '.');
     }
 
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *
-     * @param array  $value   arrays.
-     * @param string $prepend Prepend value
+     * @param array  $array   arrays.
      * @param string $opr     Operator
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public static function multiToAssocWithSpecificOpr(array $arrays, $prepend = '', $opr = null)
+    public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null)
     {
         $results = [];
         foreach ($arrays as $key => $value) {
             if (self::isReallyArray($value) === true) {
-                $results = array_merge($results, self::multiToAssocWithSpecificOpr($value, $prepend.$key.$opr));
+                $results = array_merge($results, self::multiToAssocWithSpecificOpr($value, $key.$opr));
             } else {
-                $results[$prepend.$key] = $value;
+                $results[$key] = $value;
             }
         }
 
