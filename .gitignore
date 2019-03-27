@@ -2,4 +2,3 @@
 .github
 /vendor
 /.phpintel
-/.phpunit.result.cache

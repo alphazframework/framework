@@ -5,7 +5,6 @@ namespace Framework\Tests;
 namespace Zest\Tests\Hashing;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Hashing\Argon2IdHashing;
 use Zest\Hashing\ArgonHashing;
 use Zest\Hashing\BcryptHashing;
 
@@ -27,27 +26,16 @@ class HashingTest extends TestCase
         if (!defined('PASSWORD_ARGON2I')) {
             $this->markTestSkipped('PHP not compiled with Argon2i hashing support.');
         }
+        if (!defined('PASSWORD_ARGON2ID')) {
+            $this->markTestSkipped('PHP not compiled with Argon2id hashing support.');
+        }
         $hashing = new ArgonHashing(['memory' => 512, 'time' => 5, 'threads' => 3]);
         $value = $hashing->make('password');
         $this->assertNotSame('password', $value);
         $this->assertTrue($hashing->verify('password', $value));
         $this->assertFalse($hashing->needsRehash($value));
-        $this->assertFalse($hashing->needsRehash($value, ['memory' => 512, 'time' => 5, 'threads' => 3]));
+        $this->assertTrue($hashing->needsRehash($value, ['memory' => 512, 'time' => 5, 'threads' => 3]));
         $this->assertSame('argon2i', password_get_info($value)['algoName']);
-    }
-
-    public function testBasicArgon2IdHashing()
-    {
-        if (!defined('PASSWORD_ARGON2ID')) {
-            $this->markTestSkipped('PHP not compiled with Argon2id hashing support.');
-        }
-        $hashing = new Argon2IdHashing(['memory' => 512, 'time' => 5, 'threads' => 3]);
-        $value = $hashing->make('password');
-        $this->assertNotSame('password', $value);
-        $this->assertTrue($hashing->verify('password', $value));
-        $this->assertFalse($hashing->needsRehash($value));
-        $this->assertFalse($hashing->needsRehash($value, ['memory' => 512, 'time' => 5, 'threads' => 3]));
-        $this->assertSame('argon2id', password_get_info($value)['algoName']);
     }
 
     public function testBasicBcryptVerification()
@@ -63,20 +51,12 @@ class HashingTest extends TestCase
         if (!defined('PASSWORD_ARGON2I')) {
             $this->markTestSkipped('PHP not compiled with Argon2i hashing support.');
         }
-        $original = 'password';
-        $hashing = new ArgonHashing(['memory' => 512, 'time' => 5, 'threads' => 3, 'verify' => true]);
-        $hashValue = $hashing->make($original);
-        $this->assertTrue($hashing->verify($original, $hashValue));
-    }
-
-    public function testBasicArgon2IdVerification()
-    {
         if (!defined('PASSWORD_ARGON2ID')) {
             $this->markTestSkipped('PHP not compiled with Argon2id hashing support.');
         }
         $original = 'password';
-        $hashing = new Argon2IdHashing(['memory' => 512, 'time' => 5, 'threads' => 3, 'verify' => true]);
+        $hashing = new ArgonHashing(['memory' => 512, 'time' => 5, 'threads' => 3, 'verify' => true]);
         $hashValue = $hashing->make($original);
-        $this->assertTrue($hashing->verify($original, $hashValue));
+        $hashing->verify($original, $hashValue);
     }
 }
