@@ -190,7 +190,7 @@ class Arrays implements ArraysContract
      */
     public static function has($array, $keys = null, $opr = null)
     {
-         if (is_null($keys)) {
+        if (is_null($keys)) {
             return false;
         }
 
@@ -250,8 +250,8 @@ class Arrays implements ArraysContract
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *
-     * @param array  $arrays   Arrays.
-     * @param string $opr      Operator
+     * @param array  $arrays Arrays.
+     * @param string $opr    Operator.
      *
      * @since 3.0.0
      *
@@ -274,9 +274,9 @@ class Arrays implements ArraysContract
     /**
      * Push an item onto the beginning of an array.
      *
-     * @param mixed $value Dafult array, where value to append.
-     * @param mixed $value Value to be append
-     * @param mixed $key   Key of value if array is assoc or multi-dimensional
+     * @param array $array Dafult array.
+     * @param mixed $value Value to be append.
+     * @param mixed $key   Key.
      *
      * @since 3.0.0
      *
@@ -296,9 +296,9 @@ class Arrays implements ArraysContract
     /**
      * Push an item onto the end of an array.
      *
-     * @param mixed $value Dafult array, where value to append.
-     * @param mixed $value Value to be append
-     * @param mixed $key   Key of value if array is assoc or multi-dimensional
+     * @param array $array Dafult array, where value to append.
+     * @param mixed $value Value to be append.
+     * @param mixed $key   Key.
      *
      * @since 3.0.0
      *
@@ -327,7 +327,7 @@ class Arrays implements ArraysContract
                 $results[] = $value;
             }
             return array_unique($array);
-        } 
+        }
 
         return array_unique($array);
         
@@ -356,8 +356,7 @@ class Arrays implements ArraysContract
      *
      * Note: Adapted from laravel\framework.
      *
-     * @see https://github.com/laravel/framework/blob/5.8/LICENSE.md?fbclid=IwAR3Bk0Uf_ehscf6akSOsMbLeH4K7UmAVTLrhfs14BoJzPHd5wRRlIsWljF0
-     *
+     * @see https://github.com/laravel/framework/blob/5.8/LICENSE.md
      * @since 3.0.0
      *
      * @return void
@@ -365,7 +364,7 @@ class Arrays implements ArraysContract
     public static function forget(&$array, $keys, $opr = null)
     {
         $arrOrg = $array;
-         if (is_null($keys)) {
+        if (is_null($keys)) {
             return false;
         }
 
@@ -409,22 +408,22 @@ class Arrays implements ArraysContract
      * @param array|string $keys  Keys
      *
      * @since 3.0.0
-     *     
+     *
      * @return array
      */
     public static function except($array, $keys)
     {
         self::forget($array, $keys);
 
-        return $array;        
+        return $array;
     }
 
     /**
      * Get a value from the array, and remove it.
      *
-     * @param array  $array
-     * @param string $key
-     * @param mixed  $default
+     * @param array  $array   Default Array.
+     * @param string $key     Keys
+     * @param mixed  $default Default value
      *
      * @since 3.0.0
      *
@@ -436,5 +435,5 @@ class Arrays implements ArraysContract
         self::forget($array, $key);
 
         return $value;
-    }    
+    }
 }
