@@ -79,12 +79,33 @@ class Arrays implements ArraysContract
     }
 
     /**
+     * Add an element to an array using "dot" notation if it doesn't exist.
+     *
+     * @param array  $array Array to be evaluated
+     * @param string $key   Key
+     * @param string $opr   Notation like 'dot'
+     * @param 
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function add($array, $key, $value, $opr = null)
+    {
+        if (!self::has($array, $key, $opr)) {
+            self::set($array, $key, $value, $opr);
+        }
+
+        return $array;
+    }
+
+    /**
      * Set an array item to a given value using "operator" notation.
      *
-     * @param  array   $array  Array to be evaluated.
-     * @param  string  $key    Key
-     * @param  mixed   $value  Value
-     * @param string   $opr    Notation like 'dot'
+     * @param array  $array Array to be evaluated.
+     * @param string $key   Key
+     * @param mixed  $value Value
+     * @param string $opr   Notation like 'dot'
      *
      * @since 3.0.0
      *
@@ -330,8 +351,8 @@ class Arrays implements ArraysContract
     /**
      * Remove one or many array items from a given array using "operator" notation.
      *
-     * @param  array        $array Array to be evaluated
-     * @param  array|string $keys Keys
+     * @param array        $array Array to be evaluated.
+     * @param array|string $keys Keys.
      *
      * Note: Adapted from laravel\framework.
      *
@@ -384,8 +405,8 @@ class Arrays implements ArraysContract
     /**
      * Get all of the given array except for a specified array of keys.
      *
-     * @param  array        $array Default array.
-     * @param  array|string $keys  Keys
+     * @param array        $array Default array.
+     * @param array|string $keys  Keys
      *
      * @since 3.0.0
      *     
@@ -401,9 +422,9 @@ class Arrays implements ArraysContract
     /**
      * Get a value from the array, and remove it.
      *
-     * @param  array   $array
-     * @param  string  $key
-     * @param  mixed   $default
+     * @param array  $array
+     * @param string $key
+     * @param mixed  $default
      *
      * @since 3.0.0
      *
