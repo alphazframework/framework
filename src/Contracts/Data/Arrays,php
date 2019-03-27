@@ -71,27 +71,25 @@ interface Arrays
     /**
      * Converted a multi-dimensional associative array with `dot`.
      *
-     * @param (array)  $value   arrays.
-     * @param (string) $prepend Prepend value
+     * @param array array Arrays.
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public static function dot(array $arrays, $prepend = '');
+    public static function dot(array $arrays);
 
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *
-     * @param array  $value   arrays.
-     * @param string $prepend Prepend value
+     * @param array  $array   Arrays.
      * @param string $opr     Operator
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public static function multiToAssocWithSpecificOpr(array $arrays, $prepend = '', $opr = null);
+    public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null);
 
     /**
      * Push an item onto the beginning of an array.
