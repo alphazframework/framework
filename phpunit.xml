@@ -5,6 +5,11 @@
             <directory>Tests</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
     <php>
         <const name="PHPUNIT_RUNNING" value="true"/>
     </php>

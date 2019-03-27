@@ -37,8 +37,15 @@ class Hashing
         $driver = __config()->hashing->driver;
         if ($driver === 'bcrypt') {
             $this->driver = new BcryptHashing(['cost' => __config()->hashing->bcrypt->cost]);
-        } elseif ($driver === 'argon2id' || $driver === 'argon2i') {
+        } elseif ($driver === 'argon2i') {
             $this->driver = new ArgonHashing([
+                'memory'  => __config()->hashing->argon->memory,
+                'time'    => __config()->hashing->argon->time,
+                'threads' => __config()->hashing->argon->threads,
+                'verify'  => $verify,
+            ]);
+        } elseif ($driver === 'argon2id') {
+            $this->driver = new Argon2IdHashing([
                 'memory'  => __config()->hashing->argon->memory,
                 'time'    => __config()->hashing->argon->time,
                 'threads' => __config()->hashing->argon->threads,
