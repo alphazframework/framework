@@ -17,22 +17,21 @@
 namespace Zest\Data;
 
 use Zest\Contracts\Data\Arrays as ArraysContract;
-use ArrayAccess;
 
-class Arrays
+class Arrays implements ArraysContract
 {
     /**
-     * Determine array is accessible.
+     * Determine is given value is really, array?.
      *
-     * @param mixed $value Value to be check.
+     * @param mixed $value Value to be checked.
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public static function accessible($value) :bool
+    public static function isReallyArray($value)
     {
-        return is_array($value) || $value instanceof ArrayAccess;
+        return is_array($value) && !empty($value);
     }
 
     /**
@@ -80,9 +79,12 @@ class Arrays
     }
 
     /**
-     * Determine array is accessible.
+     * Set an array item to a given value using "operator" notation.
      *
-     * @param mixed $value Value to be check.
+     * @param  array   $array  Array to be evaluated.
+     * @param  string  $key    Key
+     * @param  mixed   $value  Value
+     * @param string   $opr    Notation like 'dot'
      *
      * @since 3.0.0
      *
@@ -111,36 +113,80 @@ class Arrays
         return $array;
     }
 
-    public static function get(&$array, $default, $opr = null)
+    /**
+     * Get an item from an array using "operator" notation.
+     *
+     * @param array        $array Default array.
+     * @param array|string $keys  Keys to search.
+     * @param string       $opr   Operator notaiton.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function get($array, $key = null, $default = null, $opr = null)
     {
+        if (!self::isReallyArray($array)) {
+            return $default;
+        }
+        if (null === $key) {
+            return $array;
+        }
+        if (array_key_exists($key, $array)) {
+            return $array[$key];
+        }
+
+        if (null !== $opr) {
+
+            if (strpos($key, $opr) === false) {
+                return $array[$key] ?? $default;
+            }
+
+            foreach (explode($opr, $key) as $k) {
+                if (self::isReallyArray($array) && array_key_exists($k, $array)) {
+                    $array = $array[$k];
+                } else {
+                    return $default;
+                }
+            }
+
+            return $array;
+        }
+
+        return $default;
     }
 
     /**
      * Determine if an item or items exist in an array using 'Operator' notation.
      *
-     * @param array        $array Default array
-     * @param array|string $keys  Keys to search
+     * @param array        $array Default array.
+     * @param array|string $keys  Keys to search.
+     * @param string       $opr   Operator notaiton.
      *
      * @since 3.0.0
      *
      * @return bool
      */
-    public static function has($array, $keys)
+    public static function has($array, $keys = null, $opr = null)
     {
-    }
+         if (is_null($keys)) {
+            return false;
+        }
 
-    /**
-     * Determine is given value is realy? array.
-     *
-     * @param mixed $value Value to be checked.
-     *
-     * @since 3.0.0
-     *
-     * @return bool
-     */
-    public static function isReallyArray($value)
-    {
-        return is_array($value) && !empty($value);
+        $keys = (array) $keys;
+
+        if ($keys === []) {
+            return false;
+        }
+
+        foreach ($keys as $key) {
+            $get = self::get($array, $key, null, $opr);
+            if (self::isReallyArray($get) || $get === null) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -245,7 +291,7 @@ class Arrays
     }
 
     /**
-     * Get the unique elements of array with key => pair.
+     * Get the unique elements from array.
      *
      * @param array $array Array ot evaulated
      *
@@ -253,8 +299,19 @@ class Arrays
      *
      * @return array
      */
-    public function unique(...$array)
+    public static function unique($array)
     {
+        $results = [];
+        if (self::isMulti($array)) {
+            $array = self::multiToAssoc($array);
+            foreach ($array as $key => $value) {
+                $results[] = $value;
+            }
+            return array_unique($array);
+        } 
+
+        return array_unique($array);
+        
     }
 
     /**
@@ -269,5 +326,35 @@ class Arrays
      */
     public function subSetOfArray(array $array, $keys)
     {
+    }
+
+    /**
+     * Remove one or many array items from a given array using "operator" notation.
+     *
+     * @param  array        $array Array to be evaluated
+     * @param  array|string $keys Keys
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public static function forget(&$array, $keys)
+    {
+
+    }
+
+    /**
+     * Get all of the given array except for a specified array of keys.
+     *
+     * @param  array        $array Default array.
+     * @param  array|string $keys  Keys
+     *
+     * @since 3.0.0
+     *     
+     * @return array
+     */
+    public static function except($array, $keys)
+    {
+
     }
 }
