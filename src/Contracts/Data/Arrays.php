@@ -28,13 +28,28 @@ interface Arrays
      * @return bool
      */
     public static function isReallyArray($value);
+
+    /**
+     * Add an element to an array using "dot" notation if it doesn't exist.
+     *
+     * @param array  $array Array to be evaluated
+     * @param string $key   Key
+     * @param string $opr   Notation like 'dot'
+     * @param 
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function add($array, $key, $value, $opr = null);
+
     /**
      * Set an array item to a given value using "operator" notation.
      *
-     * @param  array   $array  Array to be evaluated.
-     * @param  string  $key    Key
-     * @param  mixed   $value  Value
-     * @param string   $opr    Notation like 'dot'
+     * @param array  $array Array to be evaluated.
+     * @param string $key   Key
+     * @param mixed  $value Value
+     * @param string $opr   Notation like 'dot'
      *
      * @since 3.0.0
      *
@@ -78,12 +93,11 @@ interface Arrays
      * @return bool
      */
     public static function dot(array $arrays);
-
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *
      * @param array  $arrays Arrays.
-     * @param string $opr    Operator
+     * @param string $opr    Operator.
      *
      * @since 3.0.0
      *
@@ -92,35 +106,14 @@ interface Arrays
     public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null);
 
     /**
-     * Push an item onto the beginning of an array.
-     *
-     * @param mixed $value Dafult array, where value to append.
-     * @param mixed $value Value to be append
-     * @param mixed $key   Key of value if array is assoc or multi-dimensional
-     *
-     * @since 3.0.0
-     *
-     * @return bool
-     */
-    public static function prepend($array, $value, $key = null);
-
-    /**
-     * Get the unique elements from array.
-     *
-     * @param array $array Array ot evaulated
-     *
-     * @since 3.0.0
-     *
-     * @return array
-     */
-    public static function unique($array);
-
-    /**
      * Remove one or many array items from a given array using "operator" notation.
      *
-     * @param  array        $array Array to be evaluated
-     * @param  array|string $keys Keys
+     * @param array        $array Array to be evaluated.
+     * @param array|string $keys Keys.
      *
+     * Note: Adapted from laravel\framework.
+     *
+     * @see https://github.com/laravel/framework/blob/5.8/LICENSE.md
      * @since 3.0.0
      *
      * @return void
@@ -128,11 +121,23 @@ interface Arrays
     public static function forget(&$array, $keys, $opr = null);
 
     /**
+     * Get all of the given array except for a specified array of keys.
+     *
+     * @param array        $array Default array.
+     * @param array|string $keys  Keys
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function except($array, $keys);
+
+    /**
      * Get a value from the array, and remove it.
      *
-     * @param  array   $array
-     * @param  string  $key
-     * @param  mixed   $default
+     * @param array  $array   Default Array.
+     * @param string $key     Keys
+     * @param mixed  $default Default value
      *
      * @since 3.0.0
      *
