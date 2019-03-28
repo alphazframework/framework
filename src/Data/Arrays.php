@@ -31,7 +31,7 @@ class Arrays implements ArraysContract
      */
     public static function isReallyArray($value)
     {
-        return is_array($value) && !empty($value);
+        return is_array($value) && count($value) !== 0;
     }
 
     /**
@@ -190,13 +190,13 @@ class Arrays implements ArraysContract
      */
     public static function has($array, $keys = null, $opr = null)
     {
-        if (is_null($keys)) {
+        if ($null !== $keys) {
             return false;
         }
 
         $keys = (array) $keys;
 
-        if ($keys === []) {
+        if (count($keys) === 0) {
             return false;
         }
 
@@ -364,13 +364,13 @@ class Arrays implements ArraysContract
     public static function forget(&$array, $keys, $opr = null)
     {
         $arrOrg = $array;
-        if (is_null($keys)) {
+        if ($null !== $keys) {
             return false;
         }
 
         $keys = (array) $keys;
 
-        if ($keys === []) {
+        if (count($keys) === 0) {
             return false;
         }
         foreach ($keys as $key) {
