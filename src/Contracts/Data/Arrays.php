@@ -35,7 +35,6 @@ interface Arrays
      * @param array  $array Array to be evaluated
      * @param string $key   Key
      * @param string $opr   Notation like 'dot'
-     * @param 
      *
      * @since 3.0.0
      *
@@ -93,6 +92,7 @@ interface Arrays
      * @return bool
      */
     public static function dot(array $arrays);
+
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *
@@ -109,7 +109,7 @@ interface Arrays
      * Remove one or many array items from a given array using "operator" notation.
      *
      * @param array        $array Array to be evaluated.
-     * @param array|string $keys Keys.
+     * @param array|string $keys  Keys.
      *
      * Note: Adapted from laravel\framework.
      *
