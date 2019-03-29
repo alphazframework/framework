@@ -43,11 +43,11 @@ class OpenSslEncryption
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($key = null)
     {
-        if (isset(__config()->encryption->key) && strtolower(__config()->encryption->key) !== 'your-key') {
+        if (null !== $key) {
             $this->iv = openssl_random_pseudo_bytes($this->iv_bytes($this->cipher));
-            $this->key = hash('sha512', __config()->encryption->key);
+            $this->key = hash('sha512', $key);
         } else {
             throw new \Exception('Crypto key not found', 500);
         }
