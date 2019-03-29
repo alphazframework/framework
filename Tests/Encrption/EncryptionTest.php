@@ -14,7 +14,7 @@ class EncryptionTest extends TestCase
         $str = 'This is a string';
         $encryptHash = $openSslEncryption->encrypt($str);
         $this->assertNotEquals($str, $encryptHash);
-        $this->assertEquals($str, $openSslEncryption->decrypt($str));
+        $this->assertEquals($str, $openSslEncryption->decrypt($encryptHash));
     }
 
     public function testSodiumEncrypt()
@@ -23,6 +23,6 @@ class EncryptionTest extends TestCase
         $str = 'This is a string';
         $encryptHash = $sodiumEncryption->encrypt($str);
         $this->assertNotEquals($str, $encryptHash);
-        $this->assertEquals($str, $sodiumEncryption->decrypt($str));
+        $this->assertEquals($str, $sodiumEncryption->decrypt($encryptHash));
     }
 }
