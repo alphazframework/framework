@@ -61,8 +61,8 @@ class Encryption implements EncryptionContract
                 $adapterSet = '\Zest\Encryption\Adapter\OpenSslEncryption';
                 break;
         }
-
-        $this->adapter = new $adapterSet();
+        $key = __config()->encryption->key;
+        $this->adapter = new $adapterSet($key);
 
         return $this;
     }
