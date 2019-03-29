@@ -84,7 +84,7 @@ class Arrays implements ArraysContract
      * @param array  $array Array to be evaluated
      * @param string $key   Key
      * @param string $opr   Notation like 'dot'
-     * @param 
+     * @param
      *
      * @since 3.0.0
      *
@@ -124,11 +124,14 @@ class Arrays implements ArraysContract
         }
 
         $keys = explode($opr, $key);
-        foreach ($keys as $ks => $key) {
-            if (!isset($array[$key])) {
-                $array = &$array[$key];
+        foreach ($keys as $key) {
+            if (!isset($array[$key]) || !is_array($array[$key])) {
+                $array[$key] = [];
             }
+
+            $array = &$array[$key];
         }
+
         $array = $value;
 
         return $array;
@@ -158,7 +161,6 @@ class Arrays implements ArraysContract
         }
 
         if (null !== $opr) {
-
             if (strpos($key, $opr) === false) {
                 return $array[$key] ?? $default;
             }
@@ -190,10 +192,6 @@ class Arrays implements ArraysContract
      */
     public static function has($array, $keys = null, $opr = null)
     {
-        if ($null !== $keys) {
-            return false;
-        }
-
         $keys = (array) $keys;
 
         if (count($keys) === 0) {
@@ -255,7 +253,7 @@ class Arrays implements ArraysContract
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return array
      */
     public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null)
     {
@@ -264,6 +262,8 @@ class Arrays implements ArraysContract
             if (self::isReallyArray($value) === true) {
                 $results = array_merge($results, self::multiToAssocWithSpecificOpr($value, $key.$opr));
             } else {
+                $key = $opr.$key;
+                $key = ($key[0] === '.' || $key[0] === '@' ? substr($key, 1) : $key);
                 $results[$key] = $value;
             }
         }
@@ -326,11 +326,11 @@ class Arrays implements ArraysContract
             foreach ($array as $key => $value) {
                 $results[] = $value;
             }
+
             return array_unique($array);
         }
 
         return array_unique($array);
-        
     }
 
     /**
@@ -343,7 +343,7 @@ class Arrays implements ArraysContract
      *
      * @return array
      */
-    public function subSetOfArray(array $array, $keys)
+    public static function subSetOfArray(array $array, $keys)
     {
         return array_intersect_key($array, array_flip((array) $keys));
     }
@@ -352,7 +352,7 @@ class Arrays implements ArraysContract
      * Remove one or many array items from a given array using "operator" notation.
      *
      * @param array        $array Array to be evaluated.
-     * @param array|string $keys Keys.
+     * @param array|string $keys  Keys.
      *
      * Note: Adapted from laravel\framework.
      *
@@ -363,10 +363,7 @@ class Arrays implements ArraysContract
      */
     public static function forget(&$array, $keys, $opr = null)
     {
-        $arrOrg = $array;
-        if ($null !== $keys) {
-            return false;
-        }
+        $original = &$array;
 
         $keys = (array) $keys;
 
