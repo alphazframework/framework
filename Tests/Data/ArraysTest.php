@@ -42,7 +42,7 @@ class ArraysTest extends TestCase
 
     public function testAdd()
     {
-        $array = Arrays::add(['id' => 1001,'name' => 'Alex'], 'username', 'alex01',null);
+        $array = Arrays::add(['id' => 1001,'name' => 'Alex'], 'username', 'alex01','');
         $this->assertEquals(['id' => 1001,'name' => 'Alex'], $array);
     }
     public function testMultiToAssoc()
