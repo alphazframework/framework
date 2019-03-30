@@ -17,7 +17,7 @@
 namespace Zest\Common;
 
 use Zest\Contracts\Common\Configuration as ConfigurationContract;
-+use Zest\Data\Arrays;
+use Zest\Data\Arrays;
 
 class Configuration implements ConfigurationContract
 {
