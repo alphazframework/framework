@@ -148,7 +148,7 @@ class ArraysTest extends TestCase
         $array = ['Name' => 'Alex'];
         $this->assertSame(['name' => 'A;ex'], Arrays::arrayChangeCaseKey($array));
         $this->assertNotSame(['Name' => 'A;ex'], Arrays::arrayChangeCaseKey($array));
-        $this->assertSame(['name' => 'A;ex'], Arrays::arrayChangeCaseKey($array, CASE_UPPER));
-        $this->assertNotSame(['NAME' => 'A;ex'], Arrays::arrayChangeCaseKey($array, CASE_UPPER));
+        $this->assertSame(['NAME' => 'Alex'], Arrays::arrayChangeCaseKey($array, CASE_UPPER));
+        $this->assertNotSame(['name' => 'Alex'], Arrays::arrayChangeCaseKey($array, CASE_UPPER));
     }
 }
