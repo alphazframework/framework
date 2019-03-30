@@ -53,8 +53,8 @@ class ConfigurationTest extends TestCase
 
     public function testGetWithArrayOfKeys()
     {
-        $this->assertSame(['name' => 'Zest'], $this->config->get('name'));
-        $this->assertSame(['encryption.key' => 'xxx'], $this->config->get('encryption.key'));
+        $this->assertSame(['Zest'], $this->config->get('name'));
+        $this->assertSame('xxx'], $this->config->get('encryption.key'));
     }
 
     public function testGetWithDefault()
