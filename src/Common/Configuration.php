@@ -21,7 +21,6 @@ use Zest\Data\Arrays;
 
 class Configuration implements ConfigurationContract
 {
-
     /**
      * All of the configuration items.
      *
