@@ -45,7 +45,7 @@ interface Configuration
      * Set a given configuration value.
      *
      * @param array|string  $key
-     * @param mixed   $value
+     * @param mixed         $value
      *
      * @since 3.0.0
      *
