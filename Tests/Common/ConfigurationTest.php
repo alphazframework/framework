@@ -20,11 +20,11 @@ class ConfigurationTest extends TestCase
     protected function setUp(): void
     {
         $this->config = new Configuration($this->configs = [
-            'name' => 'Zest',
-            'version' => '3.0.0',
-            'null' => null,
-            'encryption' => [
-                'key' => 'xxx',
+            'name'        => 'Zest',
+            'version'     => '3.0.0',
+            'null'        => null,
+            'encryption'  => [
+                'key'     => 'xxx',
                 'adapter' => 'yyy',
             ]
         ]);
@@ -82,5 +82,4 @@ class ConfigurationTest extends TestCase
     {
         $this->assertSame($this->configs, $this->config->all());
     }
-
 }
