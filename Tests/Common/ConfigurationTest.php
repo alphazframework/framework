@@ -3,7 +3,7 @@
 namespace Framework\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Common\Configuraion;
+use Zest\Common\ConfigurationTest;
 
 class ConfigurationTest extends TestCase
 {
