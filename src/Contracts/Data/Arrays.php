@@ -52,7 +52,7 @@ interface Arrays
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return array
      */
     public static function set(&$array, $key = null, $value = null, $opr = null);
 
@@ -65,7 +65,7 @@ interface Arrays
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return array
      */
     public static function get($array, $key = null, $default = null, $opr = null);
 
@@ -101,7 +101,7 @@ interface Arrays
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return array
      */
     public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null);
 
@@ -116,7 +116,7 @@ interface Arrays
      * @see https://github.com/laravel/framework/blob/5.8/LICENSE.md
      * @since 3.0.0
      *
-     * @return void
+     * @return mixed
      */
     public static function forget(&$array, $keys, $opr = null);
 
