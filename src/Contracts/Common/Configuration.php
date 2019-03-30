@@ -21,7 +21,7 @@ interface Configuration
     /**
      * Determine if the given configuration value exists.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -32,8 +32,8 @@ interface Configuration
     /**
      * Get the specified configuration value.
      *
-     * @param  string  $key
-     * @param  mixed   $default
+     * @param string $key
+     * @param mixed  $default
      *
      * @since 3.0.0
      *
@@ -44,8 +44,8 @@ interface Configuration
     /**
      * Set a given configuration value.
      *
-     * @param  array|string  $key
-     * @param  mixed   $value
+     * @param array|string  $key
+     * @param mixed   $value
      *
      * @since 3.0.0
      *
