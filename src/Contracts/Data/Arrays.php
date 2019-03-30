@@ -144,4 +144,16 @@ interface Arrays
      * @return mixed
      */
     public static function pull(&$array, $key, $default = null, $opr = null);
+
+    /**
+     * Changes the case of all keys in an array.
+     *
+     * @param array  $array The array to work on.
+     * @param string $case  Either CASE_UPPER or CASE_LOWER (default).
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function arrayChangeCaseKey($array, $case = CASE_LOWER);
 }

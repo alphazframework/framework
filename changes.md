@@ -69,3 +69,4 @@
 54. Added Component Manipulator class.
 55. Added Sitemap package.
 56. Avoid session hijacking attack.
+57. Added Arrays Package.

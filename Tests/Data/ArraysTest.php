@@ -142,4 +142,14 @@ class ArraysTest extends TestCase
         Arrays::forget($array, 'members.users', '.');
         $this->assertEquals(['members' => []], $array);
     }
+
+	public function testArrayChangeCaseKey()
+	{
+		$array = ['Name' => 'Alex'];
+		$this->assertTrue(['name' => 'A;ex'], Arrays::arrayChangeCaseKey($array));
+		$this->assertFalse(['Name' => 'A;ex'], Arrays::arrayChangeCaseKey($array));
+		$this->assertTrue(['name' => 'A;ex'], Arrays::arrayChangeCaseKey($array, CASE_UPPER));
+		$this->assertFalse(['NAME' => 'A;ex'], Arrays::arrayChangeCaseKey($array, CASE_UPPER));
+
+	}
 }

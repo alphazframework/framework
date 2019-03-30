@@ -433,4 +433,25 @@ class Arrays implements ArraysContract
 
         return $value;
     }
+
+    /**
+     * Changes the case of all keys in an array.
+     *
+     * @param array  $array The array to work on.
+     * @param string $case  Either CASE_UPPER or CASE_LOWER (default).
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function arrayChangeCaseKey($array, $case = CASE_LOWER)
+    {
+        return array_map(function($item) use ($case) {
+            if (is_array($item)) {
+                $item = self::arrayChangeCaseKey($item, $case);
+            }
+
+            return $item;
+        }, array_change_key_case($array, $case));
+    }
 }
