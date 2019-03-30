@@ -5,7 +5,7 @@ namespace Framework\Tests;
 use PHPUnit\Framework\TestCase;
 use Zest\Common\Configuraion;
 
-class ConfiguraionTest extends TestCase
+class ConfigurationTest extends TestCase
 {
     /**
      * @var \Zest\Commoon\Configuraion
@@ -19,7 +19,7 @@ class ConfiguraionTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->config = new Configuraion($this->configs = [
+        $this->config = new Configuration($this->configs = [
             'name' => 'Zest',
             'version' => '3.0.0',
             'null' => null,
@@ -33,7 +33,7 @@ class ConfiguraionTest extends TestCase
 
     public function testConstruct()
     {
-        $this->assertInstanceOf(Configuraion::class, $this->config);
+        $this->assertInstanceOf(Configuration::class, $this->config);
     }
 
     public function testHasIsTrue()
