@@ -446,7 +446,7 @@ class Arrays implements ArraysContract
      */
     public static function arrayChangeCaseKey($array, $case = CASE_LOWER)
     {
-        return array_map(function($item) use ($case) {
+        return array_map(function ($item) use ($case) {
             if (is_array($item)) {
                 $item = self::arrayChangeCaseKey($item, $case);
             }
