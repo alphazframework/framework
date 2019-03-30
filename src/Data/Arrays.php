@@ -109,7 +109,7 @@ class Arrays implements ArraysContract
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return array
      */
     public static function set(&$array, $key = null, $value = null, $opr = null)
     {
@@ -146,7 +146,7 @@ class Arrays implements ArraysContract
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return array
      */
     public static function get($array, $key = null, $default = null, $opr = null)
     {
@@ -280,7 +280,7 @@ class Arrays implements ArraysContract
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return array
      */
     public static function prepend($array, $value, $key = null)
     {
@@ -359,7 +359,7 @@ class Arrays implements ArraysContract
      * @see https://github.com/laravel/framework/blob/5.8/LICENSE.md
      * @since 3.0.0
      *
-     * @return void
+     * @return mixed
      */
     public static function forget(&$array, $keys, $opr = null)
     {
