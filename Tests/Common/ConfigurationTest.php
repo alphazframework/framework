@@ -26,7 +26,7 @@ class ConfigurationTest extends TestCase
             'encryption'  => [
                 'key'     => 'xxx',
                 'adapter' => 'yyy',
-            ]
+            ],
         ]);
         parent::setUp();
     }
