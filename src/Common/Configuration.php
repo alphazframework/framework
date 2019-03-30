@@ -16,9 +16,8 @@
 
 namespace Zest\Common;
 
-use Zest\Data\Arrays;
-
 use Zest\Contracts\Common\Configuration as ConfigurationContract;
++use Zest\Data\Arrays;
 
 class Configuration implements ConfigurationContract
 {
@@ -35,7 +34,7 @@ class Configuration implements ConfigurationContract
     /**
      * Create a new configuration repository.
      *
-     * @param  array  $items
+     * @param array $items
      *
      * @since 3.0.0
      *
@@ -49,7 +48,7 @@ class Configuration implements ConfigurationContract
     /**
      * Determine if the given configuration value exists.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -63,8 +62,8 @@ class Configuration implements ConfigurationContract
     /**
      * Get the specified configuration value.
      *
-     * @param  string  $key
-     * @param  mixed   $default
+     * @param string $key
+     * @param mixed  $default
      *
      * @since 3.0.0
      *
@@ -82,8 +81,8 @@ class Configuration implements ConfigurationContract
     /**
      * Set a given configuration value.
      *
-     * @param  array|string  $key
-     * @param  mixed   $value
+     * @param array|string  $key
+     * @param mixed         $value
      *
      * @since 3.0.0
      *
