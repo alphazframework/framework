@@ -302,7 +302,7 @@ class Arrays implements ArraysContract
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return array
      */
     public static function append($array, $value, $key = null)
     {
