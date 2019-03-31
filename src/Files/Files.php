@@ -295,7 +295,7 @@ class Files
      *
      * @return void
      */
-    public function moveFiles($source, $$target, $files)
+    public function moveFiles($source, $target, $files)
     {
         foreach ($files as $file) {
             $this->moveFile($source, $target, $files);
