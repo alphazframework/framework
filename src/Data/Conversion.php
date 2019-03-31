@@ -86,7 +86,7 @@ class Conversion implements ConversionContract
      *
      * @return mixed
      */
-    public function bitToBytes($size, $pre = 2)
+    public static function bitToBytes($size, $pre = 2)
     {
         $base = log($size) / log(1024);
         $suffix = Arrays::arrayChangeCaseValue(['b', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y'], CASE_UPPER);
@@ -105,7 +105,7 @@ class Conversion implements ConversionContract
      *
      * @return mixed
      */
-    public function views($n, $sep=',') 
+    public static function views($n, $sep=',') 
     {
         if ($n < 0) {
             return 0;
