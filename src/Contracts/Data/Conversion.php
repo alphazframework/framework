@@ -63,7 +63,7 @@ interface Conversion
      *
      * @return mixed
      */
-    public function views($n, $sep=',');
+    public static function views($n, $sep=',');
 
     /**
      * Convert XML to arrays.
