@@ -28,7 +28,7 @@ trait LanguageCodesTrait
      * @var array
      */
     protected $_languages = [
-         'aa'   => 'Afar',
+        'aa'    => 'Afar',
         'ab'    => 'Abkhazian',
         'af'    => 'Afrikaans',
         'am'    => 'Amharic',

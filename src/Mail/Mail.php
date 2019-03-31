@@ -143,7 +143,7 @@ class Mail
     }
 
     /**
-     * For  add a new cc.
+     * For adding a new cc.
      *
      * @param string $cc
      *
@@ -163,7 +163,7 @@ class Mail
     }
 
     /**
-     * For add reciever.
+     * For adding a receiver.
      *
      * @param string $email
      *
@@ -183,7 +183,7 @@ class Mail
     }
 
     /**
-     * For prepare an attachment for sending with mail.
+     * For preparing an attachment to send with mail.
      *
      * @since 1.9.0
      *

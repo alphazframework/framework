@@ -186,7 +186,7 @@ class Files
      * @param (string) $source Name of file or directory with path.
      * @param (string) $target Target directory.
      * @param (array)  $files  Files to be copy.
-     * @param (mixed)  $user   he new owner user name.
+     * @param (mixed)  $user   The new owner user name.
      *
      * @since 3.0.0
      *
@@ -268,7 +268,7 @@ class Files
      *
      * @param (string) $source Name of file or directory with path.
      * @param (string) $target Target directory.
-     * @param (string) $file   Fles to be move.
+     * @param (string) $file   Files to be moved.
      *
      * @since 3.0.0
      *
@@ -286,7 +286,7 @@ class Files
      *
      * @param (string) $source Name of file or directory with path.
      * @param (string) $target Target directory.
-     * @param (array)  $files  Fles to be move.
+     * @param (array)  $files  Files to be moved.
      *
      * @since 3.0.0
      *
@@ -336,7 +336,7 @@ class Files
      *
      * @param (string) $source Directory with path.
      * @param (string) $target Target directory.
-     * @param (string) $dir    Dirs to be copy.
+     * @param (string) $dir    Directory to be copied.
      *
      * @since 3.0.0
      *
@@ -357,7 +357,7 @@ class Files
      *
      * @param (string) $source Directory with path.
      * @param (string) $target Target directory.
-     * @param (array)  $dirs   Dirs to be copy.
+     * @param (array)  $dirs   Directories to be copied.
      *
      * @since 3.0.0
      *
@@ -375,7 +375,7 @@ class Files
      *
      * @param (string) $source Directory with path.
      * @param (string) $target Target directory.
-     * @param (string) $dir    Dirs to be copy.
+     * @param (string) $dir    Directory to be copied.
      *
      * @since 3.0.0
      *
@@ -459,7 +459,7 @@ class Files
      * Upload file.
      *
      * @param (string) $file     File to be uploaded.
-     * @param (string) $target   Target where file should be upload.
+     * @param (string) $target   Target where file should be uploaded.
      * @param (string) $fileType Supported => image,media,docs,zip.
      * @param (int)    $maxSize  File size to be allowed.
      *
