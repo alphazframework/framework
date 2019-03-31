@@ -469,7 +469,7 @@ class Arrays implements ArraysContract
     {
         $return = [];
         foreach ($array as $key => $value) {
-            if (is_array($value)) {
+            if (self::isReallyArray($value)) {
                 $results = array_merge($results, self::arrayChangeCaseValue($value, $case));
             } else {
                 $array[$key] = ($case == CASE_UPPER) ? strtoupper($array[$key]) : strtolower($array[$key]);
