@@ -160,7 +160,7 @@ class Response extends Message
      */
     public function isEmpty()
     {
-        return is_array($this->getStatusCode(), [204, 205, 304]);
+        return in_array($this->getStatusCode(), [204, 205, 304]);
     }
 
     /**
@@ -196,7 +196,7 @@ class Response extends Message
      */
     public function isRedirect()
     {
-        return is_array($this->getStatusCode(), [301, 302, 303, 307, 308]);
+        return in_array($this->getStatusCode(), [301, 302, 303, 307, 308]);
     }
 
     /**
@@ -328,7 +328,7 @@ class Response extends Message
     public function withStatus($code = 200)
     {
         if (!array_key_exists($code, self::$responseCodes)) {
-            throw new Exception('That header code '.$code.' is not allowed.');
+            throw new \Exception('That header code '.$code.' is not allowed.');
         }
 
         $this->code = $code;
