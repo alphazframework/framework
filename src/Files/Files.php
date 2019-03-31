@@ -60,7 +60,7 @@ class Files
      * __construct.
      *
      * @since 1.0.0
-     */    
+     */
     public function __construct()
     {
         $files = Conversion::objectArray(__config()->files);
