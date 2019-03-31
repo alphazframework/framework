@@ -20,7 +20,7 @@ use Zest\http\Request;
 
 class Language
 {
-    /** Use of language codes trait. */
+    /* Use of language codes trait. */
     use LanguageCodesTrait;
 
     /**
