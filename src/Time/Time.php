@@ -29,7 +29,7 @@ class Time implements TimeContract
      *
      * @return  int
      */
-    public function now($timezone = NULL)
+    public static function now($timezone = NULL)
     {
 
     }
@@ -44,7 +44,7 @@ class Time implements TimeContract
      *
      * @return  int
      */
-    public function daysInMonth($month = 1, $year = 1970)
+    public static function daysInMonth($month = 1, $year = 1970)
     {
 
     }
@@ -58,7 +58,7 @@ class Time implements TimeContract
      *
      * @return  bool
      */ 
-    public function isLeapYear($year = null)
+    public static function isLeapYear($year = null)
     {
         if (null === $year) {
             $year = date('y');
@@ -79,7 +79,7 @@ class Time implements TimeContract
      *
      * @return  int
      */
-    public function timestampToGmt($time = null)
+    public static function timestampToGmt($time = null)
     {
 
     }
@@ -93,7 +93,7 @@ class Time implements TimeContract
      *
      * @return mixed
      */
-    public function friendlyTime($time)
+    public static function friendlyTime($time)
     {
 
     }
@@ -107,7 +107,7 @@ class Time implements TimeContract
      *
      * @return mixed
      */
-    public function ago($time)
+    public static function ago($time)
     {
 
     }
@@ -121,7 +121,7 @@ class Time implements TimeContract
      *
      * @return mixed
      */
-    public function formatsSeconds($seconds)
+    public static function formatsSeconds($seconds)
     {
         $h = ($seconds >= 3600) ? (int) round($seconds / 3600) : 0;
         $time = ($seconds >= 3600) ? $seconds % 3600 : $seconds;
