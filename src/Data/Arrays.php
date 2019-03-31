@@ -475,6 +475,7 @@ class Arrays implements ArraysContract
                 $array[$key] = ($case == CASE_UPPER) ? strtoupper($array[$key]) : strtolower($array[$key]);
             }
         }
+
         return $array;
     }
 }
