@@ -56,6 +56,11 @@ class Files
      */
     private $defCHMOD = 0755;
 
+    /**
+     * __construct.
+     *
+     * @since 1.0.0
+     */    
     public function __construct()
     {
         $files = Conversion::objectArray(__config()->files);
@@ -83,11 +88,11 @@ class Files
     /**
      * Change the default chmod.
      *
-     * @param (mixed) $chomd Valid chmod
+     * @param mixed $chomd Valid chmod
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return int
      */
     public function changeDefaultChmod($chmod)
     {
@@ -97,7 +102,7 @@ class Files
     /**
      * Create recurisve dir.
      *
-     * @param (mixed) $value recursive status true|false.
+     * @param mixed $value recursive status true|false.
      *
      * @since 3.0.0
      *
@@ -173,7 +178,7 @@ class Files
      */
     public function permission($source, $pre)
     {
-        if (!is_dir($name)) {
+        if (!is_dir($source)) {
             return (file_exists($source)) ? chmod($source, $pre) : false;
         }
 
@@ -184,7 +189,6 @@ class Files
      * Change the owner of an array of files.
      *
      * @param (string) $source Name of file or directory with path.
-     * @param (string) $target Target directory.
      * @param (array)  $files  Files to be copy.
      * @param (mixed)  $user   The new owner user name.
      *
@@ -192,7 +196,7 @@ class Files
      *
      * @return bool
      */
-    public function chown($source, $target, $files, $user)
+    public function chown($source, $files, $user)
     {
         foreach ($files as $file => $value) {
             if (file_exists($source.$value)) {
@@ -205,7 +209,6 @@ class Files
      * Sets access and modification time of file.
      *
      * @param (string) $source Name of file or directory with path.
-     * @param (string) $target Target directory.
      * @param (array)  $files  Files to be copy.
      * @param (int)    $time   The touch time as a Unix timestamp.
      * @param (int)    $atime  The access time as a Unix timestamp.
@@ -214,7 +217,7 @@ class Files
      *
      * @return bool
      */
-    public function touch($source, $target, $files, $time = null, $atime = null)
+    public function touch($source, $files, $time = null, $atime = null)
     {
         foreach ($files as $file => $value) {
             if (file_exists($source.$value)) {
@@ -292,7 +295,7 @@ class Files
      *
      * @return void
      */
-    public function moveFiles($files)
+    public function moveFiles($source, $$target, $files)
     {
         foreach ($files as $file) {
             $this->moveFile($source, $target, $files);
