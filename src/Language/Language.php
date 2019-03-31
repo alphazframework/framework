@@ -20,11 +20,11 @@ use Zest\http\Request;
 
 class Language
 {
-    /* Use of language codes trait */
+    /** Use of language codes trait. */
     use LanguageCodesTrait;
 
     /**
-     * set the language.
+     * Set the language.
      *
      * @param $value=> language symbol
      *
@@ -70,7 +70,7 @@ class Language
     }
 
     /**
-     * include lang string file.
+     * Include lang string file.
      *
      * @since 1.0.0
      *
