@@ -33,10 +33,9 @@ class SodiumEncryption extends AbstractAdapter
             //Need to validate key to o mention the developers the key size is invalid. [@peter279k(https://github.com/peter279k)]
             if (strlen($key) !== 32) {
                 throw new \InvalidArgumentException('The key size is invalid, and key size should be 32', 500);
-            } else {
-                //Should use user define key.
-                $this->key = substr(hash('sha512', $key), 0, 32);
             }
+            //Should use user define key.
+            $this->key = substr(hash('sha512', $key), 0, 32);
         } else {
             throw new \Exception('Crypto key not found', 500);
         }
