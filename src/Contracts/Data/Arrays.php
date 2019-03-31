@@ -156,4 +156,16 @@ interface Arrays
      * @return array
      */
     public static function arrayChangeCaseKey($array, $case = CASE_LOWER);
+
+    /**
+     * Changes the case of all values in an array.
+     *
+     * @param array  $array The array to work on.
+     * @param string $case  Either CASE_UPPER or CASE_LOWER (default).
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function arrayChangeCaseValue($array, $case = CASE_LOWER);
 }
