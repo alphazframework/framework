@@ -19,7 +19,7 @@ class EncryptionTest extends TestCase
 
     public function testSodiumEncrypt()
     {
-        $sodiumEncryption = new SodiumEncryption('123456key');
+        $sodiumEncryption = new SodiumEncryption('asdfghtrewbg458793210lopkmfjritj');
         $str = 'This is a string';
         $encryptHash = $sodiumEncryption->encrypt($str);
         $this->assertNotSame($str, $encryptHash);
