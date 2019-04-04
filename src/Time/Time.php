@@ -16,78 +16,75 @@
 
 namespace Zest\Time;
 
+use Zest\Common\TimeZone;
 use Zest\Contracts\Time\Time as TimeContract;
 
 class Time implements TimeContract
 {
     /**
-     * Get "now" time
+     * Get "now" time.
      *
      * @param string $timezone Valid php supported timezone.
      *
      * @since 3.0.0
      *
-     * @return  int
+     * @return int
      */
-    public static function now($timezone = NULL)
+    public static function now($timezone = '')
     {
+        TimeZone::seteDefaultTz($timezone);
 
+        return time();
     }
 
     /**
-     * Number of days in a month
+     * Number of days in a month.
      *
      * @param int $month A numeric month.
      * @param int $year  A numeric year.
      *
      * @since 3.0.0
      *
-     * @return  int
+     * @return int
      */
     public static function daysInMonth($month = 1, $year = 1970)
     {
-
+        return cal_days_in_month(CAL_GREGORIAN, $month, $year);
     }
 
     /**
-     * Determine whether the year is leap or not
+     * Determine whether the year is leap or not.
      *
      * @param int $year A numeric year.
      *
      * @since 3.0.0
      *
-     * @return  bool
-     */ 
+     * @return bool
+     */
     public static function isLeapYear($year = null)
     {
-        if (null === $year) {
-            $year = date('y');
-        }
-       if ((($year % 4 == 0) && ($year % 100 != 0)) || ($year % 400 == 0)) {
-            return true;
-       }
+        $year = $year ?? date('Y');
 
-       return false;
+        return (($year % 4 == 0) && ($year % 100 != 0)) || ($year % 400 == 0);
     }
 
     /**
-     * Converts a timestamp to GMT
+     * Converts a timestamp to GMT.
      *
      * @param int $time Unix timestamp
      *
      * @since 3.0.0
      *
-     * @return  int
+     * @return int
      */
     public static function timestampToGmt($time = null)
     {
-
     }
 
     /**
      * Converts the timestamp in to human readable form.
      *
-     * @param (int|string) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param int|string $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @since 3.0.0
      *
@@ -95,13 +92,12 @@ class Time implements TimeContract
      */
     public static function friendlyTime($time)
     {
-
     }
 
     /**
      * Converts the timestamp in to ago form.
      *
-     * @param (int|string) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param int|string $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @since 3.0.0
      *
@@ -109,25 +105,22 @@ class Time implements TimeContract
      */
     public static function ago($time)
     {
-
     }
 
     /**
      * Converts the timestamp in to h:m:s form.
      *
-     * @param (int) $time Timestamp
+     * @param int    $time     Timestamp
+     * @param string $timezone Valid php supported timezone.
      *
      * @since 3.0.0
      *
      * @return mixed
      */
-    public static function formatsSeconds($seconds)
+    public static function formatsSeconds($seconds, $timezone = '')
     {
-        $h = ($seconds >= 3600) ? (int) round($seconds / 3600) : 0;
-        $time = ($seconds >= 3600) ? $seconds % 3600 : $seconds;
-        $m = (int) $time / 60;
-        $s = (int) $time % 60;
+        TimeZone::seteDefaultTz($timezone);
 
-        return (int) $h.':'.(int) $m.':'.(int) $s;
+        return date('h:i:s', $seconds);
     }
 }
