@@ -18,51 +18,50 @@ namespace Zest\Contracts\Time;
 
 interface Time
 {
+    /**
+     * Get "now" time.
+     *
+     * @param string $timezone Valid php supported timezone.
+     *
+     * @since 3.0.0
+     *
+     * @return int
+     */
+    public static function now($timezone = null);
 
-	/**
-	 * Get "now" time
-	 *
-	 * @param string $timezone Valid php supported timezone.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @return	int
-	 */
-	public static function now($timezone = NULL);
+    /**
+     * Number of days in a month.
+     *
+     * @param int $month A numeric month.
+     * @param int $year  A numeric year.
+     *
+     * @since 3.0.0
+     *
+     * @return int
+     */
+    public static function daysInMonth($month = 1, $year = 1970);
 
-	/**
-	 * Number of days in a month
-	 *
-	 * @param int $month A numeric month.
-	 * @param int $year	 A numeric year.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @return	int
-	 */
-	public static function daysInMonth($month = 1, $year = 1970);
+    /**
+     * Determine whether the year is leap or not.
+     *
+     * @param int $year A numeric year.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function isLeapYear($year = null);
 
-	/**
-	 * Determine whether the year is leap or not
-	 *
-	 * @param int $year	A numeric year.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @return	bool
-	 */	
-	public static function isLeapYear($year = null);
-
-	/**
-	 * Converts a timestamp to GMT
-	 *
-	 * @param int $time Unix timestamp
-	 *
-	 * @since 3.0.0
-	 *
-	 * @return	int
-	 */
-	public static function timestampToGmt($time = null);
+    /**
+     * Converts a timestamp to GMT.
+     *
+     * @param int $time Unix timestamp
+     *
+     * @since 3.0.0
+     *
+     * @return int
+     */
+    public static function timestampToGmt($time = null);
 
     /**
      * Converts the timestamp in to human readable form.
@@ -73,7 +72,7 @@ interface Time
      *
      * @return mixed
      */
-	public static function friendlyTime($time);
+    public static function friendlyTime($time);
 
     /**
      * Converts the timestamp in to ago form.
@@ -84,7 +83,7 @@ interface Time
      *
      * @return mixed
      */
-	public static function ago($time);
+    public static function ago($time);
 
     /**
      * Converts the timestamp in to h:m:s form.
