@@ -167,10 +167,10 @@ class Files
     }
 
     /**
-     * Change the premission.
+     * Change the permission.
      *
      * @param (string) $source Name of file or directory with path.
-     * @param (mixed)  $pre    Valid premission.
+     * @param (mixed)  $pre    Valid permission.
      *
      * @since 2.0.0
      *

@@ -85,7 +85,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
 
     /**
      * __construct.
-     * Specify file name wiht extension, the path will be the public.
+     * Specify file name with extension, the path will be public.
      *
      * @param (string) $file File name with extension (.xml).
      *
