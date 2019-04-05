@@ -247,7 +247,7 @@ class FTP
     }
 
     /**
-     * Change premission.
+     * Change permission.
      *
      * @param (string) $file file
      * @param (mixed)  $mode mode

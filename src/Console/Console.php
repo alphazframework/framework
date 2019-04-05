@@ -54,19 +54,19 @@ class Console
     {
         $host = 'localhost:8080';
         $command = 'php -S '.$host;
-        echo "\n PHP local development server has been started locat at localhost:8080 , if the public directory is the root then localhost:8080/public \n";
+        echo "\n PHP local development server has been started locat at localhost:8080. If the public directory is the root, then localhost:8080/public \n";
         shell_exec($command);
     }
 
     public function main()
     {
         do {
-            echo " Zest CLI Enviroment \n";
+            echo " Zest CLI Environment. \n";
             echo " ***************************** \n";
-            echo " Enter 'c' for create controller \n";
-            echo " Enter 'v' for version \n";
-            echo " Enter 's' for start local development server \n";
-            echo " Enter 'x' for Quit \n";
+            echo " Enter 'c' to create a controller. \n";
+            echo " Enter 'v' for version information. \n";
+            echo " Enter 's' to start a local development server. \n";
+            echo " Enter 'x' to quit. \n";
             echo " ***************************** \n";
             $x = $this->cliInput();
             if ($x === 'c') {
