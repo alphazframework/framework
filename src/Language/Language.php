@@ -104,43 +104,10 @@ class Language
      *
      * @return string
      */
-    public function print($key)
+    public function print($key, $default = null)
     {
         if (!empty($key)) {
-            if (array_key_exists(strtolower($key), $this->languageString())) {
-                return $this->languageString()[strtolower($key)];
-            } else {
-                return strtolower($key);
-            }
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Only for debug purpose.
-     *
-     * @param =>$params (array)
-     * 'allkeys'=>'on' ==> return all keys in array
-     * 'search' => 'value' ==> return boolean true on find false not find Note: it only keys string in language file
-     *
-     * @since 1.0.0
-     *
-     * @return string
-     */
-    public function debug($params)
-    {
-        if (is_array($params)) {
-            if (isset($params['allkeys']) and strtolower($params['allkeys']) === 'on') {
-                return array_keys($this->languageString());
-            }
-            if (isset($params['search'])) {
-                if (array_key_exists($params['search'], $this->languageString())) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+            return $this->languageString()[strtolower($key)] ?? $default;
         } else {
             return false;
         }
