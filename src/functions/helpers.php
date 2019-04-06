@@ -1,24 +1,14 @@
 <?php
 
 if (!function_exists('printl')) {
-    function printl(string $key)
+    function printl(string $key, string $default = null)
     {
-        return (new \Zest\Language\Language())->print($key);
+        return (new \Zest\Language\Language())->print($key, $default);
     }
 }
-function __printl(string $key)
+function __printl(string $key, string $default = null)
 {
-    return (new \Zest\Language\Language())->print($key);
-}
-if (!function_exists('debug_printl')) {
-    function debug_printl($params)
-    {
-        return (new \Zest\Language\Language())->debug($params);
-    }
-}
-function __debug_printl($params)
-{
-    return (new \Zest\Language\Language())->debug($params);
+    return (new \Zest\Language\Language())->print($key, $default);
 }
 if (!function_exists('lang')) {
     function lang()
