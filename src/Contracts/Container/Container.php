@@ -19,194 +19,236 @@ namespace Zest\Contracts\Container;
 interface Container
 {
     /**
-     * Determine if the given abstract type has been bound.
+     * Parse the hint parameter.
      *
-     * @param  string  $abstract
-	 *
-	 * @since 3.0.0
-	 *
-     * @return bool
+     * @param  string|array $hint Type hint or array contaning both type hint and alias
+     *
+     * @since 3.0.0
+     *
+     * @return string
      */
-    public function bound($abstract);
+    protected function parseHint($hint);
 
     /**
-     * Alias a type to a different name.
+     * Register a type hint.
      *
-     * @param  string  $abstract
-     * @param  string  $alias
-	 *
-	 * @since 3.0.0
-	 *
+     * @param string|array    $hint      Type hint or array contaning both type hint and alias.
+     * @param string|\Closure $class     Class name or closure.
+     * @param bool            $singleton Should we return the same instance every time?
+     *
+     * @since 3.0.0
+     *
      * @return void
      */
-    public function alias($abstract, $alias);
+    public function register($hint, $class, bool $singleton = false);
 
     /**
-     * Assign a set of tags to a given binding.
+     * Register a type hint and return the same instance every time.
      *
-     * @param  array|string  $abstracts
-     * @param  array|mixed   $tags
-	 *
-	 * @since 3.0.0
-	 *
+     * @param string|array    $hint  Type hint or array contaning both type hint and alias.
+     * @param string|\Closure $class Class name or closure.
+     *
+     * @since 3.0.0
+     *
+     * @return 3.0.0
+     */
+    public function registerSingleton($hint, $class);
+
+    /**
+     * Register a singleton instance.
+     *
+     * @param string|array $hint     Type hint or array contaning both type hint and alias.
+     * @param object       $instance Class instance.
+     *
+     * @since 3.0.0
+     *
      * @return void
      */
-    public function tag($abstracts, $tags);
+    public function registerInstance($hint, $instance);
 
     /**
-     * Resolve all of the bindings for a given tag.
+     * Registers a contextual dependency.
      *
-     * @param  string  $tag
-	 *
-	 * @since 3.0.0
-	 *
+     * @param string $class          Class.
+     * @param string $interface      Interface.
+     * @param string $implementation Implementation.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function registerContextualDependency($class, string $interface, string $implementation);
+
+    /**
+     * Return the name based on its alias.
+     *
+     * @param  string $alias Alias.
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+    protected function resolveAlias(string $alias);
+
+    /**
+     * Resolves a type hint.
+     *
+     * @param string $hint Type hint
+     *
+     * @since 3.0.0
+     *
+     * @return string|\Closure
+     */
+    protected function resolveHint($hint);
+
+    /**
+     * Resolves a contextual dependency.
+     *
+     * @param string $class     Class.
+     * @param string $interface Interface.
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+    protected function resolveContextualDependency(string $class, string $interface);
+
+    /**
+     * Merges the provided parameters with the reflection parameters into one array.
+     *
+     * @param array $reflectionParameters Reflection parameters.
+     * @param array $providedParameters   Provided parameters.
+     *
+     * @since 3.0.0
+     *
      * @return array
      */
-    public function tagged($tag);
+
+    protected function mergeParameters(array $reflectionParameters, array $providedParameters);
 
     /**
-     * Register a binding with the container.
+     * Returns the name of function.
      *
-     * @param  string  $abstract
-     * @param  \Closure|string|null  $concrete
-     * @param  bool  $shared
-	 *
-	 * @since 3.0.0
-	 *
-     * @return void
+     * @param \ReflectionParameter $parameter ReflectionParameter instance.
+     *
+     * @since 3.0.0
+     *
+     * Note: Adapted from mako\framework.
+     *
+     * @see https://github.com/mako-framework/framework/blob/master/LICENSE
+     *
+     * @return string
      */
-    public function bind($abstract, $concrete = null, $shared = false);
+    protected function getDeclaringFunction(\ReflectionParameter $parameter);
 
     /**
-     * Register a binding if it hasn't already been registered.
+     * Resolve a parameter.
      *
-     * @param  string  $abstract
-     * @param  \Closure|string|null  $concrete
-     * @param  bool  $shared
-	 *
-	 * @since 3.0.0
-	 *
-     * @return void
-     */
-    public function bindIf($abstract, $concrete = null, $shared = false);
-
-    /**
-     * Register a shared binding in the container.
+     * @param \ReflectionParameter  $parameter ReflectionParameter instance.
+     * @param \ReflectionClass|null $class     ReflectionClass instance.
      *
-     * @param  string  $abstract
-     * @param  \Closure|string|null  $concrete
-	 *
-	 * @since 3.0.0
-	 *
-     * @return void
-     */
-    public function singleton($abstract, $concrete = null);
-
-    /**
-     * "Extend" an abstract type in the container.
+     * @since 3.0.0
      *
-     * @param  string    $abstract
-     * @param  \Closure  $closure
-	 *
-	 * @since 3.0.0
-	 *
-     * @return void
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function extend($abstract, Closure $closure);
-
-    /**
-     * Register an existing instance as shared in the container.
-     *
-     * @param  string  $abstract
-     * @param  mixed   $instance
-	 *
-	 * @since 3.0.0
-	 *
      * @return mixed
      */
-    public function instance($abstract, $instance);
+    protected function resolveParameter(\ReflectionParameter $parameter, \ReflectionClass $class = null);
 
     /**
-     * Define a contextual binding.
+     * Resolve parameters.
      *
-     * @param  string|array  $concrete
-	 *
-	 * @since 3.0.0
-	 *
-     * @return ?
+     * @param array                 $reflectionParameters Reflection parameters.
+     * @param array                 $providedParameters   Provided Parameters.
+     * @param  \ReflectionClass|null $class                ReflectionClass instance.
+     *
+     * @since 3.0.0
+     *
+     * @return array
      */
-    public function when($concrete);
+    protected function resolveParameters(array $reflectionParameters, array $providedParameters, \ReflectionClass $class = null);
 
     /**
-     * Get a closure to resolve the given type from the container.
+     * Creates a class instance using closure.
      *
-     * @param  string  $abstract
-	 *
-	 * @since 3.0.0
-	 *
-     * @return \Closure
+     * @param closure $factory      Closuare.
+     * @param array   $parameters Constructor parameters.
+     *
+     * @since 3.0.0
+     *
+     * @return object
      */
-    public function factory($abstract);
+    public function closureFactory(\Closure $factory, $parameters);
 
     /**
-     * Resolve the given type from the container.
+     * Creates a class instance using reflection.
      *
-     * @param  string  $abstract
-     * @param  array  $parameters
-	 *
-	 * @since 3.0.0
-	 *
-     * @return mixed
+     * @param string $class      Class name.
+     * @param array  $parameters Constructor parameters.
+     *
+     * @since 3.0.0
+     *
+     * @return object
      */
-    public function make($abstract, array $parameters = []);
+    public function reflectionFactory(string $class, array $parameters = []);
 
     /**
-     * Call the given Closure / class@method and inject its dependencies.
+     * Creates a class instance.
      *
-     * @param  callable|string  $callback
-     * @param  array  $parameters
-     * @param  string|null  $defaultMethod
-	 *
-	 * @since 3.0.0
-	 *
-     * @return mixed
+     * @param string|\Closure $class      Class name or closure.
+     * @param array           $parameters Constructor parameters.
+     *
+     * @since 3.0.0
+     *
+     * @return object
      */
-    public function call($callback, array $parameters = [], $defaultMethod = null);
+    public function factory($class, array $parameters = []);
 
     /**
-     * Determine if the given abstract type has been resolved.
+     * Checks if a class is registered in the container.
      *
-     * @param  string $abstract
-	 *
-	 * @since 3.0.0
-	 *
+     * @param string $class Class name.
+     *
+     * @since 3.0.0
+     *
      * @return bool
      */
-    public function resolved($abstract);
+    public function has(string $class);
 
     /**
-     * Register a new resolving callback.
+     * Returns TRUE if a class has been registered as a singleton and FALSE if not.
      *
-     * @param  \Closure|string  $abstract
-     * @param  \Closure|null  $callback
-	 *
-	 * @since 3.0.0
-	 *
-     * @return void
+     * @param string $class Class name.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
      */
-    public function resolving($abstract, Closure $callback = null);
+    public function isSingleton(string $class);
 
     /**
-     * Register a new after resolving callback.
+     * Returns a class instance.
      *
-     * @param  \Closure|string  $abstract
-     * @param  \Closure|null  $callback
-	 *
-	 * @since 3.0.0
-	 *
-     * @return void
+     * @param string $class       Class name.
+     * @param array  $parameters  Constructor parameters.
+     *
+     * @since 3.0.0
+     *
+     * @return object
      */
-    public function afterResolving($abstract, Closure $callback = null);
+    public function get($class, array $parameters = []);
+
+    /**
+     * Execute a callable and inject its dependencies.
+     *
+     * @param callable $callable   Callable.
+     * @param array    $parameters Parameters.
+     *
+     * @since 3.0.0
+     *
+     * Note: Adapted from mako\framework.
+     *
+     * @see https://github.com/mako-framework/framework/blob/master/LICENSE
+     *
+     * @return object
+     */
+    public function exec(callable $callable, array $parameters = []);
 }
