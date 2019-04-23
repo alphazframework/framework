@@ -19,17 +19,6 @@ namespace Zest\Contracts\Container;
 interface Container
 {
     /**
-     * Parse the hint parameter.
-     *
-     * @param  string|array $hint Type hint or array contaning both type hint and alias
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    protected function parseHint($hint);
-
-    /**
      * Register a type hint.
      *
      * @param string|array    $hint      Type hint or array contaning both type hint and alias.
@@ -78,93 +67,6 @@ interface Container
      * @return void
      */
     public function registerContextualDependency($class, string $interface, string $implementation);
-
-    /**
-     * Return the name based on its alias.
-     *
-     * @param  string $alias Alias.
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    protected function resolveAlias(string $alias);
-
-    /**
-     * Resolves a type hint.
-     *
-     * @param string $hint Type hint
-     *
-     * @since 3.0.0
-     *
-     * @return string|\Closure
-     */
-    protected function resolveHint($hint);
-
-    /**
-     * Resolves a contextual dependency.
-     *
-     * @param string $class     Class.
-     * @param string $interface Interface.
-     *
-     * @since 3.0.0
-     *
-     * @return string
-     */
-    protected function resolveContextualDependency(string $class, string $interface);
-
-    /**
-     * Merges the provided parameters with the reflection parameters into one array.
-     *
-     * @param array $reflectionParameters Reflection parameters.
-     * @param array $providedParameters   Provided parameters.
-     *
-     * @since 3.0.0
-     *
-     * @return array
-     */
-
-    protected function mergeParameters(array $reflectionParameters, array $providedParameters);
-
-    /**
-     * Returns the name of function.
-     *
-     * @param \ReflectionParameter $parameter ReflectionParameter instance.
-     *
-     * @since 3.0.0
-     *
-     * Note: Adapted from mako\framework.
-     *
-     * @see https://github.com/mako-framework/framework/blob/master/LICENSE
-     *
-     * @return string
-     */
-    protected function getDeclaringFunction(\ReflectionParameter $parameter);
-
-    /**
-     * Resolve a parameter.
-     *
-     * @param \ReflectionParameter  $parameter ReflectionParameter instance.
-     * @param \ReflectionClass|null $class     ReflectionClass instance.
-     *
-     * @since 3.0.0
-     *
-     * @return mixed
-     */
-    protected function resolveParameter(\ReflectionParameter $parameter, \ReflectionClass $class = null);
-
-    /**
-     * Resolve parameters.
-     *
-     * @param array                 $reflectionParameters Reflection parameters.
-     * @param array                 $providedParameters   Provided Parameters.
-     * @param  \ReflectionClass|null $class                ReflectionClass instance.
-     *
-     * @since 3.0.0
-     *
-     * @return array
-     */
-    protected function resolveParameters(array $reflectionParameters, array $providedParameters, \ReflectionClass $class = null);
 
     /**
      * Creates a class instance using closure.
