@@ -79,6 +79,11 @@ class Time implements TimeContract
      */
     public static function timestampToGmt($time = null)
     {
+        $time = $time ?? time();
+        $dateTime = new \DateTime();
+        $dateTime->setTimestamp($time)->modify('+2 hours');
+        return $dateTime->format('d/m/Y H:i:s');
+
     }
 
     /**
