@@ -64,17 +64,6 @@ interface Time
     public static function timestampToGmt($time = null);
 
     /**
-     * Converts the timestamp in to human readable form.
-     *
-     * @param (int|string) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
-     *
-     * @since 3.0.0
-     *
-     * @return mixed
-     */
-    public static function friendlyTime($time);
-
-    /**
      * Converts the timestamp in to ago form.
      *
      * @param (int|string) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
