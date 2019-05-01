@@ -110,6 +110,46 @@ class Time implements TimeContract
      */
     public static function ago($time)
     {
+        $time = $this->formatTime($time);
+        (int) $s = 60;
+        (int) $hour = $s * $s;
+        (int) $day = $hour * 24;
+        (int) $week = $day * 7;
+        (int) $month = $day * 30;
+        (int) $year = $month * 12;
+        if ($time <= 60) {
+            $ago = ($time === 0 || $time === 1) ? ':just' : $time.' :secs';
+        } elseif ($time >= $s && $time < $hour) {
+            $ago = (round($time / $s) === 1) ? '1 :mint' : round($time / $s).' :mins';
+        } elseif ($time >= $hour && $time < $day) {
+            $ago = (round($time / $hour) === 1) ? '1 :hour' : round($time / $hour).'  :hours';
+        } elseif ($time >= $day && $time < $week) {
+            $ago = (round($time / $day) === 1) ? '1 :day' : round($time / $day).' :days';
+        } elseif ($time >= $week && $time < $month) {
+            $ago = (round($time / $week) === 1) ? '1 :week' : round($time / $week).' :weeks';
+        } elseif ($time >= $month && $time < $year) {
+            $ago = (round($time / $month) === 1) ? '1 :month' : round($time / $month).' :months';
+        } elseif ($time >= $month) {
+            $ago = (round($time / $month) === 1) ? '1 :year' : round($time / $month).' :years';
+        }
+
+        return $ago;
+    }
+
+    /**
+     * Formats the time.
+     *
+     * @param (int|string) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     *
+     * @since 3.0.0
+     * @author https://github.com/Maikuolan (https://github.com/zestframework/Zest_Framework/issues/131)
+     *
+     * @return int
+     */
+    protected function formatTime($time)
+    {
+        $time = preg_match('~\D~', $time) ? strtotime($time) : $time;
+        return time() - $time;
     }
 
     /**
