@@ -87,19 +87,6 @@ class Time implements TimeContract
     }
 
     /**
-     * Converts the timestamp in to human readable form.
-     *
-     * @param int|string $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
-     *
-     * @since 3.0.0
-     *
-     * @return mixed
-     */
-    public static function friendlyTime($time)
-    {
-    }
-
-    /**
      * Converts the timestamp in to ago form.
      *
      * @param int|string $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
@@ -110,7 +97,7 @@ class Time implements TimeContract
      */
     public static function ago($time)
     {
-        $time = $this->formatTime($time);
+        $time = self::formatTime($time);
         (int) $s = 60;
         (int) $hour = $s * $s;
         (int) $day = $hour * 24;
@@ -146,7 +133,7 @@ class Time implements TimeContract
      *
      * @return int
      */
-    protected function formatTime($time)
+    protected static function formatTime($time)
     {
         $time = preg_match('~\D~', $time) ? strtotime($time) : $time;
         return time() - $time;
