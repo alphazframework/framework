@@ -98,14 +98,14 @@ class Conversion implements ConversionContract
     /**
      * Convert the views to relative unit.
      *
-     * @param int $size The value that you want provided
-     * @param int $pre  Round the value default 2
+     * @param int $n   Views.
+     * @param int $sep Seperator.
      *
      * @since 3.0.0
      *
      * @return mixed
      */
-    public static function views($n, $sep=',') 
+    public static function views($n, $sep = ',') 
     {
         if ($n < 0) {
             return 0;
