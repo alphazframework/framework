@@ -21,7 +21,7 @@ interface Time
     /**
      * Get "now" time.
      *
-     * @param string $timezone Valid php supported timezone.
+     * @param string|null $timezone Valid php supported timezone.
      *
      * @since 3.0.0
      *
@@ -44,7 +44,7 @@ interface Time
     /**
      * Determine whether the year is leap or not.
      *
-     * @param int $year A numeric year.
+     * @param int|null $year A numeric year.
      *
      * @since 3.0.0
      *
@@ -55,7 +55,7 @@ interface Time
     /**
      * Converts a timestamp to GMT.
      *
-     * @param int $time Unix timestamp
+     * @param int|null $time Unix timestamp
      *
      * @since 3.0.0
      *
@@ -66,7 +66,7 @@ interface Time
     /**
      * Converts the timestamp in to ago form.
      *
-     * @param (int|string) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param int|string $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @since 3.0.0
      *
@@ -77,11 +77,12 @@ interface Time
     /**
      * Converts the timestamp in to h:m:s form.
      *
-     * @param (int) $time Timestamp
+     * @param int $time Timestamp
+     * @param string $timezone Valid php supported timezone.
      *
      * @since 3.0.0
      *
      * @return mixed
      */
-    public static function formatsSeconds($seconds);
+    public static function formatsSeconds($seconds, $timezone = '');
 }
