@@ -77,7 +77,7 @@ interface Time
     /**
      * Converts the timestamp in to h:m:s form.
      *
-     * @param int $time Timestamp
+     * @param int    $time     Timestamp
      * @param string $timezone Valid php supported timezone.
      *
      * @since 3.0.0

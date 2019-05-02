@@ -84,7 +84,6 @@ class Time implements TimeContract
         $dateTime->setTimestamp($time)->modify('+2 hours');
 
         return $dateTime->format('d/m/Y H:i:s');
-
     }
 
     /**
@@ -112,6 +111,7 @@ class Time implements TimeContract
      * @param int|string $time Datetime, Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @author https://github.com/peter279k (https://github.com/zestframework/Zest_Framework/pull/206).
+     *
      * @since 3.0.0
      *
      * @return mixed
@@ -119,7 +119,7 @@ class Time implements TimeContract
     public static function ago($dateTime, $full = false)
     {
         $dateTime = self::timestampToDate($dateTime);
-        $now = new \DateTime;
+        $now = new \DateTime();
         $ago = new \DateTime($dateTime);
         $diff = $now->diff($ago);
 
@@ -137,15 +137,17 @@ class Time implements TimeContract
         ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
-                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                $v = $diff->$k.' '.$v.($diff->$k > 1 ? 's' : '');
             } else {
                 unset($string[$k]);
             }
         }
 
-        if (!$full) $string = array_slice($string, 0, 1);
+        if (!$full) {
+            $string = array_slice($string, 0, 1);
+        }
 
-        return $string ? implode(', ', $string) . ' ' : ':just';
+        return $string ? implode(', ', $string).' ' : ':just';
     }
 
     /**
@@ -154,6 +156,7 @@ class Time implements TimeContract
      * @param (int|string) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @since 3.0.0
+     *
      * @author https://github.com/Maikuolan (https://github.com/zestframework/Zest_Framework/issues/131)
      *
      * @return int
