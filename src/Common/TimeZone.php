@@ -21,7 +21,7 @@ class TimeZone extends \DateTimeZone
     /**
      * Set Default timeZone.
      *
-     * @param (string) $tz valid time zone
+     * @param string $tz valid time zone
      *
      * @since 3.0.0
      *
@@ -55,6 +55,6 @@ class TimeZone extends \DateTimeZone
      */
     public static function validate($tz) :string
     {
-        return (in_array($tz, static::tZIdentifiers()) === true) ? $tz : 'UTC';
+        return in_array($tz, static::tZIdentifiers()) ? $tz : 'UTC';
     }
 }
