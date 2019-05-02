@@ -82,6 +82,7 @@ class Time implements TimeContract
         $time = $time ?? time();
         $dateTime = new \DateTime();
         $dateTime->setTimestamp($time)->modify('+2 hours');
+
         return $dateTime->format('d/m/Y H:i:s');
 
     }
@@ -125,7 +126,7 @@ class Time implements TimeContract
         $diff->w = floor($diff->d / 7);
         $diff->d -= $diff->w * 7;
 
-        $string = array(
+        $string = [
             'y' => ':year',
             'm' => ':month',
             'w' => ':week',
@@ -133,7 +134,7 @@ class Time implements TimeContract
             'h' => ':hour',
             'i' => ':minute',
             's' => ':second',
-        );
+        ];
         foreach ($string as $k => &$v) {
             if ($diff->$k) {
                 $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
@@ -160,6 +161,7 @@ class Time implements TimeContract
     protected static function formatTime($time)
     {
         $time = preg_match('~\D~', $time) ? strtotime($time) : $time;
+
         return $time;
     }
 
