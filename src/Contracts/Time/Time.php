@@ -66,7 +66,7 @@ interface Time
     /**
      * Converts the timestamp in to ago form.
      *
-     * @param int|string $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
+     * @param int|string $time Datetime, Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
      * @since 3.0.0
      *
