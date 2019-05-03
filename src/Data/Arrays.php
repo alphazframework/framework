@@ -489,9 +489,15 @@ class Arrays implements ArraysContract
      *
      * @return array
      */
-    public static function removeDuplicates(array $array,$key)
+    public static function removeDuplicates(array $array,$key = '')
     {
-        if (!self::isReallyArray($array) || (empty($key) && !isset($key)) ) {
+        if (!self::isReallyArray($array)) {
+            return false;
+        }
+        if (self::isSequential($array) || self::isAssoc($array)) {
+            return array_unique($array);
+        }
+        if (self::isMulti($array) && empty($key)) {
             return false;
         }
         $dataSet = [];
