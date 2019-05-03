@@ -168,4 +168,16 @@ interface Arrays
      * @return array
      */
     public static function arrayChangeCaseValue($array, $case = CASE_LOWER);
+
+    /**
+     * Remove duplicate values from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function removeDuplicates(array $array,$key);
 }
