@@ -182,7 +182,7 @@ class ArraysTest extends TestCase
             ]
         ];
         $dataSet2 = array("a" => "green", "red", "b" => "green", "blue", "red");
-
+        $dataSet3 = [1,2,3,4,2,5,6,3,7,8,9];
         $this->assertSame([
             0 => [
                 'id'       => 1,
@@ -196,5 +196,6 @@ class ArraysTest extends TestCase
             ],
         ], Arrays::removeDuplicates($dataSet1, 'username'));
         $this->assertSame(['a' => 'green', 0 => 'blue', 1 => 'red' ], Arrays::removeDuplicates($dataSet2, 'username'));
+        $this->assertSame([1,2,3,4,5,6,7,8,9], Arrays::removeDuplicates($dataSet3, 'username'));
     }
 }
