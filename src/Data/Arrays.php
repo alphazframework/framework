@@ -478,4 +478,36 @@ class Arrays implements ArraysContract
 
         return $array;
     }
+
+    /**
+     * Remove duplicate values from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function removeDuplicates(array $array,$key)
+    {
+        if (!self::isReallyArray($array) || (empty($key) && !isset($key)) ) {
+            return false;
+        }
+        $dataSet = [];
+        $i = 0;
+        $keys = [];
+        foreach ($array as $k) {
+            if (in_array($k[$key], $keys)) {
+                continue;
+            } else {
+                $keys[$i] = $k[$key];
+                $dataSet[$i] = $k;
+            }
+
+            $i++;
+        }
+
+        return $dataSet;
+    }
 }
