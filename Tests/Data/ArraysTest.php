@@ -197,6 +197,16 @@ class ArraysTest extends TestCase
             ],
         ], Arrays::removeDuplicates($dataSet1, 'username'));
         $this->assertSame(['a' => 'green', 0 => 'red', 1 => 'blue' ], Arrays::removeDuplicates($dataSet2, 'username'));
-        $this->assertSame([1,2,3,4,5,6,7,8,9], Arrays::removeDuplicates($dataSet3, 'username'));
+        $this->assertSame([
+           0 => 1,
+           1 => 2,
+           2 => 3,
+           3 => 4,
+           4 => 5,
+           5 => 6,
+           6 => 7,
+           7 => 8,
+           8 => 9
+        ], Arrays::removeDuplicates($dataSet3, 'username'));
     }
 }
