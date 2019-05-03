@@ -160,4 +160,28 @@ class ArraysTest extends TestCase
         $this->assertSame(['name' => 'ALEX'], Arrays::arrayChangeCaseValue($array, CASE_UPPER));
         $this->assertNotSame(['name' => 'Alex'], Arrays::arrayChangeCaseValue($array, CASE_UPPER));
     }
+
+    public function testRemoveDuplicates()
+    {
+        $dataSet1 = [
+            'users' => 
+            [
+                'id' => 1,
+                'name' => "Umer",
+                'username' => 'peter',
+            ],
+            [
+                'id' => 2,
+                'name' => "Umer",
+                'username' => 'umer01'
+            ],
+            [
+                'id' => 3,
+                'name' => "Peter Khot",
+                'username' => 'peter',
+            ]
+        ];
+
+        $this->assertSame(, Arrays::removeDuplicates($array, 'username'));
+    }
 }
