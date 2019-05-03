@@ -207,6 +207,6 @@ class ArraysTest extends TestCase
            6 => 7,
            7 => 8,
            8 => 9
-        ], Arrays::removeDuplicates($dataSet3, 'username'));
+        ], Arrays::removeDuplicates($dataSet3));
     }
 }
