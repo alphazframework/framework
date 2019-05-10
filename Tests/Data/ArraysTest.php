@@ -166,7 +166,7 @@ class ArraysTest extends TestCase
         return [
             [
                 [
-                    'users' => 
+                    'users' =>
                     [
                         'id'       => 1,
                         'name'     => "Umer",
@@ -200,18 +200,7 @@ class ArraysTest extends TestCase
             [
                 ["a" => "green", "red", "b" => "green", "blue", "red"],
                 'username',
-                [
-                    0 => [
-                        'id'       => 1,
-                        'name'     => 'Umer',
-                        'username' => 'peter'
-                    ],
-                    1 => [
-                        'id'       => 2,
-                        'name'     => 'Umer',
-                        'username' => 'umer01'
-                    ],
-                ],
+                ['a' => 'green', 0 => 'red', 1 => 'blue' ],
             ],
             [
                 [1,2,3,4,2,5,6,3,7,8,9],
