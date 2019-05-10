@@ -516,4 +516,75 @@ class Arrays implements ArraysContract
 
         return $dataSet;
     }
+
+   /**
+     * Get the most|least occurring value from array.
+     *
+     * @param string     $type  The type most|least
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    private static function mostOrLeastOccurring(string $type, array $array, $key = '')
+    {
+        $occurring = [];
+
+        if (self::isAssoc($array) || self::isMulti($array)) {
+            $values = array_count_values(array_column($array, $key));
+        } else {
+            $values = array_count_values($array);
+        }
+
+        $tmp = $type === 'most' ? current($values) : current($values);
+        unset($values[$tmp]);
+        foreach ($values as $key => $value) {
+            if ($type === 'most') {
+                if ($tmp <= $value) {
+                    $tmp = $key;
+                    $occurring[] = $key;
+                }
+            } elseif ($type === 'least') {
+                print_r($value);
+                 if ($tmp > $value) {
+                    $tmp = $key;
+                    $occurring[] = $key;
+                }               
+            }
+        }       
+
+        return $occurring;
+    }
+
+    /**
+     * Get the most occurring value from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function mostOccurring(array $array, $key = '')
+    {
+        return self::mostOrLeastOccurring('most', $array, $key);
+    }
+
+    /**
+     * Get the least occurring value from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function leastOccurring(array $array, $key = '')
+    {
+        return self::mostOrLeastOccurring('least', $array, $key);
+    }
 }
