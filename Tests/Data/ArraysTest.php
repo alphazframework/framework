@@ -161,52 +161,81 @@ class ArraysTest extends TestCase
         $this->assertNotSame(['name' => 'Alex'], Arrays::arrayChangeCaseValue($array, CASE_UPPER));
     }
 
-    public function testRemoveDuplicates()
+    public function removeDuplicatesDataProvider()
     {
-        $dataSet1 = [
-            'users' => 
+        return [
             [
-                'id'       => 1,
-                'name'     => "Umer",
-                'username' => 'peter',
+                [
+                    'users' => 
+                    [
+                        'id'       => 1,
+                        'name'     => "Umer",
+                        'username' => 'peter',
+                    ],
+                    [
+                        'id'       => 2,
+                        'name'     => "Umer",
+                        'username' => 'umer01'
+                    ],
+                    [
+                        'id'       => 3,
+                        'name'     => "Peter Khot",
+                        'username' => 'peter',
+                    ]
+                ],
+                'username',
+                [
+                    0 => [
+                        'id'       => 1,
+                        'name'     => 'Umer',
+                        'username' => 'peter'
+                    ],
+                    1 => [
+                        'id'       => 2,
+                        'name'     => 'Umer',
+                        'username' => 'umer01'
+                    ],
+                ],
             ],
             [
-                'id'       => 2,
-                'name'     => "Umer",
-                'username' => 'umer01'
+                ["a" => "green", "red", "b" => "green", "blue", "red"],
+                'username',
+                [
+                    0 => [
+                        'id'       => 1,
+                        'name'     => 'Umer',
+                        'username' => 'peter'
+                    ],
+                    1 => [
+                        'id'       => 2,
+                        'name'     => 'Umer',
+                        'username' => 'umer01'
+                    ],
+                ],
             ],
             [
-                'id'       => 3,
-                'name'     => "Peter Khot",
-                'username' => 'peter',
-            ]
+                [1,2,3,4,2,5,6,3,7,8,9],
+                '',
+                [
+                    0 => 1,
+                    1 => 2,
+                    2 => 3,
+                    3 => 4,
+                    5 => 5,
+                    6 => 6,
+                    8 => 7,
+                    9 => 8,
+                    10 => 9
+                ],
+            ],
         ];
-        $dataSet2 = ["a" => "green", "red", "b" => "green", "blue", "red"];
-        $dataSet3 = [1,2,3,4,2,5,6,3,7,8,9];
+    }
 
-        $this->assertSame([
-            0 => [
-                'id'       => 1,
-                'name'     => 'Umer',
-                'username' => 'peter'
-            ],
-            1 => [
-                'id'       => 2,
-                'name'     => 'Umer',
-                'username' => 'umer01'
-            ],
-        ], Arrays::removeDuplicates($dataSet1, 'username'));
-        $this->assertSame(['a' => 'green', 0 => 'red', 1 => 'blue' ], Arrays::removeDuplicates($dataSet2, 'username'));
-        $this->assertSame([
-           0 => 1,
-           1 => 2,
-           2 => 3,
-           3 => 4,
-           5 => 5,
-           6 => 6,
-           8 => 7,
-           9 => 8,
-           10 => 9
-        ], Arrays::removeDuplicates($dataSet3));
+    /**
+     * @dataProvider removeDuplicatesDataProvider
+     */
+    public function testRemoveDuplicates($dataSet, $specificKey, $expected)
+    {
+        $this->assertSame($expected, Arrays::removeDuplicates($dataSet, $specificKey));
     }
 }
