@@ -180,4 +180,28 @@ interface Arrays
      * @return array
      */
     public static function removeDuplicates(array $array,$key);
+
+    /**
+     * Get the most occurring value from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function mostOccurring(array $array, $key = '');
+
+    /**
+     * Get the least occurring value from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function leastOccurring(array $array, $key = '');
 }
