@@ -612,7 +612,7 @@ class Arrays implements ArraysContract
      *
      * @return array
      */
-    public function where(array $array, callable $callback)
+    public static function where(array $array, callable $callback)
     {
         return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
     }
