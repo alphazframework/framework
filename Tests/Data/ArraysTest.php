@@ -166,54 +166,53 @@ class ArraysTest extends TestCase
         return [
             [
                 [
-                    'users' =>
-                    [
+                    'users' => [
                         'id'       => 1,
-                        'name'     => "Umer",
+                        'name'     => 'Umer',
                         'username' => 'peter',
                     ],
                     [
                         'id'       => 2,
-                        'name'     => "Umer",
+                        'name'     => 'Umer',
                         'username' => 'umer01'
                     ],
                     [
                         'id'       => 3,
-                        'name'     => "Peter Khot",
+                        'name'     => 'Peter Khot',
                         'username' => 'peter',
-                    ]
+                    ],
                 ],
                 'username',
                 [
                     0 => [
                         'id'       => 1,
                         'name'     => 'Umer',
-                        'username' => 'peter'
+                        'username' => 'peter',
                     ],
                     1 => [
                         'id'       => 2,
                         'name'     => 'Umer',
-                        'username' => 'umer01'
+                        'username' => 'umer01',
                     ],
                 ],
             ],
             [
-                ["a" => "green", "red", "b" => "green", "blue", "red"],
+                ['a' => 'green', 'red', 'b' => 'green', 'blue', 'red'],
                 'username',
-                ['a' => 'green', 0 => 'red', 1 => 'blue' ],
+                ['a' => 'green', 0 => 'red', 1 => 'blue'],
             ],
             [
                 [1,2,3,4,2,5,6,3,7,8,9],
                 '',
                 [
-                    0 => 1,
-                    1 => 2,
-                    2 => 3,
-                    3 => 4,
-                    5 => 5,
-                    6 => 6,
-                    8 => 7,
-                    9 => 8,
+                    0  => 1,
+                    1  => 2,
+                    2  => 3,
+                    3  => 4,
+                    5  => 5,
+                    6  => 6,
+                    8  => 7,
+                    9  => 8,
                     10 => 9
                 ],
             ],
