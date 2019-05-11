@@ -174,7 +174,7 @@ class ArraysTest extends TestCase
                     [
                         'id'       => 2,
                         'name'     => 'Umer',
-                        'username' => 'umer01'
+                        'username' => 'umer01',
                     ],
                     [
                         'id'       => 3,
@@ -202,7 +202,7 @@ class ArraysTest extends TestCase
                 ['a' => 'green', 0 => 'red', 1 => 'blue'],
             ],
             [
-                [1,2,3,4,2,5,6,3,7,8,9],
+                [1, 2, 3, 4, 2, 5, 6, 3, 7, 8, 9],
                 '',
                 [
                     0  => 1,
@@ -213,7 +213,7 @@ class ArraysTest extends TestCase
                     6  => 6,
                     8  => 7,
                     9  => 8,
-                    10 => 9
+                    10 => 9,
                 ],
             ],
         ];
