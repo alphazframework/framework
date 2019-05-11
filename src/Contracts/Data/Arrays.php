@@ -179,7 +179,7 @@ interface Arrays
      *
      * @return array
      */
-    public static function removeDuplicates(array $array,$key);
+    public static function removeDuplicates(array $array, $key);
 
     /**
      * Get the most occurring value from array.
