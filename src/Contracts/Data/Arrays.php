@@ -226,7 +226,7 @@ interface Arrays
      *
      * @return array
      */
-    public function where(array $array, callback $callback);
+    public function where(array $array, callable $callback);
 
     /**
      * Shuffle the given array for associative arrays, preserves key=>value pairs.
