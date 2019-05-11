@@ -478,4 +478,201 @@ class Arrays implements ArraysContract
 
         return $array;
     }
+
+    /**
+     * Remove duplicate values from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function removeDuplicates(array $array, $key = '')
+    {
+        if (!self::isReallyArray($array)) {
+            return false;
+        }
+        if (self::isSequential($array) || self::isAssoc($array)) {
+            return array_unique($array);
+        }
+        if (self::isMulti($array) && empty($key)) {
+            return false;
+        }
+        $dataSet = [];
+        $i = 0;
+        $keys = [];
+        foreach ($array as $k) {
+            if (in_array($k[$key], $keys)) {
+                continue;
+            } else {
+                $keys[$i] = $k[$key];
+                $dataSet[$i] = $k;
+            }
+
+            $i++;
+        }
+
+        return $dataSet;
+    }
+
+    /**
+     * Get the most|least occurring value from array.
+     *
+     * @param string     $type  The type most|least
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    private static function mostOrLeastOccurring(string $type, array $array, $key = '')
+    {
+        $occurring = [];
+
+        if (self::isAssoc($array) || self::isMulti($array)) {
+            $values = array_count_values(array_column($array, $key));
+        } else {
+            $values = array_count_values($array);
+        }
+
+        $tmp = $type === 'most' ? current($values) : current($values);
+        unset($values[$tmp]);
+        foreach ($values as $key => $value) {
+            if ($type === 'most') {
+                if ($tmp <= $value) {
+                    $tmp = $key;
+                    $occurring[] = $key;
+                }
+            } elseif ($type === 'least') {
+                print_r($value);
+                if ($tmp > $value) {
+                    $tmp = $key;
+                    $occurring[] = $key;
+                }
+            }
+        }
+
+        return $occurring;
+    }
+
+    /**
+     * Get the most occurring value from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function mostOccurring(array $array, $key = '')
+    {
+        return self::mostOrLeastOccurring('most', $array, $key);
+    }
+
+    /**
+     * Get the least occurring value from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function leastOccurring(array $array, $key = '')
+    {
+        return self::mostOrLeastOccurring('least', $array, $key);
+    }
+
+    /**
+     * Convert the array into a query string.
+     *
+     * @param array $array The array to work on.
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+    public static function query($array)
+    {
+        return http_build_query($array, null, '&', PHP_QUERY_RFC3986);
+    }
+
+    /**
+     * Filter the array using the given callback.
+     *
+     * @param array    $array    The array to work on.
+     * @param callable $callback Callback function.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function where(array $array, callable $callback)
+    {
+        return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
+    }
+
+    /**
+     * Shuffle the given array for associative arrays, preserves key=>value pairs.
+     * THIS METION WILL NOT WORKS WITH MULTIDIMESSIONAL ARRAY.
+     *
+     * @param array $array The array to work on.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function shuffle(array &$array)
+    {
+        $dataSet = [];
+
+        $keys = array_keys($array);
+
+        shuffle($keys);
+
+        foreach ($keys as $key) {
+            $dataSet[$key] = $array[$key];
+        }
+
+        $array = $dataSet;
+
+        return true;
+    }
+
+    /**
+     * Get one or a specified number of random values from an array.
+     *
+     * @param array    $array The array to work on.
+     * @param int|null $i     Specifies how many entries should be picked.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public static function random(array $array, int $i = null)
+    {
+        (int) $i = $i ?? 1;
+        $countElement = count($array);
+
+        if ($countElement < $i) {
+            throw new \OutOfBoundsException("You requested {$i} items, but there are only {$countElement} items available.", 500);
+        }
+        if ($i === 0) {
+            throw new \OutOfBoundsException('Second argument has to be between 1 and the number of elements in the array', 500);
+        }
+
+        $keys = array_rand($array, $i);
+        $dataSet = [];
+
+        foreach ((array) $keys as $key) {
+            $dataSet[] = $array[$key];
+        }
+
+        return $dataSet;
+    }
 }

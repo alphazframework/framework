@@ -168,4 +168,87 @@ interface Arrays
      * @return array
      */
     public static function arrayChangeCaseValue($array, $case = CASE_LOWER);
+
+    /**
+     * Remove duplicate values from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function removeDuplicates(array $array, $key);
+
+    /**
+     * Get the most occurring value from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function mostOccurring(array $array, $key = '');
+
+    /**
+     * Get the least occurring value from array.
+     *
+     * @param array      $array The array to work on.
+     * @param string|int $key   Key that need to evaulate.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function leastOccurring(array $array, $key = '');
+
+    /**
+     * Convert the array into a query string.
+     *
+     * @param array $array The array to work on.
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+    public static function query($array);
+
+    /**
+     * Filter the array using the given callback.
+     *
+     * @param array    $array    The array to work on.
+     * @param callable $callback Callback function.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function where(array $array, callable $callback);
+
+    /**
+     * Shuffle the given array for associative arrays, preserves key=>value pairs.
+     * THIS METION WILL NOT WORKS WITH MULTIDIMESSIONAL ARRAY.
+     *
+     * @param array $array The array to work on.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function shuffle(array &$array);
+
+    /**
+     * Get one or a specified number of random values from an array.
+     *
+     * @param array    $array The array to work on.
+     * @param int|null $i     Specifies how many entries should be picked.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public static function random(array $array, int $i = null);
 }
