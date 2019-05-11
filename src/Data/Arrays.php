@@ -631,7 +631,6 @@ class Arrays implements ArraysContract
     {
         $dataSet = [];
 
-
         $keys = array_keys($array);
 
         shuffle($keys);
