@@ -255,7 +255,7 @@ class ArraysTest extends TestCase
 
     public function testRandom()
     {
-        $random = Arrays::random(['foo', 'bar', 'baz']);
+        $random = Arrays::random(['foo', 'bar', 'baz'], 3);
         $this->assertContains($random, ['foo', 'bar', 'baz']);
 
     }
