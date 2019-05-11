@@ -227,4 +227,36 @@ class ArraysTest extends TestCase
     {
         $this->assertSame($expected, Arrays::removeDuplicates($dataSet, $specificKey));
     }
+
+    public function testQuery()
+    {
+        $this->assertSame('', Arrays::query([]));
+        $this->assertSame('foo=bar', Arrays::query(['foo' => 'bar']));
+        $this->assertSame('name=alex&age=18', Arrays::query(['name' => 'alex', 'age' => '18']));
+    }
+
+    public function testWhere()
+    {
+        $array = [100, '200', 300, '400', 500];
+        $array = Arrays::where($array, function ($value, $key) {
+            return is_string($value);
+        });
+        $this->assertEquals([1 => '200', 3 => '400'], $array);
+    }
+
+    public function testShuffle()
+    {
+        $array1 = range(0, 100, 10);
+        $array2 = range(0, 100, 10);
+        Arrays::shuffle($array1);
+        Arrays::shuffle($array2);
+        $this->assertEquals($array1, $array2);
+    }
+
+    public function testRandom()
+    {
+        $random = Arrays::random(['foo', 'bar', 'baz']);
+        $this->assertContains($random, ['foo', 'bar', 'baz']);
+
+    }
 }
