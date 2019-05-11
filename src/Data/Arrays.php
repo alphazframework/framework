@@ -489,7 +489,7 @@ class Arrays implements ArraysContract
      *
      * @return array
      */
-    public static function removeDuplicates(array $array,$key = '')
+    public static function removeDuplicates(array $array, $key = '')
     {
         if (!self::isReallyArray($array)) {
             return false;
@@ -517,7 +517,7 @@ class Arrays implements ArraysContract
         return $dataSet;
     }
 
-   /**
+    /**
      * Get the most|least occurring value from array.
      *
      * @param string     $type  The type most|least
@@ -548,12 +548,12 @@ class Arrays implements ArraysContract
                 }
             } elseif ($type === 'least') {
                 print_r($value);
-                 if ($tmp > $value) {
+                if ($tmp > $value) {
                     $tmp = $key;
                     $occurring[] = $key;
-                }               
+                }
             }
-        }       
+        }
 
         return $occurring;
     }
@@ -664,7 +664,7 @@ class Arrays implements ArraysContract
             throw new \OutOfBoundsException("You requested {$i} items, but there are only {$countElement} items available.", 500);
         }
         if ($i === 0) {
-            throw new \OutOfBoundsException("Second argument has to be between 1 and the number of elements in the array", 500);
+            throw new \OutOfBoundsException('Second argument has to be between 1 and the number of elements in the array', 500);
         }
 
         $keys = array_rand($array, $i);
