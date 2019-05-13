@@ -78,7 +78,7 @@ class Arrays implements ArraysContract
         return isset($array[0]) && is_array($array[0]);
     }
 
-     /**
+    /**
      * Get type of array.
      *
      * @param array $array The array to work on.
@@ -86,7 +86,7 @@ class Arrays implements ArraysContract
      * @since 3.0.0
      *
      * @return mixed
-     */   
+     */
     public static function getType(array $array)
     {
         if (self::isReallyArray($array)) {
@@ -101,8 +101,7 @@ class Arrays implements ArraysContract
             return isset($type) ? $type : false;
         }
 
-        throw new \InvalidArgumentException("The given array should not be empty", 500);
-
+        throw new \InvalidArgumentException('The given array should not be empty', 500);
     }
 
     /**
