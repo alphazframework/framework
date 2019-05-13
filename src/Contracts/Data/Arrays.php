@@ -30,6 +30,50 @@ interface Arrays
     public static function isReallyArray($value);
 
     /**
+     * Determine array is (sqquential).
+     *
+     * @param array $array Value to be check.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function isSequential($array);
+
+    /**
+     * Determine array is Assoc.
+     *
+     * @param array $value Value to be check.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function isAssoc(array $array);
+
+    /**
+     * Determine array is multi-dimensional.
+     *
+     * @param array $value Value to be check.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function isMulti(array $array);
+
+     /**
+     * Get type of array.
+     *
+     * @param array $array The array to work on.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */   
+    public static function getType(array $array);
+
+    /**
      * Add an element to an array using "dot" notation if it doesn't exist.
      *
      * @param array  $array Array to be evaluated
