@@ -39,6 +39,43 @@ class ArraysTest extends TestCase
         $this->assertFalse(Arrays::isMulti(['name' => 'Alex']));
     }
 
+    public function testGetType()
+    {
+        $this->assertSame('indexes', Arrays::getType([1, 2, 3]));
+        $this->assertSame('assoc', Arrays::getType([
+            'a' => 1,
+            'b' => 2,
+            'c' => 3,
+        ]));
+        $this->assertSame('multi', Arrays::getType([
+            'a' => [
+                'A' => 1,
+                'B' => 2,
+            ],
+            'b' => [
+                'A' => 1,
+                'B' => 2,
+            ],
+        ]));
+        $this->assertNotSame('assoc', Arrays::getType([1, 2, 3]));
+        $this->assertNotSame('multi', Arrays::getType([
+            'a' => 1,
+            'b' => 2,
+            'c' => 3,
+        ]));
+        $this->assertNotSame('indexes', Arrays::getType([
+            'a' => [
+                'A' => 1,
+                'B' => 2,
+            ],
+            'b' => [
+                'A' => 1,
+                'B' => 2,
+            ],
+        ]));
+        $this->expectException(Arrays::getType([]));
+    }
+
     public function testAdd()
     {
         $array = Arrays::add(['id' => 1001, 'name' => 'Alex'], 'username', 'alex01', null);
