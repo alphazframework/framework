@@ -62,7 +62,7 @@ interface Arrays
      */
     public static function isMulti(array $array);
 
-     /**
+    /**
      * Get type of array.
      *
      * @param array $array The array to work on.
@@ -70,7 +70,7 @@ interface Arrays
      * @since 3.0.0
      *
      * @return mixed
-     */   
+     */
     public static function getType(array $array);
 
     /**
