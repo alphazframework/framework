@@ -73,7 +73,6 @@ class ArraysTest extends TestCase
                 'B' => 2,
             ],
         ]));
-        $this->expectException(Arrays::getType([]));
     }
 
     public function testAdd()
