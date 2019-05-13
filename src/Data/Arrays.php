@@ -547,7 +547,6 @@ class Arrays implements ArraysContract
                     $occurring[] = $key;
                 }
             } elseif ($type === 'least') {
-                print_r($value);
                 if ($tmp > $value) {
                     $tmp = $key;
                     $occurring[] = $key;
