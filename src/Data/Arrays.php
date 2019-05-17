@@ -700,4 +700,29 @@ class Arrays implements ArraysContract
 
         return $dataSet;
     }
+
+    /**
+     * Get multiple values of same keys from multi-dimessional array.
+     *
+     * @param array $array The array to work on.
+     * @param mixed $key   The specific key to search/get values.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public static function pluck(array $array, $key)
+    {
+        if (self::isMulti($array)) {
+            $dataSet = [];
+        array_walk_recursive($array, function($value, $k) use (&$dataSet, $key) {
+            if ($k == $key)
+                $dataSet[] = $value;
+            });
+
+            return $dataSet;
+        }
+
+        throw new \InvalidArgumentException("The array given should be multi-dimensional array, ". self::getType($array) . " given", 500);
+    }
 }
