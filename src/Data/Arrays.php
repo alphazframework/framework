@@ -715,14 +715,15 @@ class Arrays implements ArraysContract
     {
         if (self::isMulti($array)) {
             $dataSet = [];
-        array_walk_recursive($array, function($value, $k) use (&$dataSet, $key) {
-            if ($k == $key)
-                $dataSet[] = $value;
+            array_walk_recursive($array, function ($value, $k) use (&$dataSet, $key) {
+                if ($k == $key) {
+                    $dataSet[] = $value;
+                }
             });
 
             return $dataSet;
         }
 
-        throw new \InvalidArgumentException("The array given should be multi-dimensional array, ". self::getType($array) . " given", 500);
+        throw new \InvalidArgumentException('The array given should be multi-dimensional array, '.self::getType($array).' given', 500);
     }
 }
