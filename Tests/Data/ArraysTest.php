@@ -263,6 +263,17 @@ class ArraysTest extends TestCase
         $this->assertSame($expected, Arrays::removeDuplicates($dataSet, $specificKey));
     }
 
+    public function testMostOccurring()
+    {
+        $dataSet = [1,2,3,1,4,6,3];
+        $this->assertSame([1,3], Arrays::mostOccurring($dataSet));
+    }
+
+    public function testLeastOccurring()
+    {
+        $dataSet = [1,2,1,3,1,3];
+        $this->assertSame([2], Arrays::leastOccurring($dataSet));
+    }
     public function testQuery()
     {
         $this->assertSame('', Arrays::query([]));
@@ -292,5 +303,14 @@ class ArraysTest extends TestCase
     {
         $random = Arrays::random(['foo', 'bar', 'baz'], 1);
         $this->assertContains($random[0], ['foo', 'bar', 'baz']);
+    }
+
+    public function testPluck()
+    {
+        $dataSet = [
+            ['developer' => ['id' => 1, 'name' => 'Alex']],
+            ['developer' => ['id' => 2, 'name' => 'Peter']],
+        ];
+        $this->assertSame(['Alex', 'Peter'], Arrays::pluck($dataSet, 'name'));
     }
 }
