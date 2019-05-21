@@ -79,6 +79,32 @@ class Arrays implements ArraysContract
     }
 
     /**
+     * Get type of array.
+     *
+     * @param array $array The array to work on.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public static function getType(array $array)
+    {
+        if (self::isReallyArray($array)) {
+            if (self::isSequential($array)) {
+                $type = 'indexes';
+            } elseif (self::isAssoc($array)) {
+                $type = 'assoc';
+            } elseif (self::isMulti($array)) {
+                $type = 'multi';
+            }
+
+            return isset($type) ? $type : false;
+        }
+
+        throw new \InvalidArgumentException('The given array should not be empty', 500);
+    }
+
+    /**
      * Add an element to an array using "dot" notation if it doesn't exist.
      *
      * @param array  $array Array to be evaluated
@@ -673,5 +699,30 @@ class Arrays implements ArraysContract
         }
 
         return $dataSet;
+    }
+
+    /**
+     * Get multiple values of same keys from multi-dimessional array.
+     *
+     * @param array $array The array to work on.
+     * @param mixed $key   The specific key to search/get values.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public static function pluck(array $array, $key)
+    {
+        if (self::isMulti($array)) {
+            $dataSet = [];
+        array_walk_recursive($array, function($value, $k) use (&$dataSet, $key) {
+            if ($k == $key)
+                $dataSet[] = $value;
+            });
+
+            return $dataSet;
+        }
+
+        throw new \InvalidArgumentException("The array given should be multi-dimensional array, ". self::getType($array) . " given", 500);
     }
 }

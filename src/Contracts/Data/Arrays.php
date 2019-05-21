@@ -30,6 +30,50 @@ interface Arrays
     public static function isReallyArray($value);
 
     /**
+     * Determine array is (sqquential).
+     *
+     * @param array $array Value to be check.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function isSequential($array);
+
+    /**
+     * Determine array is Assoc.
+     *
+     * @param array $value Value to be check.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function isAssoc(array $array);
+
+    /**
+     * Determine array is multi-dimensional.
+     *
+     * @param array $value Value to be check.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function isMulti(array $array);
+
+    /**
+     * Get type of array.
+     *
+     * @param array $array The array to work on.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public static function getType(array $array);
+
+    /**
      * Add an element to an array using "dot" notation if it doesn't exist.
      *
      * @param array  $array Array to be evaluated
@@ -251,4 +295,16 @@ interface Arrays
      * @return mixed
      */
     public static function random(array $array, int $i = null);
+
+    /**
+     * Get multiple values of same keys from multi-dimessional array.
+     *
+     * @param array $array The array to work on.
+     * @param mixed $key   The specific key to search/get values.
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public static function pluck(array $array, $key);
 }
