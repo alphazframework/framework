@@ -53,4 +53,14 @@ class TimeTest extends TestCase
     {
         $this->assertSame($expected, Time::formatsSeconds($seconds, 'Asia/Taipei'));
     }
+
+    public function testAgo()
+    {
+    	$this->assertSame('14 :seconds', Time::ago(1558539991));
+    }
+
+    public function testTimestampToGmt()
+    {
+    	$this->assertSame('22/05/2019 22:46:31', Time::timestampToGmt(1558539991));
+    }
 }
