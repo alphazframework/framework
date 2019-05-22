@@ -56,11 +56,11 @@ class TimeTest extends TestCase
 
     public function testAgo()
     {
-    	$this->assertSame('14 :seconds', Time::ago(1558539991));
+    	$this->assertSame('7 :minutes ', Time::ago(1558539991));
     }
 
     public function testTimestampToGmt()
     {
-    	$this->assertSame('22/05/2019 22:46:31', Time::timestampToGmt(1558539991));
+    	$this->assertSame('23/05/2019 22:46:31', Time::timestampToGmt(1558539991));
     }
 }
