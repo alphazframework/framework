@@ -21,6 +21,63 @@ use Zest\Contracts\Time\Time as TimeContract;
 
 class Time implements TimeContract
 {
+
+    /**
+     * Date format.
+     *
+     * @since 3.0.0
+     *
+     * @var string
+    */
+    private $dateFormat;
+
+    /**
+     * Set the time format.
+     *
+     * @param mixe $format Valiud Date/Time format.
+     *
+     * @since 3.0.0
+     *
+     * @return object
+     */
+     public function setDateFormat($format)
+     {
+        if ($this->validateDateFormat($fornat)) {
+            $this->dateFormat = $format;
+
+            return $this;
+        }
+
+        throw new \InvalidArgumentException("The format {$format} is not valid format", 500);
+        
+     }
+
+    /**
+     * Get the time format.
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+     public function getDateFormat()
+     {
+        return $this->dateFormat;        
+     }
+
+    /**
+     * Validate the time format.
+     *
+     * @param mixe $format Valiud Date/Time format.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+     public function setDateFormat($format)
+     {
+        //code        
+     }
+
     /**
      * Get "now" time.
      *
@@ -82,8 +139,10 @@ class Time implements TimeContract
         $time = $time ?? time();
         $dateTime = new \DateTime();
         $dateTime->setTimestamp($time)->modify('+2 hours');
+        $format = isset($this->dateFormat) ? $format : 'd/m/Y H:i:s';
 
-        return $dateTime->format('d/m/Y H:i:s');
+        return $dateTime->format($format);
+
     }
 
     /**
@@ -101,8 +160,9 @@ class Time implements TimeContract
         $time = self::formatTime($time);
         $dateTime = new \DateTime();
         $dateTime->setTimestamp($time);
+        $format = isset($this->dateFormat) ? $format : 'd-m-Y H:i:s';
 
-        return $dateTime->format('d-m-Y H:i:s');
+        return $dateTime->format($format);
     }
 
     /**
