@@ -73,7 +73,7 @@ class Time implements TimeContract
      *
      * @return bool
      */
-     public function setDateFormat($format)
+     public function validateDateFormat($format)
      {
         //code        
      }
