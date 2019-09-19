@@ -20,7 +20,6 @@ use Zest\Contracts\Data\Str as StrContract;
 
 class Str implements StrContract
 {
-
     /**
      * Reverse the string.
      *
@@ -47,8 +46,8 @@ class Str implements StrContract
     /**
      * Concat the strings.
      *
-     * @param string $g    With concat. 
-     * @param string $str  String to concat.
+     * @param string $g   With concat.
+     * @param string $str String to concat.
      *
      * @since 3.0.0
      *
@@ -76,7 +75,7 @@ class Str implements StrContract
 
         //This approach produce wrong result when use any encoding Scheme like UTF-8
         $i = 1;
-        $str = $str . "\0";
+        $str = $str."\0";
         while ($str[$i] != "\0") {
             $i++;
         }

@@ -36,9 +36,9 @@ class Image
     /**
      * Save the Image.
      *
-     * @param   $params (array)
-     *                  'image' => Source valid image file
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'image' => Source valid image file
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
@@ -59,8 +59,8 @@ class Image
     /**
      * Extension of image.
      *
-     * @param   $params (string)
-     *                  'image' => Source valid image file
+     * @param $params (string)
+     *                 'image' => Source valid image file
      *
      * @since 1.0.0
      *
@@ -78,13 +78,13 @@ class Image
     /**
      * Resize the Image.
      *
-     * @param   $params (array)
-     *                  'source' => Source valid image file
-     *                  'w' => New width of image
-     *                  'h' => New height of image
-     *                  if you do not want save image these parameter are optional if you want save image
-     *                  'save' => true
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'source' => Source valid image file
+     *                 'w' => New width of image
+     *                 'h' => New height of image
+     *                 if you do not want save image these parameter are optional if you want save image
+     *                 'save' => true
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
@@ -130,12 +130,12 @@ class Image
     /**
      * Resize the Image.
      *
-     * @param   $params (array)
-     *                  'source' => Source valid image file
-     *                  'brightness' => Brightnes to-be set valid -255 to 255
-     *                  if you do not want save image these parameter are optional if you want save image
-     *                  'save' => true
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'source' => Source valid image file
+     *                 'brightness' => Brightnes to-be set valid -255 to 255
+     *                 if you do not want save image these parameter are optional if you want save image
+     *                 'save' => true
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
@@ -175,12 +175,12 @@ class Image
     /**
      * Resize the Image.
      *
-     * @param   $params (array)
-     *                  'source' => Source valid image file
-     *                  'blur_opacity' => blur_opacity recommended 100 otherwise you provide whatever you want
-     *                  if you do not want save image these parameter are optional if you want save image
-     *                  'save' => true
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'source' => Source valid image file
+     *                 'blur_opacity' => blur_opacity recommended 100 otherwise you provide whatever you want
+     *                 if you do not want save image these parameter are optional if you want save image
+     *                 'save' => true
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
@@ -224,18 +224,18 @@ class Image
     /**
      * Resize the Image.
      *
-     * @param   $params (array)
-     *                  'source' => Source valid image file
-     *                  'effect' => Different effect supported
-     *                  => blackwhite
-     *                  => negative
-     *                  => emboss
-     *                  => highlight
-     *                  => edegdetect
-     *                  for bubbles.bubbles1,cloud effect opacity is required
-     *                  if you do not want save image these parameter are optional if you want save image
-     *                  'save' => true
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'source' => Source valid image file
+     *                 'effect' => Different effect supported
+     *                 => blackwhite
+     *                 => negative
+     *                 => emboss
+     *                 => highlight
+     *                 => edegdetect
+     *                 for bubbles.bubbles1,cloud effect opacity is required
+     *                 if you do not want save image these parameter are optional if you want save image
+     *                 'save' => true
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
@@ -436,13 +436,13 @@ class Image
     /**
      * Crop the image.
      *
-     * @param   $params (array)
-     *                  'source' => Source valid image file
-     *                  'x' => x coordinate of image e.g 45
-     *                  'y' => y coordinate of image e.g 11
-     *                  if you do not want save image these parameter are optional if you want save image
-     *                  'save' => true
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'source' => Source valid image file
+     *                 'x' => x coordinate of image e.g 45
+     *                 'y' => y coordinate of image e.g 11
+     *                 if you do not want save image these parameter are optional if you want save image
+     *                 'save' => true
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
@@ -483,14 +483,14 @@ class Image
     /**
      * Flip the image.
      *
-     * @param   $params (array)
-     *                  'source' => Source valid image file
-     *                  'flip' => support two different value
-     *                  'horizontal' => flip image horizontally
-     *                  'vertical' => flip image vertically
-     *                  if you do not want save image these parameter are optional if you want save image
-     *                  'save' => true
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'source' => Source valid image file
+     *                 'flip' => support two different value
+     *                 'horizontal' => flip image horizontally
+     *                 'vertical' => flip image vertically
+     *                 if you do not want save image these parameter are optional if you want save image
+     *                 'save' => true
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
@@ -531,17 +531,17 @@ class Image
     /**
      * Rotate the image.
      *
-     * @param   $params (array)
-     *                  'source' => Source valid image file
-     *                  'rotate' => Rotate in degree e.g 90,150 etc...
-     *                  'bg_color' => (optional) if you want provide color of the uncovered zone after the rotation support three argument valid value for rgb
-     *                  'red' => red color
-     *                  'green' => green color
-     *                  'blue' => blue color
-     *                  Learn more about rgb https://en.wikipedia.org/wiki/RGB_color_model
-     *                  if you do not want save image these parameter are optional if you want save image
-     *                  'save' => true
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'source' => Source valid image file
+     *                 'rotate' => Rotate in degree e.g 90,150 etc...
+     *                 'bg_color' => (optional) if you want provide color of the uncovered zone after the rotation support three argument valid value for rgb
+     *                 'red' => red color
+     *                 'green' => green color
+     *                 'blue' => blue color
+     *                 Learn more about rgb https://en.wikipedia.org/wiki/RGB_color_model
+     *                 if you do not want save image these parameter are optional if you want save image
+     *                 'save' => true
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
@@ -583,17 +583,17 @@ class Image
     /**
      * Add Border to the image.
      *
-     * @param   $params (array)
-     *                  'source' => Source valid image file
-     *                  'thickness' => thickness of border
-     *                  'bg_color' =>  three argument valid value for rgb
-     *                  'red' => red color
-     *                  'green' => green color
-     *                  'blue' => blue color
-     *                  Learn more about rgb https://en.wikipedia.org/wiki/RGB_color_model
-     *                  if you do not want save image these parameter are optional if you want save image
-     *                  'save' => true
-     *                  'target' => target + new name of file
+     * @param $params (array)
+     *                 'source' => Source valid image file
+     *                 'thickness' => thickness of border
+     *                 'bg_color' =>  three argument valid value for rgb
+     *                 'red' => red color
+     *                 'green' => green color
+     *                 'blue' => blue color
+     *                 Learn more about rgb https://en.wikipedia.org/wiki/RGB_color_model
+     *                 if you do not want save image these parameter are optional if you want save image
+     *                 'save' => true
+     *                 'target' => target + new name of file
      *
      * @since 1.0.0
      *
