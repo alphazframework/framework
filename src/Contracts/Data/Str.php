@@ -32,8 +32,8 @@ interface Str
     /**
      * Concat the strings.
      *
-     * @param string $g    With concat. 
-     * @param string $str  String to concat.
+     * @param string $g   With concat.
+     * @param string $str String to concat.
      *
      * @since 3.0.0
      *
