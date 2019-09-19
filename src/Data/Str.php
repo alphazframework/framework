@@ -54,7 +54,7 @@ class Str implements StrContract
      *
      * @return bool
      */
-    public static function strConcat($g, ...$str)
+    public static function concat($g, ...$str)
     {
         return implode($g, $str);
     }
