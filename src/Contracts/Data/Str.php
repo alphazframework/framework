@@ -39,7 +39,7 @@ interface Str
      *
      * @return bool
      */
-    public static function strConcat($g, ...$str);
+    public static function concat($g, ...$str);
 
     /**
      * Count the string.
