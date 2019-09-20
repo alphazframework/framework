@@ -70,3 +70,4 @@
 55. Added Sitemap package.
 56. Avoid session hijacking attack.
 57. Added Arrays Package.
+58. Added String manipulation Class/Package
