@@ -15,7 +15,7 @@ class StrTest extends TestCase
 
     public function testConcat()
     {
-        $this->assertSame('this is a book', Str::concat(' ', 'this', ' is', ' a', ' book'));
+        $this->assertSame('this  is  a  book', Str::concat(' ', 'this', ' is', ' a', ' book'));
         $this->assertNotSame('thisisabook', Str::concat(' ', 'this', ' is', ' a', ' book'));
     }
 
