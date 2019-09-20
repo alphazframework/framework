@@ -75,7 +75,11 @@ class Time implements TimeContract
      */
      public function validateDateFormat($format)
      {
-        //code        
+        if (isset($format) && !empty($format)) {
+            return true;
+        }
+
+        return false;
      }
 
     /**
