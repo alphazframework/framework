@@ -21,14 +21,13 @@ use Zest\Contracts\Time\Time as TimeContract;
 
 class Time implements TimeContract
 {
-
     /**
      * Date format.
      *
      * @since 3.0.0
      *
      * @var string
-    */
+     */
     private $dateFormat;
 
     /**
@@ -40,8 +39,8 @@ class Time implements TimeContract
      *
      * @return object
      */
-     public function setDateFormat($format)
-     {
+    public function setDateFormat($format)
+    {
         if ($this->validateDateFormat($fornat)) {
             $this->dateFormat = $format;
 
@@ -49,8 +48,7 @@ class Time implements TimeContract
         }
 
         throw new \InvalidArgumentException("The format {$format} is not valid format", 500);
-        
-     }
+    }
 
     /**
      * Get the time format.
@@ -59,10 +57,10 @@ class Time implements TimeContract
      *
      * @return string
      */
-     public function getDateFormat()
-     {
-        return $this->dateFormat;        
-     }
+    public function getDateFormat()
+    {
+        return $this->dateFormat;
+    }
 
     /**
      * Validate the time format.
@@ -73,14 +71,14 @@ class Time implements TimeContract
      *
      * @return bool
      */
-     public function validateDateFormat($format)
-     {
+    public function validateDateFormat($format)
+    {
         if (isset($format) && !empty($format)) {
             return true;
         }
 
         return false;
-     }
+    }
 
     /**
      * Get "now" time.
@@ -146,7 +144,6 @@ class Time implements TimeContract
         $format = isset($this->dateFormat) ? $format : 'd/m/Y H:i:s';
 
         return $dateTime->format($format);
-
     }
 
     /**
