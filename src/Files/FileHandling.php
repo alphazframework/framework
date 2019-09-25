@@ -145,5 +145,7 @@ class FileHandling
     public function addCustomMode($name, $value)
     {
         array_push($this->modes[$name], $value);
+
+        return $this;
     }
 }
