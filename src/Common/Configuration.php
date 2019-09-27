@@ -16,66 +16,114 @@
 
 namespace Zest\Common;
 
-use Zest\Data\Conversion;
+use Zest\Contracts\Common\Configuration as ConfigurationContract;
+use Zest\Data\Arrays;
 
-class Configuration
+class Configuration implements ConfigurationContract
 {
     /**
-     * Get the key form config file.
+     * All of the configuration items.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    protected $items = [];
+
+    /**
+     * Create a new configuration repository.
+     *
+     * @param array $items
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->file = __ZEST__ROOT__."/Config/App.php";
+        $this->items = Arrays::arrayChangeCaseKey(Arrays::dot($this->load()), CASE_LOWER);
+    }
+
+    /**
+     * Load the configuration file.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    private function load()
+    {
+        $configs = [];
+
+        if (file_exists($this->file)) {
+            $configs += require $this->file;
+        }
+
+        return $configs;       
+    }
+
+    /**
+     * Determine if the given configuration value exists.
+     *
+     * @param string $key
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function has($key)
+    {
+        return Arrays::has($this->items, $key, '.');
+    }
+
+    /**
+     * Get the specified configuration value.
+     *
+     * @param string $key
+     * @param mixed  $default
      *
      * @since 3.0.0
      *
      * @return mixed
      */
-    public function get()
+    public function get($key, $default = null)
     {
-        $data = $this->arrayChangeCaseKey($this->parseData());
-
-        return Conversion::arrayObject($data);
-    }
-
-    /**
-     * Prase the config file.
-     *
-     * @since 3.0.0
-     *
-     * @return array
-     */
-    public function parseData()
-    {
-        $data = [];
-        $file1 = __DIR__.'/Config/App.php';
-        $file2 = __DIR__.'/../Config/App.php';
-        if (file_exists($file1)) {
-            $data += require $file1;
-        } elseif (file_exists($file2)) {
-            $data += require $file2;
-        } else {
-            throw new \Exception("Error, while loading Config {$file1} file", 404);
+        if (is_array($key)) {
+            return $this->items;
         }
 
-        return $data;
+        return Arrays::get($this->items, $key, $default, '.');
     }
 
     /**
-     * Change the key of array to lower case.
+     * Set a given configuration value.
      *
-     * @param (array) $array valid array
+     * @param array|string $key
+     * @param mixed        $value
      *
      * @since 3.0.0
      *
-     * @author => http://php.net/manual/en/function.array-change-key-case.php#114914
+     * @return void
+     */
+    public function set($key, $value = null)
+    {
+        $keys = is_array($key) ? $key : [$key => $value];
+
+        foreach ($keys as $key => $value) {
+            Arrays::set($this->items, $key, $value, '.');
+        }
+    }
+
+    /**
+     * Get all of the configuration items for the application.
+     *
+     * @since 3.0.0
      *
      * @return array
      */
-    public function arrayChangeCaseKey($array)
+    public function all()
     {
-        return array_map(function ($item) {
-            if (is_array($item)) {
-                $item = $this->arrayChangeCaseKey($item);
-            }
-
-            return $item;
-        }, array_change_key_case($array));
+        return $this->items;
     }
 }
