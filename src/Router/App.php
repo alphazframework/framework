@@ -39,7 +39,7 @@ class App extends Router
         } else {
             throw new \Exception('Error while loading Route.php file', 500);
         }
-        if (__config()->config->router_cache === true) {
+        if (__config("app.router_cache") === true) {
             if (!$cache->setAdapter('file')->has('router')) {
                 require_once $routeFile;
                 $router->cacheRouters();
