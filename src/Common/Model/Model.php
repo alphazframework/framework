@@ -56,6 +56,6 @@ class Model
             return new $this->model();
         }
 
-        throw new \Exception("Class {$this->model} not found", 500);
+        throw new \Exception("The model Class {$this->model} not found", 500);
     }
 }
