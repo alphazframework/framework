@@ -49,7 +49,6 @@ class Root
             'locale'       => $this->root().'App/Locale/',
             'middleware'   => $this->root().'App/Middleware/',
             'models'       => $this->root().'App/Models/',
-            'views'        => __config()->config->theme_path,
             //components
             'com'          => $this->root().'App/Components/',
             //config
@@ -62,12 +61,12 @@ class Root
             'storage'      => [
                 'storage'  => $this->root().'Storage/',
                 'backup'   => $this->root().'Storage/Backup/',
-                'data'     => $this->root().'Storage/'.__config()->config->data_dir,
-                'cache'    => $this->root().'Storage/'.__config()->config->cache_dir,
-                'session'  => $this->root().'Storage/'.__config()->config->session_path,
+                'data'     => $this->root().'Storage/'.__config("app.data_dir"),
+                'cache'    => $this->root().'Storage/'.__config("app.cache_dir"),
+                'session'  => $this->root().'Storage/'.__config("app.session_path"),
                 'log'      => $this->root().'Storage/Logs/',
             ],
-            'views'        => $this->root().__config()->config->theme_path,
+            'views'        => __config("app.theme_path"),
         ];
 
         return Conversion::arrayObject($roots);
