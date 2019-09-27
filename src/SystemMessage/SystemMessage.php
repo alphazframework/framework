@@ -118,7 +118,6 @@ class SystemMessage implements SystemMessageContract
         if (isset($msg_data)) {
             $data = implode('', $msg_data);
             Session::delete('sys_msg');
-            //unset($_SESSION['sys_msg']);
 
             return $data;
         }
