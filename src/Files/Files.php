@@ -63,7 +63,7 @@ class Files
      */
     public function __construct()
     {
-        $files = Conversion::objectArray(__config("files"));
+        $files = Conversion::objectArray(__config('files'));
         $this->mineTypes = $files['mine']['type'];
         $this->types = $files['types'];
     }

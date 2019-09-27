@@ -13,12 +13,12 @@ function __printl(string $key, string $default = null)
 if (!function_exists('lang')) {
     function lang()
     {
-        return __config("app.language");
+        return __config('app.language');
     }
 }
 function __lang()
 {
-    return __config("app.language");
+    return __config('app.language');
 }
 if (!function_exists('input')) {
     function input($key)

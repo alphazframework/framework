@@ -215,7 +215,7 @@ class Whoops
         $this->getPreviewCode();
         $stack = $this->stack;
         //Only for Zest Framework
-        if (__config("app.show_errors") === true) {
+        if (__config('app.show_errors') === true) {
             $file = 'views/view.php';
             require $file;
         } else {

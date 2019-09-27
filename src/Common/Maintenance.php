@@ -29,7 +29,7 @@ class Maintenance
     {
         if (file_exists(route()->root.'maintained')) {
             return true;
-        } elseif (__config("app.maintenance", false)) {
+        } elseif (__config('app.maintenance', false)) {
             return true;
         } else {
             return false;
