@@ -39,9 +39,28 @@ class Configuration implements ConfigurationContract
      *
      * @return void
      */
-    public function __construct(array $items = [])
+    public function __construct()
     {
-        $this->items = $items;
+        $this->file = __ZEST__ROOT__."/Config/App.php";
+        $this->items = Arrays::arrayChangeCaseKey(Arrays::dot($this->load()), CASE_LOWER);
+    }
+
+    /**
+     * Load the configuration file.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    private function load()
+    {
+        $configs = [];
+
+        if (file_exists($this->file)) {
+            $configs += require $this->file;
+        }
+
+        return $configs;       
     }
 
     /**
