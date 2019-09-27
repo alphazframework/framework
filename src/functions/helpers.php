@@ -13,12 +13,12 @@ function __printl(string $key, string $default = null)
 if (!function_exists('lang')) {
     function lang()
     {
-        return __config()->config->language;
+        return __config("app.language");
     }
 }
 function __lang()
 {
-    return __config()->config->language;
+    return __config("app.language");
 }
 if (!function_exists('input')) {
     function input($key)
@@ -285,14 +285,14 @@ function __container($identifier, $params = [])
     return (new \Zest\Common\Container\DIS())->get($identifier, $params);
 }
 if (!function_exists('config')) {
-    function config()
+    function config($key, $default = null)
     {
-        return (new \Zest\Common\Configuration())->get();
+        return (new \Zest\Common\Configuration())->get($key, $default);
     }
 }
-function __config()
+function __config($key, $default = null)
 {
-    return (new \Zest\Common\Configuration())->get();
+    return (new \Zest\Common\Configuration())->get($key, $default);
 }
 if (!function_exists('log_message')) {
     function log_message($message, $type = 'info', $file = '')
