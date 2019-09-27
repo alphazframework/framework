@@ -551,11 +551,11 @@ class Router
      */
     public function cacheRouters()
     {
-        if (__config()->config->router_cache === true) {
+        if (__config("app.router_cache") === true) {
             $cache = new Cache();
             if (!$cache->setAdapter('file')->has('router')) {
                 $routers = $this->getRoutes();
-                $cache->setAdapter('file')->set('router', $routers, __config()->config->router_cache_regenerate);
+                $cache->setAdapter('file')->set('router', $routers, __config("app.router_cache_regenerate"));
             }
         }
     }
