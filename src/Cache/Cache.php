@@ -36,7 +36,7 @@ class Cache implements CacheContract
      */
     public function __construct()
     {
-        $this->setProperAdapter(__config()->cache->driver);
+        $this->setProperAdapter(__config('cache.driver', 'file'));
     }
 
     /**
