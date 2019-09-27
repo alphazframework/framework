@@ -61,12 +61,12 @@ class Root
             'storage'      => [
                 'storage'  => $this->root().'Storage/',
                 'backup'   => $this->root().'Storage/Backup/',
-                'data'     => $this->root().'Storage/'.__config("app.data_dir"),
-                'cache'    => $this->root().'Storage/'.__config("app.cache_dir"),
-                'session'  => $this->root().'Storage/'.__config("app.session_path"),
+                'data'     => $this->root().'Storage/'.__config('app.data_dir'),
+                'cache'    => $this->root().'Storage/'.__config('app.cache_dir'),
+                'session'  => $this->root().'Storage/'.__config('app.session_path'),
                 'log'      => $this->root().'Storage/Logs/',
             ],
-            'views'        => __config("app.theme_path"),
+            'views'        => __config('app.theme_path'),
         ];
 
         return Conversion::arrayObject($roots);
