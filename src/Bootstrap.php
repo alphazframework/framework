@@ -31,7 +31,7 @@ class Bootstrap
      */
     public function configure()
     {
-        TimeZone::seteDefaultTz(__config()->config->time_zone);
+        TimeZone::seteDefaultTz(__config("app.time_zone"));
     }
 
     /**
@@ -43,7 +43,7 @@ class Bootstrap
      */
     protected function registerClassAliases()
     {
-        $aliases = __config()->class_aliases;
+        $aliases = __config("class_aliases");
         if (!empty($aliases)) {
             $aliasLoader = new AliasLoader($aliases);
             spl_autoload_register([$aliasLoader, 'load']);
