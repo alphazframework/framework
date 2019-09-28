@@ -21,7 +21,7 @@ interface Str
     /**
      * Reverse the string.
      *
-     * @param string $str String to be evaluated.
+     * @param string $str      String to be evaluated.
      * @param string $encoding Valid encoding.
      *
      * @since 3.0.0
@@ -45,7 +45,7 @@ interface Str
     /**
      * Count the string.
      *
-     * @param string $str String to be counted.
+     * @param string $str      String to be counted.
      * @param string $encoding Valid encoding.
      *
      * @since 3.0.0
