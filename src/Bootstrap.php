@@ -16,7 +16,7 @@
 
 namespace Zest;
 
-if(!\defined('__ZEST__ROOT__')) {
+if (!\defined('__ZEST__ROOT__')) {
     define('__ZEST__ROOT__', __DIR__);
 }
 
