@@ -44,7 +44,7 @@ class Configuration implements ConfigurationContract
         if (\defined('__ZEST__ROOT__')) {
             $this->file = __ZEST__ROOT__.'/Config/App.php';
         } else {
-            $file = null;
+            $this->file = null;
         }
 
         $this->items = Arrays::arrayChangeCaseKey(Arrays::dot($this->load()), CASE_LOWER);
