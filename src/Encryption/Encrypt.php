@@ -51,7 +51,7 @@ class Encrypt implements EncryptContract
                 $adapterSet = '\Zest\Encryption\Adapter\OpenSslEncryption';
                 break;
         }
-        $key = __config()->encryption->key;
+        $key = __config('encryption.key');
         self::$adapter = new $adapterSet($key);
 
         return __CLASS__;
@@ -68,7 +68,7 @@ class Encrypt implements EncryptContract
      */
     public static function encrypt($data, $adapter = null)
     {
-        ($adapter !== null) ? self::setAdapter($adapter) : self::setAdapter(__config()->encryption->driver);
+        ($adapter !== null) ? self::setAdapter($adapter) : self::setAdapter(__config('encryption.driver'));
 
         return self::$adapter->encrypt($data);
     }
@@ -84,7 +84,7 @@ class Encrypt implements EncryptContract
      */
     public static function decrypt($token, $adapter = null)
     {
-        ($adapter !== null) ? self::setAdapter($adapter) : self::setAdapter(__config()->encryption->driver);
+        ($adapter !== null) ? self::setAdapter($adapter) : self::setAdapter(__config('encryption.driver'));
 
         return self::$adapter->decrypt($token);
     }
