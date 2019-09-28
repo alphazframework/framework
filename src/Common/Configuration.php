@@ -61,7 +61,7 @@ class Configuration implements ConfigurationContract
             $configs += require $this->file;
         }
 
-        return $configs;       
+        return $configs;
     }
 
     /**
