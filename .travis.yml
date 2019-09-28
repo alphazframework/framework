@@ -11,8 +11,15 @@ php:
   - 7.3
 
 # Commands to be run before your environment runs.
-before_script:
-- "composer install"
+before_install:
+  - sudo add-apt-repository ppa:ondrej/php -y
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libsodium-dev
+  
+# Command to run when installing...
+install:
+  - printf "\n" | pecl install libsodium
+  - composer install
 
 script:
 - vendor/bin/phpunit
