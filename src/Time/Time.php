@@ -39,7 +39,7 @@ class Time implements TimeContract
      *
      * @return object
      */
-    public function setDateFormat($format)
+    public static function setDateFormat($format)
     {
         if ($this->validateDateFormat($fornat)) {
             $this->dateFormat = $format;
@@ -57,7 +57,7 @@ class Time implements TimeContract
      *
      * @return string
      */
-    public function getDateFormat()
+    public static function getDateFormat()
     {
         return $this->dateFormat;
     }
@@ -71,7 +71,7 @@ class Time implements TimeContract
      *
      * @return bool
      */
-    public function validateDateFormat($format)
+    public static function validateDateFormat($format)
     {
         if (isset($format) && !empty($format)) {
             return true;
@@ -141,7 +141,7 @@ class Time implements TimeContract
         $time = $time ?? time();
         $dateTime = new \DateTime();
         $dateTime->setTimestamp($time)->modify('+2 hours');
-        $format = isset($this->dateFormat) ? $format : 'd/m/Y H:i:s';
+        $format = isset(self::$dateFormat) ? self::$dateFormat : 'd/m/Y H:i:s';
 
         return $dateTime->format($format);
     }
@@ -161,7 +161,7 @@ class Time implements TimeContract
         $time = self::formatTime($time);
         $dateTime = new \DateTime();
         $dateTime->setTimestamp($time);
-        $format = isset($this->dateFormat) ? $format : 'd-m-Y H:i:s';
+        $format = isset(self::$dateFormat) ? self::$dateFormat : 'd-m-Y H:i:s';
 
         return $dateTime->format($format);
     }
