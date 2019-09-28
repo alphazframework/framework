@@ -16,6 +16,10 @@
 
 namespace Zest;
 
+if(!\defined('__ZEST__ROOT__')) {
+    define('__ZEST__ROOT__', __DIR__);
+}
+
 use Zest\Common\AliasLoader;
 use Zest\Common\TimeZone;
 use Zest\Router\App;
