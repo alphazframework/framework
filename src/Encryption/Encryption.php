@@ -36,7 +36,7 @@ class Encryption implements EncryptionContract
      */
     public function __construct($adapter = null)
     {
-        ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter(__config()->encryption->driver);
+        ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter(__config('encryption.driver'));
     }
 
     /**
@@ -61,7 +61,7 @@ class Encryption implements EncryptionContract
                 $adapterSet = '\Zest\Encryption\Adapter\OpenSslEncryption';
                 break;
         }
-        $key = __config()->encryption->key;
+        $key = __config('encryption.key');
         $this->adapter = new $adapterSet($key);
 
         return $this;
