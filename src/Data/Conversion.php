@@ -29,7 +29,7 @@ class Conversion implements ConversionContract
      *
      * @return object
      */
-    public static function arrayObject($array)
+    public static function arrayToObject($array)
     {
         if (Arrays::isReallyArray($array)) {
             $object = new \stdClass();
@@ -56,7 +56,7 @@ class Conversion implements ConversionContract
      *
      * @return array
      */
-    public static function objectArray($object)
+    public static function objectToArray($object)
     {
         if (is_object($object)) {
             $reflectionClass = new \ReflectionClass(get_class($object));
@@ -90,22 +90,25 @@ class Conversion implements ConversionContract
     {
         $base = log($size) / log(1024);
         $suffix = Arrays::arrayChangeCaseValue(['b', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y'], CASE_UPPER);
-        $f_base = (floor($base) > 8) ? 8 : floor($base);
+        $f_base = floor($base);
+        if ($f_base <= 8) {
+            return round(pow(1024, $base - floor($base)), $pre). ' ' .$suffix[$f_base];
+        }
 
-        return round(pow(1024, $base - floor($base)), $pre).$suffix[$f_base];
+        throw new \Exception("The size exceeds limit of 1023YB", 500);
     }
 
     /**
      * Convert the views to relative unit.
      *
-     * @param int $n   Views.
-     * @param int $sep Seperator.
+     * @param int    $n   Views.
+     * @param string $sep Seperator.
      *
      * @since 3.0.0
      *
      * @return mixed
      */
-    public static function views($n, $sep = ',') 
+    public static function viewToHumanize($n, $sep = ',') 
     {
         if ($n < 0) {
             return 0;
@@ -122,13 +125,13 @@ class Conversion implements ConversionContract
     /**
      * Convert XML to arrays.
      *
-     * @param xml object $xml xml
+     * @param mixed $xml xml
      *
      * @since 2.0.0
      *
      * @return array
      */
-    public static function xmlArray($xml)
+    public static function xmlToArray($xml)
     {
         $dom = simplexml_load_file($xml);
         $json_encode = json_encode($dom);
