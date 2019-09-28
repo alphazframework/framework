@@ -146,10 +146,6 @@ interface Container
      *
      * @since 3.0.0
      *
-     * Note: Adapted from mako\framework.
-     *
-     * @see https://github.com/mako-framework/framework/blob/master/LICENSE
-     *
      * @return object
      */
     public function exec(callable $callable, array $parameters = []);
