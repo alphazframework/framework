@@ -71,7 +71,7 @@ interface Container
     /**
      * Creates a class instance using closure.
      *
-     * @param closure $factory      Closuare.
+     * @param closure $factory    Closuare.
      * @param array   $parameters Constructor parameters.
      *
      * @since 3.0.0
@@ -84,7 +84,7 @@ interface Container
      * Creates a class instance using reflection.
      *
      * @param mixed $class      Class name.
-     * @param array  $parameters Constructor parameters.
+     * @param array $parameters Constructor parameters.
      *
      * @since 3.0.0
      *
@@ -129,8 +129,8 @@ interface Container
     /**
      * Returns a class instance.
      *
-     * @param string $class       Class name.
-     * @param array  $parameters  Constructor parameters.
+     * @param string $class      Class name.
+     * @param array  $parameters Constructor parameters.
      *
      * @since 3.0.0
      *
