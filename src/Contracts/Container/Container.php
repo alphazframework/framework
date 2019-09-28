@@ -78,19 +78,19 @@ interface Container
      *
      * @return object
      */
-    public function closureFactory(\Closure $factory, $parameters);
+    public function closureFactory(\Closure $factory, array $parameters);
 
     /**
      * Creates a class instance using reflection.
      *
-     * @param string $class      Class name.
+     * @param mixed $class      Class name.
      * @param array  $parameters Constructor parameters.
      *
      * @since 3.0.0
      *
      * @return object
      */
-    public function reflectionFactory(string $class, array $parameters = []);
+    public function reflectionFactory($class, array $parameters = []);
 
     /**
      * Creates a class instance.
