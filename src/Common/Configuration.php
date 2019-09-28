@@ -39,10 +39,11 @@ class Configuration implements ConfigurationContract
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($items = [])
     {
         $this->file = __ZEST__ROOT__.'/Config/App.php';
         $this->items = Arrays::arrayChangeCaseKey(Arrays::dot($this->load()), CASE_LOWER);
+        $this->items = array_merge($this->items, $items);
     }
 
     /**
@@ -60,7 +61,7 @@ class Configuration implements ConfigurationContract
             $configs += require $this->file;
         }
 
-        return $configs;
+        return $configs;       
     }
 
     /**
