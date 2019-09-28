@@ -22,18 +22,19 @@ interface Str
      * Reverse the string.
      *
      * @param string $str String to be evaluated.
+     * @param string $encoding Valid encoding.
      *
      * @since 3.0.0
      *
      * @return string
      */
-    public static function reverse(string $str) :string;
+    public static function reverse(string $str, $encoding = null) :string;
 
     /**
      * Concat the strings.
      *
-     * @param string $g   With concat.
-     * @param string $str String to concat.
+     * @param string $g    With concat. 
+     * @param string $str  String to concat.
      *
      * @since 3.0.0
      *
@@ -45,10 +46,11 @@ interface Str
      * Count the string.
      *
      * @param string $str String to be counted.
+     * @param string $encoding Valid encoding.
      *
      * @since 3.0.0
      *
      * @return int
      */
-    public static function count(string $str);
+    public static function count(string $str, $encoding = null);
 }
