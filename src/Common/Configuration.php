@@ -41,8 +41,8 @@ class Configuration implements ConfigurationContract
      */
     public function __construct($items = [])
     {
-        if(\defined('__ZEST__ROOT__')) {
-           $this->file = __ZEST__ROOT__.'/Config/App.php'; 
+        if (\defined('__ZEST__ROOT__')) {
+            $this->file = __ZEST__ROOT__.'/Config/App.php';
         } else {
             $file = null;
         }
