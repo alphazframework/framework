@@ -34,21 +34,21 @@ class Hash
      */
     public static function self($verify = false)
     {
-        $driver = __config()->hashing->driver;
+        $driver = __config('hashing.driver');
         if ($driver === 'bcrypt') {
-            self::$driver = new BcryptHashing(['cost' => __config()->hashing->bcrypt->cost]);
+            self::$driver = new BcryptHashing(['cost' => __config('hashing.bcrypt.cost')]);
         } elseif ($driver === 'argon2i') {
             self::$driver = new ArgonHashing([
-                'memory'  => __config()->hashing->argon->memory,
-                'time'    => __config()->hashing->argon->time,
-                'threads' => __config()->hashing->argon->threads,
+                'memory'  => __config('hashing.argon.memory'),
+                'time'    => __config('hashing.argon.time'),
+                'threads' => __config('hashing.argon.threads'),
                 'verify'  => $verify,
             ]);
         } elseif ($driver === 'argon2id') {
             self::$driver = new Argon2IdHashing([
-                'memory'  => __config()->hashing->argon->memory,
-                'time'    => __config()->hashing->argon->time,
-                'threads' => __config()->hashing->argon->threads,
+                'memory'  => __config('hashing.argon.memory'),
+                'time'    => __config('hashing.argon.time'),
+                'threads' => __config('hashing.argon.threads'),
                 'verify'  => $verify,
             ]);
         } else {
