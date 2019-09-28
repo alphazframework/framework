@@ -28,7 +28,7 @@ interface Conversion
      *
      * @return object
      */
-    public static function arrayObject($array);
+    public static function arrayToObject($array);
 
     /**
      * Convert Objects to arrays.
@@ -39,7 +39,7 @@ interface Conversion
      *
      * @return array
      */
-    public static function objectArray($object);
+    public static function objectToArray($object);
 
     /**
      * Convert the bit into bytes.
@@ -51,30 +51,30 @@ interface Conversion
      *
      * @return mixed
      */
-    public function bitToBytes($size, $pre = 2);
+    public static function bitToBytes($size, $pre = 2);
 
     /**
      * Convert the views to relative unit.
      *
-     * @param int $n   Views.
-     * @param int $sep Seperator.
+     * @param int    $n   Views.
+     * @param string $sep Seperator.
      *
      * @since 3.0.0
      *
      * @return mixed
      */
-    public static function views($n, $sep = ',');
+    public static function viewToHumanize($n, $sep = ',');
 
     /**
      * Convert XML to arrays.
      *
-     * @param xml object $xml xml
+     * @param mixed $xml xml
      *
      * @since 2.0.0
      *
      * @return array
      */
-    public static function xmlArray($xml);
+    public static function xmlToArray($xml);
 
     /**
      * Unit conversion.
