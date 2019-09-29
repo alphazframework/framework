@@ -49,7 +49,7 @@ class Language
         if (is_cookie('lang')) {
             $language = (array_key_exists(get_cookie('lang'), $this->_languages)) ? get_cookie('lang') : __config()->config->language;
         } else {
-            $language = __config()->config->language;
+            $language = __config('app.language', 'en');
         }
 
         return $language;
