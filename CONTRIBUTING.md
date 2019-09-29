@@ -1,3 +1,3 @@
 ## DISCLAIMERS
 
-[Guidelines](https://zestframework.xyz/contribute/index)
+[Guidelines](https://zestframework.com/contribute/index)
