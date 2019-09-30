@@ -16,10 +16,54 @@
 
 namespace Zest\Common;
 
-use Zest\Data\Conversion;
+use Zest\Contracts\Common\Root as RootContract;
+use Zest\Data\Arrays;
 
-class Root
+class Root implements RootContract
 {
+    /**
+     * All of the configuration items.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    protected $items = [];
+
+    /**
+     * Create a new Roots/Paths repository.
+     *
+     * @param array $items
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function __construct($items = [])
+    {
+        $this->items = Arrays::arrayChangeCaseKey(Arrays::dot($this->paths()), CASE_LOWER);
+        $this->items = array_merge($this->items, $items);
+    }
+
+    /**
+     * Get the specified path value.
+     *
+     * @param string $key
+     * @param mixed  $default
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public function get($key, $default = null)
+    {
+        if (is_array($key)) {
+            return $this->items;
+        }
+
+        return Arrays::get($this->items, $key, $default, '.');
+    }
+    
     /**
      * Return the root path of app.
      *
@@ -27,9 +71,13 @@ class Root
      *
      * @return string
      */
-    public function root()
+    private function root()
     {
-        return __ZEST__ROOT__.'/';
+        if (defined('__ZEST__ROOT__')) {
+            return __ZEST__ROOT__.'/';
+        }
+
+        return '../';
     }
 
     /**
@@ -37,9 +85,9 @@ class Root
      *
      * @since 1.9.7
      *
-     * @return object
+     * @return array
      */
-    public function paths()
+    private function paths()
     {
         $roots = [
             'root'         => $this->root(),
@@ -61,14 +109,14 @@ class Root
             'storage'      => [
                 'storage'  => $this->root().'Storage/',
                 'backup'   => $this->root().'Storage/Backup/',
-                'data'     => $this->root().'Storage/'.__config('app.data_dir'),
-                'cache'    => $this->root().'Storage/'.__config('app.cache_dir'),
-                'session'  => $this->root().'Storage/'.__config('app.session_path'),
+                'data'     => $this->root().'Storage/'.__config("app.data_dir"),
+                'cache'    => $this->root().'Storage/'.__config("app.cache_dir"),
+                'session'  => $this->root().'Storage/'.__config("app.session_path"),
                 'log'      => $this->root().'Storage/Logs/',
             ],
-            'views'        => __config('app.theme_path'),
+            'views'        => __config("app.theme_path"),
         ];
 
-        return Conversion::arrayObject($roots);
+        return $roots;
     }
 }

@@ -27,13 +27,13 @@ class Maintenance
      */
     public function isMaintain()
     {
-        if (file_exists(route()->root.'maintained')) {
+        if (file_exists(route('root').'maintained')) {
             return true;
         } elseif (__config('app.maintenance', false)) {
             return true;
         } else {
             return false;
-        }
+        
     }
 
     /**
@@ -48,14 +48,14 @@ class Maintenance
     public function updataMaintenance(bool $status)
     {
         if ($status) {
-            if (!file_exists(route()->root.'maintained')) {
-                $fh = fopen(route()->root.'maintained', 'w');
+            if (!file_exists(route('root').'maintained')) {
+                $fh = fopen(route('root').'maintained', 'w');
                 fwrite($fh, 'maintained');
                 fclose($fh);
             }
         } elseif (!$status) {
-            if (file_exists(route()->root.'maintained')) {
-                unlink(route()->root.'maintained');
+            if (file_exists(route('root').'maintained')) {
+                unlink(route('root').'maintained');
             }
         } else {
             return false;

@@ -76,7 +76,7 @@ class Bootstrap
      */
     public function bootstrap()
     {
-        $file = route()->root.'/bootstrap.php';
+        $file = route('root').'/bootstrap.php';
         if (file_exists($file)) {
             include_once $file;
         }

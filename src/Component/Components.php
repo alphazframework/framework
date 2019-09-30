@@ -33,7 +33,7 @@ class Components
      */
     public function getAll()
     {
-        return Conversion::arrayObject(array_diff(scandir(route()->com), ['..', '.']));
+        return Conversion::arrayObject(array_diff(scandir(route('com')), ['..', '.']));
     }
 
     /**
@@ -47,8 +47,8 @@ class Components
      */
     public function delete($name)
     {
-        if (file_exists(route()->com.$name)) {
-            (new Files())->deleteDir(route()->com.$name);
+        if (file_exists(route('com').$name)) {
+            (new Files())->deleteDir(route('com').$name);
         }
     }
 
@@ -66,7 +66,7 @@ class Components
     {
         $exploadName = explode('.', $name);
         $name = $exploadName[0];
-        $storageData = route()->storage_data;
+        $storageData = route('storage.data');
         $file = $storageData.$archive;
         $files = new Files();
         $files->mkdir($storageData.'tmp/');
@@ -78,8 +78,8 @@ class Components
             $file->close();
             $config = json_decode($c, true);
             if ($this->isSupported($config['requires']['version'], $config['requires']['comparator']) === true) {
-                if (!file_exists(route()->com.$name)) {
-                    $files->moveDir($storageData.'tmp/', route()->com, $name);
+                if (!file_exists(route('com').$name)) {
+                    $files->moveDir($storageData.'tmp/', route('com'), $name);
 
                     return true;
                 }
@@ -101,7 +101,7 @@ class Components
      */
     public function enableOrDisable($name, $status)
     {
-        $file = route()->com.$name.'/component.json';
+        $file = route('com').$name.'/component.json';
         if (file_exists($file)) {
             $fileHandling = new FileHandling();
             $c = $fileHandling->open($file, 'readOnly')->read();
@@ -156,7 +156,7 @@ class Components
      */
     public function getConponentConfigByName($name)
     {
-        $file = route()->com.$name.'/component.json';
+        $file = route('com').$name.'/component.json';
         if (file_exists($file)) {
             $fileHandling = new FileHandling();
             $c = $fileHandling->open($file, 'readOnly')->read();
@@ -197,8 +197,8 @@ class Components
      */
     public function moveToTrash($name)
     {
-        if (file_exists(route()->com.$name)) {
-            (new Files())->moveDir(route()->com, route()->storage_data.'com', $name);
+        if (file_exists(route('com').$name)) {
+            (new Files())->moveDir(route('com'), route('storage.data').'com', $name);
         }
     }
 
@@ -213,8 +213,8 @@ class Components
      */
     public function restoreFromTrash($name)
     {
-        if (file_exists(route()->storage_data.'com/'.$name)) {
-            (new Files())->moveDir(route()->storage_data.'com', route()->com, $name);
+        if (file_exists(route('storage.data').'com/'.$name)) {
+            (new Files())->moveDir(route('storage.data').'com', route('com'), $name);
         }
     }
 }

@@ -123,7 +123,7 @@ class Logger extends AbstractLogger
         (!empty($this->file)) ? $fileName = $this->file : $fileName = '.logs';
         $fileHandling = new FileHandling();
         $text = 'Date/time: '.date('Y-m-d h:i:s A')." , Level: $level , message: ".$message."\n";
-        $file = route()->storage->log.$fileName;
+        $file = route('storage.log').$fileName;
         $fileHandling->open($file, 'readWriteAppend')->write($text);
         $fileHandling->close();
     }

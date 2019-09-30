@@ -195,14 +195,14 @@ function __view_system_message()
     return (new Zest\SystemMessage\SystemMessage())->view();
 }
 if (!function_exists('route')) {
-    function route()
+    function route($key, $default = null)
     {
-        return (new \Zest\Common\Root())->paths();
+        return (new \Zest\Common\Root())->get($key, $default);
     }
 }
-function __route()
+function __route($key, $default = null)
 {
-    return (new \Zest\Common\Root())->paths();
+    return (new \Zest\Common\Root())->get($key, $default);
 }
 if (!function_exists('encrypt')) {
     function encrypt($data)
@@ -318,52 +318,52 @@ function __decode_html_entity($content)
 if (!function_exists('base_path')) {
     function base_path()
     {
-        return route()->root;
+        return route('root');
     }
 }
 function __base_path()
 {
-    return route()->root;
+    return route('root');
 }
 if (!function_exists('app_path')) {
     function app_path()
     {
-        return route()->app;
+        return route('app');
     }
 }
 function __app_path()
 {
-    return route()->app;
+    return route('app');
 }
 if (!function_exists('session_path')) {
     function session_path()
     {
-        return route()->storage->session;
+        return route('storage.session');
     }
 }
 function __session_path()
 {
-    return route()->storage->session;
+    return route('storage.session');
 }
 if (!function_exists('public_path')) {
     function public_path()
     {
-        return route()->public;
+        return route('public');
     }
 }
 function __public_path()
 {
-    return route()->public;
+    return route('public');
 }
 if (!function_exists('cache_path')) {
     function cache_path()
     {
-        return route()->storage->cache;
+        return route('storage.cache');
     }
 }
 function __cache_path()
 {
-    return route()->storage->cache;
+    return route('storage.cache');
 }
 function maintenanceInstance()
 {

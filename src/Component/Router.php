@@ -31,15 +31,15 @@ class Router extends Component
     {
         $com = new Component();
         $file = new FileHandling();
-        $diskScan = array_diff(scandir(route()->com), ['..', '.']);
+        $diskScan = array_diff(scandir(route('com')), ['..', '.']);
         foreach ($diskScan as $scans) {
-            $configFile = route()->com.$scans.'/component.json';
+            $configFile = route('com'.$scans.'/component.json';
             if (file_exists($configFile)) {
                 $c = $file->open($configFile, 'readOnly')->read();
                 $file->close();
                 $config = json_decode($c, true);
                 if ($config['status'] === true) {
-                    require_once route()->com.$scans.'/routes.php';
+                    require_once route('com').$scans.'/routes.php';
                 }
             }
         }

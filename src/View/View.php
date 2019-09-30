@@ -52,12 +52,12 @@ class View implements ViewContract
     protected static function setFile($file)
     {
         if (self::$isCom === false) {
-            $incFile = route()->views.'/'.$file.'.php';
+            $incFile = route('views').'/'.$file.'.php';
             if (file_exists($incFile)) {
                 self::$file = $incFile;
             }
         } else {
-            $incFile = route()->com.$file.'.php';
+            $incFile = route('com').$file.'.php';
             if (file_exists($incFile)) {
                 self::$file = $incFile;
             }

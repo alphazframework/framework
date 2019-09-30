@@ -80,10 +80,10 @@ class Language
     {
         $data = $data1 = $data2 = [];
         $language = $this->getLang();
-        if (file_exists(route()->locale."{$language}.php")) {
-            $data1 += require route()->locale."{$language}.php";
+        if (file_exists(route('locale')."{$language}.php")) {
+            $data1 += require route('locale')."{$language}.php";
         }
-        $path = route()->com;
+        $path = route('com');
         $disk_scan = array_diff(scandir($path), ['..', '.']);
         foreach ($disk_scan as $scans) {
             if (file_exists($path.$scans."/Locale/{$language}.php")) {
