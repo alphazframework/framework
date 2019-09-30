@@ -20,7 +20,7 @@ class RootTest extends TestCase
     protected function setUp(): void
     {
         $this->root = new Root($this->roots = [
-            'path'        => 'root'
+            'path'        => 'root',
         ]);
         parent::setUp();
     }
@@ -39,5 +39,4 @@ class RootTest extends TestCase
     {
         $this->assertSame('default', $this->config->get('not-exist', 'default'));
     }
-
 }
