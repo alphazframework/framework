@@ -33,7 +33,7 @@ class Maintenance
             return true;
         } else {
             return false;
-        
+        }
     }
 
     /**
