@@ -27,7 +27,7 @@ class RootTest extends TestCase
 
     public function testConstruct()
     {
-        $this->assertInstanceOf(Root::class, $this->config);
+        $this->assertInstanceOf(Root::class, $this->root);
     }
 
     public function testGet()
