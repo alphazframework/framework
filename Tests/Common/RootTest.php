@@ -32,11 +32,11 @@ class RootTest extends TestCase
 
     public function testGet()
     {
-        $this->assertSame('root', $this->config->get('path'));
+        $this->assertSame('root', $this->root->get('path'));
     }
 
     public function testGetWithDefault()
     {
-        $this->assertSame('default', $this->config->get('not-exist', 'default'));
+        $this->assertSame('default', $this->root->get('not-exist', 'default'));
     }
 }
