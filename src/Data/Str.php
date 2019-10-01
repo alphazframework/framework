@@ -103,14 +103,13 @@ class Str implements StrContract
     /**
      * Check if string has atleast one uppercase.
      *
-     * @param string $str      String to be checked.
+     * @param string $str String to be checked.
      *
-     * @return boolean
+     * @return bool
      */
     public static function hasUpperCase(string $str)
     {
-        if(preg_match('~^\p{Lu}~u', $str))
-        {
+        if(preg_match('~^\p{Lu}~u', $str)) {
             // There is one upper
             return true;
         }
@@ -120,14 +119,13 @@ class Str implements StrContract
     /**
      * Check if string has atleast one lowercase.
      *
-     * @param string $str      String to be checked.
+     * @param string $str String to be checked.
      *
-     * @return boolean
+     * @return bool
      */
     public static function hasLowerCase(string $str)
     {
-        if(preg_match('~^\p{Lu}~u', $str))
-        {
+        if(preg_match('~^\p{Lu}~u', $str)) {
             // There is one upper
             return false;
         }
