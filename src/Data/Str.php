@@ -21,23 +21,39 @@ use Zest\Contracts\Data\Str as StrContract;
 class Str implements StrContract
 {
     /**
-     * Reverse the string.
+     * Get the encoding.
      *
-     * @param string $str String to be evaluated.
+     * @param string $encoding Valid encoding.
      *
      * @since 3.0.0
      *
      * @return string
      */
-    public static function reverse(string $str) :string
+    private static function encoding($encoding = null) :string
     {
-        if (function_exists('strrev')) {
-            return strrev($str);
-        }
+        return $encoding ?: \mb_internal_encoding();
+    }
 
+    /**
+     * Reverse the string.
+     *
+     * @param string $str      String to be evaluated.
+     * @param string $encoding Valid encoding.
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+    public static function reverse(string $str, $encoding = null) :string
+    {
         $newStr = '';
-        for ((int) $i = self::count($str) - 1; $i >= 0; $i--) {
-            $newStr .= $str[$i];
+        $dataArr = (array) $str;
+        $dataArr[] = self::encoding($encoding);
+        $length = self::count($str);
+        $dataArr = [$str, $length, 1];
+
+        while ($dataArr[1]--) {
+             $newStr .= call_user_func_array('mb_substr', $dataArr);
         }
 
         return $newStr;
@@ -61,16 +77,17 @@ class Str implements StrContract
     /**
      * Count the string.
      *
-     * @param string $str String to be counted.
+     * @param string $str      String to be counted.
+     * @param string $encoding Valid encoding.
      *
      * @since 3.0.0
      *
      * @return int
      */
-    public static function count(string $str)
+    public static function count(string $str, $encoding = null)
     {
         if (function_exists('mb_strlen')) {
-            return mb_strlen($str);
+            return mb_strlen($str, self::encoding($encoding));
         }
 
         //This approach produce wrong result when use any encoding Scheme like UTF-8
