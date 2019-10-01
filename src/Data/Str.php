@@ -141,4 +141,28 @@ class Str implements StrContract
 
         return false;
     }
+
+    /**
+     * Change case of character to opposite case.
+     *
+     * @param string $str String to be changed.
+     *
+     * @return string
+     */
+    public static function ConvertCase(string $str, $encoding = null)
+    {
+        if (function_exists('mb_strtolower') && function_exists('mb_strtoupper')) {
+            $characters = preg_split('/(?<!^)(?!$)/u', $str);
+            foreach ($characters as $key => $character) {
+                if (mb_strtolower($character, self::encoding($encoding)) !== $character) {
+                    $character = mb_strtolower($character, self::encoding($encoding));
+                }
+                else {
+                    $character = mb_strtoupper($character, self::encoding($encoding));
+                }
+                $characters[$key] = $character;
+            }
+            return implode('',$characters);
+        }
+    }
 }
