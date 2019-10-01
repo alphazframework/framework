@@ -113,6 +113,7 @@ class Str implements StrContract
             // There is one upper
             return true;
         }
+
         return false;
     }
 
@@ -129,6 +130,7 @@ class Str implements StrContract
             // There is one upper
             return false;
         }
+
         return true;
     }
 }
