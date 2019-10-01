@@ -85,7 +85,7 @@ class Components
             if ($this->isSupported($config['requires']['version'], $config['requires']['comparator']) === true) {
                 if (!file_exists(route('com').$name)) {
                     $files->moveDir($storageData.'tmp/', route('com'), $name);
-                    if (file_exists(route('com').$name . '/install.php')) {
+                    if (file_exists(route('com').$name.'/install.php')) {
                         ob_start();
                         include_once route('com').$name.'/install.php';
                         if (class_exists('install')) {
