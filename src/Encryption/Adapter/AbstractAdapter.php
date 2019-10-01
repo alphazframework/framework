@@ -27,7 +27,7 @@ abstract class AbstractAdapter implements AbstractAdapterContract
      *
      * @var key
      */
-    private $key;
+    protected $key;
 
     /**
      * Encrypt the message.
