@@ -27,11 +27,15 @@ class StrTest extends TestCase
 
     public function testHasUpperCase()
     {
+        $this->assertFalse(Str::hasUpperCase('camel'));
+        $this->assertTrue(Str::hasUpperCase('Uppercase'));
         $this->assertTrue(Str::hasUpperCase('Éé'));
     }
 
     public function testHasLowerCase()
     {
+        $this->assertFalse(Str::hasLowerCase('CAMEL'));
+        $this->assertTrue(Str::hasLowerCase('lowercase'));
         $this->assertTrue(Str::hasLowerCase('iou'));
     }
 }
