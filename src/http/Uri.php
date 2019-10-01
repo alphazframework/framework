@@ -304,7 +304,7 @@ class Uri extends Message
     {
         // if the path is absolute, then clear basePath
         if (substr($path, 0, 1) == '/') {
-            $clone->basePath = '';
+            $this->basePath = '';
         }
         $this->path = $this->filterQuery($path);
 

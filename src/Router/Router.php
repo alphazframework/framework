@@ -198,7 +198,7 @@ class Router
      *
      * @return void
      */
-    public function put($route, $params, $middleare = '')
+    public function put($route, $params, $middleware = '')
     {
         $this->add($route, $params, 'PUT', $middleware);
     }

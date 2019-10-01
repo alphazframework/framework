@@ -312,7 +312,7 @@ class Container implements ContainerContract
      */
     public function closureFactory(\Closure $factory, array $parameters)
     {
-        $instance = $factory(...array_merge($this, $Parameters));
+        $instance = $factory(...array_merge($this, $parameters));
         //Determine closure return valid object.
         if (is_object($instance) !== false) {
             return $instance;
@@ -368,7 +368,7 @@ class Container implements ContainerContract
     {
         //If Closure calls to closure method.
         if ($class instanceof \Closure) {
-            $instance = $this->closureFactory($class, $factory);
+            $instance = $this->closureFactory($class, $parameters);
         } else {
             //If reflection calls to reflection.
             $instance = $this->reflectionFactory($class, $parameters);

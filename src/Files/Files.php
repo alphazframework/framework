@@ -222,10 +222,11 @@ class Files
         foreach ($files as $file => $value) {
             if (file_exists($source.$value)) {
                 $touch = $time ? @touch($file, $time, $atime) : @touch($file);
+                if ($touch !== true) {
+                    return false;
+                }
             }
-            if ($touch !== true) {
-                return false;
-            }
+
         }
     }
 

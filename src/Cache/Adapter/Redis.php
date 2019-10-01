@@ -91,10 +91,10 @@ class Redis extends AbstractAdapter
             if ((($data['ttl'] == 0) || ((time() - $data['start']) <= $data['ttl']))) {
                 $ttl = $data['ttl'];
             } else {
-                $this->deleteItem($id);
+                $this->deleteItem($key);
             }
         } else {
-            $this->deleteItem($id);
+            $this->deleteItem($key);
         }
 
         return (isset($ttl)) ? $ttl : false;
@@ -144,10 +144,10 @@ class Redis extends AbstractAdapter
             if ((($data['ttl'] == 0) || ((time() - $data['start']) <= $data['ttl']))) {
                 $value = $data['value'];
             } else {
-                $this->deleteItem($id);
+                $this->deleteItem($key);
             }
         } else {
-            $this->deleteItem($id);
+            $this->deleteItem($key);
         }
 
         return (isset($value)) ? $value : false;

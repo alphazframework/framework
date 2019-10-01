@@ -48,7 +48,7 @@ class Cache implements CacheContract
      */
     public function getAdapter()
     {
-        return $adapter;
+        return $this->adapter;
     }
 
     /**
