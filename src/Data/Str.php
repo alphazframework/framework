@@ -145,7 +145,7 @@ class Str implements StrContract
     /**
      * Change case of character to opposite case.
      *
-     * @param string $str String to be changed.
+     * @param string $str      String to be changed.
      * @param string $encoding Valid encoding.
      *
      * @return string
@@ -157,12 +157,12 @@ class Str implements StrContract
             foreach ($characters as $key => $character) {
                 if (mb_strtolower($character, self::encoding($encoding)) !== $character) {
                     $character = mb_strtolower($character, self::encoding($encoding));
-                }
-                else {
+                } else {
                     $character = mb_strtoupper($character, self::encoding($encoding));
                 }
                 $characters[$key] = $character;
             }
+
             return implode('',$characters);
         }
     }
