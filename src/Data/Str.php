@@ -138,4 +138,9 @@ class Str implements StrContract
     {
         return strtolower($string);
     }
+
+    public static function convertStringToUppercase(string $string) : string
+    {
+        return strtoupper($string);
+    }
 }

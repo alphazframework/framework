@@ -46,4 +46,20 @@ class StrTest extends TestCase
             Str::convertStringAsLowerCase("asd")
         );
     }
+
+    public function testConvertStringToUpercase()
+    {
+        $this->assertEquals(
+            "HELLO WORLD123",
+            Str::convertStringToUppercase("Hello World123")
+        );
+        $this->assertEquals(
+            "ASD",
+            Str::convertStringToUppercase("asd")
+        );
+        $this->assertEquals(
+            "ASD",
+            Str::convertStringToUppercase("ASD")
+        );
+    }
 }
