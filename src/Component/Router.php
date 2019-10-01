@@ -33,7 +33,7 @@ class Router extends Component
         $file = new FileHandling();
         $diskScan = array_diff(scandir(route('com')), ['..', '.']);
         foreach ($diskScan as $scans) {
-            $configFile = route('com'.$scans.'/component.json';
+            $configFile = route('com'.$scans.'/component.json');
             if (file_exists($configFile)) {
                 $c = $file->open($configFile, 'readOnly')->read();
                 $file->close();
