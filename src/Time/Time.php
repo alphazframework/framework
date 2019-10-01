@@ -28,7 +28,7 @@ class Time implements TimeContract
      *
      * @var string
      */
-    private $dateFormat;
+    private static $dateFormat;
 
     /**
      * Set the time format.
@@ -41,10 +41,10 @@ class Time implements TimeContract
      */
     public static function setDateFormat($format)
     {
-        if ($this->validateDateFormat($fornat)) {
-            $this->dateFormat = $format;
+        if (self::validateDateFormat($format)) {
+            self::$dateFormat = $format;
 
-            return $this;
+            return self;
         }
 
         throw new \InvalidArgumentException("The format {$format} is not valid format", 500);
@@ -59,7 +59,7 @@ class Time implements TimeContract
      */
     public static function getDateFormat()
     {
-        return $this->dateFormat;
+        return self::$dateFormat;
     }
 
     /**
