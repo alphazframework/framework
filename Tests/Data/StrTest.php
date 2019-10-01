@@ -29,6 +29,7 @@ class StrTest extends TestCase
     {
         $this->assertFalse(Str::hasUpperCase('camel'));
         $this->assertTrue(Str::hasUpperCase('Uppercase'));
+        $this->assertTrue(Str::hasUpperCase('uppercase in a String'));
         $this->assertTrue(Str::hasUpperCase('Éé'));
     }
 
@@ -36,6 +37,7 @@ class StrTest extends TestCase
     {
         $this->assertFalse(Str::hasLowerCase('CAMEL'));
         $this->assertTrue(Str::hasLowerCase('lowercase'));
+        $this->assertTrue(Str::hasLowerCase('lowercase in STRING'));
         $this->assertTrue(Str::hasLowerCase('iou'));
     }
 }
