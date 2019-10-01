@@ -226,7 +226,6 @@ class Files
                     return false;
                 }
             }
-
         }
     }
 
