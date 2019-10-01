@@ -115,7 +115,7 @@ class Redis extends AbstractAdapter
     {
         $cache = [
             'start' => time(),
-            'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
+            'ttl'   => ($ttl !== null) ? (int) $ttl : $this->getTtl(),
             'value' => $value,
         ];
         if ($cache['ttl'] != 0) {

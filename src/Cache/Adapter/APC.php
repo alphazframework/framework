@@ -80,7 +80,7 @@ class APC extends AbstractAdapter
     {
         $cache = [
             'start' => time(),
-            'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
+            'ttl'   => ($ttl !== null) ? (int) $ttl : $this->getTtl(),
             'value' => $value,
         ];
 

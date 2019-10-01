@@ -77,7 +77,7 @@ class FileCache extends AbstractAdapter
             $fileHandling = new FileHandling();
             $fileHandling->open($cacheFile, 'writeAppend')->write(json_encode([
                 'start' => time(),
-                'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
+                'ttl'   => ($ttl !== null) ? (int) $ttl : $this->getTtl(),
                 'value' => $value,
             ]));
             $fileHandling->close();

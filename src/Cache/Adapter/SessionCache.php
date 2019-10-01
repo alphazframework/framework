@@ -72,7 +72,7 @@ class SessionCache extends AbstractAdapter
     {
         $_SESSION['__CACHE__'][$key] = json_encode([
             'start' => time(),
-            'ttl'   => ($ttl !== null) ? (int) $ttl : $this->ttl,
+            'ttl'   => ($ttl !== null) ? (int) $ttl : $this->getTtl(),
             'value' => $value,
         ]);
 
