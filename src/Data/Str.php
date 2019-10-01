@@ -146,6 +146,7 @@ class Str implements StrContract
      * Change case of character to opposite case.
      *
      * @param string $str String to be changed.
+     * @param string $encoding Valid encoding.
      *
      * @return string
      */
