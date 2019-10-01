@@ -163,7 +163,7 @@ class Str implements StrContract
                 $characters[$key] = $character;
             }
 
-            return implode('',$characters);
+            return implode('', $characters);
         }
     }
 }

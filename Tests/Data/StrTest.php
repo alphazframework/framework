@@ -43,9 +43,9 @@ class StrTest extends TestCase
 
     public function testConvertCase()
     {
-        $this->assertSame('AAaaĄaśćŻŹ', Str::ConvertCase('aaAAąAŚĆżź','UTF-8'));
-        $this->assertSame('camel', Str::ConvertCase('CAMEL','UTF-8'));
-        $this->assertSame('UPPERcase', Str::ConvertCase('upperCASE','UTF-8'));
-        $this->assertSame('LOWERCASE IN string', Str::ConvertCase('lowercase in STRING','UTF-8'));
+        $this->assertSame('AAaaĄaśćŻŹ', Str::ConvertCase('aaAAąAŚĆżź', 'UTF-8'));
+        $this->assertSame('camel', Str::ConvertCase('CAMEL', 'UTF-8'));
+        $this->assertSame('UPPERcase', Str::ConvertCase('upperCASE', 'UTF-8'));
+        $this->assertSame('LOWERCASE IN string', Str::ConvertCase('lowercase in STRING', 'UTF-8'));
     }
 }
