@@ -63,11 +63,11 @@ class Str implements StrContract
      * Concat the strings.
      *
      * @param string $g   With concat.
-     * @param string $str String to concat.
+     * @param array  $str String to concat.
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return string
      */
     public static function concat($g, ...$str)
     {
@@ -98,5 +98,53 @@ class Str implements StrContract
         }
 
         return $i;
+    }
+
+    /**
+     * Check the string is uppercase.
+     *
+     * @param string $str String to evaluate uppercase.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function hasUpperCase(string $str)
+    {
+        $hasUppercase = false;
+        $index = 0;
+        while ($index < self::count($str)) {
+            if ($str[$index] === strtoupper($str[$index])) {
+                $hasUppercase = true;
+                break;
+            }
+            $index++;
+        }
+
+        return $hasUppercase;
+    }
+
+    /**
+     * Check the string is lowercase.
+     *
+     * @param string $str String to evaluate lowercase.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public static function hasLowerCase(string $str)
+    {
+        $hasLowercase = false;
+        $index = 0;
+        while ($index < self::count($str)) {
+            if ($str[$index] === strtolower($str[$index])) {
+                $hasLowercase = true;
+                break;
+            }
+            $index++;
+        }
+
+        return $hasLowercase;
     }
 }
