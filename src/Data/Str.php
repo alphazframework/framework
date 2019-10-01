@@ -109,7 +109,7 @@ class Str implements StrContract
      */
     public static function hasUpperCase(string $str)
     {
-        if(preg_match('~^\p{Lu}~u', $str)) {
+        if (preg_match('~^\p{Lu}~u', $str)) {
             // There is one upper
             return true;
         }
@@ -125,7 +125,7 @@ class Str implements StrContract
      */
     public static function hasLowerCase(string $str)
     {
-        if(preg_match('~^\p{Lu}~u', $str)) {
+        if (preg_match('~^\p{Lu}~u', $str)) {
             // There is one upper
             return false;
         }
