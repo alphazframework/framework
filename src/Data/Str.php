@@ -67,9 +67,9 @@ class Str implements StrContract
      *
      * @since 3.0.0
      *
-     * @return bool
+     * @return string
      */
-    public static function concat($g, ...$str)
+    public static function concat($g, ...$str) :string
     {
         return implode($g, $str);
     }
@@ -84,7 +84,7 @@ class Str implements StrContract
      *
      * @return int
      */
-    public static function count(string $str, $encoding = null)
+    public static function count(string $str, $encoding = null) : int
     {
         if (function_exists('mb_strlen')) {
             return mb_strlen($str, self::encoding($encoding));
@@ -107,15 +107,11 @@ class Str implements StrContract
      *
      * @return bool
      */
-    public static function hasUpperCase(string $str)
+    public static function hasUpperCase(string $str) : bool
     {
-        $all_words = preg_split('/\s+/', $str);
-
-        foreach ($all_words as $word) {
-            if (preg_match_all('~^\p{Lu}~u', $word)) {
-                // There is one upper
-                return true;
-            }
+        if (preg_match('~^\p{Lu}~u', $str)) {
+            // There is one upper
+            return true;
         }
 
         return false;
@@ -128,17 +124,13 @@ class Str implements StrContract
      *
      * @return bool
      */
-    public static function hasLowerCase(string $str)
+    public static function hasLowerCase(string $str) : bool
     {
-        $all_words = preg_split('/\s+/', $str);
-
-        foreach ($all_words as $word) {
-            if (!preg_match_all('~^\p{Lu}~u', $word)) {
-                // There is one upper
-                return true;
-            }
+        if (preg_match('~^\p{Lu}~u', $str)) {
+            // There is one upper
+            return false;
         }
 
-        return false;
+        return true;
     }
 }
