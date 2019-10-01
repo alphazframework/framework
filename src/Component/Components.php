@@ -49,7 +49,12 @@ class Components
     {
         if (file_exists(route('com').$name)) {
             (new Files())->deleteDir(route('com').$name);
+            $this->uninstall($name);
+
+            return true;
         }
+
+        return false;
     }
 
     /**
@@ -80,6 +85,14 @@ class Components
             if ($this->isSupported($config['requires']['version'], $config['requires']['comparator']) === true) {
                 if (!file_exists(route('com').$name)) {
                     $files->moveDir($storageData.'tmp/', route('com'), $name);
+                    if (file_exists(route('com').$name . '/install.php')) {
+                        ob_start();
+                        include_once route('com').$name.'/install.php';
+                        if (class_exists('install')) {
+                            $install = new \install();
+                            ob_get_clean();
+                        }
+                    }
 
                     return true;
                 }
@@ -87,6 +100,29 @@ class Components
         }
 
         return false;
+    }
+
+    /**
+     * Uninstall the component.
+     *
+     * @param (string) $name Name of component.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function uninstall($name)
+    {
+        $file = route('com').$name.'/uninstall.php';
+
+        if (file_exists($file)) {
+            ob_start();
+            include_once $file;
+            if (class_exists('uninstall')) {
+                $uninstall = new \uninstall();
+                ob_get_clean();
+            }
+        }
     }
 
     /**
@@ -214,7 +250,7 @@ class Components
     public function restoreFromTrash($name)
     {
         if (file_exists(route('storage.data').'com/'.$name)) {
-            (new Files())->moveDir(route('storage.data').'com', route('com'), $name);
+            (new Files())->moveDir(route('storage.data').'com', route()->com, $name);
         }
     }
 }
