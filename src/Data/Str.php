@@ -99,4 +99,38 @@ class Str implements StrContract
 
         return $i;
     }
+
+    /**
+     * Check if string has atleast one uppercase.
+     *
+     * @param string $str      String to be checked.
+     *
+     * @return boolean
+     */
+    public static function hasUpperCase(string $str)
+    {
+        if(preg_match('~^\p{Lu}~u', $str))
+        {
+            // There is one upper
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check if string has atleast one lowercase.
+     *
+     * @param string $str      String to be checked.
+     *
+     * @return boolean
+     */
+    public static function hasLowerCase(string $str)
+    {
+        if(preg_match('~^\p{Lu}~u', $str))
+        {
+            // There is one upper
+            return false;
+        }
+        return true;
+    }
 }

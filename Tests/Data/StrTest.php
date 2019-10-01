@@ -24,4 +24,14 @@ class StrTest extends TestCase
         $this->assertSame(5, Str::count('hello'));
         $this->assertNotSame(9, Str::count('hello'));
     }
+
+    public function testHasUpperCase()
+    {
+        $this->assertTrue(Str::hasUpperCase('Éé'));
+    }
+
+    public function testHasLowerCase()
+    {
+        $this->assertTrue(Str::hasLowerCase('iou'));
+    }
 }
