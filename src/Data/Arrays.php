@@ -493,10 +493,10 @@ class Arrays implements ArraysContract
      */
     public static function arrayChangeCaseValue($array, $case = CASE_LOWER)
     {
-        $return = [];
+        $results = [];
         foreach ($array as $key => $value) {
             if (self::isReallyArray($value)) {
-                $results = array_merge($results, self::arrayChangeCaseValue($value, $case));
+                $array[$key] = array_merge($results, self::arrayChangeCaseValue($value, $case));
             } else {
                 $array[$key] = ($case == CASE_UPPER) ? strtoupper($array[$key]) : strtolower($array[$key]);
             }

@@ -190,11 +190,11 @@ class ArraysTest extends TestCase
 
     public function testArrayChangeCaseValue()
     {
-        $array = ['name' => 'AleX'];
-        $this->assertSame(['name' => 'alex'], Arrays::arrayChangeCaseValue($array));
-        $this->assertNotSame(['name' => 'Alex'], Arrays::arrayChangeCaseValue($array));
-        $this->assertSame(['name' => 'ALEX'], Arrays::arrayChangeCaseValue($array, CASE_UPPER));
-        $this->assertNotSame(['name' => 'Alex'], Arrays::arrayChangeCaseValue($array, CASE_UPPER));
+        $array = ['name' => ['AleX', 'Peter']];
+        $this->assertSame(['name' => ['alex', 'peter']], Arrays::arrayChangeCaseValue($array));
+        $this->assertNotSame(['name' => ['Alex', 'Peter']], Arrays::arrayChangeCaseValue($array));
+        $this->assertSame(['name' => ['ALEX', 'PETER']], Arrays::arrayChangeCaseValue($array, CASE_UPPER));
+        $this->assertNotSame(['name' => ['Alex', 'Peter']], Arrays::arrayChangeCaseValue($array, CASE_UPPER));
     }
 
     public function removeDuplicatesDataProvider()
