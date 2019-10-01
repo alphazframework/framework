@@ -53,7 +53,7 @@ class Str implements StrContract
         $dataArr = [$str, $length, 1];
 
         while ($dataArr[1]--) {
-             $newStr .= call_user_func_array('mb_substr', $dataArr);
+            $newStr .= call_user_func_array('mb_substr', $dataArr);
         }
 
         return $newStr;
