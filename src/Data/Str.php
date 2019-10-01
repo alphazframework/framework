@@ -134,13 +134,51 @@ class Str implements StrContract
         return true;
     }
 
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
     public static function convertStringAsLowerCase(string $string) : string
     {
         return strtolower($string);
     }
 
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
     public static function convertStringToUppercase(string $string) : string
     {
         return strtoupper($string);
+    }
+
+    /**
+     * @param string $string
+     * @param int $startIndex
+     * @param int|null $endIndex
+     *
+     * @return string
+     */
+    public static function getSubstring
+    (
+        string $string,
+        int $startIndex,
+        int $endIndex = null
+    ) : string
+    {
+        $resultString = "";
+        if(isset($endIndex) === false) {
+            for($i = $startIndex; $i <= strlen($string)-1; $i++) {
+                $resultString .= $string[$i];
+            }
+            return $resultString;
+        }
+
+        for($i = $startIndex; $i <= $endIndex; $i++) {
+            $resultString .= $string[$i%strlen($string)];
+        }
+        return $resultString;
     }
 }

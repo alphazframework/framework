@@ -62,4 +62,39 @@ class StrTest extends TestCase
             Str::convertStringToUppercase("ASD")
         );
     }
+
+    public function testGetSubstring()
+    {
+        $this->assertEquals(
+            "World",
+            Str::getSubstring(
+                "Hello World",
+                6
+            )
+        );
+        $this->assertEquals(
+            "lo Wor",
+            Str::getSubstring(
+                "Hello World",
+                3,
+                8
+            )
+        );
+        $this->assertEquals(
+            "rldHel",
+            Str::getSubstring(
+                "Hello World",
+                8,
+                13
+            )
+        );
+        $this->assertEquals(
+            "",
+            Str::getSubstring(
+                "Hello World",
+                1,
+                -10
+            )
+        );
+    }
 }
