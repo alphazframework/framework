@@ -133,4 +133,9 @@ class Str implements StrContract
 
         return true;
     }
+
+    public static function convertStringAsLowerCase(string $string) : string
+    {
+        return strtolower($string);
+    }
 }
