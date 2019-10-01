@@ -165,5 +165,8 @@ class Str implements StrContract
 
             return implode('', $characters);
         }
+
+        // returns original string when mbstring is not active.
+        return $str;
     }
 }
