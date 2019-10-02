@@ -185,10 +185,10 @@ class Str implements StrContract
     /**
      * Return only a portion of given string.
      *
-     * @param string   $str      input string to process
-     * @param int      $start    where to start the cut
-     * @param int|null $length   how many characters to return
-     * @param string   $encoding optional encoding to us
+     * @param string      $str      input string to process
+     * @param int         $start    where to start the cut
+     * @param int|null    $length   how many characters to return
+     * @param string|null $encoding optional encoding to use
      *
      * @return string
      */
