@@ -171,7 +171,7 @@ class Str implements StrContract
     }
 
     /**
-     * Checks if given string is a valid Base64 encoded string
+     * Checks if given string is a valid Base64 encoded string.
      *
      * @param string $str String to be tested
      *
@@ -179,16 +179,16 @@ class Str implements StrContract
      */
     public static function isBase64(string $str): bool
     {
-        return ($str === base64_encode(base64_decode($str)));
+        return $str === base64_encode(base64_decode($str));
     }
 
     /**
-     * Return only a portion of given string
+     * Return only a portion of given string.
      *
-     * @param string $str input string to process
-     * @param int $start where to start the cut
-     * @param int|null $length how many characters to return
-     * @param string $encoding optional encoding to use
+     * @param string   $str      input string to process
+     * @param int      $start    where to start the cut
+     * @param int|null $length   how many characters to return
+     * @param string   $encoding optional encoding to us
      *
      * @return string
      */
