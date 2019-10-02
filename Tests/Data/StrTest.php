@@ -49,7 +49,7 @@ class StrTest extends TestCase
         $this->assertSame('LOWERCASE IN string', Str::ConvertCase('lowercase in STRING', 'UTF-8'));
     }
 
-    public function testisBase64()
+    public function testIsBase64()
     {
         $this->assertFalse(Str::isBase64('4rdHFh%2BHYoS8oLdVvbUzEVqB8Lvm7kSPnuwF0AAABYQ%3D'));
         $this->assertTrue(Str::isBase64('YW1vdXJmYXlh'));
@@ -82,6 +82,7 @@ class StrTest extends TestCase
     {
         $this->assertSame('--', Str::repeat('--', 1));
         $this->assertNotSame('--', Str::repeat('--', 3));
+        $this->assertSame('------', Str::repeat('--', 3));
         $this->assertSame('-=--=--=--=--=-', Str::repeat('-=-', 5));
     }
 

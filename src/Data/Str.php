@@ -186,7 +186,7 @@ class Str implements StrContract
 
         // Decode the string in strict mode and check the results
         $decoded = base64_decode($string, true);
-        if (false === $decoded) {
+        if ($decoded === false) {
             return false;
         }
 
