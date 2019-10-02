@@ -203,4 +203,15 @@ class Str implements StrContract
     {
         return substr($string, $start, $length ? $length : strlen($string));
     }
+
+    /**
+     * Strip whitespace (or other characters) from the beginning and end of a string
+     *
+     * @param $string
+     * @return string
+     */
+    public static function stripWhitespaces($string)
+    {
+        return trim($string);
+    }
 }

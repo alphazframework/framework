@@ -61,4 +61,10 @@ class StrTest extends TestCase
         $this->assertNotSame('Amourfaya', Str::substring('Amourfaya', 2, 4));
         $this->assertSame('ourf', Str::substring('Amourfaya', 2, 4));
     }
+
+    public function testStripWhitespaces()
+    {
+        $this->assertSame('This string is stripped', Str::stripWhitespaces(' This string is stripped '));
+        $this->assertNotSame(' This string is stripped ', Str::stripWhitespaces(' This string is stripped '));
+    }
 }
