@@ -248,4 +248,15 @@ class Str implements StrContract
 
         return Str::substring($string, $start, $length ?: null);
     }
+
+    /**
+     * Randomly shuffles the given string
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function shuffle(string $string)
+    {
+        return str_shuffle($string);
+    }
 }

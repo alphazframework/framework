@@ -92,4 +92,9 @@ class StrTest extends TestCase
         );
         $this->assertNotSame('good shit', Str::slice('This is good shit', 8, 2));
     }
+
+    public function testShuffle()
+    {
+        $this->assertNotSame('This is string is not shuffled', Str::shuffle('This string is not shuffled'));
+    }
 }
