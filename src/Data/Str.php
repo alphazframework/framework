@@ -112,7 +112,7 @@ class Str implements StrContract
         $all_words = preg_split('/\s+/', $str);
 
         foreach ($all_words as $word) {
-            if (preg_match_all('~^\p{Lu}~u', $word)) {
+            if (preg_match_all('~\p{Lu}~u', $word)) {
                 // There is one upper
                 return true;
             }
@@ -133,8 +133,8 @@ class Str implements StrContract
         $all_words = preg_split('/\s+/', $str);
 
         foreach ($all_words as $word) {
-            if (!preg_match_all('~^\p{Lu}~u', $word)) {
-                // There is one upper
+            if (!preg_match_all('~\p{Ll}~u', $word)) {
+                // There is one lower
                 return true;
             }
         }
