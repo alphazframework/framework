@@ -201,15 +201,16 @@ class Str implements StrContract
     /**
      * Return part of a string.
      *
-     * @param string   $string String to be modified
-     * @param int      $start  Start position
+     * @param string $str input string to process
+     * @param int $start Start position
      * @param int|null $length Length
      *
+     * @param string $encoding optional encoding to use
      * @return bool|string
      */
-    public static function substring(string $string, int $start, $length = null)
+    public static function substring(string $str, int $start, $length = null, string $encoding = 'UTF-8'): string
     {
-        return substr($string, $start, $length ? $length : strlen($string));
+        return mb_substr($str, $start, $length, $encoding);
     }
 
     /**

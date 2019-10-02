@@ -53,6 +53,10 @@ class StrTest extends TestCase
     {
         $this->assertFalse(Str::isBase64('4rdHFh%2BHYoS8oLdVvbUzEVqB8Lvm7kSPnuwF0AAABYQ%3D'));
         $this->assertTrue(Str::isBase64('YW1vdXJmYXlh'));
+        $this->assertTrue(Str::isBase64('ejJlQUVFSFpCcUpjVDNlWW5WcEd0QQ=='));
+        $this->assertTrue(Str::isBase64('dGhpc2lzdmFsaWR0ZXN0ZGF0YQ=='));
+        $this->assertFalse(Str::isBase64('aWFtd3Jvbmc==='));
+        $this->assertFalse(Str::isBase64('thisisnobase64encodedstring'));
     }
 
     public function testSubstring()
@@ -60,6 +64,12 @@ class StrTest extends TestCase
         $this->assertSame('Amourfaya', Str::substring('Amourfaya', 0));
         $this->assertNotSame('Amourfaya', Str::substring('Amourfaya', 2, 4));
         $this->assertSame('ourf', Str::substring('Amourfaya', 2, 4));
+        $this->assertSame('def', Str::substring('abcdef', 3, 3));
+        $this->assertSame('def', Str::substring('abcdef', 3));
+        $this->assertSame('ĄaśćŻ', Str::substring('AAaaĄaśćŻŹ', 4, 5));
+        $this->assertSame('AbCdEf', Str::substring('AbCdEf', 0, 6, 'iso-8859-1'));
+        $this->assertSame('ćŻŹ', Str::substring('ĄaśćŻŹ', 3, 3));
+        $this->assertNotSame('ćŻŹ', Str::substring('ĄaśćŻŹ', 3, 3, 'iso-8859-1'));
     }
 
     public function testStripWhitespaces()
