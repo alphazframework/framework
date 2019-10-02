@@ -118,6 +118,7 @@ class Str implements StrContract
      *
      * @param string      $str      String to be checked.
      * @param string|null $encoding Valid encoding.
+     * 
      * @return bool
      */
     public static function hasLowerCase(string $str, string $encoding = null): bool
