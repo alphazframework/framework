@@ -274,10 +274,10 @@ class Arrays implements ArraysContract
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *
-     * @param array  $arrays Arrays.
-     * @param string $opr    Operator.
-     * @param bool  $assocOutput Switch to output assoc arrays.
-     * @param string $_key the previous key of the object
+     * @param array  $arrays      Arrays.
+     * @param string $opr         Operator.
+     * @param bool   $assocOutput Switch to output assoc arrays.
+     * @param string $_key        the previous key of the object
      *
      * @since 3.0.0
      *
@@ -287,7 +287,7 @@ class Arrays implements ArraysContract
     {
         $results = [];
         foreach ($arrays as $key => $value) {
-            $key = ($assocOutput === true ? $_key . $key : $key);
+            $key = ($assocOutput === true ? $_key.$key : $key);
             if (self::isReallyArray($value) === true) {
                 $assocKey = ($assocOutput === true ? $opr : $key.$opr);
                 $results = array_merge(
@@ -296,7 +296,7 @@ class Arrays implements ArraysContract
                         $value,
                         $assocKey,
                         $assocOutput,
-                        $key . $opr
+                        $key.$opr
                     )
                 );
             } elseif ($assocOutput === true) {

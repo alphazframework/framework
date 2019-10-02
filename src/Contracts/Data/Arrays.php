@@ -126,29 +126,31 @@ interface Arrays
      */
     public static function has($array, $keys = null, $opr = null);
 
-    /**
-     * Converted a multi-dimensional associative array with `dot`.
-     *
-     * @param array $arrays Arrays.
-     * @param bool  $assocOutput Switch to output assoc arrays.
-     * 
-     * @since 3.0.0
-     *
-     * @return bool
+     /**
+      * Converted a multi-dimensional associative array with `dot`.
+      *
+      * @param array $arrays      Arrays.
+      * @param bool  $assocOutput Switch to output assoc arrays.
+      *
+      * @since 3.0.0
+      *
+      * @return bool
      */
     public static function dot(array $arrays, bool $assocOutput = false);
 
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *
-     * @param array  $arrays Arrays.
-     * @param string $opr    Operator.
+     * @param array  $arrays      Arrays.
+     * @param string $opr         Operator.
+     * @param bool   $assocOutput Switch to output assoc arrays.
+     * @param string $_key        the previous key of the object
      *
      * @since 3.0.0
      *
      * @return array
      */
-    public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null);
+    public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null, bool $assocOutput = false, string $_key = null);
 
     /**
      * Remove one or many array items from a given array using "operator" notation.
