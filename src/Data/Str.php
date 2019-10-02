@@ -242,12 +242,12 @@ class Str implements StrContract
      * extracts a section of a string.
      *
      * @param string   $string String to extract section from
-     * @param string   $start  Start position
+     * @param int   $start  Start position
      * @param int|null $length Length of extraction
      *
      * @return bool|string
      */
-    public static function slice($string, $start, ?int $length = null)
+    public static function slice($string, int $start, ?int $length = null)
     {
         if ($start < 0) {
             $start += strlen($string);
@@ -256,7 +256,7 @@ class Str implements StrContract
             $length += strlen($string);
         }
 
-        if ($length != null && $length < $start) {
+        if ($length !== null && $length < $start) {
             return false;
         }
 
