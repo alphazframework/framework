@@ -48,4 +48,10 @@ class StrTest extends TestCase
         $this->assertSame('UPPERcase', Str::ConvertCase('upperCASE', 'UTF-8'));
         $this->assertSame('LOWERCASE IN string', Str::ConvertCase('lowercase in STRING', 'UTF-8'));
     }
+
+    public function testisBase64()
+    {
+        $this->assertFalse(Str::isBase64('4rdHFh%2BHYoS8oLdVvbUzEVqB8Lvm7kSPnuwF0AAABYQ%3D'));
+        $this->assertTrue(Str::isBase64('YW1vdXJmYXlh'));
+    }
 }

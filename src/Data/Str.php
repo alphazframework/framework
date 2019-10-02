@@ -176,7 +176,7 @@ class Str implements StrContract
      * @param string $string    String to be tested
      * @return bool
      */
-    public function isBase64(string $string)
+    public static function isBase64(string $string)
     {
         // Check if there are valid base64 characters
         if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $string)) return false;
