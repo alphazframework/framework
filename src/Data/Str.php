@@ -242,7 +242,7 @@ class Str implements StrContract
      * extracts a section of a string.
      *
      * @param string   $string String to extract section from
-     * @param int   $start  Start position
+     * @param int      $start  Start position
      * @param int|null $length Length of extraction
      *
      * @return bool|string
