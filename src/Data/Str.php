@@ -31,7 +31,7 @@ class Str implements StrContract
      */
     private static function encoding($encoding = null) :string
     {
-        return $encoding ?: \mb_internal_encoding();
+        return $encoding ?: mb_internal_encoding();
     }
 
     /**
@@ -168,5 +168,26 @@ class Str implements StrContract
 
         // returns original string when mbstring is not active.
         return $str;
+    }
+
+    /**
+     * Check if the input string is valid base64
+     *
+     * @param string $string    String to be tested
+     * @return bool
+     */
+    public function isBase64(string $string)
+    {
+        // Check if there are valid base64 characters
+        if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $string)) return false;
+
+        // Decode the string in strict mode and check the results
+        $decoded = base64_decode($string, true);
+        if(false === $decoded) return false;
+
+        // Encode the string again
+        if(base64_encode($decoded) != $string) return false;
+
+        return true;
     }
 }
