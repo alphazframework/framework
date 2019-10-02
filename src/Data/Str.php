@@ -192,8 +192,8 @@ class Str implements StrContract
      *
      * @return string
      */
-    public static function substring(string $str, int $start, int $length = null, string $encoding = 'UTF-8'): string
+    public static function substring(string $str, int $start, int $length = null, $encoding = null): string
     {
-        return mb_substr($str, $start, $length, $encoding);
+        return mb_substr($str, $start, $length, self::encoding($encoding));
     }
 }
