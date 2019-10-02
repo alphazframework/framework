@@ -260,9 +260,9 @@ class Arrays implements ArraysContract
     /**
      * Converted a multi-dimensional associative array with `dot`.
      *
-     * @param array $arrays Arrays.
+     * @param array $arrays      Arrays.
      * @param bool  $assocOutput Switch to output assoc arrays.
-     * 
+     *
      * @since 3.0.0
      *
      * @return array
