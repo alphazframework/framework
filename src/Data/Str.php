@@ -180,7 +180,7 @@ class Str implements StrContract
     public static function isBase64(string $string)
     {
         // Check if there are valid base64 characters
-        if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $string)) {
+        if (preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $string) === 0) {
             return false;
         }
 
