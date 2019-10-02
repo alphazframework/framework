@@ -301,12 +301,13 @@ class Arrays implements ArraysContract
                     )
                 );
             } elseif ($assocOutput === true) {
-                // gets pull off the last dot that is added
-                $_key = preg_replace('/(\.$)/', '', $_key);
+                // gets pull off the last $opr that is added
+                $regex = '/(\\'.$opr.'$)/';
+                $_key = preg_replace($regex, '', $_key);
                 $results[$_key][] = $value;
             } else {
                 $key = $opr.$key;
-                $key = ($key[0] === '.' || $key[0] === '@' ? substr($key, 1) : $key);
+                $key = ($key[0] === $opr ? substr($key, 1) : $key);
                 $results[$key] = $value;
             }
         }

@@ -116,6 +116,13 @@ class ArraysTest extends TestCase
         $this->assertEquals($array, ['name' => 'Alex', 'languages@cpp' => true]);
     }
 
+    public function testMultiToAssocWithSpecificOprWithAssocArray()
+    {
+        $opr = '@';
+        $array = Arrays::multiToAssocWithSpecificOpr(['foo' => ['bar' => ['one', 'three', 'two']]], $opr, true);
+        $this->assertEquals(['foo@bar' => ['one', 'three', 'two']], $array);
+    }
+
     public function testExcept()
     {
         $array = ['name' => 'Alex', 'age' => 18];
