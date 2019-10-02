@@ -74,4 +74,22 @@ class StrTest extends TestCase
         $this->assertNotSame('--', Str::repeat('--', 3));
         $this->assertSame('-=--=--=--=--=-', Str::repeat('-=-', 5));
     }
+
+    public function testSlice()
+    {
+        $this->assertFalse(Str::slice('String', -3, -10));
+        $this->assertSame(
+            'The apple does not fall far from the tree',
+            Str::slice('The apple does not fall far from the tree', 0)
+        );
+        $this->assertSame(
+            'The apple does',
+            Str::slice('The apple does not fall far from the tree', 0, 14)
+        );
+        $this->assertSame(
+            'tree',
+            Str::slice('The apple does not fall far from the tree', -4)
+        );
+        $this->assertNotSame('good shit', Str::slice('This is good shit', 8, 2));
+    }
 }

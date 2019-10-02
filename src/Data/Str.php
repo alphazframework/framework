@@ -226,4 +226,26 @@ class Str implements StrContract
     {
         return str_repeat($string, $amount);
     }
+
+    /**
+     * extracts a section of a string
+     *
+     * @param string $string        String to extract section from
+     * @param string $start         Start position
+     * @param int|null $length      Length of extraction
+     * @return bool|string
+     */
+    public static function slice($string, $start, ?int $length = null)
+    {
+        if ($start < 0) {
+            $start += strlen($string);
+        }
+        if ($length < 0) {
+            $length += strlen($string);
+        }
+
+        if ($length != null && $length < $start) return false;
+
+        return Str::substring($string, $start, $length ?: null);
+    }
 }
