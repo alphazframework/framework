@@ -31,7 +31,7 @@ class Str implements StrContract
      */
     private static function encoding($encoding = null) :string
     {
-        return $encoding ?: \mb_internal_encoding();
+        return $encoding ?: mb_internal_encoding();
     }
 
     /**
@@ -171,29 +171,107 @@ class Str implements StrContract
     }
 
     /**
-     * Checks if given string is a valid Base64 encoded string.
+     * Check if the input string is valid base64.
      *
-     * @param string $str String to be tested
+     * @param string $string String to be tested
      *
-     * @return bool wether it is a valid base64 encoded string or not
+     * @return bool
      */
-    public static function isBase64(string $str): bool
+    public static function isBase64(string $string)
     {
-        return $str === base64_encode(base64_decode($str));
+        // Check if there are valid base64 characters
+        if (preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $string) === 0) {
+            return false;
+        }
+
+        // Decode the string in strict mode and check the results
+        $decoded = base64_decode($string, true);
+        if ($decoded === false) {
+            return false;
+        }
+
+        // Encode the string again
+        if (base64_encode($decoded) != $string) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
-     * Return only a portion of given string.
+     * Return part of a string.
      *
-     * @param string      $str      input string to process
-     * @param int         $start    where to start the cut
-     * @param int|null    $length   how many characters to return
-     * @param string|null $encoding optional encoding to use
+     * @param string   $str      input string to process
+     * @param int      $start    Start position
+     * @param int|null $length   Length
+     * @param string   $encoding optional encoding to use
+     *
+     * @return bool|string
+     */
+    public static function substring(string $str, int $start, $length = null, string $encoding = 'UTF-8'): string
+    {
+        return mb_substr($str, $start, $length, $encoding);
+    }
+
+    /**
+     * Strip whitespace (or other characters) from the beginning and end of a string.
+     *
+     * @param string $string
      *
      * @return string
      */
-    public static function substring(string $str, int $start, int $length = null, $encoding = null): string
+    public static function stripWhitespaces(string $string)
     {
-        return mb_substr($str, $start, $length, self::encoding($encoding));
+        return trim($string);
+    }
+
+    /**
+     * Repeats string $amount|1 times.
+     *
+     * @param string $string
+     * @param int    $amount
+     *
+     * @return string
+     */
+    public static function repeat(string $string, int $amount = 1)
+    {
+        return str_repeat($string, $amount);
+    }
+
+    /**
+     * extracts a section of a string.
+     *
+     * @param string   $string String to extract section from
+     * @param int      $start  Start position
+     * @param int|null $length Length of extraction
+     *
+     * @return bool|string
+     */
+    public static function slice($string, int $start, ?int $length = null)
+    {
+        if ($start < 0) {
+            $start += strlen($string);
+        }
+        if ($length < 0) {
+            $length += strlen($string);
+        }
+
+        if ($length !== null && $length < $start) {
+            return false;
+        }
+
+        return self::substring($string, $start, $length ?: null);
+    }
+
+    /**
+     * Randomly shuffles the given string.
+     *
+     * @param string $string
+     *
+     * @return string
+     */
+    public static function shuffle(string $string)
+    {
+        return str_shuffle($string);
     }
 }

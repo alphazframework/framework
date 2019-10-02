@@ -51,6 +51,8 @@ class StrTest extends TestCase
 
     public function testIsBase64()
     {
+        $this->assertFalse(Str::isBase64('4rdHFh%2BHYoS8oLdVvbUzEVqB8Lvm7kSPnuwF0AAABYQ%3D'));
+        $this->assertTrue(Str::isBase64('YW1vdXJmYXlh'));
         $this->assertTrue(Str::isBase64('ejJlQUVFSFpCcUpjVDNlWW5WcEd0QQ=='));
         $this->assertTrue(Str::isBase64('dGhpc2lzdmFsaWR0ZXN0ZGF0YQ=='));
         $this->assertFalse(Str::isBase64('aWFtd3Jvbmc==='));
@@ -59,11 +61,51 @@ class StrTest extends TestCase
 
     public function testSubstring()
     {
+        $this->assertSame('Amourfaya', Str::substring('Amourfaya', 0));
+        $this->assertNotSame('Amourfaya', Str::substring('Amourfaya', 2, 4));
+        $this->assertSame('ourf', Str::substring('Amourfaya', 2, 4));
         $this->assertSame('def', Str::substring('abcdef', 3, 3));
         $this->assertSame('def', Str::substring('abcdef', 3));
         $this->assertSame('ĄaśćŻ', Str::substring('AAaaĄaśćŻŹ', 4, 5));
         $this->assertSame('AbCdEf', Str::substring('AbCdEf', 0, 6, 'iso-8859-1'));
         $this->assertSame('ćŻŹ', Str::substring('ĄaśćŻŹ', 3, 3));
         $this->assertNotSame('ćŻŹ', Str::substring('ĄaśćŻŹ', 3, 3, 'iso-8859-1'));
+    }
+
+    public function testStripWhitespaces()
+    {
+        $this->assertSame('This string is stripped', Str::stripWhitespaces(' This string is stripped '));
+        $this->assertNotSame(' This string is stripped ', Str::stripWhitespaces(' This string is stripped '));
+    }
+
+    public function testRepeat()
+    {
+        $this->assertSame('--', Str::repeat('--', 1));
+        $this->assertNotSame('--', Str::repeat('--', 3));
+        $this->assertSame('------', Str::repeat('--', 3));
+        $this->assertSame('-=--=--=--=--=-', Str::repeat('-=-', 5));
+    }
+
+    public function testSlice()
+    {
+        $this->assertFalse(Str::slice('String', -3, -10));
+        $this->assertSame(
+            'The apple does not fall far from the tree',
+            Str::slice('The apple does not fall far from the tree', 0)
+        );
+        $this->assertSame(
+            'The apple does',
+            Str::slice('The apple does not fall far from the tree', 0, 14)
+        );
+        $this->assertSame(
+            'tree',
+            Str::slice('The apple does not fall far from the tree', -4)
+        );
+        $this->assertNotSame('good shit', Str::slice('This is good shit', 8, 2));
+    }
+
+    public function testShuffle()
+    {
+        $this->assertNotSame('This is string is not shuffled', Str::shuffle('This string is not shuffled'));
     }
 }
