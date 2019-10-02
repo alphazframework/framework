@@ -169,4 +169,31 @@ class Str implements StrContract
         // returns original string when mbstring is not active.
         return $str;
     }
+
+    /**
+     * Checks if given string is a valid Base64 encoded string.
+     *
+     * @param string $str String to be tested
+     *
+     * @return bool wether it is a valid base64 encoded string or not
+     */
+    public static function isBase64(string $str): bool
+    {
+        return $str === base64_encode(base64_decode($str));
+    }
+
+    /**
+     * Return only a portion of given string.
+     *
+     * @param string      $str      input string to process
+     * @param int         $start    where to start the cut
+     * @param int|null    $length   how many characters to return
+     * @param string|null $encoding optional encoding to use
+     *
+     * @return string
+     */
+    public static function substring(string $str, int $start, int $length = null, $encoding = null): string
+    {
+        return mb_substr($str, $start, $length, self::encoding($encoding));
+    }
 }
