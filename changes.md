@@ -59,6 +59,3 @@
 
 ### Unit Testing.
 1. Added PHPUnit testing.
-
-### Shell
-1. Added SHELL Script (Start PHP server, PHP Verson, Zest Framework version).
