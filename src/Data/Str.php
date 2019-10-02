@@ -190,4 +190,15 @@ class Str implements StrContract
 
         return true;
     }
+
+    /**
+     * @param string $string    String to be modified
+     * @param int $start        Start position
+     * @param int|null $length  Length
+     * @return bool|string
+     */
+    public static function substring(string $string, int $start, $length = null)
+    {
+        return substr($string, $start, $length ? $length : strlen($string));
+    }
 }

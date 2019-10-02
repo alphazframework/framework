@@ -54,4 +54,11 @@ class StrTest extends TestCase
         $this->assertFalse(Str::isBase64('4rdHFh%2BHYoS8oLdVvbUzEVqB8Lvm7kSPnuwF0AAABYQ%3D'));
         $this->assertTrue(Str::isBase64('YW1vdXJmYXlh'));
     }
+
+    public function testSubstring()
+    {
+        $this->assertSame('Amourfaya', Str::substring('Amourfaya', 0));
+        $this->assertNotSame('Amourfaya', Str::substring('Amourfaya', 2, 4));
+        $this->assertSame('ourf', Str::substring('Amourfaya', 2, 4));
+    }
 }
