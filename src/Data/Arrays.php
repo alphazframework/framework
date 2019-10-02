@@ -271,6 +271,7 @@ class Arrays implements ArraysContract
     {
         return self::multiToAssocWithSpecificOpr($arrays, '.', $assocOutput);
     }
+
     /**
      * Converted a multi-dimensional associative array with `operator`.
      *

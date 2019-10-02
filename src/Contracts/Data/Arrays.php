@@ -128,14 +128,14 @@ interface Arrays
 
     /**
      * Converted a multi-dimensional associative array with `dot`.
-    *
-    * @param array $arrays      Arrays.
-    * @param bool  $assocOutput Switch to output assoc arrays.
-    *
-    * @since 3.0.0
-    *
-    * @return bool
-    */
+     *
+     * @param array $arrays      Arrays.
+     * @param bool  $assocOutput Switch to output assoc arrays.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
     public static function dot(array $arrays, bool $assocOutput = false);
 
     /**
