@@ -201,11 +201,11 @@ class Str implements StrContract
     /**
      * Return part of a string.
      *
-     * @param string $str input string to process
-     * @param int $start Start position
-     * @param int|null $length Length
+     * @param string   $str      input string to process
+     * @param int      $start    Start position
+     * @param int|null $length   Length
+     * @param string   $encoding optional encoding to use
      *
-     * @param string $encoding optional encoding to use
      * @return bool|string
      */
     public static function substring(string $str, int $start, $length = null, string $encoding = 'UTF-8'): string
