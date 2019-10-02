@@ -192,6 +192,8 @@ class Str implements StrContract
     }
 
     /**
+     * Return part of a string
+     *
      * @param string $string    String to be modified
      * @param int $start        Start position
      * @param int|null $length  Length
