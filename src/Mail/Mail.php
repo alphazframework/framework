@@ -467,11 +467,7 @@ class Mail
      */
     public function isFile()
     {
-        if (file_exists($file)) {
-            return true;
-        } else {
-            return false;
-        }
+        return file_exists($this->file);
     }
 
     /**

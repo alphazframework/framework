@@ -131,7 +131,7 @@ class Session
     {
         $value = [];
         foreach ($keys as $key) {
-            $value[$key] = self::get($key, $default);
+            $value[$key] = self::get($key);
         }
 
         return $value;

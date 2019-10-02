@@ -32,7 +32,7 @@ class Input
     public static function wordWrapEnable($str, $width)
     {
         if (!empty($str) && !empty($width) && $width >= 1) {
-            return wordwrap($params['str'], $params['width'], '<br />\n');
+            return wordwrap($str, $width, '<br />\n');
         } else {
             return false;
         }

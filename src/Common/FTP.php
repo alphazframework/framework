@@ -317,7 +317,7 @@ class FTP
     {
         if ($this->isConnected() === true) {
             foreach ($files as $key => $value) {
-                ftp_put($this->getConnection(), $server_root.'/'.$value, $value, FTP_ASCII);
+                ftp_put($this->getConnection(), $root.'/'.$value, $value, FTP_ASCII);
             }
         } else {
             return false;

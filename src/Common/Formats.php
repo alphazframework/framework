@@ -49,8 +49,8 @@ class Formats
     public function friendlyTime($time)
     {
         $time = $this->formatTime($time);
-        (int) $s = 60;
-        (int) $hour = $s * $s;
+        $s = 60;
+        $hour = $s * $s;
         (int) $day = $hour * 24;
         (int) $week = $day * 7;
         (int) $month = $day * 30;
