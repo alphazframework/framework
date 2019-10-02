@@ -103,43 +103,26 @@ class Str implements StrContract
     /**
      * Check if string has atleast one uppercase.
      *
-     * @param string $str String to be checked.
+     * @param string      $str      String to be checked.
+     * @param string|null $encoding Valid encoding.
      *
      * @return bool
      */
-    public static function hasUpperCase(string $str)
+    public static function hasUpperCase(string $str, string $encoding = null): bool
     {
-        $all_words = preg_split('/\s+/', $str);
-
-        foreach ($all_words as $word) {
-            if (preg_match_all('~^\p{Lu}~u', $word)) {
-                // There is one upper
-                return true;
-            }
-        }
-
-        return false;
+        return !(mb_strtolower($str, self::encoding($encoding)) === $str);
     }
 
     /**
      * Check if string has atleast one lowercase.
      *
-     * @param string $str String to be checked.
-     *
+     * @param string      $str      String to be checked.
+     * @param string|null $encoding Valid encoding.
      * @return bool
      */
-    public static function hasLowerCase(string $str)
+    public static function hasLowerCase(string $str, string $encoding = null): bool
     {
-        $all_words = preg_split('/\s+/', $str);
-
-        foreach ($all_words as $word) {
-            if (!preg_match_all('~^\p{Lu}~u', $word)) {
-                // There is one upper
-                return true;
-            }
-        }
-
-        return false;
+        return !(mb_strtoupper($str, self::encoding($encoding)) === $str);
     }
 
     /**

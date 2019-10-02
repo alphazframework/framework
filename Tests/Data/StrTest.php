@@ -28,17 +28,23 @@ class StrTest extends TestCase
     public function testHasUpperCase()
     {
         $this->assertFalse(Str::hasUpperCase('camel'));
+        $this->assertFalse(Str::hasUpperCase('camel!'));
         $this->assertTrue(Str::hasUpperCase('Uppercase'));
         $this->assertTrue(Str::hasUpperCase('uppercase in a String'));
         $this->assertTrue(Str::hasUpperCase('Éé'));
+        $this->assertTrue(Str::hasUpperCase('#-<ae|9_+0a*a!Q?@(z,3R>.BAb)^%R&*+~RG:$'));
+        $this->assertFalse(Str::hasUpperCase('#©-<ae|9_+0a*a!q?@(z,3r>.bab)^%r&*+~rg:$'));
     }
 
     public function testHasLowerCase()
     {
         $this->assertFalse(Str::hasLowerCase('CAMEL'));
+        $this->assertFalse(Str::hasLowerCase('CAMEL!'));
         $this->assertTrue(Str::hasLowerCase('lowercase'));
         $this->assertTrue(Str::hasLowerCase('lowercase in STRING'));
         $this->assertTrue(Str::hasLowerCase('iou'));
+        $this->assertTrue(Str::hasLowerCase('#-<ae|9_+0a*a!Q?@(z,3R>.BAb)^%R&*+~RG:$'));
+        $this->assertFalse(Str::hasLowerCase('#©-<AE|9_+0A*A!Q?@(Z,3R>.BAB)^%R&*+~RG:$'));
     }
 
     public function testConvertCase()
