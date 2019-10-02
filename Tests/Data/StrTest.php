@@ -60,6 +60,7 @@ class StrTest extends TestCase
     public function testSubstring()
     {
         $this->assertSame('def', Str::substring('abcdef', 3, 3));
+        $this->assertSame('def', Str::substring('abcdef', 3));
         $this->assertSame('ĄaśćŻ', Str::substring('AAaaĄaśćŻŹ', 4, 5));
         $this->assertSame('AbCdEf', Str::substring('AbCdEf', 0, 6, 'iso-8859-1'));
         $this->assertSame('ćŻŹ', Str::substring('ĄaśćŻŹ', 3, 3));
