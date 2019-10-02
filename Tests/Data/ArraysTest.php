@@ -101,6 +101,12 @@ class ArraysTest extends TestCase
         $this->assertEquals($array, ['name' => 'Alex', 'languages.cpp' => true]);
     }
 
+    public function testDotWithAssocArray()
+    {
+        $array = Arrays::dot(['foo' => ['bar' => ['one', 'three', 'two']]], true);
+        $this->assertEquals(['foo.bar' => ['one', 'three', 'two']], $array);
+    }
+
     public function testMultiToAssocWithSpecificOpr()
     {
         $opr = '@';
