@@ -207,11 +207,23 @@ class Str implements StrContract
     /**
      * Strip whitespace (or other characters) from the beginning and end of a string
      *
-     * @param $string
+     * @param string $string
      * @return string
      */
-    public static function stripWhitespaces($string)
+    public static function stripWhitespaces(string $string)
     {
         return trim($string);
+    }
+
+    /**
+     * Repeats string $amount|1 times
+     *
+     * @param string $string
+     * @param int $amount
+     * @return string
+     */
+    public static function repeat(string $string, int $amount = 1)
+    {
+        return str_repeat($string, $amount);
     }
 }

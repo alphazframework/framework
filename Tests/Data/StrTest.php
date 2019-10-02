@@ -67,4 +67,11 @@ class StrTest extends TestCase
         $this->assertSame('This string is stripped', Str::stripWhitespaces(' This string is stripped '));
         $this->assertNotSame(' This string is stripped ', Str::stripWhitespaces(' This string is stripped '));
     }
+
+    public function testRepeat()
+    {
+        $this->assertSame('--', Str::repeat('--', 1));
+        $this->assertNotSame('--', Str::repeat('--', 3));
+        $this->assertSame('-=--=--=--=--=-', Str::repeat('-=-', 5));
+    }
 }
