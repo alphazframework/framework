@@ -101,14 +101,14 @@ function __redirect($url = null)
     return Zest\Site\Site::redirect($url);
 }
 if (!function_exists('salts')) {
-    function salts($len)
+    function salts($len, $special = false)
     {
-        return Zest\Site\Site::salts($len);
+        return Zest\Site\Site::salts($len, $special);
     }
 }
-function __salts($len)
+function __salts($len, $special = false)
 {
-    return Zest\Site\Site::salts($len);
+    return Zest\Site\Site::salts($len, $special);
 }
 if (!function_exists('set_cookie')) {
     function set_cookie($name, $value, $expire = 0, $path = null, $domain = null, $secure = false, $httponly = true)
