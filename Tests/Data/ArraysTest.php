@@ -101,6 +101,12 @@ class ArraysTest extends TestCase
         $this->assertEquals($array, ['name' => 'Alex', 'languages.cpp' => true]);
     }
 
+    public function testDotWithAssocArray()
+    {
+        $array = Arrays::dot(['foo' => ['bar' => ['one', 'three', 'two']]], true);
+        $this->assertEquals(['foo.bar' => ['one', 'three', 'two']], $array);
+    }
+
     public function testMultiToAssocWithSpecificOpr()
     {
         $opr = '@';
@@ -108,6 +114,13 @@ class ArraysTest extends TestCase
         $this->assertEquals(['foo@bar' => 'baz'], $array);
         $array = Arrays::multiToAssocWithSpecificOpr(['name' => 'Alex', 'languages' => ['cpp' => true]], $opr);
         $this->assertEquals($array, ['name' => 'Alex', 'languages@cpp' => true]);
+    }
+
+    public function testMultiToAssocWithSpecificOprWithAssocArray()
+    {
+        $opr = '@';
+        $array = Arrays::multiToAssocWithSpecificOpr(['foo' => ['bar' => ['one', 'three', 'two']]], $opr, true);
+        $this->assertEquals(['foo@bar' => ['one', 'three', 'two']], $array);
     }
 
     public function testExcept()

@@ -260,36 +260,54 @@ class Arrays implements ArraysContract
     /**
      * Converted a multi-dimensional associative array with `dot`.
      *
-     * @param array $arrays Arrays.
-     *
-     * @since 3.0.0
-     *
-     * @return bool
-     */
-    public static function dot(array $arrays)
-    {
-        return self::multiToAssocWithSpecificOpr($arrays, '.');
-    }
-
-    /**
-     * Converted a multi-dimensional associative array with `operator`.
-     *
-     * @param array  $arrays Arrays.
-     * @param string $opr    Operator.
+     * @param array $arrays      Arrays.
+     * @param bool  $assocOutput Switch to output assoc arrays.
      *
      * @since 3.0.0
      *
      * @return array
      */
-    public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null)
+    public static function dot(array $arrays, bool $assocOutput = false)
+    {
+        return self::multiToAssocWithSpecificOpr($arrays, '.', $assocOutput);
+    }
+
+    /**
+     * Converted a multi-dimensional associative array with `operator`.
+     *
+     * @param array  $arrays      Arrays.
+     * @param string $opr         Operator.
+     * @param bool   $assocOutput Switch to output assoc arrays.
+     * @param string $_key        the previous key of the object
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public static function multiToAssocWithSpecificOpr(array $arrays, $opr = null, bool $assocOutput = false, string $_key = null)
     {
         $results = [];
         foreach ($arrays as $key => $value) {
+            $key = ($assocOutput === true ? $_key.$key : $key);
             if (self::isReallyArray($value) === true) {
-                $results = array_merge($results, self::multiToAssocWithSpecificOpr($value, $key.$opr));
+                $assocKey = ($assocOutput === true ? $opr : $key.$opr);
+                $results = array_merge(
+                    $results,
+                    self::multiToAssocWithSpecificOpr(
+                        $value,
+                        $assocKey,
+                        $assocOutput,
+                        $key.$opr
+                    )
+                );
+            } elseif ($assocOutput === true) {
+                // gets pull off the last $opr that is added
+                $regex = '/(\\'.$opr.'$)/';
+                $_key = preg_replace($regex, '', $_key);
+                $results[$_key][] = $value;
             } else {
                 $key = $opr.$key;
-                $key = ($key[0] === '.' || $key[0] === '@' ? substr($key, 1) : $key);
+                $key = ($key[0] === $opr ? substr($key, 1) : $key);
                 $results[$key] = $value;
             }
         }
