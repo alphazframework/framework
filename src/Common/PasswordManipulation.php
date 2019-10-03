@@ -16,8 +16,8 @@
 
 namespace Zest\Common;
 
-use Zest\Site\Site;
 use Zest\Data\Str;
+use Zest\Site\Site;
 
 class PasswordManipulation
 {
