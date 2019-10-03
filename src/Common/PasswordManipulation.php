@@ -32,7 +32,7 @@ class PasswordManipulation
 
     /**
      * Set the password default length.
-     * 
+     *
      * @param (int) $length Length of password.
      *
      * @since 3.0.0
