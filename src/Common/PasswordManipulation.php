@@ -37,7 +37,7 @@ class PasswordManipulation
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function setLength(int $length)
     {
