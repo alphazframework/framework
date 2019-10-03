@@ -94,7 +94,7 @@ class PasswordManipulation
      *
      * @return int
      */
-    public function isN($password)
+    private function isN($password)
     {
         return preg_match('/[0-9]/', $password);
     }
@@ -108,7 +108,7 @@ class PasswordManipulation
      *
      * @return int
      */
-    public function isS($password)
+    private function isS($password)
     {
         return preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password);
     }
