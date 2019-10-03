@@ -52,10 +52,12 @@
 10. Added OPTIONS, TRACE, CONNECT, ALL rests methods in `Router` class.
 11. Added setMultiple, deleteMultiple, getMultiple methods in `Session` class.
 12. Added setMultiple, deleteMultiple, getMultiple methods in `Cookie` class.
+13. Update `\Site::Salts` method add `$special` argument support to add, special chars in salts.
 
 ### Optimizations
 1. Allow translations of default validations messages.
 2. Optimizations of Components package.
+3. Optimizations of PasswordManipulation Class.
 
 ### Unit Testing.
 1. Added PHPUnit testing.
