@@ -37,11 +37,11 @@ class PasswordManipulation
      *
      * @since 3.0.0
      *
-     * @return mixed
+     * @return int
      */
-    public function setLength($length)
+    public function setLength(int $length)
     {
-        return (is_int($length)) ? $this->password_len = $length : false;
+        return (is_int($length)) ? $this->password_len = $length : 8;
     }
 
     /**
@@ -61,7 +61,7 @@ class PasswordManipulation
      *
      * @since 2.9.7
      *
-     * @return mixed
+     * @return string
      */
     public function generatePassword()
     {
