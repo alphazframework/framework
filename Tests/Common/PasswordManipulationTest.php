@@ -10,7 +10,7 @@ class PasswordManipulationTest extends TestCase
     public function testGeneratePassword()
     {
         $pass = new PasswordManipulation();
-        $this->assertNotEmpty($pass->generatePassword(11));
+        $this->assertNotEmpty($pass->generatePassword());
     }
 
     public function testCountTes()
@@ -22,7 +22,7 @@ class PasswordManipulationTest extends TestCase
     public function testIsValid()
     {
         $pass = new PasswordManipulation();
-        $this->assertTrue($pass->isValid($pass->generatePassword(15)));
+        $this->assertTrue($pass->isValid($pass->generatePassword()));
         $this->assertFalse($pass->isValid('1234dasd'));
     }
 
