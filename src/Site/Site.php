@@ -206,7 +206,7 @@ class Site
      */
     public static function salts($length)
     {
-        $chars = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
+        $chars = array_merge(range(0, 9), range('a', 'z'), ['@', '#', '!', '$', '%', '^', '&', '+', '*', '-', '_'] ,range('A', 'Z'), range(0, 9));
         $stringlength = count($chars); //Used Count because its array now
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
