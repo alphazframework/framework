@@ -66,6 +66,7 @@ class PasswordManipulation
         $salts = Site::salts(12);
         $special_char1 = '~<>?|:ABab.(),';
         $special_char2 = '!@#$%^&*_+-*+';
+        //Should be better way to generate strong password
         $pass = $special_char2.$salts.$special_char1;
 
         return str_shuffle($pass);
