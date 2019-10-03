@@ -205,7 +205,7 @@ class Site
      *
      * @return string
      */
-    public static function salts(int $length, $special = false)
+    public static function salts(int $length, bool $special = false)
     {
         $s = ($special === true) ? ['@', '#', '$', '%', '^', '&', '*', '-', '_'] : [];
         $chars = array_merge(
