@@ -35,34 +35,6 @@ class StrTest extends TestCase
         $this->assertTrue(Str::hasLowerCase('iou'));
     }
 
-    public function testConvertStringToLowercase()
-    {
-        $this->assertEquals(
-            "hello world123",
-            Str::convertStringAsLowerCase("Hello World123")
-        );
-        $this->assertEquals(
-            "asd",
-            Str::convertStringAsLowerCase("asd")
-        );
-    }
-
-    public function testConvertStringToUpercase()
-    {
-        $this->assertEquals(
-            "HELLO WORLD123",
-            Str::convertStringToUppercase("Hello World123")
-        );
-        $this->assertEquals(
-            "ASD",
-            Str::convertStringToUppercase("asd")
-        );
-        $this->assertEquals(
-            "ASD",
-            Str::convertStringToUppercase("ASD")
-        );
-    }
-
     public function testGetSubstring()
     {
         $this->assertEquals(

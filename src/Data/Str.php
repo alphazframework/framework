@@ -136,26 +136,6 @@ class Str implements StrContract
 
     /**
      * @param string $string
-     *
-     * @return string
-     */
-    public static function convertStringAsLowerCase(string $string) : string
-    {
-        return strtolower($string);
-    }
-
-    /**
-     * @param string $string
-     *
-     * @return string
-     */
-    public static function convertStringToUppercase(string $string) : string
-    {
-        return strtoupper($string);
-    }
-
-    /**
-     * @param string $string
      * @param int $startIndex
      * @param int|null $endIndex
      *
