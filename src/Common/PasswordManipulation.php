@@ -35,7 +35,7 @@ class PasswordManipulation
      *
      * @since 3.0.0
      *
-     * @return int
+     * @return mixed
      */
     public function setLength($length)
     {
@@ -59,17 +59,11 @@ class PasswordManipulation
      *
      * @since 2.9.7
      *
-     * @return mix-data
+     * @return mixed
      */
     public function generatePassword()
     {
-        $salts = Site::salts(12);
-        $special_char1 = '~<>?|:ABab.(),';
-        $special_char2 = '!@#$%^&*_+-*+';
-        //Should be better way to generate strong password
-        $pass = $special_char2.$salts.$special_char1;
-
-        return str_shuffle($pass);
+        return Site::Salts(50);
     }
 
     /**
@@ -79,7 +73,7 @@ class PasswordManipulation
      *
      * @since 2.9.7
      *
-     * @return int
+     * @return bool
      */
     public function isValid($password)
     {
@@ -93,7 +87,7 @@ class PasswordManipulation
      *
      * @since 2.9.7
      *
-     * @return int
+     * @return bool
      */
     private function isN($password)
     {
@@ -107,7 +101,7 @@ class PasswordManipulation
      *
      * @since 2.9.7
      *
-     * @return int
+     * @return bool
      */
     private function isS($password)
     {
