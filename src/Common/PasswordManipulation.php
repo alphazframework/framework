@@ -28,7 +28,7 @@ class PasswordManipulation
      *
      * @var int
      */
-    private $password_len = 8;
+    private $password_len = 30;
 
     /**
      * Set the password default length.
@@ -37,11 +37,13 @@ class PasswordManipulation
      *
      * @since 3.0.0
      *
-     * @return int
+     * @return object
      */
     public function setLength(int $length)
     {
-        return (is_int($length)) ? $this->password_len = $length : 8;
+        $this->password_len = $length;
+
+        return $this;
     }
 
     /**
@@ -59,13 +61,17 @@ class PasswordManipulation
     /**
      * Generate the password.
      *
+     * @param (int) $length Password length.
+     *
      * @since 2.9.7
      *
      * @return string
      */
-    public function generatePassword()
+    public function generatePassword($length = 30)
     {
-        return Site::Salts(30, true);
+        $this->setLength($length);
+
+        return Site::Salts($this->getLength(), true);
     }
 
     /**
