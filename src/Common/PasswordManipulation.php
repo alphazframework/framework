@@ -28,18 +28,22 @@ class PasswordManipulation
      *
      * @var int
      */
-    private $password_len = 8;
+    private $password_len = 30;
 
     /**
      * Set the password default length.
      *
+     * @param (int) $length Length of password.
+     *
      * @since 3.0.0
      *
-     * @return int
+     * @return self
      */
-    public function setLength($length)
+    public function setLength(int $length)
     {
-        return (is_int($length)) ? $this->password_len = $length : false;
+        $this->password_len = $length;
+
+        return $this;
     }
 
     /**
@@ -57,18 +61,17 @@ class PasswordManipulation
     /**
      * Generate the password.
      *
+     * @param (int) $length Password length.
+     *
      * @since 2.9.7
      *
-     * @return mix-data
+     * @return string
      */
-    public function generatePassword()
+    public function generatePassword($length = 30)
     {
-        $salts = Site::salts(12);
-        $special_char1 = '~<>?|:ABab.(),';
-        $special_char2 = '!@#$%^&*_+-*+';
-        $pass = $special_char2.$salts.$special_char1;
+        $this->setLength($length);
 
-        return str_shuffle($pass);
+        return Site::Salts($this->getLength(), true);
     }
 
     /**
@@ -78,7 +81,7 @@ class PasswordManipulation
      *
      * @since 2.9.7
      *
-     * @return int
+     * @return bool
      */
     public function isValid($password)
     {
@@ -92,7 +95,7 @@ class PasswordManipulation
      *
      * @since 2.9.7
      *
-     * @return int
+     * @return bool
      */
     private function isN($password)
     {
@@ -106,7 +109,7 @@ class PasswordManipulation
      *
      * @since 2.9.7
      *
-     * @return int
+     * @return bool
      */
     private function isS($password)
     {

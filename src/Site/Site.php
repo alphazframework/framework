@@ -196,17 +196,26 @@ class Site
     }
 
     /**
-     * generate salts for files.
+     * Generate salts.
      *
-     * @param (int) $length Length of salts.
+     * @param (int)  $length  Length of salts.
+     * @param (bool) $special Should special chars include or not.
      *
      * @since 1.0.0
      *
      * @return string
      */
-    public static function salts($length)
+    public static function salts(int $length, bool $special = false)
     {
-        $chars = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
+        $s = ($special === true) ? ['@', '#', '$', '%', '^', '&', '*', '-', '_'] : [];
+        $chars = array_merge(
+            range(0, 9),
+            range('a', 'z'),
+            $s,
+            range('A', 'Z'),
+            range(0, 9),
+            $s
+        );
         $stringlength = count($chars); //Used Count because its array now
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
