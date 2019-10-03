@@ -29,4 +29,5 @@ after_success:
 
 # Customize when the notification emails are sent.
 notifications:
- email: lablnet01@gmail.com
+ email: mumerfarooqlablnet01@gmail.com
+
