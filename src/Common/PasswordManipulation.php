@@ -17,6 +17,7 @@
 namespace Zest\Common;
 
 use Zest\Site\Site;
+use Zest\Data\Str;
 
 class PasswordManipulation
 {
@@ -63,7 +64,7 @@ class PasswordManipulation
     public function generatePassword()
     {
         $salts = Site::salts(12);
-        $special_char1 = '~<>?|:.(),';
+        $special_char1 = '~<>?|:ABab.(),';
         $special_char2 = '!@#$%^&*_+-*+';
         $pass = $special_char2.$salts.$special_char1;
 
@@ -81,35 +82,7 @@ class PasswordManipulation
      */
     public function isValid($password)
     {
-        return ($this->isU($password) && $this->isL($password) && $this->isN($password) && $this->isS($password) && $this->len($password) >= $this->getLength()) ? true : false;
-    }
-
-    /**
-     * Check is capital letter is included in password.
-     *
-     * @param $password userPassword
-     *
-     * @since 2.9.7
-     *
-     * @return int
-     */
-    public function isU($password)
-    {
-        return preg_match('/[A-Z]/', $password);
-    }
-
-    /**
-     * Check is small letter is included in password.
-     *
-     * @param $password userPassword
-     *
-     * @since 2.9.7
-     *
-     * @return int
-     */
-    public function isL($password)
-    {
-        return preg_match('/[a-z]/', $password);
+        return (Str::hasUpperCase($password) && Str::hasLowerCase($password) && $this->isN($password) && $this->isS($password) && $this->len($password) >= $this->getLength()) ? true : false;
     }
 
     /**
@@ -151,6 +124,6 @@ class PasswordManipulation
      */
     public function len($password)
     {
-        return strlen($password);
+        return Str::count($password);
     }
 }
