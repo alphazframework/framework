@@ -30,12 +30,12 @@ class PasswordManipulationTest extends TestCase
     {
         $pass = new PasswordManipulation();
         $pass->setLength(21);
-        $this->assertNotEmpty($this->getLength());
+        $this->assertNotEmpty($pass->getLength());
     }
 
     public function testGetLength()
     {
         $pass = new PasswordManipulation();
-        $this->assertNotEmpty($this->getLength());
+        $this->assertNotEmpty($pass->getLength());
     }
 }
