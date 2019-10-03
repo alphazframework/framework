@@ -200,7 +200,7 @@ class Site
      *
      * @param (int)  $length  Length of salts.
      * @param (bool) $special Should special chars include or not.
-     * 
+     *
      * @since 1.0.0
      *
      * @return string
