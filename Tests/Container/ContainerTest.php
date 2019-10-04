@@ -10,7 +10,7 @@ class ContainerTest extends TestCase
     public function testContainer()
     {
         $container = new Container();
-        $msg       = new \Zest\http\Message();
+        $msg = new \Zest\http\Message();
 
         $instance = $container->register(['Zest\http\Message', 'Message'], $msg, false);
 

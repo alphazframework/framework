@@ -407,7 +407,7 @@ class Container implements ContainerContract
     {
         $class = $this->resolveAlias($class);
 
-        return ( isset($this->hints[$class]) || isset($this->instances[$class]) ) && $this->hints[$class]['singleton'] === true;
+        return (isset($this->hints[$class]) || isset($this->instances[$class])) && $this->hints[$class]['singleton'] === true;
     }
 
     /**
