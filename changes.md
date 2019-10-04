@@ -28,6 +28,7 @@
 17. Added TimeZone Class.
 18. Added LanguageCodes Trait.
 19. Added ClassAlias Class.
+20. Added FileInfo Class.
 
 ### Fixes
 1. Update site class (fix issue in redirect method , prev parameter were not working).
