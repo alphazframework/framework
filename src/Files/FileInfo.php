@@ -121,7 +121,7 @@ class FileInfo extends SplFileInfo
      *
      * @return bool
      */
-    public function validateHmac(string $hmac, string $key, string $algorithm = 'sha256', bool $raw = false): bool
+    public function validateHmac(string $hmac, string $key, string $algorithm = 'md5', bool $raw = false): bool
     {
         return hash_equals($hmac, $this->getHmac($key, $algorithm, $raw));
     }
