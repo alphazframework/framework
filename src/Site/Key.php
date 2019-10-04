@@ -71,7 +71,7 @@ class Key implements keyContract
      *
      * @return string
      */
-    public static function generateEncode(int $length = 32)
+    public static function generateEncode(int $length = 32): string
     {
         return static::encode(self::generate($length));
     }
