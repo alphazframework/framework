@@ -24,6 +24,6 @@ class KeyTest extends TestCase
 	public function testGenerateEncoded(): void
 	{
 		$key = Key::generateEncoded(16);
-        $this->assertEquals(36, mb_strlen($key, '8bit')
+        	$this->assertEquals(36, mb_strlen($key, '8bit');
 	}
 }
