@@ -104,9 +104,10 @@ class Container implements ContainerContract
     {
         if ($class instanceof $hint[0]) {
             $this->hints[$this->parseHint($hint)] = ['class' => $class, 'singleton' => $singleton];
+        } else {
+            // If not an instance of a class then throw an exception.
+            throw new \InvalidArgumentException("Claass should be valid instance of {$hint[0]}.", 500);
         }
-
-        throw new \InvalidArgumentException("Claass should be valid instance of {$hint[0]}.", 500);
     }
 
     /**
@@ -406,7 +407,7 @@ class Container implements ContainerContract
     {
         $class = $this->resolveAlias($class);
 
-        return isset($this->hints[$class]) || isset($this->instances[$class]) && $this->hints[$class]['singleton'] === true;
+        return (isset($this->hints[$class]) || isset($this->instances[$class])) && $this->hints[$class]['singleton'] === true;
     }
 
     /**
