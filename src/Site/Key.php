@@ -16,7 +16,7 @@
 
 namespace Zest\Site;
 
-use Zest\Contracts\Site\key as KeyContract;
+use \Zest\Contracts\Site\key as KeyContract;
 
 class Key implements keyContract
 {
