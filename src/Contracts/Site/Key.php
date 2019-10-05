@@ -61,4 +61,13 @@ interface Key
      * @return string
      */
     public static function generateEncode(int $length = 32) :string;
+
+	/**
+	 * Generate RSA public and private keypair.
+	 *
+     * @since 3.0.0
+     *
+	 * @return array
+	 */
+	public static function generateRSAKey(): array;
 }

@@ -74,5 +74,27 @@ class Key implements keyContract
     public static function generateEncode(int $length = 32): string
     {
         return static::encode(self::generate($length));
-    }
+	}
+
+	/**
+	 * Generate RSA public and private keypair.
+	 *
+     * @since 3.0.0
+     *
+	 * @return array
+	 */
+	public static function generateRSAKey(): array
+	{
+		$rsa = openssl_pkey_new(array(
+			"private_key_bits" => 2048,
+			"private_key_type" => \OPENSSL_KEYTYPE_RSA,
+		));
+		openssl_pkey_export($rsa, $rsaPrivateKey);
+		$details = openssl_pkey_get_details($rsa);
+
+		return [
+			'public'  => $details['key'],
+			'private' => $rsaPrivateKey,
+		];
+	}
 }

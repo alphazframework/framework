@@ -27,4 +27,10 @@ class KeyTest extends TestCase
         $key = Key::generateEncode(16);
         $this->assertEquals(32, mb_strlen($key, '8bit'));
     }
+
+    public function testGenerateRsa()
+    {
+    	$rsa = Key::generateRSAKey();
+    	$this->assertNotEmpty($rsa);
+    }
 }
