@@ -72,7 +72,7 @@ class FileInfo extends SplFileInfo
      *
      * @return string
      */
-    public function getHash(string $algorithm = 'md5', bool $raw = false): string
+    public function getHash(string $algorithm = 'sha256', bool $raw = false): string
     {
         return hash_file($algorithm, $this->getPathname(), $raw);
     }
@@ -88,7 +88,7 @@ class FileInfo extends SplFileInfo
      *
      * @return bool
      */
-    public function validateHash(string $hash, string $algorithm = 'md5', bool $raw = false): bool
+    public function validateHash(string $hash, string $algorithm = 'sha256', bool $raw = false): bool
     {
         return hash_equals($hash, $this->getHash($algorithm, $raw));
     }
@@ -104,7 +104,7 @@ class FileInfo extends SplFileInfo
      *
      * @return string
      */
-    public function getHmac(string $key, string $algorithm = 'md5', bool $raw = false): string
+    public function getHmac(string $key, string $algorithm = 'sha256', bool $raw = false): string
     {
         return hash_hmac_file($algorithm, $this->getPathname(), $key, $raw);
     }
@@ -121,7 +121,7 @@ class FileInfo extends SplFileInfo
      *
      * @return bool
      */
-    public function validateHmac(string $hmac, string $key, string $algorithm = 'md5', bool $raw = false): bool
+    public function validateHmac(string $hmac, string $key, string $algorithm = 'sha256', bool $raw = false): bool
     {
         return hash_equals($hmac, $this->getHmac($key, $algorithm, $raw));
     }
