@@ -18,13 +18,13 @@ class KeyTest extends TestCase
         $key = Key::generate(16);
         $this->assertEquals(16, mb_strlen($key, '8bit'));
         $encoded = Key::encode($key);
-        $this->assertEquals(36, mb_strlen($encoded, '8bit'));
+        $this->assertEquals(32, mb_strlen($encoded, '8bit'));
         $this->assertEquals($key, Key::decode($encoded));
     }
 
-    public function testGenerateEncoded(): void
+    public function testGenerateEncode(): void
     {
-        $key = Key::generateEncoded(16);
-        $this->assertEquals(36, mb_strlen($key, '8bit'));
+        $key = Key::generateEncode(16);
+        $this->assertEquals(32, mb_strlen($key, '8bit'));
     }
 }

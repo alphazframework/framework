@@ -47,7 +47,8 @@ class Configuration implements ConfigurationContract
             $this->file = null;
         }
 
-        $this->items = Arrays::arrayChangeCaseKey(Arrays::dot($this->load(), true), CASE_LOWER);
+        # We need to load array configurations.
+        $this->items = Arrays::arrayChangeCaseKey(Arrays::dot($this->load()), CASE_LOWER);
         $this->items = array_merge($this->items, $items);
     }
 
