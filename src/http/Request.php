@@ -31,6 +31,7 @@ class Request extends Uri
         $this->get = (isset($_GET)) ? $_GET : [];
         $this->post = (isset($_POST)) ? $_POST : [];
         $this->files = (isset($_FILES)) ? $_FILES : [];
+        $this->session = (isset($_SESSION)) ? $_SESSION : [];
         $this->cookie = (isset($_COOKIE)) ? $_COOKIE : [];
         $this->server = (isset($_SERVER)) ? $_SERVER : [];
         $this->env = (isset($_ENV)) ? $_ENV : [];
@@ -303,6 +304,24 @@ class Request extends Uri
             return $this->delete;
         } else {
             return (isset($this->delete[$key])) ? $this->delete[$key] : null;
+        }
+    }
+
+    /**
+     * Get a value from $_SESSION, or the whole array.
+     *
+     * @param (string) $key
+     *
+     * @since 3.0.0
+     *
+     * @return mixed
+     */
+    public function getSession($key = null)
+    {
+        if ($key === null) {
+            return $this->session;
+        } else {
+            return (isset($this->session[$key])) ? $this->session[$key] : null;
         }
     }
 
