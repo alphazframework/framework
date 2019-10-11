@@ -131,6 +131,15 @@ abstract class HTTP extends Headers
     protected $delete = [];
 
     /**
+     * SESSION array.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    protected $session = [];
+
+    /**
      * COOKIE array.
      *
      * @since 3.0.0
