@@ -20,11 +20,14 @@ class ContainerTest extends TestCase
         $instance2 = $container->register([Message::class, 'Message'], $msg, true);
 
         $this->assertTrue($container->isSingleton('Message'));
+    }
 
-        try {
-            $instance3 = $container->register(['Invalid', 'Invalid'], null, true);
-        } catch (\InvalidArgumentException $e) {
-            $this->assertSame('Claass should be valid instance of Invalid.', $e->getMessage());
-        }
+    public function testException()
+    {
+        $container = new Container();
+
+        $this->expectException(\InvalidArgumentException::class);
+
+        $instance3 = $container->register(['Invalid', 'Invalid'], null, true);
     }
 }
