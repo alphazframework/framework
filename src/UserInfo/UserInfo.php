@@ -25,7 +25,7 @@ class UserInfo
      *
      * @return agent
      */
-    private static function agent()
+    public static function agent()
     {
         return $_SERVER['HTTP_USER_AGENT'];
     }
