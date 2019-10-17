@@ -481,8 +481,8 @@ class Arrays implements ArraysContract
     /**
      * Changes the case of all keys in an array.
      *
-     * @param array  $array The array to work on.
-     * @param int    $case  Either CASE_UPPER or CASE_LOWER (default).
+     * @param array $array The array to work on.
+     * @param int   $case  Either CASE_UPPER or CASE_LOWER (default).
      *
      * @since 3.0.0
      *
