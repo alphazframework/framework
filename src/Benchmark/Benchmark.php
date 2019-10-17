@@ -69,7 +69,7 @@ class Benchmark implements BenchmarkContract
      *
      * @since 2.0.0
      *
-     * @return void
+     * @return float
      */
     public function elapsedTime(int $round = null)
     {
