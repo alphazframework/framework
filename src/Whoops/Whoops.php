@@ -15,7 +15,11 @@
 namespace Zest\Whoops;
 
 use Zest\Common\Logger\Logger;
+use Zest\http\Request;
+use Zest\Common\Version;
 use Zest\View\View;
+use Zest\Site\Site;
+use Zest\UserInfo\UserInfo;
 
 class Whoops
 {
@@ -74,15 +78,73 @@ class Whoops
             $e->getMessage(),
             $e->getFile(),
             $e->getLine(),
-            $e->getTraceAsString());
+            $e->getTraceAsString(),
+            $e->getTrace()
+        );
 
         return $this->render();
     }
 
     /**
+     * Get the requests details.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public function getRequests()
+    {
+        $request = new Request();
+        $requests = [
+            'baseUrl'      => site_base_url(),
+            'url'          => Site::siteUrl(),
+            'method'       => $request->getRequestMethod(),
+            'headers'      => $request->getHeaders(),
+            'query_string' => $request->getQueryString(),
+            'body'         => $request->getBody(),
+            'files'        => $request->getFiles(),
+            'session'      => $request->getSession(),
+            'cookies'      => $request->getCookie(),
+            'ip'           => (new UserInfo())->ip(),
+            'user_agent'   => UserInfo::agent(),
+        ];
+
+        return $requests;
+    }
+
+    /**
+     * Get the Environment details.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    public function getEnvironment()
+    {    
+        $environment = [
+            'ZestVersion'  => Version::VERSION,
+            'PHPVersion'   => \PHP_VERSION,
+        ];
+
+        return $environment;
+    }
+
+    /**
+     * Get the solution.
+     *
+     * @todo
+     *
+     * @return array
+     */
+    public function getSolution()
+    {
+        //TODO
+    }
+
+    /**
      * Get the editor uri.
      *
-     * @param (string) $key editor name
+     * @param string $key editor name
      *
      * @since 3.0.0
      *
@@ -96,7 +158,7 @@ class Whoops
     /**
      * Get the editor uri.
      *
-     * @param (string) $key editor name
+     * @param string $key editor name
      *
      * @since 3.0.0
      *
@@ -110,8 +172,8 @@ class Whoops
     /**
      * Appen the editor.
      *
-     * @param (string) $key editor name
-     * @param (string) $uri valid url string pattern
+     * @param string $key editor name
+     * @param string $uri valid url string pattern
      *
      * @since 3.0.0
      *
@@ -135,7 +197,7 @@ class Whoops
      */
     public function error($code, $msg, $file, $line)
     {
-        $this->setParams($code, $msg, $file, $line, '');
+        $this->setParams($code, $msg, $file, $line, '', []);
 
         return $this->render();
     }
@@ -143,17 +205,17 @@ class Whoops
     /**
      * Set the error item to stack.
      *
-     * @param (int)    $code
-     * @param (string) $msg
-     * @param (string) $file
-     * @param (int)    $line
-     * @param (string) $trace
+     * @param int    $code
+     * @param string $msg
+     * @param string $file
+     * @param int    $line
+     * @param string $trace
      *
      * @since 3.0.0
      *
      * @return mixed
      */
-    protected function setParams($code, $msg, $file, $line, $trace)
+    protected function setParams($code, $msg, $file, $line, $trace, $traces)
     {
         return $this->stack = [
             'message'     => $msg,
@@ -161,9 +223,12 @@ class Whoops
             'line'        => $line,
             'code'        => ($code === 0) ? 404 : $code,
             'trace'       => $trace,
+            'traces'      => $traces,
             'previewCode' => '',
             'editor'      => $this->setEditor,
             'editorUri'   => $this->getEditor($this->setEditor),
+            'requests'    => $this->getRequests(),
+            'environment' => $this->getEnvironment(),
         ];
     }
 
@@ -181,7 +246,7 @@ class Whoops
         $_line = $line - 1;
         if ($_line - 5 >= 0) {
             $start = $_line - 5;
-            $end = $_line + 5;
+            $end = $_line + 15;
         } else {
             $start = $_line;
             $end = $line;
@@ -190,11 +255,11 @@ class Whoops
             if (!isset($file[$i])) {
                 break;
             }
-            $text = trim($file[$i]);
+            $text = htmlentities($file[$i]);
             if ($i === $_line) {
                 $this->stack['previewCode'] .=
                     "<span style='background:red' class='line'>".($i + 1).'</span>'.
-                    "<span style='background:red'>".$text.'</span><br>';
+                    "<span style=''>".$text.'</span><br>';
                 continue;
             }
             $this->stack['previewCode'] .=
@@ -212,12 +277,14 @@ class Whoops
      */
     public function render()
     {
+
         $this->getPreviewCode();
         $stack = $this->stack;
-        //Only for Zest Framework
         if (__config('app.show_errors') === true) {
-            $file = 'views/view.php';
-            require $file;
+            $file = __DIR__.'/views/view.php';
+            if (file_exists($file)) {
+                require $file;
+            }
         } else {
             $logger = new Logger();
             $log = date('Y-m-d').'.log';
