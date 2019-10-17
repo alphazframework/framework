@@ -15,11 +15,11 @@
 namespace Zest\Whoops;
 
 use Zest\Common\Logger\Logger;
-use Zest\http\Request;
 use Zest\Common\Version;
-use Zest\View\View;
+use Zest\http\Request;
 use Zest\Site\Site;
 use Zest\UserInfo\UserInfo;
+use Zest\View\View;
 
 class Whoops
 {
@@ -120,7 +120,7 @@ class Whoops
      * @return array
      */
     public function getEnvironment()
-    {    
+    {
         $environment = [
             'ZestVersion'  => Version::VERSION,
             'PHPVersion'   => \PHP_VERSION,
@@ -277,7 +277,6 @@ class Whoops
      */
     public function render()
     {
-
         $this->getPreviewCode();
         $stack = $this->stack;
         if (__config('app.show_errors') === true) {
