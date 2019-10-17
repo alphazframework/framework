@@ -237,72 +237,78 @@ section #tab {
                 <div class="definition">
                     <h3 class="definition-list-title">Headers</h3>
                     <dl class="definition-list">
-                        <?php if (is_array($stack['requests']['headers'])){  
-                            foreach ($stack['requests']['headers'] as $key => $value) :    
+                        <?php if (is_array($stack['requests']['headers'])) {
+    foreach ($stack['requests']['headers'] as $key => $value) :
                         ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach; } else {?> ... <?php } ?>
+                            <?php endforeach;
+} else {?> ... <?php } ?>
                     </dl>
                 </div>
                 <hr>
                 <div class="definition">
                     <h3 class="definition-list-title">Query String</h3>
                     <dl class="definition-list">
-                        <?php if (is_array($stack['requests']['query_string'])){  
-                            foreach ($stack['requests']['query_string'] as $key => $value) :    
+                        <?php if (is_array($stack['requests']['query_string'])) {
+    foreach ($stack['requests']['query_string'] as $key => $value) :
                         ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach; } else {?> ... <?php } ?>
+                            <?php endforeach;
+} else {?> ... <?php } ?>
                     </dl>
                 </div>
                 <hr>
                 <div class="definition">
                     <h3 class="definition-list-title">Body</h3>
                     <dl class="definition-list">
-                        <?php if (is_array($stack['requests']['body'])){  
-                            foreach ($stack['requests']['body'] as $key => $value) :    
+                        <?php if (is_array($stack['requests']['body'])) {
+    foreach ($stack['requests']['body'] as $key => $value) :
                         ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach; } else {?> ... <?php } ?>
+                            <?php endforeach;
+} else {?> ... <?php } ?>
                     </dl>
                 </div>
                 <hr>
                 <div class="definition">
                     <h3 class="definition-list-title">Files</h3>
                     <dl class="definition-list">
-                        <?php if (is_array($stack['requests']['files'])){  
-                            foreach ($stack['requests']['files'] as $key => $value) :    
+                        <?php if (is_array($stack['requests']['files'])) {
+    foreach ($stack['requests']['files'] as $key => $value) :
                         ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach; } else {?> ... <?php } ?>
+                            <?php endforeach;
+} else {?> ... <?php } ?>
                     </dl>
                 </div>
                 <hr>
                 <div class="definition">
                     <h3 class="definition-list-title">Sessions</h3>
                     <dl class="definition-list">
-                        <?php if (is_array($stack['requests']['session'])){  
-                            foreach ($stack['requests']['session'] as $key => $value) :    
+                        <?php if (is_array($stack['requests']['session'])) {
+    foreach ($stack['requests']['session'] as $key => $value) :
                         ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach; } else {?> ... <?php } ?>
+                            <?php endforeach;
+} else {?> ... <?php } ?>
                     </dl>
                 </div>
                 <hr>
                 <div class="definition">
                     <h3 class="definition-list-title">Cookies</h3>
                     <dl class="definition-list">
-                        <?php if (is_array($stack['requests']['cookies'])){  
-                            foreach ($stack['requests']['cookies'] as $key => $value) :    
+                        <?php if (is_array($stack['requests']['cookies'])) {
+    foreach ($stack['requests']['cookies'] as $key => $value) :
                         ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach; } else {?> ... <?php } ?>
+                            <?php endforeach;
+} else {?> ... <?php } ?>
                     </dl>
                 </div>
 			</div>
@@ -331,8 +337,8 @@ section #tab {
 			<div id="traces" class="tabcontent">
 			  <div class="definition">
 			  	<h3 class="definition-list-title">Traces</h3>
-			  		<?php if (is_array( $this->stack['traces'])) { 
-                foreach ($this->stack['traces'] as $key => $value):
+			  		<?php if (is_array($this->stack['traces'])) {
+    foreach ($this->stack['traces'] as $key => $value):
                   foreach ($value as $k => $v):
                     if (!is_array($k) && !is_array($v)): ?>
                     <dl class="definition-list">
@@ -340,9 +346,10 @@ section #tab {
                       <dd class="definition-value"><?= $v ?> </dd>
                       </dl>
                     <?php endif;
-                       endforeach;?>
+    endforeach; ?>
                        <hr>
-                 <?php endforeach; } ?>
+                 <?php endforeach;
+} ?>
 			  	</dl>
 			  </div>
 			</div>
