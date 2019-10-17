@@ -196,7 +196,7 @@ interface Arrays
      * Changes the case of all keys in an array.
      *
      * @param array  $array The array to work on.
-     * @param string $case  Either CASE_UPPER or CASE_LOWER (default).
+     * @param int    $case  Either CASE_UPPER or CASE_LOWER (default).
      *
      * @since 3.0.0
      *
@@ -224,7 +224,7 @@ interface Arrays
      *
      * @since 3.0.0
      *
-     * @return array
+     * @return mixed
      */
     public static function removeDuplicates(array $array, $key);
 
