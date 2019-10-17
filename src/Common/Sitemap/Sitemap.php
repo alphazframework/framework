@@ -124,6 +124,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
             $fileH->write(self::START.PHP_EOL);
             $fileH->write($raw);
             $fileH->write(PHP_EOL.self::END);
+            $fileH->close();
         } elseif ($mode === 'append') {
             $fileH = new SitemapWriter($this->file, 'readOnly');
             $sitemapData = $fileH->read();
@@ -132,8 +133,8 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
             $sitemapData = $sitemapData.$raw;
             $fileH->write($sitemapData);
             $fileH->write(PHP_EOL.self::END);
+            $fileH->close();
         }
-        $fileH->close();
     }
 
     /**
