@@ -2,7 +2,6 @@
 [![StyleCI](https://github.styleci.io/repos/135673638/shield?branch=master)](https://github.styleci.io/repos/135673638)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zestframework/Zest_Framework/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/zestframework/Zest_Framework/?branch=master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://zestframework.xyz/contribute/index)
-[![codecov](https://codecov.io/gh/zestframework/Zest_Framework/branch/master/graph/badge.svg)](https://codecov.io/gh/zestframework/Zest_Framework)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/zestframework/Zest_Framework/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 [![Latest Stable Version](https://poser.pugx.org/softhub99/zest_framework/v/stable)](https://packagist.org/packages/softhub99/zest_framework)
 [![Latest Unstable Version](https://poser.pugx.org/softhub99/zest_framework/v/unstable)](https://packagist.org/packages/softhub99/zest_framework)
