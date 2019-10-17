@@ -200,7 +200,9 @@ class Files
     {
         foreach ($files as $file => $value) {
             if (file_exists($source.$value)) {
-                @chown($file, $user);
+                if (@chown($file, $user) === false) {
+                    throw new \RuntimeException("The ownership of {$file} can not change", 500);
+                }
             }
         }
     }
