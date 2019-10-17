@@ -68,7 +68,7 @@ class Pagination
      *
      * @since 3.0.0
      *
-     * @var int
+     * @var string
      */
     private $ulCLass;
 
@@ -77,7 +77,7 @@ class Pagination
      *
      * @since 3.0.0
      *
-     * @var int
+     * @var string
      */
     private $liClass;
 
@@ -86,7 +86,7 @@ class Pagination
      *
      * @since 3.0.0
      *
-     * @var int
+     * @var string
      */
     private $aClass;
 
