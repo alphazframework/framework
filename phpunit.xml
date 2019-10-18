@@ -13,7 +13,7 @@
     <php>
         <const name="PHPUNIT_RUNNING" value="true"/>
     </php>
-	<logging>
+    <logging>
         <log type="coverage-clover" target="clover.xml"/>
     </logging>
 </phpunit>

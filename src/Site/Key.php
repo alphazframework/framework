@@ -3,7 +3,7 @@
 /**
  * This file is part of the Zest Framework.
  *
- * @author   Muhammad Umer Farooq <lablnet01@gmail.com>
+ * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
  * @link https://lablnet.github.io/profile/
