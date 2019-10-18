@@ -168,7 +168,7 @@ class MySqlDb
      *
      * @param array array();
      *           'table' Names of table
-     * 			 'db_name' => Database name
+     *              'db_name' => Database name
      *           'params' Names of columns which you want to select
      *           'wheres' Specify a selection criteria to get required records
      *            'debug' If on var_dump sql query
@@ -195,7 +195,7 @@ class MySqlDb
      *
      * @param $params array array();
      *           'table' Names of table
-     *			 'db_name' => Database name
+     *           'db_name' => Database name
      *           'wheres' Specify a selection criteria to get required records
      *
      * @return bool
@@ -217,9 +217,9 @@ class MySqlDb
      *
      * @param $params array();
      *           'table' Names of table
-     *			 'db_name' => Database name
+     *             'db_name' => Database name
      *           'columns' Names of columnswant to select
-     *           'wheres' Specify a selection 		 *
+     *           'wheres' Specify a selection          *
      *
      * @return bool
      */

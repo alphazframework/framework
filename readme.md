@@ -11,7 +11,7 @@
 
 # Zest PHP Framework
 
-**Note:** This repository contains the core files of the Zest framework If you want to build an application using Zest, 
+**Note:** This repository contains the core files of the Zest framework. If you want to build an application using Zest,
 visit the main [Zest repository](https://github.com/Softhub99/Zest).
 
 Who is Zest For?
@@ -19,4 +19,3 @@ Zest is for PHP developers who want to build apps instead of coding common thing
 
 The purpose of Zest Framework
 As for PHP, there are many PHP frameworks available nowadays, so the question is raised as to why we/people should use ZestFramework. The main purpose of Zest framework is to provide a very lightweight framework without any external dependencies except core and autoloader.
-

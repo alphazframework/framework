@@ -1,6 +1,6 @@
-# How to report a issue on GitHub
+# How to report an issue on GitHub
 ## Requirements:
-To report a issue on Github following conditions must be followed:
+To report an issue on Github following conditions must be followed:
 
 * Zest Framework version
 * PHP version
@@ -14,11 +14,11 @@ To report a issue on Github following conditions must be followed:
 * Search for issue already or not
 ### After submitting a bug report ###
 
-* Wait until core team reply you.
-* Do what core-team says, don't argue with core team.
+* Wait until the core team replies to you.
+* Do what core team says. Don't argue with core team.
 
-# How to contribute on GitHub 
-We always welcome our contribute if they follow our guideline 
+# How to contribute on GitHub
+We always welcome contributions, as long as they follow our guidelines.
 * You never allow add third-party composer dependencies or classes.
 * You allow to improve existing features or add new features.
 * You allow update our zest framework code or core code.
@@ -26,4 +26,4 @@ We always welcome our contribute if they follow our guideline
 * Zest => https://github.com/Softhub99/Zest
 * Core => https://github.com/Softhub99/Zest_Framework
 
-**[NOTE: The conditions above applied all member expect core]**
+**[NOTE: The conditions above apply to all members except core]**
