@@ -76,7 +76,6 @@ class Cache implements CacheContract
         switch ($adapter) {
             case 'apc':
                 $container->registerInstance([APC::class, 'cache'], new APC());
-                $adapter = '\Zest\Cache\Adapter\APC';
                 break;
             case 'apcu':
                 $container->registerInstance([APCU::class, 'cache'], new APCU());
