@@ -30,7 +30,7 @@ abstract class AbstractAdapter
     /**
      * __construct.
      *
-     * @param (int) $ttl time to live
+     * @param int $ttl time to live
      *
      * @since 3.0.0
      */
@@ -42,11 +42,11 @@ abstract class AbstractAdapter
     /**
      * Set the ttl.
      *
-     * @param (int) $ttl time to live
+     * @param int $ttl time to live
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function setTtl($ttl)
     {
@@ -70,24 +70,24 @@ abstract class AbstractAdapter
     /**
      * Get the time-to-live for an item in cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return int
+     * @return int|false
      */
     abstract public function getItemTtl($key);
 
     /**
      * Save an item to cache.
      *
-     * @param (string) $key
-     * @param (mixed)  $value
-     * @param (int)    $ttl
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $ttl
      *
      * @since 3.0.0
      *
-     * @return void
+     * @return self
      */
     abstract public function saveItem($key, $value, $ttl = null);
 
@@ -120,7 +120,7 @@ abstract class AbstractAdapter
      *
      * @since 3.0.0
      *
-     * @return void
+     * @return self
      */
     abstract public function deleteItem($key);
 
@@ -129,7 +129,7 @@ abstract class AbstractAdapter
      *
      * @since 3.0.0
      *
-     * @return void
+     * @return self
      */
     abstract public function destroy();
 }

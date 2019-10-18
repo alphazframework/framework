@@ -28,13 +28,25 @@ class Memcached extends AbstractAdapter
     private $memcached;
 
     /**
+     * Version.
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    private $version;
+
+    /**
      * __construct.
      *
-     * @param (int) $ttl time to live
+     * @param string $host   Host of memcache
+     * @param int    $port   Port of memcache
+     * @param int    $weight Weight of memcache
+     * @param int    $ttl    Time to live
      *
      * @since 3.0.0
      */
-    public function __construct($ttl = 0)
+    public function __construct($host, $port, $weight, $ttl = 0)
     {
         parent::__construct($ttl);
 
@@ -42,9 +54,6 @@ class Memcached extends AbstractAdapter
             throw new \Exception('Memcached Class not found', 500);
         }
         $this->memcached = new \Memcached();
-        $host = __config()->cache->memcached->host;
-        $port = __config()->cache->memcached->port;
-        $weight = __config()->cache->memcached->weight;
         $this->addServer($host, $port, $weight);
 
         $version = $this->memcached->getVersion();
@@ -68,13 +77,13 @@ class Memcached extends AbstractAdapter
     /**
      * Add server to Memcached.
      *
-     * @param (string) $host
-     *                       (int) $port
-     *                       (int) $weight
+     * @param string $host   Host of memcache
+     * @param int    $port   Port of memcache
+     * @param int    $weight Weight of memcache
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function addServer($host, $port = 11211, $weight = 1)
     {
@@ -86,11 +95,11 @@ class Memcached extends AbstractAdapter
     /**
      * Add servers to Memcached.
      *
-     * @param (array) $servers
+     * @param array $servers
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function addServers(array $servers)
     {
@@ -114,11 +123,11 @@ class Memcached extends AbstractAdapter
     /**
      * Get the time-to-live for an item in cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return mixed
+     * @return int|false
      */
     public function getItemTtl($key)
     {
@@ -136,13 +145,13 @@ class Memcached extends AbstractAdapter
     /**
      * Save an item to cache.
      *
-     * @param (string) $key
-     * @param (mixed)  $value
-     * @param (int)    $ttl
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $ttl
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function saveItem($key, $value, $ttl = null)
     {
@@ -160,7 +169,7 @@ class Memcached extends AbstractAdapter
     /**
      * Get value form the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -182,7 +191,7 @@ class Memcached extends AbstractAdapter
     /**
      * Determine if cache exists.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -196,11 +205,11 @@ class Memcached extends AbstractAdapter
     /**
      * Delete the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function deleteItem($key)
     {
@@ -226,7 +235,7 @@ class Memcached extends AbstractAdapter
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function destroy()
     {

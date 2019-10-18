@@ -41,18 +41,7 @@ interface Cache
      *
      * @since 3.0.0
      *
-     * @return object
-     */
-    public function setAdapter($adapter);
-
-    /**
-     * Set the valid adapter.
-     *
-     * @param (string) $adapter
-     *
-     * @since 3.0.0
-     *
-     * @return object
+     * @return self
      */
     public function setProperAdapter($adapter);
 
@@ -72,7 +61,7 @@ interface Cache
      *
      * @since 3.0.0
      *
-     * @return int
+     * @return int|false
      */
     public function getItemTtl($key);
 
@@ -109,7 +98,7 @@ interface Cache
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function set($key, $value, $ttl = null);
 
@@ -120,7 +109,7 @@ interface Cache
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function setMultiple($cache);
 
@@ -142,7 +131,7 @@ interface Cache
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function delete($key);
 
@@ -153,7 +142,7 @@ interface Cache
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function deleteMultiple($keys);
 
@@ -162,7 +151,7 @@ interface Cache
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function clear();
 }

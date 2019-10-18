@@ -30,11 +30,13 @@ class Redis extends AbstractAdapter
     /**
      * __construct.
      *
-     * @param (int) $ttl time to live
+     * @param string $host   Host of redis
+     * @param int    $port   Port of redis
+     * @param int    $ttl    Time to live
      *
      * @since 3.0.0
      */
-    public function __construct($ttl = 0)
+    public function __construct($host, $port, $ttl = 0)
     {
         parent::__construct($ttl);
 
@@ -42,9 +44,6 @@ class Redis extends AbstractAdapter
             throw new \Exception('Redis Class not found', 500);
         }
         $this->redis = new \Redis();
-        $host = __config()->cache->redis->host;
-        $port = __config()->cache->redis->port;
-
         if (!$this->redis->connect($host, $port)) {
             throw new \Exception('Error: Unable to connect to the redis server.', 500);
         }
@@ -77,11 +76,11 @@ class Redis extends AbstractAdapter
     /**
      * Get the time-to-live for an item in cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return mixed
+     * @return int|false
      */
     public function getItemTtl($key)
     {
@@ -103,13 +102,13 @@ class Redis extends AbstractAdapter
     /**
      * Save an item to cache.
      *
-     * @param (string) $key
-     * @param (mixed)  $value
-     * @param (int)    $ttl
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $ttl
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function saveItem($key, $value, $ttl = null)
     {
@@ -130,7 +129,7 @@ class Redis extends AbstractAdapter
     /**
      * Get value form the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -156,7 +155,7 @@ class Redis extends AbstractAdapter
     /**
      * Determine if cache exists.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -170,11 +169,11 @@ class Redis extends AbstractAdapter
     /**
      * Delete the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function deleteItem($key)
     {
@@ -200,7 +199,7 @@ class Redis extends AbstractAdapter
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function destroy()
     {

@@ -17,6 +17,14 @@
 namespace Zest\Cache;
 
 use Zest\Contracts\Cache\Cache as CacheContract;
+use Zest\Container\Container;
+use Zest\Cache\Adapter\APC;
+use Zest\Cache\Adapter\APCU;
+use Zest\Cache\Adapter\FileCache;
+use Zest\Cache\Adapter\Memcache;
+use Zest\Cache\Adapter\Memcached;
+use Zest\Cache\Adapter\Redis;
+use Zest\Cache\Adapter\SessionCache;
 
 class Cache implements CacheContract
 {
@@ -34,9 +42,10 @@ class Cache implements CacheContract
      *
      * @since 3.0.0
      */
-    public function __construct()
+    public function __construct($adapter = null)
     {
-        $this->setProperAdapter(__config('cache.driver', 'file'));
+        $adapter = $adapter ?? __config('cache.driver', 'file');
+        $this->setProperAdapter($adapter);
     }
 
     /**
@@ -54,59 +63,43 @@ class Cache implements CacheContract
     /**
      * Set the valid adapter.
      *
-     * @param (string) $adapter
+     * @param string $adapter
      *
      * @since 3.0.0
      *
-     * @return object
-     */
-    public function setAdapter($adapter)
-    {
-        $this->setProperAdapter($adapter);
-
-        return $this;
-    }
-
-    /**
-     * Set the valid adapter.
-     *
-     * @param (string) $adapter
-     *
-     * @since 3.0.0
-     *
-     * @return object
+     * @return self
      */
     public function setProperAdapter($adapter)
     {
+        $container = new Container();
+
         switch ($adapter) {
             case 'apc':
+                $container->registerInstance([APC::class, 'cache'], new APC());
                 $adapter = '\Zest\Cache\Adapter\APC';
                 break;
             case 'apcu':
-                $adapter = '\Zest\Cache\Adapter\APCU';
-                break;
-            case 'file':
-                $adapter = '\Zest\Cache\Adapter\FileCache';
+                $container->registerInstance([APCU::class, 'cache'], new APCU());
                 break;
             case 'memcache':
-                $adapter = '\Zest\Cache\Adapter\Memcache';
+                $container->registerInstance([Memcache::class, 'cache'], new Memcache(__config('memcachecache.host'), __config('memcachecache.port')));
                 break;
             case 'memcached':
-                $adapter = '\Zest\Cache\Adapter\Memcached';
+                $container->registerInstance([Memcached::class, 'cache'], new Memcached(__config('memcachedcache.host'), __config('memcachedcache.host'), __config('memcachedcache.weight')));
                 break;
             case 'redis':
-                $adapter = '\Zest\Cache\Adapter\Redis';
+                $container->registerInstance([Redis::class, 'cache'], new Redis(__config('rediscache.host'), __config('rediscache.port')));
                 break;
             case 'session':
-                $adapter = '\Zest\Cache\Adapter\SessionCache';
+                $container->registerInstance([SessionCache::class, 'cache'], new SessionCache());
                 break;
 
             default:
-                $adapter = '\Zest\Cache\Adapter\FileCache';
+                $container->registerInstance([FileCache::class, 'cache'], new FileCache(__cache_path()));
                 break;
         }
 
-        $this->adapter = new $adapter();
+        $this->adapter = $container->get('cache');
 
         return $this;
     }
@@ -126,11 +119,11 @@ class Cache implements CacheContract
     /**
      * Get item ttl.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return int
+     * @return int|false
      */
     public function getItemTtl($key)
     {
@@ -140,8 +133,8 @@ class Cache implements CacheContract
     /**
      * Get the value from cache.
      *
-     * @param (mixed) $key
-     * @param (mixed) $default
+     * @param mixed $key
+     * @param mixed $default
      *
      * @since 3.0.0
      *
@@ -157,8 +150,8 @@ class Cache implements CacheContract
     /**
      * Get the multiple values from cache.
      *
-     * @param (array) $keys
-     * @param (mixed) $default
+     * @param array $keys
+     * @param mixed $default
      *
      * @since 3.0.0
      *
@@ -177,13 +170,13 @@ class Cache implements CacheContract
     /**
      * Save item to cache.
      *
-     * @param (mixed) $key   key for cache
-     * @param (mixed) $value value to be cached
-     * @param (int)   $ttl   time to live for cache
+     * @param mixed $key   key for cache
+     * @param mixed $value value to be cached
+     * @param int   $ttl   time to live for cache
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function set($key, $value, $ttl = null)
     {
@@ -195,11 +188,11 @@ class Cache implements CacheContract
     /**
      * Save multiple items to cache.
      *
-     * @param (array) $cache [key=>keyVal,value=> val,ttl=>ttl]
+     * @param array $cache [key=>keyVal,value=> val,ttl=>ttl]
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function setMultiple($cache)
     {
@@ -213,7 +206,7 @@ class Cache implements CacheContract
     /**
      * Determine if cache exixts.
      *
-     * @param (mixed) $key key for cache
+     * @param mixed $key key for cache
      *
      * @since 3.0.0
      *
@@ -227,11 +220,11 @@ class Cache implements CacheContract
     /**
      * Delete item form cache.
      *
-     * @param (mixed) $key key for cache
+     * @param mixed $key key for cache
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function delete($key)
     {
@@ -243,11 +236,11 @@ class Cache implements CacheContract
     /**
      * Delete multiples items form cache.
      *
-     * @param (array) $keys
+     * @param array $keys
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function deleteMultiple($keys)
     {
@@ -263,7 +256,7 @@ class Cache implements CacheContract
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function clear()
     {

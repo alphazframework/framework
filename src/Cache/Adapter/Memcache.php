@@ -30,11 +30,13 @@ class Memcache extends AbstractAdapter
     /**
      * __construct.
      *
-     * @param (int) $ttl time to live
+     * @param string $host Host of memcache
+     * @param int    $port Port of memcache
+     * @param int    $ttl  Time to live
      *
      * @since 3.0.0
      */
-    public function __construct($ttl = 0, $host = 'localhost', $port = 255)
+    public function __construct($host, $port, $ttl = 0)
     {
         parent::__construct($ttl);
 
@@ -42,9 +44,6 @@ class Memcache extends AbstractAdapter
             throw new \Exception('Memcache Class not found', 500);
         }
         $this->memcache = new \Memcache();
-        $host = __config()->cache->memcache->host;
-        $port = __config()->cache->memcache->port;
-
         if (!$this->memcache->connect($host, $port)) {
             throw new \Exception('Error: Unable to connect to the memcache server.', 500);
         }
@@ -77,11 +76,11 @@ class Memcache extends AbstractAdapter
     /**
      * Get the time-to-live for an item in cache.
      *
-     * @param (string) $key
+     * @param sstring $key
      *
      * @since 3.0.0
      *
-     * @return mixed
+     * @return int|false
      */
     public function getItemTtl($key)
     {
@@ -99,13 +98,13 @@ class Memcache extends AbstractAdapter
     /**
      * Save an item to cache.
      *
-     * @param (string) $key
-     * @param (mixed)  $value
-     * @param (int)    $ttl
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $ttl
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function saveItem($key, $value, $ttl = null)
     {
@@ -123,7 +122,7 @@ class Memcache extends AbstractAdapter
     /**
      * Get value form the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -145,7 +144,7 @@ class Memcache extends AbstractAdapter
     /**
      * Determine if cache exists.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -159,11 +158,11 @@ class Memcache extends AbstractAdapter
     /**
      * Delete the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function deleteItem($key)
     {
@@ -189,7 +188,7 @@ class Memcache extends AbstractAdapter
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function destroy()
     {

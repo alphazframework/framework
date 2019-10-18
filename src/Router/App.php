@@ -31,7 +31,7 @@ class App extends Router
     public function run()
     {
         $router = new Router();
-        $cache = new Cache();
+        $cache = new Cache('file');
         if (file_exists('../Routes/Routes.php')) {
             $routeFile = '../Routes/Routes.php';
         } elseif (file_exists('Routes/Routes.php')) {
@@ -40,7 +40,7 @@ class App extends Router
             throw new \Exception('Error while loading Route.php file', 500);
         }
         if (__config('app.router_cache') === true) {
-            if (!$cache->setAdapter('file')->has('router')) {
+            if (!$cache->has('router')) {
                 require_once $routeFile;
                 $router->cacheRouters();
                 $router->dispatch(new Request());

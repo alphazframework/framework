@@ -22,29 +22,40 @@ use Zest\Files\Files;
 class FileCache extends AbstractAdapter
 {
     /**
+     * Path of cache directory.
+     *
+     * @since 3.0.0
+     *
+     * @var string
+     */
+    private $path = '';
+
+    /**
      * __construct.
      *
-     * @param (int) $ttl time to live
+     * @param string $path Cache path
+     * @param int    $ttl time to live
      *
      * @since 3.0.0
      */
-    public function __construct($ttl = 0)
+    public function __construct($path, $ttl = 0)
     {
+        $this->path = $path;
         parent::__construct($ttl);
     }
 
     /**
      * Get the time-to-live for an item in cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return mixed
+     * @return int|false
      */
     public function getItemTtl($key)
     {
-        $cacheFile = __cache_path().md5($key);
+        $cacheFile = $this->path.md5($key);
         if (file_exists($cacheFile)) {
             $fileHandling = new FileHandling();
             $data = $fileHandling->open($cacheFile, 'readOnly')->read($cacheFile);
@@ -62,18 +73,18 @@ class FileCache extends AbstractAdapter
     /**
      * Save an item to cache.
      *
-     * @param (string) $key
-     * @param (mixed)  $value
-     * @param (int)    $ttl
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $ttl
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function saveItem($key, $value, $ttl = null)
     {
         if (!$this->hasItem($key)) {
-            $cacheFile = __cache_path().md5($key);
+            $cacheFile = $this->path.md5($key);
             $fileHandling = new FileHandling();
             $fileHandling->open($cacheFile, 'writeAppend')->write(json_encode([
                 'start' => time(),
@@ -89,7 +100,7 @@ class FileCache extends AbstractAdapter
     /**
      * Get value form the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -97,7 +108,7 @@ class FileCache extends AbstractAdapter
      */
     public function getItem($key)
     {
-        $cacheFile = __cache_path().md5($key);
+        $cacheFile = $this->path.md5($key);
         if (file_exists($cacheFile)) {
             $fileHandling = new FileHandling();
             $data = $fileHandling->open($cacheFile, 'readOnly')->read($cacheFile);
@@ -115,7 +126,7 @@ class FileCache extends AbstractAdapter
     /**
      * Determine if cache exists.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -129,15 +140,15 @@ class FileCache extends AbstractAdapter
     /**
      * Delete the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function deleteItem($key)
     {
-        $cacheFile = __cache_path().md5($key);
+        $cacheFile = $this->path.md5($key);
         if (file_exists($cacheFile)) {
             unlink($cacheFile);
         }
@@ -150,11 +161,11 @@ class FileCache extends AbstractAdapter
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function destroy()
     {
-        $cacheDir = __cache_path();
+        $cacheDir = $this->path;
         if (is_dir($cacheDir)) {
             (new Files())->deleteDir($cacheDir);
         }

@@ -21,7 +21,7 @@ class SessionCache extends AbstractAdapter
     /**
      * __construct.
      *
-     * @param (int) $ttl time to live
+     * @param int $ttl time to live
      *
      * @since 3.0.0
      */
@@ -37,11 +37,11 @@ class SessionCache extends AbstractAdapter
     /**
      * Get the time-to-live for an item in cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
-     * @return mixed
+     * @return int|false
      */
     public function getItemTtl($key)
     {
@@ -60,13 +60,13 @@ class SessionCache extends AbstractAdapter
     /**
      * Save an item to cache.
      *
-     * @param (string) $key
-     * @param (mixed)  $value
-     * @param (int)    $ttl
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $ttl
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function saveItem($key, $value, $ttl = null)
     {
@@ -82,7 +82,7 @@ class SessionCache extends AbstractAdapter
     /**
      * Get value form the cache.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -105,7 +105,7 @@ class SessionCache extends AbstractAdapter
     /**
      * Determine if cache exists.
      *
-     * @param (string) $key
+     * @param string $key
      *
      * @since 3.0.0
      *
@@ -119,11 +119,11 @@ class SessionCache extends AbstractAdapter
     /**
      * Delete the cache.
      *
-     * @param (string) $key
+     * @param (tring $key
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function deleteItem($key)
     {
@@ -139,7 +139,7 @@ class SessionCache extends AbstractAdapter
      *
      * @since 3.0.0
      *
-     * @return object
+     * @return self
      */
     public function destroy()
     {
