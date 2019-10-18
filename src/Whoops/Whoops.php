@@ -66,7 +66,7 @@ class Whoops
     }
 
     /**
-     * expection handler.
+     * Exception handler.
      *
      * @since 3.0.0
      *
