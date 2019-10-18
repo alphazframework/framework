@@ -9,14 +9,12 @@
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- *
  * @since 2.0.0
  *
  * @license MIT
  */
 
 namespace Zest\Contracts\Data;
-
 
 interface Conversion
 {
@@ -80,9 +78,9 @@ interface Conversion
     /**
      * Unit conversion.
      *
-     * @param int $value   Value to be work on.
-     * @param string $base The unit which is given that to be converted.
-     * @param string $to   The unit in which it should be converted.
+     * @param int    $value Value to be work on.
+     * @param string $base  The unit which is given that to be converted.
+     * @param string $to    The unit in which it should be converted.
      *
      * @since 3.0.0
      *
