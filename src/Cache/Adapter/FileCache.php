@@ -34,7 +34,7 @@ class FileCache extends AbstractAdapter
      * __construct.
      *
      * @param string $path Cache path
-     * @param int    $ttl time to live
+     * @param int    $ttl  time to live
      *
      * @since 3.0.0
      */

@@ -16,8 +16,6 @@
 
 namespace Zest\Cache;
 
-use Zest\Contracts\Cache\Cache as CacheContract;
-use Zest\Container\Container;
 use Zest\Cache\Adapter\APC;
 use Zest\Cache\Adapter\APCU;
 use Zest\Cache\Adapter\FileCache;
@@ -25,6 +23,8 @@ use Zest\Cache\Adapter\Memcache;
 use Zest\Cache\Adapter\Memcached;
 use Zest\Cache\Adapter\Redis;
 use Zest\Cache\Adapter\SessionCache;
+use Zest\Container\Container;
+use Zest\Contracts\Cache\Cache as CacheContract;
 
 class Cache implements CacheContract
 {

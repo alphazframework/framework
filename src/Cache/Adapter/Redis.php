@@ -30,9 +30,9 @@ class Redis extends AbstractAdapter
     /**
      * __construct.
      *
-     * @param string $host   Host of redis
-     * @param int    $port   Port of redis
-     * @param int    $ttl    Time to live
+     * @param string $host Host of redis
+     * @param int    $port Port of redis
+     * @param int    $ttl  Time to live
      *
      * @since 3.0.0
      */
