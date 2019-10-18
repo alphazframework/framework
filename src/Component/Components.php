@@ -33,7 +33,7 @@ class Components
      */
     public function getAll()
     {
-        return Conversion::arrayObject(array_diff(scandir(route('com')), ['..', '.']));
+        return Conversion::arrayToObject(array_diff(scandir(route('com')), ['..', '.']));
     }
 
     /**
