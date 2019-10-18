@@ -25,7 +25,7 @@ interface Conversion
      *
      * @since 2.0.0
      *
-     * @return object
+     * @return object|false
      */
     public static function arrayToObject($array);
 
@@ -36,7 +36,7 @@ interface Conversion
      *
      * @since 2.0.0
      *
-     * @return array
+     * @return array|false
      */
     public static function objectToArray($object);
 
