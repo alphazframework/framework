@@ -14,11 +14,11 @@
  * @license MIT
  */
 
-namespace Zest\Expection;
+namespace Zest\Exception;
 
 use Zest\Whoops\Whoops;
 
-class Expection
+class Exception
 {
     /**
      * __construct.

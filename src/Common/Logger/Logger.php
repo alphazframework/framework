@@ -179,7 +179,7 @@ class Logger extends AbstractLogger
      * @oaram (string)    $message Error message
      *
      * @param (array)     $context   Contextual array
-     * @param (Expection) $exception Exception
+     * @param (Exception) $exception Exception
      *
      * @since 2.0.3
      *
