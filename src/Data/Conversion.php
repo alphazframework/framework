@@ -9,6 +9,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
+ *
  * @since 2.0.0
  *
  * @license MIT
@@ -27,7 +28,7 @@ class Conversion implements ConversionContract
      *
      * @since 2.0.0
      *
-     * @return object
+     * @return object|false
      */
     public static function arrayToObject($array)
     {
@@ -35,7 +36,7 @@ class Conversion implements ConversionContract
             $object = new \stdClass();
             foreach ($array as $key => $value) {
                 if (Arrays::isReallyArray($value)) {
-                    $object->$key = static::arrayObject($value);
+                    $object->$key = static::arrayToObject($value);
                 } else {
                     $object->$key = $value;
                 }
@@ -54,7 +55,7 @@ class Conversion implements ConversionContract
      *
      * @since 2.0.0
      *
-     * @return array
+     * @return array|false
      */
     public static function objectToArray($object)
     {
@@ -92,10 +93,10 @@ class Conversion implements ConversionContract
         $suffix = Arrays::arrayChangeCaseValue(['b', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y'], CASE_UPPER);
         $f_base = floor($base);
         if ($f_base <= 8) {
-            return round(pow(1024, $base - floor($base)), $pre).' '.$suffix[$f_base];
+            return round(pow(1024, $base - floor($base)), $pre). ' ' .$suffix[$f_base];
         }
 
-        throw new \Exception('The size exceeds limit of 1023YB', 500);
+        throw new \Exception("The size exceeds limit of 1023YB", 500);
     }
 
     /**
@@ -108,7 +109,7 @@ class Conversion implements ConversionContract
      *
      * @return mixed
      */
-    public static function viewToHumanize($n, $sep = ',')
+    public static function viewToHumanize($n, $sep = ',') 
     {
         if ($n < 0) {
             return 0;
@@ -119,7 +120,7 @@ class Conversion implements ConversionContract
         $d = $n < 1000000 ? 1000 : 1000000;
         $f = round($n / $d, 1);
 
-        return number_format($f, $f - (int) $f ? 1 : 0, '.', $sep).($d == 1000 ? 'k' : 'M');
+        return number_format($f, $f - (int) $f ? 1 : 0, '.', $sep) . ($d == 1000 ? 'k' : 'M');
     }
 
     /**
@@ -143,17 +144,17 @@ class Conversion implements ConversionContract
     /**
      * Unit conversion.
      *
-     * @param int    $value Value to be work on.
-     * @param string $base  The unit which is given that to be converted.
-     * @param string $to    The unit in which it should be converted.
+     * @param int $value   Value to be work on.
+     * @param string $base The unit which is given that to be converted.
+     * @param string $to   The unit in which it should be converted.
      *
      * @since 3.0.0
-     *
      * @todo ???
      *
      * @return mixed
      */
     public static function unit($value, $base, $to)
     {
+
     }
 }
