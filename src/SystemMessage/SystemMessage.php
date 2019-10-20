@@ -33,8 +33,8 @@ class SystemMessage implements SystemMessageContract
     /**
      * Add the system message.
      *
-     * @param $params['msg'] => message to be store
-     *        $params['type'] => alert type
+     * @param string $params['msg']  Message to be store
+     * @param string $params['type'] Alert type
      *
      * @since 1.0.0
      *
@@ -61,7 +61,7 @@ class SystemMessage implements SystemMessageContract
     /**
      * Set the type of message.
      *
-     * @param $type => alert type
+     * @param string $type Alert type
      *
      * @since 1.0.0
      *
