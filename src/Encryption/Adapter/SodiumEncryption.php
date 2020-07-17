@@ -80,8 +80,11 @@ class SodiumEncryption extends AbstractAdapter
         $nonce = mb_substr($decoded, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, '8bit');
         $ciphertext = mb_substr($decoded, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit');
 
-        $plain = sodium_crypto_secretbox_open($ciphertext,
-        $nonce, $this->key);
+        $plain = sodium_crypto_secretbox_open(
+            $ciphertext,
+            $nonce,
+            $this->key
+        );
 
         if ($plain === false) {
             throw new \Exception('The message was tampered with in transit');

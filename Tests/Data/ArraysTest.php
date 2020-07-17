@@ -32,10 +32,10 @@ class ArraysTest extends TestCase
     public function testIsMulti()
     {
         $this->assertTrue(Arrays::isMulti(['members' => [
-                'user1' => [
-                    'name' => 'Alex',
-                ],
-            ]]));
+            'user1' => [
+                'name' => 'Alex',
+            ],
+        ]]));
         $this->assertFalse(Arrays::isMulti(['name' => 'Alex']));
     }
 
@@ -84,10 +84,10 @@ class ArraysTest extends TestCase
     public function testMultiToAssoc()
     {
         $arrays = ['members' => [
-                'user' => [
-                    'name' => 'Alex',
-                ],
+            'user' => [
+                'name' => 'Alex',
             ],
+        ],
         ];
         $assoc = Arrays::multiToAssoc($arrays);
         $this->assertEquals(['name' => 'Alex'], $assoc);

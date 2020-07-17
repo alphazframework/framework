@@ -27,7 +27,7 @@ class TimeZone extends \DateTimeZone
      *
      * @return void
      */
-    public static function seteDefaultTz($tz) :void
+    public static function seteDefaultTz($tz): void
     {
         date_default_timezone_set(static::validate($tz));
     }
@@ -39,7 +39,7 @@ class TimeZone extends \DateTimeZone
      *
      * @return void
      */
-    public static function tZIdentifiers() :array
+    public static function tZIdentifiers(): array
     {
         return static::listIdentifiers();
     }
@@ -53,7 +53,7 @@ class TimeZone extends \DateTimeZone
      *
      * @return void
      */
-    public static function validate($tz) :string
+    public static function validate($tz): string
     {
         return in_array($tz, static::tZIdentifiers()) ? $tz : 'UTC';
     }

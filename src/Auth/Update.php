@@ -47,11 +47,11 @@ class Update extends Handler implements UpdateContract
         }
         if ($this->fail() !== true) {
             $fields = [
-                    'db_name' => __config()->auth->db_name,
-                    'table'   => __config()->auth->db_table,
-                    'columns' => $params,
-                    'wheres'  => ['id = '.$id],
-                ];
+                'db_name' => __config()->auth->db_name,
+                'table'   => __config()->auth->db_table,
+                'columns' => $params,
+                'wheres'  => ['id = '.$id],
+            ];
             $db = new DB();
             $db->db()->update($fields);
             $db->db()->close();
@@ -83,11 +83,11 @@ class Update extends Handler implements UpdateContract
             $password_hash = Hash::make($password);
             $params = ['password' => $password_hash];
             $fields = [
-                    'db_name' => __config()->auth->db_name,
-                    'table'   => __config()->auth->db_table,
-                    'columns' => $params,
-                    'wheres'  => ['id = '.$id],
-                ];
+                'db_name' => __config()->auth->db_name,
+                'table'   => __config()->auth->db_table,
+                'columns' => $params,
+                'wheres'  => ['id = '.$id],
+            ];
             $db = new DB();
             $db->db()->update($fields);
             $db->db()->close();

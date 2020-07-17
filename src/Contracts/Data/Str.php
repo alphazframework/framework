@@ -28,7 +28,7 @@ interface Str
      *
      * @return string
      */
-    public static function reverse(string $str, $encoding = null) :string;
+    public static function reverse(string $str, $encoding = null): string;
 
     /**
      * Concat the strings.

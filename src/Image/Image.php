@@ -118,8 +118,9 @@ class Image
             $img = imagejpeg($image_c);
             if (isset($params['save']) and $params['save'] === true) {
                 $this->imageSave(
-                ['image'     => $image_c,
-                    'target' => $params['target'], ]);
+                    ['image'     => $image_c,
+                        'target' => $params['target'], ]
+                );
             }
             imagedestroy($image_c);
 
@@ -158,11 +159,12 @@ class Image
             imagefilter($image, IMG_FILTER_BRIGHTNESS, $params['brightness']);
             $img = imagejpeg($image);
             if (isset($params['save']) and $params['save'] === true) {
-                $this->imageSave([
-                    'image'  => $image,
-                    'target' => $params['target'],
-                ]
-            );
+                $this->imageSave(
+                    [
+                        'image'  => $image,
+                        'target' => $params['target'],
+                    ]
+                );
             }
             imagedestroy($image);
 
@@ -373,15 +375,15 @@ class Image
             }
             if ($params['effect'] === 'light') {
                 $matrix = [[
-                                2, 0, 1,
-                            ],
-                            [
-                                0, -1, 0,
-                            ],
-                            [
-                                0, 0, -1,
-                            ],
-                        ];
+                    2, 0, 1,
+                ],
+                    [
+                        0, -1, 0,
+                    ],
+                    [
+                        0, 0, -1,
+                    ],
+                ];
                 imageconvolution($image, $matrix, 1, 127);
             }
             if ($params['effect'] === 'bubbles') {

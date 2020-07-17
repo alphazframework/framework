@@ -45,7 +45,7 @@ class Handler
             'subnet'         => __printl('subnet:validation'),
             'validate'       => __printl('validate:validation'),
             'unique'         => __printl('unique:validation'),
-            ];
+        ];
     }
 
     /**

@@ -55,7 +55,7 @@ class SitemapWriter implements SitemapWriterContracts
      *
      * @return void
      */
-    public function write($data):void
+    public function write($data): void
     {
         if (null !== $this->file) {
             $this->file->write($data);
@@ -69,7 +69,7 @@ class SitemapWriter implements SitemapWriterContracts
      *
      * @return xml
      */
-    public function read():string
+    public function read(): string
     {
         if (null !== $this->file) {
             return $this->file->read();
@@ -83,7 +83,7 @@ class SitemapWriter implements SitemapWriterContracts
      *
      * @return void
      */
-    public function close():void
+    public function close(): void
     {
         $this->file->close();
         unset($this->file);

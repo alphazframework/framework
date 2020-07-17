@@ -30,5 +30,5 @@ interface Sitemap
      *
      * @return void
      */
-    public function addItem($url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly'):void;
+    public function addItem($url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly'): void;
 }

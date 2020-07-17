@@ -30,7 +30,7 @@ class Key implements keyContract
      *
      * @return string
      */
-    public static function encode(string $key) :string
+    public static function encode(string $key): string
     {
         return bin2hex($key);
     }
@@ -44,7 +44,7 @@ class Key implements keyContract
      *
      * @return string
      */
-    public static function decode(string $key) :string
+    public static function decode(string $key): string
     {
         return hex2bin($key);
     }

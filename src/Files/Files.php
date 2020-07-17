@@ -64,8 +64,8 @@ class Files
     public function __construct()
     {
         $files = Conversion::objectToArray(__config('files'));
-        $this->mineTypes = $files['mine']['type'] ?? "";
-        $this->types = $files['types'] ?? "";
+        $this->mineTypes = $files['mine']['type'] ?? '';
+        $this->types = $files['types'] ?? '';
     }
 
     /**
@@ -533,9 +533,9 @@ class Files
             }
         } else {
             return [
-                    'status'  => 'error',
-                    'code'    => 'extension',
-                    'message' => sprintf(printl('z:files:error:extension'), $ext),
+                'status'  => 'error',
+                'code'    => 'extension',
+                'message' => sprintf(printl('z:files:error:extension'), $ext),
             ];
         }
     }
@@ -616,9 +616,9 @@ class Files
                 }
             } else {
                 $status[$i] = [
-                        'status'  => 'error',
-                        'code'    => 'extension',
-                        'message' => sprintf(printl('z:files:error:extension'), $ext),
+                    'status'  => 'error',
+                    'code'    => 'extension',
+                    'message' => sprintf(printl('z:files:error:extension'), $ext),
                 ];
             }
         }

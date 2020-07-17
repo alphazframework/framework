@@ -27,7 +27,7 @@ interface AbstractSitemap
      *
      * @return bool
      */
-    public function has($file):bool;
+    public function has($file): bool;
 
     /**
      * Delete the sitemap.
@@ -38,5 +38,5 @@ interface AbstractSitemap
      *
      * @return object
      */
-    public function delete($file):self;
+    public function delete($file): self;
 }
