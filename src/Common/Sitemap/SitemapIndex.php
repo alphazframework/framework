@@ -78,7 +78,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
      *
      * @return bool
      */
-    private function create($mode, $url, $lastMod = null):void
+    private function create($mode, $url, $lastMod = null): void
     {
         $lastMod = $lastMod ?: $this->lastMod;
         $raw = str_replace([':url', ':lastmod'], [$url, $lastMod], $this->raw);
@@ -109,7 +109,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
      *
      * @return void
      */
-    public function addItem($url, $lastMod = null):void
+    public function addItem($url, $lastMod = null): void
     {
         if ($this->has($this->file)) {
             $this->appendItem($url, $lastMod);
@@ -128,7 +128,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
      *
      * @return void
      */
-    private function appendItem($url, $lastMod):void
+    private function appendItem($url, $lastMod): void
     {
         $this->create('append', $url, $lastMod);
     }

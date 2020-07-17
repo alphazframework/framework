@@ -29,7 +29,7 @@ class Str implements StrContract
      *
      * @return string
      */
-    private static function encoding($encoding = null) :string
+    private static function encoding($encoding = null): string
     {
         return $encoding ?: mb_internal_encoding();
     }
@@ -44,7 +44,7 @@ class Str implements StrContract
      *
      * @return string
      */
-    public static function reverse(string $str, $encoding = null) :string
+    public static function reverse(string $str, $encoding = null): string
     {
         $newStr = '';
         $dataArr = (array) $str;

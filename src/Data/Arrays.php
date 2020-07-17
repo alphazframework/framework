@@ -43,7 +43,7 @@ class Arrays implements ArraysContract
      *
      * @return bool
      */
-    public static function isSequential($array) :bool
+    public static function isSequential($array): bool
     {
         return is_array($array) && !self::isAssoc($array) && !self::isMulti($array);
     }
@@ -57,7 +57,7 @@ class Arrays implements ArraysContract
      *
      * @return bool
      */
-    public static function isAssoc(array $array) :bool
+    public static function isAssoc(array $array): bool
     {
         return array_keys($array) !== range(0, count($array) - 1) && !self::isMulti($array);
     }
@@ -71,7 +71,7 @@ class Arrays implements ArraysContract
      *
      * @return bool
      */
-    public static function isMulti(array $array) :bool
+    public static function isMulti(array $array): bool
     {
         sort($array, SORT_REGULAR);
 

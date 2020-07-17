@@ -19,7 +19,8 @@ namespace Zest\http;
 abstract class HTTP extends Headers
 {
     // /*Response*/
-    use StatusCode,ValidProtocolVersions;
+    use StatusCode;
+    use ValidProtocolVersions;
 
     /*Request*/
     /**

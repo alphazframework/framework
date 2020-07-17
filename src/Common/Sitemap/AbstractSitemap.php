@@ -56,7 +56,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      *
      * @return bool
      */
-    public function has($file):bool
+    public function has($file): bool
     {
         return file_exists($file);
     }
@@ -70,7 +70,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      *
      * @return object
      */
-    public function delete($file):AbstractSitemapContracts
+    public function delete($file): AbstractSitemapContracts
     {
         if ($this->has(__public_path().$file.$this->ext)) {
             unlink(__public_path().$file.$this->ext);

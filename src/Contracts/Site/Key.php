@@ -27,7 +27,7 @@ interface Key
      *
      * @return string
      */
-    public static function encode(string $key) :string;
+    public static function encode(string $key): string;
 
     /**
      * Converts a hexadecimal key into its binary representation.
@@ -38,7 +38,7 @@ interface Key
      *
      * @return string
      */
-    public static function decode(string $key) :string;
+    public static function decode(string $key): string;
 
     /**
      * Generates a key.
@@ -60,5 +60,5 @@ interface Key
      *
      * @return string
      */
-    public static function generateEncode(int $length = 32) :string;
+    public static function generateEncode(int $length = 32): string;
 }

@@ -180,7 +180,7 @@ class Whoops
      *
      * @return void
      */
-    public function appendEditor($key, $uri) :self
+    public function appendEditor($key, $uri): self
     {
         $arr = [$key => $uri];
         $merge = array_merge($arr, $this->editors);

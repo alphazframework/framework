@@ -112,7 +112,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
      *
      * @return bool
      */
-    private function create($mode, $url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly'):void
+    private function create($mode, $url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly'): void
     {
         [$lastMod, $priority, $changeFreq] = [$lastMod ?: $this->lastMod, $priority ?: $this->priority, $changeFreq ?: $this->changeFreq];
         if (!in_array($changeFreq, $this->validFrequencies, true)) {
@@ -149,7 +149,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
      *
      * @return void
      */
-    public function addItem($url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly'):void
+    public function addItem($url, $lastMod = null, $priority = 0.5, $changeFreq = 'weekly'): void
     {
         if ($this->has($this->file)) {
             $this->appendItem($url, $lastMod, $priority, $changeFreq);
@@ -170,7 +170,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
      *
      * @return void
      */
-    private function appendItem($url, $lastMod, $priority, $changeFreq):void
+    private function appendItem($url, $lastMod, $priority, $changeFreq): void
     {
         $this->create('append', $url, $lastMod, $priority, $changeFreq);
     }

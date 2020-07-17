@@ -238,11 +238,12 @@ section #tab {
                     <h3 class="definition-list-title">Headers</h3>
                     <dl class="definition-list">
                         <?php if (is_array($stack['requests']['headers'])) {
-    foreach ($stack['requests']['headers'] as $key => $value) :
-                        ?>
+    foreach ($stack['requests']['headers'] as $key => $value) {
+        ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach;
+                            <?php
+    }
 } else {?> ... <?php } ?>
                     </dl>
                 </div>
@@ -251,11 +252,12 @@ section #tab {
                     <h3 class="definition-list-title">Query String</h3>
                     <dl class="definition-list">
                         <?php if (is_array($stack['requests']['query_string'])) {
-    foreach ($stack['requests']['query_string'] as $key => $value) :
-                        ?>
+    foreach ($stack['requests']['query_string'] as $key => $value) {
+        ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach;
+                            <?php
+    }
 } else {?> ... <?php } ?>
                     </dl>
                 </div>
@@ -264,11 +266,12 @@ section #tab {
                     <h3 class="definition-list-title">Body</h3>
                     <dl class="definition-list">
                         <?php if (is_array($stack['requests']['body'])) {
-    foreach ($stack['requests']['body'] as $key => $value) :
-                        ?>
+    foreach ($stack['requests']['body'] as $key => $value) {
+        ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach;
+                            <?php
+    }
 } else {?> ... <?php } ?>
                     </dl>
                 </div>
@@ -277,11 +280,12 @@ section #tab {
                     <h3 class="definition-list-title">Files</h3>
                     <dl class="definition-list">
                         <?php if (is_array($stack['requests']['files'])) {
-    foreach ($stack['requests']['files'] as $key => $value) :
-                        ?>
+    foreach ($stack['requests']['files'] as $key => $value) {
+        ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach;
+                            <?php
+    }
 } else {?> ... <?php } ?>
                     </dl>
                 </div>
@@ -290,11 +294,12 @@ section #tab {
                     <h3 class="definition-list-title">Sessions</h3>
                     <dl class="definition-list">
                         <?php if (is_array($stack['requests']['session'])) {
-    foreach ($stack['requests']['session'] as $key => $value) :
-                        ?>
+    foreach ($stack['requests']['session'] as $key => $value) {
+        ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach;
+                            <?php
+    }
 } else {?> ... <?php } ?>
                     </dl>
                 </div>
@@ -303,11 +308,12 @@ section #tab {
                     <h3 class="definition-list-title">Cookies</h3>
                     <dl class="definition-list">
                         <?php if (is_array($stack['requests']['cookies'])) {
-    foreach ($stack['requests']['cookies'] as $key => $value) :
-                        ?>
+    foreach ($stack['requests']['cookies'] as $key => $value) {
+        ?>
                                 <dt class="definition-label"><?=$key?></dt>
                                 <dd class="definition-value"><?= $value ?> </dd>
-                            <?php endforeach;
+                            <?php
+    }
 } else {?> ... <?php } ?>
                     </dl>
                 </div>
@@ -338,17 +344,18 @@ section #tab {
               <div class="definition">
                   <h3 class="definition-list-title">Traces</h3>
                       <?php if (is_array($this->stack['traces'])) {
-    foreach ($this->stack['traces'] as $key => $value):
-                  foreach ($value as $k => $v):
-                    if (!is_array($k) && !is_array($v)): ?>
+    foreach ($this->stack['traces'] as $key => $value) {
+        foreach ($value as $k => $v) {
+            if (!is_array($k) && !is_array($v)) { ?>
                     <dl class="definition-list">
                       <dt class="definition-label"><?=$k?></dt>
                       <dd class="definition-value"><?= $v ?> </dd>
                       </dl>
-                    <?php endif;
-    endforeach; ?>
+                    <?php }
+        } ?>
                        <hr>
-                 <?php endforeach;
+                 <?php
+    }
 } ?>
                   </dl>
               </div>

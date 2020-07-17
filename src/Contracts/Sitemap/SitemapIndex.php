@@ -28,5 +28,5 @@ interface SitemapIndex
      *
      * @return void
      */
-    public function addItem($url, $lastMod = null):void;
+    public function addItem($url, $lastMod = null): void;
 }

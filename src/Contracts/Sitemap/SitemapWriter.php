@@ -27,7 +27,7 @@ interface SitemapWriter
      *
      * @return void
      */
-    public function write($data):void;
+    public function write($data): void;
 
     /**
      * Read the sitemap file.
@@ -36,7 +36,7 @@ interface SitemapWriter
      *
      * @return xml
      */
-    public function read():string;
+    public function read(): string;
 
     /**
      * Close the sitemap file.
@@ -45,5 +45,5 @@ interface SitemapWriter
      *
      * @return void
      */
-    public function close():void;
+    public function close(): void;
 }

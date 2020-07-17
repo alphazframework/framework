@@ -75,7 +75,9 @@ class Validation
         $passed = call_user_func_array([new databaseRules(), $rule], [$data['field'], $data['value'], $table]);
         if ($passed !== true) {
             Handler::set(
-                    str_replace(':field', $data['field'], $this->messages[$rule]), $data['field']);
+                str_replace(':field', $data['field'], $this->messages[$rule]),
+                $data['field']
+            );
         }
     }
 
@@ -95,7 +97,9 @@ class Validation
             $passed = call_user_func_array([new InputRules(), $rule], [$data['value']]);
             if ($passed !== true) {
                 Handler::set(
-                    str_replace(':field', $data['field'], $this->messages[$rule]), $data['field']);
+                    str_replace(':field', $data['field'], $this->messages[$rule]),
+                    $data['field']
+                );
             }
         }
     }
