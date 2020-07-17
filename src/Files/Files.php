@@ -63,9 +63,9 @@ class Files
      */
     public function __construct()
     {
-        $files = Conversion::objecTotArray(__config('files'));
-        $this->mineTypes = $files['mine']['type'];
-        $this->types = $files['types'];
+        $files = Conversion::objectToArray(__config('files'));
+        $this->mineTypes = $files['mine']['type'] ?? "";
+        $this->types = $files['types'] ?? "";
     }
 
     /**

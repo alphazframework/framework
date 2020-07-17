@@ -396,7 +396,7 @@ class Router
     {
         $inputData = $input::inputAll();
 
-        return (new Conversion())::arrayObject($inputData);
+        return (new Conversion())::arrayToObject($inputData);
     }
 
     /**

@@ -114,7 +114,7 @@ class Root implements RootContract
                 'session'  => $this->root().'Storage/'.__config('app.session_path'),
                 'log'      => $this->root().'Storage/Logs/',
             ],
-            'views'        => __config('app.theme_path'),
+            'views'        => $this->root() .  __config('app.theme_path'),
         ];
 
         return $roots;
