@@ -15,11 +15,9 @@
  * @since 1.0.0
  */
 
-namespace Zest\Zip;
+namespace Zest\Archive\Adapter;
 
-use Zest\Contracts\Zip\Zip as ZipContract;
-
-class Zip implements ZipContract
+class Zip
 {
     /**
      * Open zip extract zip.
@@ -50,7 +48,7 @@ class Zip implements ZipContract
     /**
      * Compress file into zip.
      *
-     * @param (string) $file        file that you want compress
+     * @param (array) $file        file that you want compress
      * @param (string) $destination destination
      * @param (bool)d  $overwrite   true delete zip file false not delete
      *
@@ -63,7 +61,7 @@ class Zip implements ZipContract
         //if the zip file already exists and overwrite is false, return false
         if (file_exists($destination) && !$overwrite) {
             return false;
-        } //vars
+        }
         $valid_files = [];
         //if files were passed in...
         if (is_array($files)) {
