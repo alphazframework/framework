@@ -33,18 +33,18 @@ class Bzip
     public function extract($file, $target, $delete = false)
     {
         if (file_exists($file)) {
-            $bz = bzopen($file, 'r');
-            $extract = "";
             // buffer size 4KB
             $bufferSize = 4096;
-            $outfile = fopen(str_replace(".bz2", "", $file), 'wb');
+            if ($bz = bzopen($file, 'r')) {
+              if ($outfile = fopen(str_replace(".bz2", "", $file), 'wb')) {
+                // Keep repeating until the end of the input file
+                while (!feof($bz))
+                    fwrite($outfile, bzread($bz, $bufferSize));
 
-            // Keep repeating until the end of the input file
-            while (!feof($bz))
-                fwrite($outfile, bzread($bz, $bufferSize));
-
-            fclose($outfile);
-            bzclose($bz);
+                fclose($outfile);
+              }
+              bzclose($bz);
+            }
             if ($delete === true)
                 unlink($file);
         }
@@ -73,14 +73,13 @@ class Bzip
         $bufferSize = 4096;
         if ($outfile = bzopen($filename, 'w')) {
             if ($infile = fopen($file,'rb')) {
-                while (!feof($infile))
+                while (!feof($infile)) {
                     bzwrite($outfile, fread($infile, $bufferSize));
+                  }
+                fclose($infile);
             }
+            bzclose($outfile);
         }
-
-        //close files
-        bzclose($outfile);
-        fclose($infile);
         //check to make sure the file exists
         return file_exists($filename);
     }
