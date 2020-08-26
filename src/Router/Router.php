@@ -65,7 +65,7 @@ class Router
      *
      * @return void
      */
-    public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '')
+    public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '', $redirect = [])
     {
         // Convert the route to a regular expression: escape forward slashes
         $route = preg_replace('/\//', '\\/', $route);
@@ -83,13 +83,20 @@ class Router
             $this->routes[$route] = $params;
         } elseif (is_string($params)) {
             //If string
-            $param = [];
-            $parts = explode('@', $params);
-            $param['controller'] = $parts[0];
-            $param['action'] = $parts[1];
+            if (!empty($params)) {
+                $param = [];
+                $parts = explode('@', $params);
+                $param['controller'] = $parts[0];
+                $param['action'] = $parts[1];
+                if (isset($parts[2])) {
+                    $param['namespace'] = $parts[2];
+                }
+            }
             $param['method'] = $methods;
-            if (isset($parts[2])) {
-                $param['namespace'] = $parts[2];
+            if (!empty($redirect)) {
+                $param['redirect'] = true;
+                $param['to'] = $redirect['to'];
+                $param['code'] = $redirect['code'];
             }
             //If middleware is set then used
             (!empty($middleware)) ? $param['middleware'] = $this->addMiddleware($middleware) : $param;
@@ -153,6 +160,22 @@ class Router
         foreach ($routes as $route) {
             call_user_func_array([$this, 'add'], $route);
         }
+    }
+
+    /**
+     * Add a route to the routing table as Redirect.
+     *
+     * @param string $route The route URL
+     * @param string $to    Where you want to redirect
+     * @param string $code  The HTTP code
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function redirect($route, $to, $code = '301')
+    {
+        $this->add($route, "", 'GET', "", ['to' => $to,'code' => $code]);
     }
 
     /**
@@ -414,6 +437,10 @@ class Router
         $url = $request->getQueryString();
         $url = $this->RemoveQueryString($url, new Request());
         if ($this->match($url)) {
+            if (isset($this->params['redirect'])) {
+                \Zest\Site\Site::redirect($this->params['to'], $this->params['code']);
+                return;
+            }
             (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware']() : null;
             if (!isset($this->params['callable'])) {
                 $controller = $this->params['controller'];
@@ -560,3 +587,4 @@ class Router
         }
     }
 }
+

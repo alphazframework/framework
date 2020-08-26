@@ -38,6 +38,10 @@ class Component extends \Zest\Router\Router
         $url = $request->getQueryString();
         $url = $this->RemoveQueryString($url, new Request());
         if ($this->match($url)) {
+            if (isset($this->params['redirect'])) {
+                \Zest\Site\Site::redirect($this->params['to'], $this->params['code']);
+                return;
+            }
             (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware']() : null;
             if (!isset($this->params['callable'])) {
                 $controller = $this->params['controller'];
@@ -67,3 +71,4 @@ class Component extends \Zest\Router\Router
         }
     }
 }
+
