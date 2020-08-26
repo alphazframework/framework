@@ -144,7 +144,7 @@ class Validation
     /**
      * Store error msgs.
      *
-     * @return this
+     * @return $this
      */
     public function error()
     {
