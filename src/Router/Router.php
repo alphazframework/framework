@@ -175,7 +175,7 @@ class Router
      */
     public function redirect($route, $to, $code = '301')
     {
-        $this->add($route, "", 'GET', "", ['to' => $to,'code' => $code]);
+        $this->add($route, '', 'GET', '', ['to' => $to, 'code' => $code]);
     }
 
     /**
@@ -439,6 +439,7 @@ class Router
         if ($this->match($url)) {
             if (isset($this->params['redirect'])) {
                 \Zest\Site\Site::redirect($this->params['to'], $this->params['code']);
+
                 return;
             }
             (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware']() : null;
@@ -587,4 +588,3 @@ class Router
         }
     }
 }
-
