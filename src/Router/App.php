@@ -50,7 +50,7 @@ class App extends Router
             }
         } else {
             require_once $routeFile;
-            $router->cacheRouters();
+            //$router->cacheRouters();
             $router->dispatch(new Request());
         }
     }
