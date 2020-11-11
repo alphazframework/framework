@@ -1,17 +1,40 @@
 name: zest
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  build-test:
-    runs-on: ubuntu-latest
+  run:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: ['7.2', '7.3', '7.4']
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: php-actions/composer@master
-      - name: PHPUnit Tests
-        uses: php-actions/phpunit@17-php-versions
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          bootstrap: vendor/autoload.php
-          configuration: phpunit.xml
-          args: --coverage-text
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, pdo, pdo_mysql, intl, zip, sodium
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Check Composer Version
+        run: composer -V
+
+      - name: Check PHP Extensions
+        run: php -m
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --no-suggest --no-progress --no-interaction
+
+      - name: Run test suite
+        run: vendor/bin/phpunit --configuration 'phpunit.xml' --bootstrap 'vendor/autoload.php' --test-suffix 'Test.php,.phpt' --coverage-text
