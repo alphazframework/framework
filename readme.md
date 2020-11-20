@@ -12,7 +12,7 @@
 # Zest PHP Framework
 
 **Note:** This repository contains the core files of the Zest framework. If you want to build an application using Zest,
-visit the main [Zest repository](https://github.com/Softhub99/Zest).
+visit the main [Zest repository](https://github.com/zestframework/Zest).
 
 Who is Zest For?
 Zest is for PHP developers who want to build apps instead of coding common things like validation, routing, database manipulation, etc, from scratch. Zest offers a set of well-defined toolkits that take care of those things allowing you to focus on building your app.
