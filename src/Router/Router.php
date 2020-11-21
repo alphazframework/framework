@@ -54,6 +54,27 @@ class Router
     private $request;
 
     /**
+     * Parse the router.
+     *
+     * @param string       $route      The route URL
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+    protected function parseRoutes($route)
+    {
+        // Convert the route to a regular expression: escape forward slashes
+        $route = preg_replace('/\//', '\\/', $route);
+        // Convert variables e.g. {controller}
+        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
+        // Convert variables with custom regular expressions e.g. {id:\d+}
+        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+        // Add start and end delimiters, and case insensitive flag
+        return '/^'.$route.'$/i';
+    }
+
+    /**
      * Add a route to the routing table.
      *
      * @param string       $route      The route URL
@@ -67,14 +88,8 @@ class Router
      */
     public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '', $redirect = [])
     {
-        // Convert the route to a regular expression: escape forward slashes
-        $route = preg_replace('/\//', '\\/', $route);
-        // Convert variables e.g. {controller}
-        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
-        // Convert variables with custom regular expressions e.g. {id:\d+}
-        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
-        // Add start and end delimiters, and case insensitive flag
-        $route = '/^'.$route.'$/i';
+        // Parse the route.
+        $route = $this->parseRoutes($route);
 
         //If array
         if (is_array($params)) {
