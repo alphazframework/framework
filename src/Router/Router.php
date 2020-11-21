@@ -23,6 +23,7 @@ use Zest\Data\Conversion;
 use Zest\http\Request;
 use Zest\http\Response;
 use Zest\Input\Input;
+use Zest\View\View;
 
 class Router
 {
@@ -81,12 +82,14 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $methods    request method like GET or GET|POST
      * @param string       $middleware Middleare name
+     * @param array        $redirect   Redirect
+     * @param mixed        $view       View
      *
      * @since 1.0.0
      *
      * @return void
      */
-    public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '', $redirect = [])
+    public function add($route, $params = '', $methods = 'GET|HEAD', $middleware = '', $redirect = [], $view = null)
     {
         // Parse the route.
         $route = $this->parseRoutes($route);
@@ -113,6 +116,12 @@ class Router
                 $param['to'] = $redirect['to'];
                 $param['code'] = $redirect['code'];
             }
+           
+            if (null != $view) {
+                $param['view'] = $view['view'];
+                $param['args'] = $view['args'];
+            }
+
             //If middleware is set then used
             (!empty($middleware)) ? $param['middleware'] = $this->addMiddleware($middleware) : $param;
             $this->routes[$route] = $param;
@@ -338,6 +347,23 @@ class Router
     }
 
     /**
+     * Add a route to the routing table as view.
+     *
+     * @param string       $route      The route URL
+     * @param string       $view       View File
+     * @param array        $params     Parameters 
+     * @param string       $middleware Middleare name
+     * @param string       $methods    request method like GET or GET|POST
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function view($route, $view, $params = [], $method = "GET", $middleware = "")
+    {
+       $this->add($route, "", $method, $middleware, null, ['view' => $view, 'args' => $params]);
+    }
+    /**
      * Get all the routes from the routing table.
      *
      * @since 1.0.0
@@ -452,10 +478,15 @@ class Router
         $url = $request->getQueryString();
         $url = $this->RemoveQueryString($url, new Request());
         if ($this->match($url)) {
+
             if (isset($this->params['redirect'])) {
                 \Zest\Site\Site::redirect($this->params['to'], $this->params['code']);
 
                 return;
+            }
+
+            if(isset($this->params['view'])) {
+                return View::view($this->params['view'], $this->params['args']);
             }
             (isset($this->params['middleware'])) ? $this->params['middleware'] = new $this->params['middleware']() : null;
             if (!isset($this->params['callable'])) {
