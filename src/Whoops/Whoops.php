@@ -290,7 +290,7 @@ class Whoops
             $log = date('Y-m-d').'.log';
             $message = 'Message: '.$stack['message'];
             $message .= "\n Stack trace: ".$stack['trace'];
-            $message .= "\n Thrwo in ".$stack['file'].' '.$stack['line'];
+            $message .= "\n Thrown in ".$stack['file'].' '.$stack['line'];
             $logger->setCustomFile($log)->error($message);
             View::View('errors/'.$stack['code']);
         }
