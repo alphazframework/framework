@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the Zest Framework.
  *
@@ -17,20 +16,20 @@
 
 namespace Zest\Archive\Adapter;
 
-class Bzip
+class Bzip extends AdapterInterface
 {
     /**
-     * Open zip extract zip.
+     * Open and extract the archive.
      *
-     * @param (string) $file   file that you want uncompress/open
-     * @param (string) $target where you extract file
-     * @param (bool)   $delete true delete zip file false not delete
+     * @param (string) $file   The file that you want uncompress/open.
+     * @param (string) $target Where to extract the file.
+     * @param (bool)   $delete True to delete the file; False to not delete it.
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public function extract($file, $target, $delete = false)
+    public function extract(string $file, string $target = '', bool $delete = false): bool
     {
         if (file_exists($file)) {
             // buffer size 4KB
@@ -54,15 +53,15 @@ class Bzip
     /**
      * Compress file into bzip.
      *
-     * @param (string) $file        file that you want compress
-     * @param (string) $destination destination
-     * @param (bool)d  $overwrite   true delete zip file false not delete
+     * @param (string) $file        The file that you want compress.
+     * @param (string) $destination The file destination.
+     * @param (bool)   $overwrite   True to delete the file; False to not delete it.
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public function compress($file, $destination = '', $overwrite = false)
+    public function compress(string $file, string = $destination = '', bool $overwrite = false): bool
     {
         //if the zip file already exists and overwrite is false, return false
         if (file_exists($destination) && !$overwrite) {

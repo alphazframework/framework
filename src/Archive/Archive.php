@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the Zest Framework.
  *
@@ -9,13 +8,13 @@
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
  *
  * @license MIT
+ *
+ * @since 3.0.0
  */
 
 namespace Zest\Archive;
-
 
 class Archive
 {
@@ -29,7 +28,7 @@ class Archive
     private $adapter = null;
 
     /**
-     * __construct.
+     * The constructor.
      *
      * @since 3.0.0
      */
@@ -65,33 +64,33 @@ class Archive
     }
 
     /**
-     * Open zip extract zip.
+     * Open and extract the archive.
      *
-     * @param (string) $file   file that you want uncompress/open
-     * @param (string) $target where you extract file
-     * @param (bool)   $delete true delete zip file false not delete
+     * @param (string) $file   The file that you want uncompress/open.
+     * @param (string) $target Where to extract the file.
+     * @param (bool)   $delete True to delete the file; False to not delete it.
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public function extract($file, $target, $delete = false)
+    public function extract(string $file, string $target, bool $delete = false): bool
     {
         return $this->adapter->extract($file, $target, $delete);
     }
 
     /**
-     * Compress file into zip.
+     * Compress the file to an archive.
      *
-     * @param (mixed) $file        file that you want compress
-     * @param (string) $destination destination
-     * @param (bool)d  $overwrite   true delete zip file false not delete
+     * @param (mixed)  $files       The file(/s) that you want compress.
+     * @param (string) $destination The file destination.
+     * @param (bool)   $overwrite   True to delete the file; False to not delete it.
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public function compress($files, $destination = '', $overwrite = false)
+    public function compress($files, string $destination = '', bool $overwrite = false): bool
     {
         return $this->adapter->compress($files, $destination, $overwrite);
     }

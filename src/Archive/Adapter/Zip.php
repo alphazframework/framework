@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the Zest Framework.
  *
@@ -17,20 +16,20 @@
 
 namespace Zest\Archive\Adapter;
 
-class Zip
+class Zip extends AdapterInterface
 {
     /**
-     * Open zip extract zip.
+     * Open and extract the archive.
      *
-     * @param (string) $file   file that you want uncompress/open
-     * @param (string) $target where you extract file
-     * @param (bool)   $delete true delete zip file false not delete
+     * @param (string) $file   The file that you want uncompress/open.
+     * @param (string) $target Where to extract the file.
+     * @param (bool)   $delete True to delete the file; False to not delete it.
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public function extract($file, $target, $delete = false)
+    public function extract(string $file, string $target = '', bool $delete = false): bool
     {
         $zip = new \ZipArchive();
         $x = $zip->open($file);
@@ -46,17 +45,17 @@ class Zip
     }
 
     /**
-     * Compress file into zip.
+     * Compress the file to an archive.
      *
-     * @param (array) $file        file that you want compress
-     * @param (string) $destination destination
-     * @param (bool)d  $overwrite   true delete zip file false not delete
+     * @param (array)  $file        The file that you want compress.
+     * @param (string) $destination The file destination.
+     * @param (bool)   $overwrite   True to delete the file; False to not delete it.
      *
      * @since 1.0.0
      *
      * @return bool
      */
-    public function compress($files = [], $destination = '', $overwrite = false)
+    public function compress(array $files = [], string $destination = '', bool $overwrite = false): bool
     {
         //if the zip file already exists and overwrite is false, return false
         if (file_exists($destination) && !$overwrite) {
