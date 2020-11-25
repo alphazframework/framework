@@ -37,7 +37,7 @@ class Components
     }
 
     /**
-     * Delete component by name.
+     * Delete component and uninstall by name.
      *
      * @param (string) $name Name of component.
      *
@@ -47,9 +47,24 @@ class Components
      */
     public function delete($name)
     {
+        $this->remove($name);
+        $this->uninstall($name);
+        return false;
+    }
+
+    /**
+     * Remove component by name.
+     *
+     * @param (string) $name Name of component.
+     *
+     * @since 3.0.0
+     *
+     * @return void
+     */
+    public function remove($name)
+    {
         if (file_exists(route('com').$name)) {
             (new Files())->deleteDir(route('com').$name);
-            $this->uninstall($name);
 
             return true;
         }
