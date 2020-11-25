@@ -41,15 +41,15 @@ class Bzip implements AdapterInterface
             return false;
         }
 
-        if ($bz = bzopen($file, 'r')) {
-            if ($outfile = fopen(str_replace('.bz2', '', $file), 'wb')) {
+        if ($handle = bzopen($file, 'r')) {
+            if ($outfile = fopen($target, 'wb')) {
                 // Keep repeating until the end of the input file.
-                while (!feof($bz)) {
-                    fwrite($outfile, bzread($bz, $this->BufferSize));
+                while (!feof($handle)) {
+                    fwrite($outfile, bzread($handle, $this->BufferSize));
                 }
                 fclose($outfile);
             }
-            bzclose($bz);
+            bzclose($handle);
         }
         if ($delete === true) {
             unlink($file);

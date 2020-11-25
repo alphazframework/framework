@@ -110,7 +110,15 @@ class Zip implements AdapterInterface
 
         // Add the files.
         foreach ($valid_files as $file) {
-            $zip->addFile($file, $file);
+            if (
+                (($Del = strrpos($file, "\\")) !== false) ||
+                ($Del = strrpos($file, '/')) !== false
+            ) {
+                $Safe = substr($file, $Del + 1);
+            } else {
+                $Safe = $file;
+            }
+            $zip->addFile($file, $Safe);
         }
 
         // Close the zip -- done!

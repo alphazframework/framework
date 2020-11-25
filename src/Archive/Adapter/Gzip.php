@@ -41,17 +41,15 @@ class Gzip implements AdapterInterface
             return false;
         }
 
-        $filename = str_replace('.gz', '', $file);
-        // Open our files (in binary mode)
-        if ($file = gzopen($target. $file, 'rb')) {
-            if ($outfile = fopen($filename, 'wb')) {
+        if ($handle = gzopen($file, 'rb')) {
+            if ($outfile = fopen($target, 'wb')) {
                 // Keep repeating until the end of the input file
-                while (!gzeof($file)) {
-                    fwrite($outfile, gzread($file, $this->BufferSize));
+                while (!gzeof($handle)) {
+                    fwrite($outfile, gzread($handle, $this->BufferSize));
                 }
                 fclose($outfile);
             }
-            gzclose($file);
+            gzclose($handle);
         }
         if ($delete === true) {
             unlink($file);
