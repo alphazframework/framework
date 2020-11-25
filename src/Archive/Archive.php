@@ -72,7 +72,7 @@ class Archive
      *
      * @since 1.0.0
      *
-     * @return bool
+     * @return bool True when succeeded; False when failed.
      */
     public function extract(string $file, string $target, bool $delete = false): bool
     {
@@ -88,7 +88,7 @@ class Archive
      *
      * @since 1.0.0
      *
-     * @return bool
+     * @return bool True when succeeded; False when failed.
      */
     public function compress($files, string $destination = '', bool $overwrite = false): bool
     {
