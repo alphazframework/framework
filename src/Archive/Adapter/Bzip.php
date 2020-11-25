@@ -88,7 +88,7 @@ class Bzip implements AdapterInterface
             if ($infile = fopen($files, 'rb')) {
                 while (!feof($infile)) {
                     bzwrite($outfile, fread($infile, $this->BufferSize));
-                  }
+                }
                 fclose($infile);
             }
             bzclose($outfile);

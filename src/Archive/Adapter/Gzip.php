@@ -82,7 +82,7 @@ class Gzip implements AdapterInterface
             return false;
         }
 
-        $mode = 'wb' . __config('archive.gzip.level') ?? 9;
+        $mode = 'wb'.__config('archive.gzip.level') ?? 9;
         $filename = $destination;
         if ($outfile = gzopen($filename, $mode)) {
             if ($infile = fopen($files, 'rb')) {
@@ -93,7 +93,7 @@ class Gzip implements AdapterInterface
             }
             gzclose($outfile);
         }
-       //check to make sure the file exists
-       return file_exists($filename);
+        //check to make sure the file exists
+        return file_exists($filename);
     }
 }
