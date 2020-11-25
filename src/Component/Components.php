@@ -43,14 +43,14 @@ class Components
      *
      * @since 3.0.0
      *
-     * @return void
+     * @return bool
      */
     public function delete($name)
     {
         $this->remove($name);
         $this->uninstall($name);
 
-        return false;
+        return true;
     }
 
     /**
@@ -60,7 +60,7 @@ class Components
      *
      * @since 3.0.0
      *
-     * @return void
+     * @return bool
      */
     public function remove($name)
     {
