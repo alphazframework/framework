@@ -25,18 +25,18 @@ interface AdapterInterface
      * @param (string) $target Where to extract the file.
      * @param (bool)   $delete True to delete the file; False to not delete it.
      *
-     * @return bool
+     * @return bool True when succeeded; False when failed.
      */
     public function extract(string $file = '', string $target = '', bool $delete = false): bool;
 
     /**
      * Compress the file to an archive.
      *
-     * @param (mixed)  $files       The file(/s) that you want compress.
+     * @param (mixed)  $files       The file(/s) that you want to compress.
      * @param (string) $destination The file destination.
      * @param (bool)   $overwrite   True to delete the file; False to not delete it.
      *
-     * @return bool
+     * @return bool True when succeeded; False when failed.
      */
     public function compress($files, string $destination = '', bool $overwrite = false): bool;
 }

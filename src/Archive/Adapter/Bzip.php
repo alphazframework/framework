@@ -16,8 +16,13 @@
 
 namespace Zest\Archive\Adapter;
 
-class Bzip extends AdapterInterface
+class Bzip implements AdapterInterface
 {
+    /**
+     * @var int The size of the buffer to use for reading and writing files (default = 4KB).
+     */
+    private $BufferSize = 4096;
+
     /**
      * Open and extract the archive.
      *
@@ -27,54 +32,63 @@ class Bzip extends AdapterInterface
      *
      * @since 1.0.0
      *
-     * @return bool
+     * @return bool True when succeeded; False when failed.
      */
-    public function extract(string $file, string $target = '', bool $delete = false): bool
+    public function extract(string $file = '', string $target = '', bool $delete = false): bool
     {
-        if (file_exists($file)) {
-            // buffer size 4KB
-            $bufferSize = 4096;
-            if ($bz = bzopen($file, 'r')) {
-              if ($outfile = fopen(str_replace(".bz2", "", $file), 'wb')) {
-                // Keep repeating until the end of the input file
-                while (!feof($bz))
-                    fwrite($outfile, bzread($bz, $bufferSize));
-
-                fclose($outfile);
-              }
-              bzclose($bz);
-            }
-            if ($delete === true)
-                unlink($file);
+        // Return false immediately if the file doesn't exist.
+        if ($file === '' || !file_exists($file)) {
+            return false;
         }
+
+        if ($handle = bzopen($file, 'r')) {
+            if ($outfile = fopen($target, 'wb')) {
+                // Keep repeating until the end of the input file.
+                while (!feof($handle)) {
+                    fwrite($outfile, bzread($handle, $this->BufferSize));
+                }
+                fclose($outfile);
+            }
+            bzclose($handle);
+        }
+        if ($delete === true) {
+            unlink($file);
+        }
+
+        // Success. :-)
         return true;
     }
 
     /**
      * Compress file into bzip.
      *
-     * @param (string) $file        The file that you want compress.
+     * @param (string) $files       The file that you want to compress.
      * @param (string) $destination The file destination.
      * @param (bool)   $overwrite   True to delete the file; False to not delete it.
      *
      * @since 1.0.0
      *
-     * @return bool
+     * @return bool True when succeeded; False when failed.
      */
-    public function compress(string $file, string = $destination = '', bool $overwrite = false): bool
+    public function compress($files, string $destination = '', bool $overwrite = false): bool
     {
-        //if the zip file already exists and overwrite is false, return false
+        // If the destination already exists and overwrite is false, return false.
         if (file_exists($destination) && !$overwrite) {
+            return true;
+        }
+
+        // Return false immediately if files isn't a string or is empty.
+        if (!is_string($files) || $files === '') {
             return false;
         }
+
         $filename = $destination;
 
-        $bufferSize = 4096;
         if ($outfile = bzopen($filename, 'w')) {
-            if ($infile = fopen($file,'rb')) {
+            if ($infile = fopen($files, 'rb')) {
                 while (!feof($infile)) {
-                    bzwrite($outfile, fread($infile, $bufferSize));
-                  }
+                    bzwrite($outfile, fread($infile, $this->BufferSize));
+                }
                 fclose($infile);
             }
             bzclose($outfile);
