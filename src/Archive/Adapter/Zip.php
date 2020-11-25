@@ -77,9 +77,9 @@ class Zip implements AdapterInterface
             return false;
         }
 
-        // If the zip file already exists and overwrite is false, return false.
+        // If the destination already exists and overwrite is false, return false.
         if (file_exists($destination) && !$overwrite) {
-            return false;
+            return true;
         }
 
         $valid_files = [];

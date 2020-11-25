@@ -74,7 +74,7 @@ class Gzip implements AdapterInterface
     {
         // If the destination already exists and overwrite is false, return false.
         if (file_exists($destination) && !$overwrite) {
-            return false;
+            return true;
         }
 
         // Return false immediately if files isn't a string or is empty.
