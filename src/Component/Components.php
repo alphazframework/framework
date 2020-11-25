@@ -49,6 +49,7 @@ class Components
     {
         $this->remove($name);
         $this->uninstall($name);
+
         return false;
     }
 
