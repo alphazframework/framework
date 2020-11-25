@@ -60,6 +60,7 @@ class Archive
                 break;
         }
         $this->adapter = new $adapterSet();
+
         return $this;
     }
 
