@@ -46,7 +46,7 @@ class Archive
      *
      * @return object
      */
-    public function setAdapter($adapter)
+    public function setAdapter($adapter): self
     {
         switch (strtolower($adapter)) {
             case 'bzip':
