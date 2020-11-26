@@ -5,7 +5,7 @@
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://lablnet.github.io/profile/
+ * @link https://github.com/zestframework/Zest_Framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
