@@ -4,11 +4,11 @@
     "keywords": ["framework", "zest"],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|8.0",
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8"
+        "phpunit/phpunit": "^9.4"
     },
     "authors": [
         {
