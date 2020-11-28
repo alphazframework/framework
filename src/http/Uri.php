@@ -170,7 +170,7 @@ class Uri extends Message
     public function getAuthority()
     {
         return ($this->getUserInfo() !== '') ? $this->getUserInfo().
-        '@' : ''.$this->getHost().($this->getPort() !== '') ? ':'.$this->getPort() : '';
+        '@' ? ''.$this->getHost().($this->getPort() !== '') : ':'.$this->getPort() : '';
     }
 
     /**
@@ -182,7 +182,7 @@ class Uri extends Message
      */
     public function getUserInfo()
     {
-        return ($this->user !== '') ? $this->user : ''.($this->password !== '') ? ':'.$this->password : '';
+        return $this->user;
     }
 
     /**
