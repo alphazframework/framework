@@ -19,100 +19,69 @@
 namespace Zest\Console;
 
 use Zest\Common\Version;
+use Zest\Container\Container;
+use Zest\Console\Colorize;
 
 class Console
 {
-    public function createController()
+
+    private $container;
+    private $file;
+
+    private $commands = [
+            ['make:controller',  \Zest\Console\Commands\Controller::class],
+            ['version', \Zest\Console\Commands\Version::class],
+            ['list', \Zest\Console\Commands\ListCmd::class]
+        ];
+
+    public function __construct($path)
     {
-        echo "Enter name of controller that you want create \n";
-        $name = $this->cliInput();
-        $code = new Code();
-        $data = $code->controller($name);
-        $writer = new Write();
-        if ($writer->controller($name, $data)) {
-            echo "Controller {$name} created successfully \n";
-            $this->main();
+        $this->container = new Container();
+        $this->file = $path.'/Config/Console.php';
+        
+        $cmds = $this->load();
+        $this->commands = array_merge($this->commands, $cmds['commands']);
+    }
+
+    /**
+     * Load the configuration file.
+     *
+     * @since 3.0.0
+     *
+     * @return array
+     */
+    private function load()
+    {
+        $configs = [];
+
+        if (file_exists($this->file)) {
+            $configs += require $this->file;
         } else {
-            echo "Something went wrong \n";
-            $this->main();
+            $configs['commands'] = [];
         }
+
+        return $configs;
     }
 
-    public function createModel()
+    public function getCommands()
     {
-        echo "Enter name of model that you want create \n";
-        $name = $this->cliInput();
-        $code = new Code();
-        $data = $code->controller($name);
-        $writer = new Write();
-        if ($writer->controller($name, $data)) {
-            echo "Model {$name} created successfully \n";
-            $this->main();
-        } else {
-            echo "Something went wrong \n";
-            $this->main();
+        return $this->commands;
+    }
+
+    public function run($param)
+    {
+        $output = new Output();
+        foreach ($this->commands as $command) {
+            $this->container->register([$command[1], $command[0]], new $command[1]);
         }
-    }
 
-    public function startServer()
-    {
-        $host = 'localhost:8080';
-        $command = 'php -S '.$host;
-        echo "\n PHP local development server has been started locat at localhost:8080. If the public directory is the root, then localhost:8080/public \n";
-        shell_exec($command);
-    }
+       $sign = isset($param[1]) ? $param[1] : $output->error("Sorry, no command provided")->exit();
 
-    public function main()
-    {
-        do {
-            echo " Zest CLI Environment. \n";
-            echo " ***************************** \n";
-            echo " Enter 'c' to create a controller. \n";
-            echo " Enter 'v' for version information. \n";
-            echo " Enter 's' to start a local development server. \n";
-            echo " Enter 'x' to quit. \n";
-            echo " ***************************** \n";
-            $x = $this->cliInput();
-            if ($x === 'c') {
-                $this->createController();
-            } elseif ($x === 'v') {
-                echo 'Zest Framework Version is: '.Version::VERSION."\n";
-                $this->main();
-            } elseif ($x === 's') {
-                $this->startServer();
-            } elseif ($x === 'x') {
-                echo 'GoodBye';
-                exit();
-            } else {
-                $this->main();
-            }
-            echo "Enter 'r' to repeat";
-        } while ($x === 'r');
-    }
-
-    public function run()
-    {
-        $this->main();
-    }
-
-    public function oS()
-    {
-        return (new \Zest\Common\OperatingSystem())->get();
-    }
-
-    public function cliInput()
-    {
-        if ($this->oS() === 'WINNT' or $this->oS() === 'Windows') {
-            echo '? ';
-            $x = stream_get_line(STDIN, 9024, PHP_EOL);
-            if (!empty($x)) {
-                return $x;
-            }
+        if ($this->container->has($sign)) {
+            $cmd = $this->container->get($sign);
+            $cmd->handle();
         } else {
-            $x = readline('? ');
-            if (!empty($x)) {
-                return $x;
-            }
+            $output->error("Sorry, the given command ${sign} not found")->exit();
         }
     }
 }
