@@ -17,9 +17,7 @@ class ListCmd extends Command
     }
     public function getList()
     {
-        $dir = __DIR__;
-        $dir = str_replace("vendor/zest/framework/src/Console/Commands", "", $dir);
-        $console = new Console($dir);
+        $console = new Console();
         $this->cmds = $console->getCommands();
         
     }

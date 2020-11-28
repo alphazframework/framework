@@ -21,46 +21,23 @@ namespace Zest\Console;
 use Zest\Common\Version;
 use Zest\Container\Container;
 use Zest\Console\Colorize;
+use Zest\Console\Commands as InternalCommands;
 
 class Console
 {
 
     private $container;
-    private $file;
+    private $commands = [];
 
-    private $commands = [
-            ['make:controller',  \Zest\Console\Commands\Controller::class],
-            ['version', \Zest\Console\Commands\Version::class],
-            ['list', \Zest\Console\Commands\ListCmd::class]
-        ];
-
-    public function __construct($path)
+    public function __construct()
     {
         $this->container = new Container();
-        $this->file = $path.'/Config/Console.php';
-        
-        $cmds = $this->load();
-        $this->commands = array_merge($this->commands, $cmds['commands']);
-    }
-
-    /**
-     * Load the configuration file.
-     *
-     * @since 3.0.0
-     *
-     * @return array
-     */
-    private function load()
-    {
-        $configs = [];
-
-        if (file_exists($this->file)) {
-            $configs += require $this->file;
-        } else {
-            $configs['commands'] = [];
+        $internalCommands = (new InternalCommands())->getCommands();
+        $externalCommands = [];
+        if (class_exists("\Config\Commands")) {
+            $externalCommands = (new \Config\Commands())->getCommands();
         }
-
-        return $configs;
+        $this->commands = array_merge($internalCommands, $externalCommands);
     }
 
     public function getCommands()
