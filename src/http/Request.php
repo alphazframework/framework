@@ -184,7 +184,7 @@ class Request extends Uri
      */
     public function isSecure()
     {
-        return ($this->gethttps() || $this->getServerPort() && $this->getServerPort() == '443');
+        return $this->gethttps() || $this->getServerPort() && $this->getServerPort() == '443';
     }
 
     /**
