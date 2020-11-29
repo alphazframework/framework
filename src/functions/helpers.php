@@ -290,6 +290,16 @@ if (!function_exists('config')) {
         return (new \Zest\Common\Configuration())->get($key, $default);
     }
 }
+function __get_env($key, $default = null)
+{
+    return (new \Zest\Common\Env())->get($key, $default);
+}
+if (!function_exists('get_env')) {
+    function get_env($key, $default = null)
+    {
+        return (new \Zest\Common\Env())->get($key, $default);
+    }
+}
 function __config($key, $default = null)
 {
     return (new \Zest\Common\Configuration())->get($key, $default);
