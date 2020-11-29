@@ -25,7 +25,7 @@ class Files
      *
      * @since 3.0.0
      *
-     * @var array|string
+     * @var array
      */
     private $mineTypes = [];
 
@@ -64,7 +64,7 @@ class Files
     public function __construct()
     {
         $files = Conversion::objectToArray(/** @scrutinizer ignore-type */ __config('files'));
-        $this->mineTypes = $files['mine']['type'] ?? '';
+        $this->mineTypes = $files['mine']['type'] ?? [];
         $this->types = $files['types'] ?? '';
     }
 
