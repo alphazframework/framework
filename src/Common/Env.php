@@ -18,7 +18,6 @@ namespace Zest\Common;
 
 class Env
 {
-
     /**
      * All of the configuration items.
      *
@@ -56,13 +55,13 @@ class Env
             $file = __ZEST__ROOT__.'/.env';
 
             if (file_exists($file)) {
-                $handle = fopen($file, "r");
+                $handle = fopen($file, 'r');
                 if ($handle) {
                     while (($line = fgets($handle)) !== false) {
                         if ($line !== "\n") {
-                            $config = explode("=", $line);
+                            $config = explode('=', $line);
                             $items = array_merge($this->items, [
-                                $config[0] => $config[1]
+                                $config[0] => $config[1],
                             ]);
                         }
                     }
