@@ -78,22 +78,6 @@ class Console
      */
     public function run($param): void
     {
-        /*$items = [
-            [
-                'name' => 'Umer',
-                'username' => 'lablnet'
-            ],
-            [
-                'name' => 'Umer',
-                'username' => 'lablnet'
-            ]
-        ];
-        $table = new Table(
-            ['name', 'username'],
-            $items
-        );
-        var_dump($table->draw());*/
-        //exit();
 
         // registering the commands to container.
         foreach ($this->commands as $command) {
