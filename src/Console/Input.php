@@ -21,12 +21,28 @@ namespace Zest\Console;
 class Input extends Colorize
 {
 
-    public function confirm()
+    /**
+     * Prompt for input confirm.
+     *
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function confirm(): bool
     {
-        //todo
+        $confirm = $this->ask();
+        $confirmed = ['y', 'yes'];
+        return in_array(strtolower($confirm), $confirmed);
     }
 
-    public function ask()
+    /**
+     * Prompt for input input.
+     *
+     * @since 3.0.0
+     *
+     * @return string
+     */
+    public function ask(): string
     {
         $os = (new \Zest\Common\OperatingSystem())->get();
         if ($os === 'WINNT' or $os === 'Windows') {

@@ -19,6 +19,14 @@
 namespace Zest\Console;
 
 class Commands {
+
+    /**
+     * Internal commands.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
     protected $commands = [
         ['version', \Zest\Console\Commands\Version::class],
         ['list', \Zest\Console\Commands\ListCmd::class],
@@ -26,7 +34,14 @@ class Commands {
         ['clear:cache', \Zest\Console\Commands\Cache::class]
     ];
 
-    public function getCommands()
+    /**
+     * Get commands.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    public function getCommands(): array
     {
         return $this->commands;
     }

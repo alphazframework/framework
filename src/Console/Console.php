@@ -22,13 +22,34 @@ use Zest\Common\Version;
 use Zest\Container\Container;
 use Zest\Console\Colorize;
 use Zest\Console\Commands as InternalCommands;
+use Zest\Console\Input\Table;
 
 class Console
 {
 
+    /**
+     * Instance of container.
+     *
+     * @since 3.0.0
+     *
+     * @var \Zest\Container\Container
+     */
     private $container;
+
+    /**
+     * Commanads.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
     private $commands = [];
 
+    /**
+     * Create a new console instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->container = new Container();
@@ -40,23 +61,67 @@ class Console
         $this->commands = array_merge($internalCommands, $externalCommands);
     }
 
-    public function getCommands()
+    /**
+     * Get all commands.
+     *
+     * @return array
+     */
+    public function getCommands(): array
     {
         return $this->commands;
     }
 
-    public function run($param)
+    /**
+     * Run the Zest console.
+     *
+     * @return void
+     */
+    public function run($param): void
     {
-        $output = new Output();
+        /*$items = [
+            [
+                'name' => 'Umer',
+                'username' => 'lablnet'
+            ],
+            [
+                'name' => 'Umer',
+                'username' => 'lablnet'
+            ]
+        ];
+        $table = new Table(
+            ['name', 'username'],
+            $items
+        );
+        var_dump($table->draw());*/
+        //exit();
+
+        // registering the commands to container.
         foreach ($this->commands as $command) {
             $this->container->register([$command[1], $command[0]], new $command[1]);
         }
 
-       $sign = isset($param[1]) ? $param[1] : $output->error("Sorry, no command provided")->exit();
-
+        $sign = isset($param[1]) ? $param[1] : 'list';
+        $output = new Output();
         if ($this->container->has($sign)) {
             $cmd = $this->container->get($sign);
-            $cmd->handle();
+            
+            if (!isset($param[2])) {
+                $cmd->handle($output);
+            }
+            if (isset($param[2]) && strtolower($param[2]) == '-q') {
+                $cmd->handle($output->quiet());
+            }
+            if (isset($param[2]) && strtolower($param[2]) == '-h') {
+                $output->write('<yellow>Description:</yellow>', true);
+                $output->write("<blue>\t".$cmd->getDescription().'</blue>', true);
+                $output->write("\n<yellow>Usage:</yellow>", true);
+                $output->write("<blue>\t".$cmd->getSign().'</blue>', true);
+                $output->write("\n<yellow>Options:</yellow>", true);
+                $output->write('<green>-h, --help</green>');
+                $output->write("<blue>\tDisplay this help message</blue>", true);
+                $output->write('<green>--q, --quiet</green>');
+                $output->write("<blue>\tDo not output any message</blue>", true);
+            }            
         } else {
             $output->error("Sorry, the given command ${sign} not found")->exit();
         }

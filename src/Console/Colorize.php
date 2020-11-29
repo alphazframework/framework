@@ -22,6 +22,14 @@ use Zest\Data\Arrays;
 
 class Colorize
 {
+
+    /**
+     * Foregroud colors.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
     public $foreground = [
         'red'     => '31m',
         'green'   => '32m',
@@ -35,6 +43,14 @@ class Colorize
         ],
         'white' => "1m",
     ];
+
+    /**
+     * Background colors.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
     public $background = [
         'red'     => '41m',
         'green'   => '42m',
@@ -49,6 +65,16 @@ class Colorize
         'white' => "1m",
     ];
 
+    /**
+     * Get the color by key.
+     *
+     * @param string $color      Color key
+     * @param bool   $background 
+     * 
+     * @since 3.0.0
+     *
+     * @var string
+     */
     public function get($color, $background = false)
     {
         $arr = ($background) ? $this->background : $this->foreground;
