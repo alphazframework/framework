@@ -23,7 +23,7 @@ class Output extends Colorize
 {
 
     /**
-     * Queit.
+     * Quiet.
      *
      * @since 3.0.0
      *
