@@ -289,9 +289,9 @@ class Files
     /**
      * Move files.
      *
-     * @param (string)        $source Name of file or directory with path.
-     * @param (string)        $target Target directory.
-     * @param (array|string)  $files  Files to be moved.
+     * @param (string)       $source Name of file or directory with path.
+     * @param (string)       $target Target directory.
+     * @param (array|string) $files  Files to be moved.
      *
      * @since 3.0.0
      *
@@ -437,6 +437,7 @@ class Files
                 continue;
             }
             $this->deleteDir($dir.DIRECTORY_SEPARATOR.$item);
+
             return true;
         }
 
