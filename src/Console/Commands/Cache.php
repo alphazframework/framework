@@ -41,7 +41,7 @@ class Cache extends Command
      * @var string
      */
     protected $description = 'Clear the application cache';
-   
+
     /**
      * Create a new command instance.
      *

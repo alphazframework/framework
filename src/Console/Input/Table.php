@@ -40,7 +40,7 @@ class Table
 
     /**
      * Create a new Table instance.
-     * 
+     *
      * @param array $header
      * @param array $items
      *
@@ -81,15 +81,14 @@ class Table
      */
     public function printRow($row, $head = false): self
     {
-        
         if ($head) {
             echo ' +';
             $this->printBorder($row);
-            print("\n");
+            echo "\n";
         }
         echo  ' | ';
         foreach ($row as $key => $val) {
-            echo $val . ' | ';
+            echo $val.' | ';
         }
         if ($head) {
             echo "\n";
@@ -120,7 +119,5 @@ class Table
         echo ' +';
         $this->printBorder($this->header);
         echo "\n";
-
-        return;
     }
 }

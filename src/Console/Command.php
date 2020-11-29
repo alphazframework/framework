@@ -18,9 +18,6 @@
 
 namespace Zest\Console;
 
-use Zest\Console\Output;
-use Zest\Console\Input;
-
 abstract class Command
 {
     /**
@@ -77,7 +74,7 @@ abstract class Command
      */
     public function getSign(): string
     {
-	    return $this->sign ?? '';
+        return $this->sign ?? '';
     }
 
     /**
@@ -105,7 +102,7 @@ abstract class Command
 
     /**
      * Prompt user for input.
-     * 
+     *
      * @param string $str
      *
      * @return void
@@ -113,6 +110,7 @@ abstract class Command
     public function ask($str)
     {
         $this->write("<white>$str</white>", false);
+
         return (new Input())->ask();
     }
 

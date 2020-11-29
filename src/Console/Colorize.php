@@ -69,7 +69,7 @@ class Colorize
      *
      * @param string $color      Color key
      * @param bool   $background
-     * 
+     *
      * @since 3.0.0
      *
      * @var string

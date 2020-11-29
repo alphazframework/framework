@@ -89,7 +89,7 @@ class ListCmd extends Command
         $this->getList();
         $list = [];
         foreach ($this->cmds as $command) {
-            $this->container->register([$command[1], $command[0]], new $command[1]);
+            $this->container->register([$command[1], $command[0]], new $command[1]());
             $class = $this->container->get($command[0]);
             if (!$class->getHidden()) {
                 $sign = $class->getSign();

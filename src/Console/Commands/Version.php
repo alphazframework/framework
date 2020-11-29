@@ -63,6 +63,5 @@ class Version extends Command
     {
         $output->write('<white>Zest Framewor: </white>', false);
         $output->write('<yellow>'.V::VERSION.'</yellow>', true);
-        return;
     }
 }

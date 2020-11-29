@@ -76,7 +76,7 @@ class Output extends Colorize
             $color = str_replace('>', '', $color);
             $regx = "/<$color\b[^>]*>(.*?)<\/$color>/i";
             $text = preg_replace($regx, '\\1', $value);
-            $line = ($newLine) ? "\n" : '';   
+            $line = ($newLine) ? "\n" : '';
             echo "\033[".$this->get($color).''.$text.$line;
         }
 

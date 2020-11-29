@@ -18,8 +18,8 @@
 
 namespace Zest\Console;
 
-use Zest\Container\Container;
 use Zest\Console\Commands as InternalCommands;
+use Zest\Container\Container;
 
 class Console
 {
@@ -77,7 +77,7 @@ class Console
 
         // registering the commands to container.
         foreach ($this->commands as $command) {
-            $this->container->register([$command[1], $command[0]], new $command[1]);
+            $this->container->register([$command[1], $command[0]], new $command[1]());
         }
 
         $sign = isset($param[1]) ? $param[1] : 'list';
