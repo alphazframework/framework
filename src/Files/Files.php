@@ -25,7 +25,7 @@ class Files
      *
      * @since 3.0.0
      *
-     * @var array
+     * @var array|string
      */
     private $mineTypes = [];
 
@@ -63,7 +63,7 @@ class Files
      */
     public function __construct()
     {
-        $files = Conversion::objectToArray(__config('files'));
+        $files = Conversion::objectToArray(/** @scrutinizer ignore-type */ __config('files'));
         $this->mineTypes = $files['mine']['type'] ?? '';
         $this->types = $files['types'] ?? '';
     }
@@ -289,9 +289,9 @@ class Files
     /**
      * Move files.
      *
-     * @param (string) $source Name of file or directory with path.
-     * @param (string) $target Target directory.
-     * @param (array)  $files  Files to be moved.
+     * @param (string)        $source Name of file or directory with path.
+     * @param (string)        $target Target directory.
+     * @param (array|string)  $files  Files to be moved.
      *
      * @since 3.0.0
      *
@@ -421,7 +421,7 @@ class Files
      *
      * @since 3.0.0
      *
-     * @return void
+     * @return bool
      */
     public function deleteDir($dir)
     {
@@ -436,9 +436,8 @@ class Files
             if ($item == '.' || $item == '..') {
                 continue;
             }
-            if (!$this->deleteDir($dir.DIRECTORY_SEPARATOR.$item)) {
-                return false;
-            }
+            $this->deleteDir($dir.DIRECTORY_SEPARATOR.$item);
+            return true;
         }
 
         return rmdir($dir);
