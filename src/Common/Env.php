@@ -60,7 +60,7 @@ class Env
                     while (($line = fgets($handle)) !== false) {
                         if ($line !== "\n") {
                             $config = explode('=', $line);
-                            $items = array_merge($this->items, [
+                            $items = array_merge($items, [
                                 $config[0] => $config[1],
                             ]);
                         }
