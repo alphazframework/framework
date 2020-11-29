@@ -20,7 +20,6 @@ namespace Zest\Console;
 
 class Input extends Colorize
 {
-
     /**
      * Prompt for input confirm.
      *
@@ -32,6 +31,7 @@ class Input extends Colorize
     {
         $confirm = $this->ask();
         $confirmed = ['y', 'yes'];
+
         return in_array(strtolower($confirm), $confirmed);
     }
 

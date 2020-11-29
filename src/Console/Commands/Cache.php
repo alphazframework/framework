@@ -17,13 +17,13 @@
  */
 
 namespace Zest\Console\Commands;
+
+use Zest\Cache\Cache as CacheManager;
 use Zest\Console\Command;
 use Zest\Console\Output;
-use Zest\Cache\Cache as CacheManager;
 
 class Cache extends Command
 {
-
     /**
      * Sign of the command.
      *
@@ -31,7 +31,7 @@ class Cache extends Command
      *
      * @var string
      */
-    protected $sign = "clear:cache";
+    protected $sign = 'clear:cache';
 
     /**
      * Description of the command.
@@ -40,7 +40,7 @@ class Cache extends Command
      *
      * @var string
      */
-    protected $description = "Clear the application cache";
+    protected $description = 'Clear the application cache';
    
     /**
      * Create a new command instance.
@@ -54,7 +54,7 @@ class Cache extends Command
 
     /**
      * Function to handle the class.
-     * 
+     *
      * @param \Zest\Console\Output $output
      *
      * @return void
@@ -63,7 +63,6 @@ class Cache extends Command
     {
         $c = new CacheManager();
         $c->clear();
-        $this->output("<green>Cache cleared</green>");
+        $this->output('<green>Cache cleared</green>');
     }
-
 }

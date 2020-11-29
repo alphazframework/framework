@@ -17,23 +17,23 @@
  */
 
 namespace Zest\Console\Commands;
-use Zest\Console\Command;
-use Zest\Console\Output;
-use Zest\Console\Console;
-use Zest\Container\Container;
+
 use Zest\Common\Version as V;
+use Zest\Console\Command;
+use Zest\Console\Console;
+use Zest\Console\Output;
+use Zest\Container\Container;
 
 class ListCmd extends Command
 {
-
     /**
      * Sign of the command.
      *
      * @since 3.0.0
      *
      * @var string
-     */    
-    protected $sign = "list";
+     */
+    protected $sign = 'list';
 
     /**
      * Description of the command.
@@ -41,8 +41,8 @@ class ListCmd extends Command
      * @since 3.0.0
      *
      * @var string
-     */    
-    protected $description = "List the available commands";
+     */
+    protected $description = 'List the available commands';
 
     /**
      * Commands.
@@ -50,7 +50,7 @@ class ListCmd extends Command
      * @since 3.0.0
      *
      * @var array
-     */    
+     */
     private $cmds;
 
     /**
@@ -68,7 +68,7 @@ class ListCmd extends Command
      * Get the list of commandss.
      *
      * @return void
-     */    
+     */
     public function getList()
     {
         $console = new Console();
@@ -77,15 +77,15 @@ class ListCmd extends Command
 
     /**
      * Function to handle the class.
-     * 
+     *
      * @param \Zest\Console\Output $output
      *
      * @return void
      */
     public function handle(Output $output)
     {
-        $output->write("<white>Zest Framewor: </white>", false);
-        $output->write("<yellow>".V::VERSION."</yellow>", true);
+        $output->write('<white>Zest Framewor: </white>', false);
+        $output->write('<yellow>'.V::VERSION.'</yellow>', true);
         $this->getList();
         $list = [];
         foreach ($this->cmds as $command) {
@@ -95,7 +95,7 @@ class ListCmd extends Command
                 $sign = $class->getSign();
                 $desc = $class->getDescription();
                 $output->write("<green>${sign} :</green>", true);
-                $output->write("<blue>\t${desc}</blue>", true); 
+                $output->write("<blue>\t${desc}</blue>", true);
             }
         }
     }

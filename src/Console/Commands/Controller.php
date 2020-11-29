@@ -17,20 +17,20 @@
  */
 
 namespace Zest\Console\Commands;
+
 use Zest\Console\Command;
 use Zest\Console\Output;
 
 class Controller extends Command
 {
-
     /**
      * Sign of the command.
      *
      * @since 3.0.0
      *
      * @var string
-     */    
-    protected $sign = "make:controller";
+     */
+    protected $sign = 'make:controller';
 
     /**
      * Description of the command.
@@ -38,8 +38,8 @@ class Controller extends Command
      * @since 3.0.0
      *
      * @var string
-     */    
-    protected $description = "Create a new Controller class";
+     */
+    protected $description = 'Create a new Controller class';
 
     /**
      * Create a new command instance.
@@ -53,14 +53,14 @@ class Controller extends Command
 
     /**
      * Function to handle the class.
-     * 
+     *
      * @param \Zest\Console\Output $output
      *
      * @return void
      */
     public function handle(Output $output)
     {
-        $name = $this->ask("Enter name of controller: ");
+        $name = $this->ask('Enter name of controller: ');
         $file = '../App/Controllers/'.$name.'.php';
         if (!file_exists($file)) {
             $fh = fopen($file, 'w');

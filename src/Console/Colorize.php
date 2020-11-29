@@ -22,7 +22,6 @@ use Zest\Data\Arrays;
 
 class Colorize
 {
-
     /**
      * Foregroud colors.
      *
@@ -39,9 +38,9 @@ class Colorize
         'cyan'    => '36m',
         'gray'    => [
             'light' => '37m',
-            'dark'  => "90m",
+            'dark'  => '90m',
         ],
-        'white' => "1m",
+        'white' => '1m',
     ];
 
     /**
@@ -60,16 +59,16 @@ class Colorize
         'cyan'    => '46m',
         'gray'    => [
             'light' => '47m',
-            'dark'  => "100m",
+            'dark'  => '100m',
         ],
-        'white' => "1m",
+        'white' => '1m',
     ];
 
     /**
      * Get the color by key.
      *
      * @param string $color      Color key
-     * @param bool   $background 
+     * @param bool   $background
      * 
      * @since 3.0.0
      *

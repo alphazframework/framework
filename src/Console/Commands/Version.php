@@ -17,13 +17,13 @@
  */
 
 namespace Zest\Console\Commands;
+
+use Zest\Common\Version as V;
 use Zest\Console\Command;
 use Zest\Console\Output;
-use Zest\Common\Version as V;
 
 class Version extends Command
 {
-
     /**
      * Sign of the command.
      *
@@ -31,7 +31,7 @@ class Version extends Command
      *
      * @var string
      */
-    protected $sign = "version";
+    protected $sign = 'version';
 
     /**
      * Description of the command.
@@ -40,7 +40,7 @@ class Version extends Command
      *
      * @var string
      */
-    protected $description = "Get the version of Zest framework installed";
+    protected $description = 'Get the version of Zest framework installed';
 
     /**
      * Create a new command instance.
@@ -54,15 +54,15 @@ class Version extends Command
 
     /**
      * Function to handle the class.
-     * 
+     *
      * @param \Zest\Console\Output $output
      *
      * @return void
      */
     public function handle(Output $output)
     {
-        $output->write("<white>Zest Framewor: </white>", false);
-        $output->write("<yellow>".V::VERSION."</yellow>", true);
+        $output->write('<white>Zest Framewor: </white>', false);
+        $output->write('<yellow>'.V::VERSION.'</yellow>', true);
         return;
     }
 }

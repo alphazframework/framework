@@ -17,11 +17,11 @@
  */
 
 namespace Zest\Console;
+
 use Zest\Console\Input\Table;
 
 class Output extends Colorize
 {
-
     /**
      * Quiet.
      *
@@ -41,6 +41,7 @@ class Output extends Colorize
     public function quiet()
     {
         $this->quiet = true;
+
         return $this;
     }
 
@@ -55,6 +56,7 @@ class Output extends Colorize
     {
         $table = new Table($header, $items);
         $table->draw();
+
         return $this;
     }
 
@@ -69,13 +71,13 @@ class Output extends Colorize
     {
         if (!$this->quiet) {
             preg_match("/<\b[^>]*>/i", $value, $matches);
-            $color = $matches[0] ?? "default";
-            $color = str_replace("<", "", $color);
-            $color = str_replace(">", "", $color);
+            $color = $matches[0] ?? 'default';
+            $color = str_replace('<', '', $color);
+            $color = str_replace('>', '', $color);
             $regx = "/<$color\b[^>]*>(.*?)<\/$color>/i";
-            $text = preg_replace($regx, "\\1", $value);
-            $line = ($newLine) ? "\n" : "";     
-            print("\033[".$this->get($color)."".$text . $line);
+            $text = preg_replace($regx, '\\1', $value);
+            $line = ($newLine) ? "\n" : '';   
+            echo "\033[".$this->get($color).''.$text.$line;
         }
 
         return $this;
@@ -91,6 +93,7 @@ class Output extends Colorize
     public function error($msg): self
     {
         $this->write("<red>$msg</red>", true);
+
         return $this;
     }
 

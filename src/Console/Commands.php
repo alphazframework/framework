@@ -18,8 +18,8 @@
 
 namespace Zest\Console;
 
-class Commands {
-
+class Commands
+{
     /**
      * Internal commands.
      *
@@ -31,7 +31,7 @@ class Commands {
         ['version', \Zest\Console\Commands\Version::class],
         ['list', \Zest\Console\Commands\ListCmd::class],
         ['make:controller',  \Zest\Console\Commands\Controller::class],
-        ['clear:cache', \Zest\Console\Commands\Cache::class]
+        ['clear:cache', \Zest\Console\Commands\Cache::class],
     ];
 
     /**

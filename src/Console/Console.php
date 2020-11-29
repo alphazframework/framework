@@ -18,15 +18,11 @@
 
 namespace Zest\Console;
 
-use Zest\Common\Version;
 use Zest\Container\Container;
-use Zest\Console\Colorize;
 use Zest\Console\Commands as InternalCommands;
-use Zest\Console\Input\Table;
 
 class Console
 {
-
     /**
      * Instance of container.
      *
@@ -88,7 +84,7 @@ class Console
         $output = new Output();
         if ($this->container->has($sign)) {
             $cmd = $this->container->get($sign);
-            
+
             if (!isset($param[2])) {
                 $cmd->handle($output);
             }
@@ -105,7 +101,7 @@ class Console
                 $output->write("<blue>\tDisplay this help message</blue>", true);
                 $output->write('<green>--q, --quiet</green>');
                 $output->write("<blue>\tDo not output any message</blue>", true);
-            }            
+            }
         } else {
             $output->error("Sorry, the given command ${sign} not found")->exit();
         }

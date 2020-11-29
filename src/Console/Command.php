@@ -23,7 +23,6 @@ use Zest\Console\Input;
 
 abstract class Command
 {
-
     /**
      * Sign of the command.
      *
@@ -77,8 +76,8 @@ abstract class Command
      * @return string
      */
     public function getSign(): string
-	{
-		return $this->sign ?? '';
+    {
+	    return $this->sign ?? '';
     }
 
     /**
@@ -86,9 +85,9 @@ abstract class Command
      *
      * @return string
      */
-	public function getDescription(): string
-	{
-		return $this->description ?? '';
+    public function getDescription(): string
+    {
+        return $this->description ?? '';
     }
 
     /**
@@ -96,7 +95,7 @@ abstract class Command
      *
      * @param string $str
      * @param bool   $newLine
-     * 
+     *
      * @return void
      */
     public function write($str, $newLine = true)
@@ -114,11 +113,11 @@ abstract class Command
     public function ask($str)
     {
         $this->write("<white>$str</white>", false);
-        return (new Input())->ask();       
+        return (new Input())->ask();
     }
 
     /**
-     * Terminate the console
+     * Terminate the console.
      *
      * @return void
      */
@@ -129,7 +128,7 @@ abstract class Command
 
     /**
      * Function to handle the class.
-     * 
+     *
      * @param \Zest\Console\Output $output
      *
      * @return void

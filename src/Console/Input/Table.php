@@ -18,12 +18,10 @@
 
 namespace Zest\Console\Input;
 
-use Zest\Data\Arrays;
-
 class Table
 {
     /**
-     * Table header
+     * Table header.
      *
      * @since 3.0.0
      *
@@ -51,7 +49,7 @@ class Table
     public function __construct(array $header, array $items)
     {
         $this->header = $header;
-        $this->items  = $items;
+        $this->items = $items;
     }
 
     /**
@@ -65,9 +63,10 @@ class Table
     {
         foreach ($row as $key => $value) {
             $size = mb_strlen($value);
-            for ($i = 0; $i < $size + 2; $i++)
-                print("-");
-            print("+");
+            for ($i = 0; $i < $size + 2; $i++) {
+                echo '-';
+            }
+            echo '+';
         }
 
         return $this;
@@ -84,20 +83,20 @@ class Table
     {
         
         if ($head) {
-            print(" +");
+            echo ' +';
             $this->printBorder($row);
             print("\n");
         }
-        print(" | ");
+        echo  ' | ';
         foreach ($row as $key => $val) {
-            print("".$val." | ");
+            echo $val . ' | ';
         }
         if ($head) {
-            print("\n");
-            print(" +");
+            echo "\n";
+            echo ' +';
             $this->printBorder($row);
         }
-        print("\n");
+        echo "\n";
 
         return $this;
     }
@@ -118,9 +117,9 @@ class Table
             $this->printRow($val, false);
         }
         // for footer
-        print(" +");
+        echo ' +';
         $this->printBorder($this->header);
-        print("\n");
+        echo "\n";
 
         return;
     }
