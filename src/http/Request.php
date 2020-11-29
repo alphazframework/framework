@@ -28,13 +28,13 @@ class Request extends Uri
     public function __construct()
     {
         parent::__construct();
-        $this->get = (isset($_GET)) ? $_GET : [];
-        $this->post = (isset($_POST)) ? $_POST : [];
-        $this->files = (isset($_FILES)) ? $_FILES : [];
-        $this->session = (isset($_SESSION)) ? $_SESSION : [];
-        $this->cookie = (isset($_COOKIE)) ? $_COOKIE : [];
-        $this->server = (isset($_SERVER)) ? $_SERVER : [];
-        $this->env = (isset($_ENV)) ? $_ENV : [];
+        $this->get = $_GET ?? [];
+        $this->post = $_POST ?? [];
+        $this->files = $_FILES ?? [];
+        $this->session = $_SESSION ?? [];
+        $this->cookie = $_COOKIE ?? [];
+        $this->server = $_SERVER ?? [];
+        $this->env = $_ENV ?? [];
 
         if ($this->getRequestMethod()) {
             $this->parseData();
@@ -184,7 +184,7 @@ class Request extends Uri
      */
     public function isSecure()
     {
-        return ($this->gethttps() || $this->getServerPort() && $this->getServerPort() == '443') ? true : false;
+        return $this->gethttps() || $this->getServerPort() && $this->getServerPort() == '443';
     }
 
     /**

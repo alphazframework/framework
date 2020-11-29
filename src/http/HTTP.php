@@ -295,7 +295,7 @@ abstract class HTTP extends Headers
      */
     public function getRequestMethod()
     {
-        return (isset($_SERVER['REQUEST_METHOD'])) ? $_SERVER['REQUEST_METHOD'] : false;
+        return $_SERVER['REQUEST_METHOD'] ?? false;
     }
 
     /**
@@ -307,7 +307,7 @@ abstract class HTTP extends Headers
      */
     public function getRequestUrl()
     {
-        return (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : false;
+        return $_SERVER['REQUEST_URI'] ?? false;
     }
 
     /**
@@ -319,7 +319,7 @@ abstract class HTTP extends Headers
      */
     public function getContentType()
     {
-        return (isset($_SERVER['CONTENT_TYPE'])) ? $_SERVER['CONTENT_TYPE'] : false;
+        return $_SERVER['CONTENT_TYPE'] ?? false;
     }
 
     /**
@@ -331,7 +331,7 @@ abstract class HTTP extends Headers
      */
     public function getQueryString()
     {
-        return (isset($_SERVER['QUERY_STRING'])) ? $_SERVER['QUERY_STRING'] : false;
+        return $_SERVER['QUERY_STRING'] ?? false;
     }
 
     /**
@@ -343,7 +343,7 @@ abstract class HTTP extends Headers
      */
     public function getServerPort()
     {
-        return (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : false;
+        return $_SERVER['SERVER_PORT'] ?? false;
     }
 
     /**
@@ -355,7 +355,7 @@ abstract class HTTP extends Headers
      */
     public function getDocumentRoot()
     {
-        return (isset($_SERVER['DOCUMENT_ROOT'])) ? $_SERVER['DOCUMENT_ROOT'] : false;
+        return $_SERVER['DOCUMENT_ROOT'] ?? false;
     }
 
     /**
@@ -367,7 +367,7 @@ abstract class HTTP extends Headers
      */
     public function getHost()
     {
-        return (isset($_SERVER['HTTP_HOST'])) ? $_SERVER['HTTP_HOST'] : false;
+        return $_SERVER['HTTP_HOST'] ?? false;
     }
 
     /**
@@ -379,7 +379,7 @@ abstract class HTTP extends Headers
      */
     public function getServerName()
     {
-        return (isset($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : false;
+        return $_SERVER['SERVER_NAME'] ?? false;
     }
 
     /**
@@ -391,7 +391,7 @@ abstract class HTTP extends Headers
      */
     public function gethttp()
     {
-        return (isset($_SERVER['HTTP'])) ? $_SERVER['HTTP'] : false;
+        return $_SERVER['HTTP'] ?? false;
     }
 
     /**
@@ -403,7 +403,7 @@ abstract class HTTP extends Headers
      */
     public function gethttps()
     {
-        return (isset($_SERVER['HTTPS'])) ? $_SERVER['HTTPS'] : false;
+        return $_SERVER['HTTPS'] ?? false;
     }
 
     /**
@@ -415,7 +415,7 @@ abstract class HTTP extends Headers
      */
     public function getSelf()
     {
-        return (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : false;
+        return $_SERVER['PHP_SELF'] ?? false;
     }
 
     /**
@@ -427,6 +427,6 @@ abstract class HTTP extends Headers
      */
     public function getReference()
     {
-        return (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : false;
+        return $_SERVER['HTTP_REFERER'] ?? false;
     }
 }
