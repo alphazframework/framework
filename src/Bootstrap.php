@@ -18,8 +18,8 @@ namespace Zest;
 
 use Zest\Common\AliasLoader;
 use Zest\Common\TimeZone;
-use Zest\Router\App;
 use Zest\http\Request;
+use Zest\Router\App;
 
 class Bootstrap
 {
