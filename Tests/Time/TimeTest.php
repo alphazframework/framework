@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Tests;
+namespace Framework\Tests\Time;
 
 use PHPUnit\Framework\TestCase;
 use Zest\Time\Time;

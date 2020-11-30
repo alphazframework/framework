@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Tests;
+namespace Framework\Tests\Site;
 
 use PHPUnit\Framework\TestCase;
 use Zest\Site\Key;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Tests;
+namespace Framework\Tests\Container;
 
 use PHPUnit\Framework\TestCase;
 use Zest\Container\Container;
