@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Tests;
+namespace Framework\Tests\Mail;
 
 use PHPUnit\Framework\TestCase;
 use Zest\Mail\Mail;

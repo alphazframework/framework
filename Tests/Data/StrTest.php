@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Tests;
+namespace Framework\Tests\Data;
 
 use PHPUnit\Framework\TestCase;
 use Zest\Data\Str;

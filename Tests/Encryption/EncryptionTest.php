@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Tests;
+namespace Framework\Tests\Encryption;
 
 use PHPUnit\Framework\TestCase;
 use Zest\Encryption\Adapter\OpenSslEncryption;

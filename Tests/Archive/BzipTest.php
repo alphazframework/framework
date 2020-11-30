@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Tests;
+namespace Framework\Tests\Archive;
 
 use PHPUnit\Framework\TestCase;
 use Zest\Archive\Adapter\Bzip;
