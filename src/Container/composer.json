@@ -10,11 +10,11 @@
         }
     ],
     "require": {
-        "zest/data": ""
+        "zest/data": "dev-master"
     },
     "autoload": {
         "psr-4": {
-             "Zest\\Container\\": "dev-master"
+             "Zest\\Container\\": ""
         }
     }
 }
