@@ -14,9 +14,9 @@
  * @license MIT
  */
 
-namespace Zest\Contracts\Container;
+namespace Zest\Container;
 
-interface Container
+interface ContainerContract
 {
     /**
      * Register a type hint.

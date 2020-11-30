@@ -14,9 +14,9 @@
  * @license MIT
  */
 
-namespace Zest\Contracts\Data;
+namespace Zest\Data\Contracts;
 
-interface Conversion
+interface ConversionContract
 {
     /**
      * Convert arrays to Object.

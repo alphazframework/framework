@@ -14,9 +14,9 @@
  * @license MIT
  */
 
-namespace Zest\Contracts\Data;
+namespace Zest\Data\Contracts;
 
-interface Arrays
+interface ArraysContract
 {
     /**
      * Determine is given value is really, array?.

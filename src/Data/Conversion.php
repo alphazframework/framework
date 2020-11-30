@@ -16,7 +16,7 @@
 
 namespace Zest\Data;
 
-use Zest\Contracts\Data\Conversion as ConversionContract;
+use Zest\Data\Contracts\ConversionContract;
 
 class Conversion implements ConversionContract
 {

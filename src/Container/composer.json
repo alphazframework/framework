@@ -1,0 +1,20 @@
+{
+    "name": "zest/container",
+    "description": "The Zest contianer component",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lablnet",
+            "email": "mumerfarooqlablnet01@gmail.com"
+        }
+    ],
+    "require": {
+        "zest/data": ""
+    },
+    "autoload": {
+        "psr-4": {
+             "Zest\\Container\\": ""
+        }
+    }
+}

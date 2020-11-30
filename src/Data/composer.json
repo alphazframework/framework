@@ -1,0 +1,18 @@
+{
+    "name": "zest/data",
+    "description": "A set of Component classes to manipulate arrays, data and string",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lablnet",
+            "email": "mumerfarooqlablnet01@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+             "Zest\\Data\\": ""
+        }
+    }
+}

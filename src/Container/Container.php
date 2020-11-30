@@ -16,7 +16,6 @@
 
 namespace Zest\Container;
 
-use Zest\Contracts\Container\Container as ContainerContract;
 use Zest\Data\Arrays;
 
 class Container implements ContainerContract

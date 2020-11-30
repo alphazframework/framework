@@ -16,7 +16,7 @@
 
 namespace Zest\Data;
 
-use Zest\Contracts\Data\Str as StrContract;
+use Zest\Data\Contracts\StrContract;
 
 class Str implements StrContract
 {

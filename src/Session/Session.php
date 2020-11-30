@@ -52,7 +52,9 @@ class Session
      */
     public static function sessionPath()
     {
-        ini_set('session.save_path', session_path());
+        if (\defined('__ZEST__ROOT__')) {
+            ini_set('session.save_path', session_path());
+        }
     }
 
     /**

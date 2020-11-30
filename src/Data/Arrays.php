@@ -16,7 +16,7 @@
 
 namespace Zest\Data;
 
-use Zest\Contracts\Data\Arrays as ArraysContract;
+use Zest\Data\Contracts\ArraysContract;
 
 class Arrays implements ArraysContract
 {

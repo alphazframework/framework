@@ -14,9 +14,9 @@
  * @license MIT
  */
 
-namespace Zest\Contracts\Data;
+namespace Zest\Data\Contracts;
 
-interface Str
+interface StrContract
 {
     /**
      * Reverse the string.
