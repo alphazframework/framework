@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-             "Zest\\Container\\": ""
+             "Zest\\Container\\": "dev-master"
         }
     }
 }
