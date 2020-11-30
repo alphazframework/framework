@@ -1,0 +1,33 @@
+name: Build Api Documentation
+on:
+  push:
+    branches: [master]
+jobs:
+  build-api:
+    name: Build api
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkout api repository
+        uses: actions/checkout@v2
+        with:
+          repository: zestframework/api
+          path: api
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v1
+        with:
+          php-version: 7.3
+          extensions: mbstring, dom, json, libxml, xml, xmlwriter
+          coverage: none
+      - name: Download phpDocumentor
+        run: wget https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.0.0/phpDocumentor.phar
+      - name: Build api documentation
+        run: php phpDocumentor.phar -d ./src . -t ./api
+      - name: Deploy api documentation site
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.AUTH_TOKEN }}
+          EXTERNAL_REPOSITORY: zestframework/api
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: ./api
