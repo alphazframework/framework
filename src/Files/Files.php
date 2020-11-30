@@ -16,8 +16,6 @@
 
 namespace Zest\Files;
 
-use Zest\Data\Conversion;
-
 class Files
 {
     /**
@@ -58,14 +56,16 @@ class Files
 
     /**
      * __construct.
+     * 
+     * @param array $mines
+     * @param array $extensions
      *
      * @since 1.0.0
      */
-    public function __construct()
+    public function __construct($mines, $extensions)
     {
-        $files = Conversion::objectToArray(/** @scrutinizer ignore-type */ __config('files'));
-        $this->mineTypes = $files['mine']['type'] ?? [];
-        $this->types = $files['types'] ?? '';
+        $this->mineTypes = $mines;
+        $this->types = $extensions;
     }
 
     /**
@@ -73,6 +73,7 @@ class Files
      *
      * @since 1.0.0
      *
+     * @deprecated 3.0.0
      * @return bool
      */
     public function systemDirs()

@@ -1,1 +1,17 @@
-
+{
+    "name": "zest/files",
+    "description": "Zest framework components to manipulate files",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lablnet",
+            "email": "mumerfarooqlablnet01@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+             "Zest\\Files\\": ""
+        }
+    }
+}
