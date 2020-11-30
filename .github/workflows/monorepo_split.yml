@@ -28,5 +28,5 @@ jobs:
         run: |
           SHA1=`./splitsh/splitsh-lite --prefix=src/${{ matrix.library }}`
           git remote add ${{ matrix.library }} https://${{ secrets.AUTH_TOKEN }}@github.com/zestframework/${{ matrix.library }}
-          git push -f ${{ matrix.library }} ${SHA1}::refs/heads/master
+          git push -f ${{ matrix.library }} ${SHA1}::refs/heads/ref/heads/master
   
