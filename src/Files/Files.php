@@ -56,7 +56,7 @@ class Files
 
     /**
      * __construct.
-     * 
+     *
      * @param array $mines
      * @param array $extensions
      *
@@ -72,8 +72,8 @@ class Files
      * Create zest system dir.
      *
      * @since 1.0.0
-     *
      * @deprecated 3.0.0
+     *
      * @return bool
      */
     public function systemDirs()
