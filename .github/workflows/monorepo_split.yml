@@ -1,0 +1,32 @@
+# Split monorepo via splitsh-lite
+name: Split monorepo
+on:
+  push:
+    branches: [master]
+jobs:
+  split:
+    name: split
+    strategy:
+      matrix:
+        library: ['Files']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: ./splitsh
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.json') }}
+      - name: Install splitsh
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir ./splitsh
+          wget https://github.com/splitsh/lite/releases/download/v1.0.1/lite_linux_amd64.tar.gz
+          tar -zxpf lite_linux_amd64.tar.gz --directory ./splitsh
+      - name: Split and update ${{ matrix.library }}
+        run: |
+          SHA1=`./splitsh/splitsh-lite --prefix=src/${{ matrix.library }}`
+          git remote add ${{ matrix.library }} https://${{ secrets.AUTH_TOKEN }}@github.com/zestframework/${{ matrix.library }}
+          git push -f ${{ matrix.library }} ${SHA1}:master
+  
