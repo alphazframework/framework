@@ -17,7 +17,6 @@
 namespace Zest\Router;
 
 use Zest\Cache\Cache;
-use Zest\http\Request;
 
 class App extends Router
 {
@@ -43,15 +42,13 @@ class App extends Router
             if (!$cache->has('router')) {
                 require_once $routeFile;
                 $router->cacheRouters();
-                $router->dispatch(new Request());
             } else {
                 $router->routes = $router->loadCache();
-                $router->dispatch(new Request());
             }
         } else {
             require_once $routeFile;
-            //$router->cacheRouters();
-            $router->dispatch(new Request());
         }
+
+        return $router;
     }
 }

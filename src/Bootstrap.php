@@ -19,6 +19,7 @@ namespace Zest;
 use Zest\Common\AliasLoader;
 use Zest\Common\TimeZone;
 use Zest\Router\App;
+use Zest\http\Request;
 
 class Bootstrap
 {
@@ -59,8 +60,7 @@ class Bootstrap
      */
     public function registerApp()
     {
-        $app = new App();
-        $app->run();
+        (new App())->run()->dispatch(new Request());
     }
 
     /**
