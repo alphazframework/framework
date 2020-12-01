@@ -19,7 +19,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, pdo, pdo_mysql, intl, zip, sodium
+          extensions: mbstring, pdo, pdo_mysql, intl, zip, sodium, bz2, gzip
 
       - name: Check PHP Version
         run: php -v
