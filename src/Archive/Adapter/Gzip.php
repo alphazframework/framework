@@ -65,12 +65,13 @@ class Gzip implements AdapterInterface
      * @param (string) $files       The file that you want to compress.
      * @param (string) $destination The file destination.
      * @param (bool)   $overwrite   True to delete the file; False to not delete it.
+     * @param (int)    $mode        Level of gzip compression.
      *
      * @since 1.0.0
      *
      * @return bool True when succeeded; False when failed.
      */
-    public function compress($files, string $destination = '', bool $overwrite = false): bool
+    public function compress($files, string $destination = '', bool $overwrite = false, $mode = 9): bool
     {
         // If the destination already exists and overwrite is false, return false.
         if (file_exists($destination) && !$overwrite) {
@@ -82,7 +83,6 @@ class Gzip implements AdapterInterface
             return false;
         }
 
-        $mode = 'wb'.__config('archive.gzip.level') ?? 9;
         $filename = $destination;
         if ($outfile = gzopen($filename, $mode)) {
             if ($infile = fopen($files, 'rb')) {

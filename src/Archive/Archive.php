@@ -34,7 +34,13 @@ class Archive
      */
     public function __construct($adapter = null)
     {
-        ($adapter !== null) ? $this->setAdapter($adapter) : $this->setAdapter(__config('archive.driver'));
+        if (\defined('__ZEST__ROOT__')) {
+          $this->setAdapter(__config('archive.driver'));
+        }
+
+        if (adapter !== null) {
+            $this->setAdapter($adapter);
+        }
     }
 
     /**

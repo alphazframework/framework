@@ -1,0 +1,18 @@
+{
+    "name": "zest/archive",
+    "description": "The Zest Archive component",
+    "type": "libraray",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lablnet",
+            "email": "mumerfarooqlablnet01@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+             "Zest\\Archive\\": ""
+        }
+    }
+}
