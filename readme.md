@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/zestframework/Zest_Framework/workflows/zest/badge.svg)](https://github.com/zestframework/Zest_Framework/actions)
+[![Build Status](https://github.com/zestframework/Zest_Framework/workflows/tests/badge.svg)](https://github.com/zestframework/Zest_Framework/actions)
 [![StyleCI](https://github.styleci.io/repos/135673638/shield?branch=master)](https://github.styleci.io/repos/135673638)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zestframework/Zest_Framework/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/zestframework/Zest_Framework/?branch=master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://zestframework.xyz/contribute/index)
