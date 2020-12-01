@@ -8,7 +8,7 @@ jobs:
     name: split
     strategy:
       matrix:
-        library: ['Files', 'Data', 'Cookies', 'Session', 'Container']
+        library: ['Files', 'Data', 'Cookies', 'Session', 'Container', 'Archive']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
