@@ -3,9 +3,9 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zestframework/Zest_Framework/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/zestframework/Zest_Framework/?branch=master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://zestframework.xyz/contribute/index)
 [![Code Intelligence Status](https://scrutinizer-ci.com/g/zestframework/Zest_Framework/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
-[![Latest Stable Version](https://poser.pugx.org/softhub99/zest_framework/v/stable)](https://packagist.org/packages/softhub99/zest_framework)
-[![Latest Unstable Version](https://poser.pugx.org/softhub99/zest_framework/v/unstable)](https://packagist.org/packages/softhub99/zest_framework)
-[![License](https://poser.pugx.org/softhub99/zest_framework/license)](https://packagist.org/packages/softhub99/zest_framework)
+[![Latest Stable Version](https://poser.pugx.org/zest/framework/v/stable)](https://packagist.org/packages/zest/framework)
+[![Latest Unstable Version](https://poser.pugx.org/zest/framework/v/unstable)](https://packagist.org/packages/zest/framework)
+[![License](https://poser.pugx.org/zest/framework/license)](https://packagist.org/packages/zest/framework)
 
 
 
