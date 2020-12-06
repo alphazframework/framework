@@ -84,7 +84,7 @@ class Gzip implements AdapterInterface
         }
 
         $filename = $destination;
-        if ($outfile = gzopen($filename, 'wb' . $mode)) {
+        if ($outfile = gzopen($filename, 'wb'.$mode)) {
             if ($infile = fopen($files, 'rb')) {
                 while (!feof($infile)) {
                     gzwrite($outfile, fread($infile, $this->BufferSize));
