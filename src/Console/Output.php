@@ -38,7 +38,7 @@ class Output extends Colorize
      *
      * @return self
      */
-    public function quiet()
+    public function quiet(): self
     {
         $this->quiet = true;
 
@@ -104,7 +104,7 @@ class Output extends Colorize
      *
      * @return void
      */
-    public function exit()
+    public function exit(): void
     {
         exit(1);
     }

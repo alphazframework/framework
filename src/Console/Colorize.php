@@ -74,7 +74,7 @@ class Colorize
      *
      * @var string
      */
-    public function get($color, $background = false)
+    public function get(string $color, bool $background = false)
     {
         $arr = ($background) ? $this->background : $this->foreground;
         if (Arrays::has($arr, $color, '.')) {

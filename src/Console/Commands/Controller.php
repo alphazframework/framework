@@ -58,7 +58,7 @@ class Controller extends Command
      *
      * @return void
      */
-    public function handle(Output $output)
+    public function handle(Output $output): void
     {
         $name = $this->ask('Enter name of controller: ');
         $file = '../App/Controllers/'.$name.'.php';

@@ -59,7 +59,7 @@ class Cache extends Command
      *
      * @return void
      */
-    public function handle(Output $output)
+    public function handle(Output $output): void
     {
         $c = new CacheManager();
         $c->clear();

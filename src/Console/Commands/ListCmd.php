@@ -69,7 +69,7 @@ class ListCmd extends Command
      *
      * @return void
      */
-    public function getList()
+    public function getList(): void
     {
         $console = new Console();
         $this->cmds = $console->getCommands();
@@ -82,7 +82,7 @@ class ListCmd extends Command
      *
      * @return void
      */
-    public function handle(Output $output)
+    public function handle(Output $output): void
     {
         $output->write('<white>Zest Framewor: </white>', false);
         $output->write('<yellow>'.V::VERSION.'</yellow>', true);

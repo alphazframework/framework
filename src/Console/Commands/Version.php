@@ -59,7 +59,7 @@ class Version extends Command
      *
      * @return void
      */
-    public function handle(Output $output)
+    public function handle(Output $output): void
     {
         $output->write('<white>Zest Framewor: </white>', false);
         $output->write('<yellow>'.V::VERSION.'</yellow>', true);

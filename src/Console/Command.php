@@ -95,7 +95,7 @@ abstract class Command
      *
      * @return void
      */
-    public function write($str, $newLine = true)
+    public function write(string $str, bool $newLine = true)
     {
         (new Output())->write($str, $newLine);
     }
@@ -107,7 +107,7 @@ abstract class Command
      *
      * @return void
      */
-    public function ask($str)
+    public function ask(string $str)
     {
         $this->write("<white>$str</white>", false);
 
@@ -119,7 +119,7 @@ abstract class Command
      *
      * @return void
      */
-    public function terminate()
+    public function terminate(): void
     {
         exit();
     }
@@ -131,5 +131,5 @@ abstract class Command
      *
      * @return void
      */
-    abstract public function handle(Output $output);
+    abstract public function handle(Output $output): void;
 }
