@@ -18,12 +18,11 @@
 
 namespace Zest\Console\Commands;
 
-use Zest\Cache\Cache as CacheManager;
 use Zest\Console\Command;
 use Zest\Console\Output;
-use Zest\Console\Input;
+use Zest\Router\App;
 
-class Cache extends Command
+class RouterListCommand extends Command
 {
     /**
      * Sign of the command.
@@ -32,7 +31,7 @@ class Cache extends Command
      *
      * @var string
      */
-    protected $sign = 'clear:cache';
+    protected $sign = 'route:list';
 
     /**
      * Description of the command.
@@ -41,7 +40,16 @@ class Cache extends Command
      *
      * @var string
      */
-    protected $description = 'Clear the application cache';
+    protected $description = 'List all registered routes';
+
+    /**
+     * App instance.
+     *
+     * @since 3.0.0
+     *
+     * @var \Zest\Router\App
+     */
+    private $app;
 
     /**
      * Create a new command instance.
@@ -51,6 +59,7 @@ class Cache extends Command
     public function __construct()
     {
         parent::__construct();
+        $this->app = new App();
     }
 
     /**
@@ -60,10 +69,9 @@ class Cache extends Command
      *
      * @return void
      */
-    public function handle(Output $output, Input $input): void
+    public function handle(Output $output)
     {
-        $c = new CacheManager();
-        $c->clear();
-        $this->output('<green>Cache cleared</green>');
+        $routers = $this->app->getRoutes();
+        //var_dump($routers);
     }
 }

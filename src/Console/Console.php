@@ -82,14 +82,15 @@ class Console
 
         $sign = isset($param[1]) ? $param[1] : 'list';
         $output = new Output();
+        $input = new Input();
         if ($this->container->has($sign)) {
             $cmd = $this->container->get($sign);
 
             if (!isset($param[2])) {
-                $cmd->handle($output);
+                $cmd->handle($output, $input);
             }
             if (isset($param[2]) && strtolower($param[2]) == '-q') {
-                $cmd->handle($output->quiet());
+                $cmd->handle($output->quiet(), $input);
             }
             if (isset($param[2]) && strtolower($param[2]) == '-h') {
                 $output->write('<yellow>Description:</yellow>', true);

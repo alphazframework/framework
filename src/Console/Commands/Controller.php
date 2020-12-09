@@ -20,6 +20,7 @@ namespace Zest\Console\Commands;
 
 use Zest\Console\Command;
 use Zest\Console\Output;
+use Zest\Console\Input;
 
 class Controller extends Command
 {
@@ -58,7 +59,7 @@ class Controller extends Command
      *
      * @return void
      */
-    public function handle(Output $output): void
+    public function handle(Output $output, Input $input): void
     {
         $name = $this->ask('Enter name of controller: ');
         $file = '../App/Controllers/'.$name.'.php';

@@ -21,6 +21,7 @@ namespace Zest\Console\Commands;
 use Zest\Common\Version as V;
 use Zest\Console\Command;
 use Zest\Console\Output;
+use Zest\Console\Input;
 
 class Version extends Command
 {
@@ -59,7 +60,7 @@ class Version extends Command
      *
      * @return void
      */
-    public function handle(Output $output): void
+    public function handle(Output $output, Input $input): void
     {
         $output->write('<white>Zest Framewor: </white>', false);
         $output->write('<yellow>'.V::VERSION.'</yellow>', true);

@@ -21,6 +21,29 @@ namespace Zest\Console;
 class Input extends Colorize
 {
     /**
+     * Prompt for input secret input like password.
+     *
+     * @param string $prompt Message to display.
+     * 
+     * @since 3.0.0
+     *
+     * @return bool
+     */
+    public function secret(string $prompt)
+    {
+        $os = (new \Zest\Common\OperatingSystem())->get();
+        $command = "./resources/secretinput.exe";
+        if ($os !== 'Window') {
+            $command = "/usr/bin/env bash -c 'read -s -p \""
+            . addslashes($prompt)
+            . "\" mypassword && echo \$mypassword'";
+        }
+        $value = rtrim(shell_exec($command), "\n");
+  
+        return $value;
+    }
+
+    /**
      * Prompt for input confirm.
      *
      * @since 3.0.0

@@ -131,5 +131,5 @@ abstract class Command
      *
      * @return void
      */
-    abstract public function handle(Output $output): void;
+    abstract public function handle(Output $output, Input $input): void;
 }

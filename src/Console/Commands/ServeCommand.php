@@ -18,12 +18,11 @@
 
 namespace Zest\Console\Commands;
 
-use Zest\Cache\Cache as CacheManager;
 use Zest\Console\Command;
 use Zest\Console\Output;
 use Zest\Console\Input;
 
-class Cache extends Command
+class ServeCommand extends Command
 {
     /**
      * Sign of the command.
@@ -32,7 +31,7 @@ class Cache extends Command
      *
      * @var string
      */
-    protected $sign = 'clear:cache';
+    protected $sign = 'serve';
 
     /**
      * Description of the command.
@@ -41,7 +40,7 @@ class Cache extends Command
      *
      * @var string
      */
-    protected $description = 'Clear the application cache';
+    protected $description = 'Serve the application on the PHP development server';
 
     /**
      * Create a new command instance.
@@ -62,8 +61,11 @@ class Cache extends Command
      */
     public function handle(Output $output, Input $input): void
     {
-        $c = new CacheManager();
-        $c->clear();
-        $this->output('<green>Cache cleared</green>');
+        //$output->write('<white>Zest Framewor: </white>', false);
+        //$output->write('<yellow>'.V::VERSION.'</yellow>', true);
+        $host = 'localhost:8080';
+        $command = 'php -S '.$host;
+        $output->write("<green>\n PHP local development server has been started locat at localhost:8080. If the public directory is the root, then localhost:8080/public \n</green>");
+        shell_exec($command);
     }
 }

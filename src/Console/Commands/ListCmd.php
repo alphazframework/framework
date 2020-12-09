@@ -23,6 +23,7 @@ use Zest\Console\Command;
 use Zest\Console\Console;
 use Zest\Console\Output;
 use Zest\Container\Container;
+use Zest\Console\Input;
 
 class ListCmd extends Command
 {
@@ -82,7 +83,7 @@ class ListCmd extends Command
      *
      * @return void
      */
-    public function handle(Output $output): void
+    public function handle(Output $output, Input $input): void
     {
         $output->write('<white>Zest Framewor: </white>', false);
         $output->write('<yellow>'.V::VERSION.'</yellow>', true);
