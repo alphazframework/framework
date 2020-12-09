@@ -46,6 +46,24 @@ class Output extends Colorize
     }
 
     /**
+     * Ring the bell.
+     *
+     * @param int $times
+     * 
+     * @since 3.0.0
+     *
+     * @return self
+     */
+    public function bell(int $times = 1): self
+    {
+        for ($i = 1; $i <= $times; $i++) {
+            echo "\x07";
+        }
+
+        return $this;
+    }
+
+    /**
      * Create the table on console.
      *
      * @since 3.0.0
@@ -63,6 +81,9 @@ class Output extends Colorize
     /**
      * Write on console.
      *
+     * @param string $value
+     * @param bool   $newLine
+     * 
      * @since 3.0.0
      *
      * @return self
@@ -75,17 +96,38 @@ class Output extends Colorize
             $color = str_replace('<', '', $color);
             $color = str_replace('>', '', $color);
             $regx = "/<$color\b[^>]*>(.*?)<\/$color>/i";
-            $text = preg_replace($regx, '\\1', $value);
             $line = ($newLine) ? "\n" : '';
-            echo "\033[".$this->get($color).''.$text.$line;
+
+            if (preg_match($regx, $value)) {
+                $text = preg_replace($regx, '\\1', $value);
+                echo "\033[".$this->get($color);
+            }
+
+            $text = isset($text) ? $text : $value;
+            preg_match("/<\b[^>]*>/i", $text, $_bg);
+            $bg = $_bg[0] ?? 'bg:default';
+            $bg = str_replace(['<', '>'], '', $bg);
+            $_regx = "/<$bg\b[^>]*>(.*?)<\/$bg>/i";
+            if (preg_match($_regx, $text)) {
+                $text = preg_replace($_regx, '\\1', $text);
+                echo "\033[".$this->get($bg);
+            }
+    
+            echo ''.$text.$line;
+
+            // reset to default
+            echo "\033[0m";
+            echo "\033[39m";
         }
 
         return $this;
     }
 
     /**
-     * Output the admin.
+     * Output the error.
      *
+     * @param string $msg
+     * 
      * @since 3.0.0
      *
      * @return self
@@ -96,6 +138,70 @@ class Output extends Colorize
 
         return $this;
     }
+
+    /**
+     * Output the danger.
+     *
+     * @param string $msg
+     * 
+     * @since 3.0.0
+     *
+     * @return self
+     */
+    public function danger($msg): self
+    {
+        $this->write("<bg:red><black>$msg</black></bg:red>", true);
+        
+        return $this;
+    }
+
+    /**
+     * Output the info.
+     *
+     * @param string $msg
+     * 
+     * @since 3.0.0
+     *
+     * @return self
+     */
+    public function info($msg): self
+    {
+        $this->write("<bg:blue><black>$msg</black></bg:blue>", true);
+
+        return $this;
+    }
+
+    /**
+     * Output the warning.
+     *
+     * @param string $msg
+     * 
+     * @since 3.0.0
+     *
+     * @return self
+     */
+    public function warning($msg): self
+    {
+        $this->write("<bg:yellow><black>$msg</black></bg:yellow>", true);
+
+        return $this;
+    }    
+
+    /**
+     * Output the warning.
+     *
+     * @param string $msg
+     * 
+     * @since 3.0.0
+     *
+     * @return self
+     */
+    public function success($msg): self
+    {
+        $this->write("<bg:green><black>$msg</black></bg:green>", true);
+
+        return $this;
+    }    
 
     /**
      * Exit.

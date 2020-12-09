@@ -29,39 +29,31 @@ class Colorize
      *
      * @var array
      */
-    public $foreground = [
+    public $styles = [
+        'bold'       => "1m",
+		'faded'      => "2m",
+		'underlined' => "4m",
+		'blinking'   => "5m",
+		'reversed'   => "7m",
+		'hidden'     => "8m",
         'red'     => '31m',
         'green'   => '32m',
         'yellow'  => '33m',
         'blue'    => '34m',
         'magenta' => '35m',
         'cyan'    => '36m',
-        'gray'    => [
-            'light' => '37m',
-            'dark'  => '90m',
-        ],
-        'white' => '1m',
-    ];
-
-    /**
-     * Background colors.
-     *
-     * @since 3.0.0
-     *
-     * @var array
-     */
-    public $background = [
-        'red'     => '41m',
-        'green'   => '42m',
-        'yellow'  => '53m',
-        'blue'    => '44m',
-        'magenta' => '45m',
-        'cyan'    => '46m',
-        'gray'    => [
-            'light' => '47m',
-            'dark'  => '100m',
-        ],
-        'white' => '1m',
+        'light_gray' => '37m',
+        'dark_gray'  => '90m',
+        'white' => '0m',
+        'bg:red'     => '41m',
+        'bg:green'   => '42m',
+        'bg:yellow'  => '53m',
+        'bg:blue'    => '44m',
+        'bg:magenta' => '45m',
+        'bg:cyan'    => '46m',
+        'bg:light_gray' => '47m',
+        'bg:dark_gray'  => '100m',
+        'bg:white' => '0m',
     ];
 
     /**
@@ -74,11 +66,10 @@ class Colorize
      *
      * @var string
      */
-    public function get(string $color, bool $background = false)
+    public function get(string $style)
     {
-        $arr = ($background) ? $this->background : $this->foreground;
-        if (Arrays::has($arr, $color, '.')) {
-            return Arrays::get($arr, $color, '.');
+        if (Arrays::has($this->styles, $style, '.')) {
+            return Arrays::get($this->styles, $style, '.');
         }
     }
 }
