@@ -49,7 +49,7 @@ class Output extends Colorize
      * Ring the bell.
      *
      * @param int $times
-     * 
+     *
      * @since 3.0.0
      *
      * @return self
@@ -83,7 +83,7 @@ class Output extends Colorize
      *
      * @param string $value
      * @param bool   $newLine
-     * 
+     *
      * @since 3.0.0
      *
      * @return self
@@ -112,7 +112,7 @@ class Output extends Colorize
                 $text = preg_replace($_regx, '\\1', $text);
                 echo "\033[".$this->get($bg);
             }
-    
+
             echo ''.$text.$line;
 
             // reset to default
@@ -127,7 +127,7 @@ class Output extends Colorize
      * Output the error.
      *
      * @param string $msg
-     * 
+     *
      * @since 3.0.0
      *
      * @return self
@@ -143,7 +143,7 @@ class Output extends Colorize
      * Output the danger.
      *
      * @param string $msg
-     * 
+     *
      * @since 3.0.0
      *
      * @return self
@@ -151,7 +151,7 @@ class Output extends Colorize
     public function danger($msg): self
     {
         $this->write("<bg:red><black>$msg</black></bg:red>", true);
-        
+
         return $this;
     }
 
@@ -159,7 +159,7 @@ class Output extends Colorize
      * Output the info.
      *
      * @param string $msg
-     * 
+     *
      * @since 3.0.0
      *
      * @return self
@@ -175,7 +175,7 @@ class Output extends Colorize
      * Output the warning.
      *
      * @param string $msg
-     * 
+     *
      * @since 3.0.0
      *
      * @return self
@@ -185,13 +185,13 @@ class Output extends Colorize
         $this->write("<bg:yellow><black>$msg</black></bg:yellow>", true);
 
         return $this;
-    }    
+    }
 
     /**
      * Output the warning.
      *
      * @param string $msg
-     * 
+     *
      * @since 3.0.0
      *
      * @return self
@@ -201,7 +201,7 @@ class Output extends Colorize
         $this->write("<bg:green><black>$msg</black></bg:green>", true);
 
         return $this;
-    }    
+    }
 
     /**
      * Exit.
