@@ -18,5 +18,4 @@ namespace Zest\Sechdule;
 
 class Sechdule
 {
-
 }

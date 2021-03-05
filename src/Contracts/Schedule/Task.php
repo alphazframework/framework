@@ -18,5 +18,4 @@ namespace Zest\Contracts\Sechdule;
 
 interface Task
 {
-
 }
