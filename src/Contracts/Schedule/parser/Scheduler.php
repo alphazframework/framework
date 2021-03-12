@@ -18,7 +18,6 @@ namespace Zest\Contracts\Sechdule\Parser;
 
 interface Scheduler
 {
-
     /**
      * Parse the expression.
      *
