@@ -43,6 +43,17 @@ class Controller extends Command
     protected $description = 'Create a new Controller class';
 
     /**
+     * Accpet flag parameter in command.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    protected $flags = [
+        'name'
+    ];
+
+    /**
      * Create a new command instance.
      *
      * @return void

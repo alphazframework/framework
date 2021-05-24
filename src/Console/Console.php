@@ -18,6 +18,7 @@
 
 namespace Zest\Console;
 
+use Zest\Data\Arrays;
 use Zest\Console\Commands as InternalCommands;
 use Zest\Container\Container;
 
@@ -58,6 +59,34 @@ class Console
     }
 
     /**
+     * Parse the flags from command.
+     *
+     * @param array $flags Raw flags.
+     * 
+     * @return array
+     */
+    public function parseFlags($flags): array
+    {
+        $params = [];
+        $f = explode(",", $flags);
+        if (Arrays::isReallyArray($f)) {
+            foreach ($f as $flag => $fs) {
+                $param = explode("=", $fs);
+                if (isset($param[1])) {
+                    $params[$param[0]] = $param[1];
+                }
+            }
+        } else {
+            $param = explode("=", $flags);
+            if (isset($param[1])) {
+                $params[$param[0]] = $param[1];
+            }
+        }
+
+        return $params;
+    }
+
+    /**
      * Get all commands.
      *
      * @return array
@@ -93,6 +122,13 @@ class Console
             // flag for quite
             if (isset($param[2]) && strtolower($param[2]) == '-q') {
                 $cmd->handle($output->quiet(), $input);
+            }
+            if (isset($param[2]) && isset($param[3]) && strtolower($param[2]) == '-p') {
+                $params = $this->parseFlags($param[3]);
+                //var_dump($params);
+                //$command_flags = $cmd->getFlags();
+
+               // $cmd->handle($output, $input, $params);
             }
 
             // flag for help

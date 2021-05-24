@@ -48,6 +48,15 @@ abstract class Command
     protected $hidden = false;
 
     /**
+     * Accpet flag parameter in command.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    protected $flags = [];
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -85,6 +94,16 @@ abstract class Command
     public function getDescription(): string
     {
         return $this->description ?? '';
+    }
+
+    /**
+     * Get flags.
+     *
+     * @return array
+     */
+    public function getFlags(): array
+    {
+        return $this->flags ?? [];
     }
 
     /**
