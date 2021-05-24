@@ -86,12 +86,16 @@ class Console
         if ($this->container->has($sign)) {
             $cmd = $this->container->get($sign);
 
+            // default.
             if (!isset($param[2])) {
                 $cmd->handle($output, $input);
             }
+            // flag for quite
             if (isset($param[2]) && strtolower($param[2]) == '-q') {
                 $cmd->handle($output->quiet(), $input);
             }
+
+            // flag for help
             if (isset($param[2]) && strtolower($param[2]) == '-h') {
                 $output->write('<yellow>Description:</yellow>', true);
                 $output->write("<blue>\t".$cmd->getDescription().'</blue>', true);

@@ -56,16 +56,18 @@ class Controller extends Command
      * Function to handle the class.
      *
      * @param \Zest\Console\Output $output
+     * @param \Zest\Console\Input  $input
+     * @param array                $param
      *
      * @return void
      */
-    public function handle(Output $output, Input $input): void
+    public function handle(Output $output, Input $input, $param = []): void
     {
         $name = $this->ask('Enter name of controller: ');
-        $file = '../App/Controllers/'.$name.'.php';
+        $file = route('root').'App/Controllers/'.$name.'.php';
         if (!file_exists($file)) {
             $fh = fopen($file, 'w');
-            fwrite($fh, $this->controller());
+            fwrite($fh, $this->controller($name));
             fclose($fh);
         }
     }

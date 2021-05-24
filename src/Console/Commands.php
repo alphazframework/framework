@@ -32,6 +32,8 @@ class Commands
         ['list', \Zest\Console\Commands\ListCmd::class],
         ['make:controller',  \Zest\Console\Commands\Controller::class],
         ['clear:cache', \Zest\Console\Commands\Cache::class],
+        ['serve', \Zest\Console\Commands\ServeCommand::class],
+
     ];
 
     /**

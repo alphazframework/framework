@@ -17,7 +17,7 @@
  */
 
 namespace Zest\Console\Commands;
-
+use Zest\Common\Version as V;
 use Zest\Console\Command;
 use Zest\Console\Output;
 use Zest\Console\Input;
@@ -56,13 +56,15 @@ class ServeCommand extends Command
      * Function to handle the class.
      *
      * @param \Zest\Console\Output $output
+     * @param \Zest\Console\Input  $input
+     * @param array                $param
      *
      * @return void
      */
-    public function handle(Output $output, Input $input): void
+    public function handle(Output $output, Input $input, $param = []): void
     {
-        //$output->write('<white>Zest Framewor: </white>', false);
-        //$output->write('<yellow>'.V::VERSION.'</yellow>', true);
+        $output->write('<white>Zest Framewor: </white>', false);
+        $output->write('<yellow>'.V::VERSION.'</yellow>', true);
         $host = 'localhost:8080';
         $command = 'php -S '.$host;
         $output->write("<green>\n PHP local development server has been started locat at localhost:8080. If the public directory is the root, then localhost:8080/public \n</green>");

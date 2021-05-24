@@ -57,13 +57,15 @@ class Cache extends Command
      * Function to handle the class.
      *
      * @param \Zest\Console\Output $output
+     * @param \Zest\Console\Input  $input
+     * @param array                $param
      *
      * @return void
      */
-    public function handle(Output $output, Input $input): void
+    public function handle(Output $output, Input $input, $param = []): void
     {
         $c = new CacheManager();
         $c->clear();
-        $this->output('<green>Cache cleared</green>');
+        $output->write('<green>Cache cleared</green>');
     }
 }

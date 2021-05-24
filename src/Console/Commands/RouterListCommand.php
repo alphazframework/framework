@@ -66,10 +66,12 @@ class RouterListCommand extends Command
      * Function to handle the class.
      *
      * @param \Zest\Console\Output $output
+     * @param \Zest\Console\Input  $input
+     * @param array                $param
      *
      * @return void
      */
-    public function handle(Output $output)
+    public function handle(Output $output, Input $input, $param = []): void
     {
         $routers = $this->app->getRoutes();
         //var_dump($routers);
