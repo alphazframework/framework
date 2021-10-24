@@ -21,9 +21,9 @@ namespace Zest\Console\Commands;
 use Zest\Common\Version as V;
 use Zest\Console\Command;
 use Zest\Console\Console;
+use Zest\Console\Input;
 use Zest\Console\Output;
 use Zest\Container\Container;
-use Zest\Console\Input;
 
 class ListCmd extends Command
 {

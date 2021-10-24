@@ -18,9 +18,9 @@
 
 namespace Zest\Console;
 
-use Zest\Data\Arrays;
 use Zest\Console\Commands as InternalCommands;
 use Zest\Container\Container;
+use Zest\Data\Arrays;
 
 class Console
 {
@@ -55,7 +55,7 @@ class Console
         if (class_exists("\Config\Commands")) {
             $externalCommands = (new \Config\Commands())->getCommands();
         }
-        
+
         $this->commands = array_merge($internalCommands, $externalCommands);
     }
 
@@ -63,22 +63,22 @@ class Console
      * Parse the flags from command.
      *
      * @param array $flags Raw flags.
-     * 
+     *
      * @return array
      */
     public function parseFlags($flags): array
     {
         $params = [];
-        $f = explode(",", $flags);
+        $f = explode(',', $flags);
         if (Arrays::isReallyArray($f)) {
             foreach ($f as $flag => $fs) {
-                $param = explode("=", $fs);
+                $param = explode('=', $fs);
                 if (isset($param[1])) {
                     $params[$param[0]] = $param[1];
                 }
             }
         } else {
-            $param = explode("=", $flags);
+            $param = explode('=', $flags);
             if (isset($param[1])) {
                 $params[$param[0]] = $param[1];
             }
@@ -119,8 +119,8 @@ class Console
             // default.
             if (!isset($param[2])) {
                 if (count($cmd->getFlags()) > 0) {
-                    $output->error("You must provide the flags");
-                    $output->error("For Help, php zest ". $cmd->getSign() ." -h");
+                    $output->error('You must provide the flags');
+                    $output->error('For Help, php zest '.$cmd->getSign().' -h');
                     exit;
                 }
                 $cmd->handle($output, $input);
@@ -134,7 +134,7 @@ class Console
                 $command_flags = $cmd->getFlags();
                 // get keys from $params.
                 $keys = array_keys($params);
-                
+
                 // check if the keys are in the command flags (check if extra flag passed).
                 foreach ($keys as $key => $value) {
                     if (!in_array($value, $command_flags)) {
@@ -151,7 +151,7 @@ class Console
                     }
                 }
 
-               $cmd->handle($output, $input, $params);
+                $cmd->handle($output, $input, $params);
             }
 
             // flag for help
@@ -163,7 +163,7 @@ class Console
                 $output->write("<blue>\t".$cmd->getSign().'</blue>', true);
                 if (count($args) > 0) {
                     $output->write("\n<yellow>Arguments:</yellow>", true);
-                    $output->write("<blue>\t".implode("," , $args).'</blue>', true);
+                    $output->write("<blue>\t".implode(',', $args).'</blue>', true);
                 }
                 $output->write("\n<yellow>Options:</yellow>", true);
                 $output->write('<green>-h, --help</green>');
