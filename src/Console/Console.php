@@ -18,101 +18,161 @@
 
 namespace Zest\Console;
 
-use Zest\Common\Version;
+use Zest\Data\Arrays;
+use Zest\Console\Commands as InternalCommands;
+use Zest\Container\Container;
 
 class Console
 {
-    public function createController()
+    /**
+     * Instance of container.
+     *
+     * @since 3.0.0
+     *
+     * @var \Zest\Container\Container
+     */
+    private $container;
+
+    /**
+     * Commanads.
+     *
+     * @since 3.0.0
+     *
+     * @var array
+     */
+    private $commands = [];
+
+    /**
+     * Create a new console instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        echo "Enter name of controller that you want create \n";
-        $name = $this->cliInput();
-        $code = new Code();
-        $data = $code->controller($name);
-        $writer = new Write();
-        if ($writer->controller($name, $data)) {
-            echo "Controller {$name} created successfully \n";
-            $this->main();
-        } else {
-            echo "Something went wrong \n";
-            $this->main();
+        $this->container = new Container();
+        $internalCommands = (new InternalCommands())->getCommands();
+        $externalCommands = [];
+        if (class_exists("\Config\Commands")) {
+            $externalCommands = (new \Config\Commands())->getCommands();
         }
+        
+        $this->commands = array_merge($internalCommands, $externalCommands);
     }
 
-    public function createModel()
+    /**
+     * Parse the flags from command.
+     *
+     * @param array $flags Raw flags.
+     * 
+     * @return array
+     */
+    public function parseFlags($flags): array
     {
-        echo "Enter name of model that you want create \n";
-        $name = $this->cliInput();
-        $code = new Code();
-        $data = $code->controller($name);
-        $writer = new Write();
-        if ($writer->controller($name, $data)) {
-            echo "Model {$name} created successfully \n";
-            $this->main();
+        $params = [];
+        $f = explode(",", $flags);
+        if (Arrays::isReallyArray($f)) {
+            foreach ($f as $flag => $fs) {
+                $param = explode("=", $fs);
+                if (isset($param[1])) {
+                    $params[$param[0]] = $param[1];
+                }
+            }
         } else {
-            echo "Something went wrong \n";
-            $this->main();
+            $param = explode("=", $flags);
+            if (isset($param[1])) {
+                $params[$param[0]] = $param[1];
+            }
         }
+
+        return $params;
     }
 
-    public function startServer()
+    /**
+     * Get all commands.
+     *
+     * @return array
+     */
+    public function getCommands(): array
     {
-        $host = 'localhost:8080';
-        $command = 'php -S '.$host;
-        echo "\n PHP local development server has been started locat at localhost:8080. If the public directory is the root, then localhost:8080/public \n";
-        shell_exec($command);
+        return $this->commands;
     }
 
-    public function main()
+    /**
+     * Run the Zest console.
+     *
+     * @return void
+     */
+    public function run($param): void
     {
-        do {
-            echo " Zest CLI Environment. \n";
-            echo " ***************************** \n";
-            echo " Enter 'c' to create a controller. \n";
-            echo " Enter 'v' for version information. \n";
-            echo " Enter 's' to start a local development server. \n";
-            echo " Enter 'x' to quit. \n";
-            echo " ***************************** \n";
-            $x = $this->cliInput();
-            if ($x === 'c') {
-                $this->createController();
-            } elseif ($x === 'v') {
-                echo 'Zest Framework Version is: '.Version::VERSION."\n";
-                $this->main();
-            } elseif ($x === 's') {
-                $this->startServer();
-            } elseif ($x === 'x') {
-                echo 'GoodBye';
-                exit();
-            } else {
-                $this->main();
+
+        // registering the commands to container.
+        foreach ($this->commands as $command) {
+            $this->container->register([$command[1], $command[0]], new $command[1]());
+        }
+
+        $sign = isset($param[1]) ? $param[1] : 'list';
+        $output = new Output();
+        $input = new Input();
+        if ($this->container->has($sign)) {
+            $cmd = $this->container->get($sign);
+
+            // default.
+            if (!isset($param[2])) {
+                if (count($cmd->getFlags()) > 0) {
+                    $output->error("You must provide the flags");
+                    $output->error("For Help, php zest ". $cmd->getSign() ." -h");
+                    exit;
+                }
+                $cmd->handle($output, $input);
             }
-            echo "Enter 'r' to repeat";
-        } while ($x === 'r');
-    }
+            // flag for quite
+            if (isset($param[2]) && strtolower($param[2]) == '-q') {
+                $cmd->handle($output->quiet(), $input);
+            }
+            if (isset($param[2]) && isset($param[3]) && strtolower($param[2]) == '-p') {
+                $params = $this->parseFlags($param[3]);
+                $command_flags = $cmd->getFlags();
+                // get keys from $params.
+                $keys = array_keys($params);
+                
+                // check if the keys are in the command flags (check if extra flag passed).
+                foreach ($keys as $key => $value) {
+                    if (!in_array($value, $command_flags)) {
+                        $output->error("Invalid flag: $value");
+                        exit;
+                    }
+                }
 
-    public function run()
-    {
-        $this->main();
-    }
+                // check the keys should be in command flags.
+                foreach ($command_flags as $command_flag) {
+                    if (!in_array($command_flag, $keys)) {
+                        $output->error("Missing flag: $command_flag");
+                        exit;
+                    }
+                }
 
-    public function oS()
-    {
-        return (new \Zest\Common\OperatingSystem())->get();
-    }
+               $cmd->handle($output, $input, $params);
+            }
 
-    public function cliInput()
-    {
-        if ($this->oS() === 'WINNT' or $this->oS() === 'Windows') {
-            echo '? ';
-            $x = stream_get_line(STDIN, 9024, PHP_EOL);
-            if (!empty($x)) {
-                return $x;
+            // flag for help
+            if (isset($param[2]) && strtolower($param[2]) == '-h') {
+                $args = $cmd->getFlags();
+                $output->write('<yellow>Description:</yellow>', true);
+                $output->write("<blue>\t".$cmd->getDescription().'</blue>', true);
+                $output->write("\n<yellow>Usage:</yellow>", true);
+                $output->write("<blue>\t".$cmd->getSign().'</blue>', true);
+                if (count($args) > 0) {
+                    $output->write("\n<yellow>Arguments:</yellow>", true);
+                    $output->write("<blue>\t".implode("," , $args).'</blue>', true);
+                }
+                $output->write("\n<yellow>Options:</yellow>", true);
+                $output->write('<green>-h, --help</green>');
+                $output->write("<blue>\tDisplay this help message</blue>", true);
+                $output->write('<green>--q, --quiet</green>');
+                $output->write("<blue>\tDo not output any message</blue>", true);
             }
         } else {
-            $x = readline('? ');
-            if (!empty($x)) {
-                return $x;
-            }
+            $output->error("Sorry, the given command ${sign} not found")->exit();
         }
     }
 }
