@@ -74,6 +74,6 @@ class RouterListCommand extends Command
     public function handle(Output $output, Input $input, $param = []): void
     {
         $routers = $this->app->getRoutes();
-        //var_dump($routers);
+        var_dump($routers);
     }
 }

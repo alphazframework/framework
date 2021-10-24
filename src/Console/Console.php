@@ -55,6 +55,7 @@ class Console
         if (class_exists("\Config\Commands")) {
             $externalCommands = (new \Config\Commands())->getCommands();
         }
+        
         $this->commands = array_merge($internalCommands, $externalCommands);
     }
 
@@ -117,6 +118,11 @@ class Console
 
             // default.
             if (!isset($param[2])) {
+                if (count($cmd->getFlags()) > 0) {
+                    $output->error("You must provide the flags");
+                    $output->error("For Help, php zest ". $cmd->getSign() ." -h");
+                    exit;
+                }
                 $cmd->handle($output, $input);
             }
             // flag for quite
@@ -125,18 +131,40 @@ class Console
             }
             if (isset($param[2]) && isset($param[3]) && strtolower($param[2]) == '-p') {
                 $params = $this->parseFlags($param[3]);
-                //var_dump($params);
-                //$command_flags = $cmd->getFlags();
+                $command_flags = $cmd->getFlags();
+                // get keys from $params.
+                $keys = array_keys($params);
+                
+                // check if the keys are in the command flags (check if extra flag passed).
+                foreach ($keys as $key => $value) {
+                    if (!in_array($value, $command_flags)) {
+                        $output->error("Invalid flag: $value");
+                        exit;
+                    }
+                }
 
-               // $cmd->handle($output, $input, $params);
+                // check the keys should be in command flags.
+                foreach ($command_flags as $command_flag) {
+                    if (!in_array($command_flag, $keys)) {
+                        $output->error("Missing flag: $command_flag");
+                        exit;
+                    }
+                }
+
+               $cmd->handle($output, $input, $params);
             }
 
             // flag for help
             if (isset($param[2]) && strtolower($param[2]) == '-h') {
+                $args = $cmd->getFlags();
                 $output->write('<yellow>Description:</yellow>', true);
                 $output->write("<blue>\t".$cmd->getDescription().'</blue>', true);
                 $output->write("\n<yellow>Usage:</yellow>", true);
                 $output->write("<blue>\t".$cmd->getSign().'</blue>', true);
+                if (count($args) > 0) {
+                    $output->write("\n<yellow>Arguments:</yellow>", true);
+                    $output->write("<blue>\t".implode("," , $args).'</blue>', true);
+                }
                 $output->write("\n<yellow>Options:</yellow>", true);
                 $output->write('<green>-h, --help</green>');
                 $output->write("<blue>\tDisplay this help message</blue>", true);

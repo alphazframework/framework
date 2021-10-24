@@ -63,9 +63,12 @@ class ServeCommand extends Command
      */
     public function handle(Output $output, Input $input, $param = []): void
     {
+        // generate random 4 digit number
+        $port = rand(1000, 9999);
         $output->write('<white>Zest Framewor: </white>', false);
         $output->write('<yellow>'.V::VERSION.'</yellow>', true);
-        $host = 'localhost:8080';
+        // check if the server is running on $port.
+        $host = 'localhost:'.$port;
         $command = 'php -S '.$host;
         $output->write("<green>\n PHP local development server has been started locat at localhost:8080. If the public directory is the root, then localhost:8080/public \n</green>");
         shell_exec($command);

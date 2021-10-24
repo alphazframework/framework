@@ -74,13 +74,14 @@ class Controller extends Command
      */
     public function handle(Output $output, Input $input, $param = []): void
     {
-        $name = $this->ask('Enter name of controller: ');
-        $file = route('root').'App/Controllers/'.$name.'.php';
+        $name = $param['name'] ?? "test";
+        $file = 'App/Controllers/'.$name.'.php';
         if (!file_exists($file)) {
             $fh = fopen($file, 'w');
             fwrite($fh, $this->controller($name));
             fclose($fh);
         }
+        $output->write('<green>Controller created successfully.</green>');
     }
 
     // should replace with like {stubs}
