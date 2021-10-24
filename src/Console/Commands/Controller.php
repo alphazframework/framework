@@ -19,8 +19,8 @@
 namespace Zest\Console\Commands;
 
 use Zest\Console\Command;
-use Zest\Console\Output;
 use Zest\Console\Input;
+use Zest\Console\Output;
 
 class Controller extends Command
 {
@@ -50,7 +50,7 @@ class Controller extends Command
      * @var array
      */
     protected $flags = [
-        'name'
+        'name',
     ];
 
     /**
@@ -74,7 +74,7 @@ class Controller extends Command
      */
     public function handle(Output $output, Input $input, $param = []): void
     {
-        $name = $param['name'] ?? "test";
+        $name = $param['name'] ?? 'test';
         $file = 'App/Controllers/'.$name.'.php';
         if (!file_exists($file)) {
             $fh = fopen($file, 'w');

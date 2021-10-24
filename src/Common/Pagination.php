@@ -118,7 +118,7 @@ class Pagination
     /**
      * Append the url.
      *
-     * @param  $append int sub url to be appended
+     * @param $append int sub url to be appended
      *
      * @since 3.0.0
      *

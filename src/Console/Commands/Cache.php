@@ -20,8 +20,8 @@ namespace Zest\Console\Commands;
 
 use Zest\Cache\Cache as CacheManager;
 use Zest\Console\Command;
-use Zest\Console\Output;
 use Zest\Console\Input;
+use Zest\Console\Output;
 
 class Cache extends Command
 {

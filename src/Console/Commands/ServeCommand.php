@@ -17,10 +17,11 @@
  */
 
 namespace Zest\Console\Commands;
+
 use Zest\Common\Version as V;
 use Zest\Console\Command;
-use Zest\Console\Output;
 use Zest\Console\Input;
+use Zest\Console\Output;
 
 class ServeCommand extends Command
 {
