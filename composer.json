@@ -4,7 +4,7 @@
     "keywords": ["framework", "zest"],
     "license": "MIT",
     "require": {
-        "php": "^7.2|^8.0",
+        "php": "^7.3|^8.0",
         "ext-mbstring": "*"
     },
     "require-dev": {
