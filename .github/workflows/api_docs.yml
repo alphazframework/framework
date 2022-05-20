@@ -8,14 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Checkout api repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: zestframework/api
           path: api
       - name: Setup PHP
-        uses: shivammathur/setup-php@v1
+        uses: shivammathur/setup-php@v2
         with:
           php-version: 7.3
           extensions: mbstring, dom, json, libxml, xml, xmlwriter
