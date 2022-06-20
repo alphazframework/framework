@@ -104,7 +104,7 @@ class Zip implements AdapterInterface
 
         // Create the archive.
         $zip = new \ZipArchive();
-        if ($zip->open($destination, $overwrite ? \ZIPARCHIVE::OVERWRITE : \ZIPARCHIVE::CREATE) !== true) {
+        if ($zip->open($destination, $overwrite ? \ZipArchive::OVERWRITE : \ZipArchive::CREATE) !== true) {
             return false;
         }
 

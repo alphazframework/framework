@@ -16,7 +16,7 @@
 namespace Zest\Database;
 
 use Zest\Database\Drives\MYSQL\MySqlDb as MYSQL;
-use Zest\Database\Drives\SqLite\SqLite as SqLite;
+use Zest\Database\Drives\SqLite\SqLite;
 
 class Db
 {
