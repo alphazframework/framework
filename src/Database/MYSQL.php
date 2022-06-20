@@ -17,7 +17,7 @@
 
 namespace Zest\Database;
 
-use Zest\Database\Drives\MYSQL\MySqlDb as MySqlDb;
+use Zest\Database\Drives\MYSQL\MySqlDb;
 
 class MYSQL extends MySqlDb
 {
