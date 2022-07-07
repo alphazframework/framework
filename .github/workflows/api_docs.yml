@@ -1,7 +1,7 @@
 name: Build Api Documentation
 on:
   push:
-    branches: [master]
+    branches: [main]
 jobs:
   build-api:
     name: Build api
