@@ -59,7 +59,7 @@ class OperatingSystem
             case 'SunOS':
                 $c_os = 'Solaris';
                 break;
-            case "darwin":
+            case 'darwin':
                 $c_os = 'macos';
                 break;
             default:
