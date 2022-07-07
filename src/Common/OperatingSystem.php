@@ -27,11 +27,7 @@ class OperatingSystem
      */
     public function get()
     {
-        if (\defined(PHP_OS_FAMILY)) {
-            return PHP_OS_FAMILY;
-        } else {
-            return $this->phpOs();
-        }
+        return $this->phpOs();
     }
 
     /**
@@ -62,6 +58,9 @@ class OperatingSystem
                 break;
             case 'SunOS':
                 $c_os = 'Solaris';
+                break;
+            case "darwin":
+                $c_os = 'macos';
                 break;
             default:
                 $c_os = 'Unknown';

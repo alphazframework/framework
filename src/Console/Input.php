@@ -23,7 +23,8 @@ class Input extends Colorize
     /**
      * Prompt for input secret input like password.
      *
-     * @param string $prompt Message to display.
+     * @param string $prompt        Message to display.
+     * @param bool   $show_asterisk Show asterisk or not.
      *
      * @since 3.0.0
      *
@@ -32,13 +33,17 @@ class Input extends Colorize
     public function secret(string $prompt)
     {
         $os = (new \Zest\Common\OperatingSystem())->get();
-        $command = './resources/secretinput.exe';
-        if ($os !== 'Window') {
-            $command = "/usr/bin/env bash -c 'read -s -p \""
-            .addslashes($prompt)
-            ."\" mypassword && echo \$mypassword'";
+        $current_dir = __DIR__ ;
+        $current_dir = str_replace('\\', '/', $current_dir);
+        $command = $current_dir .'/bin/';
+        if ($os === 'Windows') {
+            $command .= "windows.exe";
+        } else if ($os === 'macos') {
+            $command .= "macos";
+        } else {
+            $command .= "linux";
         }
-        $value = rtrim(shell_exec($command), "\n");
+        $value = shell_exec($command);
 
         return $value;
     }
