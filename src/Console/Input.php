@@ -33,15 +33,15 @@ class Input extends Colorize
     public function secret(string $prompt)
     {
         $os = (new \Zest\Common\OperatingSystem())->get();
-        $current_dir = __DIR__ ;
+        $current_dir = __DIR__;
         $current_dir = str_replace('\\', '/', $current_dir);
-        $command = $current_dir .'/bin/';
+        $command = $current_dir.'/bin/';
         if ($os === 'Windows') {
-            $command .= "windows.exe";
-        } else if ($os === 'macos') {
-            $command .= "macos";
+            $command .= 'windows.exe';
+        } elseif ($os === 'macos') {
+            $command .= 'macos';
         } else {
-            $command .= "linux";
+            $command .= 'linux';
         }
         $value = shell_exec($command);
 
