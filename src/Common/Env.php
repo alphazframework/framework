@@ -59,17 +59,22 @@ class Env
                 if ($handle) {
                     while (($line = fgets($handle)) !== false) {
                         // if line start with # then skip it
-                        if (substr($line, 0, 1) === '#') continue;
+                        if (substr($line, 0, 1) === '#') {
+                            continue;
+                        }
                         // if it is whitespace or empty then skip it
-                        if (trim($line) === '') continue;
+                        if (trim($line) === '') {
+                            continue;
+                        }
                         $config = explode('=', $line);
                         // if config is not 2 then skip it
-                        if (count($config) !== 2) continue;
+                        if (count($config) !== 2) {
+                            continue;
+                        }
 
                         $items = array_merge($items, [
                             $config[0] => $config[1],
                         ]);
-                        
                     }
                     fclose($handle);
                 }
