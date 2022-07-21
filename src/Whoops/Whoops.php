@@ -42,6 +42,7 @@ class Whoops
      */
     private $editors = [
         'sublime'  => 'subl://open?url=file://::file&line=::line',
+        'vscode'   => 'vscode://file::file&line=::line',
     ];
 
     /**
