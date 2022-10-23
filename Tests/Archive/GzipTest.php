@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Archive;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Archive\Adapter\Gzip;
+use PHPUnit\Framework\TestCase;
 
 class GzipTest extends TestCase
 {

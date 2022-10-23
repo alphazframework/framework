@@ -2,9 +2,9 @@
 
 namespace Framework\Tests\Container;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Container\Container;
 use alphaz\http\Message;
+use PHPUnit\Framework\TestCase;
 
 class ContainerTest extends TestCase
 {

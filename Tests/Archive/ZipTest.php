@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Archive;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Archive\Adapter\Zip;
+use PHPUnit\Framework\TestCase;
 
 class ZipTest extends TestCase
 {

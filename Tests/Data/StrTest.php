@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Data;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Data\Str;
+use PHPUnit\Framework\TestCase;
 
 class StrTest extends TestCase
 {
