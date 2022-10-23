@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Data;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Data\Conversion;
+use PHPUnit\Framework\TestCase;
 
 class ConversionTest extends TestCase
 {

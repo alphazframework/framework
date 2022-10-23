@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Common;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Common\Env;
+use PHPUnit\Framework\TestCase;
 
 class EnvTest extends TestCase
 {

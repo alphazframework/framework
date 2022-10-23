@@ -58,7 +58,7 @@ class Version extends Command
      *
      * @param \alphaz\Console\Output $output
      * @param \alphaz\Console\Input  $input
-     * @param array                $param
+     * @param array                  $param
      *
      * @return void
      */

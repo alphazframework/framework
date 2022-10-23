@@ -2,9 +2,9 @@
 
 namespace Framework\Tests\Encryption;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Encryption\Adapter\OpenSslEncryption;
 use alphaz\Encryption\Adapter\SodiumEncryption;
+use PHPUnit\Framework\TestCase;
 
 class EncryptionTest extends TestCase
 {

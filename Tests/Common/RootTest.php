@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Common;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Common\Root;
+use PHPUnit\Framework\TestCase;
 
 class RootTest extends TestCase
 {

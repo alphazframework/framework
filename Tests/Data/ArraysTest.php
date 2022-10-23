@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Data;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Data\Arrays;
+use PHPUnit\Framework\TestCase;
 
 class ArraysTest extends TestCase
 {

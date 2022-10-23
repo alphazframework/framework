@@ -125,7 +125,7 @@ class Whoops
     {
         $environment = [
             'alphazVersion'  => Version::VERSION,
-            'PHPVersion'   => \PHP_VERSION,
+            'PHPVersion'     => \PHP_VERSION,
         ];
 
         return $environment;

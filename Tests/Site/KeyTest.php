@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Site;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Site\Key;
+use PHPUnit\Framework\TestCase;
 
 class KeyTest extends TestCase
 {

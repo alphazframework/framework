@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Common;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Common\PasswordManipulation;
+use PHPUnit\Framework\TestCase;
 
 class PasswordManipulationTest extends TestCase
 {

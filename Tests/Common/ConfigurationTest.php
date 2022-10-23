@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Common;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Common\Configuration;
+use PHPUnit\Framework\TestCase;
 
 class ConfigurationTest extends TestCase
 {

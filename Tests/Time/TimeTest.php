@@ -2,8 +2,8 @@
 
 namespace Framework\Tests\Time;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Time\Time;
+use PHPUnit\Framework\TestCase;
 
 class TimeTest extends TestCase
 {

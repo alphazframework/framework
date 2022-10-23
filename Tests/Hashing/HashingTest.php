@@ -4,10 +4,10 @@ namespace Framework\Tests;
 
 namespace alphaz\Tests\Hashing;
 
-use PHPUnit\Framework\TestCase;
 use alphaz\Hashing\Argon2IdHashing;
 use alphaz\Hashing\ArgonHashing;
 use alphaz\Hashing\BcryptHashing;
+use PHPUnit\Framework\TestCase;
 
 class HashingTest extends TestCase
 {
