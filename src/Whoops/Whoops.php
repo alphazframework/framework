@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is a part of Zest Framework.
+ * This file is a part of alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -13,21 +13,21 @@
  * @license MIT
  */
 
-namespace Zest\Whoops;
+namespace alphaz\Whoops;
 
-use Zest\Common\Logger\Logger;
-use Zest\Common\Version;
-use Zest\http\Request;
-use Zest\Site\Site;
-use Zest\UserInfo\UserInfo;
-use Zest\View\View;
+use alphaz\Common\Logger\Logger;
+use alphaz\Common\Version;
+use alphaz\http\Request;
+use alphaz\Site\Site;
+use alphaz\UserInfo\UserInfo;
+use alphaz\View\View;
 
 class Whoops
 {
     /**
      * Store the errors stack.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -36,7 +36,7 @@ class Whoops
     /**
      * A list of known editor strings.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -48,7 +48,7 @@ class Whoops
     /**
      * Current editor that to be use.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -57,7 +57,7 @@ class Whoops
     /**
      * __construct.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct()
     {
@@ -69,7 +69,7 @@ class Whoops
     /**
      * Exception handler.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -90,7 +90,7 @@ class Whoops
     /**
      * Get the requests details.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -117,14 +117,14 @@ class Whoops
     /**
      * Get the Environment details.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
     public function getEnvironment()
     {
         $environment = [
-            'ZestVersion'  => Version::VERSION,
+            'alphazVersion'  => Version::VERSION,
             'PHPVersion'   => \PHP_VERSION,
         ];
 
@@ -148,7 +148,7 @@ class Whoops
      *
      * @param string $key editor name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -162,7 +162,7 @@ class Whoops
      *
      * @param string $key editor name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -177,7 +177,7 @@ class Whoops
      * @param string $key editor name
      * @param string $uri valid url string pattern
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -193,7 +193,7 @@ class Whoops
     /**
      * Error handler.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -213,7 +213,7 @@ class Whoops
      * @param int    $line
      * @param string $trace
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -237,7 +237,7 @@ class Whoops
     /**
      * Get the code from file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -273,7 +273,7 @@ class Whoops
     /**
      * Rander the error.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */

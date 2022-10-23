@@ -3,8 +3,8 @@
 namespace Framework\Tests\Encryption;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Encryption\Adapter\OpenSslEncryption;
-use Zest\Encryption\Adapter\SodiumEncryption;
+use alphaz\Encryption\Adapter\OpenSslEncryption;
+use alphaz\Encryption\Adapter\SodiumEncryption;
 
 class EncryptionTest extends TestCase
 {

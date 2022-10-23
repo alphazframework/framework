@@ -1,33 +1,33 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 2.0.3
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Auth;
+namespace alphaz\Auth;
 
-use Zest\Contracts\Auth\User as UserContract;
-use Zest\Cookies\Cookies;
-use Zest\Database\Db as DB;
-use Zest\http\Request;
-use Zest\Session\Session;
+use alphaz\Contracts\Auth\User as UserContract;
+use alphaz\Cookies\Cookies;
+use alphaz\Database\Db as DB;
+use alphaz\http\Request;
+use alphaz\Session\Session;
 
 class User extends Handler implements UserContract
 {
     /**
      * Get all the users.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return array
      */
@@ -46,7 +46,7 @@ class User extends Handler implements UserContract
      * @param (string) $where field of user e.g username
      * @param (string) $value value fo field like , usr01
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -64,7 +64,7 @@ class User extends Handler implements UserContract
      *
      * @param $id id or guide of user
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -82,7 +82,7 @@ class User extends Handler implements UserContract
      *
      * @param (string) $username username of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -100,7 +100,7 @@ class User extends Handler implements UserContract
      *
      * @param (mixed) $email email of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -118,7 +118,7 @@ class User extends Handler implements UserContract
      *
      * @param (mixed) $token token of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -136,7 +136,7 @@ class User extends Handler implements UserContract
      *
      * @param (mixed) $token token  of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -152,7 +152,7 @@ class User extends Handler implements UserContract
     /**
      * Get the details of login user.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -167,7 +167,7 @@ class User extends Handler implements UserContract
     /**
      * Get the current session user.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -179,7 +179,7 @@ class User extends Handler implements UserContract
     /**
      * Check user is login or not.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -191,7 +191,7 @@ class User extends Handler implements UserContract
     /**
      * Logout the user.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */

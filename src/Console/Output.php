@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,16 +16,16 @@
  * @license MIT
  */
 
-namespace Zest\Console;
+namespace alphaz\Console;
 
-use Zest\Console\Input\Table;
+use alphaz\Console\Input\Table;
 
 class Output extends Colorize
 {
     /**
      * Quiet.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var bool
      */
@@ -34,7 +34,7 @@ class Output extends Colorize
     /**
      * Mark the console quiet.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -50,7 +50,7 @@ class Output extends Colorize
      *
      * @param int $times
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -66,7 +66,7 @@ class Output extends Colorize
     /**
      * Create the table on console.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -84,7 +84,7 @@ class Output extends Colorize
      * @param string $value
      * @param bool   $newLine
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -128,7 +128,7 @@ class Output extends Colorize
      *
      * @param string $msg
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -144,7 +144,7 @@ class Output extends Colorize
      *
      * @param string $msg
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -160,7 +160,7 @@ class Output extends Colorize
      *
      * @param string $msg
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -176,7 +176,7 @@ class Output extends Colorize
      *
      * @param string $msg
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -192,7 +192,7 @@ class Output extends Colorize
      *
      * @param string $msg
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -206,7 +206,7 @@ class Output extends Colorize
     /**
      * Exit.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

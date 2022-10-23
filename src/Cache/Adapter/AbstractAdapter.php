@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Cache\Adapter;
+namespace alphaz\Cache\Adapter;
 
 abstract class AbstractAdapter
 {
     /**
      * Time to live.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -32,7 +32,7 @@ abstract class AbstractAdapter
      *
      * @param int $ttl time to live
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($ttl = 0)
     {
@@ -44,7 +44,7 @@ abstract class AbstractAdapter
      *
      * @param int $ttl time to live
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -58,7 +58,7 @@ abstract class AbstractAdapter
     /**
      * Get the time-to-live for cache.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -72,7 +72,7 @@ abstract class AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int|false
      */
@@ -85,7 +85,7 @@ abstract class AbstractAdapter
      * @param mixed  $value
      * @param int    $ttl
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -96,7 +96,7 @@ abstract class AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -107,7 +107,7 @@ abstract class AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -118,7 +118,7 @@ abstract class AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -127,7 +127,7 @@ abstract class AbstractAdapter
     /**
      * Destroy cache resource.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */

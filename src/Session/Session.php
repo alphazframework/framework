@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -14,7 +14,7 @@
  * @license MIT
  */
 
-namespace Zest\Session;
+namespace alphaz\Session;
 
 class Session
 {
@@ -46,13 +46,13 @@ class Session
     /**
      * Change session path.
      *
-     * @since 2.0.0
+     * @since 1.0.0
      *
      * @return void
      */
     public static function sessionPath()
     {
-        if (\defined('__ZEST__ROOT__')) {
+        if (\defined('__alphaz__ROOT__')) {
             ini_set('session.save_path', session_path());
         }
     }
@@ -106,7 +106,7 @@ class Session
      *
      * @param (array) $values keys and values
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -125,7 +125,7 @@ class Session
      * @param (array) $keys    keys
      * @param (mixed) $default default value if sesion is not exists
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -162,7 +162,7 @@ class Session
      *
      * @param (array) $keys keys
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -176,7 +176,7 @@ class Session
     /**
      * Destroy the session.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

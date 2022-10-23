@@ -1,30 +1,30 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common;
+namespace alphaz\Common;
 
-use Zest\Contracts\Common\Configuration as ConfigurationContract;
-use Zest\Data\Arrays;
+use alphaz\Contracts\Common\Configuration as ConfigurationContract;
+use alphaz\Data\Arrays;
 
 class Configuration implements ConfigurationContract
 {
     /**
      * All of the configuration items.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -35,14 +35,14 @@ class Configuration implements ConfigurationContract
      *
      * @param array $items
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
     public function __construct($items = [])
     {
-        if (\defined('__ZEST__ROOT__')) {
-            $this->file = __ZEST__ROOT__.'/Config/App.php';
+        if (\defined('__alphaz__ROOT__')) {
+            $this->file = __alphaz__ROOT__.'/Config/App.php';
         } else {
             $this->file = null;
         }
@@ -55,7 +55,7 @@ class Configuration implements ConfigurationContract
     /**
      * Load the configuration file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -75,7 +75,7 @@ class Configuration implements ConfigurationContract
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -90,7 +90,7 @@ class Configuration implements ConfigurationContract
      * @param string $key
      * @param mixed  $default
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -109,7 +109,7 @@ class Configuration implements ConfigurationContract
      * @param array|string $key
      * @param mixed        $value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -125,7 +125,7 @@ class Configuration implements ConfigurationContract
     /**
      * Get all of the configuration items for the application.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */

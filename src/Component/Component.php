@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -14,14 +14,14 @@
  * @license MIT
  */
 
-namespace Zest\Component;
+namespace alphaz\Component;
 
-use Zest\http\Request;
-use Zest\http\Response;
-use Zest\Input\Input;
-use Zest\View\View;
+use alphaz\http\Request;
+use alphaz\http\Response;
+use alphaz\Input\Input;
+use alphaz\View\View;
 
-class Component extends \Zest\Router\Router
+class Component extends \alphaz\Router\Router
 {
     /**
      * Dispatch the route, creating the controller object and running the
@@ -29,7 +29,7 @@ class Component extends \Zest\Router\Router
      *
      * @param string $url The route URL
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -39,7 +39,7 @@ class Component extends \Zest\Router\Router
         $url = $this->RemoveQueryString($url, new Request());
         if ($this->match($url)) {
             if (isset($this->params['redirect'])) {
-                \Zest\Site\Site::redirect($this->params['to'], $this->params['code']);
+                \alphaz\Site\Site::redirect($this->params['to'], $this->params['code']);
 
                 return;
             }

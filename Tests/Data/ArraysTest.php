@@ -3,7 +3,7 @@
 namespace Framework\Tests\Data;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Data\Arrays;
+use alphaz\Data\Arrays;
 
 class ArraysTest extends TestCase
 {

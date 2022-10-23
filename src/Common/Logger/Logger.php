@@ -1,29 +1,29 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 2.0.3
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common\Logger;
+namespace alphaz\Common\Logger;
 
-use Zest\Files\FileHandling;
+use alphaz\Files\FileHandling;
 
 class Logger extends AbstractLogger
 {
     /**
      * Array of conversion levels.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @var array
      */
@@ -41,7 +41,7 @@ class Logger extends AbstractLogger
     /**
      * Array of conversion levels in reverse order.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @var array
      */
@@ -59,7 +59,7 @@ class Logger extends AbstractLogger
     /**
      * Store the logs.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @var array
      */
@@ -68,7 +68,7 @@ class Logger extends AbstractLogger
     /**
      * Store the logs.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -81,7 +81,7 @@ class Logger extends AbstractLogger
      * @param (string) $message Error message
      * @param (array)  $context Contextual array
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -114,7 +114,7 @@ class Logger extends AbstractLogger
      * @param (string) $string  Error level (string or PHP syslog priority)
      * @param (string) $message Error message
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -133,7 +133,7 @@ class Logger extends AbstractLogger
      *
      * @param (string) $name valid name of file if file not exists it create for you.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -149,7 +149,7 @@ class Logger extends AbstractLogger
      *
      * @param (array) $log
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return array
      */
@@ -163,7 +163,7 @@ class Logger extends AbstractLogger
     /**
      * Get the log message.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return array
      */
@@ -181,7 +181,7 @@ class Logger extends AbstractLogger
      * @param (array)     $context   Contextual array
      * @param (Exception) $exception Exception
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -197,7 +197,7 @@ class Logger extends AbstractLogger
      * @param (array)  $params Parameter arrays
      * @param (string) $level  Level of log
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */

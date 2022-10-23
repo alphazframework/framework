@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 2.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Data\Contracts;
+namespace alphaz\Data\Contracts;
 
 interface ConversionContract
 {
@@ -23,7 +23,7 @@ interface ConversionContract
      *
      * @param array $array Arrays
      *
-     * @since 2.0.0
+     * @since 1.0.0
      *
      * @return object|false
      */
@@ -34,7 +34,7 @@ interface ConversionContract
      *
      * @param object $object
      *
-     * @since 2.0.0
+     * @since 1.0.0
      *
      * @return array|false
      */
@@ -46,7 +46,7 @@ interface ConversionContract
      * @param int $size The value that you want provided
      * @param int $pre  Round the value default 2
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -58,7 +58,7 @@ interface ConversionContract
      * @param int    $n   Views.
      * @param string $sep Seperator.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -69,7 +69,7 @@ interface ConversionContract
      *
      * @param mixed $xml xml
      *
-     * @since 2.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -82,7 +82,7 @@ interface ConversionContract
      * @param string $base  The unit which is given that to be converted.
      * @param string $to    The unit in which it should be converted.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */

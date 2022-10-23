@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Files;
+namespace alphaz\Files;
 
 class FileHandling
 {
     /**
      * Resource.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var object
      */
@@ -30,7 +30,7 @@ class FileHandling
     /**
      * File.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -39,7 +39,7 @@ class FileHandling
     /**
      * Modes of file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -59,7 +59,7 @@ class FileHandling
      * @param (string) $file Name of file with oath.
      * @param (string) $mode Mode of file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return resource
      */
@@ -78,7 +78,7 @@ class FileHandling
     /**
      * Read the file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -92,7 +92,7 @@ class FileHandling
      *
      * @param (mixed) $data Data that you want write on file
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -106,7 +106,7 @@ class FileHandling
      *
      * @param (string) $file File to be deleted.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -122,7 +122,7 @@ class FileHandling
     /**
      * Close the file resource.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -138,7 +138,7 @@ class FileHandling
      * @param (string) $name Valid name.
      *.@param (string) $value Valid mode.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,21 +16,21 @@
  * @license MIT
  */
 
-namespace Zest\Console\Commands;
+namespace alphaz\Console\Commands;
 
-use Zest\Common\Version as V;
-use Zest\Console\Command;
-use Zest\Console\Console;
-use Zest\Console\Input;
-use Zest\Console\Output;
-use Zest\Container\Container;
+use alphaz\Common\Version as V;
+use alphaz\Console\Command;
+use alphaz\Console\Console;
+use alphaz\Console\Input;
+use alphaz\Console\Output;
+use alphaz\Container\Container;
 
 class ListCmd extends Command
 {
     /**
      * Sign of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -39,7 +39,7 @@ class ListCmd extends Command
     /**
      * Description of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -48,7 +48,7 @@ class ListCmd extends Command
     /**
      * Commands.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -79,15 +79,15 @@ class ListCmd extends Command
     /**
      * Function to handle the class.
      *
-     * @param \Zest\Console\Output $output
-     * @param \Zest\Console\Input  $input
+     * @param \alphaz\Console\Output $output
+     * @param \alphaz\Console\Input  $input
      * @param array                $param
      *
      * @return void
      */
     public function handle(Output $output, Input $input, $param = []): void
     {
-        $output->write('<white>Zest Framewor: </white>', false);
+        $output->write('<white>alphaz Framewor: </white>', false);
         $output->write('<yellow>'.V::VERSION.'</yellow>', true);
         $this->getList();
         $list = [];

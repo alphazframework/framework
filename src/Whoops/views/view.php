@@ -333,8 +333,8 @@ section #tab {
               <div class="definition">
                   <h3 class="definition-list-title">Environment information</h3>
                   <dl class="definition-list">
-                      <dt class="definition-label">Zest version</dt>
-                      <dd class="definition-value"><?php echo isset($stack['environment']['ZestVersion']) ? $stack['environment']['ZestVersion'] : '...' ?></dd>
+                      <dt class="definition-label">alphaz version</dt>
+                      <dd class="definition-value"><?php echo isset($stack['environment']['alphazVersion']) ? $stack['environment']['alphazVersion'] : '...' ?></dd>
                       <dt class="definition-label">PHP version</dt>
                       <dd class="definition-value"><?php echo isset($stack['environment']['PHPVersion']) ? $stack['environment']['PHPVersion'] : '...' ?></dd>
                   </dl>

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Contracts\Time;
+namespace alphaz\Contracts\Time;
 
 interface Time
 {
@@ -23,7 +23,7 @@ interface Time
      *
      * @param string|null $timezone Valid php supported timezone.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -35,7 +35,7 @@ interface Time
      * @param int $month A numeric month.
      * @param int $year  A numeric year.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -46,7 +46,7 @@ interface Time
      *
      * @param int|null $year A numeric year.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -57,7 +57,7 @@ interface Time
      *
      * @param int|null $time Unix timestamp
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -68,7 +68,7 @@ interface Time
      *
      * @param int|string $time Datetime, Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -80,7 +80,7 @@ interface Time
      * @param int    $time     Timestamp
      * @param string $timezone Valid php supported timezone.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */

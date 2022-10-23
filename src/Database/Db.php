@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -13,10 +13,10 @@
  * @license MIT
  */
 
-namespace Zest\Database;
+namespace alphaz\Database;
 
-use Zest\Database\Drives\MYSQL\MySqlDb as MYSQL;
-use Zest\Database\Drives\SqLite\SqLite;
+use alphaz\Database\Drives\MYSQL\MySqlDb as MYSQL;
+use alphaz\Database\Drives\SqLite\SqLite;
 
 class Db
 {

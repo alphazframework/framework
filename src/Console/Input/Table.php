@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,14 +16,14 @@
  * @license MIT
  */
 
-namespace Zest\Console\Input;
+namespace alphaz\Console\Input;
 
 class Table
 {
     /**
      * Table header.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -32,7 +32,7 @@ class Table
     /**
      * Table item.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -55,7 +55,7 @@ class Table
     /**
      * Print table border.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -75,7 +75,7 @@ class Table
     /**
      * Print the row.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -103,7 +103,7 @@ class Table
     /**
      * Draw the table.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

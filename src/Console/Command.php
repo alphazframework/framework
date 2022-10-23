@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,14 +16,14 @@
  * @license MIT
  */
 
-namespace Zest\Console;
+namespace alphaz\Console;
 
 abstract class Command
 {
     /**
      * Sign of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -32,7 +32,7 @@ abstract class Command
     /**
      * Description of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -41,7 +41,7 @@ abstract class Command
     /**
      * Should the command hidden form list.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var bool
      */
@@ -50,7 +50,7 @@ abstract class Command
     /**
      * Accpet flag parameter in command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -146,8 +146,8 @@ abstract class Command
     /**
      * Function to handle the class.
      *
-     * @param \Zest\Console\Output $output
-     * @param \Zest\Console\Input  $input
+     * @param \alphaz\Console\Output $output
+     * @param \alphaz\Console\Input  $input
      * @param array                $param
      *
      * @return void

@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common;
+namespace alphaz\Common;
 
 class Env
 {
     /**
      * All of the configuration items.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -32,7 +32,7 @@ class Env
      *
      * @param array $items
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -44,15 +44,15 @@ class Env
     /**
      * Load the configuration file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
     public function load()
     {
         $items = [];
-        if (\defined('__ZEST__ROOT__')) {
-            $file = __ZEST__ROOT__.'/.env';
+        if (\defined('__alphaz__ROOT__')) {
+            $file = __alphaz__ROOT__.'/.env';
 
             if (file_exists($file)) {
                 $handle = fopen($file, 'r');
@@ -90,7 +90,7 @@ class Env
      * @param string $key
      * @param mixed  $default
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -106,7 +106,7 @@ class Env
     /**
      * Get all of the configuration items for the application.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */

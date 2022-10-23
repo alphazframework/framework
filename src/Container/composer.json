@@ -1,6 +1,6 @@
 {
-    "name": "zest/container",
-    "description": "The Zest contianer component",
+    "name": "alphaz/container",
+    "description": "The alphaz contianer component",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -10,11 +10,11 @@
         }
     ],
     "require": {
-        "zest/data": "dev-master"
+        "alphaz/data": "dev-master"
     },
     "autoload": {
         "psr-4": {
-             "Zest\\Container\\": ""
+             "alphaz\\Container\\": ""
         }
     }
 }

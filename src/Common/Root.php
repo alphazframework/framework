@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -14,17 +14,17 @@
  * @license MIT
  */
 
-namespace Zest\Common;
+namespace alphaz\Common;
 
-use Zest\Contracts\Common\Root as RootContract;
-use Zest\Data\Arrays;
+use alphaz\Contracts\Common\Root as RootContract;
+use alphaz\Data\Arrays;
 
 class Root implements RootContract
 {
     /**
      * All of the configuration items.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -35,7 +35,7 @@ class Root implements RootContract
      *
      * @param array $items
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -51,7 +51,7 @@ class Root implements RootContract
      * @param string $key
      * @param mixed  $default
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -73,8 +73,8 @@ class Root implements RootContract
      */
     private function root()
     {
-        if (defined('__ZEST__ROOT__')) {
-            return __ZEST__ROOT__.'/';
+        if (defined('__alphaz__ROOT__')) {
+            return __alphaz__ROOT__.'/';
         }
 
         return '../';

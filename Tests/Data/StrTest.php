@@ -3,7 +3,7 @@
 namespace Framework\Tests\Data;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Data\Str;
+use alphaz\Data\Str;
 
 class StrTest extends TestCase
 {

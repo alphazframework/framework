@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Files;
+namespace alphaz\Files;
 
 use SplFileInfo;
 
@@ -23,7 +23,7 @@ class FileInfo extends SplFileInfo
     /**
      * Returns the MIME type of the file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string|null
      */
@@ -35,7 +35,7 @@ class FileInfo extends SplFileInfo
     /**
      * Returns the MIME encoding of the file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string|null
      */
@@ -49,7 +49,7 @@ class FileInfo extends SplFileInfo
      *
      * @param int $mine Mine type or Mine encoding.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string|null
      */
@@ -68,7 +68,7 @@ class FileInfo extends SplFileInfo
      * @param string $algorithm Hashing algorithm
      * @param bool   $raw       Output raw binary data?
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -84,7 +84,7 @@ class FileInfo extends SplFileInfo
      * @param string $algorithm Hashing algorithm
      * @param bool   $raw       Is the provided hash raw?
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -100,7 +100,7 @@ class FileInfo extends SplFileInfo
      * @param string $algorithm Hashing algorithm
      * @param bool   $raw       Output raw binary data?
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -117,7 +117,7 @@ class FileInfo extends SplFileInfo
      * @param string $algorithm Hashing algorithm
      * @param bool   $raw       Is the provided HMAC raw?
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */

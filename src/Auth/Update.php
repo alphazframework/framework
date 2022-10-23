@@ -1,26 +1,26 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 2.0.3
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Auth;
+namespace alphaz\Auth;
 
-use Zest\Common\PasswordManipulation;
-use Zest\Contracts\Auth\Update as UpdateContract;
-use Zest\Database\Db as DB;
-use Zest\Hashing\Hash;
-use Zest\Validation\Validation;
+use alphaz\Common\PasswordManipulation;
+use alphaz\Contracts\Auth\Update as UpdateContract;
+use alphaz\Database\Db as DB;
+use alphaz\Hashing\Hash;
+use alphaz\Validation\Validation;
 
 class Update extends Handler implements UpdateContract
 {
@@ -30,7 +30,7 @@ class Update extends Handler implements UpdateContract
      * @param (array) $params fields like  [name => thisname]
      * @param (int)   $id     id of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -66,7 +66,7 @@ class Update extends Handler implements UpdateContract
      * @param (mixed) $repeat   confirm password
      * @param (int)   $id       id of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */

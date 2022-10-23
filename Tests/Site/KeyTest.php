@@ -3,7 +3,7 @@
 namespace Framework\Tests\Site;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Site\Key;
+use alphaz\Site\Key;
 
 class KeyTest extends TestCase
 {

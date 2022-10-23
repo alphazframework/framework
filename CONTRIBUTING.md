@@ -1,3 +1,3 @@
 ## DISCLAIMERS
 
-[Guidelines](https://zestframework.github.io/contribution/)
+[Guidelines](https://alphazframework.github.io/contribution/)

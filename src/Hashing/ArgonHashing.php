@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Hashing;
+namespace alphaz\Hashing;
 
 class ArgonHashing extends AbstractHashing
 {
     /**
      * The default memory cost.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -30,7 +30,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * The default time cost.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -39,7 +39,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * The default threads cost.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -48,7 +48,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Determine whether to perform an algorithm check.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var bool
      */
@@ -59,7 +59,7 @@ class ArgonHashing extends AbstractHashing
      *
      * @param array $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct(array $options = null)
     {
@@ -74,7 +74,7 @@ class ArgonHashing extends AbstractHashing
      * @param string $original
      * @param string $hash
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -93,7 +93,7 @@ class ArgonHashing extends AbstractHashing
      * @param string $original
      * @param array  $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -122,7 +122,7 @@ class ArgonHashing extends AbstractHashing
      * @param string $hash
      * @param array  $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -144,7 +144,7 @@ class ArgonHashing extends AbstractHashing
      *
      * @param int $memory
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -160,7 +160,7 @@ class ArgonHashing extends AbstractHashing
      *
      * @param int $time
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -176,7 +176,7 @@ class ArgonHashing extends AbstractHashing
      *
      * @param int $threads
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -190,7 +190,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Get the memory.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -202,7 +202,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Get the time.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -214,7 +214,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Get the threads.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -226,7 +226,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Get the algroithm.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return \Constant
      */
@@ -238,7 +238,7 @@ class ArgonHashing extends AbstractHashing
     /**
      * Get the algroithm keys.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */

@@ -1,6 +1,6 @@
 {
-    "name": "zest/files",
-    "description": "Zest framework components to manipulate files",
+    "name": "alphaz/files",
+    "description": "alphaz framework components to manipulate files",
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +11,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-             "Zest\\Files\\": ""
+             "alphaz\\Files\\": ""
         }
     }
 }

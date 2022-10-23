@@ -1,37 +1,37 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Cache;
+namespace alphaz\Cache;
 
-use Zest\Cache\Adapter\APC;
-use Zest\Cache\Adapter\APCU;
-use Zest\Cache\Adapter\FileCache;
-use Zest\Cache\Adapter\Memcache;
-use Zest\Cache\Adapter\Memcached;
-use Zest\Cache\Adapter\Redis;
-use Zest\Cache\Adapter\SessionCache;
-use Zest\Container\Container;
-use Zest\Contracts\Cache\Cache as CacheContract;
+use alphaz\Cache\Adapter\APC;
+use alphaz\Cache\Adapter\APCU;
+use alphaz\Cache\Adapter\FileCache;
+use alphaz\Cache\Adapter\Memcache;
+use alphaz\Cache\Adapter\Memcached;
+use alphaz\Cache\Adapter\Redis;
+use alphaz\Cache\Adapter\SessionCache;
+use alphaz\Container\Container;
+use alphaz\Contracts\Cache\Cache as CacheContract;
 
 class Cache implements CacheContract
 {
     /**
      * Store the adapter object.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var object
      */
@@ -40,7 +40,7 @@ class Cache implements CacheContract
     /**
      * __construct.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($adapter = null)
     {
@@ -51,7 +51,7 @@ class Cache implements CacheContract
     /**
      * Get the adapter of cache.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -65,7 +65,7 @@ class Cache implements CacheContract
      *
      * @param string $adapter
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -106,7 +106,7 @@ class Cache implements CacheContract
     /**
      * Get default ttl.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -120,7 +120,7 @@ class Cache implements CacheContract
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int|false
      */
@@ -135,7 +135,7 @@ class Cache implements CacheContract
      * @param mixed $key
      * @param mixed $default
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -152,7 +152,7 @@ class Cache implements CacheContract
      * @param array $keys
      * @param mixed $default
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -173,7 +173,7 @@ class Cache implements CacheContract
      * @param mixed $value value to be cached
      * @param int   $ttl   time to live for cache
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -189,7 +189,7 @@ class Cache implements CacheContract
      *
      * @param array $cache [key=>keyVal,value=> val,ttl=>ttl]
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -207,7 +207,7 @@ class Cache implements CacheContract
      *
      * @param mixed $key key for cache
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -221,7 +221,7 @@ class Cache implements CacheContract
      *
      * @param mixed $key key for cache
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -237,7 +237,7 @@ class Cache implements CacheContract
      *
      * @param array $keys
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -253,7 +253,7 @@ class Cache implements CacheContract
     /**
      * Clear all caches.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */

@@ -1,22 +1,22 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
- * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
+ * @author Muhammad Umer Farooq <umer@lablnet.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Data;
+namespace alphaz\Data;
 
-use Zest\Data\Contracts\ArraysContract;
+use alphaz\Data\Contracts\ArraysContract;
 
 class Arrays implements ArraysContract
 {
@@ -25,7 +25,7 @@ class Arrays implements ArraysContract
      *
      * @param mixed $value Value to be checked.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -39,7 +39,7 @@ class Arrays implements ArraysContract
      *
      * @param array $array Value to be check.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -53,7 +53,7 @@ class Arrays implements ArraysContract
      *
      * @param array $value Value to be check.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -67,7 +67,7 @@ class Arrays implements ArraysContract
      *
      * @param array $value Value to be check.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -83,7 +83,7 @@ class Arrays implements ArraysContract
      *
      * @param array $array The array to work on.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -112,7 +112,7 @@ class Arrays implements ArraysContract
      * @param string $opr   Notation like 'dot'
      * @param
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -133,7 +133,7 @@ class Arrays implements ArraysContract
      * @param mixed  $value Value
      * @param string $opr   Notation like 'dot'
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -170,7 +170,7 @@ class Arrays implements ArraysContract
      * @param array|string $keys  Keys to search.
      * @param string       $opr   Operator notaiton.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -212,7 +212,7 @@ class Arrays implements ArraysContract
      * @param array|string $keys  Keys to search.
      * @param string       $opr   Operator notaiton.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -239,7 +239,7 @@ class Arrays implements ArraysContract
      *
      * @param array $array Value to be converted.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -263,7 +263,7 @@ class Arrays implements ArraysContract
      * @param array $arrays      Arrays.
      * @param bool  $assocOutput Switch to output assoc arrays.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -280,7 +280,7 @@ class Arrays implements ArraysContract
      * @param bool   $assocOutput Switch to output assoc arrays.
      * @param string $_key        the previous key of the object
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -322,7 +322,7 @@ class Arrays implements ArraysContract
      * @param mixed $value Value to be append.
      * @param mixed $key   Key.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -344,7 +344,7 @@ class Arrays implements ArraysContract
      * @param mixed $value Value to be append.
      * @param mixed $key   Key.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -358,7 +358,7 @@ class Arrays implements ArraysContract
      *
      * @param array $array Array ot evaulated
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -383,7 +383,7 @@ class Arrays implements ArraysContract
      * @param array $array Array to be evaulated.
      * @param mixed $keys  Keys
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -401,7 +401,7 @@ class Arrays implements ArraysContract
      * Note: Adapted from laravel\framework.
      *
      * @see https://github.com/laravel/framework/blob/5.8/LICENSE.md
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -448,7 +448,7 @@ class Arrays implements ArraysContract
      * @param array        $array Default array.
      * @param array|string $keys  Keys
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -466,7 +466,7 @@ class Arrays implements ArraysContract
      * @param string $key     Keys
      * @param mixed  $default Default value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -484,7 +484,7 @@ class Arrays implements ArraysContract
      * @param array $array The array to work on.
      * @param int   $case  Either CASE_UPPER or CASE_LOWER (default).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -505,7 +505,7 @@ class Arrays implements ArraysContract
      * @param array  $array The array to work on.
      * @param string $case  Either CASE_UPPER or CASE_LOWER (default).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -529,7 +529,7 @@ class Arrays implements ArraysContract
      * @param array      $array The array to work on.
      * @param string|int $key   Key that need to evaulate.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -568,7 +568,7 @@ class Arrays implements ArraysContract
      * @param array      $array The array to work on.
      * @param string|int $key   Key that need to evaulate.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -607,7 +607,7 @@ class Arrays implements ArraysContract
      * @param array      $array The array to work on.
      * @param string|int $key   Key that need to evaulate.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -622,7 +622,7 @@ class Arrays implements ArraysContract
      * @param array      $array The array to work on.
      * @param string|int $key   Key that need to evaulate.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -636,7 +636,7 @@ class Arrays implements ArraysContract
      *
      * @param array $array The array to work on.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -651,7 +651,7 @@ class Arrays implements ArraysContract
      * @param array    $array    The array to work on.
      * @param callable $callback Callback function.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -666,7 +666,7 @@ class Arrays implements ArraysContract
      *
      * @param array $array The array to work on.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -693,7 +693,7 @@ class Arrays implements ArraysContract
      * @param array    $array The array to work on.
      * @param int|null $i     Specifies how many entries should be picked.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -725,7 +725,7 @@ class Arrays implements ArraysContract
      * @param array $array The array to work on.
      * @param mixed $key   The specific key to search/get values.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */

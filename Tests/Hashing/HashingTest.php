@@ -2,12 +2,12 @@
 
 namespace Framework\Tests;
 
-namespace Zest\Tests\Hashing;
+namespace alphaz\Tests\Hashing;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Hashing\Argon2IdHashing;
-use Zest\Hashing\ArgonHashing;
-use Zest\Hashing\BcryptHashing;
+use alphaz\Hashing\Argon2IdHashing;
+use alphaz\Hashing\ArgonHashing;
+use alphaz\Hashing\BcryptHashing;
 
 class HashingTest extends TestCase
 {

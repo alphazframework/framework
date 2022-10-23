@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 2.0.3
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Contracts\Auth;
+namespace alphaz\Contracts\Auth;
 
 interface Auth
 {
     /**
      * Instance of signup class.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return object
      */
@@ -30,7 +30,7 @@ interface Auth
     /**
      * Instance of signin class.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return object
      */
@@ -39,7 +39,7 @@ interface Auth
     /**
      * Instance of logout class.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return object
      */
@@ -48,7 +48,7 @@ interface Auth
     /**
      * Instance of update class.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return object
      */
@@ -57,7 +57,7 @@ interface Auth
     /**
      * Instance of verify class.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return object
      */
@@ -66,7 +66,7 @@ interface Auth
     /**
      * Instance of reset class.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return object
      */

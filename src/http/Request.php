@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\http;
+namespace alphaz\http;
 
 class Request extends Uri
 {
@@ -23,7 +23,7 @@ class Request extends Uri
      *
      * Instantiate the request object
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct()
     {
@@ -46,7 +46,7 @@ class Request extends Uri
      *
      * @param (string) $method HTTP method
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -58,7 +58,7 @@ class Request extends Uri
     /**
      * Determine whether or not the request has FILES.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -70,7 +70,7 @@ class Request extends Uri
     /**
      * Is this an GET request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -82,7 +82,7 @@ class Request extends Uri
     /**
      * Is this an HEAD request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -94,7 +94,7 @@ class Request extends Uri
     /**
      * Is this an POST request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -106,7 +106,7 @@ class Request extends Uri
     /**
      * Is this an PUT request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -118,7 +118,7 @@ class Request extends Uri
     /**
      * Is this an DELETE request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -130,7 +130,7 @@ class Request extends Uri
     /**
      * Is this an TRACE request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -142,7 +142,7 @@ class Request extends Uri
     /**
      * Is this an OPTIONS request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -154,7 +154,7 @@ class Request extends Uri
     /**
      * Is this an CONNEXT request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -166,7 +166,7 @@ class Request extends Uri
     /**
      * Is this an PATH request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -178,7 +178,7 @@ class Request extends Uri
     /**
      * Return whether or not the request is secure.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -190,7 +190,7 @@ class Request extends Uri
     /**
      * Is this an XHR request?
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -204,7 +204,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -222,7 +222,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -240,7 +240,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -258,7 +258,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -276,7 +276,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -294,7 +294,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -312,7 +312,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -330,7 +330,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -348,7 +348,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -366,7 +366,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -384,7 +384,7 @@ class Request extends Uri
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -406,7 +406,7 @@ class Request extends Uri
     /**
      * Get the raw data.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -418,7 +418,7 @@ class Request extends Uri
     /**
      * Parse any data that came with the request.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Hashing;
+namespace alphaz\Hashing;
 
 abstract class AbstractHashing
 {
@@ -23,7 +23,7 @@ abstract class AbstractHashing
      *
      * @param (string) $hash
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -38,7 +38,7 @@ abstract class AbstractHashing
      * @param (string) $original
      * @param (string) $hash
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */

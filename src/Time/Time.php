@@ -1,30 +1,30 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Time;
+namespace alphaz\Time;
 
-use Zest\Common\TimeZone;
-use Zest\Contracts\Time\Time as TimeContract;
+use alphaz\Common\TimeZone;
+use alphaz\Contracts\Time\Time as TimeContract;
 
 class Time implements TimeContract
 {
     /**
      * Date format.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -35,7 +35,7 @@ class Time implements TimeContract
      *
      * @param mixe $format Valiud Date/Time format.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -53,7 +53,7 @@ class Time implements TimeContract
     /**
      * Get the time format.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -67,7 +67,7 @@ class Time implements TimeContract
      *
      * @param mixe $format Valiud Date/Time format.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -85,7 +85,7 @@ class Time implements TimeContract
      *
      * @param string $timezone Valid php supported timezone.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -102,7 +102,7 @@ class Time implements TimeContract
      * @param int $month A numeric month.
      * @param int $year  A numeric year.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -116,7 +116,7 @@ class Time implements TimeContract
      *
      * @param int $year A numeric year.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -132,7 +132,7 @@ class Time implements TimeContract
      *
      * @param int|null $time Unix timestamp
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -151,7 +151,7 @@ class Time implements TimeContract
      *
      * @param int|string $time Datetime, Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -171,9 +171,9 @@ class Time implements TimeContract
      *
      * @param int|string $time Datetime, Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
-     * @author https://github.com/peter279k (https://github.com/zestframework/Zest_Framework/pull/206).
+     * @author https://github.com/peter279k (https://github.com/alphazframework/framework/pull/206).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -216,9 +216,9 @@ class Time implements TimeContract
      *
      * @param (int|string) $time Timestamp or English textual datetime (http://php.net/manual/en/function.strtotime.php)
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
-     * @author https://github.com/Maikuolan (https://github.com/zestframework/Zest_Framework/issues/131)
+     * @author https://github.com/Maikuolan (https://github.com/alphazframework/framework/issues/131)
      *
      * @return int
      */
@@ -235,7 +235,7 @@ class Time implements TimeContract
      * @param int    $time     Timestamp
      * @param string $timezone Valid php supported timezone.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */

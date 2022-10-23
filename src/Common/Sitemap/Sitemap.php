@@ -1,29 +1,29 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common\Sitemap;
+namespace alphaz\Common\Sitemap;
 
-use Zest\Contracts\Sitemap\Sitemap as SitemapContracts;
+use alphaz\Contracts\Sitemap\Sitemap as SitemapContracts;
 
 class Sitemap extends AbstractSitemap implements SitemapContracts
 {
     /**
      * Start of sitemap.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -32,7 +32,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
     /**
      * End of sitemap.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -41,7 +41,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
     /**
      * Priority.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -53,7 +53,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
     /**
      * Priority.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var float
      */
@@ -62,7 +62,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
     /**
      * Change frequency.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -71,7 +71,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
     /**
      * XML structure.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -89,7 +89,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
      *
      * @param (string) $file File name with extension (.xml).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -108,7 +108,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
      * @param (float)  $priority   Priority.
      * @param (string) $changeFreq changeFreq.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -145,7 +145,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
      * @param (float)  $priority   Priority.
      * @param (string) $changeFreq changeFreq.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -166,7 +166,7 @@ class Sitemap extends AbstractSitemap implements SitemapContracts
      * @param (float)  $priority   Priority.
      * @param (string) $changeFreq changeFreq.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

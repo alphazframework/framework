@@ -1,6 +1,6 @@
 # PHP Files Library
 
-Subtree of Zest/Files
+Subtree of alphaz/Files
 
 PHP File library for the local filesystem.
 
@@ -9,5 +9,5 @@ PHP File library for the local filesystem.
 Install via Composer:
 
 ```
-composer require zest/files
+composer require alphaz/files
 ```

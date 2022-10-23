@@ -1,27 +1,27 @@
 <?php
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
  * @license MIT
  *
- * @since 3.0.0
+ * @since 1.0.0
  */
 
-namespace Zest\Archive;
+namespace alphaz\Archive;
 
 class Archive
 {
     /**
      * Store the adapter object.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var object
      */
@@ -30,11 +30,11 @@ class Archive
     /**
      * The constructor.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($adapter = null)
     {
-        if (\defined('__ZEST__ROOT__')) {
+        if (\defined('__alphaz__ROOT__')) {
             $this->setAdapter(__config('archive.driver'));
         }
 
@@ -48,7 +48,7 @@ class Archive
      *
      * @param (string) $adapter
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -56,13 +56,13 @@ class Archive
     {
         switch (strtolower($adapter)) {
             case 'bzip':
-                $adapterSet = '\Zest\Archive\Adapter\Bzip';
+                $adapterSet = '\alphaz\Archive\Adapter\Bzip';
                 break;
             case 'gzip':
-                $adapterSet = '\Zest\Archive\Adapter\Gzip';
+                $adapterSet = '\alphaz\Archive\Adapter\Gzip';
                 break;
             default:
-                $adapterSet = '\Zest\Archive\Adapter\Zip';
+                $adapterSet = '\alphaz\Archive\Adapter\Zip';
                 break;
         }
         $this->adapter = new $adapterSet();

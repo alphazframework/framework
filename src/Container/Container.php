@@ -1,29 +1,29 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Container;
+namespace alphaz\Container;
 
-use Zest\Data\Arrays;
+use alphaz\Data\Arrays;
 
 class Container implements ContainerContract
 {
     /**
      * Registered type hints.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -32,7 +32,7 @@ class Container implements ContainerContract
     /**
      * Aliases.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -41,7 +41,7 @@ class Container implements ContainerContract
     /**
      * Singleton instances.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -50,7 +50,7 @@ class Container implements ContainerContract
     /**
      * Contextual dependencies.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -59,7 +59,7 @@ class Container implements ContainerContract
     /**
      * Instance replacers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -70,7 +70,7 @@ class Container implements ContainerContract
      *
      * @param string|array $hint Type hint or array contaning both type hint and alias
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -95,7 +95,7 @@ class Container implements ContainerContract
      * @param string|\Closure $class     Class name or closure.
      * @param bool            $singleton Should we return the same instance every time?
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -115,7 +115,7 @@ class Container implements ContainerContract
      * @param string|array    $hint  Type hint or array contaning both type hint and alias.
      * @param string|\Closure $class Class name or closure.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return 3.0.0
      */
@@ -130,7 +130,7 @@ class Container implements ContainerContract
      * @param string|array $hint     Type hint or array contaning both type hint and alias.
      * @param object       $instance Class instance.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -146,7 +146,7 @@ class Container implements ContainerContract
      * @param string $interface      Interface.
      * @param string $implementation Implementation.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -160,7 +160,7 @@ class Container implements ContainerContract
      *
      * @param string $alias Alias.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -174,7 +174,7 @@ class Container implements ContainerContract
      *
      * @param string $hint Type hint
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string|\Closure
      */
@@ -189,7 +189,7 @@ class Container implements ContainerContract
      * @param string $class     Class.
      * @param string $interface Interface.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -204,7 +204,7 @@ class Container implements ContainerContract
      * @param array $reflectionParameters Reflection parameters.
      * @param array $providedParameters   Provided parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -227,7 +227,7 @@ class Container implements ContainerContract
      *
      * @param \ReflectionParameter $parameter ReflectionParameter instance.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -251,7 +251,7 @@ class Container implements ContainerContract
      * @param \ReflectionParameter  $parameter ReflectionParameter instance.
      * @param \ReflectionClass|null $class     ReflectionClass instance.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -281,7 +281,7 @@ class Container implements ContainerContract
      * @param array                 $providedParameters   Provided Parameters.
      * @param \ReflectionClass|null $class                ReflectionClass instance.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -306,7 +306,7 @@ class Container implements ContainerContract
      * @param closure $factory    Closuare.
      * @param array   $parameters Constructor parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -327,7 +327,7 @@ class Container implements ContainerContract
      * @param mixed $class      Class name.
      * @param array $parameters Constructor parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -360,7 +360,7 @@ class Container implements ContainerContract
      * @param string|\Closure $class      Class name or closure.
      * @param array           $parameters Constructor parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -382,7 +382,7 @@ class Container implements ContainerContract
      *
      * @param string $class Class name.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -398,7 +398,7 @@ class Container implements ContainerContract
      *
      * @param string $class Class name.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -415,7 +415,7 @@ class Container implements ContainerContract
      * @param string $class      Class name.
      * @param array  $parameters Constructor parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -444,7 +444,7 @@ class Container implements ContainerContract
      * @param callable $callable   Callable.
      * @param array    $parameters Parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */

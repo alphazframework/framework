@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 2.0.3
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Contracts\Auth;
+namespace alphaz\Contracts\Auth;
 
 interface User
 {
     /**
      * Get all the users.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return array
      */
@@ -33,7 +33,7 @@ interface User
      * @param (string) $where field of user e.g username
      * @param (string) $value value fo field like , usr01
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -44,7 +44,7 @@ interface User
      *
      * @param $id id or guide of user
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -55,7 +55,7 @@ interface User
      *
      * @param (string) $username username of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -66,7 +66,7 @@ interface User
      *
      * @param (mixed) $email email of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -77,7 +77,7 @@ interface User
      *
      * @param (mixed) $token token of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -88,7 +88,7 @@ interface User
      *
      * @param (mixed) $token token  of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -97,7 +97,7 @@ interface User
     /**
      * Get the details of login user.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -106,7 +106,7 @@ interface User
     /**
      * Get the current session user.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -115,7 +115,7 @@ interface User
     /**
      * Check user is login or not.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -124,7 +124,7 @@ interface User
     /**
      * Logout the user.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Cache\Adapter;
+namespace alphaz\Cache\Adapter;
 
 class SessionCache extends AbstractAdapter
 {
@@ -23,7 +23,7 @@ class SessionCache extends AbstractAdapter
      *
      * @param int $ttl time to live
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($ttl = 0)
     {
@@ -39,7 +39,7 @@ class SessionCache extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int|false
      */
@@ -64,7 +64,7 @@ class SessionCache extends AbstractAdapter
      * @param mixed  $value
      * @param int    $ttl
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -84,7 +84,7 @@ class SessionCache extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -107,7 +107,7 @@ class SessionCache extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -121,7 +121,7 @@ class SessionCache extends AbstractAdapter
      *
      * @param (tring $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -137,7 +137,7 @@ class SessionCache extends AbstractAdapter
     /**
      * Remove all caches.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */

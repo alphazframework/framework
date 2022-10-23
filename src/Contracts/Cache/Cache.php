@@ -1,34 +1,34 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Contracts\Cache;
+namespace alphaz\Contracts\Cache;
 
 interface Cache
 {
     /**
      * __construct.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct();
 
     /**
      * Get the adapter of cache.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -39,7 +39,7 @@ interface Cache
      *
      * @param (string) $adapter
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -48,7 +48,7 @@ interface Cache
     /**
      * Get default ttl.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -59,7 +59,7 @@ interface Cache
      *
      * @param (string) $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int|false
      */
@@ -71,7 +71,7 @@ interface Cache
      * @param (mixed) $key
      * @param (mixed) $default
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -83,7 +83,7 @@ interface Cache
      * @param (array) $keys
      * @param (mixed) $default
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -96,7 +96,7 @@ interface Cache
      * @param (mixed) $value value to be cached
      * @param (int)   $ttl   time to live for cache
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -107,7 +107,7 @@ interface Cache
      *
      * @param (array) $cache [key,value,ttl]
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -118,7 +118,7 @@ interface Cache
      *
      * @param (mixed) $key key for cache
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -129,7 +129,7 @@ interface Cache
      *
      * @param (mixed) $key key for cache
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -140,7 +140,7 @@ interface Cache
      *
      * @param (array) $keys
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -149,7 +149,7 @@ interface Cache
     /**
      * Clear all caches.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */

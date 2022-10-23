@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -14,14 +14,14 @@
  * @license MIT
  */
 
-namespace Zest\Cookies;
+namespace alphaz\Cookies;
 
 class Cookies
 {
     /**
      * The default path (if specified).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -30,7 +30,7 @@ class Cookies
     /**
      * The default domain (if specified).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -39,7 +39,7 @@ class Cookies
     /**
      * The default secure setting (defaults to false).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var bool
      */
@@ -85,7 +85,7 @@ class Cookies
      * @param string $domain
      * @param bool   $secure
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -101,7 +101,7 @@ class Cookies
      * @param string $domain
      * @param bool   $secure
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -117,7 +117,7 @@ class Cookies
      *
      * @param (array) $array valid array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -181,7 +181,7 @@ class Cookies
      * @param (array) $keys    name
      * @param (mixed) $default default value if cookie is not exists
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -214,7 +214,7 @@ class Cookies
      *
      * @param (array) $keys keys
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

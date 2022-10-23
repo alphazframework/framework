@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Cache\Adapter;
+namespace alphaz\Cache\Adapter;
 
 class Memcached extends AbstractAdapter
 {
     /**
      * Store the object.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var object
      */
@@ -30,7 +30,7 @@ class Memcached extends AbstractAdapter
     /**
      * Version.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -44,7 +44,7 @@ class Memcached extends AbstractAdapter
      * @param int    $weight Weight of memcache
      * @param int    $ttl    Time to live
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($host, $port, $weight, $ttl = 0)
     {
@@ -65,7 +65,7 @@ class Memcached extends AbstractAdapter
     /**
      * Get the memcached object.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -81,7 +81,7 @@ class Memcached extends AbstractAdapter
      * @param int    $port   Port of memcache
      * @param int    $weight Weight of memcache
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -97,7 +97,7 @@ class Memcached extends AbstractAdapter
      *
      * @param array $servers
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -111,7 +111,7 @@ class Memcached extends AbstractAdapter
     /**
      * Get the version of memcache.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -125,7 +125,7 @@ class Memcached extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int|false
      */
@@ -149,7 +149,7 @@ class Memcached extends AbstractAdapter
      * @param mixed  $value
      * @param int    $ttl
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -171,7 +171,7 @@ class Memcached extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -193,7 +193,7 @@ class Memcached extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -207,7 +207,7 @@ class Memcached extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -221,7 +221,7 @@ class Memcached extends AbstractAdapter
     /**
      * Close the connection.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -233,7 +233,7 @@ class Memcached extends AbstractAdapter
     /**
      * Remove all caches.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */

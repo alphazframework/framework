@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,19 +16,19 @@
  * @license MIT
  */
 
-namespace Zest\Console\Commands;
+namespace alphaz\Console\Commands;
 
-use Zest\Common\Version as V;
-use Zest\Console\Command;
-use Zest\Console\Input;
-use Zest\Console\Output;
+use alphaz\Common\Version as V;
+use alphaz\Console\Command;
+use alphaz\Console\Input;
+use alphaz\Console\Output;
 
 class ServeCommand extends Command
 {
     /**
      * Sign of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -37,7 +37,7 @@ class ServeCommand extends Command
     /**
      * Description of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -56,8 +56,8 @@ class ServeCommand extends Command
     /**
      * Function to handle the class.
      *
-     * @param \Zest\Console\Output $output
-     * @param \Zest\Console\Input  $input
+     * @param \alphaz\Console\Output $output
+     * @param \alphaz\Console\Input  $input
      * @param array                $param
      *
      * @return void
@@ -66,7 +66,7 @@ class ServeCommand extends Command
     {
         // generate random 4 digit number
         $port = rand(1000, 9999);
-        $output->write('<white>Zest Framewor: </white>', false);
+        $output->write('<white>alphaz Framewor: </white>', false);
         $output->write('<yellow>'.V::VERSION.'</yellow>', true);
         // check if the server is running on $port.
         $host = 'localhost:'.$port;

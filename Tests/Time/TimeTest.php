@@ -3,7 +3,7 @@
 namespace Framework\Tests\Time;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Time\Time;
+use alphaz\Time\Time;
 
 class TimeTest extends TestCase
 {

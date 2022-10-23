@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -16,14 +16,14 @@
  * @note i wrote this file first time by following the course on udemy  => https://www.udemy.com/php-mvc-from-scratch/ , any further/others modification by me
  */
 
-namespace Zest\Router;
+namespace alphaz\Router;
 
-use Zest\Cache\Cache;
-use Zest\Data\Conversion;
-use Zest\http\Request;
-use Zest\http\Response;
-use Zest\Input\Input;
-use Zest\View\View;
+use alphaz\Cache\Cache;
+use alphaz\Data\Conversion;
+use alphaz\http\Request;
+use alphaz\http\Response;
+use alphaz\Input\Input;
+use alphaz\View\View;
 
 class Router
 {
@@ -48,7 +48,7 @@ class Router
     /**
      * Parameters from the matched route.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -59,7 +59,7 @@ class Router
      *
      * @param string $route The route URL
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -137,7 +137,7 @@ class Router
      *
      * @param (string) $name name of middleware
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -172,7 +172,7 @@ class Router
      *
      * @param $routes = [route,param,method,middleware]
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -193,7 +193,7 @@ class Router
      * @param string $to    Where you want to redirect
      * @param string $code  The HTTP code
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -209,7 +209,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -225,7 +225,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -241,7 +241,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -257,7 +257,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -273,7 +273,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -289,7 +289,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -305,7 +305,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -321,7 +321,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */
@@ -337,7 +337,7 @@ class Router
      * @param array|string $params     Parameters (controller, action, etc.) or $params Home@index
      * @param string       $middleware Middleare name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -355,7 +355,7 @@ class Router
      * @param string $middleware Middleare name
      * @param string $methods    request method like GET or GET|POST
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -412,7 +412,7 @@ class Router
      * @param string $methods       router request method
      * @param string $requestMethod Requested method
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -453,7 +453,7 @@ class Router
     /**
      * Get the current input according to given method.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -480,7 +480,7 @@ class Router
         $url = $this->RemoveQueryString($url, new Request());
         if ($this->match($url)) {
             if (isset($this->params['redirect'])) {
-                \Zest\Site\Site::redirect($this->params['to'], $this->params['code']);
+                \alphaz\Site\Site::redirect($this->params['to'], $this->params['code']);
 
                 return;
             }
@@ -513,7 +513,7 @@ class Router
                 (is_object(isset($this->params['middleware']))) ? $this->params['middleware']->after(new Request(), new Response(), $this->params) : null;
             }
         } else {
-            \Zest\Component\Router::loadComponents();
+            \alphaz\Component\Router::loadComponents();
         }
     }
 
@@ -604,7 +604,7 @@ class Router
     /**
      * Load routers form cache.
      *
-     * @since 2.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -619,7 +619,7 @@ class Router
     /**
      * Cache the roouter.
      *
-     * @since 2.0.0
+     * @since 1.0.0
      *
      * @return void
      */

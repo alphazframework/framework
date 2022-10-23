@@ -1,7 +1,7 @@
 {
-    "name": "zest/framework",
-    "description": "The Zest Framework.",
-    "keywords": ["framework", "zest"],
+    "name": "alphaz/framework",
+    "description": "The AlphaZ Framework.",
+    "keywords": ["framework", "alphaz"],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -10,16 +10,20 @@
     "require-dev": {
         "phpunit/phpunit": "^9.4"
     },
+    "support": {
+        "issues": "https://github.com/alphazframework/framework/issues",
+        "source": "https://github.com/alphazframework/framework"
+    },
     "authors": [
         {
             "name": "Muhamamad Umer Farooq",
-            "email":"mumerfarooqlablnet01@gmail.com",
-            "homepage": "https://zestframework.github.io/"
+            "email":"umer@lablnet.com",
+            "homepage": "https://lablnet.com/"
         }
     ],
     "autoload": {
         "psr-4": {
-             "Zest\\": "src/"
+             "alphaz\\": "src/"
         },
         "files":["src/functions/helpers.php"]
     },

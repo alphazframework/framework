@@ -3,12 +3,12 @@
 namespace Framework\Tests\Common;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Common\Root;
+use alphaz\Common\Root;
 
 class RootTest extends TestCase
 {
     /**
-     * @var \Zest\Commoon\Configuraion
+     * @var \alphaz\Commoon\Configuraion
      */
     protected $root;
 

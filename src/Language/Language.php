@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -14,9 +14,9 @@
  * @license MIT
  */
 
-namespace Zest\Language;
+namespace alphaz\Language;
 
-use Zest\http\Request;
+use alphaz\http\Request;
 
 class Language
 {
@@ -60,7 +60,7 @@ class Language
      *
      * @param (string) $key valid key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */

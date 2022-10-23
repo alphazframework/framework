@@ -1,33 +1,33 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Component;
+namespace alphaz\Component;
 
-use Zest\Common\Version;
-use Zest\Data\Conversion;
-use Zest\Files\FileHandling;
-use Zest\Files\Files;
-use Zest\Zip\Zip;
+use alphaz\Common\Version;
+use alphaz\Data\Conversion;
+use alphaz\Files\FileHandling;
+use alphaz\Files\Files;
+use alphaz\Zip\Zip;
 
 class Components
 {
     /**
      * Get all components name.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -41,7 +41,7 @@ class Components
      *
      * @param (string) $name Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -58,7 +58,7 @@ class Components
      *
      * @param (string) $name Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -79,7 +79,7 @@ class Components
      * @param (string) $archive Valid component zip archive in Data folder.
      * @param (string) $name    Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -123,7 +123,7 @@ class Components
      *
      * @param (string) $name Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -147,7 +147,7 @@ class Components
      * @param (string) $name   Name of component.
      * @param (bool)   $status Valid status.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -174,7 +174,7 @@ class Components
      *
      * @param (string) $name Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -188,7 +188,7 @@ class Components
      *
      * @param (string) $name Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -202,7 +202,7 @@ class Components
      *
      * @param (string) $name Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -220,12 +220,12 @@ class Components
     }
 
     /**
-     * Determine whether the component is supported with current version of Zest.
+     * Determine whether the component is supported with current version of alphaz.
      *
-     * @param (string) $zVersion   Zest version number from component config file.
+     * @param (string) $zVersion   alphaz version number from component config file.
      * @param (string) $comparator Operator that used to compare version.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -243,7 +243,7 @@ class Components
      *
      * @param (string) $name Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -259,7 +259,7 @@ class Components
      *
      * @param (string) $name Name of component.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

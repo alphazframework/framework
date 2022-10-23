@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -9,19 +9,19 @@
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  *
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\http\Clients;
+namespace alphaz\http\Clients;
 
 abstract class AbstractClient
 {
     /**
      * Client resource object.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var object
      */
@@ -30,7 +30,7 @@ abstract class AbstractClient
     /**
      * URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -39,7 +39,7 @@ abstract class AbstractClient
     /**
      * Method.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -48,7 +48,7 @@ abstract class AbstractClient
     /**
      * Fields.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -57,7 +57,7 @@ abstract class AbstractClient
     /**
      * Query.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -66,7 +66,7 @@ abstract class AbstractClient
     /**
      * Request headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -75,7 +75,7 @@ abstract class AbstractClient
     /**
      * HTTP version from response.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -84,7 +84,7 @@ abstract class AbstractClient
     /**
      * Response code.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -93,7 +93,7 @@ abstract class AbstractClient
     /**
      * Response message.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -102,7 +102,7 @@ abstract class AbstractClient
     /**
      * Raw response string.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -111,7 +111,7 @@ abstract class AbstractClient
     /**
      * Raw response header.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -120,7 +120,7 @@ abstract class AbstractClient
     /**
      * Response headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -129,7 +129,7 @@ abstract class AbstractClient
     /**
      * Response body.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -138,7 +138,7 @@ abstract class AbstractClient
     /**
      * CURL options.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -147,7 +147,7 @@ abstract class AbstractClient
     /**
      * Stream context.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var resource
      */
@@ -156,7 +156,7 @@ abstract class AbstractClient
     /**
      * Stream context options.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -165,7 +165,7 @@ abstract class AbstractClient
     /**
      * Stream context parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -174,7 +174,7 @@ abstract class AbstractClient
     /**
      * HTTP Response Headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -183,7 +183,7 @@ abstract class AbstractClient
     /**
      * Stream mode.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -194,7 +194,7 @@ abstract class AbstractClient
      *
      * @param (string) $url
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -208,7 +208,7 @@ abstract class AbstractClient
     /**
      * Get the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -222,7 +222,7 @@ abstract class AbstractClient
      *
      * @param (string) $method
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -242,7 +242,7 @@ abstract class AbstractClient
     /**
      * Get the method.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -257,7 +257,7 @@ abstract class AbstractClient
      * @param (string) $name
      *                       (string) $value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -273,7 +273,7 @@ abstract class AbstractClient
      *
      * @param (array) $fields
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -293,7 +293,7 @@ abstract class AbstractClient
      *
      * @param (string) $name name of field
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -307,7 +307,7 @@ abstract class AbstractClient
      *
      * @param (string) $name name of field
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -325,7 +325,7 @@ abstract class AbstractClient
     /**
      * Prepare the HTTP query.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -339,7 +339,7 @@ abstract class AbstractClient
     /**
      * Get the HTTP query.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -353,7 +353,7 @@ abstract class AbstractClient
      *
      * @param (bool) $mb
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -368,7 +368,7 @@ abstract class AbstractClient
      * @param (string) $name
      * @param (string) $value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -384,7 +384,7 @@ abstract class AbstractClient
      *
      * @param (arryay) $headers
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -400,7 +400,7 @@ abstract class AbstractClient
      *
      * @param (string) $name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -412,7 +412,7 @@ abstract class AbstractClient
     /**
      * Get all request headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -424,7 +424,7 @@ abstract class AbstractClient
     /**
      * Determine if there are request headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -438,7 +438,7 @@ abstract class AbstractClient
      *
      * @param (string) $name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -450,7 +450,7 @@ abstract class AbstractClient
     /**
      * Get all response headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -462,7 +462,7 @@ abstract class AbstractClient
     /**
      * Determine if there are response headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -474,7 +474,7 @@ abstract class AbstractClient
     /**
      * Get raw response header.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -486,7 +486,7 @@ abstract class AbstractClient
     /**
      * Get the response body.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -498,7 +498,7 @@ abstract class AbstractClient
     /**
      * Get the response code.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -510,7 +510,7 @@ abstract class AbstractClient
     /**
      * Get the response HTTP version.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -522,7 +522,7 @@ abstract class AbstractClient
     /**
      * Get the response HTTP message.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -534,7 +534,7 @@ abstract class AbstractClient
     /**
      * Get the raw response.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -546,7 +546,7 @@ abstract class AbstractClient
     /**
      * Determine whether or not resource is available.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -558,7 +558,7 @@ abstract class AbstractClient
     /**
      * Get the resource.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return resource
      */
@@ -570,7 +570,7 @@ abstract class AbstractClient
     /**
      * Decode the body.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -582,7 +582,7 @@ abstract class AbstractClient
     /**
      * Create and open the client resource.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return AbstractClient
      */
@@ -591,7 +591,7 @@ abstract class AbstractClient
     /**
      * Method to send the request and get the response.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -600,7 +600,7 @@ abstract class AbstractClient
     /**
      * Close the client resource.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

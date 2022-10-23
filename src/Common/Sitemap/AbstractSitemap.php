@@ -1,29 +1,29 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common\Sitemap;
+namespace alphaz\Common\Sitemap;
 
-use Zest\Contracts\Sitemap\AbstractSitemap as AbstractSitemapContracts;
+use alphaz\Contracts\Sitemap\AbstractSitemap as AbstractSitemapContracts;
 
 class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
 {
     /**
      * Last modify.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var Datetime
      */
@@ -32,7 +32,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
     /**
      * Sitemap file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -41,7 +41,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
     /**
      * Extension.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -52,7 +52,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      *
      * @param (string) $file File name with extension (.xml).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -66,7 +66,7 @@ class AbstractSitemap extends SitemapWriter implements AbstractSitemapContracts
      *
      * @param (string) $file File name with extension (.xml).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */

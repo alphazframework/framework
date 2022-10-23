@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -14,14 +14,14 @@
  * @license MIT
  */
 
-namespace Zest\Files;
+namespace alphaz\Files;
 
 class Files
 {
     /**
      * Mine Types of files.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -30,7 +30,7 @@ class Files
     /**
      * Types.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -39,7 +39,7 @@ class Files
     /**
      * The default value for recursive create dirs.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var bool
      */
@@ -48,7 +48,7 @@ class Files
     /**
      * Default chmod.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -69,7 +69,7 @@ class Files
     }
 
     /**
-     * Create zest system dir.
+     * Create alphaz system dir.
      *
      * @since 1.0.0
      * @deprecated 3.0.0
@@ -91,7 +91,7 @@ class Files
      *
      * @param mixed $chomd Valid chmod
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -105,7 +105,7 @@ class Files
      *
      * @param mixed $value recursive status true|false.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -119,7 +119,7 @@ class Files
      *
      * @param (string) $type Correct mine type.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -134,7 +134,7 @@ class Files
      * @param (string) $type Correct type.
      * @param (string) $sub  Extensions/
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -150,7 +150,7 @@ class Files
      * @param (string) $recursive Recursive mode create: null|true|false.
      * @param (string) $chmod     Directory permission on create: default 0755.
      *
-     * @since 2.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -173,7 +173,7 @@ class Files
      * @param (string) $source Name of file or directory with path.
      * @param (mixed)  $pre    Valid permission.
      *
-     * @since 2.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -193,7 +193,7 @@ class Files
      * @param (array)  $files  Files to be copy.
      * @param (mixed)  $user   The new owner user name.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -216,7 +216,7 @@ class Files
      * @param (int)    $time   The touch time as a Unix timestamp.
      * @param (int)    $atime  The access time as a Unix timestamp.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -239,7 +239,7 @@ class Files
      * @param (string) $target Target directory.
      * @param (string) $files  Files to be copy.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -258,7 +258,7 @@ class Files
      * @param (string) $target Target directory.
      * @param (array)  $files  Files to be copy.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -276,7 +276,7 @@ class Files
      * @param (string) $target Target directory.
      * @param (string) $file   Files to be moved.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -294,7 +294,7 @@ class Files
      * @param (string)       $target Target directory.
      * @param (array|string) $files  Files to be moved.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -310,7 +310,7 @@ class Files
      *
      * @param (string) $file Name of file with path.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -326,7 +326,7 @@ class Files
      *
      * @param (array) $file Name of file with path.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -344,14 +344,14 @@ class Files
      * @param (string) $target Target directory.
      * @param (string) $dir    Directory to be copied.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
     public function copyDir($source, $target, $dir)
     {
         $this->mkDir($target);
-        $serverOs = (new \Zest\Common\OperatingSystem())->get();
+        $serverOs = (new \alphaz\Common\OperatingSystem())->get();
         $command = ($serverOs === 'Windows') ? 'xcopy ' : 'cp -r ';
         if (is_dir($source.$dir)) {
             shell_exec($command.$source.$dir.' '.$target);
@@ -365,7 +365,7 @@ class Files
      * @param (string) $target Target directory.
      * @param (array)  $dirs   Directories to be copied.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -383,14 +383,14 @@ class Files
      * @param (string) $target Target directory.
      * @param (string) $dir    Directory to be copied.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
     public function moveDir($source, $target, $dir)
     {
         $this->mkDir($target);
-        $serverOs = (new \Zest\Common\OperatingSystem())->get();
+        $serverOs = (new \alphaz\Common\OperatingSystem())->get();
         $command = ($serverOs === 'Windows') ? 'move ' : 'mv ';
         if (is_dir($source.$dir)) {
             shell_exec($command.$source.$dir.' '.$target);
@@ -404,7 +404,7 @@ class Files
      * @param (string) $target Target directory.
      * @param (array)  $dirs   Dirs to be copy.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -420,7 +420,7 @@ class Files
      *
      * @param (string) $dir Directory with path.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -450,7 +450,7 @@ class Files
      *
      * @param (array) $dirs Directory with path.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -469,7 +469,7 @@ class Files
      * @param (string) $fileType Supported => image,media,docs,zip.
      * @param (int)    $maxSize  File size to be allowed.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -481,7 +481,7 @@ class Files
         $error = $file['error'];
         $type = $file['type'];
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $newName = \Zest\Site\Site::salts(30);
+        $newName = \alphaz\Site\Site::salts(30);
         $fileNewName = $newName.'.'.$ext;
         $allowerd_ext = $this->types[$fileType];
         if (in_array($type, $this->mineTypes) === false) {
@@ -550,7 +550,7 @@ class Files
      * @param (int)    $count    Number of file count.
      * @param (int)    $maxSize  File size to be allowed.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -564,7 +564,7 @@ class Files
             $error = $files['error'][$i];
             $type = $files['type'][$i];
             $ext = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
-            $newName = \Zest\Site\Site::salts(30);
+            $newName = \alphaz\Site\Site::salts(30);
             $fileNewName = $newName.'.'.$ext;
             $allowerd_ext = $this->types[$fileType];
             if (in_array($type, $this->mineTypes) === false) {

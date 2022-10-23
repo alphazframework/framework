@@ -3,7 +3,7 @@
 namespace Framework\Tests\Mail;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Mail\Mail;
+use alphaz\Mail\Mail;
 
 class MailTest extends TestCase
 {
@@ -27,7 +27,7 @@ class MailTest extends TestCase
         //Set subject.
         $mail->setSubject('Example mail');
         //Sender, like support@example.com
-        $mail->setSender('noreply@zestframework.xyz');
+        $mail->setSender('noreply@alphazframework.xyz');
         //Set the plain content of the mail.
         $mail->setContentPlain('Example plain-content!');
         //Add a receiver of the mail (you can add more than one receiver too).

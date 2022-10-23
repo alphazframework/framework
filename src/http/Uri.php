@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\http;
+namespace alphaz\http;
 
 class Uri extends Message
 {
@@ -35,7 +35,7 @@ class Uri extends Message
      *                      (string) $user username
      *                      (string) $password password
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -58,7 +58,7 @@ class Uri extends Message
      *
      * @param (string) $url valid url
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -85,7 +85,7 @@ class Uri extends Message
      *
      * @param (string) $scheme valid scheme
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -109,7 +109,7 @@ class Uri extends Message
      *
      * @param (int) $port port number
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -127,7 +127,7 @@ class Uri extends Message
      *
      * @param (string) $query query uri
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -139,7 +139,7 @@ class Uri extends Message
     /**
      * Get the scheme component of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -151,7 +151,7 @@ class Uri extends Message
     /**
      * Get determined scheme.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -163,7 +163,7 @@ class Uri extends Message
     /**
      * Get the authority component of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -176,7 +176,7 @@ class Uri extends Message
     /**
      * Get the user information component of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -188,7 +188,7 @@ class Uri extends Message
     /**
      * Get the host component of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -200,7 +200,7 @@ class Uri extends Message
     /**
      * Get the path component of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -212,7 +212,7 @@ class Uri extends Message
     /**
      * Get the port component of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -224,7 +224,7 @@ class Uri extends Message
     /**
      * Get the query string of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -236,7 +236,7 @@ class Uri extends Message
     /**
      * Get the fragment component of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -248,7 +248,7 @@ class Uri extends Message
     /**
      * Get the basePath segment component of the URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -263,7 +263,7 @@ class Uri extends Message
      * @param (string) $user username
      *                       (string) $password password
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -280,7 +280,7 @@ class Uri extends Message
      *
      * @param (string) $host valid host
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -296,7 +296,7 @@ class Uri extends Message
      *
      * @param (string) $path valid path
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -316,7 +316,7 @@ class Uri extends Message
      *
      * @param (string) $port valid port
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -332,7 +332,7 @@ class Uri extends Message
      *
      * @param (string) $query valid query
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -348,7 +348,7 @@ class Uri extends Message
      *
      * @param (string) $fragment valid fragment
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -364,7 +364,7 @@ class Uri extends Message
      *
      * @param (string) $fragment valid fragment
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -396,7 +396,7 @@ class Uri extends Message
     /**
      * Get the fully qualified base URL.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */

@@ -11,7 +11,7 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **Requirements**
-1. Zest Framework Version
+1. alphaz Framework Version
 2. PHP Version
 3. Apache version
 4. PlatForm version and name

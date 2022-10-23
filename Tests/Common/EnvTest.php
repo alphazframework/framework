@@ -3,12 +3,12 @@
 namespace Framework\Tests\Common;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Common\Env;
+use alphaz\Common\Env;
 
 class EnvTest extends TestCase
 {
     /**
-     * @var \Zest\Commoon\Env
+     * @var \alphaz\Commoon\Env
      */
     protected $config;
 
@@ -20,7 +20,7 @@ class EnvTest extends TestCase
     protected function setUp(): void
     {
         $this->config = new Env($this->configs = [
-            'name'        => 'Zest',
+            'name'        => 'alphaz',
             'version'     => '3.0.0',
             'null'        => null,
             'encryption'  => [
@@ -38,12 +38,12 @@ class EnvTest extends TestCase
 
     public function testGet()
     {
-        $this->assertSame('Zest', $this->config->get('name'));
+        $this->assertSame('alphaz', $this->config->get('name'));
     }
 
     public function testGetWithArrayOfKeys()
     {
-        $this->assertSame('Zest', $this->config->get('name'));
+        $this->assertSame('alphaz', $this->config->get('name'));
     }
 
     public function testGetWithDefault()

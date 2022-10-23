@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\http\Clients;
+namespace alphaz\http\Clients;
 
 class CURL extends AbstractClient
 {
@@ -25,7 +25,7 @@ class CURL extends AbstractClient
      *                      (string) $method
      *                      (array) $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($url, $method = 'GET', array $options = null)
     {
@@ -50,7 +50,7 @@ class CURL extends AbstractClient
      *
      * @param (string) $method
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -74,7 +74,7 @@ class CURL extends AbstractClient
     /**
      * Return cURL resource (alias to $this->getResource()).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return resource
      */
@@ -86,7 +86,7 @@ class CURL extends AbstractClient
     /**
      * Create and open cURL resource.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -134,7 +134,7 @@ class CURL extends AbstractClient
      * @param (mixed) $option
      *                        (mixed) $value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -151,7 +151,7 @@ class CURL extends AbstractClient
      *
      * @param (array) $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -170,7 +170,7 @@ class CURL extends AbstractClient
      *
      * @param (bool) $header
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -186,7 +186,7 @@ class CURL extends AbstractClient
      *
      * @param (bool) $header
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -200,7 +200,7 @@ class CURL extends AbstractClient
     /**
      * Set curl return header.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -212,7 +212,7 @@ class CURL extends AbstractClient
     /**
      * Set curl return tranfer header.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -226,7 +226,7 @@ class CURL extends AbstractClient
      *
      * @param (mixes) $option
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixes
      */
@@ -240,7 +240,7 @@ class CURL extends AbstractClient
      *
      * @param (mixes) $option
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixes
      */
@@ -252,7 +252,7 @@ class CURL extends AbstractClient
     /**
      * Method to send the request and get the response.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -283,7 +283,7 @@ class CURL extends AbstractClient
     /**
      * Return the cURL version.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -295,7 +295,7 @@ class CURL extends AbstractClient
     /**
      * Close the cURL connection.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -309,7 +309,7 @@ class CURL extends AbstractClient
     /**
      * Parse headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

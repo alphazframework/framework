@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\http;
+namespace alphaz\http;
 
 abstract class HTTP extends Headers
 {
@@ -26,7 +26,7 @@ abstract class HTTP extends Headers
     /**
      * Request URI.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -35,7 +35,7 @@ abstract class HTTP extends Headers
     /**
      * Path segments.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -44,7 +44,7 @@ abstract class HTTP extends Headers
     /**
      * Base path.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -53,7 +53,7 @@ abstract class HTTP extends Headers
     /**
      * Headers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -62,7 +62,7 @@ abstract class HTTP extends Headers
     /**
      * Raw data.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -71,7 +71,7 @@ abstract class HTTP extends Headers
     /**
      * Parsed data.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var mixed
      */
@@ -80,7 +80,7 @@ abstract class HTTP extends Headers
     /**
      * GET array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -89,7 +89,7 @@ abstract class HTTP extends Headers
     /**
      * POST array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -98,7 +98,7 @@ abstract class HTTP extends Headers
     /**
      * FILES array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -107,7 +107,7 @@ abstract class HTTP extends Headers
     /**
      * PUT array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -116,7 +116,7 @@ abstract class HTTP extends Headers
     /**
      * PATCH array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -125,7 +125,7 @@ abstract class HTTP extends Headers
     /**
      * DELETE array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -134,7 +134,7 @@ abstract class HTTP extends Headers
     /**
      * SESSION array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -143,7 +143,7 @@ abstract class HTTP extends Headers
     /**
      * COOKIE array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -152,7 +152,7 @@ abstract class HTTP extends Headers
     /**
      * SERVER array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -161,7 +161,7 @@ abstract class HTTP extends Headers
     /**
      * ENV array.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -171,7 +171,7 @@ abstract class HTTP extends Headers
     /**
      * HTTP version.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -180,7 +180,7 @@ abstract class HTTP extends Headers
     /**
      * Protocol.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -189,7 +189,7 @@ abstract class HTTP extends Headers
     /**
      * reasonPhrase.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -198,7 +198,7 @@ abstract class HTTP extends Headers
     /**
      * Uri scheme (without "://" suffix).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -207,7 +207,7 @@ abstract class HTTP extends Headers
     /**
      * Uri user.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -216,7 +216,7 @@ abstract class HTTP extends Headers
     /**
      * Uri password.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -225,7 +225,7 @@ abstract class HTTP extends Headers
     /**
      * Uri host.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -234,7 +234,7 @@ abstract class HTTP extends Headers
     /**
      * Uri port number.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var null|int
      */
@@ -243,7 +243,7 @@ abstract class HTTP extends Headers
     /**
      * Uri path.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -252,7 +252,7 @@ abstract class HTTP extends Headers
     /**
      * Uri query string (without "?" prefix).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -261,7 +261,7 @@ abstract class HTTP extends Headers
     /**
      * Uri fragment string (without "#" prefix).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -270,7 +270,7 @@ abstract class HTTP extends Headers
     /**
      * Response body.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -279,7 +279,7 @@ abstract class HTTP extends Headers
     /**
      * __construct.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct()
     {
@@ -289,7 +289,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['REQUEST_METHOD'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -301,7 +301,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['REQUEST_URI'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -313,7 +313,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['CONTENT_TYPE'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -325,7 +325,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['QUERY_STRING'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -337,7 +337,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['SERVER_PORT'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -349,7 +349,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['DOCUMENT_ROOT'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -361,7 +361,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['HTTP_HOST'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -373,7 +373,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['SERVER_NAME'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -385,7 +385,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['HTTP'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -397,7 +397,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['HTTPS'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -409,7 +409,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['PHP_SELF'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */
@@ -421,7 +421,7 @@ abstract class HTTP extends Headers
     /**
      * Get a value from $_SERVER['HTTP_REFERER'].
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool|array
      */

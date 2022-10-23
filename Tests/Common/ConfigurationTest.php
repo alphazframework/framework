@@ -3,12 +3,12 @@
 namespace Framework\Tests\Common;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Common\Configuration;
+use alphaz\Common\Configuration;
 
 class ConfigurationTest extends TestCase
 {
     /**
-     * @var \Zest\Commoon\Configuraion
+     * @var \alphaz\Commoon\Configuraion
      */
     protected $config;
 
@@ -20,7 +20,7 @@ class ConfigurationTest extends TestCase
     protected function setUp(): void
     {
         $this->config = new Configuration($this->configs = [
-            'name'        => 'Zest',
+            'name'        => 'alphaz',
             'version'     => '3.0.0',
             'null'        => null,
             'encryption'  => [
@@ -48,12 +48,12 @@ class ConfigurationTest extends TestCase
 
     public function testGet()
     {
-        $this->assertSame('Zest', $this->config->get('name'));
+        $this->assertSame('alphaz', $this->config->get('name'));
     }
 
     public function testGetWithArrayOfKeys()
     {
-        $this->assertSame('Zest', $this->config->get('name'));
+        $this->assertSame('alphaz', $this->config->get('name'));
         $this->assertSame('xxx', $this->config->get('encryption.key'));
     }
 

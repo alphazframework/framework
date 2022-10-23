@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,18 +16,18 @@
  * @license MIT
  */
 
-namespace Zest\Console\Commands;
+namespace alphaz\Console\Commands;
 
-use Zest\Console\Command;
-use Zest\Console\Input;
-use Zest\Console\Output;
+use alphaz\Console\Command;
+use alphaz\Console\Input;
+use alphaz\Console\Output;
 
 class Controller extends Command
 {
     /**
      * Sign of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -36,7 +36,7 @@ class Controller extends Command
     /**
      * Description of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -45,7 +45,7 @@ class Controller extends Command
     /**
      * Accpet flag parameter in command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -66,8 +66,8 @@ class Controller extends Command
     /**
      * Function to handle the class.
      *
-     * @param \Zest\Console\Output $output
-     * @param \Zest\Console\Input  $input
+     * @param \alphaz\Console\Output $output
+     * @param \alphaz\Console\Input  $input
      * @param array                $param
      *
      * @return void
@@ -92,9 +92,9 @@ class Controller extends Command
 
 namespace App\Controllers;
 //for using View
-use Zest\View\View;
+use alphaz\View\View;
 
-class {$name} extends \Zest\Controller\Controller
+class {$name} extends \alphaz\Controller\Controller
 {
     /**
      * Show the index page.

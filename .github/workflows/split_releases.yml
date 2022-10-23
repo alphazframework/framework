@@ -31,7 +31,7 @@ jobs:
       - name: Update ${{ matrix.library }} repository
         run: |
           SHA1=`./splitsh/splitsh-lite --prefix=src/${{ matrix.library }} --origin=refs/tags/${{ steps.tagName.outputs.tag }}`
-          git remote add ${{ matrix.library }} https://${{ secrets.AUTH_TOKEN }}@github.com/zestframework/${{ matrix.library }}
+          git remote add ${{ matrix.library }} https://${{ secrets.AUTH_TOKEN }}@github.com/alphazframework/${{ matrix.library }}
           git push -f ${{ matrix.library }} ${SHA1}:master
           git tag -d ${{ steps.tagName.outputs.tag }}
           git tag ${{ steps.tagName.outputs.tag }} ${SHA1}

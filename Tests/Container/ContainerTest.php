@@ -3,8 +3,8 @@
 namespace Framework\Tests\Container;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Container\Container;
-use Zest\http\Message;
+use alphaz\Container\Container;
+use alphaz\http\Message;
 
 class ContainerTest extends TestCase
 {

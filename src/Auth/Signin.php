@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -13,19 +13,19 @@
  * @license MIT
  */
 
-namespace Zest\Auth;
+namespace alphaz\Auth;
 
-use Zest\Hashing\Hash;
-use Zest\http\Request;
-use Zest\Session\Session;
-use Zest\Validation\Validation;
+use alphaz\Hashing\Hash;
+use alphaz\http\Request;
+use alphaz\Session\Session;
+use alphaz\Validation\Validation;
 
 class Signin extends Handler
 {
     /**
      * Store the errors msgs.
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @var array
      */
@@ -37,7 +37,7 @@ class Signin extends Handler
      * @param (string) $username username of user
      * @param (mixed)  $password password of user
      *
-     * @since 2.0.3
+     * @since 1.0.0
      *
      * @return void
      */

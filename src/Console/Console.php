@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,27 +16,27 @@
  * @license MIT
  */
 
-namespace Zest\Console;
+namespace alphaz\Console;
 
-use Zest\Console\Commands as InternalCommands;
-use Zest\Container\Container;
-use Zest\Data\Arrays;
+use alphaz\Console\Commands as InternalCommands;
+use alphaz\Container\Container;
+use alphaz\Data\Arrays;
 
 class Console
 {
     /**
      * Instance of container.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
-     * @var \Zest\Container\Container
+     * @var \alphaz\Container\Container
      */
     private $container;
 
     /**
      * Commanads.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var array
      */
@@ -98,7 +98,7 @@ class Console
     }
 
     /**
-     * Run the Zest console.
+     * Run the alphaz console.
      *
      * @return void
      */
@@ -120,7 +120,7 @@ class Console
             if (!isset($param[2])) {
                 if (count($cmd->getFlags()) > 0) {
                     $output->error('You must provide the flags');
-                    $output->error('For Help, php zest '.$cmd->getSign().' -h');
+                    $output->error('For Help, php alphaz '.$cmd->getSign().' -h');
                     exit;
                 }
                 $cmd->handle($output, $input);

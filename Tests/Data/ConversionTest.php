@@ -3,7 +3,7 @@
 namespace Framework\Tests\Data;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Data\Conversion;
+use alphaz\Data\Conversion;
 
 class ConversionTest extends TestCase
 {

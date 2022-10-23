@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Container;
+namespace alphaz\Container;
 
 interface ContainerContract
 {
@@ -25,7 +25,7 @@ interface ContainerContract
      * @param string|\Closure $class     Class name or closure.
      * @param bool            $singleton Should we return the same instance every time?
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -37,7 +37,7 @@ interface ContainerContract
      * @param string|array    $hint  Type hint or array contaning both type hint and alias.
      * @param string|\Closure $class Class name or closure.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return 3.0.0
      */
@@ -49,7 +49,7 @@ interface ContainerContract
      * @param string|array $hint     Type hint or array contaning both type hint and alias.
      * @param object       $instance Class instance.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -62,7 +62,7 @@ interface ContainerContract
      * @param string $interface      Interface.
      * @param string $implementation Implementation.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -74,7 +74,7 @@ interface ContainerContract
      * @param closure $factory    Closuare.
      * @param array   $parameters Constructor parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -86,7 +86,7 @@ interface ContainerContract
      * @param mixed $class      Class name.
      * @param array $parameters Constructor parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -98,7 +98,7 @@ interface ContainerContract
      * @param string|\Closure $class      Class name or closure.
      * @param array           $parameters Constructor parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -109,7 +109,7 @@ interface ContainerContract
      *
      * @param string $class Class name.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -120,7 +120,7 @@ interface ContainerContract
      *
      * @param string $class Class name.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -132,7 +132,7 @@ interface ContainerContract
      * @param string $class      Class name.
      * @param array  $parameters Constructor parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -144,7 +144,7 @@ interface ContainerContract
      * @param callable $callable   Callable.
      * @param array    $parameters Parameters.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */

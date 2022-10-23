@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Data\Contracts;
+namespace alphaz\Data\Contracts;
 
 interface StrContract
 {
@@ -24,7 +24,7 @@ interface StrContract
      * @param string $str      String to be evaluated.
      * @param string $encoding Valid encoding.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -36,7 +36,7 @@ interface StrContract
      * @param string $g   With concat.
      * @param string $str String to concat.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -48,7 +48,7 @@ interface StrContract
      * @param string $str      String to be counted.
      * @param string $encoding Valid encoding.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */

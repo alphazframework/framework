@@ -1,30 +1,30 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common\Sitemap;
+namespace alphaz\Common\Sitemap;
 
-use Zest\Contracts\Sitemap\SitemapWriter as SitemapWriterContracts;
-use Zest\Files\FileHandling;
+use alphaz\Contracts\Sitemap\SitemapWriter as SitemapWriterContracts;
+use alphaz\Files\FileHandling;
 
 class SitemapWriter implements SitemapWriterContracts
 {
     /**
      * resource.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var object
      */
@@ -37,7 +37,7 @@ class SitemapWriter implements SitemapWriterContracts
      * @param (string) $file File name with extension (.xml).
      * @param (string) $mode Valid file opening mode.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -51,7 +51,7 @@ class SitemapWriter implements SitemapWriterContracts
      *
      * @param (xml) $data Valid XML
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -65,7 +65,7 @@ class SitemapWriter implements SitemapWriterContracts
     /**
      * Read the sitemap file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return xml
      */
@@ -79,7 +79,7 @@ class SitemapWriter implements SitemapWriterContracts
     /**
      * Close the sitemap file.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

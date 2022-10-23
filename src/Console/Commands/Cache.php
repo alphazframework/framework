@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,19 +16,19 @@
  * @license MIT
  */
 
-namespace Zest\Console\Commands;
+namespace alphaz\Console\Commands;
 
-use Zest\Cache\Cache as CacheManager;
-use Zest\Console\Command;
-use Zest\Console\Input;
-use Zest\Console\Output;
+use alphaz\Cache\Cache as CacheManager;
+use alphaz\Console\Command;
+use alphaz\Console\Input;
+use alphaz\Console\Output;
 
 class Cache extends Command
 {
     /**
      * Sign of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -37,7 +37,7 @@ class Cache extends Command
     /**
      * Description of the command.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -56,8 +56,8 @@ class Cache extends Command
     /**
      * Function to handle the class.
      *
-     * @param \Zest\Console\Output $output
-     * @param \Zest\Console\Input  $input
+     * @param \alphaz\Console\Output $output
+     * @param \alphaz\Console\Input  $input
      * @param array                $param
      *
      * @return void

@@ -1,5 +1,5 @@
 {
-    "name": "zest/data",
+    "name": "alphaz/data",
     "description": "A set of Component classes to manipulate arrays, data and string",
     "type": "library",
     "license": "MIT",
@@ -12,7 +12,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-             "Zest\\Data\\": ""
+             "alphaz\\Data\\": ""
         }
     }
 }

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\http;
+namespace alphaz\http;
 
 class Response extends Message
 {
@@ -25,7 +25,7 @@ class Response extends Message
      *
      * @param (array) $config
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct(array $config = [])
     {
@@ -61,7 +61,7 @@ class Response extends Message
      *
      * @param (int) $code
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -80,7 +80,7 @@ class Response extends Message
      * @param (mixed)  $body
      * @param (string) $encode
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -118,7 +118,7 @@ class Response extends Message
      * @param (mixed)  $body
      * @param (string) $encode
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -154,7 +154,7 @@ class Response extends Message
     /**
      * Is this response empty?.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -166,7 +166,7 @@ class Response extends Message
     /**
      * Is this response ok?.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -178,7 +178,7 @@ class Response extends Message
     /**
      * Is this response successful?.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -190,7 +190,7 @@ class Response extends Message
     /**
      * Is this response redirect.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -202,7 +202,7 @@ class Response extends Message
     /**
      * Is this response Forbidden?.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -214,7 +214,7 @@ class Response extends Message
     /**
      * Is this response not found?.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -226,7 +226,7 @@ class Response extends Message
     /**
      * Is this response Client error?.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -238,7 +238,7 @@ class Response extends Message
     /**
      * Is this response Server error?.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -253,7 +253,7 @@ class Response extends Message
      * @param (bool) $status
      *                       (string) $eol
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -277,7 +277,7 @@ class Response extends Message
      *
      * @param (float) $version
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -293,7 +293,7 @@ class Response extends Message
      *
      * @param (float) $version
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -307,7 +307,7 @@ class Response extends Message
     /**
      * Get the status code.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -321,7 +321,7 @@ class Response extends Message
      *
      * @param (int) $code
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -342,7 +342,7 @@ class Response extends Message
      *
      * @param (mixed) $body
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -356,7 +356,7 @@ class Response extends Message
     /**
      * Set SSL headers to fix file cache issues over SSL in certain browsers.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -375,7 +375,7 @@ class Response extends Message
      * @param (int) $code
      *                    (array) $headers
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Hashing;
+namespace alphaz\Hashing;
 
 class BcryptHashing extends AbstractHashing
 {
     /**
      * The default cost.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -30,7 +30,7 @@ class BcryptHashing extends AbstractHashing
     /**
      * Determine whether to perform an algorithm check.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var bool
      */
@@ -41,7 +41,7 @@ class BcryptHashing extends AbstractHashing
      *
      * @param array $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct(array $options)
     {
@@ -56,7 +56,7 @@ class BcryptHashing extends AbstractHashing
      * @param string $original
      * @param string $hash
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -75,7 +75,7 @@ class BcryptHashing extends AbstractHashing
      * @param string $original
      * @param array  $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -102,7 +102,7 @@ class BcryptHashing extends AbstractHashing
      * @param strin $original
      * @param array $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -122,7 +122,7 @@ class BcryptHashing extends AbstractHashing
      *
      * @param int $cost
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -136,7 +136,7 @@ class BcryptHashing extends AbstractHashing
     /**
      * Get the cost value.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */
@@ -148,7 +148,7 @@ class BcryptHashing extends AbstractHashing
     /**
      * Get the algroithm.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return \Constant
      */

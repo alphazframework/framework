@@ -1,30 +1,30 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Cache\Adapter;
+namespace alphaz\Cache\Adapter;
 
-use Zest\Files\FileHandling;
-use Zest\Files\Files;
+use alphaz\Files\FileHandling;
+use alphaz\Files\Files;
 
 class FileCache extends AbstractAdapter
 {
     /**
      * Path of cache directory.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -36,7 +36,7 @@ class FileCache extends AbstractAdapter
      * @param string $path Cache path
      * @param int    $ttl  time to live
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($path, $ttl = 0)
     {
@@ -49,7 +49,7 @@ class FileCache extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int|false
      */
@@ -77,7 +77,7 @@ class FileCache extends AbstractAdapter
      * @param mixed  $value
      * @param int    $ttl
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -102,7 +102,7 @@ class FileCache extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -128,7 +128,7 @@ class FileCache extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -142,7 +142,7 @@ class FileCache extends AbstractAdapter
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -159,7 +159,7 @@ class FileCache extends AbstractAdapter
     /**
      * Remove all caches.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */

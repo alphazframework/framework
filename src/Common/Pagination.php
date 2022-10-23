@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common;
+namespace alphaz\Common;
 
 class Pagination
 {
     /**
      * Total items.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -30,7 +30,7 @@ class Pagination
     /**
      * Item per page.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -39,7 +39,7 @@ class Pagination
     /**
      * Current page.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -48,7 +48,7 @@ class Pagination
     /**
      * Site base url.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -57,7 +57,7 @@ class Pagination
     /**
      * Url append.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -66,7 +66,7 @@ class Pagination
     /**
      * ul tag class.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -75,7 +75,7 @@ class Pagination
     /**
      * li tag class.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -84,7 +84,7 @@ class Pagination
     /**
      * a tag class.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -101,7 +101,7 @@ class Pagination
      * @param (string) $liClass   li class value.
      * @param (string) $aClass    a class value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($total = 10, $perPage = 6, $current = 1, $urlAppend = '/', $ulCLass = 'pagination', $liClass = 'page-item', $aClass = 'page-link')
     {
@@ -120,7 +120,7 @@ class Pagination
      *
      * @param $append int sub url to be appended
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -134,7 +134,7 @@ class Pagination
      *
      * @param (int) $current current page.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -146,7 +146,7 @@ class Pagination
     /**
      * Set the base url.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -162,7 +162,7 @@ class Pagination
      *
      * @param(int) $items item per page item.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -176,7 +176,7 @@ class Pagination
      *
      * @param (int) $items total item count.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -190,7 +190,7 @@ class Pagination
      *
      * @param (int) $number page number.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -202,7 +202,7 @@ class Pagination
     /**
      * Generate the pagination.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -227,7 +227,7 @@ class Pagination
     /**
      * __Tostring.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */

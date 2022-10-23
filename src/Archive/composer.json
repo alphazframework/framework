@@ -1,6 +1,6 @@
 {
-    "name": "zest/archive",
-    "description": "The Zest Archive component",
+    "name": "alphaz/archive",
+    "description": "The alphaz Archive component",
     "type": "libraray",
     "license": "MIT",
     "authors": [
@@ -12,7 +12,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-             "Zest\\Archive\\": ""
+             "alphaz\\Archive\\": ""
         }
     }
 }

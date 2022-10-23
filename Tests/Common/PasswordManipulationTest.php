@@ -3,7 +3,7 @@
 namespace Framework\Tests\Common;
 
 use PHPUnit\Framework\TestCase;
-use Zest\Common\PasswordManipulation;
+use alphaz\Common\PasswordManipulation;
 
 class PasswordManipulationTest extends TestCase
 {

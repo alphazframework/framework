@@ -27,5 +27,5 @@ jobs:
       - name: Split and update ${{ matrix.library }}
         run: |
           SHA1=`./splitsh/splitsh-lite --prefix=src/${{ matrix.library }}`
-          git remote add ${{ matrix.library }} https://${{ secrets.AUTH_TOKEN }}@github.com/zestframework/${{ matrix.library }}
+          git remote add ${{ matrix.library }} https://${{ secrets.AUTH_TOKEN }}@github.com/alphazframework/${{ matrix.library }}
           git push -f ${{ matrix.library }} ${SHA1}:refs/heads/ref/heads/main

@@ -1,29 +1,29 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Encryption;
+namespace alphaz\Encryption;
 
-use Zest\Contracts\Encryption\Encryption as EncryptionContract;
+use alphaz\Contracts\Encryption\Encryption as EncryptionContract;
 
 class Encryption implements EncryptionContract
 {
     /**
      * Store the adapter object.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var object
      */
@@ -32,7 +32,7 @@ class Encryption implements EncryptionContract
     /**
      * __construct.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($adapter = null)
     {
@@ -44,7 +44,7 @@ class Encryption implements EncryptionContract
      *
      * @param (string) $adapter
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -52,13 +52,13 @@ class Encryption implements EncryptionContract
     {
         switch (strtolower($adapter)) {
             case 'sodium':
-                $adapterSet = '\Zest\Encryption\Adapter\SodiumEncryption';
+                $adapterSet = '\alphaz\Encryption\Adapter\SodiumEncryption';
                 break;
             case 'openssl':
-                $adapterSet = '\Zest\Encryption\Adapter\OpenSslEncryption';
+                $adapterSet = '\alphaz\Encryption\Adapter\OpenSslEncryption';
                 break;
             default:
-                $adapterSet = '\Zest\Encryption\Adapter\OpenSslEncryption';
+                $adapterSet = '\alphaz\Encryption\Adapter\OpenSslEncryption';
                 break;
         }
         $key = __config('encryption.key');
@@ -72,7 +72,7 @@ class Encryption implements EncryptionContract
      *
      * @param (mixed) $data data to be encrypted
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -86,7 +86,7 @@ class Encryption implements EncryptionContract
      *
      * @param (mixed) $token encrypted token
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */

@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\http;
+namespace alphaz\http;
 
 class Message extends HTTP
 {
     /**
      * __construct.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct()
     {
@@ -31,7 +31,7 @@ class Message extends HTTP
     /**
      * Get the protocol version.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -45,7 +45,7 @@ class Message extends HTTP
      *
      * @param (string) $version valid Protocol version
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -62,7 +62,7 @@ class Message extends HTTP
     /**
      * Get all message headers value.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -76,7 +76,7 @@ class Message extends HTTP
      *
      * @param (string) $name header field/key name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -90,7 +90,7 @@ class Message extends HTTP
      *
      * @param (string) $name header field/key name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -104,7 +104,7 @@ class Message extends HTTP
      *
      * @param (string) $name header field/key name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -119,7 +119,7 @@ class Message extends HTTP
      * @param (string) $name header field/key name
      *                       (string) $value header value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -136,7 +136,7 @@ class Message extends HTTP
      * @param (string) $name header field/key name
      *                       (string) $value header value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -152,7 +152,7 @@ class Message extends HTTP
      *
      * @param (string) $name header field/key name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -166,7 +166,7 @@ class Message extends HTTP
     /**
      * Gets the body of the message.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return array
      */
@@ -180,7 +180,7 @@ class Message extends HTTP
      *
      * @param (mixed) $body Body
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */

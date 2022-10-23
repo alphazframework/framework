@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Contracts\Common;
+namespace alphaz\Contracts\Common;
 
 interface Configuration
 {
@@ -23,7 +23,7 @@ interface Configuration
      *
      * @param string $key
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -35,7 +35,7 @@ interface Configuration
      * @param string $key
      * @param mixed  $default
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -47,7 +47,7 @@ interface Configuration
      * @param array|string $key
      * @param mixed        $value
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */

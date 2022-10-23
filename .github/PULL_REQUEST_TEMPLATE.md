@@ -2,7 +2,7 @@
 ## Requirements:
 To report an issue on Github following conditions must be followed:
 
-* Zest Framework version
+* alphaz Framework version
 * PHP version
 * Error message
 * Error Log
@@ -21,9 +21,9 @@ To report an issue on Github following conditions must be followed:
 We always welcome contributions, as long as they follow our guidelines.
 * You never allow add third-party composer dependencies or classes.
 * You allow to improve existing features or add new features.
-* You allow update our zest framework code or core code.
+* You allow update our alphaz framework code or core code.
 * When you want send poll request you have provide brief description about code either you update exsting code or adding new feature.
-* Zest => https://github.com/Softhub99/Zest
-* Core => https://github.com/Softhub99/Zest_Framework
+* alphaz => https://github.com/alphazframework/alphaz
+* Core => https://github.com/alphazframework/framework
 
 **[NOTE: The conditions above apply to all members except core]**

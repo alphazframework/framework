@@ -1,6 +1,6 @@
 {
-    "name": "zest/session",
-    "description": "The Zest component to manipulate sessions",
+    "name": "alphaz/session",
+    "description": "The alphaz component to manipulate sessions",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -12,7 +12,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-             "Zest\\Cookies\\": ""
+             "alphaz\\Cookies\\": ""
         }
     }
 }

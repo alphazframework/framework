@@ -1,4 +1,4 @@
-## Zest Framework - V3.0.0 {Dev}
+## alphaz Framework - V3.0.0 {Dev}
 
 ### New Features.
 1. Added Identicon Library.

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
@@ -14,17 +14,17 @@
  * @license MIT
  */
 
-namespace Zest\Common;
+namespace alphaz\Common;
 
-use Zest\Data\Str;
-use Zest\Site\Site;
+use alphaz\Data\Str;
+use alphaz\Site\Site;
 
 class PasswordManipulation
 {
     /**
      * Store password default length.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var int
      */
@@ -35,7 +35,7 @@ class PasswordManipulation
      *
      * @param (int) $length Length of password.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return self
      */
@@ -49,7 +49,7 @@ class PasswordManipulation
     /**
      * Get the password default length.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return int
      */

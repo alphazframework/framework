@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
@@ -16,7 +16,7 @@
  * @license MIT
  */
 
-namespace Zest\Console;
+namespace alphaz\Console;
 
 class Input extends Colorize
 {
@@ -26,13 +26,13 @@ class Input extends Colorize
      * @param string $prompt        Message to display.
      * @param bool   $show_asterisk Show asterisk or not.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
     public function secret(string $prompt)
     {
-        $os = (new \Zest\Common\OperatingSystem())->get();
+        $os = (new \alphaz\Common\OperatingSystem())->get();
         $current_dir = __DIR__;
         $current_dir = str_replace('\\', '/', $current_dir);
         $command = $current_dir.'/bin/';
@@ -51,7 +51,7 @@ class Input extends Colorize
     /**
      * Prompt for input confirm.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -66,13 +66,13 @@ class Input extends Colorize
     /**
      * Prompt for input input.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
     public function ask(): string
     {
-        $os = (new \Zest\Common\OperatingSystem())->get();
+        $os = (new \alphaz\Common\OperatingSystem())->get();
         if ($os === 'WINNT' or $os === 'Windows') {
             $x = stream_get_line(STDIN, 9024, PHP_EOL);
             if (!empty($x)) {

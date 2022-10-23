@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Hashing;
+namespace alphaz\Hashing;
 
 class Hashing
 {
     /**
      * Store the instance of Hash driver.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var object
      */
@@ -30,7 +30,7 @@ class Hashing
     /**
      * __construct.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($verify = false)
     {
@@ -62,7 +62,7 @@ class Hashing
      * @param (string)         $original
      * @param (array) optional $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -77,7 +77,7 @@ class Hashing
      * @param (string) $original
      * @param (string) $hash
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return string
      */
@@ -92,7 +92,7 @@ class Hashing
      * @param (string)         $hash
      * @param (array) optional $options
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */

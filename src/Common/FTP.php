@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common;
+namespace alphaz\Common;
 
 class FTP
 {
     /**
      * Connection.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var resource
      */
@@ -30,7 +30,7 @@ class FTP
     /**
      * connectionString.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var resource
      */
@@ -44,7 +44,7 @@ class FTP
      * @param (string) $pass    password
      * @param (string) $secured ftp or sftp
      *
-     * @since 3.0.0
+     * @since 1.0.0
      */
     public function __construct($host, $user, $pass, $secured)
     {
@@ -67,7 +67,7 @@ class FTP
     /**
      * get the connection.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return resource
      */
@@ -79,7 +79,7 @@ class FTP
     /**
      * check whether the ftp is connected.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -93,7 +93,7 @@ class FTP
      *
      * @param (string) $dir directory
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -105,7 +105,7 @@ class FTP
     /**
      * get the current working directory.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */
@@ -120,7 +120,7 @@ class FTP
      * @param (string) $dir directory
      * @param (string) $new naw name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -134,7 +134,7 @@ class FTP
      *
      * @param (string) $dir directory name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -148,7 +148,7 @@ class FTP
      *
      * @param (array) $dirs
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return object
      */
@@ -178,7 +178,7 @@ class FTP
      *
      * @param (string) $dir directory
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -192,7 +192,7 @@ class FTP
      *
      * @param (string) $file
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -206,7 +206,7 @@ class FTP
      *
      * @param (string) $dir directory
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -222,7 +222,7 @@ class FTP
      * @param (mixed)$remote remote
      * @param (mixed) $mode mode
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -237,7 +237,7 @@ class FTP
      * @param (string) $old old
      * @param (string) $new naw name
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -252,7 +252,7 @@ class FTP
      * @param (string) $file file
      * @param (mixed)  $mode mode
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -266,7 +266,7 @@ class FTP
      *
      * @param (string) $file file you want to delete
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -280,7 +280,7 @@ class FTP
      *
      * @param (bool) $flag flag
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -292,7 +292,7 @@ class FTP
     /**
      * Close the FTP connection.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -309,7 +309,7 @@ class FTP
      * @param (array)  $files number of files you want to uplaod
      * @param (string) $root  Server root directory or sub
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return mixed
      */

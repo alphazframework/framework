@@ -1,29 +1,29 @@
 <?php
 
 /**
- * This file is part of the Zest Framework.
+ * This file is part of the alphaz Framework.
  *
  * @author Muhammad Umer Farooq (Malik) <mumerfarooqlablnet01@gmail.com>
  *
- * @link https://github.com/zestframework/Zest_Framework
+ * @link https://github.com/alphazframework/framework
  *
  * For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
- * @since 3.0.0
+ * @since 1.0.0
  *
  * @license MIT
  */
 
-namespace Zest\Common\Sitemap;
+namespace alphaz\Common\Sitemap;
 
-use Zest\Contracts\Sitemap\SitemapIndex as SitemapIndexContracts;
+use alphaz\Contracts\Sitemap\SitemapIndex as SitemapIndexContracts;
 
 class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
 {
     /**
      * Start of sitemap.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -32,7 +32,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
     /**
      * End of sitemap.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -41,7 +41,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
     /**
      * XML structure.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @var string
      */
@@ -57,7 +57,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
      *
      * @param (string) $file File name with extension (.xml).
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -74,7 +74,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
      * @param (string) $url     Valid url.
      * @param (string) $lastMod Last modify.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return bool
      */
@@ -105,7 +105,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
      * @param (string) $url     Valid url.
      * @param (string) $lastMod Last modify.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
@@ -124,7 +124,7 @@ class SitemapIndex extends AbstractSitemap implements SitemapIndexContracts
      * @param (string) $url     Valid url.
      * @param (string) $lastMod Last modify.
      *
-     * @since 3.0.0
+     * @since 1.0.0
      *
      * @return void
      */
