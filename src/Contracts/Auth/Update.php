@@ -31,9 +31,9 @@ interface Update
     /**
      * Check is username is exists or not.
      *
-     * @param (mixed)$password password of user
-     * @param (mixed) $repeat confirm password
-     * @param (int)   $id     id of user
+     * @param (mixed) $password password of user
+     * @param (mixed) $repeat   confirm password
+     * @param (int)   $id       id of user
      *
      * @since 1.0.0
      *

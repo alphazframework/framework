@@ -52,7 +52,7 @@ class Handler
      * Set the error msg.
      *
      * @param $error the error msg
-     *        $key key of error msg
+     *                $key key of error msg
      *
      * @return void
      */

@@ -120,7 +120,7 @@ class Signup extends Handler
                     $html = __printl('auth:body:need:verify');
                     $html = str_replace(':email', $email, $html);
                     $html = str_replace(':link', $link, $html);
-                    (new EmailHandler($subject, $html, $email));
+                    new EmailHandler($subject, $html, $email);
                 }
             }
         } else {

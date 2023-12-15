@@ -71,31 +71,31 @@ class SystemMessage implements SystemMessageContract
     {
         $type = strtolower($type);
         switch ($type) {
-                case 'success':
-                    $type = 'success';
-                    break;
-                case 'error':
-                    $type = 'danger';
-                    break;
-                case 'information':
-                    $type = 'info';
-                    break;
-                case 'warning':
-                    $type = 'warning';
-                    break;
-                case 'primary':
-                    $type = 'primary';
-                    break;
-                case 'secondary':
-                    $type = 'secondary';
-                    break;
-                case 'dark':
-                    $type = 'Dark';
-                    break;
-                default:
-                    $type = 'light';
-                    break;
-            }
+            case 'success':
+                $type = 'success';
+                break;
+            case 'error':
+                $type = 'danger';
+                break;
+            case 'information':
+                $type = 'info';
+                break;
+            case 'warning':
+                $type = 'warning';
+                break;
+            case 'primary':
+                $type = 'primary';
+                break;
+            case 'secondary':
+                $type = 'secondary';
+                break;
+            case 'dark':
+                $type = 'Dark';
+                break;
+            default:
+                $type = 'light';
+                break;
+        }
         $this->type = $type;
     }
 

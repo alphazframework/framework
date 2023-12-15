@@ -65,7 +65,7 @@ class OperatingSystem
             default:
                 $c_os = 'Unknown';
                 break;
-         }
+        }
 
         return $c_os;
     }

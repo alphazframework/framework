@@ -30,7 +30,7 @@ class Error
     /**
      * Set the error msg.
      *
-     * @param (string)          $error error msg
+     * @param (string) $error error msg
      * @param (string) optional $key   key of error msg like username
      *
      * @since 1.0.0

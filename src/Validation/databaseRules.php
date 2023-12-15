@@ -23,8 +23,8 @@ class databaseRules extends StickyRules
      * Evaulate unique.
      *
      * @param $column Table column
-     *        $value Value to be checked
-     *        $table Database table
+     *                 $value Value to be checked
+     *                 $table Database table
      *
      * @return bool
      */

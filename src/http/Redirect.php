@@ -43,6 +43,6 @@ class Redirect extends HTTP
         header("Location: {$url}");
 
         //Need to stop current execution after redirect.
-        exit();
+        exit;
     }
 }

@@ -436,7 +436,7 @@ class Request extends Uri
         // If the content-type is JSON
         if ($this->getQueryString() && stripos($this->getQueryString(), 'json') !== false) {
             $this->parsedData = json_decode($this->rawData, true);
-        // Else, if the content-type is XML
+            // Else, if the content-type is XML
         } elseif ($this->getContentType() && stripos($this->getContentType(), 'xml') !== false) {
             $matches = [];
             preg_match_all('/<!\[cdata\[(.*?)\]\]>/is', $this->rawData, $matches);
@@ -451,7 +451,7 @@ class Request extends Uri
             }
 
             $this->parsedData = json_decode(json_encode((array) simplexml_load_string($this->rawData)), true);
-        // Else, default to a regular URL-encoded string
+            // Else, default to a regular URL-encoded string
         } else {
             switch (strtoupper($this->getRequestMethod())) {
                 case 'GET':

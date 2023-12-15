@@ -67,7 +67,7 @@ class Reset extends Handler
                 $html = __printl('auth:body:reset');
                 $html = str_replace(':email', $email, $html);
                 $html = str_replace(':link', $link, $html);
-                (new EmailHandler($subject, $html, $email));
+                new EmailHandler($subject, $html, $email);
                 Success::set(__printl('auth:success:reset'));
             }
         } else {

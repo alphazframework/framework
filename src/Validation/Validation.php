@@ -30,8 +30,8 @@ class Validation
      * Compile input.
      *
      * @param $input input value
-     *        $role   required etc
-     *        $type input
+     *                $role   required etc
+     *                $type input
      *
      * @return string
      */
@@ -45,9 +45,9 @@ class Validation
      * Compile Json.
      *
      * @param $data (array)
-     *              ['policies'] => policies
-     *              ['value']  => Value to be checked
-     *              ['field'] => field name
+     *               ['policies'] => policies
+     *               ['value']  => Value to be checked
+     *               ['field'] => field name
      *
      * @return string
      */
@@ -63,9 +63,9 @@ class Validation
      * Compile Database Unique.
      *
      * @param $data (array)
-     *              ['policies'] => policies
-     *              ['value']  => Value to be checked
-     *              ['field'] => field name
+     *               ['policies'] => policies
+     *               ['value']  => Value to be checked
+     *               ['field'] => field name
      *
      * @return string
      */
@@ -85,9 +85,9 @@ class Validation
      * Compile input.
      *
      * @param $data (array)
-     *              ['policies'] => policies
-     *              ['value']  => Value to be checked
-     *              ['field'] => field name
+     *               ['policies'] => policies
+     *               ['value']  => Value to be checked
+     *               ['field'] => field name
      *
      * @return string
      */
@@ -108,9 +108,9 @@ class Validation
      * Compile input.
      *
      * @param $data (array)
-     *              ['policies'] => policies
-     *              ['value']  => Value to be checked
-     *              ['field'] => field name
+     *               ['policies'] => policies
+     *               ['value']  => Value to be checked
+     *               ['field'] => field name
      *
      * @return string
      */

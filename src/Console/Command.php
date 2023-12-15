@@ -8,6 +8,7 @@
  * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
+ *
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
  *
  * For the full copyright and license information, please view the LICENSE
@@ -140,7 +141,7 @@ abstract class Command
      */
     public function terminate(): void
     {
-        exit();
+        exit;
     }
 
     /**

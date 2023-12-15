@@ -214,7 +214,7 @@ class Mail
      *
      * @since 1.9.0
      *
-     * @return boolean.
+     * @return bool.
      */
     public function send()
     {
@@ -326,8 +326,8 @@ class Mail
      * Send mail over SMTP.
      *
      * @param $to sender email
-     *        $from from email
-     *        $message message to be send
+     *             $from from email
+     *             $message message to be send
      *
      * @since 1.9.0
      *

@@ -95,7 +95,7 @@ class Response extends Message
                 $encodedBody = gzencode($body);
                 break;
 
-            // Deflate compression
+                // Deflate compression
             case 'deflate':
                 if (!function_exists('gzdeflate')) {
                     throw new \Exception('Deflate compression is not available.');
@@ -103,10 +103,9 @@ class Response extends Message
                 $encodedBody = gzdeflate($body);
                 break;
 
-            // Unknown compression
+                // Unknown compression
             default:
                 $encodedBody = $body;
-
         }
 
         return $encodedBody;
@@ -133,7 +132,7 @@ class Response extends Message
                 $decodedBody = gzinflate(substr($body, 10));
                 break;
 
-            // Deflate compression
+                // Deflate compression
             case 'deflate':
                 if (!function_exists('gzinflate')) {
                     throw new \Exception('Deflate compression is not available.');
@@ -142,10 +141,9 @@ class Response extends Message
                 $decodedBody = ($zlibHeader[1] % 31 == 0) ? gzuncompress($body) : gzinflate($body);
                 break;
 
-            // Unknown compression
+                // Unknown compression
             default:
                 $decodedBody = $body;
-
         }
 
         return $decodedBody;
@@ -382,7 +380,7 @@ class Response extends Message
     public function sendAndExit($code = null, array $headers = null)
     {
         $this->send($code, $headers);
-        exit();
+        exit;
     }
 
     /**

@@ -8,6 +8,7 @@
  * @link https://github.com/alphazframework/framework
  *
  * @author Muhammad Umer Farooq <lablnet01@gmail.com>
+ *
  * @author-profile https://www.facebook.com/Muhammadumerfarooq01/
  *
  * For the full copyright and license information, please view the LICENSE
@@ -104,7 +105,6 @@ class Console
      */
     public function run($param): void
     {
-
         // registering the commands to container.
         foreach ($this->commands as $command) {
             $this->container->register([$command[1], $command[0]], new $command[1]());
