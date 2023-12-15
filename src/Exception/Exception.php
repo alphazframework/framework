@@ -27,6 +27,6 @@ class Exception
      */
     public function __construct()
     {
-        (new Whoops());
+        new Whoops();
     }
 }

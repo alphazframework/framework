@@ -320,7 +320,7 @@ class CURL extends AbstractClient
             foreach ($headers as $header) {
                 if (strpos($header, 'HTTP') !== false) {
                     $this->version = substr($header, 0, strpos($header, ' '));
-                    $this->version = substr($this->version, (strpos($this->version, '/') + 1));
+                    $this->version = substr($this->version, strpos($this->version, '/') + 1);
                     preg_match('/\d\d\d/', trim($header), $match);
                     $this->code = $match[0];
                     $this->message = trim(str_replace('HTTP/'.$this->version.' '.$this->code.' ', '', $header));

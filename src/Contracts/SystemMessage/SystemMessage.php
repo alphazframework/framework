@@ -22,7 +22,7 @@ interface SystemMessage
      * Add the system message.
      *
      * @param $params['msg'] => message to be store
-     *        $params['type'] => alert type
+     *                        $params['type'] => alert type
      *
      * @since 1.0.0
      *

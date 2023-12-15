@@ -161,9 +161,9 @@ class SqLite
      * Prepare a query to delete data from database.
      *
      * @param $params array array();
-     *           'table' Names of table
-     *             'db_name' => Database name
-     *           'wheres' Specify a selection criteria to get required records
+     *                 'table' Names of table
+     *                 'db_name' => Database name
+     *                 'wheres' Specify a selection criteria to get required records
      *
      * @return bool
      */
@@ -182,10 +182,10 @@ class SqLite
      * Prepare a query to count data from database.
      *
      * @param $params array();
-     *           'table' Names of table
-     *             'db_name' => Database name
-     *           'columns' Names of columnswant to select
-     *           'wheres' Specify a selection          *
+     *                 'table' Names of table
+     *                 'db_name' => Database name
+     *                 'columns' Names of columnswant to select
+     *                 'wheres' Specify a selection          *
      *
      * @return bool
      */
@@ -217,7 +217,7 @@ class SqLite
      * Deleting table if not exists.
      *
      * @param $dbname name of database
-     * $table => $table name
+     *                 $table => $table name
      *
      * @return bool
      */
@@ -233,7 +233,7 @@ class SqLite
      * Creating table.
      *
      * @param $dbname name of database
-     * $sql => for creating tables
+     *                 $sql => for creating tables
      *
      * @return bool
      */

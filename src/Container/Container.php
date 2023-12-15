@@ -266,7 +266,7 @@ class Container implements ContainerContract
 
             return $this->get($parameterClassName);
 
-        //Detetmine Parameter has default value? yes, use it.
+            //Detetmine Parameter has default value? yes, use it.
         } elseif ($parameter->isDefaultValueAvailable()) {
             return $parameter->getDefaultValue();
         }
@@ -337,8 +337,7 @@ class Container implements ContainerContract
 
         //Determine the class is really class?
         if ($class->isInstantiable() === true) {
-
-                //Get the class construct.
+            //Get the class construct.
             $constructor = $class->getConstructor();
             if (null === $constructor) {
                 //No construct just return an object.

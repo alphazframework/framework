@@ -176,6 +176,7 @@ class Logger extends AbstractLogger
      * Log an Exception.
      *
      * @param (string) $level Error level (string or PHP syslog priority)
+     *
      * @oaram (string)    $message Error message
      *
      * @param (array)     $context   Contextual array

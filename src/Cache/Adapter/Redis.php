@@ -87,7 +87,7 @@ class Redis extends AbstractAdapter
         $data = $this->redis->get($key);
         if ($data !== false) {
             $data = json_decode($data, true);
-            if ((($data['ttl'] == 0) || ((time() - $data['start']) <= $data['ttl']))) {
+            if (($data['ttl'] == 0) || ((time() - $data['start']) <= $data['ttl'])) {
                 $ttl = $data['ttl'];
             } else {
                 $this->deleteItem($key);
@@ -140,7 +140,7 @@ class Redis extends AbstractAdapter
         $data = $this->redis->get($key);
         if ($data !== false) {
             $data = json_decode($data, true);
-            if ((($data['ttl'] == 0) || ((time() - $data['start']) <= $data['ttl']))) {
+            if (($data['ttl'] == 0) || ((time() - $data['start']) <= $data['ttl'])) {
                 $value = $data['value'];
             } else {
                 $this->deleteItem($key);

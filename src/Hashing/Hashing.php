@@ -59,7 +59,7 @@ class Hashing
     /**
      * Generate the hash.
      *
-     * @param (string)         $original
+     * @param (string) $original
      * @param (array) optional $options
      *
      * @since 1.0.0
@@ -89,7 +89,7 @@ class Hashing
     /**
      * Check if the given hash has been hashed using the given options.
      *
-     * @param (string)         $hash
+     * @param (string) $hash
      * @param (array) optional $options
      *
      * @since 1.0.0

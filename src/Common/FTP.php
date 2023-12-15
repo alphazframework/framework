@@ -218,9 +218,9 @@ class FTP
     /**
      * Get the file.
      *
-     * @param (mixed) $local local
-     * @param (mixed)$remote remote
-     * @param (mixed) $mode mode
+     * @param (mixed) $local  local
+     * @param (mixed) $remote remote
+     * @param (mixed) $mode   mode
      *
      * @since 1.0.0
      *

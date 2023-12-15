@@ -120,7 +120,7 @@ class Site
             $base_url = $url;
         }
         ob_start();
-        (new Redirect($base_url, 200));
+        new Redirect($base_url, 200);
     }
 
     /**

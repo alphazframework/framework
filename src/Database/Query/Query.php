@@ -170,9 +170,9 @@ class Query
      * Prepare a query to delete data from database.
      *
      * @param $params array array();
-     *           'table' Names of table
-     *           'db_name' => Database name
-     *           'wheres' Specify a selection criteria to get required records
+     *                 'table' Names of table
+     *                 'db_name' => Database name
+     *                 'wheres' Specify a selection criteria to get required records
      *
      * @return query
      */
@@ -269,7 +269,7 @@ class Query
      * Deleting table  query if not exists.
      *
      * @param $dbname name of database
-     * $table => $table name
+     *                 $table => $table name
      *
      * @return query
      */
